@@ -1,0 +1,16 @@
+#permite entrar directamente en el index.php sin entrar a la carpeta public; redirige a la carpeta public que contiene el index.php
+	<IfModule mod_rewrite.c>
+		RewriteEngine On
+		RewriteRule ^$ public/ [L]
+		RewriteRule (.*)$ public/$1 [L]
+	</IfModule>
+
+#Redirige el sitio web aún sino se escribe el www
+	RewriteEngine On
+	RewriteCond %{HTTP_HOST} ^noticieroyaracuy.com
+	RewriteRule ^(.*)$ https://www.noticieroyaracuy.com/$1 [R=301,L]
+
+#Entra al sitio web utilizando el certificado de seguridad SSL
+	RewriteEngine on
+	RewriteCond %{HTTPS} !=on
+	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}

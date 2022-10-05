@@ -1,0 +1,16 @@
+#Mapea la url y redirecciona a index.php si se escribe en la url un archivo que no existe
+<IfModule mod_rewrite.c>
+	Options -Multiviews
+	RewriteEngine On
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+</IfModule>
+
+#Redireccionamiento de dominio sin https a dominio con https (comentar en local porque redirigen al sitio en remoto)
+#<IfModule mod_rewrite.c>
+	#RewriteCond %{HTTPS} off
+	#RewriteRule (.*) https://www.noticieroyaracuy.com/$1 [R=301,L,QSA]
+#</IfModule>
+
+  

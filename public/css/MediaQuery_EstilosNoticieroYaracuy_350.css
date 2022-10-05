@@ -1,0 +1,176 @@
+@media(max-width: 350px){/*aplicará en cualquier medio con dimensiones menores a lo indicado*/
+		/* DECLARACION DE VARIABLES */
+:root{
+	--FondoDivModal--claro: rgba(0, 0, 0, 0.8);
+}
+.a_1{
+	font-size: 1.7em;
+	width: 100%;
+	text-align: right;
+	padding-right: 5%;
+}
+.boton{
+	font-size: 1em;
+	width: 140px;
+}
+.columnas{
+	/* column-count: 1; */
+	/* column-gap: inherit; */
+	/* column-rule: 4px dotted gray; */
+ }
+ .comandoMenu_2{
+	 border-radius: 10px;
+	 visibility: visible;
+	 position: absolute;
+	 top: 0%;
+	 display: block;
+	 padding: 1%;
+	 margin-top: 1%;
+	 margin-left: 2%;
+	 /* z-index: 28; */
+ }
+ .contBoton--100{/*descr_Producto - tiendas*/
+	 width: 100%;
+ }  
+.cont_modal--label{/*inicio*/
+	font-size: 1em;
+	bottom: 0pt;
+	font-size: 1.3em;
+	height: 25px;
+}
+.cont_modal--h1{
+	font-size: 1.5em;
+	 margin-top: 10%;
+}
+.cont_modal--p{/*inicio*/
+	margin-top: 30%;
+	font-size: 2em;
+}
+.cont_modal--logo{/*inicio*/
+	width: 95%;
+	margin: auto;
+	bottom: 75pt;
+	left: 2.5%;
+}
+.cont_portada--noticia{
+	width: 100%;
+}
+.cont_portada--imagen{
+	/* width: 100%;
+	height: 100vh !important;  */
+}
+.cont_portada--titular{
+	width: 90%;
+	margin: -3% auto;
+	text-align: center;
+}
+.titular--texto{
+	font-size: 1.2em;
+	padding: 1%;
+}
+.cont_portada--texto{
+	width: 95%;
+	text-align: justify;
+	height: 15%;
+	margin: auto;
+	/*margin-top: 80vh;*/
+	padding: 3%; 
+
+}
+.contenedor_111{
+	background-color: white;
+	width: 100%;
+	text-align: right;
+	padding-right: 2%;
+	height: 50px;
+}
+.header{
+	/* position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;*/
+	/* background-color: red; */
+	height: 5vh;
+	align-items: center;
+}
+.header--inicio{
+	height: 45px;
+}
+.header__menuResponsive{
+	margin-top: 35% ;
+	width: 80%; 
+	margin-left: -80%; /*oculta el menu responsive*/
+	transition: all 0.5s;
+	position: initial;
+}
+.header__menuResponsive--inicio{
+	/* margin-top: 150%; */
+}
+.header__menuResponsive ul{
+	/* background-color:var(--OficialClaro); */
+	flex-direction: column;
+	width: 100%;
+	margin-top: 135% !important;
+	padding-top: 12%;
+}
+.header__menuResponsive--tienda ul{
+	position: relative; 
+}
+.header__menuResponsive li{
+	height: 37px;
+	/* padding-top: 3%; */
+	width: 100%;
+	flex-grow: 1;/*distribuye proporcionalmente los elementos internos en el eje horizontal, es necesario que el elemento padre tenga la propiedad display con el valor flex*/
+}
+.header__menuResponsive li a{
+	/* color: var(--OficialOscuro); */
+	color: white;
+	font-size: 1.2em;
+	width: 100%;
+	/* height: 20px;
+	line-height: 20px; */
+	text-align: left;
+	padding-left: 5%;
+}
+.header__menuResponsive li a:hover{
+	background-color: var(--OficialOscuro) !important;
+	color: white !important;
+	font-size: 1.2em;
+	width: 100%;
+}
+.header__titulo{
+	font-size: 5.5vh;
+	margin-bottom: -4%;
+}
+.subtitulo{	
+	/*Las proximas lineas permiten colocar tres puntos al final luego de 4 lineas de parrafo */	
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+}
+.tapa{
+	background-color: rgba(0, 0, 0, 0.9);
+	/* display: none; */
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 400% !important;
+	z-index: 2;
+	/* transition: all 0.5s;
+	transition-delay: 0.8s; */
+}
+.tapa-logo{
+	display: block;
+	width: 80%; 
+	margin-left: 100%;/*oculta el menu responsive*/
+	position: fixed;
+	top: 90% !important;
+	transition: all 0.5s;
+}
+
+}

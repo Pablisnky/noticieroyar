@@ -1,0 +1,23 @@
+@media(min-width: 351px) and (max-width: 800px){/*aplicará en cualquier medio con dimensiones menores a lo indicado*/
+		/* DECLARACION DE VARIABLES */
+.cont_modal--label{/*inicio*/
+	font-size: 1em;
+	bottom: 0pt;
+	font-size: 1.3em;
+	height: 25px;
+}
+.cont_modal--h1{
+	font-size: 2em;
+}
+.cont_modal--p{/*inicio*/
+	margin-top: 30%;
+	font-size: 1.9em;
+}
+.cont_modal--logo{/*inicio*/
+	width: 95%;
+	margin: auto;
+	bottom: 150pt;
+	left: 2.5%;
+}
+
+}
