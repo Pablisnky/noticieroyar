@@ -30,6 +30,10 @@ a{
 body, html{
 	height: 100%;	
 }
+input[type=text], select, textarea{
+	margin-bottom: 2% !important;
+	padding-left: 1%;
+}
 .material-icons-outlined{}
 
 /* ******************************************************************************** */
@@ -147,11 +151,17 @@ body, html{
  .cont_noticia--seccion{
 	display: flex;
 	/* flex-direction: row; */
-	margin-bottom: 10%;
+	margin-bottom: 7%;
 	overflow-x: scroll;
  }
+ .cont_noticia--tituloSeccion{
+	font-size: 1.3em;
+	padding-left: 5%;
+ }
  .cont_noticia--sencilla{
+	background-color: rgba(248, 244, 244, 0.9);
 	min-width: 50%;
+	/* padding: 1% 2% 3% 2%; */
  }
  .cont_noticia-imagen{
 	 height: 30vh; 
@@ -160,11 +170,12 @@ body, html{
 	 object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
  }
  .cont_noticia--titular{
-	width: 90%;
-	margin: auto;
-	margin-top: 2vh;
-	padding: 0.5%;
-	font-size: 0.8em;
+	/* background-color: red;; */
+	/* width: 90%; */
+	/* margin: auto;
+	margin-top: 2vh; */
+	padding: 0.5% 2% 4% 3%;
+	/* font-size: 0.8em; */
  }
  .cont_noticia--h2{
 	font-size: 0.8em;
@@ -226,9 +237,14 @@ body, html{
 	height: 100%;
 }
 .cont_portada--imagen{
-	height: 60vh; 
+	max-height: 50vh; 
 	margin: auto;
-	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	/*object-fit: contain; fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.imagen--portada{
+	height: 50vh;  
+	margin: auto;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset
 }
 .cont_portada--texto{
 	width: 90%;
@@ -275,9 +291,9 @@ body, html{
 	display: flex; 
 	justify-content: space-around;
 	width: 80%;
-	margin: auto;
-	position: relative;
-	bottom: 20pt;
+	margin: 2% auto;
+	/* position: relative;
+	bottom: 20pt; */
 }
 .cont_radio--input{
 	width: 100px;
@@ -327,6 +343,7 @@ body, html{
 .fieldset_1{
 	width: 95%;
 	margin: auto;
+	margin-top: 2%;
 	border-radius: 15px;
 	padding: 2%;
 	font-size: 1.2em;
@@ -381,8 +398,11 @@ body, html{
 	border-radius: 15px;
 	width: 15%;
 }
-.header__menuResponsive ul{
-
+.hr_1{
+	margin: 2%;
+}
+.legend_1{
+	font-size: 1.3em;
 }
 .menuLi_1:hover > ul{/*Se aplica un hover a un elemento, seleccionando otro elemento distinto*/
 	background-color: var(--HoverEnlaces);

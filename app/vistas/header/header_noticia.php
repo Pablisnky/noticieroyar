@@ -68,6 +68,7 @@
 		<!-- MEMBRETE FIJO -->
 		<div class="contenedor_111">
 			<a class="header__titulo Default_font--black" href="<?php echo RUTA_URL . '/Inicio_C/';?>">Noticiero Yaracuy</a>
+			<small style="font-size: 0.8em;">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></samall>
 		</div>
 		
 		<!-- DIV USADO PARA TAPAR EL BODY MIENTRAS ESTA EL MENU RESPONSIVE -->

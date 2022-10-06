@@ -17,9 +17,10 @@
 
                 //Se construye la url real de 
                 $URL = RUTA_URL . '/Panel_C/portadas';   
-                
-                header('Location:'. $URL);
-                
+                // echo $URL;
+                // exit;
+
+                header('Location:'. $URL);                
                 // terminamos inmediatamente la ejecución del script, evitando que se envíe más salida al cliente.
                 die(); 
             }         

@@ -6,7 +6,7 @@
 
     <!--PANEL NOTICIAS GENERALES -->       
         <div style="margin-left:20%;">
-            <fieldset class="fieldset_1 fieldset_3">
+            <fieldset class="fieldset_1">
                 <a id="Not_Generales" class="ancla_2"></a>
                 <legend class="legend_1">Noticias generales</legend>
                 <?php
@@ -32,6 +32,9 @@
                             <!-- SUBTITULO NOTICIA -->
                             <label class="cont_panel--label"><?php echo $Not_Gen['subtitulo'];?></label>
                             
+                            <!-- SECCION NOTICIA -->
+                            <label class="cont_panel--label"><?php echo $Not_Gen['seccion'];?></label>
+                            
                             <!-- FECHA NOTICIA -->
                             <label class="cont_panel--label"><?php echo $Not_Gen['fecha'];?></label>
 
@@ -39,7 +42,7 @@
                             <a class="" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Actualizar</a>
                             
                             <!-- PUBLICIDAD -->
-                            <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_noticia_principal/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Publicidad</a>
+                            <a href="<?php echo RUTA_URL?>/Panel_C<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Publicidad</a>
                             
                             <!-- ELIMINAR -->
                             <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Eliminar</a>

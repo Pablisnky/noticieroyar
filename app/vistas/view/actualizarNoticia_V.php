@@ -42,16 +42,11 @@
                             <input class="Default_ocultar" type="text" name="ID_Noticia" value="<?php echo $Datos['noticiaActualizar']['ID_Noticia'];?>"/> 
 
                             <input class="boton" type="submit" value="Actualizar noticia"/>  
-                            <input class="boton" type="submit" value="Eliminar noticia"/> 
                         </div>
                     </form>
             </fieldset>
         </div>
 
-
-
-<!-- <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script> -->
-<!-- <script src="<?php echo RUTA_URL;?>/public/javascript/E_SalomonPanel.js?v=<?php echo rand();?>"></script>  -->
 <script src="<?php echo RUTA_URL;?>/public/javascript/A_ActualizarNoticia.js?v=<?php echo rand();?>"></script> 
 
 <script>       

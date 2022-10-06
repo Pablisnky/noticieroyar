@@ -61,7 +61,7 @@
 }
 .cont_portada--titular{
 	width: 90%;
-	margin: -3% auto;
+	margin: auto;
 	text-align: center;
 }
 .titular--texto{
@@ -81,7 +81,7 @@
 	background-color: white;
 	width: 100%;
 	text-align: right;
-	padding-right: 2%;
+	padding-right: 4%;
 	height: 50px;
 }
 .header{

@@ -67,7 +67,6 @@
 		<!-- MEMBRETE FIJO-->
 		<div class="contenedor_111">
 			<label class="header__titulo"/>Noticiero Yaracuy</label>
-			<!-- <br> -->
 			<small style="font-size: 0.8em;">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></samall>
 		</div>
 		

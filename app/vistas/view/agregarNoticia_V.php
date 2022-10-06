@@ -12,17 +12,22 @@
                         <div class="cont_panel__did-1">       
                             <!-- IMAGN NOTICIA -->
                             <figure>
-                                <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> 
+                                <label for="imgInp"class="Default_pointer"><img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> </label>
                             </figure>
-                            <label for="imgInp"><span class="span_18 borde_1"><i class="fas fa-pencil-alt icono_4"></i></span></label>
-                            <input class="ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
+                            <!-- <span class="material-icons-outlined span_18">edit</span> -->
+                            <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
                         </div>
                         <div style="width: 100%">
                             <!-- TITULO NOTICIA -->
                             <input class="cont_panel--titulo" type="text" name="titulo" placeholder="Titulo"/>
-                            
+
+
+                            <!-- <span class=" borde_1"><i class="fas fa-pencil-alt icono_4"></i></span> -->
                             <!-- SUBTITULO NOTICIA -->
                             <textarea class="cont_panel--titulo" name="subtitulo">Subtitulo</textarea> 
+
+                            <!-- CONTENIDO NOTICIA -->
+                            <textarea class="cont_panel--titulo" name="contenido">Contenido</textarea> 
                             
                             <!-- SECCION NOTICIA -->
                             <select name="ID_Seccion">
@@ -37,7 +42,7 @@
                             <input class="cont_panel--titulo" type="text" name="fecha" placeholder="Fecha"/>
                             
                             <!-- REDACCION -->
-                            <input class="cont_panel--titulo" type="text" name="redaccion" placeholder="Redacción"/>
+                            <input class="Default_ocultar" type="text" name="ID_Periodista" value="1"/>
                         </div>                     
                     </div>
                     <div class=""> 
