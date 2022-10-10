@@ -10,6 +10,11 @@
             
             //Se CONSULTA las noticias de portada del dia en curso
             $this->NoticiasPortadas = $this->ConsultaInicio_M->consultarNoticiasPortada();
+            
+            // echo "<pre>";
+            // print_r($this->NoticiasPortadas);
+            // echo "</pre>";          
+            // exit();
         }
         
         public function index(){  

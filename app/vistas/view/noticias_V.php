@@ -16,7 +16,7 @@
                     if($Row['seccion'] == $Key['seccion']){ ?>
                         <div class="cont_noticia--sencilla">
                             <figure>
-                                <img class="cont_noticia-imagen" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/> 
+                                <img class="cont_noticia-imagen" alt="Fotografia" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/> 
                             </figure>
                             <div class="cont_noticia--titular">
                                 <?php echo $Key['titulo'];?></p>

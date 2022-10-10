@@ -166,6 +166,30 @@
                 return FALSE;
             }
         }
+        
+        //INSERT de efemeride
+        public function InsertarEfemeride($Titulo, $Contenido, $Fecha, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO efemeride(titulo, contenido, fecha, Nombre_imagen, Tipo_imagen, Tamanio_imagen) 
+                VALUES (:TITULO, :CONTENIDO, CURDATE(), :NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':TITULO', $Titulo);
+            $stmt->bindParam(':CONTENIDO', $Contenido);
+            // $stmt->bindParam(':FECHA', $Fecha);
+            $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenPrincipal);
+            $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenPrincipal);
+            $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenPrincipal);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
 
 // // ********************************************************************************************************
 // // UPDATE

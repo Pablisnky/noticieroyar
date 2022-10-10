@@ -36,7 +36,8 @@
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                  INNER JOIN secciones ON noticias.ID_Seccion=secciones.ID_Seccion
-                 WHERE fecha < CURDATE()"
+                ORDER BY ID_Noticia
+                DESC"
             );
 
             if($stmt->execute()){

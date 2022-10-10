@@ -11,7 +11,9 @@
                 "SELECT noticias.ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
-                 WHERE fecha = CURDATE()"
+                 WHERE fecha = CURDATE()
+                ORDER BY ID_Noticia
+                DESC"
             );
 
             if($stmt->execute()){

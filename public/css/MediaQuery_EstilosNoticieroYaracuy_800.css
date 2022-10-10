@@ -25,6 +25,22 @@
 		bottom: -10pt;
 		left: 53%;
 	}
+	.cont_modal--p{
+		margin-top: 20%;
+		font-size: 1.8em;
+	}
+	.cont_modal--logo{
+		width: 95%;
+		margin: auto;
+		bottom: 65pt;
+		left: 2.5%;
+	}
+	.cont_noticia{
+		margin-top: 20%;
+	}
+	.cont_noticia--sencilla{
+	   min-width: 50%;
+	}
 	.cont_portada{
 		display: block;
 		margin-top: 13%;

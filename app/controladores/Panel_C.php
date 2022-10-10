@@ -71,6 +71,14 @@
 		// 	// $this->VolverInicio = new Inicio_C();
 		// 	// $this->VolverInicio->Index();
 		// }
+		
+		// muestra formulario para agregar una noticia
+		public function agregar_efemeride(){
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/agregarEfemerides_V');
+		}
 
 		// muestra formulario para agregar una noticia
 		public function agregar_noticia(){
@@ -126,6 +134,41 @@
 			
             // $this->vista("header/header_inicio"); 
             $this->vista("view/ajax/Secciones_V", $Datos );
+		}
+		
+		// recibe formulario que agrega efemeride
+		public function recibeEfemerideAgregada(){
+			if(isset($_FILES['imagenPrincipal']["name"])){
+				$Titulo = $_POST['titulo'];
+				$Contenido = $_POST['contenido'];
+				$Fecha = $_POST['fecha'];						
+				$Nombre_imagenPrincipal = $_FILES['imagenPrincipal']['name'];
+				$Tipo_imagenPrincipal = $_FILES['imagenPrincipal']['type'];
+				$Tamanio_imagenPrincipal = $_FILES['imagenPrincipal']['size'];
+
+				// echo "Titulo : " . $Titulo . '<br>';
+				// echo "Contenido : " . $Contenido . '<br>';
+				// echo "Fecha : " . $Fecha . '<br>';
+				// echo "Nombre_imagen : " . $Nombre_imagenPrincipal . '<br>';
+				// echo "Tipo_imagen : " .  $Tipo_imagenPrincipal . '<br>';
+				// echo "Tamanio_imagen : " .  $Tamanio_imagenPrincipal . '<br>';
+				// exit;
+				
+				//Se INSERTA la noticia en BD y se retorna el ID de la inserción
+				$ID_Noticia = $this->Panel_M->InsertarEfemeride($Titulo, $Contenido, $Fecha, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+				
+				//Usar en remoto
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				
+				// usar en local
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
+			}				
+
+			header("Location:" . RUTA_URL . "/Panel_C/agregar_efemeride");
+			die();
 		}
 
 		// recibe formulario que agrega noticia

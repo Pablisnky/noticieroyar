@@ -1,5 +1,15 @@
-// document.getElementById("Cerrar--modal").addEventListener('click', CerrarModal, false)
+document.getElementById("Cerrar--modal").addEventListener('click', CerrarModal, false)
 
+//************************************************************************************************
+//Función autoejecuble que muestra la ventana modal
+var VentanaModal = (function(){ 
+    setTimeout(function(){mostrarModal();}, 1500)
+})();
+
+//************************************************************************************************
+function mostrarModal(){        
+    document.getElementById("VentanaModal").classList.add("mostrarModal")
+}
 // document.getElementById("Contenedor_34").addEventListener('click', function(){autofocus('Input_9')}, false)
                               
 // document.getElementById("Span_5").addEventListener('click', function(){CerrarModal_X('Busqueda')})
@@ -55,8 +65,8 @@
 
 //************************************************************************************************    
     //Desplaza el viewport a la derecha para mostrar otra noticia principal
-    // function CerrarModal(){
-    //     document.getElementById("VentanaModal").style.display = "none"
-    // }
+    function CerrarModal(){
+        document.getElementById("VentanaModal").style.display = "none"
+    }
 
 //************************************************************************************************   

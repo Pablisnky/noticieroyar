@@ -47,13 +47,13 @@
 	 margin-top: 10%;
 }
 .cont_modal--p{
-	margin-top: 30%;
-	font-size: 2em;
+	margin-top: 20%;
+	font-size: 1.8em;
 }
 .cont_modal--logo{
 	width: 95%;
 	margin: auto;
-	bottom: 75pt;
+	bottom: 65pt;
 	left: 2.5%;
 }
 .cont_portada{
@@ -74,10 +74,27 @@
 	font-size: 1.2em;
 	padding: 1%;
 }
+.cont_noticia{
+	margin-top: 18%;
+}
+.cont_noticia--seccion{
+   margin-bottom: 5%;
+}
+.cont_noticia--sencilla{
+   min-width: 50%;
+}
 .cont_portada--texto{
 	width: 95%;
 	text-align: justify;
 	height: 15%;
+	margin: auto;
+	/*margin-top: 80vh;*/
+	padding: 3%; 
+}
+.cont_efemerides--texto{
+	width: 95%;
+	text-align: justify;
+	/* height: 15%; */
 	margin: auto;
 	/*margin-top: 80vh;*/
 	padding: 3%; 
@@ -119,40 +136,6 @@
 	margin-left: 10%; 
 	margin-top: 10%; 
 	width: 90%;
-}
-.header__menuResponsive{
-	/* padding-top: 0%;
-	transition: all 0.5s;
-	position: initial; */
-}
-.header__menuResponsive ul{
-	/* flex-direction: column;
-	width: 100%;
-	padding-top: 8%; */
-}
-.header__menuResponsive li{
-	/* background-color: blue;
-	height: 55px;
-	padding-top: 5%;
-	width: 100%; */
-	/*flex-grow: 1;distribuye proporcionalmente los elementos internos en el eje horizontal, es necesario que el elemento padre tenga la propiedad display con el valor flex*/
-}
-.header__menuResponsive li a{
-	/* background-color: yellow;
-	color: white;
-	font-size: 1em;
-	display: block;
-	width: 100%;
-	height: 35px;
-	line-height: 35px;
-	text-align: left;
-	padding-left: 3%; */
-}
-.header__menuResponsive li a:hover{
-	/* background-color: var(--Hover) !important;
-	color: white !important;
-	font-size: 1.2em;
-	width: 100%; */
 }
 .subtitulo{	
 	/*Las proximas lineas permiten colocar tres puntos al final luego de 4 lineas de parrafo */	
