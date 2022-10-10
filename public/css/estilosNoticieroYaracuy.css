@@ -34,6 +34,9 @@ input[type=text], select, textarea{
 	margin-bottom: 2% !important;
 	padding-left: 1%;
 }
+li{
+	list-style: none;
+}
 .material-icons-outlined{}
 
 /* ******************************************************************************** */
@@ -41,6 +44,7 @@ input[type=text], select, textarea{
 :root{
 	--FondoDivModal: rgba(0, 0, 0, 0.8);
 	--FondoDivModal--claro: rgba(0, 0, 0, 0.7);
+	--HoverEnlaces: rgba(13, 14, 15, 0.8);
 	--OficialOscuro: rgb(51, 51, 51);
 	--OficialClaro: rgb(239, 245, 245);
 	--Fallos: rgba(255, 0, 0, 0.3);
@@ -55,6 +59,12 @@ input[type=text], select, textarea{
 
 /* ******************************************************************************** */
 
+.a_1{
+	font-size: 1.7em;
+	width: 100%;
+	text-align: right;
+	padding-right: 5%;
+}
 .a_11{
 	text-align: center;
 }
@@ -170,7 +180,6 @@ input[type=text], select, textarea{
 	 object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
  }
  .cont_noticia--titular{
-	/* background-color: red;; */
 	/* width: 90%; */
 	/* margin: auto;
 	margin-top: 2vh; */
@@ -222,9 +231,16 @@ input[type=text], select, textarea{
 	line-height: 30px;
  }
 .cont_portada{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
     width: 100%;
 	height: 100vh;
-	margin-top: 10%;
+	margin-top: 4%;
+}
+.cont_portada--noticia{
+	width: 30%;
+	margin-bottom: 2%;
 }
 .cont_portada--botones{
 	position: fixed;
@@ -232,9 +248,6 @@ input[type=text], select, textarea{
 	justify-content: space-around;
 	width: 100%;
 	bottom: 3pt;
-}
-.cont_portada--noticia{
-	height: 100%;
 }
 .cont_portada--imagen{
 	max-height: 50vh; 
@@ -336,8 +349,7 @@ input[type=text], select, textarea{
 .Default_pointer{
 	cursor: pointer;
 }
-.Default--quitar{
-	/* visibility: hidden; */
+.Default_quitarEscritorio{
 	display: none;
 }
 .fieldset_1{
@@ -349,7 +361,6 @@ input[type=text], select, textarea{
 	font-size: 1.2em;
 }
 .header{	
-	/* background-color: var(--FondoDivModal--claro); */
 	background-color: white;
 	position: fixed;
 	top: 0%;
@@ -357,7 +368,7 @@ input[type=text], select, textarea{
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
-	padding-top: 1%;
+	align-items: center;
 }
 .header--inicio{
 	position: fixed;
@@ -378,25 +389,46 @@ input[type=text], select, textarea{
 	/* width: 100%; */
 	/*flex-grow: 1;distribuye proporcionalmente los elementos internos en el eje horizontal, es necesario que el elemento padre tenga la propiedad display con el valor flex*/
 }
-.header__titulo{
-	/* color: white; */
-	/* background-color: yellow; */
-	height: 8vh;
-	font-family: Gruppo;
-	display: block;
-}
-.header--menu{
-	font-size: 1.5em !important;
+.header--menu{	
+	font-size: 2.5em !important;
 	cursor: pointer;
 }
+.header__titulo{
+	/* background-color: yellow; */
+	font-size: 3em;
+	font-family: Gruppo;
+	display: block;
+	margin-left: 8%;
+}
+.header__fecha{
+
+}
+.header--nav{
+	margin-left: 10%; 
+	margin-top: 5%; 
+	width: 30%;
+}
 .header__menuResponsive{
-	background-color: var(--HoverEnlaces);
+	background-color: rgba(0, 0, 0, 0.9);
 	transition: all 0.5s;
 	position: absolute;
-	/*margin-top: -250%; oculta el menu responsive*/
+	top: 0%;
+	left: 0%;
+	margin-top: -250%; /*oculta el menu responsive*/
 	padding: 1%;
-	border-radius: 15px;
-	width: 15%;
+	width: 100%; 
+	height: 100vh;
+	/* z-index: 20; */
+}
+.header__li--Enlaces{
+	color: white;
+	/* text-align: center; */
+	font-size: 1.3em !important;
+	line-height: 40px;
+	height: 55px;
+	/*padding-top: 5%; */
+	/* width: 100%; */
+	/*flex-grow: 1;distribuye proporcionalmente los elementos internos en el eje horizontal, es necesario que el elemento padre tenga la propiedad display con el valor flex*/
 }
 .hr_1{
 	margin: 2%;
@@ -415,6 +447,16 @@ input[type=text], select, textarea{
 	/* width: 110% !important; */
 	/* text-align: left !important; */
 }
-.tapa, .tapa-logo{
-	display: none;
+.tapa-logo{
+	display: block;
+	width: 80%; 
+	margin-left: 100%;
+	position: fixed;
+	top: 10% !important;
+	transition: all 0.4s;
+}
+.tapa-logo--font{
+	font-size: 4em;
+	color: white;
+	font-family: Gruppo;
 }

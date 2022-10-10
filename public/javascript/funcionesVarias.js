@@ -11,48 +11,41 @@
     }, false)
 
 //************************************************************************************************
-   //Oculta el menu principal en responsive haciendo click por fuera del boton menu
+    //Muestra el menu principal al hacer click en menu amburguesa
+    function mostrarMenu(){  
+        let A = document.getElementById("MenuResponsive")
+        let C = document.getElementById("Tapa_Logo")
+
+        if(A.style.marginTop != "0%"){
+            A.style.marginTop = "0%"
+            C.style.marginLeft = "60%"
+            if(screen.width < 350){
+                C.style.marginLeft = "22%"
+            }
+            else if(screen.width > 351 && screen.width < 800){
+                C.style.marginLeft = "33%"
+            }
+            C.style.transitionDelay = "0.3s"
+        }
+    }
+
+//************************************************************************************************
+    //Oculta el menu principal en responsive haciendo click por fuera del boton menu
     let div = document.getElementById("MenuResponsive")
-    let span= document.getElementById("Span_6")
-    let B = document.getElementById("Tapa")
+    let span = document.getElementById("Span_6")
     let C = document.getElementById("Tapa_Logo")
+
     window.addEventListener("click", function(e){
-        // console.log("_____Desde función anonima para ocultar menu_____")
         //obtiendo informacion del DOM del elemento donde se hizo click 
-        var click = e.target
-        // console.log("Click en: ", click)
+        // var click = e.target
+        // console.log(click)
         AltoVitrina = document.body.scrollHeight
-        if((div.style.marginLeft == "0%") && (click != div) && (click != span)){
-            div.style.marginLeft = "-80%"
+        if((div.style.marginTop == "0%")){
+            div.style.marginTop = "-250%"
             C.style.marginLeft = "100%"
-            // B.style.display = "none"
-            setTimeout(() => {
-                B.style.display = "none"
-              }, 250);
-            
+            C.style.transitionDelay = "0s"
+              
             //Se detiene la propagación de los eventos en caso de hacer click en un elemento que contenga algun evento
             e.stopPropagation();
         }
     }, true)
-
-//************************************************************************************************
-    //Muestra y oculta el menu principal en formato movil y tablet al hacer click en menu amburguesa
-    function mostrarMenu(){  
-        console.log("______Desde mostrarMenu()______")
-        let A = document.getElementById("MenuResponsive")
-        let B = document.getElementById("Tapa") 
-        let C = document.getElementById("Tapa_Logo")
-
-        if(A.style.marginLeft < "0%"){//Se muestra el menu
-            A.style.marginLeft = "0%"
-            B.style.display = "block"
-            C.style.marginLeft = "20%"
-        }
-        else if(A.style.marginLeft = "0%"){//Se oculta el menu
-            A.style.marginLeft = "-80%"
-            B.style.backgroundColor = "none"
-            C.style.marginLeft = "-100%"
-        }
-    }
-
-//************************************************************************************************ 

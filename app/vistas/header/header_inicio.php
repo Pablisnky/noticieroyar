@@ -29,51 +29,48 @@
 		<link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet"/>
 
     </head>
-    <body style="overflow-y: hidden; overflow-x: hidden;">				
-		<header class="header--inicio" id="Header">
-			
-			<!-- ICONO HAMBURGUESA"-->
-			<label class="comandoMenu_2" id="ComandoMenu" onclick="mostrarMenu()"><span class="material-icons-outlined header--menu" id="Span_6">menu</span></label>
-			
-			<!-- BARRA DE NAVEGACION -->
-			<nav id="MenuResponsive" class="header__menuResponsive header__menuResponsive--inicio"">
-				<ul id="MenuContenedor">
-					<li class="Default--quitar"><a class="a_3A" href="<?php echo RUTA_URL . '/Menu_C/afiliacion';?>" rel="noopener noreferrer"><i class="fas fa-address-card icono_1 icono_6"></i>Suscribirse</a></li>
-					<li class="Default--quitar"><a class="a_3A" href="<?php echo RUTA_URL . '/VitrinaMayorista_C';?>" rel="noopener noreferrer"><i class="fas fa-truck-moving icono_1 icono_6"></i>Editorial</a></li>
-					<li class="Default--quitar"><a class="a_3A" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer"><i class="fas fa-user-check icono_1 icono_6"></i>Eventos</a></li>
-					<li class="Default--quitar"><a class="a_3A" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer"><i class="fas fa-user-check icono_1 icono_6"></i>Pod Cast</a></li>
-					<li class="Default--quitar"><a class="a_3A" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer"><i class="fas fa-user-check icono_1 icono_6"></i>Directorio</a></li>
-					<li><a class="a_3A" href="<?php echo RUTA_URL . '/Ciudades_C';?>" rel="noopener noreferrer" rel="noopener noreferrer"><i class="fas fa-shopping-basket icono_1 icono_6"></i>Obiturio</a></li>
-					<li class="Default--quitar"><a class="a_3A" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer"><i class="fas fa-user-check icono_1 icono_6"></i>Archivo</a></li>
-					<hr>
-					<li><a class="a_3A" href="https://yaracultura.blogspot.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-check icono_1 icono_6"></i>Blog Yaracultura</a></li>
-					<li class="Default--quitar"><a class="a_3A" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer"><i class="fas fa-user-check icono_1 icono_6"></i>Galeria de arte</a></li>
-					<li class="Default--quitar"><a class="a_3A" href="<?php echo RUTA_URL . '/Login_C/index/CE';?> rel="noopener noreferrer"><i class="fas fa-user-check icono_1 icono_6"></i>Contraloria social</a></li>
-					<li><a class="a_3A"" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>"><i class="fas fa-user-check icono_1 icono_6" rel="noopener noreferrer"></i>Efemerides</a></li>
-					<li class="Default--quitar"><a class="a_3A" href="<?php echo RUTA_URL . '/Login_C/index/CE';?> rel="noopener noreferrer"><i class="fas fa-user-check icono_1 icono_6"></i>Turismo</a></li>
-					<hr>
-					<li><a class="a_3A" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>"><i class="fas fa-user-check icono_1 icono_6" rel="noopener noreferrer"></i>Nuestro ADN</a></li>
-					<li><a class="a_3A" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>"><i class="fas fa-user-check icono_1 icono_6" rel="noopener noreferrer"></i>LOGOS REDES SOCIALES</a></li>
-				</ul>
-			</nav>
-
-			<!-- MEMBRETE DESPLAZANTE -->
-			<div class="tapa-logo" id="Tapa_Logo">
-				<label class="Default_font--white">Noticiero Yaracuy</label>
+	<body class="body_1">				
+		<header class="header" id="Header">  
+			<div>							
+				<!-- ICONO HAMBURGUESA"-->
+				<label id="ComandoMenu" onclick="mostrarMenu()"><span class="material-icons-outlined header--menu" id="Span_6">menu</span></label>
+				
+				<!-- BARRA DE NAVEGACION -->
+				<nav class="header__menuResponsive" id="MenuResponsive">
+					<div class="header--nav">
+						<ul id="MenuContenedor">
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Menu_C/afiliacion';?>" rel="noopener noreferrer">Suscribirse</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/VitrinaMayorista_C';?>" rel="noopener noreferrer">Editorial</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Eventos</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Pod Cast</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Directorio</a></li>
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Ciudades_C';?>" rel="noopener noreferrer">Obiturio</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Archivo</a></li>
+							<!-- <hr> -->
+							<li><a class="header__li--Enlaces" href="https://yaracultura.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog Yaracultura</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Galeria de arte</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Contraloria social</a></li>
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Efemerides</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">>Turismo</a></li>
+							<!-- <hr> -->
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Nuestro ADN</a></li>
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">LOGOS REDES SOCIALES</a></li>
+						</ul>
+					</div>
+				</nav>
 			</div>
 
-		</header>
+			<!-- MEMBRETE FIJO -->
+			<label class="header__titulo">Noticiero Yaracuy</label>
 
-		<!-- MEMBRETE FIJO-->
-		<div class="contenedor_111">
-			<label class="header__titulo"/>Noticiero Yaracuy</label>
-			<small style="font-size: 0.8em;">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></samall>
+			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
+		</header>
+		
+		<!-- MEMBRETE DESPLAZANTE -->
+		<div class="tapa-logo" id="Tapa_Logo">
+			<label class="tapa-logo--font">Noticiero Yaracuy</label>
 		</div>
 		
-		<!-- DIV USADO PARA TAPAR EL BODY MIENTRAS ESTA EL MENU RESPONSIVE -->
-		<div class="tapa" id="Tapa">
-		</div>
-
 		<noscript>
 			<p>Bienvenido a NoticieroYaracuy.com</p>
 			<p>La tienda online requiere para su funcionamiento el uso de JavaScript, si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.</p>

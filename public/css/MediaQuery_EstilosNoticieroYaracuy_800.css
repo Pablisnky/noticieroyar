@@ -1,23 +1,85 @@
 @media(min-width: 351px) and (max-width: 800px){/*aplicará en cualquier medio con dimensiones menores a lo indicado*/
-		/* DECLARACION DE VARIABLES */
-.cont_modal--label{/*inicio*/
-	font-size: 1em;
-	bottom: 0pt;
-	font-size: 1.3em;
-	height: 25px;
-}
-.cont_modal--h1{
-	font-size: 2em;
-}
-.cont_modal--p{/*inicio*/
-	margin-top: 30%;
-	font-size: 1.9em;
-}
-.cont_modal--logo{/*inicio*/
-	width: 95%;
-	margin: auto;
-	bottom: 150pt;
-	left: 2.5%;
-}
-
+		
+	.body_1{
+		overflow-y: hidden; 
+		overflow-x: hidden;
+	}
+	.header--nav{
+		margin-left: 10%; 
+		margin-top: 10%; 
+		width: 90%;
+	}
+	.header--menu{
+		display: block;
+		position: absolute;
+		top: 15%;
+		left: 3%;
+	}
+	.header__titulo{
+		font-size: 2.3em;
+		left: 9%;
+	}
+	.header__fecha{
+		font-size: 0.9em;
+		position: absolute;
+		bottom: -10pt;
+		left: 53%;
+	}
+	.cont_portada{
+		display: block;
+		margin-top: 13%;
+	}
+	.cont_portada--noticia{
+		width: 100%;
+		height: 100%;
+		margin-bottom: initial;
+	}
+	.cont_portada--titular{
+		width: 90%;
+		margin: auto;
+		text-align: center;
+	}
+	.cont_portada--texto{
+		width: 95%;
+		text-align: justify;
+		height: 15%;
+		margin: auto;
+		/*margin-top: 80vh;*/
+		padding: 3%; 
+	}
+	.cont_radio{
+		display: flex; 
+		justify-content: space-around;
+		width: 80%;
+		margin: 5% auto;
+		/* position: relative;
+		bottom: 20pt; */
+	}
+	.Default_quitarEscritorio{
+		display: flex;
+	}
+	.titular--texto{
+		font-size: 1.5em;
+		padding: 1%;
+	}
+	.subtitulo{	
+		font-size: 1.2em;
+		/*Las proximas lineas permiten colocar tres puntos al final luego de 4 lineas de parrafo */	
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+		text-overflow: ellipsis;
+	}
+	.tapa-logo{
+		display: block;
+		width: 80%; 
+		margin-left: 100%;/*oculta el menu responsive*/
+		position: fixed;
+		top: 85% !important;
+		transition: all 0.5s;
+	}
+	.tapa-logo--font{
+		font-size: 2em;
+	}
 }

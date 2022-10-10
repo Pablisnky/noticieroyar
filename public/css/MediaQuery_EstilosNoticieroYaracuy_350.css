@@ -9,6 +9,10 @@
 	text-align: right;
 	padding-right: 5%;
 }
+.body_1{
+	overflow-y: hidden; 
+	overflow-x: hidden;
+}
 .boton{
 	font-size: 1em;
 	width: 140px;
@@ -32,7 +36,7 @@
  .contBoton--100{/*descr_Producto - tiendas*/
 	 width: 100%;
  }  
-.cont_modal--label{/*inicio*/
+.cont_modal--label{
 	font-size: 1em;
 	bottom: 0pt;
 	font-size: 1.3em;
@@ -42,22 +46,24 @@
 	font-size: 1.5em;
 	 margin-top: 10%;
 }
-.cont_modal--p{/*inicio*/
+.cont_modal--p{
 	margin-top: 30%;
 	font-size: 2em;
 }
-.cont_modal--logo{/*inicio*/
+.cont_modal--logo{
 	width: 95%;
 	margin: auto;
 	bottom: 75pt;
 	left: 2.5%;
 }
+.cont_portada{
+	display: block;
+	margin-top: 15%;
+}
 .cont_portada--noticia{
 	width: 100%;
-}
-.cont_portada--imagen{
-	/* width: 100%;
-	height: 100vh !important;  */
+	height: 100%;
+	margin-bottom: initial;
 }
 .cont_portada--titular{
 	width: 90%;
@@ -75,7 +81,6 @@
 	margin: auto;
 	/*margin-top: 80vh;*/
 	padding: 3%; 
-
 }
 .contenedor_111{
 	background-color: white;
@@ -84,65 +89,70 @@
 	padding-right: 4%;
 	height: 50px;
 }
-.header{
-	/* position: fixed;
-	top: 0%;
-	left: 0%;
-	width: 100%;
+.Default_quitarEscritorio{
 	display: flex;
-	justify-content: space-around;*/
-	/* background-color: red; */
-	height: 5vh;
-	align-items: center;
 }
-.header--inicio{
-	height: 45px;
+.header{
+	display: block;
+	height: 50px;
 }
-.header__menuResponsive{
-	margin-top: 35% ;
-	width: 80%; 
-	margin-left: -80%; /*oculta el menu responsive*/
-	transition: all 0.5s;
-	position: initial;
-}
-.header__menuResponsive--inicio{
-	/* margin-top: 150%; */
-}
-.header__menuResponsive ul{
-	/* background-color:var(--OficialClaro); */
-	flex-direction: column;
-	width: 100%;
-	margin-top: 135% !important;
-	padding-top: 12%;
-}
-.header__menuResponsive--tienda ul{
-	position: relative; 
-}
-.header__menuResponsive li{
-	height: 37px;
-	/* padding-top: 3%; */
-	width: 100%;
-	flex-grow: 1;/*distribuye proporcionalmente los elementos internos en el eje horizontal, es necesario que el elemento padre tenga la propiedad display con el valor flex*/
-}
-.header__menuResponsive li a{
-	/* color: var(--OficialOscuro); */
-	color: white;
-	font-size: 1.2em;
-	width: 100%;
-	/* height: 20px;
-	line-height: 20px; */
-	text-align: left;
-	padding-left: 5%;
-}
-.header__menuResponsive li a:hover{
-	background-color: var(--OficialOscuro) !important;
-	color: white !important;
-	font-size: 1.2em;
-	width: 100%;
+.header--menu{
+	display: block;
+	position: absolute;
+	top: 15%;
+	left: 3%;
+	font-size: 1.8em !important;
 }
 .header__titulo{
-	font-size: 5.5vh;
-	margin-bottom: -4%;
+	font-size: 2.1em;
+	position: absolute;
+	top: 0%;
+	left: 9%;
+}
+.header__fecha{
+	font-size: 0.8em;
+	position: absolute;
+	bottom: 2pt;
+	left: 52%;
+}
+.header--nav{
+	margin-left: 10%; 
+	margin-top: 10%; 
+	width: 90%;
+}
+.header__menuResponsive{
+	/* padding-top: 0%;
+	transition: all 0.5s;
+	position: initial; */
+}
+.header__menuResponsive ul{
+	/* flex-direction: column;
+	width: 100%;
+	padding-top: 8%; */
+}
+.header__menuResponsive li{
+	/* background-color: blue;
+	height: 55px;
+	padding-top: 5%;
+	width: 100%; */
+	/*flex-grow: 1;distribuye proporcionalmente los elementos internos en el eje horizontal, es necesario que el elemento padre tenga la propiedad display con el valor flex*/
+}
+.header__menuResponsive li a{
+	/* background-color: yellow;
+	color: white;
+	font-size: 1em;
+	display: block;
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	text-align: left;
+	padding-left: 3%; */
+}
+.header__menuResponsive li a:hover{
+	/* background-color: var(--Hover) !important;
+	color: white !important;
+	font-size: 1.2em;
+	width: 100%; */
 }
 .subtitulo{	
 	/*Las proximas lineas permiten colocar tres puntos al final luego de 4 lineas de parrafo */	
@@ -153,14 +163,14 @@
 	text-overflow: ellipsis;
 }
 .tapa{
-	background-color: rgba(0, 0, 0, 0.9);
+	/* background-color: rgba(0, 0, 0, 0.9);
 	/* display: none; */
-	position: absolute;
+	/* position: absolute;
 	top: 0%;
 	left: 0%;
 	width: 100%;
 	height: 400% !important;
-	z-index: 2;
+	z-index: 2;  */
 	/* transition: all 0.5s;
 	transition-delay: 0.8s; */
 }
@@ -169,8 +179,11 @@
 	width: 80%; 
 	margin-left: 100%;/*oculta el menu responsive*/
 	position: fixed;
-	top: 90% !important;
+	top: 85% !important;
 	transition: all 0.5s;
+}
+.tapa-logo--font{
+	font-size: 2em;
 }
 
 }

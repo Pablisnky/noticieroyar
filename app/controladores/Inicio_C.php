@@ -56,9 +56,7 @@
             // print_r($Datos);
             // echo "</pre>";          
             // exit();
-
-            $this->vista("header/header_inicio"); 
+ 
             $this->vista("view/ajax/NoticiasRadioButom_V", $Datos );   
-        }
-        
+        }        
     }
