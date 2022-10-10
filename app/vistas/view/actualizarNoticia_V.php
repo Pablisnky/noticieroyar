@@ -12,7 +12,7 @@
                         <div style="display: flex; margin-bottom: 30px">
                             <div class="cont_panel__did-1">      
 
-                                <!-- IMAGN NOTICIA -->
+                                <!-- IMAGEN-->
                                 <figure>
                                     <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['noticiaActualizar']['nombre_imagenNoticia'];?>"/> 
                                 </figure>
@@ -21,20 +21,23 @@
                             </div>
                             <div style="width: 100%">
 
-                                <!-- TITULO NOTICIA -->
+                                <!-- TITULO  -->
                                 <input class="cont_panel--titulo" type="text" name="titulo" value="<?php echo $Datos['noticiaActualizar']['titulo'];?>"/>
                                 
-                                <!-- SUBTITULO NOTICIA -->
+                                <!-- RESUMEN -->
                                 <textarea class="cont_panel--titulo" name="subtitulo"><?php echo $Datos['noticiaActualizar']['subtitulo'];?></textarea> 
                             
-                                <!-- SECCION NOTICIA -->
+                                <!-- CONTENIDO -->
+                                <textarea class="cont_panel--titulo" name="contenido"><?php echo $Datos['noticiaActualizar']['contenido'];?></textarea> 
+
+                                <!-- SECCION -->
                                 <div id="Seccion">
                                     <select name="ID_Seccion" onclick="Llamar_Secciones()">
                                         <option value="<?php echo $Datos['noticiaActualizar']['ID_Seccion'];?>"><?php echo $Datos['noticiaActualizar']['seccion'];?></option>
                                     </select>
                                 </div>
                                 
-                                <!-- FECHA NOTICIA -->
+                                <!-- FECHA -->
                                 <input class="cont_panel--titulo" type="text" name="fecha" value="<?php echo $Datos['noticiaActualizar']['fecha'];?>"/>
                             </div>                     
                         </div>

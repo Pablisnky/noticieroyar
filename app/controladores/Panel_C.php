@@ -110,23 +110,23 @@
 			$this->vista('view/actualizarNoticia_V', $Datos);
 		}
 
-		// //Muestra el select con las secciones
-		// public function Secciones(){
+		//Muestra el select con las secciones
+		public function Secciones(){
 			
-		// 	$Secciones = $this->Panel_M->consultarSecciones();
+			$Secciones = $this->Panel_M->consultarSecciones();
 			
-		// 	$Datos = [
-		// 		'secciones' => $Secciones, //ID_Seccion, seccion
-		// 	];
+			$Datos = [
+				'secciones' => $Secciones, //ID_Seccion, seccion
+			];
 
-		// 	// echo '<pre>';
-		// 	// print_r($Datos);
-		// 	// echo '</pre>';
-		// 	// exit;
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit;
 			
-        //     // $this->vista("header/header_inicio"); 
-        //     $this->vista("view/ajax/Secciones_V", $Datos );
-		// }
+            // $this->vista("header/header_inicio"); 
+            $this->vista("view/ajax/Secciones_V", $Datos );
+		}
 
 		// recibe formulario que agrega noticia
 		public function recibeNotiAgregada(){
@@ -158,10 +158,10 @@
 				//Si existe imagenPrincipal y tiene un tamaño correcto se procede a recibirla y guardar en BD
 				if($_FILES['imagenPrincipal']["name"] != ""){
 					//Usar en remoto
-					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 					
 					// usar en local
-					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 					
 					//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 					move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
@@ -179,22 +179,25 @@
 			die();
 		}
 
+		// recibe formulario que actualiza una noticia
 		public function recibeNotiActualizada(){
 			$ID_Noticia = $_POST['ID_Noticia'];
 			$ID_Seccion = $_POST['ID_Seccion'];
 			$Titulo = $_POST['titulo'];
 			$Sub_Titulo = $_POST['subtitulo']; 
+			$Contenido = $_POST['contenido']; 
 			$Fecha = $_POST['fecha'];			
 
 			// echo "ID_Noticia: " . $ID_Noticia . '<br>';
 			// echo "ID_Seccion: " . $ID_Seccion . '<br>';
 			// echo "Titulo : " . $Titulo . '<br>';
 			// echo "SubTitulo : " . $Sub_Titulo . '<br>';
+			// echo "Contenido : " . $Contenido . '<br>';
 			// echo "Fecha : " . $Fecha . '<br>';
 			// exit;
 				
 			//Se ACTUALIZA la noticia de portada seleccionada
-			$this->Panel_M->ActualizarNoticia($ID_Noticia, $ID_Seccion, $Titulo, $Sub_Titulo, $Fecha);
+			$this->Panel_M->ActualizarNoticia($ID_Noticia, $ID_Seccion, $Titulo, $Sub_Titulo, $Contenido, $Fecha);
 				
 			//Si existe imagenPrincipal y tiene un tamaño correcto se procede a recibirla y guardar en BD
 			if($_FILES['imagenPrincipal']["name"] != ""){					
@@ -208,10 +211,10 @@
 				// exit;
 
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);

@@ -154,6 +154,7 @@ li{
 	 left: 30%;
  }
  .cont_noticia{
+	background-color: red;
 	 /* width: 300%; */
 	 /* height: 100vh; */
 	 margin-top: 15%;
@@ -203,8 +204,8 @@ li{
 	 width: 40%;
  }
  .cont_panel__did-1{
-	 background-color: var(--Fondo);
 	 width: 30%;
+	 margin-right: 1%;
  }
  .cont_panel--imagen{
 	height: 30vh; 
@@ -399,9 +400,6 @@ li{
 	font-family: Gruppo;
 	display: block;
 	margin-left: 8%;
-}
-.header__fecha{
-
 }
 .header--nav{
 	margin-left: 10%; 

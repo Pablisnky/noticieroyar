@@ -18,18 +18,16 @@
                             <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
                         </div>
                         <div style="width: 100%">
-                            <!-- TITULO NOTICIA -->
+                            <!-- TITULO -->
                             <input class="cont_panel--titulo" type="text" name="titulo" placeholder="Titulo"/>
 
+                            <!-- RESUMEN -->
+                            <textarea class="cont_panel--titulo" name="subtitulo">Resumen</textarea> 
 
-                            <!-- <span class=" borde_1"><i class="fas fa-pencil-alt icono_4"></i></span> -->
-                            <!-- SUBTITULO NOTICIA -->
-                            <textarea class="cont_panel--titulo" name="subtitulo">Subtitulo</textarea> 
-
-                            <!-- CONTENIDO NOTICIA -->
+                            <!-- CONTENIDO -->
                             <textarea class="cont_panel--titulo" name="contenido">Contenido</textarea> 
                             
-                            <!-- SECCION NOTICIA -->
+                            <!-- SECCION -->
                             <select name="ID_Seccion">
                                 <?php
                                 foreach($Datos['secciones'] as $row) :  ?>
@@ -38,7 +36,7 @@
                                 endforeach; ?>
                             </select>
                             
-                            <!-- FECHA NOTICIA -->
+                            <!-- FECHA -->
                             <input class="cont_panel--titulo" type="text" name="fecha" placeholder="Fecha"/>
                             
                             <!-- REDACCION -->

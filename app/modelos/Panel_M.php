@@ -68,7 +68,7 @@
         //SELECT de la noticia a actualizar
         public function consultarNoticiaActualizar($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, secciones.ID_Seccion, titulo, subtitulo, seccion, fecha, nombre_imagenNoticia
+                "SELECT noticias.ID_Noticia, secciones.ID_Seccion, titulo, subtitulo, contenido, seccion, fecha, nombre_imagenNoticia
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                  INNER JOIN secciones ON noticias.ID_Seccion=secciones.ID_Seccion
@@ -172,10 +172,10 @@
 // // ********************************************************************************************************
         
         // UODATE de datos de noticia 
-        public function ActualizarNoticia($ID_Noticia, $ID_Seccion, $Titulo, $SubTitulo,  $Fecha){            
+        public function ActualizarNoticia($ID_Noticia, $ID_Seccion, $Titulo, $SubTitulo, $Contenido, $Fecha){            
             $stmt = $this->dbh->prepare(
                 "UPDATE noticias 
-                SET ID_Seccion = :ID_SECCION, titulo = :TITULO, subtitulo = :SUBTITULO, fecha = :FECHA
+                SET ID_Seccion = :ID_SECCION, titulo = :TITULO, subtitulo = :SUBTITULO, contenido = :CONTENIDO, fecha = :FECHA
                 WHERE ID_Noticia = :ID_NOTICIA"
             );
 
@@ -184,6 +184,7 @@
             $stmt->bindParam(':ID_SECCION', $ID_Seccion);
             $stmt->bindParam(':TITULO', $Titulo);
             $stmt->bindParam(':SUBTITULO', $SubTitulo);
+            $stmt->bindParam(':CONTENIDO', $Contenido);
             $stmt->bindParam(':FECHA', $Fecha);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )

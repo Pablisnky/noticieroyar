@@ -1,6 +1,3 @@
-<!-- CDN libreria JQuery, necesaria para la previsualización de la imagen--> 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
@@ -11,9 +8,9 @@
                 <?php
                 foreach($Datos['noticiasPortadas'] as $Not_Prin) : ?>
                     <div style="display: flex; margin-bottom: 30px">
+                    
+                        <!-- IMAGN NOTICIA -->
                         <div class="cont_panel__did-1">       
-                            
-                            <!-- IMAGN NOTICIA -->
                             <figure>
                                 <?php
                                 foreach($Datos['imagenesNoticiasPortadas'] as $Row)   : 

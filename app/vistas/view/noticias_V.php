@@ -7,7 +7,7 @@
         <img class="imagen_5 imagen_5--inicio" alt="Logo PWA" src="<?php echo RUTA_URL;?>/public/images/PWA.png"/>
     </div> -->
 
-	<div class="cont_noticia" id="">
+	<div class="cont_noticia">
         <?php
         foreach($Datos['secciones'] as $Row) :?>
             <h1 class="cont_noticia--tituloSeccion"><?php echo $Row['seccion'];?></h1>  
@@ -36,5 +36,5 @@
 	</div>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
-<script src="<?php echo RUTA_URL.'/public/javascript/E_Inicio.js?v=' . rand();?>"></script>
+<!-- <script src="<?php echo RUTA_URL.'/public/javascript/E_Inicio.js?v=' . rand();?>"></script> -->
 <!-- <script src="<?php echo RUTA_URL.'/public/javascript/A_Inicio.js?v=' . rand();?>"></script> -->
