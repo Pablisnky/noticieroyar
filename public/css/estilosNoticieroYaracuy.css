@@ -73,6 +73,11 @@ li{
 	font-size: 1.3em;
 	width: 100%;
 }
+.h1--agenda{
+	font-size: 2.3em;
+	text-align: center;
+	margin-top: 5%;
+}
 .bandaAlerta{
 	background-color: var(--BandaAlerta);
 	padding: 1%;
@@ -98,13 +103,25 @@ li{
 	border-width: 1px;
 	border-style: solid;
 }
-.columnas{
-	/* column-count: 4; */
-	/* column-gap: 20px; */
-	/* column-rule: 4px dotted gray; */
- }
  .comandoMenu_2{
 	 display: none;
+ }
+ .cont_galeria{/*pinturas*/
+	 column-count: 3 !important;
+	/* column-gap: 15px; */
+	column-fill: balance ;
+	width: 95%;
+	margin: auto;
+ }
+ .cont_Galeria--item{/*inicio*/
+	 display: inline-block;
+	 margin: 0 5px 20px;
+	 padding: 3%;
+	 cursor: pointer;
+ }
+ .cont_Galeria--img{
+	 width: 100%;
+	 height: 100%;
  }
  .cont_modal{
 	 background-color: rgba(0, 0, 0, 0.8);
@@ -133,6 +150,15 @@ li{
 	right: 2%;
 	border-radius: 50%;
 	font-size: 3.5em !important;	 
+ }
+ .cont_modal--agregar{
+	background-color: rgb(180, 248, 180);
+	position: fixed;
+	top: 1%;
+	right: 2%;
+	border-radius: 50%;
+	font-size: 3.5em !important;	
+	color: black; 
  }
  .cont_modal--h1{
 	 color: white;
@@ -234,7 +260,34 @@ li{
 	justify-content: space-around;
     width: 100%;
 	height: 100vh;
-	margin-top: 4%;
+	margin-top: 6%;
+}
+.cont_efemerides{
+	display: block;
+    width: 100%;
+	height: 100vh;
+}
+.cont_efemerides--imagen{
+	margin: auto;
+	display: block;
+	width: 30%;
+}
+.cont_efemerides--titulo{
+
+}
+.cont_efemerides--contenido{
+	width: 90%;
+	text-align: justify;
+	margin: 1% auto;
+	font-size: 1.5em;
+}
+.p--efemerides{
+	font-size: 0.9em;
+}
+.h2--efemerides{
+	margin: auto;
+	text-align: center;
+	font-size: 1em;
 }
 .cont_portada--noticia{
 	width: 30%;
@@ -357,6 +410,11 @@ li{
 	border-radius: 15px;
 	padding: 2%;
 	font-size: 1.2em;
+}
+.h1--principal{
+	font-size: 2em;
+	text-align: center;
+	margin-top: 6.5%;
 }
 .header{	
 	background-color: white;

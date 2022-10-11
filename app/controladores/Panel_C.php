@@ -64,6 +64,44 @@
 			$this->vista('view/NoticiasGenerales_V', $Datos);
 		}
 		
+		//Muestra efemerides
+		public function efemerides(){ 
+			//CONSULTA las efemerides
+			$Efemerides = $this->Panel_M->consultarEfemerides();
+
+			$Datos = [
+				'efemerides' => $Efemerides //ID_Efemeride, titulo, contenido, Nombre_imagen, fecha 
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit;
+		
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/panel_efemeride_V', $Datos);
+		}
+		
+		//Muestra eventos en agenda
+		public function agenda(){ 
+			//CONSULTA las efemerides
+			$Agenda = $this->Panel_M->consultarAgenda();
+
+			$Datos = [
+				'agenda' => $Agenda //ID_Agenda, nombre_imagenAgenda
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit;
+		
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/panel_agenda_V', $Datos);
+		}
+
 		// // Redirecciona a la pagina de inicio del sitio web
 		// public function PaginaInicio(){
 		// 	// require_once(APPPATH . 'controllers/Inicio_C.php');
@@ -78,6 +116,14 @@
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
 			$this->vista('header/header_SoloEstilos');
 			$this->vista('view/agregarEfemerides_V');
+		}
+
+		// muestra formulario para agregar un evento en agenda
+		public function agregar_agenda(){
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/agregarAgenda_V');
 		}
 
 		// muestra formulario para agregar una noticia
@@ -118,6 +164,24 @@
 			$this->vista('view/actualizarNoticia_V', $Datos);
 		}
 
+		// Muestra formulario con la efemeride a actualizar
+		public function actualizar_efemeride($ID_Efemeride){
+			//CONSULTA la efemeride a actualizar
+			$EfemerideActualizar = $this->Panel_M->consultarEfemerideActualizar($ID_Efemeride);
+			
+			$Datos = [
+				'efemerideActualizar' => $EfemerideActualizar //ID_Efemeride, titulo, contenido, fecha, Nombre_imagen
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit();
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/actualizarEfemeride_V', $Datos);
+		}
 		//Muestra el select con las secciones
 		public function Secciones(){
 			
@@ -158,16 +222,16 @@
 				$ID_Noticia = $this->Panel_M->InsertarEfemeride($Titulo, $Contenido, $Fecha, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
 				
 				//Usar en remoto
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
 			}				
 
-			header("Location:" . RUTA_URL . "/Panel_C/agregar_efemeride");
+			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
 			die();
 		}
 
@@ -201,10 +265,10 @@
 				//Si existe imagenPrincipal y tiene un tamaño correcto se procede a recibirla y guardar en BD
 				if($_FILES['imagenPrincipal']["name"] != ""){
 					//Usar en remoto
-					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 					
 					// usar en local
-					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 					
 					//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 					move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
@@ -219,6 +283,34 @@
 			}				
 
 			header("Location:" . RUTA_URL . "/Panel_C/portadas");
+			die();
+		}
+		// recibe formulario que agrega evento en agenda
+		public function recibeAgendaAgregada(){
+			if(isset($_FILES['imagenAgenda']["name"])){				
+				$Nombre_imagenAgenda = $_FILES['imagenAgenda']['name'];
+				$Tipo_imagenAgenda = $_FILES['imagenAgenda']['type'];
+				$Tamanio_imagenAgenda = $_FILES['imagenAgenda']['size'];
+
+				// echo "Nombre_imagen : " . $Nombre_imagenAgenda . '<br>';
+				// echo "Tipo_imagen : " .  $Tipo_imagenAgenda . '<br>';
+				// echo "Tamanio_imagen : " .  $Tamanio_imagenAgenda . '<br>';
+				// exit;
+				
+				//Se INSERTA el evento
+				$this->Panel_M->InsertarAgenda($Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda);
+				
+				//Usar en remoto
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				
+				// usar en local
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['imagenAgenda']['tmp_name'], $Directorio.$Nombre_imagenAgenda);
+			}				
+
+			header("Location:" . RUTA_URL . "/Panel_C/agenda");
 			die();
 		}
 
@@ -254,10 +346,10 @@
 				// exit;
 
 				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
@@ -269,6 +361,50 @@
 			header("Location:" . RUTA_URL . "/Panel_C/portadas");
 			die();
 		}
+
+		// recibe formulario que actualiza una efemeride
+		public function recibeEfemerideActualizada(){
+			$ID_Efemeride = $_POST['ID_Efemeride'];
+			$Titulo = $_POST['titulo'];
+			$Contenido = $_POST['contenido']; 
+			$Fecha = $_POST['fecha'];			
+
+			// echo "ID_Efemeride: " . $ID_Efemeride . '<br>';
+			// echo "Titulo: " . $Titulo . '<br>';
+			// echo "Contenido : " . $Contenido . '<br>';
+			// echo "Fecha : " . $Fecha . '<br>';
+			// exit;
+				
+			//Se ACTUALIZA la efemeride  seleccionada
+			$this->Panel_M->ActualizarEfemeride($ID_Efemeride, $Titulo, $Contenido, $Fecha);
+				
+			//Si se hizo click en la imagen de efemeride
+			if($_FILES['imagenPrincipal']["name"] != ""){					
+				$Nombre_imagen = $_FILES['imagenPrincipal']['name'];
+				$Tipo_imagen = $_FILES['imagenPrincipal']['type'];
+				$Tamanio_imagen = $_FILES['imagenPrincipal']['size'];
+
+				// echo "Nombre_imagen Noticia: " . $Nombre_imagen . '<br>';
+				// echo "Tipo_imagen Noticia: " .  $Tipo_imagen . '<br>';
+				// echo "Tamanio_imagen Noticia: " .  $Tamanio_imagen . '<br>';
+				// exit;
+
+				//Usar en remoto
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				
+				// usar en local
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagen);
+
+				//Se ACTUALIZA la imagene de la efemeride
+				$this->Panel_M->ActualizarImagenEfemeride($ID_Efemeride, $Nombre_imagen, $Tipo_imagen, $Tamanio_imagen);
+			}
+			
+			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
+			die();
+		}
 		
 		// ELimina noticia
 		public function eliminar_noticia($ID_Noticia){
@@ -276,7 +412,25 @@
 			$this->Panel_M->eliminarNoticia($ID_Noticia);			
 			$this->Panel_M->eliminarImagenesNoticia($ID_Noticia);
 
-			header("Location:" . RUTA_URL . "/Panel_C/portadas");
+			header("Location:" . RUTA_URL . "/Panel_C/Not_Generales");
+			die();
+		}
+		
+		// ELimina efemeride
+		public function eliminar_efemeride($ID_Efemeride){
+
+			$this->Panel_M->eliminarEfemeride($ID_Efemeride);			
+
+			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
+			die();
+		}
+		
+		// ELimina agenda
+		public function eliminar_agenda($ID_Agenda){
+
+			$this->Panel_M->eliminarAgenda($ID_Agenda);			
+
+			header("Location:" . RUTA_URL . "/Panel_C/agenda");
 			die();
 		}
 	}

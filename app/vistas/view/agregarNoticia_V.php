@@ -19,16 +19,21 @@
                         </div>
                         <div style="width: 100%">
                             <!-- TITULO -->
-                            <input class="cont_panel--titulo" type="text" name="titulo" placeholder="Titulo"/>
+                            <label>TItulo</label>
+                            <input class="cont_panel--titulo" type="text" name="titulo"/>
 
                             <!-- RESUMEN -->
-                            <textarea class="cont_panel--titulo" name="subtitulo">Resumen</textarea> 
+                            <label>Resumen</label>
+                            <textarea class="cont_panel--titulo" name="subtitulo"></textarea> 
 
                             <!-- CONTENIDO -->
-                            <textarea class="cont_panel--titulo" name="contenido">Contenido</textarea> 
+                            <label>Contenido</label>
+                            <textarea class="cont_panel--titulo" name="contenido"></textarea> 
                             
                             <!-- SECCION -->
-                            <select name="ID_Seccion">
+                            <label>Sección</label>
+                            <select class="cont_panel--titulo" name="ID_Seccion">
+                                <option></option>
                                 <?php
                                 foreach($Datos['secciones'] as $row) :  ?>
                                     <option value="<?php echo $row['ID_Seccion'];?>"><?php echo $row['seccion'];?></option>
@@ -37,7 +42,8 @@
                             </select>
                             
                             <!-- FECHA -->
-                            <input class="cont_panel--titulo" type="text" name="fecha" placeholder="Fecha"/>
+                            <label>Fecha</label>
+                            <input class="cont_panel--titulo" type="text" name="fecha" placeholder="00-00-0000"/>
                             
                             <!-- REDACCION -->
                             <input class="Default_ocultar" type="text" name="ID_Periodista" value="1"/>

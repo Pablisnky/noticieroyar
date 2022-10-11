@@ -13,15 +13,17 @@
 	overflow-y: hidden; 
 	overflow-x: hidden;
 }
+.br_1{
+	margin-bottom: 20%;
+}
+.h1--agenda{
+	font-size: 1.9em;
+	margin-top: 20%;
+}
 .boton{
 	font-size: 1em;
 	width: 140px;
 }
-.columnas{
-	/* column-count: 1; */
-	/* column-gap: inherit; */
-	/* column-rule: 4px dotted gray; */
- }
  .comandoMenu_2{
 	 border-radius: 10px;
 	 visibility: visible;
@@ -33,9 +35,16 @@
 	 margin-left: 2%;
 	 /* z-index: 28; */
  }
- .contBoton--100{/*descr_Producto - tiendas*/
+ .contBoton--100{
 	 width: 100%;
  }  
+ .cont_galeria{
+	column-count: 1 !important;
+	width: 100%;
+ }
+ .cont_Galeria--item{
+	 padding: 0%;
+ }
 .cont_modal--label{
 	font-size: 1em;
 	bottom: 0pt;
@@ -53,7 +62,7 @@
 .cont_modal--logo{
 	width: 95%;
 	margin: auto;
-	bottom: 65pt;
+	bottom: 45pt;
 	left: 2.5%;
 }
 .cont_portada{
@@ -73,6 +82,7 @@
 .titular--texto{
 	font-size: 1.2em;
 	padding: 1%;
+	text-align: center;
 }
 .cont_noticia{
 	margin-top: 18%;
@@ -91,13 +101,34 @@
 	/*margin-top: 80vh;*/
 	padding: 3%; 
 }
-.cont_efemerides--texto{
+.cont_efemerides--imagen{
+	width: 100%;
+}
+.cont_efemerides--titular{
+	/* width: 90%;
+	margin: auto;
+	text-align: center; */
+}
+.cont_efemerides--contenido{
 	width: 95%;
 	text-align: justify;
 	/* height: 15%; */
 	margin: auto;
 	/*margin-top: 80vh;*/
 	padding: 3%; 
+}
+.h1--principal{
+	font-size: 1.6em;
+	text-align: center;
+	margin-top: 22%;
+	margin-bottom: 3%;
+}
+.h2--efemerides{
+	font-size: 1em;
+	margin-top: 5%;
+}
+.p--efemerides{
+	font-size: 0.8em;
 }
 .contenedor_111{
 	background-color: white;

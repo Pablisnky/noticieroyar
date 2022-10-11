@@ -3,6 +3,17 @@
 	.body_1{
 		overflow-y: hidden; 
 		overflow-x: hidden;
+	} 
+	.cont_galeria{
+	   column-count: 1 !important;
+	   width: 100%;
+	}
+	.cont_Galeria--item{
+		padding: 0%;
+	}
+	.h1--agenda{
+		font-size: 1.9em;
+		margin-top: 20%;
 	}
 	.header--nav{
 		margin-left: 10%; 
@@ -27,13 +38,26 @@
 	}
 	.cont_modal--p{
 		margin-top: 20%;
-		font-size: 1.8em;
+		font-size: 2.5em;
 	}
 	.cont_modal--logo{
 		width: 95%;
 		margin: auto;
 		bottom: 65pt;
 		left: 2.5%;
+	}
+	.cont_efemerides--imagen{
+		width: 100%;
+	}
+	.h1--principal{
+		font-size: 1.6em;
+		text-align: center;
+		margin-top: 20%;
+		margin-bottom: 3%;
+	}
+	.h2--efemerides{
+		font-size: 1em;
+		margin-top: 5%;
 	}
 	.cont_noticia{
 		margin-top: 20%;

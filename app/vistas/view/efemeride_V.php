@@ -4,31 +4,30 @@
             <h3 class="footer__h3 footer__h3--inicio">APLICACIÓN</h3>
             <h3 class="footer__h3 footer__h3--inicio">MULTIPLATAFORMA</h3>
         </div>
-        <img class="imagen_5 imagen_5--inicio" alt="Logo PWA" src="<?php echo RUTA_URL;?>/public/images/PWA.png"/>
+        <img class="imagen_5 imagen_5--inicio" alt="Logo PWA" src="<?php //echo RUTA_URL;?>/public/images/PWA.png"/>
     </div> -->
     
-	<div class="cont_portada" id="Cont_Portada">
-        <h1 class="H1--efemeride">Efemeride</h1>
+	<div class="cont_efemerides" id="cont_efemerides">
+        <h1 class="h1--principal">Efemeride</h1>
         <?php
         foreach($Datos['efemerideHoy'] as $Key) :  ?>
-            <div class="cont_portada--noticia" id="cont_Portada_JS">
-                <!-- IMAGEN NOTICIA  -->
-                <div class="cont_portada--imagen">                        
+
+                <!-- IMAGEN -->
+                <div class="">                        
                     <figure>
-                        <img class="imagen--portada" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['Nombre_imagen'];?>"/> 
+                        <img class="cont_efemerides--imagen" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['Nombre_imagen'];?>"/> 
                     </figure>
                 </div>
 
                 <!-- TITULO -->
-                <div class="cont_portada--titular">                   
-                    <h2 class="titular--texto"><?php echo $Key['titulo'];?></h2>
+                <div class="">                   
+                    <h2 class="h2--efemerides"><?php echo $Key['titulo'];?></h2>
                 </div>
                 
                 <!-- CONTENIDO -->
-                <div class="cont_efemerides--texto columnas">
-                    <p class="subtitulo"><?php echo $Key['contenido'];?></p>
+                <div class="cont_efemerides--contenido">
+                    <p class="p--efemerides"><?php echo $Key['contenido'];?></p>
                 </div>
-            </div>                
             <?php
         endforeach; ?>
 	</div>  

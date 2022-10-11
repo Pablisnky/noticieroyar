@@ -6,34 +6,20 @@
 
     <div style="margin-left: 20%;">
         <fieldset class="fieldset_1" id="Portada"> 
-            <legend class="legend_1">Agregar Efemerides</legend>
-                <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeEfemerideAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <legend class="legend_1">Agregar Agenda</legend>
+                <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeAgendaAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
                     <div style="display: flex; margin-bottom: 30px">
                         <div class="cont_panel__did-1">       
                             <!-- IMAGN -->
                             <figure>
-                                <label for="imgInp"class="Default_pointer"><img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> </label>
+                                <label for="imgInp"class="Default_pointer"><img class="cont_panel--imagen"  alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> </label>
                             </figure>
                             <!-- <span class="material-icons-outlined span_18">edit</span> -->
-                            <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
-                        </div>
-                        <div style="width: 100%">
-                            <!-- TITULO -->
-                            <label>Titulo</label>
-                            <input class="cont_panel--titulo" type="text" name="titulo"/>
-
-                            <!-- CONTENIDO -->
-                            <label>Contenido</label>
-                            <textarea class="cont_panel--titulo" name="contenido"></textarea> 
-                                                        
-                            <!-- FECHA -->
-                            <label>Fecha</label>
-                            <input class="cont_panel--titulo" type="text" name="fecha" placeholder="00-00-0000"/>
-                            
-                        </div>                     
+                            <input class="Default_ocultar" type="file" name="imagenAgenda" id="imgInp"/>
+                        </div>             
                     </div>
                     <div class=""> 
-                        <input class="boton" type="submit" value="Agregar efemerides"/>  
+                        <input class="boton" type="submit" value="Agregar agenda"/>  
                     </div>
                 </form>
         </fieldset>
@@ -42,7 +28,7 @@
 
 
 <!-- <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script> -->
-<script src="<?php echo RUTA_URL;?>/public/javascript/E_SalomonPanel.js?v=<?php echo rand();?>"></script> 
+<!-- <script src="<?php echo RUTA_URL;?>/public/javascript/E_SalomonPanel.js?v=<?php echo rand();?>"></script>  -->
 
 <script>       
     //Da una vista previa de la foto de la noticia

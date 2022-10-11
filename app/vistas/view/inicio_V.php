@@ -6,11 +6,14 @@
         </div>
         <img class="imagen_5 imagen_5--inicio" alt="Logo PWA" src="<?php echo RUTA_URL;?>/public/images/PWA.png"/>
     </div> -->
+    
+	<!-- MODAL -->
     <div class="cont_modal" id="VentanaModal">				
 		<span class="material-icons-outlined cont_modal--cerrar Default_pointer" id="Cerrar--modal">cancel</span>
-		<p class="cont_modal--p">Duelo nacional por tragedia de Tejerías estado Aragua.</p>
+		<p class="cont_modal--p">Duelo nacional por tragedia en Las Tejerías, estado Aragua.</p>
 		<img class="cont_modal--logo" src="<?php echo RUTA_URL?>/public/images/duelo.jpg"/>
 	</div>
+
 	<!-- PORTADA -->
 	<div class="cont_portada" id="Cont_Portada">
         <?php
