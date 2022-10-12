@@ -55,7 +55,7 @@
             // echo "</pre>";          
             // exit();
             
-            $this->vista("header/header_noticia"); 
+            $this->vista("header/header_SoloEstilos"); 
             $this->vista("view/detalleNoticias_V", $Datos ); 
         }
     }

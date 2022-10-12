@@ -293,7 +293,7 @@
         public function ActualizarEfemeride($ID_Efemeride, $Titulo, $Contenido, $Fecha){            
             $stmt = $this->dbh->prepare(
                 "UPDATE efemeride 
-                SET titulo = :TITULO, contenido = :CONTENIDO, fecha = :FECHA
+                SET titulo = :TITULO, contenido = :CONTENIDO, fecha = STR_TO_DATE('$Fecha', '%d-%m-%Y')
                 WHERE ID_Efemeride = :ID_EFEMERIDE"
             );
 
@@ -301,7 +301,7 @@
             $stmt->bindParam(':ID_EFEMERIDE', $ID_Efemeride);
             $stmt->bindParam(':TITULO', $Titulo);
             $stmt->bindParam(':CONTENIDO', $Contenido);
-            $stmt->bindParam(':FECHA', $Fecha);
+            // $stmt->bindParam(':FECHA', $Fecha);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){

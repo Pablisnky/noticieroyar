@@ -1,5 +1,6 @@
 document.getElementById("Cerrar--modal").addEventListener('click', CerrarModal, false)
 
+
 //************************************************************************************************
 //Función autoejecuble que muestra la ventana modal
 var VentanaModal = (function(){ 
@@ -51,9 +52,12 @@ function mostrarModal(){
 document.getElementById("Cont_Portada").addEventListener('click', function(e){
     if(e.target.classList[1] == "imagen_2--JS"){
         var ID_Noticia = e.target.id
-        console.log("ID_Noticia", ID_Noticia)
+        // console.log("ID_Noticia", ID_Noticia)
         
-        window.location.replace("Noticias_C/detalleNoticia/" + ID_Noticia);
+        // redirecciona, (se prefirio usar window open)
+        // window.location.replace("Noticias_C/detalleNoticia/" + ID_Noticia);
+        
+        window.open(`Noticias_C/detalleNoticia/${ID_Noticia}`, "ventana1", "width=1300,height=650,scrollbars=YES") 
     }
 }, false)
 
@@ -63,4 +67,4 @@ document.getElementById("Cont_Portada").addEventListener('click', function(e){
         document.getElementById("VentanaModal").style.display = "none"
     }
 
-//************************************************************************************************   
+//************************************************************************************************ 

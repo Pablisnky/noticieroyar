@@ -149,7 +149,7 @@ li{
 	top: 1%;
 	right: 2%;
 	border-radius: 50%;
-	font-size: 3.5em !important;	 
+	font-size: 2.8em !important;	 
  }
  .cont_modal--agregar{
 	background-color: rgb(180, 248, 180);
@@ -262,16 +262,35 @@ li{
 	height: 100vh;
 	margin-top: 6%;
 }
+.cont_detalle{
+	display: block;
+    width: 80%;
+	margin: auto;
+	min-height: 100vh;
+	padding-bottom: 5%;
+}
+.detalle_cont--titulo{
+	font-size: 2em;
+	text-align: center;
+	margin-top: 2.5%;
+	margin-bottom: 2.5%;	
+}
+.cont_detalle--imagen{
+	margin: auto;
+	display: block;
+	width: 100%;
+}
 .cont_efemerides{
 	display: block;
     width: 80%;
 	margin: auto;
-	height: 100vh;
+	min-height: 100vh;
+	padding-bottom: 5%;
 }
 .cont_efemerides--imagen{
 	margin: auto;
 	display: block;
-	width: 100%;
+	width: 40%;
 }
 .cont_efemerides--titulo{
 
@@ -305,6 +324,26 @@ li{
 	max-height: 50vh; 
 	margin: auto;
 	/*object-fit: contain; fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.detalle_cont--main{
+	display: block;
+    width: 100%;
+	margin: auto;
+	min-height: 100vh;
+	padding-bottom: 5%;
+}
+.detalle_cont{
+	display:flex; 
+	align-items: center; 
+	margin-top: 2%
+}
+.detalle_cont--imagen{
+	width: 55%
+}
+.detalle_cont--resumen{
+	width: 40%; 
+	margin: auto; 
+	text-align: center;
 }
 .imagen--portada{
 	height: 50vh;  
@@ -417,6 +456,10 @@ li{
 	text-align: center;
 	margin-top: 6.5%;
 }
+.h1--principal_2{
+	margin-top: 2.5%;
+	margin-bottom: 2.5%;
+}
 .header{	
 	background-color: white;
 	position: fixed;
@@ -472,7 +515,7 @@ li{
 	padding: 1%;
 	width: 100%; 
 	height: 100vh;
-	/* z-index: 20; */
+	z-index: 20!important;
 }
 .header__li--Enlaces{
 	color: white;
@@ -514,7 +557,9 @@ li{
 	color: white;
 	font-family: Gruppo;
 }
-
+.titular--texto{
+	font-size: 1.4em;
+}
 .mostrarModal{
 	animation-duration: 3s;
 	animation-name: fade;

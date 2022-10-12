@@ -8,7 +8,7 @@
 <div class="cont_portada" id="Cont_Portada">
     <?php
     foreach($Datos['datosNoticia'] as $Key) :  ?>
-        <div class="cont_portada--noticia" id="cont_Portada_JS">
+        <div class="cont_portada--noticia" id="Cont_Portada">
 
             <!-- IMAGEN -->
             <div class="cont_portada--imagen">                        

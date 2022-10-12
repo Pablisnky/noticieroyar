@@ -65,6 +65,9 @@
 	bottom: 45pt;
 	left: 2.5%;
 }
+.cont_modal--cerrar{
+   font-size: 2.3em !important;	 
+}
 .cont_portada{
 	display: block;
 	margin-top: 15%;
@@ -100,6 +103,12 @@
 	margin: auto;
 	/*margin-top: 80vh;*/
 	padding: 3%; 
+}
+.cont_detalle{
+    width: 100%;
+}
+.cont_efemerides{
+    width: 100%;
 }
 .cont_efemerides--imagen{
 	width: 100%;
@@ -138,6 +147,25 @@
 	text-align: right;
 	padding-right: 4%;
 	height: 50px;
+}
+.detalle_cont--main{
+	margin-top: 8%;
+}
+.detalle_cont{
+	display: block;  
+	margin-top: 2%
+}
+.detalle_cont--titulo{
+	font-size: 1.5em;	
+	width: 90%;
+	margin: auto;
+}
+.detalle_cont--imagen{
+	width: 100%
+}
+.detalle_cont--resumen{
+	font-size: 0.9em;
+	width: 100%; 
 }
 .Default_quitarEscritorio{
 	display: flex;

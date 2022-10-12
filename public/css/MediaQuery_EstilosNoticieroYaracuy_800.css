@@ -4,6 +4,9 @@
 		overflow-y: hidden; 
 		overflow-x: hidden;
 	} 
+	.cont_detalle{
+		width: 100%;
+	}
 	.cont_galeria{
 	   column-count: 1 !important;
 	   width: 100%;
@@ -48,6 +51,25 @@
 	}
 	.cont_efemerides--imagen{
 		width: 100%;
+	}
+	.detalle_cont--main{
+		margin-top: 8%;
+	}
+	.detalle_cont{
+		display: block;  
+		margin-top: 2%
+	}
+	.detalle_cont--titulo{
+		font-size: 1.5em;	
+		width: 90%;
+		margin: auto;
+	}
+	.detalle_cont--imagen{
+		width: 100%
+	}
+	.detalle_cont--resumen{
+		font-size: 0.9em;
+		width: 100%; 
 	}
 	.h1--principal{
 		font-size: 1.6em;

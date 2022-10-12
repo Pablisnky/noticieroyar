@@ -43,7 +43,7 @@ function conexionAJAX(){
     function respuesta_NoticiaPrincipal(){
         if(peticion.readyState == 4){
             if(peticion.status == 200){  
-                document.getElementById('cont_Portada_JS').innerHTML = peticion.responseText 
+                document.getElementById('Cont_Portada').innerHTML = peticion.responseText 
             } 
             else{
                 alert('Problemas con la petición.')
