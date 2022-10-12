@@ -264,13 +264,14 @@ li{
 }
 .cont_efemerides{
 	display: block;
-    width: 100%;
+    width: 80%;
+	margin: auto;
 	height: 100vh;
 }
 .cont_efemerides--imagen{
 	margin: auto;
 	display: block;
-	width: 30%;
+	width: 100%;
 }
 .cont_efemerides--titulo{
 

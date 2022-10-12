@@ -31,13 +31,13 @@ document.getElementById("MenuContenedor").addEventListener('click', function(e){
 }, false)
 
 //************************************************************************************************
-//Por medio de delegación de eventos se detecta click en una pintura para ver sus detalles
-document.getElementById("Cont_galeria_pinturas").addEventListener('click', function(e){
+//Por medio de delegación de eventos se detecta click en una noticia para ver sus detalles
+document.getElementById("Cont_Portada").addEventListener('click', function(e){
     if(e.target.classList[1] == "imagen_2--JS"){
         var ID_Pintura = e.target.id
-        console.log("ID_Pintura", ID_Pintura)
+        console.log("ID_Noticia", ID_Noticia)
         
-        window.location.replace("../DetallePintura_C/index/" + ID_Pintura);
+        window.location.replace("../Noticias_C/detalleNoticia/" + ID_Pintura);
     }
 }, false)
 

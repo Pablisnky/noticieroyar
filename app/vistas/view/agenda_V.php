@@ -8,7 +8,7 @@
     </div> -->
 
     <h1 class="h1--agenda">Agenda</h1>
-    <div class="cont_galeria">
+    <div class="cont_galeria" id="Cont_galeria_agenda">
         <?php
         foreach($Datos['agenda'] as $Key) :  ?>
             <div class="cont_Galeria--item">

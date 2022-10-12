@@ -10,6 +10,7 @@ var VentanaModal = (function(){
 function mostrarModal(){        
     document.getElementById("VentanaModal").classList.add("mostrarModal")
 }
+
 // document.getElementById("Contenedor_34").addEventListener('click', function(){autofocus('Input_9')}, false)
                               
 // document.getElementById("Span_5").addEventListener('click', function(){CerrarModal_X('Busqueda')})
@@ -45,23 +46,16 @@ function mostrarModal(){
 //     }  
 // })
 
-
 //************************************************************************************************
-    //Desplaza el viewport a la derecha para mostrar otra noticia principal
-    // window.addEventListener("click", function(e){
-    //     let Desplazar = e.target
-    //     console.log("Se hizo click en: ", Desplazar)
-
-    //     if(Desplazar.id == "Chevron--left"){   
-    //         document.getElementById("Cont_Portada").style.marginLeft = "-100%"
-    //     }
-    //     else if(Desplazar.id == "Chevron--right"){
-    //         document.getElementById("Cont_Portada").style.marginLeft = "-200%"
-    //     }
-    //     // else if(document.getElementById("Cont_Portada").style.marginLeft == "-200%"){
-    //     //     document.getElementById("Cont_Portada").style.marginLeft = "-300%"
-    //     // }
-    // }, true)
+//Por medio de delegación de eventos se detecta click en una noticia para ver sus detalles
+document.getElementById("Cont_Portada").addEventListener('click', function(e){
+    if(e.target.classList[1] == "imagen_2--JS"){
+        var ID_Noticia = e.target.id
+        console.log("ID_Noticia", ID_Noticia)
+        
+        window.location.replace("Noticias_C/detalleNoticia/" + ID_Noticia);
+    }
+}, false)
 
 //************************************************************************************************    
     //Desplaza el viewport a la derecha para mostrar otra noticia principal

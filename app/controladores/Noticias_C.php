@@ -40,4 +40,22 @@
             $this->vista("header/header_noticia"); 
             $this->vista("view/noticias_V", $Datos );   
         }
+
+        public function detalleNoticia($ID_Noticia){
+            
+            //Se CONSULTA la noticia que se solicito en detalle
+            $DetalleNoticia = $this->ConsultaNoticia_M->consultarNoticiaDetalle($ID_Noticia);
+
+            $Datos = [
+                'detalleNoticia' => $DetalleNoticia //ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido
+            ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+            
+            $this->vista("header/header_noticia"); 
+            $this->vista("view/detalleNoticias_V", $Datos ); 
+        }
     }

@@ -267,7 +267,7 @@
         public function ActualizarNoticia($ID_Noticia, $ID_Seccion, $Titulo, $SubTitulo, $Contenido, $Fecha){            
             $stmt = $this->dbh->prepare(
                 "UPDATE noticias 
-                SET ID_Seccion = :ID_SECCION, titulo = :TITULO, subtitulo = :SUBTITULO, contenido = :CONTENIDO, fecha = :FECHA
+                SET ID_Seccion = :ID_SECCION, titulo = :TITULO, subtitulo = :SUBTITULO, contenido = :CONTENIDO, fecha = STR_TO_DATE('$Fecha', '%d-%m-%Y')
                 WHERE ID_Noticia = :ID_NOTICIA"
             );
 
@@ -277,7 +277,7 @@
             $stmt->bindParam(':TITULO', $Titulo);
             $stmt->bindParam(':SUBTITULO', $SubTitulo);
             $stmt->bindParam(':CONTENIDO', $Contenido);
-            $stmt->bindParam(':FECHA', $Fecha);
+            // $stmt->bindParam(':FECHA', $Fecha);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){

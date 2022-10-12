@@ -47,5 +47,24 @@
                 return false;
             }
         }
-    
+        
+        public function consultarNoticiaDetalle($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido
+                 FROM noticias 
+                 INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
+                 INNER JOIN secciones ON noticias.ID_Seccion=secciones.ID_Seccion
+                 WHERE noticias.ID_Noticia = :ID_NOTICIA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
     }

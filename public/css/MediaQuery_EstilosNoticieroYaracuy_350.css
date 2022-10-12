@@ -108,6 +108,8 @@
 	/* width: 90%;
 	margin: auto;
 	text-align: center; */
+	justify-content: space-between;
+	
 }
 .cont_efemerides--contenido{
 	width: 95%;

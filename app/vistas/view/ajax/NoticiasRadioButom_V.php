@@ -2,10 +2,11 @@
         <?php
         foreach($Datos['not_Princ_Seleccionada'] as $Key) :   ?>
             <div class="cont_portada--noticia" id="cont_Portada_JS">
-                <!-- IMAGEN NOTICIA  -->
+
+                <!-- IMAGEN -->
                 <div class="cont_portada--imagen">                        
                     <figure>
-                        <img class="imagen--portada" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['not_Princ_Seleccionada'][0]['nombre_imagenNoticia'];?>"/> 
+                        <img class="imagen--portada imagen_2--JS" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['not_Princ_Seleccionada'][0]['nombre_imagenNoticia'];?>"/> 
                     </figure>
                 </div>
 
