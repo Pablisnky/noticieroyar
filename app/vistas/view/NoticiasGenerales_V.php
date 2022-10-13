@@ -11,10 +11,9 @@
                 <legend class="legend_1">Noticias generales</legend>
                 <?php
                 foreach($Datos['noticiasGenerales'] as $Not_Gen) : ?>
-                    <div style="display: flex; margin-bottom: 30px">
-                        <div class="cont_panel__did-1">       
-                            
-                            <!-- IMAGN NOTICIA -->
+                    <div style="display: flex; margin-bottom: 30px;">
+                        <!-- IMAGN NOTICIA -->
+                        <div class="cont_panel__did-1">          
                             <figure>
                                 <?php
                                 foreach($Datos['imagenesNoticiasGenerales'] as $Row)   : 

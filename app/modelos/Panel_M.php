@@ -59,10 +59,22 @@
         // SELECT agenda
         public function consultarAgenda(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Agenda, nombre_imagenAgenda
+                "SELECT ID_Agenda, nombre_imagenAgenda, DATE_FORMAT(caducidad, '%d-%m-%Y') AS fecha 
                 FROM agenda
                 WHERE disponibilidad = 'activado'
                 ORDER BY ID_Agenda
+                DESC"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        // SELECT obituario
+        public function consultarObituario(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Obituario, nombre_difunto, capilla_velacion, cementerio, ciudad, hora_velacion, funeraria, fecha_entierro
+                FROM obituario
+                WHERE fecha_defuncion = CURDATE()
+                ORDER BY fecha_defuncion
                 DESC"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -331,6 +343,28 @@
                 return FALSE;
             }
         }
+        
+        
+        // UODATE de datos de eventos en agenda 
+        public function ActualizarAgenda($ID_Agenda, $Fecha){            
+            $stmt = $this->dbh->prepare(
+                "UPDATE agenda 
+                SET caducidad = STR_TO_DATE('$Fecha', '%d-%m-%Y')
+                WHERE ID_Agenda = :ID_AGENDA"
+            );
+
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_AGENDA', $ID_Agenda);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                // se recupera el ID del registro insertado
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
 
         // UODATE de imagen de noticia
         public function ActualizarImagenNoticia($ID_Noticia, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){            
@@ -369,6 +403,30 @@
             $stmt->bindParam(':NOMBRE_IMG', $Nombre_imagen);
             $stmt->bindParam(':TIPO_IMG', $Tipo_imagen);
             $stmt->bindParam(':TAMANIO_IMG', $Tamanio_imagen);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                // se recupera el ID del registro insertado
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+
+        // UODATE de imagen de agenda
+        public function ActualizarImagenAgenda($ID_Agenda, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda){            
+            $stmt = $this->dbh->prepare(
+                "UPDATE agenda 
+                SET nombre_imagenAgenda = :NOMBRE_IMG, typo_imagenAgenda = :TIPO_IMG, tamanio_imagenAgenda = :TAMANIO_IMG 
+                WHERE ID_Agenda = :ID_AGENDA"
+            );
+
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_AGENDA', $ID_Agenda);
+            $stmt->bindParam(':NOMBRE_IMG', $Nombre_imagenAgenda);
+            $stmt->bindParam(':TIPO_IMG', $Tipo_imagenAgenda);
+            $stmt->bindParam(':TAMANIO_IMG', $Tamanio_imagenAgenda);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){

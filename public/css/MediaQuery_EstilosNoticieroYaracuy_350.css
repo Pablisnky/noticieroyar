@@ -43,7 +43,7 @@
 	width: 100%;
  }
  .cont_Galeria--item{
-	 padding: 0%;
+	margin-bottom: 25%;
  }
 .cont_modal--label{
 	font-size: 1em;
@@ -98,7 +98,7 @@
 	margin-top: 18%;
 }
 .cont_noticia--seccion{
-   margin-bottom: 5%;
+	margin-bottom: 15%;
 }
 .cont_noticia--tituloSeccion{
    font-size: 1.3em;
@@ -108,8 +108,18 @@
    margin-left: 5%;
 }
 .cont_noticia--sencilla{
-   min-width: 50%;
-   margin: 1%;
+	min-width: 50%;
+	max-width: 50%;
+   	margin-left: 1%;
+}
+.cont_noticia--titular{
+	height: 45vw;
+	width: 100%;
+	overflow-y: hidden;
+}
+.cont_noticia-imagen{
+	height: 25vh; 
+	object-fit: cover; 
 }
 .cont_portada--texto{
 	width: 95%;
@@ -216,6 +226,16 @@
 	margin-left: 10%; 
 	margin-top: 10%; 
 	width: 90%;
+}
+.obituario_cont{
+	display: block;
+	/* margin-top: 10%; */
+	width: 95%;
+	text-align: center;
+}
+.obituario_cont--imagen{
+	margin:auto;
+	width: 50%;
 }
 .subtitulo{	
 	/*Las proximas lineas permiten colocar tres puntos al final luego de 4 lineas de parrafo */	

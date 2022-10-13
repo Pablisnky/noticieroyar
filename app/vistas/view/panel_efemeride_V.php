@@ -39,7 +39,3 @@
             endforeach  ?>     
         </fieldset>
     </div>
-
-<!-- <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script> -->
-<!-- <script src="<?php echo RUTA_URL;?>/public/javascript/E_SalomonPanel.js?v=<?php echo rand();?>"></script> 
-<script src="<?php echo RUTA_URL;?>/public/javascript/A_SalomonPanel.js?v=<?php echo rand();?>"></script>  -->

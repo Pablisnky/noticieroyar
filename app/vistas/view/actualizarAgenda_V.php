@@ -15,10 +15,9 @@
                                 <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['agendaActualizar']['nombre_imagenAgenda'];?>"/> 
                             </figure>
                             <label for="imgInp"><span class="span_18 borde_1"><i class="fas fa-pencil-alt icono_4"></i></span></label>
-                            <input class="ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
+                            <input class="ocultar" type="file" name="imagenAgenda" id="imgInp"/>
                         </div>
-                        <div style="width: 100%">
-                            
+                        <div style="width: 100%">                            
                             <!-- FECHA -->
                             <label>Fecha de caducidad</label>
                             <input class="cont_panel--titulo" type="text" name="fecha" value="<?php echo $Datos['agendaActualizar']['fecha'];?>"/>

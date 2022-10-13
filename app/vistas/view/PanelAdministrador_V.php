@@ -9,7 +9,7 @@
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/Not_Generales" rel="noopener noreferrer">Noticias generales</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/efemerides">Efemerides</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/agenda">Agenda</a></li>
-        <li><a class="cont_panel--li" href="#">Obituario</a></li>
+        <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/obituario">Obituario</a></li>
         <li><a class="cont_panel--li" href="#">Publicidad</a></li>
         <li><a class="cont_panel--li" href="#">Perfil</a></li>
         <li><hr style="margin: 2%"></li>

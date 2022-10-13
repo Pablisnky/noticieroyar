@@ -106,17 +106,18 @@ li{
  .comandoMenu_2{
 	 display: none;
  }
- .cont_galeria{/*pinturas*/
+ .cont_galeria{
 	 column-count: 3 !important;
 	/* column-gap: 15px; */
 	column-fill: balance ;
 	width: 95%;
 	margin: auto;
  }
- .cont_Galeria--item{/*inicio*/
+ .cont_Galeria--item{
+	background-color: black;
 	 display: inline-block;
 	 margin: 0 5px 20px;
-	 padding: 3%;
+	 padding: 0.5%;
 	 cursor: pointer;
  }
  .cont_Galeria--img{
@@ -183,7 +184,10 @@ li{
  }
  .cont_noticia--seccion{
 	display: flex;
-	margin-bottom: 3%;
+	justify-content: flex-start;
+	align-content: flex-start;/*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
+	/* height: 100%; */
+	margin-bottom: 5%;
 	overflow-x: scroll;
 	/* las siguientes lineas edita la barra scroll */
     /* scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0); */
@@ -202,13 +206,13 @@ li{
 	margin-bottom: 0.5%;
  }
  .cont_noticia--sencilla{
-	/* background-color: rgba(248, 244, 244, 0.9); */
 	min-width: 25%;
-	/* margin: 0.5%; */
+	max-width: 25%;
+	margin-left: 2%;
  }
  .cont_noticia-imagen{
 	 height: 30vh; 
-	 /* width: 100%; */
+	 width: 100%;
 	 margin: auto;
 	 object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
  }
@@ -571,6 +575,45 @@ li{
 .titular--texto{
 	font-size: 1.4em;
 }
+.obituario_cont{
+	display: flex;
+	margin: 2% auto;
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 15px;
+	padding: 2%;
+}
+.obituario_cont--imagen{
+	margin-right: 4%;
+	width: 55%;
+}
+.obituario_cont--tamanioimg{
+	width: 100%;
+	height: 100%;
+}
+.obituario_cont--titulo{
+	font-size: 1.7em;
+	margin: 2% auto;
+}
+.obituario_cont--hr{
+	background-color: rgba(68, 64, 64, 0.3);
+	width: 50%;
+	margin: 1% auto;
+}
+.obituario_cont--small{
+	position: relative;
+	bottom: -5pt;
+	font-size: 0.8em;
+}
+.obituario_cont--lazo{
+	position: relative;
+	top: 5%;
+	left: 0%;
+}
+
+
+
 .mostrarModal{
 	animation-duration: 3s;
 	animation-name: fade;
