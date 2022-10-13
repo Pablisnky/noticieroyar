@@ -32,7 +32,7 @@ function conexionAJAX(){
 // *************************************************************************************************
     //Muestra cada noticia principal individualmente en un slider
     function Llamar_NoticiaPrincipal(ID_Noticia){
-        // console.log("______Desde Llamar_NoticiaPrincipal()______", ID_Noticia)
+        console.log("______Desde Llamar_NoticiaPrincipal()______", ID_Noticia)
         
         var url = "Inicio_C/NoticiaPortadaSeleccionada/" + ID_Noticia
         http_request.open('GET', url, true)  

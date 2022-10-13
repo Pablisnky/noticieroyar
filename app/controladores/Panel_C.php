@@ -163,7 +163,7 @@
 			$this->vista('header/header_SoloEstilos');
 			$this->vista('view/actualizarNoticia_V', $Datos);
 		}
-
+		
 		// Muestra formulario con la efemeride a actualizar
 		public function actualizar_efemeride($ID_Efemeride){
 			//CONSULTA la efemeride a actualizar
@@ -182,6 +182,26 @@
 			$this->vista('header/header_SoloEstilos');
 			$this->vista('view/actualizarEfemeride_V', $Datos);
 		}
+		
+		// Muestra formulario con el evento a actualizar
+		public function actualizar_agenda($ID_Agenda){
+			//CONSULTA el evento de agenda a actualizar
+			$AgendaActualizar = $this->Panel_M->consultarAgendaActualizar($ID_Agenda);
+			
+			$Datos = [
+				'agendaActualizar' => $AgendaActualizar //ID_Agenda, nombre_imagenAgenda, caducidad
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit();
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/actualizarAgenda_V', $Datos);
+		}
+
 		//Muestra el select con las secciones
 		public function Secciones(){
 			
@@ -285,20 +305,23 @@
 			header("Location:" . RUTA_URL . "/Panel_C/portadas");
 			die();
 		}
+
 		// recibe formulario que agrega evento en agenda
 		public function recibeAgendaAgregada(){
-			if(isset($_FILES['imagenAgenda']["name"])){				
+			if(isset($_FILES['imagenAgenda']["name"])){			
+				$FechaCaducidad = $_POST['caducidad'];
 				$Nombre_imagenAgenda = $_FILES['imagenAgenda']['name'];
 				$Tipo_imagenAgenda = $_FILES['imagenAgenda']['type'];
 				$Tamanio_imagenAgenda = $_FILES['imagenAgenda']['size'];
 
+				// echo "Caducidad : " . $Caducidad . '<br>';
 				// echo "Nombre_imagen : " . $Nombre_imagenAgenda . '<br>';
 				// echo "Tipo_imagen : " .  $Tipo_imagenAgenda . '<br>';
 				// echo "Tamanio_imagen : " .  $Tamanio_imagenAgenda . '<br>';
 				// exit;
 				
 				//Se INSERTA el evento
-				$this->Panel_M->InsertarAgenda($Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda);
+				$this->Panel_M->InsertarAgenda($FechaCaducidad, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda);
 				
 				//Usar en remoto
 				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
@@ -332,6 +355,46 @@
 			// exit;
 				
 			//Se ACTUALIZA la noticia de portada seleccionada
+			$this->Panel_M->ActualizarNoticia($ID_Noticia, $ID_Seccion, $Titulo, $Sub_Titulo, $Contenido, $Fecha);
+				
+			//Si existe imagenPrincipal y tiene un tamaño correcto se procede a recibirla y guardar en BD
+			if($_FILES['imagenPrincipal']["name"] != ""){					
+				$Nombre_imagenPrincipal = $_FILES['imagenPrincipal']['name'];
+				$Tipo_imagenPrincipal = $_FILES['imagenPrincipal']['type'];
+				$Tamanio_imagenPrincipal = $_FILES['imagenPrincipal']['size'];
+
+				// echo "Nombre_imagen Noticia: " . $Nombre_imagenPrincipal . '<br>';
+				// echo "Tipo_imagen Noticia: " .  $Tipo_imagenPrincipal . '<br>';
+				// echo "Tamanio_imagen Noticia: " .  $Tamanio_imagenPrincipal . '<br>';
+				// exit;
+
+				//Usar en remoto
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				
+				// usar en local
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
+
+				//Se ACTUALIZA las imagenes de la noticia en BD
+				$this->Panel_M->ActualizarImagenNoticia($ID_Noticia, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+			}
+			
+			header("Location:" . RUTA_URL . "/Panel_C/portadas");
+			die();
+		}
+
+		// recibe formulario que actualiza un evento de agenda
+		public function recibeAgendaActualizada(){
+			$ID_Agenda = $_POST['ID_Agenda']; 
+			$Fecha = $_POST['fecha'];			
+
+			// echo "ID_Agenda: " . $ID_Agenda . '<br>';
+			// echo "Fecha : " . $Fecha . '<br>';
+			// exit;
+				
+			//Se ACTUALIZA el evento de agenda seleccionado
 			$this->Panel_M->ActualizarNoticia($ID_Noticia, $ID_Seccion, $Titulo, $Sub_Titulo, $Contenido, $Fecha);
 				
 			//Si existe imagenPrincipal y tiene un tamaño correcto se procede a recibirla y guardar en BD

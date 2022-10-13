@@ -9,7 +9,7 @@
         }
         
         public function index(){              
-            //consulta la efemeride de hoy
+            //consulta los eventos en agenda de hoy
 			$Agenda = $this->ConsultaAgenda_M->consultarAgenda();
 
             $Datos = [

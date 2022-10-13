@@ -9,7 +9,7 @@
             $stmt = $this->dbh->prepare(
                 "SELECT ID_Agenda, nombre_imagenAgenda
                  FROM agenda 
-                 WHERE disponibilidad = 'activado'
+                 WHERE caducidad >= CURDATE()
                  ORDER BY ID_Agenda
                  DESC"
             );

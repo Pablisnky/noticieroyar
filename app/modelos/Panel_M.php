@@ -128,6 +128,25 @@
             }
         }
 
+        //SELECT de la agenda a actualizar
+        public function consultarAgendaActualizar($ID_Agenda){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Agenda, nombre_imagenAgenda, DATE_FORMAT(caducidad, '%d-%m-%Y') AS fecha
+                 FROM agenda 
+                 WHERE ID_Agenda = :ID_AGENDA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_AGENDA', $ID_Agenda, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
         //SELECT de las secciones del periodico
         public function consultarSecciones(){
             $stmt = $this->dbh->query(
@@ -238,10 +257,10 @@
         }
         
         //INSERT de evento en agenda
-        public function InsertarAgenda($Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda){
+        public function InsertarAgenda($FechaCaducidad, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO agenda(nombre_imagenAgenda, typo_imagenAgenda, tamanio_imagenAgenda,  disponibilidad) 
-                VALUES (:NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN, :DISPONIBILIDAD)"
+                "INSERT INTO agenda(nombre_imagenAgenda, typo_imagenAgenda, tamanio_imagenAgenda, disponibilidad, caducidad) 
+                VALUES (:NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN, :DISPONIBILIDAD, STR_TO_DATE( '$FechaCaducidad', '%d-%m-%Y'))"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement

@@ -190,25 +190,38 @@ li{
 	scrollbar-width: thin;
  }
  .cont_noticia--tituloSeccion{
+	background-color: rgb(245, 238, 238);
+	border-color: rgba(0, 0, 0, 0.4);
+	border-width: 1px;
+	border-style: solid;
 	font-size: 1.5em;
-	padding-left: 5%;
+	text-align: center;
+	width: 15%;
+	margin-left: 5%;
+	border-radius: 15px;
+	margin-bottom: 0.5%;
  }
  .cont_noticia--sencilla{
-	background-color: rgba(248, 244, 244, 0.9);
+	/* background-color: rgba(248, 244, 244, 0.9); */
 	min-width: 25%;
+	/* margin: 0.5%; */
  }
  .cont_noticia-imagen{
 	 height: 30vh; 
-	 width: 95%;
+	 /* width: 100%; */
 	 margin: auto;
 	 object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
  }
  .cont_noticia--titular{
-	/* width: 90%; */
-	/* margin: auto;
-	margin-top: 2vh; */
-	padding: 0.5% 2% 4% 3%;
-	/* font-size: 0.8em; */
+	width: 80%;
+	margin: auto;
+	/*margin-top: 2vh; */
+	/* padding: 0.5% 2% 4% 3%; */
+	font-size: 0.8em;
+ }
+ .cont_noticia--hr_1{
+	 margin: 2% ;
+	 width: 30%;
  }
  .cont_noticia--h2{
 	font-size: 0.8em;
@@ -270,10 +283,16 @@ li{
 	padding-bottom: 5%;
 }
 .detalle_cont--titulo{
+	width: 85%;
+	margin: auto;
 	font-size: 2em;
 	text-align: center;
 	margin-top: 2.5%;
 	margin-bottom: 2.5%;	
+}
+.detalle_cont--hr{
+	width: 40%;
+	margin: 10% auto;
 }
 .cont_detalle--imagen{
 	margin: auto;
@@ -314,11 +333,7 @@ li{
 	margin-bottom: 2%;
 }
 .cont_portada--botones{
-	position: fixed;
-	display: flex;
-	justify-content: space-around;
-	width: 100%;
-	bottom: 3pt;
+	display: none;
 }
 .cont_portada--imagen{
 	max-height: 50vh; 
@@ -327,7 +342,7 @@ li{
 }
 .detalle_cont--main{
 	display: block;
-    width: 100%;
+    width: 95%;
 	margin: auto;
 	min-height: 100vh;
 	padding-bottom: 5%;
@@ -341,22 +356,21 @@ li{
 	width: 55%
 }
 .detalle_cont--resumen{
-	width: 40%; 
+	width: 35%; 
 	margin: auto; 
-	text-align: center;
+	text-align: justify;
 }
 .imagen--portada{
 	height: 50vh;  
 	margin: auto;
-	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
 .cont_portada--texto{
 	width: 90%;
-	/* height: 20%; */
 	margin: auto;
 	margin-top: 2vh;
 	padding: 0.5%;
-	/* color: white */
+	text-align: justify;
 }
 .cont_portada__p-1{
 	font-size: 4em;
@@ -526,9 +540,6 @@ li{
 	/*padding-top: 5%; */
 	/* width: 100%; */
 	/*flex-grow: 1;distribuye proporcionalmente los elementos internos en el eje horizontal, es necesario que el elemento padre tenga la propiedad display con el valor flex*/
-}
-.hr_1{
-	margin: 2%;
 }
 .legend_1{
 	font-size: 1.3em;

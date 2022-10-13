@@ -71,6 +71,10 @@
 		font-size: 0.9em;
 		width: 100%; 
 	}
+	.detalle_cont--hr{
+		width: 40%;
+		margin: 7% auto 4% auto;
+	}
 	.h1--principal{
 		font-size: 1.6em;
 		text-align: center;
@@ -84,8 +88,19 @@
 	.cont_noticia{
 		margin-top: 20%;
 	}
+	.cont_noticia--seccion{
+	   margin-bottom: 5%;
+	}
 	.cont_noticia--sencilla{
 	   min-width: 50%;
+	   margin: 1%;
+	}
+	.cont_noticia--tituloSeccion{
+	   font-size: 1.3em;
+	   width: 55%;
+	   text-align: left;
+	   padding-left: 3%;
+	   margin-left: 5%;
 	}
 	.cont_portada{
 		display: block;

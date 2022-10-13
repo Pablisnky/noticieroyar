@@ -82,6 +82,13 @@
 	margin: auto;
 	text-align: center;
 }
+.cont_portada--botones{
+	position: fixed;
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	bottom: 3pt;
+}
 .titular--texto{
 	font-size: 1.2em;
 	padding: 1%;
@@ -93,8 +100,16 @@
 .cont_noticia--seccion{
    margin-bottom: 5%;
 }
+.cont_noticia--tituloSeccion{
+   font-size: 1.3em;
+   width: 55%;
+   text-align: left;
+   padding-left: 3%;
+   margin-left: 5%;
+}
 .cont_noticia--sencilla{
    min-width: 50%;
+   margin: 1%;
 }
 .cont_portada--texto{
 	width: 95%;
@@ -166,6 +181,10 @@
 .detalle_cont--resumen{
 	font-size: 0.9em;
 	width: 100%; 
+}
+.detalle_cont--hr{
+	width: 40%;
+	margin: 7% auto 4% auto;
 }
 .Default_quitarEscritorio{
 	display: flex;

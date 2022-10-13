@@ -17,12 +17,13 @@
         <!-- RESUMEN -->
         <div class="detalle_cont--resumen">
             <p style="font-size: 1.4em;"><?php echo $Datos['detalleNoticia'][0]['subtitulo']?></p>
+            <hr class="detalle_cont--hr">
         </div>
     </div>
 
     <!-- CONTENIDO -->
     <div class="cont_portada--texto columnas">
-        <p  style="font-size: 1.2em; line-height: 30px;margin-top: 2%"><?php echo $Datos['detalleNoticia'][0]['contenido']?></p>
+        <p  style="font-size: 1.2em; line-height: 30px; "><?php echo $Datos['detalleNoticia'][0]['contenido']?></p>
     </div>
 </div>
 </body>
