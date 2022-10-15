@@ -62,7 +62,7 @@ document.getElementById("Cont_Portada").addEventListener('click', function(e){
 }, false)
 
 //************************************************************************************************    
-    //Desplaza el viewport a la derecha para mostrar otra noticia principal
+    //
     function CerrarModal(){
         document.getElementById("VentanaModal").style.display = "none"
     }
