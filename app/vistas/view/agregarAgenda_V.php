@@ -19,7 +19,7 @@
                     </div>        
                     <div>
                         <label>Fecha caducidad</label>
-                        <input type="text" name="caducidad"/>
+                        <input type="text" name="caducidad" placeholder="00-00-0000"/>
                     </div>     
                 </div>
                 <div class=""> 

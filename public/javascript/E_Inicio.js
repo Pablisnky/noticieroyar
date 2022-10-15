@@ -2,7 +2,7 @@ document.getElementById("Cerrar--modal").addEventListener('click', CerrarModal, 
 
 
 //************************************************************************************************
-//Función autoejecuble que muestra la ventana modal
+//Función autoejecuble que muestra la ventana modal automaticmente
 var VentanaModal = (function(){ 
     setTimeout(function(){mostrarModal();}, 1500)
 })();

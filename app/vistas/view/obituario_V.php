@@ -2,7 +2,7 @@
 <div class="cont_galeria" id="Cont_galeria_agenda">
     <?php
     // foreach($Datos['obituario'] as $Key) :  ?>
-        <div class="cont_Galeria--item">
+        <div class="obituario_cont--item">
             <!-- <figure>
                 <img class="cont_Galeria--img lazyload" alt="Fotografia Principal" data-src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenAgenda'];?>" id="<?php echo $Key['ID_Agenda']?>" loading="lazy" width="320" height="10"/> 
             </figure> -->

@@ -41,13 +41,16 @@
             $this->vista("view/noticias_V", $Datos );   
         }
 
+        // muestra la noticia completamente
         public function detalleNoticia($ID_Noticia){
             
             //Se CONSULTA la noticia que se solicito en detalle
             $DetalleNoticia = $this->ConsultaNoticia_M->consultarNoticiaDetalle($ID_Noticia);
+            $ImagenesNoticia = $this->ConsultaNoticia_M->consultarImagenesNoticia($ID_Noticia);
 
             $Datos = [
-                'detalleNoticia' => $DetalleNoticia //ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido
+                'detalleNoticia' => $DetalleNoticia, //ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido
+                'imagenesNoticia' => $ImagenesNoticia //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
             ];
             
             // echo "<pre>";
@@ -57,5 +60,25 @@
             
             $this->vista("header/header_SoloEstilos"); 
             $this->vista("view/detalleNoticias_V", $Datos ); 
+        }
+
+        
+        // muestra la imagn seleccionada en la miniatura
+        public function muestraImagenSeleccionada($ID_ImagenMiniatura){
+            //Se CONSULTA la imagen que se solicito en detalle
+             $DetalleImagen = $this->ConsultaNoticia_M->consultarDetalleImagen($ID_ImagenMiniatura);
+           
+            $Datos = [
+                'ImagenSeleccionada' => $DetalleImagen, //nombre_imagenNoticia
+            ];
+
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+            
+            $this->vista("header/header_SoloEstilos"); 
+            $this->vista("view/ajax/ImagenSeleccionada_V", $Datos ); 
+
         }
     }

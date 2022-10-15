@@ -8,59 +8,71 @@
     <fieldset class="fieldset_1" id="Portada"> 
         <legend class="legend_1">Agregar Noticia</legend>
             <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <label class="cont_panel--label">Imagen principal</label>
                 <div style="display: flex; margin-bottom: 30px">
-                    <div class="cont_panel__did-1">       
-                        <!-- IMAGN NOTICIA -->
-                        <figure>
-                            <label for="imgInp"class="Default_pointer"><img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> </label>
-                        </figure>
-                        <!-- <span class="material-icons-outlined span_18">edit</span> -->
+                    <!-- IMAGN PRINCIPAL -->
+                    <div style=" width: 30%">    
+                        <label class="Default_pointer" for="imgInp">    
+                            <figure>
+                                <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                            </figure>
+                        </label>
                         <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
                     </div>
-                    <div style="width: 100%">
+                    <div style="width: 100%; padding-left: 1%">
                         <!-- TITULO -->
-                        <label>TItulo</label>
+                        <label class="cont_panel--label">TItulo</label>
                         <input class="cont_panel--titulo" type="text" name="titulo"/>
 
                         <!-- RESUMEN -->
-                        <label>Resumen</label>
+                        <label class="cont_panel--label">Resumen</label>
                         <textarea class="cont_panel--titulo" name="subtitulo"></textarea> 
 
                         <!-- CONTENIDO -->
-                        <label>Contenido</label>
+                        <label class="cont_panel--label">Contenido</label>
                         <textarea class="cont_panel--titulo" name="contenido" id="Contenido" autosize="none"></textarea> 
                         
                         <!-- SECCION -->
-                        <label>Sección</label>
-                        <select class="cont_panel--titulo" name="ID_Seccion">
-                            <option></option>
-                            <?php
-                            foreach($Datos['secciones'] as $row) :  ?>
-                                <option value="<?php echo $row['ID_Seccion'];?>"><?php echo $row['seccion'];?></option>
-                                <?php
-                            endforeach; ?>
-                        </select>
+                        <label class="cont_panel--label">Sección</label>
+                        <input class="cont_panel--titulo" type="text" name="seccion" id="SeccionPublicar"/>
                         
                         <!-- FECHA -->
-                        <label>Fecha</label>
+                        <label class="cont_panel--label">Fecha</label>
                         <input class="cont_panel--titulo" type="text" name="fecha" placeholder="00-00-0000"/>
                         
                         <!-- REDACCION -->
                         <input class="Default_ocultar" type="text" name="ID_Periodista" value="1"/>
+                        
+                        <!-- IMAGENES SECUNDARIAS -->     
+                        <label class="cont_panel--label" style="display:block" for="ImgInp_2">Imagenes secundarias</label>
+                        <input class="ocultar" type="file" name="imagenesSec[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
+                               
+                        <!-- muestra las imagenes secundarias -->
+                        <div class="cont_panel--imagenSec" id="muestrasImg_2"></div>                    
                     </div>                     
                 </div>
-                <div class=""> 
+                
+                <div> 
                     <input class="boton" type="submit" value="Agregar noticia"/>  
                 </div>
+                
+                
             </form>
     </fieldset>
 </div>
+
+<!--div alimentado desde Secciones_Ajax_V.php con las secciones -->    
+<div id="Contenedor_80"></div>
+
 </body>
 </html>
+
+
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php echo rand();?>"></script> 
+<script src="<?php echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script> 
 
 <script>       
-    //Da una vista previa de la foto de la noticia
+    //Da una vista previa de la foto principal de la noticia
     function readImage(input, id_Label){
         // console.log("______Desde readImage()______", input + ' | ' + id_Label)
         if(input.files && input.files[0]){
@@ -77,5 +89,66 @@
         var id_Label = $('#blah');
         readImage(this, id_Label);
     });
+
+// ************************************************************************************************
+    
+    //Array contiene las imagenes insertadas, sus elementos sumados no pueden exceder de 10
+    SeleccionImagenes = [];
+    function muestraImg(){
+            // Muestra grupo de imagenes
+            // console.log("______Desde muestraImg()______")
+
+            var contenedorPadre = document.getElementById("muestrasImg_2");
+            var archivos = document.getElementById("ImgInp_2").files;
+            
+            var CantidadImagenes = archivos.length
+            console.log("Cantidad Imagenes recibidas= ", CantidadImagenes)
+        
+            if(CantidadImagenes < 11){
+                SeleccionImagenes.push(CantidadImagenes) 
+                console.log("Imagenes recibidas= ",SeleccionImagenes)
+                // Suma la cantidad de imagenes que se han insertado  
+                TotalSeleccionImagenes = SeleccionImagenes.reduce((a, b) => a + b)
+                console.log("Suma de Imagenes = ",TotalSeleccionImagenes)
+                
+                if(TotalSeleccionImagenes < 11){
+                    for(i = 0; i < CantidadImagenes; i++){
+                        console.log(i)
+                        var imgTagCreada = document.createElement("img");
+                        var spanTagCreada = document.createElement("span")
+
+                        imgTagCreada.width = 150;
+                        imgTagCreada.height = 150;
+                        ImagenD = imgTagCreada.id = "Imagen_" + i;
+                        // imgTagCreada.marginBottom = 250
+                        imgTagCreada.src = URL.createObjectURL(archivos[i]);
+
+                        spanTagCreada.innerHTML = "Eliminar"
+                        spanTagCreada.id = "Etiqueta_" + i
+                        spanTagCreada.style.color = "rgb(24, 24, 238)"
+                        spanTagCreada.style.cursor = "pointer"
+                        spanTagCreada.style.marginBottom = 100
+
+                        //Se detecta la etiqueta dondes se hizo click
+                        spanTagCreada.addEventListener("click", function(e){   
+                            var click = e.target
+                            EliminarImagenSecundaria(click, SeleccionImagenes)
+                        }, false)
+
+                        contenedorPadre.appendChild(imgTagCreada); 
+                        contenedorPadre.appendChild(spanTagCreada); 
+                    }
+                }
+                else{
+                    alert("Máximo imagenes alcanzado (5)")
+                    //Se elimina la ultima cantidad de imagenes que se quiso insertar
+                    SeleccionImagenes.pop() 
+                    console.log("Array imagenes seleccionadas= ", SeleccionImagenes)
+                }
+            }
+            else{
+                alert("Máximo 5 imagenes permitidas")
+            }
+        }
 </script>
 

@@ -26,9 +26,11 @@
                 <h2 class="titular--texto"><?php echo $Datos['not_Princ_Seleccionada'][0]['titulo'];?></h2>
             </div>
             
+            <hr class="cont_portada--hr">
+            
             <!-- RESUMEN -->
-            <div class="cont_portada--texto columnas">
-                <p class="subtitulo"><?php echo $Datos['not_Princ_Seleccionada'][0]['subtitulo'];?></p>
+            <div class="cont_portada--texto">                   
+                <h2 class="cont_portada--resumen"><?php echo $Key['subtitulo'];?></h2>
             </div>
         </div>                
         <?php

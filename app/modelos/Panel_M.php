@@ -12,14 +12,14 @@
         //SELECT de las noticias de portada 
         public function consultarNoticiasPortada(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Noticia, titulo, subtitulo, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
                 FROM noticias 
-                INNER JOIN secciones ON noticias.ID_Seccion=secciones.ID_Seccion
+                INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
                 WHERE portada = 1 AND fecha >= CURDATE()
                 ORDER BY ID_Noticia
                 DESC"
             );
-            
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -27,7 +27,8 @@
         public function consultarImagenesNoticiasPortada(){
             $stmt = $this->dbh->query(
                 "SELECT ID_Noticia, nombre_imagenNoticia
-                FROM imagenes"
+                FROM imagenes
+                WHERE ImagenPrincipal = 1"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -35,9 +36,10 @@
         // SELECT de noticias generales
         public function consultarNoticiasGenerales(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Noticia, titulo, subtitulo, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
+                "SELECT noticias.ID_Noticia, seccion, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
                 FROM noticias
-                INNER JOIN secciones ON noticias.ID_Seccion=secciones.ID_Seccion
+                INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
                 WHERE fecha < CURDATE()
                 ORDER BY fecha
                 DESC"
@@ -62,7 +64,7 @@
                 "SELECT ID_Agenda, nombre_imagenAgenda, DATE_FORMAT(caducidad, '%d-%m-%Y') AS fecha 
                 FROM agenda
                 WHERE disponibilidad = 'activado'
-                ORDER BY ID_Agenda
+                ORDER BY caducidad
                 DESC"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -106,8 +108,9 @@
                 "SELECT noticias.ID_Noticia, secciones.ID_Seccion, titulo, subtitulo, contenido, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_imagenNoticia
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
-                 INNER JOIN secciones ON noticias.ID_Seccion=secciones.ID_Seccion
-                 WHERE noticias.ID_Noticia = :ID_NOTICIA"
+                INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
+                 WHERE noticias.ID_Noticia = :ID_NOTICIA AND ImagenPrincipal = 1"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
@@ -115,6 +118,25 @@
 
             if($stmt->execute()){
                 return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        //SELECT de las imagenes de noticia a actualizar
+        public function consultarImagenesNoticiaActualizar($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Noticia, ID_Imagen, nombre_imagenNoticia
+                 FROM imagenes 
+                 WHERE ID_Noticia = :ID_NOTICIA AND ImagenPrincipal = 0"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             else{
                 return false;
@@ -167,6 +189,44 @@
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+        
+        //SELECT del ID_Seccion del nombre de una seccion
+        public function Consultar_ID_Seccion($Seccion){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Seccion
+                FROM secciones
+                WHERE seccion = :SECCION"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':SECCION', $Seccion, PDO::PARAM_STR);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        //SELECT de los ID_Seccion de varias secciones
+        public function ConsultarVarios_ID_Seccion($SeccionesVarias){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Seccion
+                FROM secciones
+                WHERE seccion IN ($SeccionesVarias)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            // $stmt->bindParam(':SECCION', $Seccion, PDO::PARAM_STR);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
 
 
 // // ********************************************************************************************************
@@ -176,8 +236,8 @@
         // INSERT de noticia portada
         public function InsertarNoticia($Titulo, $SubTitulo, $Contenido, $ID_Seccion, $Fecha, $ID_Periodista){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO noticias(titulo, subtitulo, contenido, ID_Seccion, fecha, ID_Periodista, portada) 
-                VALUES (:TITULO, :SUBTITULO, :CONTENIDO, :ID_SECCION, STR_TO_DATE( '$Fecha', '%d-%m-%Y' ), :ID_PERIODISTA, :PORTADA)"
+                "INSERT INTO noticias(titulo, subtitulo, contenido, fecha, ID_Periodista, portada) 
+                VALUES (:TITULO, :SUBTITULO, :CONTENIDO, STR_TO_DATE( '$Fecha', '%d-%m-%Y' ), :ID_PERIODISTA, :PORTADA)"
             ); 
 
             // STR_TO_DATE( '$Fecha', '%d-%m-%Y' ) se recibe la fecha en formato USA y se cambia a formato EUR
@@ -186,7 +246,6 @@
             $stmt->bindParam(':TITULO', $Titulo);
             $stmt->bindParam(':SUBTITULO', $SubTitulo);
             $stmt->bindParam(':CONTENIDO', $Contenido);
-            $stmt->bindParam(':ID_SECCION', $ID_Seccion);
             // $stmt->bindParam(':FECHA', $FechaFormateada); 
             $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista);
             $stmt->bindValue(':PORTADA', 1);
@@ -201,11 +260,11 @@
             }
         }
         
-        // INSERT de imagenes de noticia 
-        public function InsertarImagenesNoticia($ID_Noticia, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
+        // INSERT de imagen de noticia 
+        public function InsertarImagenNoticia($ID_Noticia, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO imagenes(ID_Noticia, nombre_imagenNoticia, tamanio_imagenNoticia, tipo_imagenNoticia) 
-                VALUES (:ID_NOTICIA, :NOMBRE_IMAGEN, :TAMANIO_IMAGEN, :TIPO_IMAGEN)"
+                "INSERT INTO imagenes(ID_Noticia, nombre_imagenNoticia, tamanio_imagenNoticia, tipo_imagenNoticia, ImagenPrincipal) 
+                VALUES (:ID_NOTICIA, :NOMBRE_IMAGEN, :TAMANIO_IMAGEN, :TIPO_IMAGEN, :IMG_PRINCIPAL)"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
@@ -213,6 +272,7 @@
             $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenPrincipal);
             $stmt->bindParam(':TAMANIO_IMAGEN', $Tipo_imagenPrincipal);
             $stmt->bindParam(':TIPO_IMAGEN', $Tamanio_imagenPrincipal);
+            $stmt->bindValue(':IMG_PRINCIPAL', 1);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -221,6 +281,37 @@
             else{
                 return FALSE;
             }
+        }
+        
+        // INSERT de imagenes secundarias de noticia 
+        public function insertarFotografiasSecun($ID_Noticia, $archivonombre, $tipo, $tamanio){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO imagenes(ID_Noticia, nombre_imagenNoticia, tamanio_imagenNoticia, tipo_imagenNoticia)VALUES (:ID_NOTICIA, :NOMBRE_IMG, :TIPO_ARCHIVO, :TAMANIO_ARCHIVO)"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas
+            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia,);
+            $stmt->bindParam(':NOMBRE_IMG', $archivonombre);
+            $stmt->bindParam(':TIPO_ARCHIVO', $tipo);
+            $stmt->bindParam(':TAMANIO_ARCHIVO', $tamanio);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            $stmt->execute();
+        }
+        
+        // INSERT de dependencia transitiva entre noticias y secciones
+        public function Insertar_DT_noticia_seccion($ID_Noticia, $ID_Seccion){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO noticias_secciones(ID_Noticia, ID_Seccion)VALUES (:ID_NOTICIA, :ID_SECCION)"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas
+            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia,);
+            $stmt->bindParam(':ID_SECCION', $ID_Seccion);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            $stmt->execute();
+
         }
 
         //INSERT de solo el ID_Noticia en la tabla imagenes, cuando no se tiene una imagen para la noticia

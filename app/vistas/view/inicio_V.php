@@ -11,7 +11,7 @@
         <div class="cont_portada--noticia" id="Cont_Portada">
 
             <!-- IMAGEN -->
-            <div class="cont_portada--imagen">                        
+            <div class="cont_portada--imagen Default_pointer">                        
                 <figure>
                     <img class="imagen--portada imagen_2--JS" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>" id="<?php echo $Key['ID_Noticia'];?>"/> 
                 </figure>
@@ -32,10 +32,12 @@
             <div class="cont_portada--titular">                   
                 <h2 class="titular--texto"><?php echo $Key['titulo'];?></h2>
             </div>
+
+            <hr class="cont_portada--hr">
             
             <!-- RESUMEN -->
-            <div class="cont_portada--texto columnas">
-                <p class="subtitulo"><?php echo $Key['subtitulo'];?></p>
+            <div class="cont_portada--texto">                   
+                <h2 class="cont_portada--resumen"><?php echo $Key['subtitulo'];?></h2>
             </div>
         </div>                
         <?php

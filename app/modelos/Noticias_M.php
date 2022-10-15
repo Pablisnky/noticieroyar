@@ -35,7 +35,8 @@
                 "SELECT noticias.ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
-                 INNER JOIN secciones ON noticias.ID_Seccion=secciones.ID_Seccion
+                INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
                 ORDER BY ID_Noticia
                 DESC"
             );
@@ -50,15 +51,55 @@
         
         public function consultarNoticiaDetalle($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, contenido
                  FROM noticias 
-                 INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
-                 INNER JOIN secciones ON noticias.ID_Seccion=secciones.ID_Seccion
+                INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
                  WHERE noticias.ID_Noticia = :ID_NOTICIA"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':ID_NOTICIA', $ID_Noticia);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        //SELECT de todas las imagenes de una noticia especifica
+        public function consultarImagenesNoticia($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
+                 FROM imagenes 
+                 WHERE ID_Noticia = :ID_NOTICIA
+                 ORDER BY ImagenPrincipal
+                 DESC"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        //Se CONSULTA la imagen que se solicito en detalles
+        public function consultarDetalleImagen($ID_ImagenMiniatura){
+            $stmt = $this->dbh->prepare(
+                "SELECT nombre_imagenNoticia
+                 FROM imagenes 
+                 WHERE ID_Imagen = :ID_IMAGEN"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_IMAGEN', $ID_ImagenMiniatura);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);

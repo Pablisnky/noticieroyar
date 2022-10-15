@@ -4,11 +4,12 @@ document.getElementById("Contenido").addEventListener('click', function(){resize
 document.getElementById("Contenido").addEventListener('bluhr', function(){autosize('Contenido')}, false)
 
 //************************************************************************************************
-//Función autoejecuble que muestra la ventana modal
-// var VentanaModal = (function(){ 
-//     setTimeout(function(){mostrarModal();}, 1500)
-// })();
-
+    //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
+    window.addEventListener("click", function(e){   
+        var click = e.target
+        console.log("Se hizo click en: ", click)
+    }, false)
+    
 //************************************************************************************************
     //Muestra la cantidad de caracteres que quedan mientras se escribe
     function contarCaracteres(ID_Contador, ID_Contenido, Max){
@@ -77,4 +78,41 @@ document.getElementById("Contenido").addEventListener('bluhr', function(){autosi
         text.style.height = text.scrollHeight+'px';
     }
 
-//************************************************************************************************   
+//************************************************************************************************    
+    //Desplaza el viewport a la derecha para mostrar otra noticia principal
+    function CerrarModal(){
+        document.getElementById("MostrarSeccion").style.display = "none"
+
+        //Se limpia el input secciones en caso de haber seleccionado alguna
+        document.getElementById("SeccionPublicar").value = ""
+    } 
+
+//************************************************************************************************    
+        //Desplaza el viewport a la derecha para mostrar otra noticia principal
+        function ConfirmarTrasferir(){
+            document.getElementById("MostrarSeccion").style.display = "none"
+    
+        } 
+
+//************************************************************************************************  
+     function transferirSeccion(form, id){
+        console.log("______Desde transferirSeccion()______")
+        //Se declara el array que contendra la cantidad de categorias seleccionadas
+        var TotalCategoria = []
+
+        //Se reciben los elementos del formulario mediante su atributo name
+        Seccion = form.seccion
+
+        //Se recorre todos los elementos para encontrar el que esta seleccionado
+        for(var i = 0; i<Seccion.length; i++){ 
+            if(Seccion[i].checked){
+                //Se toma el valor del seleccionado
+                Seleccionado = Seccion[i].value
+                TotalCategoria.push(Seleccionado );
+            }            
+        } 
+
+        //Se transfiere el valor del radio boton seleccionado al input del formulario
+        document.getElementById(id).value = TotalCategoria
+              
+    }

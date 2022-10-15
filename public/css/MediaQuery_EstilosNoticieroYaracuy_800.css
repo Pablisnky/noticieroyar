@@ -123,6 +123,7 @@
 	.cont_portada--titular{
 		width: 90%;
 		margin: auto;
+		margin-top: 1%;
 		text-align: center;
 	}
 	.cont_portada--texto{
@@ -133,11 +134,16 @@
 		/*margin-top: 80vh;*/
 		padding: 3%; 
 	}
+	.cont_portada--resumen{
+		font-size: 1.3em;
+		font-weight: lighter ;
+		text-align: justify;
+	}
 	.cont_radio{
 		display: flex; 
 		justify-content: space-around;
 		width: 80%;
-		margin: 5% auto;
+		margin: 0% auto 0% auto;
 		/* position: relative;
 		bottom: 20pt; */
 	}
