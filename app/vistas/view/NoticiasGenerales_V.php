@@ -30,7 +30,15 @@
                         
                         <!-- SECCION -->
                         <label class="cont_panel--label">Seccion</label>
-                        <label class="cont_panel--titulo"><?php echo $Not_Gen['seccion'];?></label>
+                        <ul class="cont_panel--seccion--ul">
+                            <?php
+                            foreach($Datos['seccionessNoticiasGenerales'] as $Key)   : 
+                                if($Not_Gen['ID_Noticia'] == $Key['ID_Noticia']){  ?>
+                                    <li class="cont_panel--seccion--li"><?php echo $Key['seccion'];?></li>
+                                    <?php
+                                }
+                            endforeach; ?>
+                        </ul>
                         
                         <!-- FECHA -->
                         <label class="cont_panel--label">Fecha</label>

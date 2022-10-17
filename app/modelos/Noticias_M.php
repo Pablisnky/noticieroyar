@@ -32,13 +32,14 @@
 
         public function consultarNoticiasGenerales(){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
-                INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
-                INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
-                ORDER BY ID_Noticia
-                DESC"
+                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                 INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
+                 WHERE ImagenPrincipal = 1
+                 ORDER BY fecha
+                 DESC"
             );
 
             if($stmt->execute()){
@@ -51,15 +52,15 @@
         
         public function consultarNoticiaDetalle($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, contenido
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, contenido, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
                  FROM noticias 
-                INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
-                INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
+                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                 INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
                  WHERE noticias.ID_Noticia = :ID_NOTICIA"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia);
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -80,7 +81,7 @@
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia);
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -99,7 +100,26 @@
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_IMAGEN', $ID_ImagenMiniatura);
+            $stmt->bindParam(':ID_IMAGEN', $ID_ImagenMiniatura, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+          //SELECT de los anuncios asociados a las noticias portadas
+        public function consultarAnuncioNoticiaPortada($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Anuncio, ID_Noticia, nombre_imagenPublicidad
+                 FROM publicidad 
+                 WHERE ID_Noticia = :ID_NOTICIA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);

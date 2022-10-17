@@ -12,17 +12,14 @@
 
             <!-- IMAGEN -->
             <div class="cont_portada--imagen Default_pointer">                        
-                <figure>
-                    <img class="imagen--portada imagen_2--JS" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>" id="<?php echo $Key['ID_Noticia'];?>"/> 
-                </figure>
+                <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
             </div>
 
             <!-- RADIO BOTOM -->
             <div class="cont_radio Default_quitarEscritorio"> 
                 <?php
                 foreach($Datos['datosNoticia'] as $Row) :  ?>       
-                        <input class="cont_radio--input Default_pointer" type="radio" name="noticias" onclick="Llamar_NoticiaPrincipal('<?php echo $Row['ID_Noticia'];?>')"
-                    <?php if($Row['ID_Noticia'] == $Datos['ID_NoticiaInicial']){?> checked <?php } ?>/>
+                    <input class="cont_radio--input Default_pointer" type="radio" name="noticias" onclick="Llamar_NoticiaPrincipal('<?php echo $Row['ID_Noticia'];?>')"<?php if($Datos['ID_NoticiaInicial'] == $Key['ID_Noticia']){?> checked <?php }?>/>
                     <i></i>
                     <?php
                 endforeach; ?>

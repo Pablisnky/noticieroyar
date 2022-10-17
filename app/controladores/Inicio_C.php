@@ -33,7 +33,8 @@
 
                 $Datos = [
                     'datosNoticia' => $this->NoticiasPortadas, //ID_Noticia, titulo, subtitulo,, noticiaPrincipal, portada, nombre_imagenNoticia    
-                    'ID_NoticiaInicial' =>  $this->NoticiasPortadas[0]['ID_Noticia']
+                    'ID_NoticiaInicial' =>  $this->NoticiasPortadas[0]['ID_Noticia'],
+                    'anunciosNoticiasPortadas' => $this->AnunciosNoticiasPortadas, //
                 ];
                 
                 // echo "<pre>";
@@ -51,10 +52,10 @@
 
             //Se CONSULTA la noticia seleccionada en el radio botom
             $Not_Princ_Seleccionada = $this->ConsultaInicio_M->consultarNot_Princ_Seleccionada($ID_Noticia);
-
+            
             $Datos = [
                 'datosNoticia' => $this->NoticiasPortadas,//ID_Noticia, titulo, subtitulo, imagenNoticia, portada      
-                'not_Princ_Seleccionada' =>  $Not_Princ_Seleccionada 
+                'not_Princ_Seleccionada' =>  $Not_Princ_Seleccionada,
             ];
             
             // echo "<pre>";

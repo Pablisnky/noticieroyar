@@ -44,8 +44,8 @@
                         <input class="Default_ocultar" type="text" name="ID_Periodista" value="1"/>
                         
                         <!-- IMAGENES SECUNDARIAS -->     
-                        <label class="cont_panel--label" style="display:block" for="ImgInp_2">Imagenes secundarias</label>
-                        <input class="ocultar" type="file" name="imagenesSec[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
+                        <label class="cont_panel--label" style="display: block" for="ImgInp_2">Imagenes secundarias</label>
+                        <input class="" type="file" name="imagenesSec[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
                                
                         <!-- muestra las imagenes secundarias -->
                         <div class="cont_panel--imagenSec" id="muestrasImg_2"></div>                    
@@ -54,14 +54,12 @@
                 
                 <div> 
                     <input class="boton" type="submit" value="Agregar noticia"/>  
-                </div>
-                
-                
+                </div>            
             </form>
     </fieldset>
 </div>
 
-<!--div alimentado desde Secciones_Ajax_V.php con las secciones -->    
+<!--div alimentado desde modal_seccionesDisponibles_V.php que muestra las secciones -->    
 <div id="Contenedor_80"></div>
 
 </body>
@@ -90,8 +88,7 @@
         readImage(this, id_Label);
     });
 
-// ************************************************************************************************
-    
+// ************************************************************************************************    
     //Array contiene las imagenes insertadas, sus elementos sumados no pueden exceder de 10
     SeleccionImagenes = [];
     function muestraImg(){
@@ -123,7 +120,7 @@
                         // imgTagCreada.marginBottom = 250
                         imgTagCreada.src = URL.createObjectURL(archivos[i]);
 
-                        spanTagCreada.innerHTML = "Eliminar"
+                        // spanTagCreada.innerHTML = "Eliminar"
                         spanTagCreada.id = "Etiqueta_" + i
                         spanTagCreada.style.color = "rgb(24, 24, 238)"
                         spanTagCreada.style.cursor = "pointer"

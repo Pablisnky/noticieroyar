@@ -4,10 +4,8 @@
         <div class="cont_portada--noticia" id="Cont_Portada">
 
             <!-- IMAGEN -->
-            <div class="cont_portada--imagen">                        
-                <figure>
-                    <img class="imagen--portada imagen_2--JS" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['not_Princ_Seleccionada'][0]['nombre_imagenNoticia'];?>" id="<?php echo $Key['ID_Noticia'];?>"/> 
-                </figure>
+            <div class="cont_portada--imagen">                                                     
+                <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['not_Princ_Seleccionada'][0]['nombre_imagenNoticia'];?>"/></a>
             </div>
 
             <!-- RADIO BOTOM -->

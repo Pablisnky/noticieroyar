@@ -109,7 +109,7 @@
 	margin-top: 18%;
 }
 .cont_noticia--seccion{
-	margin-bottom: 15%;
+	margin-bottom: 5%;
 }
 .cont_noticia--tituloSeccion{
    font-size: 1.3em;
@@ -147,6 +147,14 @@
 .cont_detalle{
     width: 100%;
 }
+.cont_detalle--imagen{
+	height: 75vw;
+	margin-top: 15%;
+}
+.cont_detalle--imagenMiniatura{
+	width: 50px;
+	height: 40px;
+} 
 .cont_efemerides{
     width: 100%;
 }
@@ -188,6 +196,23 @@
 	padding-right: 4%;
 	height: 50px;
 }
+.detalle_cont--divFijo{
+	background-color: white;
+	padding-top: 2%; 
+	left: 0%;
+	width: 100%
+}
+.detalle_cont--membrete{	
+	font-size: 1.5em;
+	margin-left: 5%;
+	margin-top: -2%;
+	margin-bottom: 1%;
+}
+.detalle_cont--cerrar{
+	top: 105%;
+	right: 4%;
+	font-size: 2.2em !important;
+}
 .detalle_cont--main{
 	margin-top: 8%;
 }
@@ -195,21 +220,31 @@
 	display: block;  
 	margin-top: 2%
 }
+.detalle_cont--informacion{
+	width: 100%;
+}
 .detalle_cont--titulo{
-	font-size: 1.5em;	
-	width: 90%;
-	margin: auto;
+	font-size: 1.3em;	
+	width: 95%;
+	margin: 2% auto;
 }
 .detalle_cont--imagen{
-	width: 100%
+	width: 100%;
+	margin-top: 20%;
 }
 .detalle_cont--resumen{
-	font-size: 0.9em;
+	font-size: 1.3em;
 	width: 100%; 
 }
 .detalle_cont--hr{
 	width: 40%;
 	margin: 7% auto 4% auto;
+}
+.detalle_cont--contenido p{
+	margin-top: 1%;
+	column-count: 1;
+	font-size: 1.3em; 
+	line-height: 30px;
 }
 .Default_quitarEscritorio{
 	display: flex;
@@ -241,6 +276,20 @@
 	margin-left: 10%; 
 	margin-top: 10%; 
 	width: 90%;
+}
+.publicidad_cont--interno{
+	margin-top: 25%;
+}
+.publicidad_cont--imagen{
+	width: 95%;
+	height: 80%;
+	margin: auto;
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.publicidad_cont--cerrar{
+   top: 13%;
+   left: 85%;
+   font-size: 2em !important;	 
 }
 .obituario_cont{
 	display: block;

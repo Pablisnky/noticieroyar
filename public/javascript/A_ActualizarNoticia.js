@@ -31,27 +31,32 @@ function conexionAJAX(){
 
 // *************************************************************************************************
     //Muestra 
-    function Llamar_Secciones(){
-        // console.log("______Desde Llamar_Secciones()______")
-        
-        var url = "../../Panel_C/Secciones"
-        http_request.open('GET', url, true)  
-        peticion.onreadystatechange = respuesta_Secciones
-        peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
-        peticion.send("null")
-    }                                                                        
-    function respuesta_Secciones(){
-        if(peticion.readyState == 4){
-            if(peticion.status == 200){  
-                document.getElementById('Seccion').innerHTML = peticion.responseText 
-            } 
-            else{
-                alert('Problemas con la petición.')
-            }
-        }
-        else{ //en caso contrario, mostramos un gif simulando una precarga
-            // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+document.getElementById("SeccionPublicar").addEventListener('click', Llamar_ActualizarseccionesDisponible, false)
+document.getElementById("SeccionPublicar").addEventListener('keydown', Llamar_ActualizarseccionesDisponible, false)
+
+//************************************************************************************************
+function Llamar_ActualizarseccionesDisponible(){
+    console.log("_____ Desde Llamar_ActualizarseccionesDisponible() _____ ")
+    var url = "../../Panel_C/Secciones"
+    http_request.open('GET', url, true)  
+    peticion.onreadystatechange = respuesta_ActualizarseccionesDisponible
+    peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+    peticion.send("null")
+}                                                           
+function respuesta_ActualizarseccionesDisponible(){
+    if(peticion.readyState == 4){
+        if(peticion.status == 200){    
+            //Coloca el cursor en el top de la pagina
+            window.scroll(0, 0)
+            
+            document.getElementById("Contenedor_90").innerHTML = peticion.responseText
+        } 
+        else{
+            alert('Problemas con la petición.')
         }
     }
-
+    else{ //en caso contrario, mostramos un gif simulando una precarga
+        // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+    }
+}
 // *************************************************************************************************

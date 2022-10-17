@@ -6,14 +6,13 @@
             <?php
             foreach($Datos['noticiasGenerales'] as $Key) : 
                 if($Row['seccion'] == $Key['seccion']){ ?>
-                <div class="cont_noticia--sencilla">
-                    <figure>
-                        <img class="cont_noticia-imagen imagenNoticia--JS" alt="Fotografia" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>" id="<?php echo $Key['ID_Noticia'];?>"/> 
-                    </figure>
+                <div class="cont_noticia--sencilla Default_pointer">
+                    <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="cont_noticia-imagen" alt="Fotografia" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
+
                     <div class="cont_noticia--titular">
                         <p><?php echo $Key['titulo'];?></p>
                         <hr class="cont_noticia--hr_1">
-                        <small style="font-size: 1em; display:block">Lisbella Paez</small style="font-size: 0.8em;">
+                        <small style="font-size: 1em; display:block"><?php echo $Key['fecha'];?></small style="font-size: 0.8em;">
                         <!-- <small style="font-size: 0.8em;">CNP 12.234</small style="font-size: 0.8em;"> -->                                
                         <!-- <small style="font-size: 0.8em; display:block">hace dos dias</small style="font-size: 0.8em;">
                         <small style="font-size: 0.8em; display:block">20 visualizaciones</small style="font-size: 0.8em;"> -->

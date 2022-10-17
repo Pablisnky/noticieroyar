@@ -29,7 +29,7 @@
 
             $Datos = [
                 'secciones' => $Secciones, //seccion
-                'noticiasGenerales' => $NoticiasGenerales //ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia
+                'noticiasGenerales' => $NoticiasGenerales //ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, fecha
             ];
             
             // echo "<pre>";
@@ -46,11 +46,17 @@
             
             //Se CONSULTA la noticia que se solicito en detalle
             $DetalleNoticia = $this->ConsultaNoticia_M->consultarNoticiaDetalle($ID_Noticia);
+
+            //Se consulta las imagenes de la noticia
             $ImagenesNoticia = $this->ConsultaNoticia_M->consultarImagenesNoticia($ID_Noticia);
 
+			//CONSULTA si existe algun anuncio sociado a la noticia seleccionada
+            $Publicidad = $this->ConsultaNoticia_M->consultarAnuncioNoticiaPortada($ID_Noticia);
+            
             $Datos = [
-                'detalleNoticia' => $DetalleNoticia, //ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido
-                'imagenesNoticia' => $ImagenesNoticia //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
+                'detalleNoticia' => $DetalleNoticia, //ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido, fecha
+                'imagenesNoticia' => $ImagenesNoticia, //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
+                'publicidad' => $Publicidad 
             ];
             
             // echo "<pre>";

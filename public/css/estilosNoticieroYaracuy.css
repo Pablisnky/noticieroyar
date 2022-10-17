@@ -73,6 +73,24 @@ li{
 	font-size: 1.3em;
 	width: 100%;
 }
+.actualizar_cont--label{ 
+	position: relative; 
+	display: block; 
+	width: 10%;
+	margin-top: -6%;
+	left: 95%;
+	font-size: 1.3em !important;
+}
+.actualizar_cont--span{ 
+	background-color: rgb(180, 248, 180);
+	font-size: 2em !important;
+	border-radius: 50%;
+}
+.actualizar_cont--imagen{
+	width: 200px;
+	height: 10vw;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
 .borde{
 	border-color: black;
 	border-width: 1px;
@@ -231,11 +249,12 @@ li{
 	 margin-top: 5%;
  }
  .cont_noticia--seccion{
+	/* background-color: red; */
 	display: flex;
 	justify-content: flex-start;
 	align-content: flex-start;/*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
 	/* height: 100%; */
-	margin-bottom: 5%;
+	margin-bottom: 2%;
 	overflow-x: scroll;
 	/* las siguientes lineas edita la barra scroll */
     /* scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0); */
@@ -281,6 +300,16 @@ li{
  .cont_panel{
 	 display: flex;
  }
+ .cont_panel--agregarImgSec{
+	background-color: rgb(180, 248, 180);
+	position: relative;
+	top: -30%;
+	left: 90%;
+	border-radius: 50%;
+	font-size: 3em !important;	
+	color: black; 
+	/* margin-top: -15%!important; */
+ }
  .cont_panel--datos{
 	 display: flex;
 	 align-items: center;
@@ -317,6 +346,13 @@ li{
 	margin-bottom: 10px;
 	text-align: justify;
  }
+ .cont_panel--seccion--li{	
+	list-style: initial;
+	margin-left: 15px;
+ }
+ .cont_panel--seccion--ul{	
+	margin-bottom: 10px;
+ }
  .cont_panel--fecha{
 	display: inline-block;
 	width: 50%;
@@ -324,7 +360,7 @@ li{
  }
  .cont_panel--ul{
 	 padding-left: 10%;
-	 list-style: none;
+	 /* list-style: none; */
  }
  .cont_panel--li{
 	color: black;
@@ -345,18 +381,6 @@ li{
 	margin: auto;
 	min-height: 100vh;
 	padding-bottom: 5%;
-}
-.detalle_cont--titulo{
-	width: 85%;
-	margin: auto;
-	font-size: 2em;
-	text-align: center;
-	margin-top: 2.5%;
-	margin-bottom: 2.5%;	
-}
-.detalle_cont--hr{
-	width: 40%;
-	margin: 10% auto;
 }
 .cont_panel__agenda--imagen{
    background-color: yellow;
@@ -392,8 +416,8 @@ li{
 }
 .cont_detalle--imagenMiniatura{
 	width: 60px;
-	height: 60px;
-	margin: auto;
+	height: 50px;
+	margin: 2px;
 	cursor: pointer;
 	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 } 
@@ -409,9 +433,6 @@ li{
 	margin: auto;
 	display: block;
 	width: 40%;
-}
-.cont_efemerides--titulo{
-
 }
 .cont_efemerides--contenido{
 	width: 90%;
@@ -446,18 +467,72 @@ li{
 	min-height: 100vh;
 	padding-bottom: 5%;
 }
+.detalle_cont--membrete{	
+	/* background-color: yellow; */
+	font-size: 2em;
+	font-family: Gruppo;
+	font-weight: bold;
+	display: block;
+	margin-left: 5%;
+	margin-top: -4%;
+	margin-bottom: 1%;
+}
 .detalle_cont{
 	display:flex; 
-	align-items: center; 
-	margin-top: 2%
+	width: 100%;
+	margin-top: 1%
+}
+.detalle_cont--fecha{
+	margin-left: 5%;
+}
+.detalle_cont--titulo{
+	width: 90%;
+	margin: auto;
+	font-size: 2em;
+	text-align: justify;
+	margin-top: 13%;
+	margin-bottom: 15%;	
+}
+.detalle_cont--cerrar{
+	top: 12%;
+	right: 6%;
+	font-size: 2.4em !important;
+}
+.detalle_cont--hr{
+	background-color: ;
+	width: 40%;
+	margin: 10% auto;
 }
 .detalle_cont--imagen{
 	width: 55%
 }
 .detalle_cont--resumen{
-	width: 35%; 
+	width: 80%; 
 	margin: auto; 
 	text-align: justify;
+	font-size: 1.7em;
+}
+.detalle_cont--resumen p{
+	font-size: 0.8em;
+}
+.detalle_cont--informacion{
+	width: 50%;
+}
+.detalle_cont--contenido p{
+	margin-top: 1%;
+	column-count: 3;
+	column-gap: 35px;
+	column-rule: 1px inset black;
+	font-size: 1.4em; 
+	line-height: 30px;
+	text-align: justify;
+}
+.detalle_cont--divFijo{
+	background-color: white;
+	position: fixed; 
+	top: 0%; 
+	padding-top: 2%; 
+	width: 50%
 }
 .imagen--portada{
 	height: 50vh;  
@@ -732,6 +807,40 @@ li{
 	top: 5%;
 	left: 0%;
 }
+.publicidad_cont--main{
+	background-color: rgba(0, 0, 0, 0.8);
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	z-index: 20;
+	width: 100%;
+	height: 100%;
+	/* display: flex; */
+	display: none;
+	align-items: center;
+}
+.publicidad_cont--cerrar{
+   background-color: white;
+   position: absolute;
+   top: 10%;
+   left: 70%;
+   border-radius: 50%;
+   font-size: 2.8em !important;	 
+}
+.publicidad_cont--interno{
+	background-color: initial; 
+	/* position: relative;  */
+	/* width: 70%;  */
+	height: 80%; 
+	margin: auto;
+}
+.publicidad_cont--imagen{
+	width: 100%;
+	height: 100%;
+}
+
+
+
 
 
 
@@ -749,4 +858,7 @@ li{
     opacity: 1;
 
   }
+}
+.mostrarModal--publicidad{
+	display: flex;
 }

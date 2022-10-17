@@ -20,19 +20,27 @@
                         </figure>
                     </div>
                     <div style="width: 100%">
-                        <!-- TITULO NOTICIA -->
+                        <!-- TITULO -->
                         <label class="cont_panel--label">Titulo</label>
                         <label class="cont_panel--titulo"><?php echo $Not_Prin['titulo'];?></label>
                         
-                        <!-- SUBTITULO NOTICIA -->
+                        <!-- SUBTITULO -->
                         <label class="cont_panel--label">Resumen</label>
                         <label class="cont_panel--resumen"><?php echo $Not_Prin['subtitulo'];?></label>
                         
-                        <!-- SECCION NOTICIA -->
-                        <label class="cont_panel--label">Seccion</label>
-                        <label class="cont_panel--titulo"><?php echo $Not_Prin['seccion'];?></label>
+                        <!-- SECCION -->
+                        <label class="cont_panel--label">Seccion</label>                            
+                        <ul class="cont_panel--seccion--ul">
+                            <?php
+                            foreach($Datos['seccionesNoticiasPortadas'] as $Key)   : 
+                                if($Not_Prin['ID_Noticia'] == $Key['ID_Noticia']){  ?>
+                                    <li class="cont_panel--seccion--li"><?php echo $Key['seccion'];?></li>
+                                    <?php
+                                }
+                            endforeach; ?>
+                        </ul>
                         
-                        <!-- FECHA NOTICIA -->
+                        <!-- FECHA -->
                         <label class="cont_panel--label">Fecha</label>
                         <label class="cont_panel--fecha"><?php echo $Not_Prin['fecha'];?></label>
 

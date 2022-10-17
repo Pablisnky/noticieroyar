@@ -12,11 +12,12 @@
         //SELECT de las noticias de portada 
         public function consultarNoticiasPortada(){
             $stmt = $this->dbh->query(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
                 FROM noticias 
                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
                 INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
-                WHERE portada = 1 AND fecha >= CURDATE()
+                WHERE fecha >= CURDATE()
+                GROUP BY titulo
                 ORDER BY ID_Noticia
                 DESC"
             );
@@ -26,9 +27,22 @@
         //SELECT de las imagenes de las noticias portadas
         public function consultarImagenesNoticiasPortada(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Noticia, nombre_imagenNoticia
+                "SELECT noticias.ID_Noticia, nombre_imagenNoticia
                 FROM imagenes
-                WHERE ImagenPrincipal = 1"
+                INNER JOIN noticias ON imagenes.ID_Noticia=noticias.ID_Noticia
+                WHERE ImagenPrincipal = 1 AND fecha >= CURDATE()"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        //SELECT de las secciones de las noticias portadas
+        public function consultarSeccionessNoticiasPortada(){
+            $stmt = $this->dbh->query(
+                "SELECT noticias.ID_Noticia, seccion
+                FROM secciones
+                INNER JOIN noticias_secciones ON secciones.ID_Seccion=noticias_secciones.ID_Seccion
+                INNER JOIN noticias ON noticias_secciones.ID_Noticia=noticias.ID_Noticia
+                WHERE fecha >= CURDATE()"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -36,13 +50,37 @@
         // SELECT de noticias generales
         public function consultarNoticiasGenerales(){
             $stmt = $this->dbh->query(
-                "SELECT noticias.ID_Noticia, seccion, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
                 FROM noticias
                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
                 INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
                 WHERE fecha < CURDATE()
+                GROUP BY titulo
                 ORDER BY fecha
                 DESC"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        //SELECT de las imagenes de las noticias generales
+        public function consultarImagenesNoticiasGenerales(){
+            $stmt = $this->dbh->query(
+                "SELECT noticias.ID_Noticia, nombre_imagenNoticia
+                FROM imagenes
+                INNER JOIN noticias ON imagenes.ID_Noticia=noticias.ID_Noticia
+                WHERE ImagenPrincipal = 1 AND fecha < CURDATE()"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        //SELECT de las secciones de las noticias generales
+        public function consultarSeccionessNoticiasGenerales(){
+            $stmt = $this->dbh->query(
+                "SELECT noticias.ID_Noticia, seccion
+                FROM secciones
+                INNER JOIN noticias_secciones ON secciones.ID_Seccion=noticias_secciones.ID_Seccion
+                INNER JOIN noticias ON noticias_secciones.ID_Noticia=noticias.ID_Noticia
+                WHERE fecha < CURDATE()"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -70,6 +108,18 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
+        // SELECT de anuncios publicitarios
+        public function consultarAnuncio(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Anuncio, ID_Noticia, nombre_imagenPublicidad, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicio, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulmina
+                FROM publicidad
+                WHERE fechaCulmina > CURDATE()
+                ORDER BY fechaCulmina
+                DESC"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         // SELECT obituario
         public function consultarObituario(){
             $stmt = $this->dbh->query(
@@ -105,7 +155,7 @@
         //SELECT de la noticia a actualizar
         public function consultarNoticiaActualizar($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, secciones.ID_Seccion, titulo, subtitulo, contenido, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_imagenNoticia
+                "SELECT noticias.ID_Noticia, secciones.ID_Seccion, titulo, subtitulo, contenido, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_imagenNoticia, ID_Imagen 
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
@@ -234,7 +284,7 @@
 // // ********************************************************************************************************
 
         // INSERT de noticia portada
-        public function InsertarNoticia($Titulo, $SubTitulo, $Contenido, $ID_Seccion, $Fecha, $ID_Periodista){
+        public function InsertarNoticia($Titulo, $SubTitulo, $Contenido, $Fecha, $ID_Periodista){
             $stmt = $this->dbh->prepare(
                 "INSERT INTO noticias(titulo, subtitulo, contenido, fecha, ID_Periodista, portada) 
                 VALUES (:TITULO, :SUBTITULO, :CONTENIDO, STR_TO_DATE( '$Fecha', '%d-%m-%Y' ), :ID_PERIODISTA, :PORTADA)"
@@ -243,11 +293,10 @@
             // STR_TO_DATE( '$Fecha', '%d-%m-%Y' ) se recibe la fecha en formato USA y se cambia a formato EUR
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':TITULO', $Titulo);
-            $stmt->bindParam(':SUBTITULO', $SubTitulo);
-            $stmt->bindParam(':CONTENIDO', $Contenido);
-            // $stmt->bindParam(':FECHA', $FechaFormateada); 
-            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista);
+            $stmt->bindParam(':TITULO', $Titulo, PDO::PARAM_STR);
+            $stmt->bindParam(':SUBTITULO', $SubTitulo, PDO::PARAM_STR);
+            $stmt->bindParam(':CONTENIDO', $Contenido, PDO::PARAM_STR);
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
             $stmt->bindValue(':PORTADA', 1);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
@@ -268,10 +317,10 @@
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia);
-            $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenPrincipal);
-            $stmt->bindParam(':TAMANIO_IMAGEN', $Tipo_imagenPrincipal);
-            $stmt->bindParam(':TIPO_IMAGEN', $Tamanio_imagenPrincipal);
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMAGEN', $Tipo_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMAGEN', $Tamanio_imagenPrincipal, PDO::PARAM_STR);
             $stmt->bindValue(':IMG_PRINCIPAL', 1);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
@@ -290,10 +339,10 @@
             );
             
             //Se vinculan los valores de las sentencias preparadas
-            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia,);
-            $stmt->bindParam(':NOMBRE_IMG', $archivonombre);
-            $stmt->bindParam(':TIPO_ARCHIVO', $tipo);
-            $stmt->bindParam(':TAMANIO_ARCHIVO', $tamanio);
+            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMG', $archivonombre, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_ARCHIVO', $tipo, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_ARCHIVO', $tamanio, PDO::PARAM_STR);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             $stmt->execute();
@@ -306,8 +355,8 @@
             );
             
             //Se vinculan los valores de las sentencias preparadas
-            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia,);
-            $stmt->bindParam(':ID_SECCION', $ID_Seccion);
+            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SECCION', $ID_Seccion, PDO::PARAM_INT);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             $stmt->execute();
@@ -315,14 +364,14 @@
         }
 
         //INSERT de solo el ID_Noticia en la tabla imagenes, cuando no se tiene una imagen para la noticia
-        public function InsertarID_Imagenes($ID_Noticia){
+        public function InsertarID_ImagenPrincipal($ID_Noticia){
             $stmt = $this->dbh->prepare(
                 "INSERT INTO imagenes(ID_Noticia) 
                 VALUES (:ID_NOTICIA)"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia);
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -343,12 +392,11 @@
             // STR_TO_DATE( '$Fecha', '%d-%m-%Y' ) se recibe la fecha en formato USA y se cambia a formato EUR
             
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':TITULO', $Titulo);
-            $stmt->bindParam(':CONTENIDO', $Contenido);
-            // $stmt->bindParam(':FECHA', $Fecha);
-            $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenPrincipal);
-            $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenPrincipal);
-            $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenPrincipal);
+            $stmt->bindParam(':TITULO', $Titulo, PDO::PARAM_INT);
+            $stmt->bindParam(':CONTENIDO', $Contenido, PDO::PARAM_STR);
+            $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenPrincipal, PDO::PARAM_STR);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -367,9 +415,9 @@
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenAgenda);
-            $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenAgenda);
-            $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenAgenda);
+            $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenAgenda, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenAgenda, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenAgenda, PDO::PARAM_STR);
             $stmt->bindValue(':DISPONIBILIDAD', 'activado');
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
@@ -386,20 +434,18 @@
 // // ********************************************************************************************************
         
         // UODATE de datos de noticia 
-        public function ActualizarNoticia($ID_Noticia, $ID_Seccion, $Titulo, $SubTitulo, $Contenido, $Fecha){            
+        public function ActualizarNoticia($ID_Noticia, $Titulo, $SubTitulo, $Contenido, $Fecha){            
             $stmt = $this->dbh->prepare(
                 "UPDATE noticias 
-                SET ID_Seccion = :ID_SECCION, titulo = :TITULO, subtitulo = :SUBTITULO, contenido = :CONTENIDO, fecha = STR_TO_DATE('$Fecha', '%d-%m-%Y')
+                SET titulo = :TITULO, subtitulo = :SUBTITULO, contenido = :CONTENIDO, fecha = STR_TO_DATE('$Fecha', '%d-%m-%Y')
                 WHERE ID_Noticia = :ID_NOTICIA"
             );
 
             // Se vinculan los valores de las sentencias preparadas
-            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia);
-            $stmt->bindParam(':ID_SECCION', $ID_Seccion);
-            $stmt->bindParam(':TITULO', $Titulo);
-            $stmt->bindParam(':SUBTITULO', $SubTitulo);
-            $stmt->bindParam(':CONTENIDO', $Contenido);
-            // $stmt->bindParam(':FECHA', $Fecha);
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':TITULO', $Titulo, PDO::PARAM_STR);
+            $stmt->bindParam(':SUBTITULO', $SubTitulo, PDO::PARAM_STR);
+            $stmt->bindParam(':CONTENIDO', $Contenido, PDO::PARAM_STR);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -411,6 +457,22 @@
             }
         }
         
+        // INSERT de dependencia transitiva entre noticias y secciones
+        public function Actualizar_DT_noticia_seccion($ID_Noticia, $ID_Seccion){
+            $stmt = $this->dbh->prepare(
+                "UPDATE noticias_secciones
+                 SET ID_Seccion =  :ID_SECCION
+                 WHERE ID_Noticia = :ID_NOTICIA"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas
+            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SECCION', $ID_Seccion, PDO::PARAM_INT);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            $stmt->execute();
+        }
+
         // UODATE de datos de efemeride 
         public function ActualizarEfemeride($ID_Efemeride, $Titulo, $Contenido, $Fecha){            
             $stmt = $this->dbh->prepare(
@@ -420,10 +482,9 @@
             );
 
             // Se vinculan los valores de las sentencias preparadas
-            $stmt->bindParam(':ID_EFEMERIDE', $ID_Efemeride);
-            $stmt->bindParam(':TITULO', $Titulo);
-            $stmt->bindParam(':CONTENIDO', $Contenido);
-            // $stmt->bindParam(':FECHA', $Fecha);
+            $stmt->bindParam(':ID_EFEMERIDE', $ID_Efemeride, PDO::PARAM_INT);
+            $stmt->bindParam(':TITULO', $Titulo, PDO::PARAM_STR);
+            $stmt->bindParam(':CONTENIDO', $Contenido, PDO::PARAM_STR);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -434,7 +495,6 @@
                 return FALSE;
             }
         }
-        
         
         // UODATE de datos de eventos en agenda 
         public function ActualizarAgenda($ID_Agenda, $Fecha){            
@@ -445,7 +505,7 @@
             );
 
             // Se vinculan los valores de las sentencias preparadas
-            $stmt->bindParam(':ID_AGENDA', $ID_Agenda);
+            $stmt->bindParam(':ID_AGENDA', $ID_Agenda, PDO::PARAM_INT);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -458,18 +518,18 @@
         }
 
         // UODATE de imagen de noticia
-        public function ActualizarImagenNoticia($ID_Noticia, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){            
+        public function ActualizarImagenNoticia($ID_imagen, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){            
             $stmt = $this->dbh->prepare(
                 "UPDATE imagenes 
                 SET nombre_imagenNoticia = :NOMBRE_IMGNOTICIA, tamanio_imagenNoticia = :TAMANIO_IMGNOTICIA, tipo_imagenNoticia = :TIPO_IMGNOTICIA 
-                WHERE ID_Noticia = :ID_NOTICIA"
+                WHERE ID_imagen = :ID_IMAGEN"
             );
 
             // Se vinculan los valores de las sentencias preparadas
-            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia);
-            $stmt->bindParam(':NOMBRE_IMGNOTICIA', $Nombre_imagenPrincipal);
-            $stmt->bindParam(':TIPO_IMGNOTICIA', $Tipo_imagenPrincipal);
-            $stmt->bindParam(':TAMANIO_IMGNOTICIA', $Tamanio_imagenPrincipal);
+            $stmt->bindParam(':ID_IMAGEN', $ID_imagen, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMGNOTICIA', $Nombre_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMGNOTICIA', $Tipo_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMGNOTICIA', $Tamanio_imagenPrincipal, PDO::PARAM_STR);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -481,6 +541,29 @@
             }
         }
 
+        // public function actualizarImagenesSecundarias($ID_imagen, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria){
+        //     $stmt = $this->dbh->prepare(
+        //         "UPDATE imagenes 
+        //         SET nombre_imagenNoticia = :NOMBRE_IMGNOTICIA, tamanio_imagenNoticia = :TAMANIO_IMGNOTICIA, tipo_imagenNoticia = :TIPO_IMGNOTICIA 
+        //         WHERE ID_imagen = :ID_IMAGEN"
+        //     );
+
+        //     // Se vinculan los valores de las sentencias preparadas
+        //     $stmt->bindParam(':ID_IMAGEN', $ID_imagen, PDO::PARAM_INT);
+        //     $stmt->bindParam(':NOMBRE_IMGNOTICIA', $Nombre_imagenPrincipal, PDO::PARAM_STR);
+        //     $stmt->bindParam(':TIPO_IMGNOTICIA', $Tipo_imagenPrincipal, PDO::PARAM_STR);
+        //     $stmt->bindParam(':TAMANIO_IMGNOTICIA', $Tamanio_imagenPrincipal, PDO::PARAM_STR);
+            
+        //     //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+        //     if($stmt->execute()){
+        //         // se recupera el ID del registro insertado
+        //         return TRUE;
+        //     }
+        //     else{
+        //         return FALSE;
+        //     }
+        // }
+
         // UODATE de imagen de EFEMERIDE
         public function ActualizarImagenEfemeride($ID_Efemeride, $Nombre_imagen, $Tipo_imagen, $Tamanio_imagen){            
             $stmt = $this->dbh->prepare(
@@ -490,10 +573,10 @@
             );
 
             // Se vinculan los valores de las sentencias preparadas
-            $stmt->bindParam(':ID_EFEMERIDE', $ID_Efemeride);
-            $stmt->bindParam(':NOMBRE_IMG', $Nombre_imagen);
-            $stmt->bindParam(':TIPO_IMG', $Tipo_imagen);
-            $stmt->bindParam(':TAMANIO_IMG', $Tamanio_imagen);
+            $stmt->bindParam(':ID_EFEMERIDE', $ID_Efemeride, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMG', $Nombre_imagen, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMG', $Tipo_imagen, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMG', $Tamanio_imagen, PDO::PARAM_STR);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -514,10 +597,10 @@
             );
 
             // Se vinculan los valores de las sentencias preparadas
-            $stmt->bindParam(':ID_AGENDA', $ID_Agenda);
-            $stmt->bindParam(':NOMBRE_IMG', $Nombre_imagenAgenda);
-            $stmt->bindParam(':TIPO_IMG', $Tipo_imagenAgenda);
-            $stmt->bindParam(':TAMANIO_IMG', $Tamanio_imagenAgenda);
+            $stmt->bindParam(':ID_AGENDA', $ID_Agenda, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMG', $Nombre_imagenAgenda, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMG', $Tipo_imagenAgenda, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMG', $Tamanio_imagenAgenda, PDO::PARAM_STR);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -528,6 +611,7 @@
                 return FALSE;
             }
         }
+
 
 // // ********************************************************************************************************
 // // DELETE
@@ -570,6 +654,16 @@
                 WHERE ID_Agenda = :ID_AGENDA"
             );
             $stmt->bindParam(':ID_AGENDA', $ID_Agenda, PDO::PARAM_INT);
+            $stmt->execute(); 
+        }
+
+        // Elimina las dependencias transitivas de una noticia especifica
+        public function eliminar_DT_noticia_seccion($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "DELETE FROM noticias_secciones 
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
+            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
             $stmt->execute(); 
         }
 }
