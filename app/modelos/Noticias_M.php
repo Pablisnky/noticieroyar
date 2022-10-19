@@ -49,6 +49,37 @@
                 return false;
             }
         }
+
+        //SELECT de las imagnes asociados a las noticias 
+        public function consultarImagenesNoticiaGenerales(){
+            $stmt = $this->dbh->query(
+                "SELECT  ID_Noticia, COUNT(ID_Noticia) AS cantidad 
+                FROM imagenes
+                GROUP BY ID_Noticia"
+            );
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        //SELECT de los anuncios asociados a las noticias
+        public function consultarAnuncioNoticiaGenerales(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Anuncio, ID_Noticia
+                FROM publicidad"
+            );
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
         
         public function consultarNoticiaDetalle($ID_Noticia){
             $stmt = $this->dbh->prepare(

@@ -1,14 +1,11 @@
-// document.getElementById("Contenido").addEventListener('click', resize, false)
-
-document.getElementById("Contenido").addEventListener('click', function(){resize('Contenido')}, false)
-document.getElementById("Contenido").addEventListener('bluhr', function(){autosize('Contenido')}, false)
+document.getElementById("Contenido").addEventListener('keydown', function(){autosize('Contenido')}, false)
 
 //************************************************************************************************
     //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
-    window.addEventListener("click", function(e){   
-        var click = e.target
-        console.log("Se hizo click en: ", click)
-    }, false)
+    // window.addEventListener("click", function(e){   
+    //     var click = e.target
+    //     console.log("Se hizo click en: ", click)
+    // }, false)
     
 //************************************************************************************************
     //Muestra la cantidad de caracteres que quedan mientras se escribe
@@ -79,7 +76,7 @@ document.getElementById("Contenido").addEventListener('bluhr', function(){autosi
     }
 
 //************************************************************************************************    
-    //Desplaza el viewport a la derecha para mostrar otra noticia principal
+    //
     function CerrarModal(){
         document.getElementById("MostrarSeccion").style.display = "none"
 
@@ -88,7 +85,7 @@ document.getElementById("Contenido").addEventListener('bluhr', function(){autosi
     } 
 
 //************************************************************************************************    
-        //Desplaza el viewport a la derecha para mostrar otra noticia principal
+        //
         function ConfirmarTrasferir(){
             document.getElementById("MostrarSeccion").style.display = "none"
     
@@ -114,5 +111,43 @@ document.getElementById("Contenido").addEventListener('bluhr', function(){autosi
 
         //Se transfiere el valor del radio boton seleccionado al input del formulario
         document.getElementById(id).value = TotalCategoria
-              
+    }
+
+//************************************************************************************************  
+    function validarAgregarNoticia(){
+        document.getElementById("Boton_Agregar").value = "Procesando..."
+        document.getElementById("Boton_Agregar").disabled = "disabled"
+        document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialClaro)"
+        document.getElementById("Boton_Agregar").style.color = "var(--OficialOscuro)"
+        document.getElementById("Boton_Agregar").classList.add('borde_1')
+
+        let Fecha = document.getElementById('Fecha').value
+        let Seccion = document.getElementById('SeccionPublicar').value
+                
+        if(Seccion =="" || Seccion.indexOf(" ") == 0){
+            alert ("Ingrese una sección para la noticia");
+            document.getElementById("SeccionPublicar").value = "";
+            document.getElementById("SeccionPublicar").focus();
+            // document.getElementById("SeccionPublicar").style.backgroundColor = "var(--Fallos)"
+            document.getElementById("Boton_Agregar").value = "Agregar noticia"
+            document.getElementById("Boton_Agregar").disabled = false
+            document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementById("Boton_Agregar").style.color = "var(--OficialClaro)"
+            document.getElementById("Boton_Agregar").classList.remove('borde_1')
+            return false;
+        }
+        else if(Fecha =="" || Fecha.indexOf(" ") == 0){
+            alert ("Fecha no valida");
+            document.getElementById("Fecha").value = "";
+            document.getElementById("Fecha").focus();
+            // document.getElementById("Fecha").style.backgroundColor = "var(--Fallos)"
+            document.getElementById("Boton_Agregar").value = "Agregar noticia"
+            document.getElementById("Boton_Agregar").disabled = false
+            document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementById("Boton_Agregar").style.color = "var(--OficialClaro)"
+            document.getElementById("Boton_Agregar").classList.remove('borde_1')
+            return false;
+        }
+        //Si se superan todas las validaciones la función devuelve verdadero
+        return true
     }

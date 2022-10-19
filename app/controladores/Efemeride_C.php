@@ -13,7 +13,7 @@
 			$Efemeride = $this->ConsultaEfemeride_M->consultarEfemeride();
 
             $Datos = [
-                'efemerideHoy' => $Efemeride, //
+                'efemerideHoy' => $Efemeride, //titulo, contenido, fecha, Nombre_imagen
             ];
 
 			// echo '<pre>';

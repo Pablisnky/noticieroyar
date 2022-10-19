@@ -30,12 +30,30 @@
                 <h2 class="titular--texto"><?php echo $Key['titulo'];?></h2>
             </div>
 
-            <hr class="cont_portada--hr">
+            <!-- <hr class="cont_portada--hr"> -->
             
             <!-- RESUMEN -->
             <div class="cont_portada--texto">                   
                 <h2 class="cont_portada--resumen"><?php echo $Key['subtitulo'];?></h2>
             </div>
+            <div class="cont_portada--titular">
+                <hr class="cont_noticia--hr_1">
+                <small style="font-size: 0.8em; display:block; margin-left: 10px"><?php echo $Key['fecha'];?></small >
+                <?php
+                foreach($Datos['imagenes'] as $Row_3)   :  
+                    if($Key['ID_Noticia'] == $Row_3['ID_Noticia']){ ?> 
+                        <small style="font-size: 0.8em; margin-left: 10px"><?php echo $Row_3['cantidad'];?> imagenes</small> 
+                        <?php
+                    }
+                endforeach;
+                foreach($Datos['anuncios'] as $Row_2)   :  
+                    if($Key['ID_Noticia'] == $Row_2['ID_Noticia']){ ?>
+                        <small style="font-size: 0.8em; margin-left: 5px">+ Anuncio</small>
+                        <?php
+                    }
+                endforeach;  ?>                     
+                <!-- <small style="font-size: 0.8em; display:block">20 visualizaciones</small style="font-size: 0.8em;"> -->
+            </div> 
         </div>                
         <?php
     endforeach; ?>

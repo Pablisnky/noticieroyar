@@ -13,6 +13,19 @@
                         <p><?php echo $Key['titulo'];?></p>
                         <hr class="cont_noticia--hr_1">
                         <small style="font-size: 1em; display:block"><?php echo $Key['fecha'];?></small style="font-size: 0.8em;">
+                        <?php
+                        foreach($Datos['imagenes'] as $Row_3)   :  
+                            if($Key['ID_Noticia'] == $Row_3['ID_Noticia']){ ?> 
+                                <small style="font-size: 1em;"><?php echo $Row_3['cantidad'];?> imagenes</small> 
+                                <?php
+                            }
+                        endforeach; 
+                        foreach($Datos['anuncios'] as $Row_2)   :  
+                            if($Key['ID_Noticia'] == $Row_2['ID_Noticia']){ ?>
+                                <small style="font-size: 1em; margin-left: 5px">+ Anuncio</small>
+                                <?php
+                            }
+                        endforeach; ?>
                         <!-- <small style="font-size: 0.8em;">CNP 12.234</small style="font-size: 0.8em;"> -->                                
                         <!-- <small style="font-size: 0.8em; display:block">hace dos dias</small style="font-size: 0.8em;">
                         <small style="font-size: 0.8em; display:block">20 visualizaciones</small style="font-size: 0.8em;"> -->

@@ -51,7 +51,7 @@
                         <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_noticia_principal/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Publicidad</a>
                         
                         <!-- ELIMINAR -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Eliminar</a>
+                        <a href="<?php echo RUTA_URL?>/" onclick="EliminarNoticia('<?php echo $Not_Prin['ID_Noticia'];?>')">Eliminar</a>
                     </div>
                 </div>
                 <?php
@@ -60,3 +60,6 @@
     </div>
 </body>
 </html>
+
+<script src="<?php echo RUTA_URL.'/public/javascript/E_NoticiasPortadas.js?v=' . rand();?>"></script>
+<script src="<?php echo RUTA_URL.'/public/javascript/A_NoticiasPortadas.js?v=' . rand();?>"></script>

@@ -294,7 +294,7 @@
 				// echo "Tamanio_imagen : " .  $Tamanio_imagenPrincipal . '<br>';
 				// exit;
 				
-				//Se INSERTA la noticia en BD y se retorna el ID de la inserción
+				//Se INSERTA la efemeride y se retorna el ID de la inserción
 				$ID_Noticia = $this->Panel_M->InsertarEfemeride($Titulo, $Contenido, $Fecha, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
 				
 				//Usar en remoto
@@ -333,7 +333,7 @@
 				$ID_Noticia = $this->Panel_M->InsertarNoticia($Titulo, $Sub_Titulo, $Contenido, $Fecha, $ID_Periodista);
 
 				
-				// Se inserta los ID en la tabla de dependencias transitivas
+				// Se inserta los ID en la tabla de dependencias transitivas "noticias_secciones" 
 				if(ctype_alpha($Seccion)){//Si Seccion es solo letras, hay una sola seccion
 					
 					//Se consulta el ID_Seccion segun la seccion recibida

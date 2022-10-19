@@ -1,3 +1,4 @@
+<!-- Archivo cargado via AJAX en inicio_V.php -->
 <div class="cont_portada" id="Cont_Portada">
     <?php
     foreach($Datos['not_Princ_Seleccionada'] as $Key) :   ?>
@@ -12,9 +13,7 @@
             <div class="cont_radio"> 
                 <?php
                 foreach($Datos['datosNoticia'] as $Row) :  ?>       
-                    <input class="cont_radio--input Default_pointer" type="radio" name="noticias" onclick="Llamar_NoticiaPrincipal('<?php echo $Row['ID_Noticia'];?>')"
-                        <?php if($Key['ID_Noticia'] == $Row['ID_Noticia']){?> checked <?php }?>/>
-                        <i></i>
+                    <input class="cont_radio--input Default_pointer" type="radio" name="noticias" onclick="Llamar_NoticiaPrincipal('<?php echo $Row['ID_Noticia'];?>')"<?php if($Key['ID_Noticia'] == $Row['ID_Noticia']){?> checked<?php }?>/><i></i>
                     <?php
                 endforeach; ?>
             </div>

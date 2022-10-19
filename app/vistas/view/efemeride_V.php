@@ -16,8 +16,8 @@
             </div>
             
             <!-- CONTENIDO -->
-            <div class="cont_efemerides--contenido">
-                <p class="p--efemerides"><?php echo $Key['contenido'];?></p>
+            <div >
+                <textarea class="textarea--contenido textarea--borde textarea--font" id="Contenido" readonly><?php echo $Key['contenido']?></textarea>
             </div>
         <?php
     endforeach; ?>
@@ -31,3 +31,4 @@
 </div>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL.'/public/javascript/E_Efemeride.js?v='. rand();?>"></script>

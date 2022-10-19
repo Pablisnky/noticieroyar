@@ -9,7 +9,7 @@
             <fieldset class="fieldset_1" id="Portada"> 
                 <legend class="legend_1">Actualizar Noticia</legend>
                     <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiActualizada" method="POST" enctype="multipart/form-data" autocomplete="off">
-                        <label>Imagen principal</label>
+                        <label class="cont_panel--label">Imagen principal</label>
                         <div style="display: flex;">
                             <div style=" width: 30%">
                                 <div class="cont_edit">
@@ -25,15 +25,15 @@
 
                                 <!-- TITULO  -->
                                 <label class="cont_panel--label">TItulo</label>
-                                <input class="cont_panel--titulo" type="text" name="titulo" value="<?php echo $Datos['noticiaActualizar']['titulo'];?>"/>
+                                <textarea class="textarea--titulo" name="titulo"><?php echo $Datos['noticiaActualizar']['titulo'];?></textarea>
                                 
                                 <!-- RESUMEN -->
                                 <label class="cont_panel--label">Resumen</label>
-                                <textarea class="cont_panel--titulo" name="subtitulo"><?php echo $Datos['noticiaActualizar']['subtitulo'];?></textarea> 
+                                <textarea class="textarea--resumen" name="subtitulo"><?php echo $Datos['noticiaActualizar']['subtitulo'];?></textarea> 
                             
                                 <!-- CONTENIDO -->
                                 <label class="cont_panel--label">Contenido</label>
-                                <textarea class="cont_panel--titulo" name="contenido"><?php echo $Datos['noticiaActualizar']['contenido'];?></textarea> 
+                                <textarea class="textarea--contenido" name="contenido" id="Contenido"><?php echo $Datos['noticiaActualizar']['contenido'];?></textarea> 
 
                                 <!-- SECCION -->
                                 <label class="cont_panel--label">Sección</label>

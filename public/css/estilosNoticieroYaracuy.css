@@ -37,6 +37,12 @@ input[type=text], select, textarea{
 li{
 	list-style: none;
 }
+textarea{
+	resize: none;
+	overflow: hidden;	
+	/* text-align: justify; */
+	/* white-space: normal; */
+}
 .material-icons-outlined{}
 
 /* ******************************************************************************** */
@@ -90,6 +96,12 @@ li{
 	width: 200px;
 	height: 10vw;
 	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.agregar_cont--textarea--titulo{
+	min-height: 50px;
+}
+.agregar_cont--textarea--resumen{
+	min-height: 100px;
 }
 .borde{
 	border-color: black;
@@ -266,10 +278,11 @@ li{
 	border-width: 1px;
 	border-style: solid;
 	font-size: 1.5em;
-	text-align: center;
-	width: 15%;
+	text-align: left;
+	padding-left: 8px;
+	width: 20%;
 	margin-left: 5%;
-	border-radius: 15px;
+	border-radius: 5px;
 	margin-bottom: 0.5%;
  }
  .cont_noticia--sencilla{
@@ -286,7 +299,7 @@ li{
  .cont_noticia--titular{
 	width: 80%;
 	margin: auto;
-	/*margin-top: 2vh; */
+	margin-bottom: 5px;
 	/* padding: 0.5% 2% 4% 3%; */
 	font-size: 0.8em;
  }
@@ -413,6 +426,7 @@ li{
 	display: block;
 	width: 100%;
 	height: 35vw;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
 .cont_detalle--imagenMiniatura{
 	width: 60px;
@@ -518,14 +532,37 @@ li{
 .detalle_cont--informacion{
 	width: 50%;
 }
-.detalle_cont--contenido p{
+.detalle_cont--contenido{
+	width: 80%;
+	margin: auto;
+}
+.textarea--titulo{
 	margin-top: 1%;
-	column-count: 3;
-	column-gap: 35px;
-	column-rule: 1px inset black;
-	font-size: 1.4em; 
 	line-height: 30px;
-	text-align: justify;
+	min-height: 20px;
+	width: 100%;	
+	padding: 1%;
+}
+.textarea--contenido{
+	margin-top: 1%;
+	line-height: 30px;
+	min-height: 250px;
+	width: 100%;	
+	padding: 1%;
+}
+.textarea--resumen{
+	margin-top: 1%;
+	line-height: 30px;
+	min-height: 30px;
+	width: 100%;	
+	padding: 1%;
+}
+.textarea--borde{
+	border: none;
+}
+.textarea--font{
+	border: none;
+	font-size: 1.4em; 
 }
 .detalle_cont--divFijo{
 	background-color: white;

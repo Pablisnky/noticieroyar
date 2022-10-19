@@ -1,7 +1,5 @@
-
-// document.getElementById("Cerrar--modal").addEventListener('click', CerrarModal, false)
+document.addEventListener('DOMContentLoaded',function(){resize('Contenido')}, false)
 document.getElementById("CerrarVentana").addEventListener('click', Cerrar, false)
-
 document.getElementById("Cerrar--modal").addEventListener('click', function(){CerrarModal('VentanaModal--Publicidad')}, false)
 
 //************************************************************************************************
@@ -26,3 +24,12 @@ function mostrarModal(){
 function CerrarModal(id){
     document.getElementById(id).style.display = "none"
 }
+
+//************************************************************************************************ 
+    //ajusta la altura de un texarea con respecto al contenido que trae de la BD
+    function resize(id){
+        console.log("______Desde resize()______", id) 
+        var text = document.getElementById(id);
+        text.style.height = 'auto';
+        text.style.height = text.scrollHeight+'px';
+    }

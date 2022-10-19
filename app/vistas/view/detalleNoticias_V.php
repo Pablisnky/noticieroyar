@@ -15,6 +15,7 @@ if(!empty($Datos['detalleNoticia'][0]['ID_Noticia']) AND !empty($Datos['publicid
 <div class="detalle_cont--main" id="cont_efemerides">
     <div class="detalle_cont">         
         <div class="detalle_cont--imagen">
+            
             <!-- IMAGEN -->
             <figure id="Contenedor_Imagen">
                 <img class="cont_detalle--imagen" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['imagenesNoticia'][0]['nombre_imagenNoticia'];?>"/>  
@@ -54,8 +55,8 @@ if(!empty($Datos['detalleNoticia'][0]['ID_Noticia']) AND !empty($Datos['publicid
     </div>
 
     <!-- CONTENIDO -->
-    <div class="detalle_cont--contenido">
-        <p><?php echo $Datos['detalleNoticia'][0]['contenido']?></p>
+    <div class="detalle_cont--contenido" >
+        <textarea class="textarea--contenido textarea--borde textarea--font" id="Contenido" readonly><?php echo $Datos['detalleNoticia'][0]['contenido']?></textarea>
     </div>
 </div>
 </body>

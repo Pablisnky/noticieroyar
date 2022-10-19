@@ -27,9 +27,17 @@
             //Se CONSULTA las noticia generales por cada seccion
             $NoticiasGenerales = $this->ConsultaNoticia_M->consultarNoticiasGenerales();
 
+			//CONSULTA la cantidad de imagenes asociadas a cada noticia publiciada
+            $Imagenes = $this->ConsultaNoticia_M->consultarImagenesNoticiaGenerales();
+
+			//CONSULTA si existe algun anuncio asociado a cada noticia publicada
+            $Anuncios = $this->ConsultaNoticia_M->consultarAnuncioNoticiaGenerales();
+
             $Datos = [
                 'secciones' => $Secciones, //seccion
-                'noticiasGenerales' => $NoticiasGenerales //ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, fecha
+                'noticiasGenerales' => $NoticiasGenerales, //ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, fecha
+                'imagenes' => $Imagenes,
+                'anuncios' => $Anuncios
             ];
             
             // echo "<pre>";
@@ -44,7 +52,7 @@
         // muestra la noticia completamente
         public function detalleNoticia($ID_Noticia){
             
-            //Se CONSULTA la noticia que se solicito en detalle
+            //Se CONSULTA los detalle de la noticia que se solicito
             $DetalleNoticia = $this->ConsultaNoticia_M->consultarNoticiaDetalle($ID_Noticia);
 
             //Se consulta las imagenes de la noticia

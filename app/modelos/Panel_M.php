@@ -366,12 +366,13 @@
         //INSERT de solo el ID_Noticia en la tabla imagenes, cuando no se tiene una imagen para la noticia
         public function InsertarID_ImagenPrincipal($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO imagenes(ID_Noticia) 
-                VALUES (:ID_NOTICIA)"
+                "INSERT INTO imagenes(ID_Noticia, ImagenPrincipal) 
+                VALUES (:ID_NOTICIA, :IMG_PRINCIPAL)"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindValue(':IMG_PRINCIPAL', 1);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -392,7 +393,7 @@
             // STR_TO_DATE( '$Fecha', '%d-%m-%Y' ) se recibe la fecha en formato USA y se cambia a formato EUR
             
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':TITULO', $Titulo, PDO::PARAM_INT);
+            $stmt->bindParam(':TITULO', $Titulo, PDO::PARAM_STR);
             $stmt->bindParam(':CONTENIDO', $Contenido, PDO::PARAM_STR);
             $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenPrincipal, PDO::PARAM_STR);
             $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenPrincipal, PDO::PARAM_STR);

@@ -7,7 +7,7 @@
     <div style="margin-left: 20%;">
         <fieldset class="fieldset_1" id="Portada"> 
             <legend class="legend_1">Agregar Efemerides</legend>
-                <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeEfemerideAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeEfemerideAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarAgregarEfemride()">
                     <div style="display: flex; margin-bottom: 30px">
                         <div class="cont_panel__did-1">       
                             <!-- IMAGN -->
@@ -19,21 +19,21 @@
                         </div>
                         <div style="width: 100%">
                             <!-- TITULO -->
-                            <label>Titulo</label>
+                            <label class="cont_panel--label">Titulo</label>
                             <input class="cont_panel--titulo" type="text" name="titulo"/>
 
                             <!-- CONTENIDO -->
-                            <label>Contenido</label>
-                            <textarea class="cont_panel--titulo" name="contenido"></textarea> 
+                            <label class="cont_panel--label">Contenido</label>
+                            <textarea class="textarea--contenido" name="contenido" id="Contenido" autosize="none"></textarea> 
                                                         
                             <!-- FECHA -->
-                            <label>Fecha</label>
-                            <input class="cont_panel--titulo" type="text" name="fecha" placeholder="00-00-0000"/>
+                            <label class="cont_panel--label">Fecha (ingresar solo números)</label>
+                            <input class="cont_panel--titulo" type="text" name="fecha" id="Fecha" placeholder="00-00-0000" onkeydown="mascaraFecha(this.value, 'Fecha')"/>
                             
                         </div>                     
                     </div>
                     <div class=""> 
-                        <input class="boton" type="submit" value="Agregar efemerides"/>  
+                        <input class="boton" type="submit" id="Boton_Agregar" value="Agregar efemerides"/>  
                     </div>
                 </form>
         </fieldset>
@@ -41,8 +41,8 @@
 
 
 
-<!-- <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script> -->
-<script src="<?php echo RUTA_URL;?>/public/javascript/E_SalomonPanel.js?v=<?php echo rand();?>"></script> 
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
+<script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarEfemeride.js?v=<?php echo rand();?>"></script> 
 
 <script>       
     //Da una vista previa de la foto de la noticia

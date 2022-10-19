@@ -49,3 +49,25 @@
             e.stopPropagation();
         }
     }, true)
+    
+    
+ //************************************************************************************************
+    //coloca los guiones automaticamente mientras se ingresa la fecha  
+    function mascaraFecha(FechaRecibida, id){
+        if(FechaRecibida.length == 2){
+            document.getElementById(id).value += "-"; 
+        }
+        else if(FechaRecibida.length == 5){
+            document.getElementById(id).value += "-";  
+        }
+        else if(FechaRecibida.length == 11){
+            document.getElementById(id).value += ".";  
+        }
+        else if(FechaRecibida.length >= 10){
+            alert("Fecha con Formato Incorrecto");
+            document.getElementById(id).value = "";
+            document.getElementById(id).focus();
+            // document.getElementById(id).style.backgroundColor = 'var(--Fallos)'; 
+            return false;
+        }
+    }

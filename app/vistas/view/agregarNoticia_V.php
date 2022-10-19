@@ -7,7 +7,7 @@
 <div style="margin-left: 20%;">
     <fieldset class="fieldset_1" id="Portada"> 
         <legend class="legend_1">Agregar Noticia</legend>
-            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarAgregarNoticia()">
                 <label class="cont_panel--label">Imagen principal</label>
                 <div style="display: flex; margin-bottom: 30px">
                     <!-- IMAGN PRINCIPAL -->
@@ -22,23 +22,23 @@
                     <div style="width: 100%; padding-left: 1%">
                         <!-- TITULO -->
                         <label class="cont_panel--label">TItulo</label>
-                        <input class="cont_panel--titulo" type="text" name="titulo"/>
+                        <textarea class="textarea--titulo" name="titulo"></textarea> 
 
                         <!-- RESUMEN -->
                         <label class="cont_panel--label">Resumen</label>
-                        <textarea class="cont_panel--titulo" name="subtitulo"></textarea> 
+                        <textarea class="textarea--resumen" name="subtitulo"></textarea> 
 
                         <!-- CONTENIDO -->
                         <label class="cont_panel--label">Contenido</label>
-                        <textarea class="cont_panel--titulo" name="contenido" id="Contenido" autosize="none"></textarea> 
+                        <textarea class="textarea--contenido" name="contenido" id="Contenido" autosize="none"></textarea> 
                         
                         <!-- SECCION -->
                         <label class="cont_panel--label">Sección</label>
                         <input class="cont_panel--titulo" type="text" name="seccion" id="SeccionPublicar"/>
                         
-                        <!-- FECHA -->
-                        <label class="cont_panel--label">Fecha</label>
-                        <input class="cont_panel--titulo" type="text" name="fecha" placeholder="00-00-0000"/>
+                        <!-- FECHA  onkeyup=""-->
+                        <label class="cont_panel--label">Fecha (ingresar solo números)</label>
+                        <input class="cont_panel--titulo" type="text" name="fecha" id="Fecha" placeholder="00-00-0000" onkeydown="mascaraFecha(this.value, 'Fecha')"/>
                         
                         <!-- REDACCION -->
                         <input class="Default_ocultar" type="text" name="ID_Periodista" value="1"/>
@@ -53,7 +53,7 @@
                 </div>
                 
                 <div> 
-                    <input class="boton" type="submit" value="Agregar noticia"/>  
+                    <input class="boton" type="submit" id="Boton_Agregar" value="Agregar noticia"/>  
                 </div>            
             </form>
     </fieldset>
@@ -66,6 +66,7 @@
 </html>
 
 
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php echo rand();?>"></script> 
 <script src="<?php echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script> 
 

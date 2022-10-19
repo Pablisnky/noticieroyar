@@ -113,10 +113,9 @@
 }
 .cont_noticia--tituloSeccion{
    font-size: 1.3em;
-   width: 55%;
-   text-align: left;
-   padding-left: 3%;
-   margin-left: 5%;
+   width: 70%;
+   padding-left: 2%;
+   margin-left: 3%;
 }
 .cont_noticia--sencilla{
 	min-width: 50%;

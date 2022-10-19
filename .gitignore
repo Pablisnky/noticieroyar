@@ -1,0 +1,8 @@
+# Ignorar el contenido de las carpeta:
+app/codigo_QR/phpqrcode
+images/
+bd/
+
+#Ignorar los siguientes archivos:
+Notas.txt
+Configurar.php
