@@ -8,16 +8,25 @@
     <fieldset class="fieldset_1" id="Portada"> 
         <legend class="legend_1">Agregar Noticia</legend>
             <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarAgregarNoticia()">
-                <label class="cont_panel--label">Imagen principal</label>
                 <div style="display: flex; margin-bottom: 30px">
-                    <!-- IMAGN PRINCIPAL -->
                     <div style=" width: 30%">    
-                        <label class="Default_pointer" for="imgInp">    
+                        <!-- IMAGN PRINCIPAL -->
+                        <div>
+                            <label class="cont_panel--label">Imagen principal</label>
+                            <label class="Default_pointer" for="imgInp">    
+                                <figure>
+                                    <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                                </figure>
+                            </label>
+                            <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
+                        </div>
+                        <!-- VIDEO -->
+                        <div style="margin-top: 50px">    
+                            <label class="cont_panel--label">Video</label>
                             <figure>
-                                <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                                <video src="<?php echo RUTA_URL?>/public/video/Si_te_vas.mp4" poster="<?php echo RUTA_URL?>/public/video/video.png"  controls width="300" height="200"></video>
                             </figure>
-                        </label>
-                        <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
+                        </div>
                     </div>
                     <div style="width: 100%; padding-left: 1%">
                         <!-- TITULO -->
@@ -45,7 +54,7 @@
                         
                         <!-- FUENTE -->
                         <label class="cont_panel--label">Fuente</label>
-                        <select class="cont_panel--titulo" name="id_fuente">
+                        <select class="cont_panel--titulo" name="fuente">
                             <option></option>
                             <?php
                             foreach($Datos['fuentes'] as $Key)   :   ?>
