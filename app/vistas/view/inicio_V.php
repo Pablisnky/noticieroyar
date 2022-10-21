@@ -15,56 +15,58 @@
                 <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
             </div>
 
-            <!-- RADIO BOTOM -->
-            <div class="cont_radio Default_quitarEscritorio"> 
-                <?php
-                foreach($Datos['datosNoticia'] as $Row) :  ?>       
-                    <input class="cont_radio--input Default_pointer" type="radio" name="noticias" onclick="Llamar_NoticiaPrincipal('<?php echo $Row['ID_Noticia'];?>')"<?php if($Datos['ID_NoticiaInicial'] == $Key['ID_Noticia']){?> checked <?php }?>/>
-                    <i></i>
-                    <?php
-                endforeach; ?>
-            </div>
-
             <!-- TITULAR -->
             <div class="cont_portada--titular">                   
                 <h2 class="titular--texto"><?php echo $Key['titulo'];?></h2>
             </div>
-
-            <!-- <hr class="cont_portada--hr"> -->
             
             <!-- RESUMEN -->
             <div class="cont_portada--texto">                   
                 <h2 class="cont_portada--resumen"><?php echo $Key['subtitulo'];?></h2>
             </div>
-            <div class="cont_portada--titular">
-                <hr class="cont_noticia--hr_1">
-                <small style="font-size: 0.8em; display:block; margin-left: 10px"><?php echo $Key['fecha'];?></small >
+
+            <!-- INFORMACION -->
+            <div class="cont_portada--informacion">
+                <hr class="cont_noticia--hr_1 Default_quitarMovil">
+                <!-- FECHA -->
+                <small class="cont_portada_informacion--span"><?php echo $Key['fecha'];?></small>
                 <?php
-                foreach($Datos['imagenes'] as $Row_3)   :  
+                // CANTIDAD DE IMAGENES
+                foreach($Datos['imagenes'] as $Row_3)  : 
                     if($Key['ID_Noticia'] == $Row_3['ID_Noticia']){ ?> 
-                        <small style="font-size: 0.8em; margin-left: 10px"><?php echo $Row_3['cantidad'];?> imagenes</small> 
+                        <small class="cont_portada_informacion--span"><?php echo $Row_3['cantidad'];?> imagenes</small> 
                         <?php
                     }
                 endforeach;
+                // SI EXISTE ANUNCIO PUBLICITARIO
                 foreach($Datos['anuncios'] as $Row_2)   :  
                     if($Key['ID_Noticia'] == $Row_2['ID_Noticia']){ ?>
-                        <small style="font-size: 0.8em; margin-left: 5px">+ Anuncio</small>
+                        <small class="cont_portada_informacion--span">+ Anuncio</small>
                         <?php
                     }
                 endforeach;  ?>                     
-                <!-- <small style="font-size: 0.8em; display:block">20 visualizaciones</small style="font-size: 0.8em;"> -->
+                <!-- FUENTE -->
+                <br>
+                <small class="cont_portada_informacion--span"><?php echo $Key['fuente'];?></small>
             </div> 
-        </div>                
+        </div>     
+
+        <!-- BOTONES DEL PANEL FRONTAL -->
+        <div class="cont_portada--botones">
+            <div>
+                <span style="" class="material-icons-outlined Default_pointer Default--seleccion" onclick="Llamar_NoticiaAnterior('<?php echo $Key['ID_Noticia'];?>')">arrow_back_ios_new</span>
+            </div>
+            <div>
+                <label class="boton boton--corto"><a class="Default_font--white" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
+            </div>         
+            <div>
+                <span class="material-icons-outlined Default_pointer Default--seleccion" onclick="Llamar_NoticiaPosterior('<?php echo $Key['ID_Noticia'];?>')">arrow_forward_ios</span>
+            </div>
+        </div>         
         <?php
-    endforeach; ?>
+    endforeach;     ?>
 </div>  
 
-<!-- BOTONES DEL PANEL FRONTAL -->
-<div class="cont_portada--botones">
-    <div>
-        <label class="boton boton--corto"><a class="Default_font--white" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
-    </div>         
-</div>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_Inicio.js?v=' . rand();?>"></script>

@@ -202,9 +202,13 @@
 		public function agregar_noticia(){
 			//CONSULTA las secciones que tienen el periodico
 			$Secciones = $this->Panel_M->consultarSecciones();
-
+			
+			// CONSULTA las fuentes del periodico
+			$Fuentes = $this->Panel_M->consultarFuentes();
+			
 			$Datos = [
-				'secciones' => $Secciones, //ID_Seccion, seccion
+				// 'secciones' => $Secciones, //ID_Seccion, seccion
+				'fuentes' => $Fuentes //ID_Fuente, fuente
 			];
 
 			// echo '<pre>';
@@ -222,10 +226,14 @@
 			//CONSULTA la noticia a actualizar
 			$NoticiaActualizar = $this->Panel_M->consultarNoticiaActualizar($ID_Noticia);
 			$ImagenesNoticiaActualizar = $this->Panel_M->consultarImagenesNoticiaActualizar($ID_Noticia);
+
+			// CONSULTA las fuentes del periodico
+			$Fuentes = $this->Panel_M->consultarFuentes();
 			
 			$Datos = [
-				'noticiaActualizar' => $NoticiaActualizar, //ID_Noticia, titulo, subtitulo, seccion, fecha, nombre_imagenNoticia, ImagenPrincipal
-				'imagenesNoticiaActualizar' => $ImagenesNoticiaActualizar //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
+				'noticiaActualizar' => $NoticiaActualizar, //ID_Noticia, titulo, subtitulo, seccion, fecha, nombre_imagenNoticia, ImagenPrincipal, fuente 
+				'imagenesNoticiaActualizar' => $ImagenesNoticiaActualizar, //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
+				'fuentes' => $Fuentes
 			];
 
 			// echo '<pre>';
@@ -319,18 +327,18 @@
 				$Contenido = $_POST['contenido'];
 				$Seccion = $_POST['seccion'];
 				$Fecha = $_POST['fecha'];			
-				$ID_Periodista = $_POST['ID_Periodista'];					
+				$Fuente = $_POST['fuente'];					
 
 				// echo "Titulo : " . $Titulo . '<br>';
 				// echo "SubTitulo : " . $Sub_Titulo . '<br>';
 				// echo "Contenido : " . $Contenido . '<br>';
 				// echo "Seccion : " . $Seccion . '<br>';
 				// echo "Fecha : " . $Fecha . '<br>';
-				// echo "ID_Periodista : " . $ID_Periodista . '<br>';
+				// echo "Fuente : " . $Fuente . '<br>';
 				// exit;
 				
 				//Se INSERTA la noticia y se retorna el ID de la inserción
-				$ID_Noticia = $this->Panel_M->InsertarNoticia($Titulo, $Sub_Titulo, $Contenido, $Fecha, $ID_Periodista);
+				$ID_Noticia = $this->Panel_M->InsertarNoticia($Titulo, $Sub_Titulo, $Contenido, $Fecha, $Fuente);
 
 				
 				// Se inserta los ID en la tabla de dependencias transitivas "noticias_secciones" 
@@ -490,6 +498,39 @@
 			die();
 		}
 
+		// recibe formulario que agrega un anuncio publicitario
+		public function recibePublicidadAgregada(){
+			if(isset($_FILES['imagenPrincipal']["name"])){			
+				$RazonSocial = $_POST['razon'];		
+				$FechaCaducidad = $_POST['fecha'];
+				$Nombre_imagenPrincipal = $_FILES['imagenPrincipal']['name'];
+				$Tipo_imagenPrincipal = $_FILES['imagenPrincipal']['type'];
+				$Tamanio_imagenPrincipal = $_FILES['imagenPrincipal']['size'];
+
+				// echo "Razon : " . $RazonSocial . '<br>';
+				// echo "Fecha : " . $FechaCaducidad . '<br>';
+				// echo "Nombre_imagen : " . $Nombre_imagenPrincipal . '<br>';
+				// echo "Tipo_imagen : " .  $Tipo_imagenPrincipal . '<br>';
+				// echo "Tamanio_imagen : " .  $Tamanio_imagenPrincipal . '<br>';
+				// exit;
+								
+				//Usar en remoto
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				
+				// usar en local
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
+				
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
+				
+				//Se INSERTA la publicidad
+				$this->Panel_M->InsertarPublicidad($RazonSocial, $FechaCaducidad, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+			}				
+
+			header("Location:" . RUTA_URL . "/Panel_C/publicidad");
+			die();
+		}
+
 		// recibe formulario que actualiza una noticia
 		public function recibeNotiActualizada(){
 			$ID_Noticia = $_POST['ID_Noticia'];
@@ -497,7 +538,8 @@
 			$Titulo = $_POST['titulo'];
 			$Sub_Titulo = $_POST['subtitulo']; 
 			$Contenido = $_POST['contenido']; 
-			$Fecha = $_POST['fecha'];			
+			$Fecha = $_POST['fecha'];		
+			$Fuente = $_POST['fuente'];		
 
 			// echo "ID_Noticia: " . $ID_Noticia . '<br>';
 			// echo "Seccion: " . $Seccion . '<br>';
@@ -508,7 +550,7 @@
 			// exit;
 				
 			//Se ACTUALIZA la noticia de portada seleccionada
-			$this->Panel_M->ActualizarNoticia($ID_Noticia, $Titulo, $Sub_Titulo, $Contenido, $Fecha);	
+			$this->Panel_M->ActualizarNoticia($ID_Noticia, $Titulo, $Sub_Titulo, $Contenido, $Fecha, $Fuente);	
 			
 			// Se ACTUALIZA los ID_Seccion en la tabla de dependencias transitivas
 			if(ctype_alpha($Seccion)){//Si Seccion es solo letras, hay una sola seccion
@@ -679,8 +721,8 @@
 			die();
 		}
 
-		// recibe formulario que actualiza una efemeride
-		public function recibeEfemerideActualizada(){
+		// recibe formulario que actualiza un anuncio publicitario
+		public function recibePublicidadActualizada(){
 			$ID_Efemeride = $_POST['ID_Efemeride'];
 			$Titulo = $_POST['titulo'];
 			$Contenido = $_POST['contenido']; 
@@ -722,6 +764,155 @@
 			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
 			die();
 		}
+
+		// recibe formulario que actualiza una noticia
+		// public function recibeNotiActualizada(){
+		// 	$ID_Noticia = $_POST['ID_Noticia'];
+		// 	$Seccion = $_POST['seccion'];
+		// 	$Titulo = $_POST['titulo'];
+		// 	$Sub_Titulo = $_POST['subtitulo']; 
+		// 	$Contenido = $_POST['contenido']; 
+		// 	$Fecha = $_POST['fecha'];			
+
+		// 	// echo "ID_Noticia: " . $ID_Noticia . '<br>';
+		// 	// echo "Seccion: " . $Seccion . '<br>';
+		// 	// echo "Titulo : " . $Titulo . '<br>';
+		// 	// echo "SubTitulo : " . $Sub_Titulo . '<br>';
+		// 	// echo "Contenido : " . $Contenido . '<br>';
+		// 	// echo "Fecha : " . $Fecha . '<br>';
+		// 	// exit;
+				
+		// 	//Se ACTUALIZA la noticia de portada seleccionada
+		// 	$this->Panel_M->ActualizarNoticia($ID_Noticia, $Titulo, $Sub_Titulo, $Contenido, $Fecha);	
+			
+		// 	// Se ACTUALIZA los ID_Seccion en la tabla de dependencias transitivas
+		// 	if(ctype_alpha($Seccion)){//Si Seccion es solo letras, hay una sola seccion
+				
+		// 		//Se consulta el ID_Seccion segun la seccion recibida
+		// 		$ID_Seccion = $this->Panel_M->Consultar_ID_Seccion($Seccion);
+				
+		// 		// echo $ID_Seccion['ID_Seccion'];
+
+		// 		// echo '<pre>';
+		// 		// print_r($ID_Seccion);
+		// 		// echo '</pre>';
+		// 		// exit();
+
+		// 		//Se BORRAN los ID_Seccion de una noticia especifica para volver a insertarlos con valores nuevos
+		// 		$this->Panel_M->eliminar_DT_noticia_seccion($ID_Noticia);
+
+		// 		///se INSERTA los ID en tabla de dependencia trancitiva
+		// 		$Insertar_DT_noticia_seccion = $this->Panel_M->Insertar_DT_noticia_seccion($ID_Noticia, $ID_Seccion['ID_Seccion']);
+		// 	}
+		// 	else{//$Seccion contiene una cadena con las secciones seleccionadas, separados por coma,
+		// 		// echo $Seccion . '<br>';
+		// 		//se convierte $Seccion en array
+		// 		$Seccion = explode(',', $Seccion);
+		// 		// echo '<pre>';
+		// 		// print_r($Seccion);
+		// 		// echo '</pre>';
+				
+		// 		$Elementos = count($Seccion);
+		// 		$SeccionesVarias = "";
+		// 		//Se convierte el array en una cadena con sus elementos entre comillas
+		// 		for($i = 0; $i < $Elementos; $i++){
+		// 			$SeccionesVarias .= " '" . $Seccion[$i] . "', ";
+		// 		}
+				
+		// 		// echo $SeccionesVarias . '<br>';
+
+		// 		// Se quita el ultimo espacio y coma del string generado con lo cual
+		// 		// el string queda 'id1','id2','id3'
+		// 		$SeccionesVarias = substr($SeccionesVarias,0,-2);
+		// 		// echo $SeccionesVarias . '<br>';
+
+		// 		//Se consulta el ID_Seccion segun la seccion recibida
+		// 		$ID_Secciones = $this->Panel_M->ConsultarVarios_ID_Seccion($SeccionesVarias);
+					
+		// 		// echo '<pre>';
+		// 		// print_r($ID_Secciones);
+		// 		// echo '</pre>';
+		// 		// exit;
+
+		// 		$Cantidad = count($ID_Secciones);
+
+		// 		$Varios = [];
+		// 		foreach($ID_Secciones as $Row)	:
+		// 			array_push($Varios, $Row['ID_Seccion']);
+		// 		endforeach;
+
+		// 		// echo '<pre>';
+		// 		// print_r($Varios);
+		// 		// echo '</pre>';
+		// 		// exit;
+				
+		// 		//Se BORRAN los ID_Seccion de una noticia especifica para volver a insertarlos con valores nuevos
+		// 		$this->Panel_M->eliminar_DT_noticia_seccion($ID_Noticia);
+
+		// 		//Se INSERTA los ID_Noticia y ID_Seccion en la tabla de dependencias transitiva
+		// 		for($i = 0; $i < $Cantidad; $i++){
+		// 			$this->Panel_M->Insertar_DT_noticia_seccion($ID_Noticia, $Varios[$i]);
+		// 		}
+		// 	}
+
+		// 	//Si se cambio la IMAGEN PRINCIPAL se procede a actualizarla
+		// 	if($_FILES['imagenPrincipal']["name"] != ""){			
+		// 		$ID_imagen = $_POST['id_fotoPrincipal'];	
+		// 		$Nombre_imagenPrincipal = $_FILES['imagenPrincipal']['name'];
+		// 		$Tipo_imagenPrincipal = $_FILES['imagenPrincipal']['type'];
+		// 		$Tamanio_imagenPrincipal = $_FILES['imagenPrincipal']['size'];
+
+		// 		// echo "ID_Imagen: " .$ID_imagen. '<br>';
+		// 		// echo "Nombre_imagen: " . $Nombre_imagenPrincipal . '<br>';
+		// 		// echo "Tipo_imagen: " .  $Tipo_imagenPrincipal . '<br>';
+		// 		// echo "Tamanio_imagen: " .  $Tamanio_imagenPrincipal . '<br>';
+		// 		// exit;
+				
+		// 		//Usar en remoto
+		// 		$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				
+		// 		// usar en local
+		// 		// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				
+		// 		//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+		// 		move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
+
+		// 		//Se ACTUALIZA la imagen principal de la noticia
+		// 		$this->Panel_M->ActualizarImagenNoticia($ID_imagen, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+		// 	}
+
+		// 	//IMAGENES SECUNDARIAS;
+		// 	if($_FILES['imagenesSecundarias']['name'][0] != ''){
+		// 		$Cantidad = count($_FILES['imagenesSecundarias']['name']);
+		// 		for($i = 0; $i < $Cantidad; $i++){
+		// 			//nombre original del fichero en la máquina cliente.
+		// 			$Nombre_imagenSecundaria = $_FILES['imagenesSecundarias']['name'][$i];
+		// 			$Ruta_Temporal_imagenSecundaria = $_FILES['imagenesSecundarias']['tmp_name'][$i];
+		// 			$tipo_imagenSecundaria = $_FILES['imagenesSecundarias']['type'][$i];
+		// 			$tamanio_imagenSecundaria = $_FILES['imagenesSecundarias']['size'][$i];
+		// 			// echo "Nombre_imagen : " . $Nombre_imagenSecundaria . '<br>';
+		// 			// echo "Tipo_imagen : " .  $Ruta_Temporal_imagenSecundaria . '<br>';
+		// 			// echo "Tamanio_imagen : " .  $tipo_imagenSecundaria . '<br>';
+		// 			// echo "Tamanio_imagen : " .  $tamanio_imagenSecundaria . '<br>';
+		// 			// exit;
+					
+		// 			//Usar en remoto
+		// 			$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+
+		// 			//usar en local
+		// 			// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+
+		// 			//Subimos el fichero al servidor
+		// 			move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecundarias']['name'][$i]);
+
+		// 			//Se INSERTAR nuevas imagenes secundarias de la noticia
+		// 			$this->Panel_M->insertarFotografiasSecun($ID_Noticia, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria);
+		// 		}
+		// 	}
+			
+		// 	header("Location:" . RUTA_URL . "/Panel_C/portadas");
+		// 	die();
+		// }
 		
 		// ELimina noticia
 		public function eliminar_noticia($ID_Noticia){

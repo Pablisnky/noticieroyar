@@ -111,9 +111,10 @@
         // SELECT de anuncios publicitarios
         public function consultarAnuncio(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Anuncio, ID_Noticia, nombre_imagenPublicidad, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicio, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulmina
+                "SELECT ID_Anuncio, ID_Noticia, nombre_imagenPublicidad, razonSocial, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicio, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulmina
                 FROM publicidad
                 WHERE fechaCulmina > CURDATE()
+                GROUP BY razonSocial
                 ORDER BY fechaCulmina
                 DESC"
             );
@@ -155,7 +156,7 @@
         //SELECT de la noticia a actualizar
         public function consultarNoticiaActualizar($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, secciones.ID_Seccion, titulo, subtitulo, contenido, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_imagenNoticia, ID_Imagen 
+                "SELECT noticias.ID_Noticia, secciones.ID_Seccion, titulo, subtitulo, contenido, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_imagenNoticia, ID_Imagen, fuente 
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
@@ -277,17 +278,25 @@
                 return false;
             }
         }
-
+        
+        //SELECT de las fuentes de redaccion disponibles
+        public function consultarFuentes(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Fuente, fuente
+                FROM fuentes"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
 
 // // ********************************************************************************************************
 // // INSERT 
 // // ********************************************************************************************************
 
         // INSERT de noticia portada
-        public function InsertarNoticia($Titulo, $SubTitulo, $Contenido, $Fecha, $ID_Periodista){
+        public function InsertarNoticia($Titulo, $SubTitulo, $Contenido, $Fecha, $Fuente){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO noticias(titulo, subtitulo, contenido, fecha, ID_Periodista, portada) 
-                VALUES (:TITULO, :SUBTITULO, :CONTENIDO, STR_TO_DATE( '$Fecha', '%d-%m-%Y' ), :ID_PERIODISTA, :PORTADA)"
+                "INSERT INTO noticias(titulo, subtitulo, contenido, fecha, fuente, portada) 
+                VALUES (:TITULO, :SUBTITULO, :CONTENIDO, STR_TO_DATE( '$Fecha', '%d-%m-%Y' ), :FUENTE, :PORTADA)"
             ); 
 
             // STR_TO_DATE( '$Fecha', '%d-%m-%Y' ) se recibe la fecha en formato USA y se cambia a formato EUR
@@ -296,7 +305,7 @@
             $stmt->bindParam(':TITULO', $Titulo, PDO::PARAM_STR);
             $stmt->bindParam(':SUBTITULO', $SubTitulo, PDO::PARAM_STR);
             $stmt->bindParam(':CONTENIDO', $Contenido, PDO::PARAM_STR);
-            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
+            $stmt->bindParam(':FUENTE', $Fuente, PDO::PARAM_STR);
             $stmt->bindValue(':PORTADA', 1);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
@@ -429,16 +438,38 @@
                 return FALSE;
             }
         }
+        
+        //INSERT de anuncio publicitario
+        public function InsertarPublicidad($RazonSocial, $FechaCaducidad, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO publicidad(razonSocial, fechaCulmina, nombre_imagenPublicidad, tipo_imagenPublicidad, tamanio_imagenPublicidad) 
+                VALUES (:RAZON_SOCIAL, STR_TO_DATE('$FechaCaducidad', '%d-%m-%Y'), :NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':RAZON_SOCIAL', $RazonSocial, PDO::PARAM_STR);
+            $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenAgenda, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenAgenda, PDO::PARAM_STR);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
 
 // // ********************************************************************************************************
 // // UPDATE
 // // ********************************************************************************************************
         
         // UODATE de datos de noticia 
-        public function ActualizarNoticia($ID_Noticia, $Titulo, $SubTitulo, $Contenido, $Fecha){            
+        public function ActualizarNoticia($ID_Noticia, $Titulo, $SubTitulo, $Contenido, $Fecha, $Fuente){            
             $stmt = $this->dbh->prepare(
                 "UPDATE noticias 
-                SET titulo = :TITULO, subtitulo = :SUBTITULO, contenido = :CONTENIDO, fecha = STR_TO_DATE('$Fecha', '%d-%m-%Y')
+                SET titulo = :TITULO, subtitulo = :SUBTITULO, contenido = :CONTENIDO, fecha = STR_TO_DATE('$Fecha', '%d-%m-%Y'), fuente = :FUENTE
                 WHERE ID_Noticia = :ID_NOTICIA"
             );
 
@@ -447,6 +478,7 @@
             $stmt->bindParam(':TITULO', $Titulo, PDO::PARAM_STR);
             $stmt->bindParam(':SUBTITULO', $SubTitulo, PDO::PARAM_STR);
             $stmt->bindParam(':CONTENIDO', $Contenido, PDO::PARAM_STR);
+            $stmt->bindParam(':FUENTE', $Fuente, PDO::PARAM_STR);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){

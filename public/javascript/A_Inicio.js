@@ -31,16 +31,41 @@ function conexionAJAX(){
 
 // *************************************************************************************************
     //
-    function Llamar_NoticiaPrincipal(ID_Noticia){
-        // console.log("______Desde Llamar_NoticiaPrincipal()______", ID_Noticia)
+    function Llamar_NoticiaAnterior(ID_Noticia){
+        console.log("______Desde Llamar_NoticiaAnterior()______", ID_Noticia)
         
-        var url = "Inicio_C/NoticiaPortadaSeleccionada/" + ID_Noticia
+        var url = "Inicio_C/NoticiaAnterior/" + ID_Noticia
         http_request.open('GET', url, true)  
-        peticion.onreadystatechange = respuesta_NoticiaPrincipal
+        peticion.onreadystatechange = respuesta_NoticiaAnterior
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
         peticion.send("null")
     }                                                                        
-    function respuesta_NoticiaPrincipal(){
+    function respuesta_NoticiaAnterior(){
+        if(peticion.readyState == 4){
+            if(peticion.status == 200){  
+                document.getElementById('Cont_Portada').innerHTML = peticion.responseText 
+            } 
+            else{
+                alert('Problemas con la petición.')
+            }
+        }
+        else{ //en caso contrario, mostramos un gif simulando una precarga
+            // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+        }
+    }
+
+// *************************************************************************************************
+    //
+    function Llamar_NoticiaPosterior(ID_Noticia){
+        console.log("______Desde Llamar_NoticiaPosterior()______", ID_Noticia)
+        
+        var url = "Inicio_C/NoticiaPosterior/" + ID_Noticia
+        http_request.open('GET', url, true)  
+        peticion.onreadystatechange = respuesta_NoticiaPosterior
+        peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+        peticion.send("null")
+    }                                                                        
+    function respuesta_NoticiaPosterior(){
         if(peticion.readyState == 4){
             if(peticion.status == 200){  
                 document.getElementById('Cont_Portada').innerHTML = peticion.responseText 

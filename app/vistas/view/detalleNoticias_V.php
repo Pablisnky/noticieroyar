@@ -50,6 +50,9 @@ if(!empty($Datos['detalleNoticia'][0]['ID_Noticia']) AND !empty($Datos['publicid
             <div class="detalle_cont--resumen">
                 <p style=""><?php echo $Datos['detalleNoticia'][0]['subtitulo']?></p>
                 <hr class="detalle_cont--hr">
+
+                <!-- FUENTE -->
+                <span class="detalle_cont--fuente"><?php echo $Datos['detalleNoticia'][0]['fuente']?></span>
             </div>
         </div>
     </div>
@@ -58,9 +61,12 @@ if(!empty($Datos['detalleNoticia'][0]['ID_Noticia']) AND !empty($Datos['publicid
     <div class="detalle_cont--contenido" >
         <textarea class="textarea--contenido textarea--borde textarea--font" id="Contenido" readonly><?php echo $Datos['detalleNoticia'][0]['contenido']?></textarea>
     </div>
+    
+    <a href="#up" class="simplescrollup__button simplescrollup__button--hide"><span class="material-icons-outlined detalle_cont--avion">airplanemode_active</span></a>
 </div>
 </body>
 </html>
 
+<script src="<?php echo RUTA_URL.'/public/javascript/scrollUp.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_DetalleNoticia.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_DetalleNoticia.js?v='. rand();?>"></script>

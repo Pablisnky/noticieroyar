@@ -35,7 +35,7 @@
 
             $Datos = [
                 'secciones' => $Secciones, //seccion
-                'noticiasGenerales' => $NoticiasGenerales, //ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, fecha
+                'noticiasGenerales' => $NoticiasGenerales, //ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, fecha, fuente
                 'imagenes' => $Imagenes,
                 'anuncios' => $Anuncios
             ];
@@ -62,7 +62,7 @@
             $Publicidad = $this->ConsultaNoticia_M->consultarAnuncioNoticiaPortada($ID_Noticia);
             
             $Datos = [
-                'detalleNoticia' => $DetalleNoticia, //ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido, fecha
+                'detalleNoticia' => $DetalleNoticia, //ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido, fecha, fuente
                 'imagenesNoticia' => $ImagenesNoticia, //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
                 'publicidad' => $Publicidad 
             ];
@@ -77,7 +77,7 @@
         }
 
         
-        // muestra la imagn seleccionada en la miniatura
+        // muestra la imagen seleccionada en la miniatura
         public function muestraImagenSeleccionada($ID_ImagenMiniatura){
             //Se CONSULTA la imagen que se solicito en detalle
              $DetalleImagen = $this->ConsultaNoticia_M->consultarDetalleImagen($ID_ImagenMiniatura);

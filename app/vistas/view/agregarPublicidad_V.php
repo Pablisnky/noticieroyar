@@ -6,11 +6,12 @@
 
 <div style="margin-left: 20%;">
     <fieldset class="fieldset_1" id="Portada"> 
-        <legend class="legend_1">Agregar Noticia</legend>
-            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarAgregarNoticia()">
+        <legend class="legend_1">Agregar Publicidad</legend>
+            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibePublicidadAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <label class="cont_panel--label">Imagen principal</label>
                 <div style="display: flex; margin-bottom: 30px">
-                    <!-- IMAGN PRINCIPAL -->
+
+                    <!-- IMAGEN PRINCIPAL -->
                     <div style=" width: 30%">    
                         <label class="Default_pointer" for="imgInp">    
                             <figure>
@@ -19,45 +20,16 @@
                         </label>
                         <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
                     </div>
+
                     <div style="width: 100%; padding-left: 1%">
-                        <!-- TITULO -->
-                        <label class="cont_panel--label">TItulo</label>
-                        <textarea class="textarea--titulo" name="titulo" id="Titulo"></textarea> 
-                        <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="100" readonly/>
+                        <!-- RAZON SOCIAL -->
+                        <label class="cont_panel--label">Razón social</label>
+                        <input class="cont_panel--titulo" type="text" name="razon" id="Razon"/> 
 
-                        <!-- RESUMEN -->
-                        <label class="cont_panel--label">Resumen</label>
-                        <textarea class="textarea--resumen" name="subtitulo" id="Resumen"></textarea> 
-                        <input class="cont_panel--contador" type="text" id="ContadorResumen" value="150" readonly/>
-
-                        <!-- CONTENIDO -->
-                        <label class="cont_panel--label">Contenido</label>
-                        <textarea class="textarea--contenido Default--textarea--scrol" name="contenido" id="Contenido" autosize="none"></textarea> 
-                        <input class="cont_panel--contador" type="text" id="ContadorContenido" value="2000" readonly/>
-                        
-                        <!-- SECCION -->
-                        <label class="cont_panel--label">Sección</label>
-                        <input class="cont_panel--titulo" type="text" name="seccion" id="SeccionPublicar"/>
-                        
-                        <!-- FECHA  onkeyup=""-->
-                        <label class="cont_panel--label">Fecha (ingresar solo números)</label>
+                        <!-- FECHA CADUCACION -->
+                        <label class="cont_panel--label">Fecha caducación</label>
                         <input class="cont_panel--titulo" type="text" name="fecha" id="Fecha" placeholder="00-00-0000" onkeydown="mascaraFecha(this.value, 'Fecha')"/>
                         
-                        <!-- FUENTE -->
-                        <label class="cont_panel--label">Fuente</label>
-                        <select class="cont_panel--titulo" name="id_fuente">
-                            <option></option>
-                            <?php
-                            foreach($Datos['fuentes'] as $Key)   :   ?>
-                                <option><?php echo $Key['fuente']?></option>
-                                <?php
-                            endforeach;     ?>
-                        </select>
-                        
-                        <!-- IMAGENES SECUNDARIAS -->     
-                        <label class="cont_panel--label" style="display: block" for="ImgInp_2">Imagenes secundarias</label>
-                        <input class="" type="file" name="imagenesSec[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
-                               
                         <!-- muestra las imagenes secundarias -->
                         <div class="cont_panel--imagenSec" id="muestrasImg_2"></div>                    
                     </div>                     

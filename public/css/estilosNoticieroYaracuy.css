@@ -258,10 +258,9 @@ textarea{
 	 left: 30%;
  }
  .cont_noticia{
-	 margin-top: 5%;
+	margin-top: 5%;
  }
  .cont_noticia--seccion{
-	/* background-color: red; */
 	display: flex;
 	justify-content: flex-start;
 	align-content: flex-start;/*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
@@ -304,8 +303,8 @@ textarea{
 	font-size: 0.8em;
  }
  .cont_noticia--hr_1{
-	 margin: 2% ;
-	 width: 30%;
+	margin: 2%;
+	width: 30%;
  }
  .cont_noticia--h2{
 	font-size: 0.8em;
@@ -379,6 +378,12 @@ textarea{
 	color: black;
 	font-size: 1em;
 	line-height: 30px;
+ }
+ .cont_panel--li:hover{
+	 cursor: pointer;
+	 background-color: rgba(51, 51, 51, 0.2);
+	 border-radius: 15px;
+	 padding: 5px 15px;
  }
 .cont_portada{
 	display: flex;
@@ -474,6 +479,14 @@ textarea{
 	margin: auto;
 	/*object-fit: contain; fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
+.cont_portada--informacion{
+	padding-left: 10px
+}
+.cont_portada_informacion--span{
+	padding-left: 5px;
+	font-weight: bold; 
+	font-size: 0.9em;
+}
 .detalle_cont--main{
 	display: block;
     width: 95%;
@@ -513,9 +526,8 @@ textarea{
 	font-size: 2.4em !important;
 }
 .detalle_cont--hr{
-	background-color: ;
 	width: 40%;
-	margin: 10% auto;
+	margin: 10% auto 0% auto;
 }
 .detalle_cont--imagen{
 	width: 55%
@@ -536,26 +548,37 @@ textarea{
 	width: 80%;
 	margin: auto;
 }
+.detalle_cont--fuente{
+	display: inline-block; 
+	width: 100%; 
+	text-align: center; 
+	font-weight: bold; 
+	font-size: 0.6em
+}
+.detalle_cont--avion{
+	color: var(--OficialOscuro);
+	font-size: 3em !important;
+}
 .textarea--titulo{
 	margin-top: 1%;
-	line-height: 30px;
-	min-height: 20px;
+	/* line-height: 20px; */
+	/* min-height: 20px; */
 	width: 100%;	
-	padding: 1%;
+	padding-top: 1.5%;
+}
+.textarea--resumen{
+	margin-top: 1%;
+	/* line-height: 30px; */
+	/* min-height: 30px; */
+	width: 100%;	
+	padding: 1.5%;
 }
 .textarea--contenido{
 	margin-top: 1%;
 	line-height: 30px;
 	min-height: 250px;
 	width: 100%;	
-	padding: 1%;
-}
-.textarea--resumen{
-	margin-top: 1%;
-	line-height: 30px;
-	min-height: 30px;
-	width: 100%;	
-	padding: 1%;
+	padding: 1.5%;
 }
 .textarea--borde{
 	border: none;
@@ -594,6 +617,14 @@ textarea{
 .cont_portada__p-2{
 	font-size: 1.5em;
 	color: white;
+}
+.cont_panel--contador{
+	position: relative;
+	top: -10px;
+	right: -94%;
+	text-align: right;
+	width: 5%;
+	border: none;
 }
 .cont_panel--menu{
 	width: 20%;
@@ -674,8 +705,15 @@ textarea{
 .Default_inline{
 	display: inline;
 }
-.Default_quitarEscritorio{
+.Default_quitarEscritorio{/*no se muestra en escritorio*/
 	display: none;
+}
+.Default--textarea--scrol{
+	overflow: initial;
+	overflow-y: scroll;
+}
+.Default--seleccion{
+	user-select: none;
 }
 .fieldset_1{
 	width: 95%;
@@ -898,4 +936,18 @@ textarea{
 }
 .mostrarModal--publicidad{
 	display: flex;
+}
+
+.simplescrollup__button {/*instruccion.php*/
+    position: fixed;
+    bottom: 1rem;/*3*/
+    right: 1rem;/*2*/
+    transition: 1s all;
+    z-index: 10000;
+}
+.simplescrollup__button--show {/*instruccion.php*/
+    transform: translateX(0);
+}
+.simplescrollup__button--hide {/*instruccion.php*/
+    transform: translateX(100px);
 }

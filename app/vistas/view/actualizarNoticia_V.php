@@ -33,7 +33,7 @@
                             
                                 <!-- CONTENIDO -->
                                 <label class="cont_panel--label">Contenido</label>
-                                <textarea class="textarea--contenido" name="contenido" id="Contenido"><?php echo $Datos['noticiaActualizar']['contenido'];?></textarea> 
+                                <textarea class="textarea--contenido Default--textarea--scrol" name="contenido" id="Contenido"><?php echo $Datos['noticiaActualizar']['contenido'];?></textarea> 
 
                                 <!-- SECCION -->
                                 <label class="cont_panel--label">Sección</label>
@@ -42,6 +42,17 @@
                                 <!-- FECHA -->
                                 <label class="cont_panel--label">Fecha</label>
                                 <input class="cont_panel--titulo" type="text" name="fecha" value="<?php echo $Datos['noticiaActualizar']['fecha'];?>"/>
+                                
+                                <!-- FUENTE -->
+                                <label class="cont_panel--label">Fuente</label>
+                                <select class="cont_panel--titulo" name="fuente">
+                                    <option><?php echo $Datos['noticiaActualizar']['fuente'];?></option>
+                                    <?php
+                                    foreach($Datos['fuentes'] as $Key)   :   ?>
+                                        <option><?php echo $Key['fuente']?></option>
+                                        <?php
+                                    endforeach;     ?>
+                                </select>
                             </div>                     
                         </div>
 
@@ -75,6 +86,38 @@
                             <div id="muestrasImgSec_2"></div> 
 
                         </fieldset> 
+                        
+                         <!-- ANUNCIOS PUBLICITARIOS -->
+                         <fieldset class="fieldset_1">   
+                            
+                            <!-- AGREGAR ANUNCIO -->
+                            <label class="actualizar_cont--label Default_pointer" for="imgInp_3"><span class="material-icons-outlined actualizar_cont--span">add_circle_outline</span></label>
+                            <input class="Default_ocultar" type="file" name="anuncio" multiple="multiple" id="imgInp_3" onchange="readImage_anuncio()"/>
+                            <!-- IMAGEN ANUNCIO PUBLITARIO-->
+                            <?php
+                            if(empty($Datos['anuncioPublicitario']['ID_Anuncio'])){   ?>
+                                <div style=" width: 30%">
+                                    <figure>
+                                        <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImagenAnuncioPublicitario" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> 
+                                    </figure>  
+                                </div>
+                                <?php
+                            }
+                            else{   ?>
+                                <figure>
+                                    <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
+                                    <label class="Default_pointer" for="imgInp_3"><span class="material-icons-outlined cont_edit--label">edit</span></label>
+                                    <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImagenAnuncioPublicitario" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['anuncioPublicitario']['ID_Anuncio'];?>"/> 
+                                </figure>     
+                                <?php
+                            }   ?>        
+
+                            <br><br> 
+                            <legend class="legend_1">Anuncio publicitario</legend> 
+                            
+                            <!-- EDITAR ANUNCIO PUBLICITARIO -->
+                        </fieldset> 
+
                         <div class=""> 
                             <input class="Default_ocultar" type="text" name="ID_Noticia" value="<?php echo $Datos['noticiaActualizar']['ID_Noticia'];?>"/> 
                             <input class="Default_ocultar" type="text" name="id_fotoPrincipal" value="<?php echo $Datos['noticiaActualizar']['ID_Imagen'];?>" />
@@ -110,6 +153,25 @@
         // console.log("Desde cargar foto de perfil")
         // Código a ejecutar cuando se detecta un cambio de imagen de tienda
         var id_Label = $('#ImagenPrincipal');
+        readImage(this, id_Label);
+    });
+    
+// ************************************************************************************************  
+    //Da una vista previa del anuncio publicitario
+    function readImage_anuncio(input, id_Label){
+        // console.log("______Desde readImage_anuncio()______", input + ' | ' + id_Label)
+        if(input.files && input.files[0]){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                id_Label.attr('src', e.target.result); //Renderizamos la imagen
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }        
+    $("#imgInp_3").change(function(){
+        // console.log("Desde cargar foto de perfil")
+        // Código a ejecutar cuando se detecta un cambio de imagen de tienda
+        var id_Label = $('#ImagenAnuncioPublicitario');
         readImage(this, id_Label);
     });
     

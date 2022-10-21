@@ -40,7 +40,7 @@
         // var click = e.target
         // console.log(click)
         AltoVitrina = document.body.scrollHeight
-        if((div.style.marginTop == "0%")){
+        if(div.style.marginTop == "0%"){
             div.style.marginTop = "-250%"
             C.style.marginLeft = "100%"
             C.style.transitionDelay = "0s"

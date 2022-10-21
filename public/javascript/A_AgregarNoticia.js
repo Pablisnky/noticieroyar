@@ -35,7 +35,7 @@ document.getElementById("SeccionPublicar").addEventListener('keydown', Llamar_se
 
 //************************************************************************************************
 function Llamar_seccionesDisponible(){
-    console.log("_____ Desde Llamar_seccionesDisponible() _____ ")
+    // console.log("_____ Desde Llamar_seccionesDisponible() _____ ")
     var url = "../Panel_C/Secciones"
     http_request.open('GET', url, true)  
     peticion.onreadystatechange = respuesta_seccion
@@ -58,3 +58,5 @@ function respuesta_seccion(){
         // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
     }
 }
+
+//************************************************************************************************

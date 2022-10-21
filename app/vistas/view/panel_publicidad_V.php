@@ -15,9 +15,14 @@
                         <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Row['nombre_imagenPublicidad'];?>"/> 
                     </figure>
                 </div>
-                <div style="">                            
+                <div>                            
+                    <!-- CLIENTE -->
+                    <label style="width: 150%">Cliente:</label>
+                    <label><?php echo $Row['razonSocial'];?></label>
+                    <br>
+                    
                     <!-- FECHA -->
-                    <label style="display: block; width: 150%">Fecha de caducidad</label>
+                    <label style="width: 150%">Fecha de caducidad:</label>
                     <label><?php echo $Row['fechaCulmina'];?></label>
 
                     <div style="width: 100%;">

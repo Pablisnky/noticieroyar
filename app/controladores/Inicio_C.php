@@ -35,7 +35,7 @@
             else{
 
                 $Datos = [
-                    'datosNoticia' => $this->NoticiasPortadas, //ID_Noticia, titulo, subtitulo,    noticiaPrincipal, portada, nombre_imagenNoticia, fecha    
+                    'datosNoticia' => $this->NoticiasPortadas, //ID_Noticia, titulo, subtitulo,    noticiaPrincipal, portada, nombre_imagenNoticia, fecha, fuente
                     'ID_NoticiaInicial' =>  $this->NoticiasPortadas[0]['ID_Noticia'],
                     'anuncios' => $this->Anuncios, //ID_Anuncio, ID_Noticia
                     'imagenes' => $this->Imagenes  //ID_Noticia, COUNT(ID_Noticia)
@@ -52,13 +52,29 @@
         }
 
         // Invocado desde A_Inicio.js
-        public function NoticiaPortadaSeleccionada($ID_Noticia){  
-            //Se CONSULTA la noticia seleccionada en el radio botom
-            $Not_Princ_Seleccionada = $this->ConsultaInicio_M->consultarNot_Princ_Seleccionada($ID_Noticia);
+        public function NoticiaPosterior($ID_Noticia){  
+
+            //Se CONSULTA el ID_Noticia de la noticia que presede a la noticia con el ID_Noticia recibido
+            $ID_NoticiaConsultar = $this->ConsultaInicio_M->consultarID_NoticiaPosterior($ID_Noticia);
             
+            if($ID_NoticiaConsultar == Array()){
+                //Se CONSULTA el ID_Noticia de la primera noticia introducido en el dia
+                $ID_NoticiaConsultar = $this->ConsultaInicio_M->consultarID_NoticiaPortadaPrimera($ID_Noticia);
+            }
+            
+            //Se CONSULTA la informacion de la noticia solicituada
+            $Noticia = $this->ConsultaInicio_M->consultarNoticiaPortada($ID_NoticiaConsultar[0]['ID_Noticia']);
+            
+			//CONSULTA la cantidad de imagenes asociadas a la noticia solicitada
+            $CantidadImagenes = $this->ConsultaInicio_M->consultarImagenesNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
+
+			//CONSULTA si existe algun anuncio asociado a la noticia solicitada
+            $Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
+
             $Datos = [
-                'datosNoticia' => $this->NoticiasPortadas, //ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, fecha
-                'not_Princ_Seleccionada' => $Not_Princ_Seleccionada//ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia
+                'noticia' => $Noticia, //ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, fecha
+                'cantidadImagenes' => $CantidadImagenes,
+                'anuncios' => $Anuncios
             ];
             
             // echo "<pre>";
@@ -66,6 +82,32 @@
             // echo "</pre>";          
             // exit();
  
+            $this->vista("view/ajax/NoticiasRadioButom_V", $Datos );   
+        }        
+
+        // Invocado desde A_Inicio.js
+        public function NoticiaAnterior($ID_Noticia){ 
+
+            //Se CONSULTA el ID_Noticia de la noticia que antecede a la noticia con el ID_Noticia recibido
+            $ID_NoticiaConsultar = $this->ConsultaInicio_M->consultarID_NoticiaAnterior($ID_Noticia);
+
+            if($ID_NoticiaConsultar == Array()){
+                //Se CONSULTA el ID_Noticia de la ultima noticia introducido en el dia
+                $ID_NoticiaConsultar = $this->ConsultaInicio_M->consultarID_NoticiaPortadaUltimo($ID_Noticia);
+            }
+
+            //Se CONSULTA la informacion de la noticia solicitada
+            $Noticia = $this->ConsultaInicio_M->consultarNoticiaPortada($ID_NoticiaConsultar[0]['ID_Noticia']);
+
+            $Datos = [
+                'noticia' => $Noticia //ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, fecha
+            ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+             
             $this->vista("view/ajax/NoticiasRadioButom_V", $Datos );   
         }        
     }

@@ -1,5 +1,17 @@
 document.getElementById("Contenido").addEventListener('keydown', function(){autosize('Contenido')}, false)
 
+document.getElementById("Titulo").addEventListener('keydown', function(){contarCaracteres("ContadorTitulo", "Titulo", 100)}, false)
+document.getElementById("Titulo").addEventListener('keydown', function(){valida_LongitudDes(100, "Titulo")}, false)
+
+document.getElementById("Resumen").addEventListener('keydown', function(){contarCaracteres("ContadorResumen", "Resumen", 150)}, false)
+document.getElementById("Resumen").addEventListener('keydown', function(){valida_LongitudDes(150, "Resumen")}, false)
+
+document.getElementById("Contenido").addEventListener('keydown', function(){contarCaracteres("ContadorContenido", "Contenido", 2000)}, false)
+document.getElementById("Contenido").addEventListener('keydown', function(){valida_LongitudDes(2000, "Contenido")}, false)
+
+//llama a la funcion cuando detecta cambio en el textarea, Ej: al pegar un texto
+document.getElementById("Titulo").addEventListener("input", (event) => contarCaracteres("ContadorTitulo", "Titulo", 100));
+document.getElementById("Resumen").addEventListener("input", (event) => contarCaracteres("ContadorResumen", "Resumen", 150));
 //************************************************************************************************
     //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
     // window.addEventListener("click", function(e){   
@@ -12,7 +24,9 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
     function contarCaracteres(ID_Contador, ID_Contenido, Max){
         // console.log("______Desde contarCaracteres()______", ID_Contador + " / " + ID_Contenido + " / " + Max) 
         var max = Max; 
+        // console.log(max)
         var cadena = document.getElementById(ID_Contenido).value; 
+        // console.log(cadena)
         var longitud = cadena.length; 
 
         if(longitud <= max) { 
@@ -23,7 +37,7 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
     } 
 
 //************************************************************************************************
-    //Muestra la cantidad de caracteres que ya tiene el campo; invocado en cuenta_editar_V.php
+    //Muestra la cantidad de caracteres que ya tiene el campo; cargado desde BD
     function CaracteresAlcanzados(ID_Contenido, ID_Contador){
         // console.log("______Desde CaracteresAlcanzados()______",ID_Contenido + " / " + ID_Contador) 
 
@@ -36,15 +50,15 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
     } 
 
 //************************************************************************************************ 
-    //Impide que se sigan introduciendo caracteres al alcanzar el limite maximo en un elmento; invocado en quienesSomos_V.php - cuenta_publicar_V.php - registroCom_V.php - cuenta_editar_V.php
-    var contenidoControlado = "";    
+    //Impide que se sigan introduciendo caracteres al alcanzar el limite maximo en un elmento
+    let contenidoControlado = "";    
     function valida_LongitudDes(Max, ID_Contenido){
-        // console.log("______Desde valida_LongitudDes()______", Max + " / "+ ID_Contenido) 
+        console.log("______Desde valida_LongitudDes()______", Max + " / "+ ID_Contenido) 
                 
-        var num_caracteres_permitidos = Max;
+        let num_caracteres_permitidos = Max;
 
         //se averigua la cantidad de caracteres escritos 
-        num_caracteresEscritos = document.getElementById(ID_Contenido).value.length
+        let num_caracteresEscritos = document.getElementById(ID_Contenido).value.length
 
         if(num_caracteresEscritos > num_caracteres_permitidos){ 
             document.getElementById(ID_Contenido).value = contenidoControlado; 
@@ -93,7 +107,7 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
 
 //************************************************************************************************  
      function transferirSeccion(form, id){
-        console.log("______Desde transferirSeccion()______")
+        // console.log("______Desde transferirSeccion()______")
         //Se declara el array que contendra la cantidad de categorias seleccionadas
         var TotalCategoria = []
 
@@ -111,6 +125,7 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
 
         //Se transfiere el valor del radio boton seleccionado al input del formulario
         document.getElementById(id).value = TotalCategoria
+        document.getElementById(id).focus();
     }
 
 //************************************************************************************************  

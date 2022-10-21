@@ -32,7 +32,7 @@
 
         public function consultarNoticiasGenerales(){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, fuente
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                  INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
@@ -65,7 +65,7 @@
                 return false;
             }
         }
-
+        
         //SELECT de los anuncios asociados a las noticias
         public function consultarAnuncioNoticiaGenerales(){
             $stmt = $this->dbh->query(
@@ -83,7 +83,7 @@
         
         public function consultarNoticiaDetalle($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, contenido, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, contenido, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, fuente 
                  FROM noticias 
                  INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
                  INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
