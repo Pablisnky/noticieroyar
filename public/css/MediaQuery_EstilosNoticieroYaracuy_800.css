@@ -160,7 +160,8 @@
 	}
 	.cont_noticia-imagen{
 		height: 20vh; 
-		object-fit: cover; 
+		width: 100%;
+		/* object-fit: cover;  */
 	}
 	.cont_noticia--titular{
 		height: 30vw;
@@ -215,6 +216,11 @@
 		padding-left: 5px;
 		font-weight: bold; 
 		font-size: 0.8em;
+	}
+	.cont_noticias_informacion--span{
+		padding-left: 5px;
+		font-weight: bold; 
+		font-size: 0.9em;
 	}
 	.cont_radio{
 		display: flex; 

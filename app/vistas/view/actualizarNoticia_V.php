@@ -45,14 +45,16 @@
                                 
                                 <!-- FUENTE -->
                                 <label class="cont_panel--label">Fuente</label>
-                                <select class="cont_panel--titulo" name="fuente">
+                                <select class="cont_panel--titulo" name="fuente" id="Fuente" onchange="especificarFuente()">
                                     <option><?php echo $Datos['noticiaActualizar']['fuente'];?></option>
                                     <?php
                                     foreach($Datos['fuentes'] as $Key)   :   ?>
                                         <option><?php echo $Key['fuente']?></option>
                                         <?php
                                     endforeach;     ?>
+                                    <option value="Otra">Otra</option>
                                 </select>
+                                <div id="InsertarFuente"></div>
                             </div>                     
                         </div>
 
@@ -134,6 +136,7 @@
 </body>
 </html>
 
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/A_ActualizarNoticia.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_ActualizarNoticia.js?v=<?php echo rand();?>"></script> 
 

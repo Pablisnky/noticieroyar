@@ -283,7 +283,8 @@
         public function consultarFuentes(){
             $stmt = $this->dbh->query(
                 "SELECT ID_Fuente, fuente
-                FROM fuentes"
+                FROM fuentes
+                ORDER BY fuente"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }

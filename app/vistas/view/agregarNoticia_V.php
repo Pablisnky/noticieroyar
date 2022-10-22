@@ -33,12 +33,12 @@
                         <!-- TITULO -->
                         <label class="cont_panel--label">TItulo</label>
                         <textarea class="textarea--titulo" name="titulo" id="Titulo"></textarea> 
-                        <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="100" readonly/>
+                        <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="80" readonly/>
 
                         <!-- RESUMEN -->
                         <label class="cont_panel--label">Resumen</label>
                         <textarea class="textarea--resumen" name="subtitulo" id="Resumen"></textarea> 
-                        <input class="cont_panel--contador" type="text" id="ContadorResumen" value="150" readonly/>
+                        <input class="cont_panel--contador" type="text" id="ContadorResumen" value="120" readonly/>
 
                         <!-- CONTENIDO -->
                         <label class="cont_panel--label">Contenido</label>

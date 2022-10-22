@@ -287,13 +287,13 @@ textarea{
  .cont_noticia--sencilla{
 	min-width: 25%;
 	max-width: 25%;
-	margin-left: 2%;
+	/* margin-left: 2%; */
  }
  .cont_noticia-imagen{
 	 height: 30vh; 
-	 width: 100%;
+	 width: 80%;
 	 margin: auto;
-	 object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	 object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
  }
  .cont_noticia--titular{
 	width: 80%;
@@ -486,6 +486,11 @@ textarea{
 	padding-left: 5px;
 	font-weight: bold; 
 	font-size: 0.9em;
+}
+.cont_noticias_informacion--span{
+	padding-left: 5px;
+	font-weight: bold; 
+	font-size: 1em;
 }
 .detalle_cont--main{
 	display: block;

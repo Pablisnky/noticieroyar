@@ -1,17 +1,17 @@
 document.getElementById("Contenido").addEventListener('keydown', function(){autosize('Contenido')}, false)
 
-document.getElementById("Titulo").addEventListener('keydown', function(){contarCaracteres("ContadorTitulo", "Titulo", 100)}, false)
-document.getElementById("Titulo").addEventListener('keydown', function(){valida_LongitudDes(100, "Titulo")}, false)
+document.getElementById("Titulo").addEventListener('keydown', function(){contarCaracteres("ContadorTitulo", "Titulo", 80)}, false)
+document.getElementById("Titulo").addEventListener('keydown', function(){valida_LongitudDes(80, "Titulo")}, false)
 
-document.getElementById("Resumen").addEventListener('keydown', function(){contarCaracteres("ContadorResumen", "Resumen", 150)}, false)
-document.getElementById("Resumen").addEventListener('keydown', function(){valida_LongitudDes(150, "Resumen")}, false)
+document.getElementById("Resumen").addEventListener('keydown', function(){contarCaracteres("ContadorResumen", "Resumen", 120)}, false)
+document.getElementById("Resumen").addEventListener('keydown', function(){valida_LongitudDes(120, "Resumen")}, false)
 
 document.getElementById("Contenido").addEventListener('keydown', function(){contarCaracteres("ContadorContenido", "Contenido", 2000)}, false)
 document.getElementById("Contenido").addEventListener('keydown', function(){valida_LongitudDes(2000, "Contenido")}, false)
 
 //llama a la funcion cuando detecta cambio en el textarea, Ej: al pegar un texto
-document.getElementById("Titulo").addEventListener("input", (event) => contarCaracteres("ContadorTitulo", "Titulo", 100));
-document.getElementById("Resumen").addEventListener("input", (event) => contarCaracteres("ContadorResumen", "Resumen", 150));
+document.getElementById("Titulo").addEventListener("input", (event) => contarCaracteres("ContadorTitulo", "Titulo", 80));
+document.getElementById("Resumen").addEventListener("input", (event) => contarCaracteres("ContadorResumen", "Resumen", 120));
 //************************************************************************************************
     //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
     // window.addEventListener("click", function(e){   
@@ -57,7 +57,7 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
                 
         let num_caracteres_permitidos = Max;
 
-        //se averigua la cantidad de caracteres escritos 
+        //se detecta la cantidad de caracteres escritos 
         let num_caracteresEscritos = document.getElementById(ID_Contenido).value.length
 
         if(num_caracteresEscritos > num_caracteres_permitidos){ 
@@ -128,45 +128,6 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
         document.getElementById(id).focus();
     }
 
-//************************************************************************************************ 
-    //permite añadir una fuente nueva
-    function especificarFuente(){
-        console.log("______Desde especificarFuente()______")
-
-        let Fuente = document.getElementById("Fuente").value
-        // console.log(Fuente)
-        
-        if(Fuente == "Otra"){//si se selecciono la opcion "Otra"
-
-            //Se oculta el select que contiene las fuentes existentes en BD
-            document.getElementById("Fuente").style.display = "none"
-
-            //Se crean el input que cargara la nueva fuente
-            var NuevoElemento = document.createElement("input")
-            // console.log("Nuevo elemento= ", NuevoElemento)
-            
-            //Se añaden propiedades al input creado
-            NuevoElemento.classList.add("cont_panel--titulo")
-            NuevoElemento.name = "fuente"
-            NuevoElemento.id = "Input"
-            NuevoElemento.focus()
-
-            // //Se especifica el elemento donde se va a insertar el nuevo elemento
-            var ElementoPadre = document.getElementById("InsertarFuente")
-            // // console.log("Elemento padre= ", ElementoPadre)
-
-            // //Se inserta en el DOM el input creado
-            inputNuevo = ElementoPadre.appendChild(NuevoElemento) 
-            // // console.log("Elemento Añadido= ", inputNuevo)
-
-            // //Se especifica el elemento que sera la referencia para insertar el nuevo nodo
-            let Ref_Ubicacion= document.getElementById("AgregarNoticia")
-            // // console.log("Elemento referencia= ", Ref_Ubicacion)
-            
-            // //Se especifica el div padre y la posición donde se insertará el nuevo nodo
-            ElementoPadre.insertBefore(NuevoElemento, Ref_Ubicacion)
-        }
-    }
 
 //************************************************************************************************  
     function validarAgregarNoticia(){

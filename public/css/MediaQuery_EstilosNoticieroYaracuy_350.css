@@ -107,6 +107,11 @@
 	font-weight: bold; 
 	font-size: 0.8em;
 }
+.cont_noticias_informacion--span{
+	padding-left: 5px;
+	font-weight: bold; 
+	font-size: 0.9em;
+}
 .cont_portada_informacion--fecha{
 	display: inline; 
 }
@@ -150,7 +155,8 @@
 }
 .cont_noticia-imagen{
 	height: 25vh; 
-	object-fit: cover; 
+	width: 100%;
+	/* object-fit: cover;  */
 }
 .cont_detalle{
     width: 100%;
