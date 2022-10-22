@@ -3,6 +3,7 @@
         private $NoticiasPortadas;
         private $Anuncios;
         private $Imagenes;
+        private $Video;
 
         public function __construct(){
             $this->ConsultaInicio_M = $this->modelo("Inicio_M");
@@ -15,6 +16,9 @@
             
 			//CONSULTA la cantidad de imagenes asociadas a cada noticia del dia
             $this->Imagenes = $this->ConsultaInicio_M->consultarImagenesNoticiaPortada();
+
+			//CONSULTA si existe algun video asociadas a cada noticia del dia
+            $this->Video = $this->ConsultaInicio_M->consultarVideosNoticiaPortada();
 
 			//CONSULTA si existe algun anuncio asociado a cada noticia del dia
             $this->Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortada();
@@ -38,7 +42,8 @@
                     'datosNoticia' => $this->NoticiasPortadas, //ID_Noticia, titulo, subtitulo,    noticiaPrincipal, portada, nombre_imagenNoticia, fecha, fuente
                     'ID_NoticiaInicial' =>  $this->NoticiasPortadas[0]['ID_Noticia'],
                     'anuncios' => $this->Anuncios, //ID_Anuncio, ID_Noticia
-                    'imagenes' => $this->Imagenes  //ID_Noticia, COUNT(ID_Noticia)
+                    'imagenes' => $this->Imagenes,  //ID_Noticia, COUNT(ID_Noticia)
+                    'videos' => $this->Video //ID_Noticia
                 ];
                 
                 // echo "<pre>";
@@ -58,15 +63,18 @@
             $ID_NoticiaConsultar = $this->ConsultaInicio_M->consultarID_NoticiaPosterior($ID_Noticia);
             
             if($ID_NoticiaConsultar == Array()){
-                //Se CONSULTA el ID_Noticia de la primera noticia introducido en el dia
+                //Se CONSULTA el ID_Noticia de la primera noticia introducida en el dia
                 $ID_NoticiaConsultar = $this->ConsultaInicio_M->consultarID_NoticiaPortadaPrimera($ID_Noticia);
             }
-            
+
             //Se CONSULTA la informacion de la noticia solicituada
             $Noticia = $this->ConsultaInicio_M->consultarNoticiaPortada($ID_NoticiaConsultar[0]['ID_Noticia']);
             
 			//CONSULTA la cantidad de imagenes asociadas a la noticia solicitada
             $CantidadImagenes = $this->ConsultaInicio_M->consultarImagenesNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
+
+			//CONSULTA si existe algun video de la noticia solicitada
+            $Video = $this->ConsultaInicio_M->consultarVideoNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
 
 			//CONSULTA si existe algun anuncio asociado a la noticia solicitada
             $Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
@@ -74,6 +82,7 @@
             $Datos = [
                 'noticia' => $Noticia, //ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, fecha
                 'cantidadImagenes' => $CantidadImagenes,
+                'videos' => $Video, //ID_Noticia 
                 'anuncios' => $Anuncios
             ];
             
@@ -99,8 +108,20 @@
             //Se CONSULTA la informacion de la noticia solicitada
             $Noticia = $this->ConsultaInicio_M->consultarNoticiaPortada($ID_NoticiaConsultar[0]['ID_Noticia']);
 
+			//CONSULTA la cantidad de imagenes asociadas a la noticia solicitada
+            $CantidadImagenes = $this->ConsultaInicio_M->consultarImagenesNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
+            
+			//CONSULTA si existe algun video de la noticia solicitada
+            $Video = $this->ConsultaInicio_M->consultarVideoNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
+
+			//CONSULTA si existe algun anuncio asociado a la noticia solicitada
+            $Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
+            
             $Datos = [
-                'noticia' => $Noticia //ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, fecha
+                'noticia' => $Noticia, //ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, fecha
+                'cantidadImagenes' => $CantidadImagenes,
+                'videos' => $Video, //ID_Noticia 
+                'anuncios' => $Anuncios
             ];
             
             // echo "<pre>";

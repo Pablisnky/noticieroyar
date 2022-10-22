@@ -461,6 +461,24 @@
             }
         }
 
+        public function InsertarFuente($Coinsidencias){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO fuentes(fuente) 
+                VALUES (:FUENTE)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':FUENTE', $Coinsidencias, PDO::PARAM_STR);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+
 // // ********************************************************************************************************
 // // UPDATE
 // // ********************************************************************************************************

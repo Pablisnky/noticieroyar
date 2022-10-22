@@ -3,6 +3,9 @@
 :root{
 	--FondoDivModal--claro: rgba(0, 0, 0, 0.8);
 }
+*{
+	user-select: none;
+}
 .a_1{
 	font-size: 1.7em;
 	width: 100%;
@@ -100,7 +103,7 @@
 	padding: 0% 3% 1% 3%; 
 }
 .cont_portada_informacion--span{
-	padding-left: 20px;
+	padding-left: 5px;
 	font-weight: bold; 
 	font-size: 0.8em;
 }
@@ -246,8 +249,16 @@
 	width: 40%;
 	margin: 7% auto -1% auto;
 }
+.detalle_cont--fuente{
+	font-size: 0.7em
+}
 .detalle_cont--contenido{
 	width: 98%;
+}
+.detalle_cont--video{
+	width: 100%; 
+	margin: auto; 
+	text-align: left
 }
 .Default_quitarEscritorio{
 	display: flex;

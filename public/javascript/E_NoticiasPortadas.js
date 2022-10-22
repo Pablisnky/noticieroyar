@@ -1,6 +1,6 @@
 
 // document.getElementById("Contenido").addEventListener('click', function(){resize('Contenido')}, false)
-document.getElementById("Contenido").addEventListener('keydown', function(){autosize('Contenido')}, false)
+// document.getElementById("Contenido").addEventListener('keydown', function(){autosize('Contenido')}, false)
 
 //************************************************************************************************
     //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
@@ -10,16 +10,27 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
     }, false)
     
 //************************************************************************************************
-    //Cobfirma si se desea eliminar una noticia
+    //Confirma si se desea eliminar una noticia
     function EliminarNoticia(ID_Noticia){
-    let ConfirmaEliminar = confirm("Desea eliminar la noticia");
+        console.log("______Desde EliminarNoticia()______", ID_Noticia)
+        let ConfirmaEliminar = confirm("Desea eliminar la noticia");
         
         if(ConfirmaEliminar == true){
-            alert("ENtra en el true")
-            // Llamar_EliminarNoticia(ID_Noticia)
+            Llamar_EliminarNoticia(ID_Noticia)
+            
+            //Se elimina el div que contiene la noticia en el panel de noticias
+            // quitarNoticia();
         } 
         else{
-            alert(ID_Noticia)
-            // return
+            return
         }
     }
+    
+//************************************************************************************************
+    //Quita la noticia de pantalla, esta fue eliminada del servidor evia AJAX en Llamar_EliminarNoticia()
+   
+// document.getElementById('PanelEdicion').addEventListener('click', function(event){ 
+//     if((event.target.id == "Domicilio_No") || (event.target.id == "Domicilio_Si")){ 
+
+//     }
+// }, false); 

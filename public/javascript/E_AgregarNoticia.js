@@ -128,6 +128,46 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
         document.getElementById(id).focus();
     }
 
+//************************************************************************************************ 
+    //permite añadir una fuente nueva
+    function especificarFuente(){
+        console.log("______Desde especificarFuente()______")
+
+        let Fuente = document.getElementById("Fuente").value
+        // console.log(Fuente)
+        
+        if(Fuente == "Otra"){//si se selecciono la opcion "Otra"
+
+            //Se oculta el select que contiene las fuentes existentes en BD
+            document.getElementById("Fuente").style.display = "none"
+
+            //Se crean el input que cargara la nueva fuente
+            var NuevoElemento = document.createElement("input")
+            // console.log("Nuevo elemento= ", NuevoElemento)
+            
+            //Se añaden propiedades al input creado
+            NuevoElemento.classList.add("cont_panel--titulo")
+            NuevoElemento.name = "fuente"
+            NuevoElemento.id = "Input"
+            NuevoElemento.focus()
+
+            // //Se especifica el elemento donde se va a insertar el nuevo elemento
+            var ElementoPadre = document.getElementById("InsertarFuente")
+            // // console.log("Elemento padre= ", ElementoPadre)
+
+            // //Se inserta en el DOM el input creado
+            inputNuevo = ElementoPadre.appendChild(NuevoElemento) 
+            // // console.log("Elemento Añadido= ", inputNuevo)
+
+            // //Se especifica el elemento que sera la referencia para insertar el nuevo nodo
+            let Ref_Ubicacion= document.getElementById("AgregarNoticia")
+            // // console.log("Elemento referencia= ", Ref_Ubicacion)
+            
+            // //Se especifica el div padre y la posición donde se insertará el nuevo nodo
+            ElementoPadre.insertBefore(NuevoElemento, Ref_Ubicacion)
+        }
+    }
+
 //************************************************************************************************  
     function validarAgregarNoticia(){
         document.getElementById("Boton_Agregar").value = "Procesando..."

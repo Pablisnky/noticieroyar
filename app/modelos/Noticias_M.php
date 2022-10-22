@@ -159,4 +159,23 @@
                 return false;
             }
         }
+
+        //SELECT del video de una noticia especifica
+        public function consultarVideoNoticia($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Noticia, nombreVideo
+                 FROM videos 
+                 WHERE ID_Noticia = :ID_NOTICIA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
     }

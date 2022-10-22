@@ -7,7 +7,7 @@
 <div style="margin-left: 20%;">
     <fieldset class="fieldset_1" id="Portada"> 
         <legend class="legend_1">Agregar Noticia</legend>
-            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarAgregarNoticia()">
+            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" onsubmit="return validarAgregarNoticia()">
                 <div style="display: flex; margin-bottom: 30px">
                     <div style=" width: 30%">    
                         <!-- IMAGN PRINCIPAL -->
@@ -24,11 +24,12 @@
                         <div style="margin-top: 50px">    
                             <label class="cont_panel--label">Video</label>
                             <figure>
-                                <video src="<?php echo RUTA_URL?>/public/video/Si_te_vas.mp4" poster="<?php echo RUTA_URL?>/public/video/video.png"  controls width="300" height="200"></video>
-                            </figure>
+                                    <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/video/video.png"/>
+                                </figure>
+                                <!-- <video src="<?php echo RUTA_URL?>/public/video/Si_te_vas.mp4" poster="<?php echo RUTA_URL?>/public/video/video.png" controls width="300" height="200"></video> -->
                         </div>
                     </div>
-                    <div style="width: 100%; padding-left: 1%">
+                    <div style="width: 100%; padding-left: 1%" id="AgregarNoticia">
                         <!-- TITULO -->
                         <label class="cont_panel--label">TItulo</label>
                         <textarea class="textarea--titulo" name="titulo" id="Titulo"></textarea> 
@@ -54,14 +55,16 @@
                         
                         <!-- FUENTE -->
                         <label class="cont_panel--label">Fuente</label>
-                        <select class="cont_panel--titulo" name="fuente">
-                            <option></option>
+                        <select class="cont_panel--titulo" name="fuente" id="Fuente" onchange="especificarFuente()">
+                            <option>Lisbella Paez CNP 13.162</option>
                             <?php
                             foreach($Datos['fuentes'] as $Key)   :   ?>
-                                <option><?php echo $Key['fuente']?></option>
+                                <option value="<?php echo $Key['fuente']?>"><?php echo $Key['fuente']?></option>
                                 <?php
                             endforeach;     ?>
+                            <option value="Otra">Otra</option>
                         </select>
+                        <div id="InsertarFuente"></div>
                         
                         <!-- IMAGENES SECUNDARIAS -->     
                         <label class="cont_panel--label" style="display: block" for="ImgInp_2">Imagenes secundarias</label>

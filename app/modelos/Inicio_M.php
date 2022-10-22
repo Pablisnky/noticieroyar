@@ -28,7 +28,7 @@
             }
         }
 
-        //SELECT de los anuncios asociados a las noticias portadas
+        //SELECT de los anuncios asociados a las noticias de portada
         public function consultarAnuncioNoticiaPortada(){
             $stmt = $this->dbh->query(
                 "SELECT ID_Anuncio, ID_Noticia
@@ -43,12 +43,26 @@
             }
         }
 
-        //SELECT de las imagnes asociados a las noticias portadas
+        //SELECT de las imagnes asociados a las noticias de portada
         public function consultarImagenesNoticiaPortada(){
             $stmt = $this->dbh->query(
                 "SELECT  ID_Noticia, COUNT(ID_Noticia) AS cantidad 
                 FROM imagenes
                 GROUP BY ID_Noticia"
+            );
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        //SELECT de los videos asociados a la noticia de portada 
+        public function consultarVideosNoticiaPortada(){
+            $stmt = $this->dbh->query(
+                "SELECT  ID_Noticia
+                FROM videos"
             );
 
             if($stmt->execute()){
@@ -64,6 +78,25 @@
             $stmt = $this->dbh->prepare(
                 "SELECT  ID_Noticia, COUNT(ID_Noticia) AS cantidad 
                 FROM imagenes
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        //SELECT de videos asociados a la noticia de portada especificada
+        public function consultarVideoNoticiaPortadaEspec($ID_noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Noticia 
+                FROM videos
                 WHERE ID_Noticia = :ID_NOTICIA"
             );
 
@@ -104,7 +137,7 @@
                 FROM noticias 
                 WHERE ID_Noticia = (SELECT MIN(ID_Noticia) 
                                     FROM noticias 
-                                    WHERE ID_Noticia > :ID_NOTICIA AND fecha = CURDATE());"
+                                    WHERE ID_Noticia > :ID_NOTICIA AND fecha BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() );"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
@@ -125,7 +158,7 @@
                 FROM noticias 
                 WHERE ID_Noticia = (SELECT MAX(ID_Noticia) 
                                     FROM noticias 
-                                    WHERE ID_Noticia < :ID_NOTICIA AND fecha = CURDATE());"
+                                    WHERE ID_Noticia < :ID_NOTICIA AND fecha BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() );"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement

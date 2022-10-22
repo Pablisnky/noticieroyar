@@ -31,24 +31,26 @@
 
 //************************************************************************************************
     //Oculta el menu principal en responsive haciendo click por fuera del boton menu
-    let div = document.getElementById("MenuResponsive")
-    let span = document.getElementById("Span_6")
-    let C = document.getElementById("Tapa_Logo")
+    if(document.getElementById("MenuResponsive")){
+        let div = document.getElementById("MenuResponsive")
+        let span = document.getElementById("Span_6")
+        let C = document.getElementById("Tapa_Logo")
 
-    window.addEventListener("click", function(e){
-        //obtiendo informacion del DOM del elemento donde se hizo click 
-        // var click = e.target
-        // console.log(click)
-        AltoVitrina = document.body.scrollHeight
-        if(div.style.marginTop == "0%"){
-            div.style.marginTop = "-250%"
-            C.style.marginLeft = "100%"
-            C.style.transitionDelay = "0s"
-              
-            //Se detiene la propagación de los eventos en caso de hacer click en un elemento que contenga algun evento
-            e.stopPropagation();
-        }
-    }, true)
+        window.addEventListener("click", function(e){
+            //obtiendo informacion del DOM del elemento donde se hizo click 
+            // var click = e.target
+            // console.log(click)
+            AltoVitrina = document.body.scrollHeight
+            if(div.style.marginTop == "0%"){
+                div.style.marginTop = "-250%"
+                C.style.marginLeft = "100%"
+                C.style.transitionDelay = "0s"
+                
+                //Se detiene la propagación de los eventos en caso de hacer click en un elemento que contenga algun evento
+                e.stopPropagation();
+            }
+        }, true)
+    }
     
     
  //************************************************************************************************

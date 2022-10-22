@@ -207,7 +207,6 @@
 			$Fuentes = $this->Panel_M->consultarFuentes();
 			
 			$Datos = [
-				// 'secciones' => $Secciones, //ID_Seccion, seccion
 				'fuentes' => $Fuentes //ID_Fuente, fuente
 			];
 
@@ -336,11 +335,30 @@
 				// echo "Fecha : " . $Fecha . '<br>';
 				// echo "Fuente : " . $Fuente . '<br>';
 				// exit;
-				
+								
 				//Se INSERTA la noticia y se retorna el ID de la inserción
 				$ID_Noticia = $this->Panel_M->InsertarNoticia($Titulo, $Sub_Titulo, $Contenido, $Fecha, $Fuente);
 
-				
+				//SE verifica si la fuente de la noticia ya existe en la BD, sino existe se inserta
+				$VerificaFuente = $this->Panel_M->consultarFuentes();
+
+				// echo '<pre>';
+				// print_r($VerificaFuente);
+				// echo '</pre>';
+
+				$palabra_a_buscar = $Fuente;
+				foreach($VerificaFuente as $key => $value)	:
+					$indice = array_search($palabra_a_buscar, $value);
+					if($indice){//si la fuente existe entra al IF
+						//No hace nada
+					}
+					else{//No hay coincidencias, es decir, es una nueva fuente
+						//Se INSERTA la nueva fuente 
+						$this->Panel_M->InsertarFuente($Fuente);
+						break;
+					}
+				endforeach;
+
 				// Se inserta los ID en la tabla de dependencias transitivas "noticias_secciones" 
 				if(ctype_alpha($Seccion)){//Si Seccion es solo letras, hay una sola seccion
 					
@@ -872,7 +890,7 @@
 		// 		$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 		// 		// usar en local
-		// 		// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// // $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 		// 		//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 		// 		move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
@@ -900,7 +918,7 @@
 		// 			$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 
 		// 			//usar en local
-		// 			// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+					// // $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 
 		// 			//Subimos el fichero al servidor
 		// 			move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecundarias']['name'][$i]);

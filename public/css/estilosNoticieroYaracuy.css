@@ -21,7 +21,7 @@ img{
 	padding: 0px;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 15px;
-	box-sizing: border-box;
+	box-sizing: border-box;	
 }
 a{
 	color: var(--Enlaces);
@@ -350,7 +350,7 @@ textarea{
  .cont_panel--titulo{
 	display: block;
 	width: 90%;
-	margin-bottom: 10px;
+	/* margin-bottom: 40px; */
  }
  .cont_panel--resumen{
 	display: block;
@@ -558,6 +558,12 @@ textarea{
 .detalle_cont--avion{
 	color: var(--OficialOscuro);
 	font-size: 3em !important;
+} 
+.detalle_cont--video{
+	width: 30%; 
+	margin: auto; 
+	margin-top: 3%;
+	text-align: center
 }
 .textarea--titulo{
 	margin-top: 1%;
@@ -713,7 +719,7 @@ textarea{
 	overflow-y: scroll;
 }
 .Default--seleccion{
-	user-select: none;
+	user-select: initial;
 }
 .fieldset_1{
 	width: 95%;

@@ -58,13 +58,17 @@
             //Se consulta las imagenes de la noticia
             $ImagenesNoticia = $this->ConsultaNoticia_M->consultarImagenesNoticia($ID_Noticia);
 
+            //Se consulta el video de la noticia
+            $VideoNoticia = $this->ConsultaNoticia_M->consultarVideoNoticia($ID_Noticia);
+
 			//CONSULTA si existe algun anuncio sociado a la noticia seleccionada
             $Publicidad = $this->ConsultaNoticia_M->consultarAnuncioNoticiaPortada($ID_Noticia);
             
             $Datos = [
                 'detalleNoticia' => $DetalleNoticia, //ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido, fecha, fuente
                 'imagenesNoticia' => $ImagenesNoticia, //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
-                'publicidad' => $Publicidad 
+                'publicidad' => $Publicidad,
+                'video' => $VideoNoticia //ID_Noticia, nombreVideo
             ];
             
             // echo "<pre>";

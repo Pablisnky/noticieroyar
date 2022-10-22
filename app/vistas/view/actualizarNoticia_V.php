@@ -3,7 +3,7 @@
 
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
-
+    
     <!--PANEL NOTICIAS PRINCIPALES --> 
         <div style="margin-left: 20%;">
             <fieldset class="fieldset_1" id="Portada"> 

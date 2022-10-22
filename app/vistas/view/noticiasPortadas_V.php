@@ -43,15 +43,17 @@
                         <!-- FECHA -->
                         <label class="cont_panel--label">Fecha</label>
                         <label class="cont_panel--fecha"><?php echo $Not_Prin['fecha'];?></label>
-
-                        <!-- ACTUALIZAR -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Actualizar</a>
                         
-                        <!-- PUBLICIDAD -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_noticia_principal/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Publicidad</a>
-                        
-                        <!-- ELIMINAR -->
-                        <a href="<?php echo RUTA_URL?>/" onclick="EliminarNoticia('<?php echo $Not_Prin['ID_Noticia'];?>')">Eliminar</a>
+                        <div id="PanelEdicion">
+                            <!-- ACTUALIZAR -->
+                            <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Actualizar</a>
+                            
+                            <!-- PUBLICIDAD -->
+                            <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_noticia_principal/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Publicidad</a>
+                            
+                            <!-- ELIMINAR -->
+                            <label class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Prin['ID_Noticia'];?>')">Eliminar</label>
+                        </div>
                     </div>
                 </div>
                 <?php

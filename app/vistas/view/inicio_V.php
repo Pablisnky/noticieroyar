@@ -38,6 +38,13 @@
                         <?php
                     }
                 endforeach;
+                // VIDEO
+                foreach($Datos['videos'] as $Row_4)  : 
+                    if($Key['ID_Noticia'] == $Row_4['ID_Noticia']){ ?> 
+                        <small class="cont_portada_informacion--span">video</small> 
+                        <?php
+                    }
+                endforeach;
                 // SI EXISTE ANUNCIO PUBLICITARIO
                 foreach($Datos['anuncios'] as $Row_2)   :  
                     if($Key['ID_Noticia'] == $Row_2['ID_Noticia']){ ?>
@@ -54,13 +61,13 @@
         <!-- BOTONES DEL PANEL FRONTAL -->
         <div class="cont_portada--botones">
             <div>
-                <span style="" class="material-icons-outlined Default_pointer Default--seleccion" onclick="Llamar_NoticiaAnterior('<?php echo $Key['ID_Noticia'];?>')">arrow_back_ios_new</span>
+                <span class="material-icons-outlined Default_pointer" onclick="Llamar_NoticiaAnterior('<?php echo $Key['ID_Noticia'];?>')">arrow_back_ios_new</span>
             </div>
             <div>
                 <label class="boton boton--corto"><a class="Default_font--white" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
             </div>         
             <div>
-                <span class="material-icons-outlined Default_pointer Default--seleccion" onclick="Llamar_NoticiaPosterior('<?php echo $Key['ID_Noticia'];?>')">arrow_forward_ios</span>
+                <span class="material-icons-outlined Default_pointer" onclick="Llamar_NoticiaPosterior('<?php echo $Datos['datosNoticia'][0]['ID_Noticia'];?>')">arrow_forward_ios</span>
             </div>
         </div>         
         <?php

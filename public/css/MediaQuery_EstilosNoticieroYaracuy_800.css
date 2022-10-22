@@ -1,5 +1,8 @@
 @media(min-width: 351px) and (max-width: 800px){/*aplicará en cualquier medio con dimensiones menores a lo indicado*/
 		
+	*{
+		user-select: none;
+	}
 	.body_1{
 		overflow-y: hidden; 
 		overflow-x: hidden;
@@ -127,6 +130,14 @@
 		margin-top: -2%;
 		margin-bottom: 1%;
 	}
+	.detalle_cont--fuente{
+		font-size: 0.7em
+	}
+	.detalle_cont--video{
+		width: 100%; 
+		margin: auto; 
+		text-align: left
+	}
 	.cont_modal--cerrar{
 	   font-size: 2.3em !important;	 
 	}
@@ -201,7 +212,7 @@
 	}
 	.cont_portada_informacion--span{
 		/* background-color: yellow; */
-		padding-left: 20px;
+		padding-left: 5px;
 		font-weight: bold; 
 		font-size: 0.8em;
 	}

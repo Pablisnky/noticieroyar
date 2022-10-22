@@ -1,6 +1,6 @@
 <!-- PUBLICIDAD -->   
 <?php       
-if(!empty($Datos['detalleNoticia'][0]['ID_Noticia']) AND !empty($Datos['publicidad'][0]['ID_Noticia'])){
+if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
     if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['publicidad'][0]['ID_Noticia']){  ?>
         <div class="publicidad_cont--main" id="VentanaModal--Publicidad">			
             <span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="Cerrar--modal">cancel</span>
@@ -57,8 +57,19 @@ if(!empty($Datos['detalleNoticia'][0]['ID_Noticia']) AND !empty($Datos['publicid
         </div>
     </div>
 
+    <!-- VIDEO -->
+    <div class="detalle_cont--video"">
+        <?php
+        if(!empty($Datos['video'][0]['ID_Noticia'])){
+            if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['video'][0]['ID_Noticia']){   ?>
+                <video style="width: 100%;" src="<?php echo RUTA_URL?>/public/video/<?php echo $Datos['video'][0]['nombreVideo']?>" controls></video> 
+                <?php
+            }
+        }       ?>
+    </div>
+
     <!-- CONTENIDO -->
-    <div class="detalle_cont--contenido" >
+    <div style="" >
         <textarea class="textarea--contenido textarea--borde textarea--font" id="Contenido" readonly><?php echo $Datos['detalleNoticia'][0]['contenido']?></textarea>
     </div>
     

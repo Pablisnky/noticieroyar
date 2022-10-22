@@ -24,9 +24,17 @@
                 <hr class="cont_noticia--hr_1 Default_quitarMovil">
                 <small class="cont_portada_informacion--span"><?php echo $Key['fecha'];?></small >
                 <?php
+                // CANTIDAD DE IMAGENES
                 foreach($Datos['cantidadImagenes'] as $Row)   :  
                     if($Key['ID_Noticia'] == $Row['ID_Noticia']){ ?> 
                         <small class="cont_portada_informacion--span"><?php echo $Row['cantidad'];?> imagenes</small> 
+                        <?php
+                    }
+                endforeach;
+                // VIDEO
+                foreach($Datos['videos'] as $Row_4)  : 
+                    if($Key['ID_Noticia'] == $Row_4['ID_Noticia']){ ?> 
+                        <small class="cont_portada_informacion--span">video</small> 
                         <?php
                     }
                 endforeach;
