@@ -69,7 +69,7 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
     </div>
 
     <!-- CONTENIDO -->
-    <div style="" >
+    <div>
         <textarea class="textarea--contenido textarea--borde textarea--font" id="Contenido" readonly><?php echo $Datos['detalleNoticia'][0]['contenido']?></textarea>
     </div>
     

@@ -585,11 +585,13 @@ textarea{
 	padding: 1.5%;
 }
 .textarea--contenido{
+	margin: auto;
 	margin-top: 1%;
 	line-height: 30px;
 	min-height: 250px;
-	width: 100%;	
+	width: 80%;	
 	padding: 1.5%;
+	display: block;
 }
 .textarea--borde{
 	border: none;

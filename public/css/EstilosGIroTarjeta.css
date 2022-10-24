@@ -1,0 +1,35 @@
+.contenedor_taejeta_main{
+    /* width: 70%; */
+    /* height: 100vh;  */
+    /* margin: auto */
+}
+.contenedor_tarjeta{
+    /* margin-top: 5%; */
+    /* margin-bottom: 5%; */
+    perspective: 600px;
+    /* width:50%;  */
+    /* height:550px;  */
+    /* margin: auto;   */
+}
+.tarjeta{
+    /* width: 70%; */
+    /* height: 80vh; */
+    /* margin: auto; */
+    position: relative;
+    transform-style: preserve-3d; 
+    transition: .5s ease;
+}
+.adelante, .atras{
+    position: absolute;
+    /* top: 0%;
+    left: 0%; */
+    backface-visibility: hidden;
+    min-height: 85%;
+}
+.atras{
+    transform: rotateY(180deg);
+    padding: 1%;
+}
+.adelante{
+    transform: rotateY(0deg);
+}

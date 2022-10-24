@@ -1,9 +1,5 @@
-<!-- MODAL -->
-<div class="cont_modal" id="VentanaModal">				
-    <span class="material-icons-outlined cont_modal--cerrar Default_pointer" id="Cerrar--modal">cancel</span>
-    <p class="cont_modal--p">Duelo nacional por tragedia en Las Tejerías, estado Aragua.</p>
-    <img class="cont_modal--logo" src="<?php echo RUTA_URL?>/public/images/duelo.jpg"/>
-</div>
+<!-- VENTANA MODAL INICIAL -->
+<?php //require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
 
 <div class="cont_portada" id="Cont_Portada">
     <?php
