@@ -251,7 +251,7 @@
 			$EfemerideActualizar = $this->Panel_M->consultarEfemerideActualizar($ID_Efemeride);
 			
 			$Datos = [
-				'efemerideActualizar' => $EfemerideActualizar //ID_Efemeride, titulo, contenido, fecha, Nombre_imagen
+				'efemerideActualizar' => $EfemerideActualizar //titulo, contenido, fecha, nombre_ImagenEfemeride, imagenPrincipalEfemeride
 			];
 
 			// echo '<pre>';
@@ -805,120 +805,46 @@
 		}
 
 		// recibe formulario que actualiza una noticia
-		// public function recibeNotiActualizada(){
-		// 	$ID_Noticia = $_POST['ID_Noticia'];
-		// 	$Seccion = $_POST['seccion'];
-		// 	$Titulo = $_POST['titulo'];
-		// 	$Sub_Titulo = $_POST['subtitulo']; 
-		// 	$Contenido = $_POST['contenido']; 
-		// 	$Fecha = $_POST['fecha'];			
+		public function recibeEfemerideActualizada(){
+			$ID_Efemeride = $_POST['ID_Efemeride'];
+			$Titulo = $_POST['titulo'];
+			$Contenido = $_POST['contenido'];
+			$Fecha = $_POST['fecha']; 			
 
-		// 	// echo "ID_Noticia: " . $ID_Noticia . '<br>';
-		// 	// echo "Seccion: " . $Seccion . '<br>';
-		// 	// echo "Titulo : " . $Titulo . '<br>';
-		// 	// echo "SubTitulo : " . $Sub_Titulo . '<br>';
-		// 	// echo "Contenido : " . $Contenido . '<br>';
-		// 	// echo "Fecha : " . $Fecha . '<br>';
-		// 	// exit;
+			// echo "ID_Efemeride: " . $ID_Efemeride . '<br>';
+			// echo "Titulo : " . $Titulo . '<br>';
+			// echo "Contenido : " . $Contenido . '<br>';
+			// echo "Fecha : " . $Fecha . '<br>';
+			// exit;
 				
-		// 	//Se ACTUALIZA la noticia de portada seleccionada
-		// 	$this->Panel_M->ActualizarNoticia($ID_Noticia, $Titulo, $Sub_Titulo, $Contenido, $Fecha);	
+			//Se ACTUALIZA la efemeride seleccionada
+			$this->Panel_M->ActualizarEfemeride($ID_Efemeride, $Titulo, $Contenido, $Fecha);	
 			
-		// 	// Se ACTUALIZA los ID_Seccion en la tabla de dependencias transitivas
-		// 	if(ctype_alpha($Seccion)){//Si Seccion es solo letras, hay una sola seccion
-				
-		// 		//Se consulta el ID_Seccion segun la seccion recibida
-		// 		$ID_Seccion = $this->Panel_M->Consultar_ID_Seccion($Seccion);
-				
-		// 		// echo $ID_Seccion['ID_Seccion'];
-
-		// 		// echo '<pre>';
-		// 		// print_r($ID_Seccion);
-		// 		// echo '</pre>';
-		// 		// exit();
-
-		// 		//Se BORRAN los ID_Seccion de una noticia especifica para volver a insertarlos con valores nuevos
-		// 		$this->Panel_M->eliminar_DT_noticia_seccion($ID_Noticia);
-
-		// 		///se INSERTA los ID en tabla de dependencia trancitiva
-		// 		$Insertar_DT_noticia_seccion = $this->Panel_M->Insertar_DT_noticia_seccion($ID_Noticia, $ID_Seccion['ID_Seccion']);
-		// 	}
-		// 	else{//$Seccion contiene una cadena con las secciones seleccionadas, separados por coma,
-		// 		// echo $Seccion . '<br>';
-		// 		//se convierte $Seccion en array
-		// 		$Seccion = explode(',', $Seccion);
-		// 		// echo '<pre>';
-		// 		// print_r($Seccion);
-		// 		// echo '</pre>';
-				
-		// 		$Elementos = count($Seccion);
-		// 		$SeccionesVarias = "";
-		// 		//Se convierte el array en una cadena con sus elementos entre comillas
-		// 		for($i = 0; $i < $Elementos; $i++){
-		// 			$SeccionesVarias .= " '" . $Seccion[$i] . "', ";
-		// 		}
-				
-		// 		// echo $SeccionesVarias . '<br>';
-
-		// 		// Se quita el ultimo espacio y coma del string generado con lo cual
-		// 		// el string queda 'id1','id2','id3'
-		// 		$SeccionesVarias = substr($SeccionesVarias,0,-2);
-		// 		// echo $SeccionesVarias . '<br>';
-
-		// 		//Se consulta el ID_Seccion segun la seccion recibida
-		// 		$ID_Secciones = $this->Panel_M->ConsultarVarios_ID_Seccion($SeccionesVarias);
-					
-		// 		// echo '<pre>';
-		// 		// print_r($ID_Secciones);
-		// 		// echo '</pre>';
-		// 		// exit;
-
-		// 		$Cantidad = count($ID_Secciones);
-
-		// 		$Varios = [];
-		// 		foreach($ID_Secciones as $Row)	:
-		// 			array_push($Varios, $Row['ID_Seccion']);
-		// 		endforeach;
-
-		// 		// echo '<pre>';
-		// 		// print_r($Varios);
-		// 		// echo '</pre>';
-		// 		// exit;
-				
-		// 		//Se BORRAN los ID_Seccion de una noticia especifica para volver a insertarlos con valores nuevos
-		// 		$this->Panel_M->eliminar_DT_noticia_seccion($ID_Noticia);
-
-		// 		//Se INSERTA los ID_Noticia y ID_Seccion en la tabla de dependencias transitiva
-		// 		for($i = 0; $i < $Cantidad; $i++){
-		// 			$this->Panel_M->Insertar_DT_noticia_seccion($ID_Noticia, $Varios[$i]);
-		// 		}
-		// 	}
-
 		// 	//Si se cambio la IMAGEN PRINCIPAL se procede a actualizarla
-		// 	if($_FILES['imagenPrincipal']["name"] != ""){			
-		// 		$ID_imagen = $_POST['id_fotoPrincipal'];	
-		// 		$Nombre_imagenPrincipal = $_FILES['imagenPrincipal']['name'];
-		// 		$Tipo_imagenPrincipal = $_FILES['imagenPrincipal']['type'];
-		// 		$Tamanio_imagenPrincipal = $_FILES['imagenPrincipal']['size'];
+			if($_FILES['imagenPrincipal_Efemeride']["name"] != ""){			
+				$ID_imagenEfemeride = $_POST['id_fotoEfemeride'];	
+				$Nombre_imagenPrincipal_Efemeride = $_FILES['imagenPrincipal_Efemeride']['name'];
+				$Tipo_imagenPrincipal_Efemeride = $_FILES['imagenPrincipal_Efemeride']['type'];
+				$Tamanio_imagenPrincipal_Efemeride = $_FILES['imagenPrincipal_Efemeride']['size'];
 
-		// 		// echo "ID_Imagen: " .$ID_imagen. '<br>';
-		// 		// echo "Nombre_imagen: " . $Nombre_imagenPrincipal . '<br>';
-		// 		// echo "Tipo_imagen: " .  $Tipo_imagenPrincipal . '<br>';
-		// 		// echo "Tamanio_imagen: " .  $Tamanio_imagenPrincipal . '<br>';
-		// 		// exit;
+				// echo "ID_ImagenEfemeride: " . $ID_imagenEfemeride. '<br>';
+				// echo "Nombre_imagen: " . $Nombre_imagenPrincipal_Efemeride . '<br>';
+				// echo "Tipo_imagen: " .  $Tipo_imagenPrincipal_Efemeride . '<br>';
+				// echo "Tamanio_imagen: " .  $Tamanio_imagenPrincipal_Efemeride . '<br>';
+				// exit;
 				
-		// 		//Usar en remoto
-		// // 		$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				//Usar en remoto
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
-		// 		// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// usar en local
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
-		// 		//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-		// 		move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
 
-		// 		//Se ACTUALIZA la imagen principal de la noticia
-		// 		$this->Panel_M->ActualizarImagenNoticia($ID_imagen, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
-		// 	}
+				//Se ACTUALIZA la imagen principal de la noticia
+				$this->Panel_M->ActualizarImagenEfemeride($ID_imagenEfemeride, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+			}
 
 		// 	//IMAGENES SECUNDARIAS;
 		// 	if($_FILES['imagenesSecundarias']['name'][0] != ''){
@@ -949,9 +875,9 @@
 		// 		}
 		// 	}
 			
-		// 	header("Location:" . RUTA_URL . "/Panel_C/portadas");
-		// 	die();
-		// }
+			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
+			die();
+		}
 		
 		// ELimina noticia
 		public function eliminar_noticia($ID_Noticia){

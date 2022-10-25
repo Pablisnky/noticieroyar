@@ -9,22 +9,25 @@
             foreach($Datos['efemerides'] as $Row) : ?>
                 <div style="display: flex; margin-bottom: 30px">
                 
-                    <!-- IMAGEN  -->
-                    <div class="cont_panel__did-1">       
+                    <!-- IMAGEN EFEMERIDE -->
+                    <div style=" width: 30%">       
                         <figure>
-                            <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['Nombre_imagen'];?>"/> 
+                            <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_ImagenEfemeride'];?>"/> 
                         </figure>
                     </div>
-                    <div style="width: 100%">
+                    <div style="width: 100%; padding-left: 1%">
                         <!-- FECHA -->
-                        <label class="cont_panel--label"><?php echo $Row['fecha'];?></label>
+                        <label class="cont_panel--label">Fecha</label>
+                        <label class="cont_panel--fecha"><?php echo $Row['fecha'];?></label>
                         
-                        <!-- TITULO  -->
+                        <!-- TITULO -->
+                        <label class="cont_panel--label">Titulo</label>
                         <label class="cont_panel--titulo"><?php echo $Row['titulo'];?></label>
                         
-                        <!-- CONTENIDO -->
-                        <label class="cont_panel--label"><?php echo $Row['contenido'];?></label>
-                        
+                        <!-- CONTENIDO -->                        
+                        <!-- <label class="cont_panel--label">Contenido</label>
+                        <textarea class="cont_panel--textarea Default--textarea--scrol" name="contenido" id="Contenido" autosize="none"><?php echo $Row['contenido'];?></textarea>  -->
+                        <br>
                         <!-- ACTUALIZAR -->
                         <a class="" href="<?php echo RUTA_URL?>/Panel_C/actualizar_efemeride/<?php echo $Row['ID_Efemeride'];?>" rel="noopener noreferrer">Actualizar</a>
                         

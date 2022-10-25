@@ -6,7 +6,7 @@
             <!-- IMAGEN -->
             <div class="">                        
                 <figure>
-                    <img class="cont_efemerides--imagen" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['Nombre_imagen'];?>"/> 
+                    <img class="cont_efemerides--imagen" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_ImagenEfemeride'];?>"/> 
                 </figure>
             </div>
 

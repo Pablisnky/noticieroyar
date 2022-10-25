@@ -401,7 +401,7 @@ textarea{
 	padding-bottom: 5%;
 }
 .cont_panel__agenda--imagen{
-   background-color: yellow;
+   /* background-color: yellow; */
 	width: 30%;
 	/* height: 5vw;  */
 	/* position: absolute; */
@@ -500,7 +500,6 @@ textarea{
 	padding-bottom: 5%;
 }
 .detalle_cont--membrete{	
-	/* background-color: yellow; */
 	font-size: 2em;
 	font-family: Gruppo;
 	font-weight: bold;
@@ -648,21 +647,14 @@ textarea{
 .cont_panel--div-1{
 	margin: 10% auto;
 }
-.cont_ponchoDetalle--iconoLeft{
-	color: rgba(255, 255, 255, 0.7);
-	position: fixed;
-	z-index: 1;
-	top: 50% !important;
-	left: 1%;
-	cursor: pointer;
-}
-.cont_ponchoDetalle--iconoRight{
-	color: rgba(255, 255, 255, 0.7);
-	position: fixed;
-	z-index: 1;
-	top: 50% !important;
-	left: 88%;
-	cursor: pointer;
+.cont_panel--textarea{
+	margin: auto;
+	margin-top: 1%;
+	line-height: 30px;
+	min-height: 250px;
+	width: 100%;	
+	padding: 1.5%;
+	display: block;
 }
 .cont_radio{
 	display: flex; 
@@ -754,6 +746,7 @@ textarea{
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	z-index: 1;
 }
 .header--inicio{
 	position: fixed;
@@ -779,7 +772,6 @@ textarea{
 	cursor: pointer;
 }
 .header__titulo{
-	/* background-color: yellow; */
 	font-size: 3em;
 	font-family: Gruppo;
 	display: block;
@@ -843,6 +835,7 @@ textarea{
 	position: fixed;
 	top: 10% !important;
 	transition: all 0.4s;
+	z-index: 1;
 }
 .tapa-logo--font{
 	font-size: 4em;

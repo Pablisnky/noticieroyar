@@ -33,7 +33,7 @@
                             
                                 <!-- CONTENIDO -->
                                 <label class="cont_panel--label">Contenido</label>
-                                <textarea class="textarea--contenido Default--textarea--scrol" name="contenido" id="Contenido"><?php echo $Datos['noticiaActualizar']['contenido'];?></textarea> 
+                                <textarea class="cont_panel--textarea Default--textarea--scrol" name="contenido" id="Contenido"><?php echo $Datos['noticiaActualizar']['contenido'];?></textarea> 
 
                                 <!-- SECCION -->
                                 <label class="cont_panel--label">Sección</label>
@@ -120,7 +120,8 @@
                             <!-- EDITAR ANUNCIO PUBLICITARIO -->
                         </fieldset> 
 
-                        <div class=""> 
+                        <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
+                        <div> 
                             <input class="Default_ocultar" type="text" name="ID_Noticia" value="<?php echo $Datos['noticiaActualizar']['ID_Noticia'];?>"/> 
                             <input class="Default_ocultar" type="text" name="id_fotoPrincipal" value="<?php echo $Datos['noticiaActualizar']['ID_Imagen'];?>" />
 

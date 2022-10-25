@@ -7,8 +7,9 @@
 
         public function consultarEfemeride(){
             $stmt = $this->dbh->prepare(
-                "SELECT titulo, contenido, fecha, Nombre_imagen
+                "SELECT titulo, contenido, fecha, nombre_ImagenEfemeride
                  FROM efemeride 
+                 INNER JOIN imagenesefemerides ON efemeride.ID_Efemeride=imagenesefemerides.ID_Efemeride
                  WHERE fecha = CURDATE()"
             );
 

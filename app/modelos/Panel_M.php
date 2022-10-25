@@ -88,8 +88,9 @@
         // SELECT de efemerides
         public function consultarEfemerides(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Efemeride, titulo, contenido, Nombre_imagen, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
+                "SELECT efemeride.ID_Efemeride, titulo, contenido, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_ImagenEfemeride
                 FROM efemeride
+                INNER JOIN imagenesefemerides ON efemeride.ID_Efemeride=imagenesefemerides.ID_Efemeride
                 ORDER BY fecha
                 DESC"
             );
@@ -197,9 +198,10 @@
         //SELECT de la efemeride a actualizar
         public function consultarEfemerideActualizar($ID_Efemeride){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Efemeride, titulo, contenido, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, Nombre_imagen
-                 FROM efemeride 
-                 WHERE ID_Efemeride = :ID_EFEMERIDE"
+                "SELECT efemeride.ID_Efemeride, ID_ImagenEfemeride, titulo, contenido, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_ImagenEfemeride, imagenPrincipalEfemeride
+                 FROM efemeride
+                 INNER JOIN imagenesefemerides ON efemeride.ID_Efemeride=imagenesefemerides.ID_Efemeride
+                 WHERE efemeride.ID_Efemeride = :ID_EFEMERIDE"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
@@ -621,7 +623,7 @@
             $stmt = $this->dbh->prepare(
                 "UPDATE efemeride 
                 SET Nombre_imagen = :NOMBRE_IMG, Tamanio_imagen = :TAMANIO_IMG, Tipo_imagen = :TIPO_IMG 
-                WHERE ID_Efemeride  = :ID_EFEMERIDE"
+                WHERE ID_Efemeride = :ID_EFEMERIDE"
             );
 
             // Se vinculan los valores de las sentencias preparadas

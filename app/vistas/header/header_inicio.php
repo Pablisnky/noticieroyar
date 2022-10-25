@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
     <head><!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-E43SZ6L3CQ"></script>
+		<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-E43SZ6L3CQ"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 
 			gtag('config', 'G-E43SZ6L3CQ');
-		</script>
+		</script> -->
 
 		<!-- ********************************************************************************************* -->
 		
@@ -29,6 +29,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/estilosNoticieroYaracuy.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_350.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_800.css?v=<?php echo rand();?>"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/EstilosGiroTarjeta.css?v=<?php echo rand();?>"/>
 		
 		<!-- <link rel="shortcut icon" type="image/png" href="<?php //echo RUTA_URL;?>/public/images/logo.png"/>	 -->
 		<link rel="manifest" href="<?php echo RUTA_URL;?>/public/manifest.json"/>

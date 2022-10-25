@@ -9,22 +9,22 @@
             <legend class="legend_1">Actualizar Efemeride</legend>
                 <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeEfemerideActualizada" method="POST" enctype="multipart/form-data" autocomplete="off">
                     <div style="display: flex; margin-bottom: 30px">
-                        <div class="cont_panel__did-1">      
 
-                            <!-- IMAGEN-->
+                        <!-- IMAGEN-->
+                        <div style=" width: 30%"> 
                             <figure>
-                                <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['efemerideActualizar']['Nombre_imagen'];?>"/> 
+                                <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['efemerideActualizar']['nombre_ImagenEfemeride'];?>"/> 
                             </figure>
                             <label for="imgInp"><span class="span_18 borde_1"><i class="fas fa-pencil-alt icono_4"></i></span></label>
-                            <input class="ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
+                            <input class="ocultar" type="file" name="imagenPrincipal_Efemeride" id="imgInp"/>
                         </div>
-                        <div style="width: 100%">
+                        <div style="width: 100%; padding-left: 1%">
 
                             <!-- TITULO  -->
                             <input class="cont_panel--titulo" type="text" name="titulo" value="<?php echo $Datos['efemerideActualizar']['titulo'];?>"/>
                                                     
                             <!-- CONTENIDO -->
-                            <textarea class="cont_panel--titulo" name="contenido"><?php echo $Datos['efemerideActualizar']['contenido'];?></textarea> 
+                            <textarea class="cont_panel--textarea" name="contenido" id="Contenido"><?php echo $Datos['efemerideActualizar']['contenido'];?></textarea> 
                             
                             <!-- FECHA -->
                             <input class="cont_panel--titulo" type="text" name="fecha" value="<?php echo $Datos['efemerideActualizar']['fecha'];?>"/>
@@ -32,6 +32,7 @@
                     </div>
                     <div class=""> 
                         <input class="Default_ocultar" type="text" name="ID_Efemeride" value="<?php echo $Datos['efemerideActualizar']['ID_Efemeride'];?>"/> 
+                        <input class="Default_ocultar" type="text" name="id_fotoEfemeride" value="<?php echo $Datos['efemerideActualizar']['ID_ImagenEfemeride'];?>" />
 
                         <input class="boton" type="submit" value="Actualizar efemeride"/>  
                     </div>
@@ -39,7 +40,8 @@
         </fieldset>
     </div>
 
-<!-- <script src="<?php echo RUTA_URL;?>/public/javascript/A_ActualizarNoticia.js?v=<?php echo rand();?>"></script>  -->
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script> 
+<script src="<?php echo RUTA_URL;?>/public/javascript/E_ActualizarEfemeride.js?v=<?php echo rand();?>"></script> 
 
 <script>       
     //Da una vista previa de la foto de la noticia
