@@ -10,7 +10,7 @@
             <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" onsubmit="return validarAgregarNoticia()">
                 <div style="display: flex; margin-bottom: 30px">
                     <div style=" width: 30%">    
-                        <!-- IMAGN PRINCIPAL -->
+                        <!-- IMAGEN PRINCIPAL -->
                         <div>
                             <label class="cont_panel--label">Imagen principal</label>
                             <label class="Default_pointer" for="imgInp">    
@@ -42,7 +42,7 @@
 
                         <!-- CONTENIDO -->
                         <label class="cont_panel--label">Contenido</label>
-                        <textarea class="textarea--contenido Default--textarea--scrol" name="contenido" id="Contenido" autosize="none"></textarea> 
+                        <textarea class="cont_panel--textarea Default--textarea--scrol" name="contenido" id="Contenido" autosize="none"></textarea> 
                         <input class="cont_panel--contador" type="text" id="ContadorContenido" value="2000" readonly/>
                         
                         <!-- SECCION -->

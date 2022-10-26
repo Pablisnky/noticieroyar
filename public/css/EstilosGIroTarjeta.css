@@ -1,25 +1,12 @@
-.contenedor_taejeta_main{
-     /* width: 70%;  */
-     /* height: 100vh;   */
-     /* margin: auto  */
-}
 .contenedor_tarjeta{
-     /* margin-top: 5%;  */
-     /* margin-bottom: 5%;  */
     perspective: 600px;
-     /* width:50%;   */
-     /* height:550px;   */
-     /* margin: auto;    */
 }
 .tarjeta{
-    /* background-color: red; */
-     /* width: 70%;  */
-     min-height: 100vh; 
-     margin: auto; 
+    min-height: 95vh; 
+    margin: auto; 
     position: relative;
     transform-style: preserve-3d; 
     transition: .5s ease;
-    /* z-index: -1; */
 }
 .tarjeta--titulo{
     color: white;
@@ -30,15 +17,12 @@
     top: 0%;
     left: 0%;
     backface-visibility: hidden; /*permite mostrar la cara posterior de un elemento*/
-    /* min-height: 85%; */
 }
 .atras{
     background-color: red;
     width: 100%;
     min-height: 100vh; 
-    /* height: 100%; */
     transform: rotateY(180deg);
-    /* padding: 1%; */
 }
 .adelante{
     transform: rotateY(0deg);

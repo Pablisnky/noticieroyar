@@ -8,23 +8,26 @@
         <fieldset class="fieldset_1" id="Portada"> 
             <legend class="legend_1">Agregar Efemerides</legend>
                 <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeEfemerideAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarAgregarEfemride()">
-                    <div style="display: flex; margin-bottom: 30px">
-                        <div class="cont_panel__did-1">       
+                    <div style="display: flex; margin-bottom: 30px">   
+                        <div class="width: 30%">    
                             <!-- IMAGN -->
-                            <figure>
-                                <label for="imgInp"class="Default_pointer"><img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> </label>
-                            </figure>
-                            <!-- <span class="material-icons-outlined span_18">edit</span> -->
-                            <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
+                            <div>
+                                <label class="cont_panel--label">Imagen principal</label>
+                                <label class="Default_pointer" for="imgInp">    
+                                <figure>
+                                    <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                                </figure>
+                                <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
+                            </div>
                         </div>
-                        <div style="width: 100%">
+                        <div style="width: 100%; padding-left: 1%">
                             <!-- TITULO -->
                             <label class="cont_panel--label">Titulo</label>
                             <input class="cont_panel--titulo" type="text" name="titulo"/>
 
                             <!-- CONTENIDO -->
                             <label class="cont_panel--label">Contenido</label>
-                            <textarea class="textarea--contenido" name="contenido" id="Contenido" autosize="none"></textarea> 
+                            <textarea class="cont_panel--textarea" name="contenido" id="Contenido" autosize="none"></textarea> 
                                                         
                             <!-- FECHA -->
                             <label class="cont_panel--label">Fecha (ingresar solo números)</label>

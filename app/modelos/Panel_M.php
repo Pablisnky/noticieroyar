@@ -396,10 +396,10 @@
         }
         
         //INSERT de efemeride
-        public function InsertarEfemeride($Titulo, $Contenido, $Fecha, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
+        public function InsertarEfemeride($Titulo, $Contenido, $Fecha){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO efemeride(titulo, contenido, fecha, Nombre_imagen, Tipo_imagen, Tamanio_imagen) 
-                VALUES (:TITULO, :CONTENIDO, STR_TO_DATE( '$Fecha', '%d-%m-%Y' ), :NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN)"
+                "INSERT INTO efemeride(titulo, contenido, fecha) 
+                VALUES (:TITULO, :CONTENIDO, STR_TO_DATE( '$Fecha', '%d-%m-%Y' ))"
             );
 
             // STR_TO_DATE( '$Fecha', '%d-%m-%Y' ) se recibe la fecha en formato USA y se cambia a formato EUR
@@ -407,9 +407,30 @@
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':TITULO', $Titulo, PDO::PARAM_STR);
             $stmt->bindParam(':CONTENIDO', $Contenido, PDO::PARAM_STR);
-            $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenPrincipal, PDO::PARAM_STR);
-            $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenPrincipal, PDO::PARAM_STR);
-            $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenPrincipal, PDO::PARAM_STR);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                //se recupera el ID del registro insertado
+                return $this->dbh->lastInsertId();
+            }
+            else{
+                return FALSE;
+            }
+        }
+
+        //Se insertan la imagnees de la efemerides
+        public function InsertarImagenPrincipalEfemeride($ID_Efemeride, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO  imagenesefemerides(ID_Efemeride, nombre_ImagenEfemeride, tipo_ImagenEfemeride, tamanio_ImagenEfemeride, imagenPrincipalEfemeride) 
+                VALUES (:ID_EFEMERIDE, :NOMBRE_IMG_EFEMERIDE, :TIPO_IMG_EFEMERIDE, :TAMANIO_IMG_EFEMERIDE, :IMG_EFEMERIDE_PRINCIPAL)"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_EFEMERIDE', $ID_Efemeride, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMG_EFEMERIDE', $Nombre_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMG_EFEMERIDE', $Tipo_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMG_EFEMERIDE', $Tamanio_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindValue(':IMG_EFEMERIDE_PRINCIPAL', 1, PDO::PARAM_INT);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){

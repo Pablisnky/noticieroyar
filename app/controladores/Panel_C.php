@@ -302,13 +302,16 @@
 				// exit;
 				
 				//Se INSERTA la efemeride y se retorna el ID de la inserción
-				$ID_Noticia = $this->Panel_M->InsertarEfemeride($Titulo, $Contenido, $Fecha, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+				$ID_Efemeride = $this->Panel_M->InsertarEfemeride($Titulo, $Contenido, $Fecha);
 				
+				//Se INSERTA la imagen principal de la efemeride
+				$this->Panel_M->InsertarImagenPrincipalEfemeride($ID_Efemeride, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+
 				//Usar en remoto
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
@@ -345,19 +348,26 @@
 				// echo '<pre>';
 				// print_r($VerificaFuente);
 				// echo '</pre>';
+				// exit;
 
+				$AgregaFuente = [];
 				$palabra_a_buscar = $Fuente;
 				foreach($VerificaFuente as $key => $value)	:
-					$indice = array_search($palabra_a_buscar, $value);
-					if($indice){//si la fuente existe entra al IF
-						//No hace nada
-					}
-					else{//No hay coincidencias, es decir, es una nueva fuente
-						//Se INSERTA la nueva fuente 
-						$this->Panel_M->InsertarFuente($Fuente);
-						break;
+					$Indice = array_search($palabra_a_buscar, $value);
+					if($Indice){//si la fuente existe entra al IF
+						//No se inserta en la BD	
+						array_push($AgregaFuente, $palabra_a_buscar);
+
+						// echo '<pre>';
+						// print_r($AgregaFuente);
+						// echo '</pre>';
 					}
 				endforeach;
+
+				if($AgregaFuente == Array()){//Si $AgregaFuente esta vacio, la fuente no existe y se inserta en BD
+					//Se INSERTA la nueva fuente 
+					$this->Panel_M->InsertarFuente($Fuente);
+				}
 
 				// Se inserta los ID en la tabla de dependencias transitivas "noticias_secciones" 
 				if(ctype_alpha($Seccion)){//Si Seccion es solo letras, hay una sola seccion
@@ -435,10 +445,10 @@
 					//exit;
 
 					//Usar en remoto
-					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 					
 					// usar en local
-					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 					
 					//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 					move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
@@ -467,10 +477,10 @@
 						// exit;
 						
                         //Usar en remoto
-                        // $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+                        $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 
                         //usar en local
-                        $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+                        // $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 
                         //Subimos el fichero al servidor
                         move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSec']['name'][$i]);
@@ -503,10 +513,10 @@
 				$this->Panel_M->InsertarAgenda($FechaCaducidad, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda);
 				
 				//Usar en remoto
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenAgenda']['tmp_name'], $Directorio.$Nombre_imagenAgenda);
@@ -533,10 +543,10 @@
 				// exit;
 								
 				//Usar en remoto
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
@@ -578,18 +588,24 @@
 			// print_r($VerificaFuente);
 			// echo '</pre>';
 
+			$AgregaFuente = [];
 			$palabra_a_buscar = $Fuente;
 			foreach($VerificaFuente as $key => $value)	:
-				$indice = array_search($palabra_a_buscar, $value);
-				if($indice){//si la fuente existe entra al IF
-					//No hace nada
-				}
-				else{//No hay coincidencias, es decir, es una nueva fuente
-					//Se INSERTA la nueva fuente 
-					$this->Panel_M->InsertarFuente($Fuente);
-					break;
+				$Indice = array_search($palabra_a_buscar, $value);
+				if($Indice){//si la fuente existe entra al IF
+					//No se inserta en la BD	
+					array_push($AgregaFuente, $palabra_a_buscar);
+
+					// echo '<pre>';
+					// print_r($AgregaFuente);
+					// echo '</pre>';
 				}
 			endforeach;
+
+			if($AgregaFuente == Array()){//Si $AgregaFuente esta vacio, la fuente no existe y se inserta en BD
+				//Se INSERTA la nueva fuente 
+				$this->Panel_M->InsertarFuente($Fuente);
+			}
 			
 			// Se ACTUALIZA los ID_Seccion en la tabla de dependencias transitivas
 			if(ctype_alpha($Seccion)){//Si Seccion es solo letras, hay una sola seccion
@@ -675,10 +691,10 @@
 				// exit;
 				
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
@@ -703,10 +719,10 @@
 					// exit;
 					
 					//Usar en remoto
-					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 
 					//usar en local
-					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 
 					//Subimos el fichero al servidor
 					move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecundarias']['name'][$i]);
@@ -744,10 +760,10 @@
 				// exit;
 
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenAgenda']['tmp_name'], $Directorio_1.$Nombre_imagenAgenda);
@@ -788,10 +804,10 @@
 				// exit;
 
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagen);
@@ -834,10 +850,10 @@
 				// exit;
 				
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
@@ -862,10 +878,10 @@
 		// 			// exit;
 					
 		// 			//Usar en remoto
-		// // 			$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+		// 			$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 
 		// 			//usar en local
-					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+					// // $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 
 		// 			//Subimos el fichero al servidor
 		// 			move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecundarias']['name'][$i]);
