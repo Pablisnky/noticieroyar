@@ -7,18 +7,18 @@
         
         //SELECT de las noticias principales del dia en curso
         public function consultarNoticiasPrincipales(){
-            $stmt = $this->dbh->prepare(
-                "SELECT ID_Noticia, titulo, subtitulo, imagenNoticia, noticiaPrincipal, portada
-                FROM noticias 
-                WHERE fecha = CURDATE()"
-            );
+            // $stmt = $this->dbh->prepare(
+            //     "SELECT ID_Noticia, titulo, subtitulo, imagenNoticia, noticiaPrincipal, portada
+            //     FROM noticias 
+            //     WHERE fecha = CURDATE()"
+            // );
 
-            if($stmt->execute()){
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }
-            else{
-                return false;
-            }
+            // if($stmt->execute()){
+            //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // }
+            // else{
+            //     return false;
+            // }
         } 
         
 		//Muestra el select con las secciones
@@ -37,7 +37,7 @@
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                  INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
                  INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
-                 WHERE ImagenPrincipal = 1
+                 WHERE fecha <= CURDATE() AND ImagenPrincipal = 1
                  ORDER BY fecha
                  DESC"
             );
@@ -84,8 +84,10 @@
         //SELECT de los anuncios asociados a las noticias
         public function consultarAnuncioNoticiaGenerales(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Anuncio, ID_Noticia
-                FROM publicidad"
+                "SELECT anuncios.ID_Anuncio, ID_Noticia
+                FROM noticias_anuncios
+                INNER JOIN anuncios ON noticias_anuncios.ID_Anuncio=anuncios.ID_Anuncio
+                WHERE nombre_imagenPublicidad != 'imagen.png' "
             );
 
             if($stmt->execute()){
@@ -159,11 +161,12 @@
           //SELECT de los anuncios asociados a las noticias portadas
         public function consultarAnuncioNoticiaPortada($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Anuncio, ID_Noticia, nombre_imagenPublicidad
-                 FROM publicidad 
-                 WHERE ID_Noticia = :ID_NOTICIA"
+                "SELECT anuncios.ID_Anuncio, ID_Noticia, nombre_imagenPublicidad
+                 FROM noticias_anuncios 
+                 INNER JOIN anuncios ON noticias_anuncios.ID_Anuncio=anuncios.ID_Anuncio
+                 WHERE ID_Noticia = :ID_NOTICIA AND nombre_imagenPublicidad != 'imagen.png' "
             );
-
+            
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT, PDO::PARAM_INT);
 
@@ -178,7 +181,7 @@
         //SELECT del video de una noticia especifica
         public function consultarVideoNoticia($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Noticia, nombreVideo
+                "SELECT ID_Noticia, nombreVideo, youTube
                  FROM videos 
                  WHERE ID_Noticia = :ID_NOTICIA"
             );
@@ -191,6 +194,28 @@
             }
             else{
                 return false;
+            }
+        }
+
+    // // ********************************************************************************************************
+    // // INSERTAR
+    // // ********************************************************************************************************
+        
+        public function insertarVisita($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO visitas(ID_Noticia, fecha) 
+                VALUES (:ID_NOTICIA, CURDATE())"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
             }
         }
     }

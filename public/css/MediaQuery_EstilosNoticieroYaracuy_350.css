@@ -162,7 +162,7 @@
     width: 100%;
 }
 .cont_detalle--imagen{
-	height: 75vw;
+	height: 85vw;
 	margin-top: 15%;
 }
 .cont_detalle--imagenMiniatura{
@@ -210,6 +210,14 @@
 	padding-right: 4%;
 	height: 50px;
 }
+.detalle_cont--main{
+	margin-top: 8%;
+	width: 100%;
+}
+.detalle_cont{
+	display: block;  
+	margin-top: -1%;
+}
 .detalle_cont--divFijo{
 	background-color: white;
 	padding-top: 2%; 
@@ -227,15 +235,9 @@
 	right: 4%;
 	font-size: 2.2em !important;
 }
-.detalle_cont--main{
-	margin-top: 8%;
-}
-.detalle_cont{
-	display: block;  
-	margin-top: 2%
-}
 .detalle_cont--informacion{
-	width: 100%;
+	width: 95%;
+	margin: auto;
 	margin-bottom: 10%;
 }
 .detalle_cont--titulo{
@@ -244,12 +246,13 @@
 	margin: 2% auto;
 }
 .detalle_cont--imagen{
-	width: 100%;
+	width: 95%;
+	margin: auto;
 	margin-top: 20%;
 }
 .detalle_cont--resumen{
 	font-size: 1.3em;
-	width: 95% !important; 
+	width: 95%; 
 }
 .detalle_cont--hr{
 	width: 40%;
@@ -271,14 +274,6 @@
 }
 .Default_quitarMovil{/*no se muestra en version movil*/
 	display: none;
-}
-.Default_puntosSuspensivos{	
-	/*Las proximas lineas permiten colocar tres puntos al final luego de 3 lineas de parrafo */	
-	display: -webkit-box;
-	overflow: hidden;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-	text-overflow: ellipsis;
 }
 .header{
 	display: block;
@@ -352,7 +347,7 @@
 	margin-top: 1%;
 	line-height: 30px;
 	min-height: 250px;
-	width: 100%;	
+	width: 95%;	
 	padding: 1.5%;
 }
 

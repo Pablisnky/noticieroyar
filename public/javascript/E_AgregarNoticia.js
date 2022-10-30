@@ -99,9 +99,18 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
     } 
 
 //************************************************************************************************    
+    //
+    function CerrarModalAnuncios(){
+        document.getElementById("MostrarAnuncios").style.display = "none"
+    } 
+
+//************************************************************************************************    
         //
         function ConfirmarTrasferir(){
             document.getElementById("MostrarSeccion").style.display = "none"
+
+            //Coloca el curso en el ancla
+            window.location.hash = "#SeccionPublicar"; 
     
         } 
 
@@ -125,7 +134,34 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
 
         //Se transfiere el valor del radio boton seleccionado al input del formulario
         document.getElementById(id).value = TotalCategoria
-        document.getElementById(id).focus();
+    }
+
+//************************************************************************************************  
+    function transferirAnuncio(form){
+        console.log("______Desde transferirAnuncio()______", form )
+    
+        //Se reciben los elementos del formulario mediante su atributo name
+        ID_Anuncio = form.anuncio
+
+        // //Se recorre todos los elementos para encontrar el que esta seleccionado
+        for(var i = 0; i<ID_Anuncio.length; i++){ 
+            if(ID_Anuncio[i].checked){
+                //Se toma el valor del seleccionado
+                Seleccionado = ID_Anuncio[i].value
+                // TotalCategoria.push(Seleccionado );
+            }            
+        } 
+        
+        // console.log("ID_Anuncio", Seleccionado)
+
+        //Se transfiere el valor del radio boton seleccionado al input del formulario
+        document.getElementById("ID_Anuncio").value = Seleccionado
+
+        //Coloca el curso en el ancla
+        window.location.hash = "#Contenedor_Anuncio"; 
+    
+        //Se cierra la venana modal
+        document.getElementById("MostrarAnuncios").style.display = "none"  
     }
 
 

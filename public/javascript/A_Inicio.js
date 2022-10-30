@@ -80,3 +80,26 @@ function conexionAJAX(){
     }
 
 // *************************************************************************************************
+ //Muestra 
+ function Llamar_VerMiniatura(ID_ImagenMiniatura){
+    // console.log("______Desde Llamar_VerMiniatura()______", ID_ImagenMiniatura)
+    
+    var url = "Inicio_C/muestraImagenSeleccionada/" + ID_ImagenMiniatura
+    http_request.open('GET', url, true)  
+    peticion.onreadystatechange = respuesta_VerMiniatura
+    peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+    peticion.send("null")
+}                                                                        
+function respuesta_VerMiniatura(){
+    if(peticion.readyState == 4){
+        if(peticion.status == 200){  
+            document.getElementById('Contenedor_Imagen').innerHTML = peticion.responseText 
+        } 
+        else{
+            alert('Problemas con la petición.')
+        }
+    }
+    else{ //en caso contrario, mostramos un gif simulando una precarga
+        // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+    }
+}

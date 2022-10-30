@@ -1,13 +1,14 @@
-    // elimina una noticia
-    function EliminarNoticia(ID_Noticia){
-        console.log("______Desde EliminarNoticia()______", ID_Noticia)
-        let ConfirmaEliminar = confirm("Desea eliminar la noticia");
+    //Confirma si se desea eliminar una noticia
+    function EliminarAnuncio(ID_Anuncio){
+        // console.log("______Desde EliminarAnuncio()______", ID_Anuncio)
+        let ConfirmaEliminar = confirm("Desea eliminar el anuncio");
         
-        //Se confirma si se desea eliminar la noticia
-        if(ConfirmaEliminar == true){                        
+        if(ConfirmaEliminar == true){
+            Llamar_EliminarAnuncio(ID_Anuncio)
+                        
             // Quita la noticia de pantalla
             //Se detecta  el contenedor que contiene la noticia a eliminar
-            let DivEliminar = document.getElementById(ID_Noticia)
+            let DivEliminar = document.getElementById(ID_Anuncio)
             // console.log(DivEliminar)
 
             //Se detecta el elemento padre que contiene el elemento a eliminar
@@ -16,8 +17,6 @@
 
             //Se elimina el elemento
             Padre.removeChild(DivEliminar)
-            
-            Llamar_EliminarNoticia(ID_Noticia)
         } 
         else{
             return

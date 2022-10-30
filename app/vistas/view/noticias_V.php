@@ -10,7 +10,7 @@
                     <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="cont_noticia-imagen" alt="Fotografia" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
 
                     <div class="cont_noticia--titular">
-                        <p><?php echo $Key['titulo'];?></p>
+                        <p class="cont_noticias--titulo"><?php echo $Key['titulo'];?></p>
                         <hr class="cont_noticia--hr_1">
                         <!-- FECHA -->
                         <small class="cont_noticias_informacion--span"><?php echo $Key['fecha'];?></small style="font-size: 0.8em;">
@@ -43,7 +43,8 @@
                             }
                         endforeach; ?>
                         <!-- FUENTE -->
-                        <!-- <small class="cont_noticias_informacion--span"><?php echo $Key['fuente'];?></small> -->
+                        <br>
+                        <small class="cont_noticias_informacion--span"><?php echo $Key['fuente'];?></small>
                         <!-- <small style="font-size: 0.8em; display:block">hace dos dias</small style="font-size: 0.8em;">
                         <small style="font-size: 0.8em; display:block">20 visualizaciones</small style="font-size: 0.8em;"> -->
                     </div> 

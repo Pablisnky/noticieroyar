@@ -5,17 +5,28 @@
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
     
     <!--PANEL NOTICIAS PRINCIPALES --> 
-        <div style="margin-left: 20%;">
-            <fieldset class="fieldset_1" id="Portada"> 
+        <div style="margin-left: 20%; padding-top: 20px;" >        
+            <!-- MENU INDICE -->
+            <div class="cont_panel--MenuIndice">
+                <a class="marcador" href="#marcador_01">Contenido Noticia</a>
+                <a class="marcador" href="#marcador_02">Imagenes</a>
+                <a class="marcador" href="#marcador_03">Anuncio publicitario</a>
+                <a class="marcador" href="#marcador_04">Coleccion Yaracuy 180°</a>
+                <!-- <a class="marcador" href="#marcador_05">Horario</a> -->
+            </div>
+
+            <!-- NOTICIA -->
+            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiActualizada" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <a id="marcador_01" class="ancla"></a>
+                <fieldset class="fieldset_1" id="Portada"> 
                 <legend class="legend_1">Actualizar Noticia</legend>
-                    <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiActualizada" method="POST" enctype="multipart/form-data" autocomplete="off">
                         <label class="cont_panel--label">Imagen principal</label>
                         <div style="display: flex;">
-                            <div style=" width: 30%">
+                            <div style="width: 30%">                            
+                                <!-- IMAGEN PRINCIPAL-->
                                 <div class="cont_edit">
                                     <label class="Default_pointer" for="imgInp"><span class="material-icons-outlined cont_edit--label">edit</span></label>
                                 </div> 
-                                <!-- IMAGEN PRINCIPAL-->
                                 <figure>
                                     <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImagenPrincipal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['noticiaActualizar']['nombre_imagenNoticia'];?>"/> 
                                 </figure>                                
@@ -56,83 +67,123 @@
                                 </select>
                                 <div id="InsertarFuente"></div>
                             </div>                     
-                        </div>
+                        </div>                        
+                </fieldset>                
 
-                         <!-- IMAGENES SECUNDARIAS -->
-                        <fieldset class="fieldset_1">   
-                            <!-- AGREGAR MAS IMAGENES SECUNDARIAS -->
-                            <label class="actualizar_cont--label Default_pointer" for="imgInp_2"><span class="material-icons-outlined actualizar_cont--span">add_circle_outline</span></label>
-                            <input class="Default_ocultar" type="file" name="imagenesSecundarias[]" multiple="multiple" id="imgInp_2" onchange="muestraImg()"/>
+                <!-- IMAGENES SECUNDARIAS -->
+                <a id="marcador_02" class="ancla"></a>
+                <fieldset class="fieldset_1">   
+                    <!-- AGREGAR MAS IMAGENES SECUNDARIAS -->
+                    <label class="actualizar_cont--label Default_pointer" for="imgSec"><span class="material-icons-outlined actualizar_cont--span">add_circle_outline</span></label>
+                    <input class="Default_ocultar" type="file" name="imagenesSecundarias[]" multiple="multiple" id="imgSec" onchange="muestraImgSecundarias()"/>
 
-                            <br><br> 
-                            <legend class="legend_1">Imagenes secundarias</legend> 
-                            
-                            <!-- EDITAR IMAGEN SECUNDARIA-->
-                            <div class="cont_panel--imagenSec">
-                                <?php
-                                foreach($Datos['imagenesNoticiaActualizar'] as $Row) : ?>                   
-                                    <div style="margin: 1%">
-                                        <div class="cont_edit">
-                                            <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
-                                            <label class="Default_pointer" for="imgInp_3"><span class="material-icons-outlined cont_edit--label">edit</span></label>
-                                        </div> 
-                                        <figure> 
-                                            <img class="actualizar_cont--imagen" alt="Fotografia Principal" id="blah_2" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
-                                        </figure>
-                                    </div>
-                                    <?php
-                                endforeach;  ?>
+                    <br><br> 
+                    <legend class="legend_1">Imagenes secundarias</legend> 
+                    
+                    <!-- EDITAR IMAGEN SECUNDARIA-->
+                    <div class="cont_panel--imagenSec">
+                        <?php
+                        foreach($Datos['imagenesNoticiaActualizar'] as $Row) : ?>                   
+                            <div style="margin: 1%">
+                                <div class="cont_edit">
+                                    <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
+                                    <label class="Default_pointer" for="imgInp_3"><span class="material-icons-outlined cont_edit--label">edit</span></label>
+                                </div> 
+                                <figure> 
+                                    <img class="actualizar_cont--imagen" alt="Fotografia Principal" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
+                                </figure>
                             </div>
-
-                            <!-- muestra las imagenes secundarias -->
-                            <div id="muestrasImgSec_2"></div> 
-
-                        </fieldset> 
-                        
-                         <!-- ANUNCIOS PUBLICITARIOS -->
-                         <fieldset class="fieldset_1">   
-                            
-                            <!-- AGREGAR ANUNCIO -->
-                            <label class="actualizar_cont--label Default_pointer" for="imgInp_3"><span class="material-icons-outlined actualizar_cont--span">add_circle_outline</span></label>
-                            <input class="Default_ocultar" type="file" name="anuncio" multiple="multiple" id="imgInp_3" onchange="readImage_anuncio()"/>
-                            <!-- IMAGEN ANUNCIO PUBLITARIO-->
                             <?php
-                            if(empty($Datos['anuncioPublicitario']['ID_Anuncio'])){   ?>
-                                <div style=" width: 30%">
-                                    <figure>
-                                        <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImagenAnuncioPublicitario" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> 
-                                    </figure>  
-                                </div>
+                        endforeach;  ?>
+                    </div>
+
+                    <!-- muestra las imagenes secundarias -->
+                    <div style="display:flex" id="muestrasImgSec_2"></div> 
+                </fieldset> 
+                        
+                <!-- ANUNCIO PUBLICITARIO -->
+                <a id="marcador_03" class="ancla"></a>
+                <fieldset class="fieldset_1">   
+                    <legend class="legend_1">Anuncio publicitario</legend> 
+                    <div style="display: flex;">
+                        <div style="width: 30%" id="Contenedor_Anuncio">
+                                    <?php
+                            if(empty($Datos['anuncio']['ID_Anuncio'])){//carga imagen por defecto  ?>
+                                <div class="cont_edit" >
+                                    <label class="Default_pointer"><span class="material-icons-outlined cont_edit--label" id="Anuncio">edit</span> </label>
+                                </div>   
+                                <!-- IMAGEN ANUNCIO PUBLICITARIO-->
+                                <figure>
+                                    <img class="cont_panel--imagen" name="imagenAnunio" alt="Fotografia Principal" id="ImgAnuncio" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                                </figure>
+                                
+                                <input class="Default_ocultar" type="text" name="id_anuncio" id="ID_Anuncio" value="<?php echo $Datos['anuncio']['ID_Anuncio'];?>"/>
+                                <input class="Default_ocultar" type="text" value="NoActualizar" name="actualizar" id="Actualiza"/>
                                 <?php
                             }
                             else{   ?>
+                                <div class="cont_edit">
+                                    <label class="Default_pointer" id="Anuncio"><span class="material-icons-outlined cont_edit--label">edit</span></label>
+                                </div>   
                                 <figure>
+                                    <img class="cont_panel--imagen" alt="Fotografia Anuncio" id="ImgAnuncio" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Datos['anuncio']['nombre_imagenPublicidad'];?>"/> 
+                                </figure>      
+                                <input class="Default_ocultar" type="text" name="id_anuncio" id="ID_Anuncio" value="<?php echo $Datos['anuncio']['ID_Anuncio'];?>"/>
+                                <input class="Default_ocultar" type="text" value="NoActualizar" name="actualizar" id="Actualiza"/>
+                                <?php
+                            }   ?> 
+                        </div> 
+                    </div>
+                </fieldset> 
+                        
+                <!-- COLECCION 180° -->
+                <a id="marcador_04" class="ancla"></a>
+                <fieldset class="fieldset_1">   
+                    <!-- IMAGEN PRINCIPAL COLECCION -->
+                    <!-- <label class="actualizar_cont--label Default_pointer" for="imgCol"><span class="material-icons-outlined actualizar_cont--span">add_circle_outline</span></label> -->
+                    <!-- <input class="Default_ocultar" type="file" name="imagenesSecundariasColec[]" multiple="multiple" id="imgCol" onchange="muestraColecciones()"/> -->
+
+                    <br><br> 
+                    <legend class="legend_1">Colección Yaracuy 180°</legend> 
+                    
+                    <!-- EDITAR IMAGEN SECUNDARIA COLECCION-->
+                    <div class="cont_panel--imagenSec">
+                        <?php
+                        foreach($Datos['imagenesNoticiaActualizar'] as $Row) : ?>                   
+                            <div style="margin: 1%">
+                                <!-- <div class="cont_edit">
                                     <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
                                     <label class="Default_pointer" for="imgInp_3"><span class="material-icons-outlined cont_edit--label">edit</span></label>
-                                    <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImagenAnuncioPublicitario" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['anuncioPublicitario']['ID_Anuncio'];?>"/> 
-                                </figure>     
-                                <?php
-                            }   ?>        
+                                </div>  -->
+                                <figure> 
+                                    <!-- <img class="actualizar_cont--imagen" alt="Fotografia Principal" id="ImagenSecundariaCol" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenNoticia'];?>"/>  -->
+                                </figure>
+                            </div>
+                            <?php
+                        endforeach;  ?>
+                    </div>
 
-                            <br><br> 
-                            <legend class="legend_1">Anuncio publicitario</legend> 
-                            
-                            <!-- EDITAR ANUNCIO PUBLICITARIO -->
-                        </fieldset> 
+                    <!-- muestra las imagenes secudndarias de la coleccion -->
+                    <div id="muestrasImgColecciones"></div> 
 
-                        <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
-                        <div> 
-                            <input class="Default_ocultar" type="text" name="ID_Noticia" value="<?php echo $Datos['noticiaActualizar']['ID_Noticia'];?>"/> 
-                            <input class="Default_ocultar" type="text" name="id_fotoPrincipal" value="<?php echo $Datos['noticiaActualizar']['ID_Imagen'];?>" />
+                </fieldset> 
 
-                            <input class="boton" type="submit" value="Actualizar noticia"/>  
-                        </div>
-                    </form>
-            </fieldset>
+                <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
+                <div style="margin-top: 20px"> 
+                    <input class="Default_ocultar" type="text" name="ID_Noticia" value="<?php echo $Datos['noticiaActualizar']['ID_Noticia'];?>"/> 
+                    <input class="Default_ocultar" type="text" name="id_fotoPrincipal" value="<?php echo $Datos['noticiaActualizar']['ID_Imagen'];?>" />
+                    <input class="Default_ocultar" type="text" name="ID_Anuncio" value="<?php echo $Datos['anuncio']['ID_Anuncio'];?>" />
+
+                    <input class="boton" type="submit" value="Actualizar noticia"/>  
+                </div>
+            </form>
         </div>
 
 <!--div alimentado desde modal_seccionesDisponibles_V.php que muestra las secciones -->    
 <div id="Contenedor_90"></div>
+
+<!--div alimentado desde modal_anunciosDisponibles_V.php que muestra las anuncios publicitarios -->    
+<div id="Contenedor_91"></div>
 
 </body>
 </html>
@@ -159,36 +210,17 @@
         var id_Label = $('#ImagenPrincipal');
         readImage(this, id_Label);
     });
-    
-// ************************************************************************************************  
-    //Da una vista previa del anuncio publicitario
-    function readImage_anuncio(input, id_Label){
-        // console.log("______Desde readImage_anuncio()______", input + ' | ' + id_Label)
-        if(input.files && input.files[0]){
-            var reader = new FileReader();
-            reader.onload = function(e){
-                id_Label.attr('src', e.target.result); //Renderizamos la imagen
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }        
-    $("#imgInp_3").change(function(){
-        // console.log("Desde cargar foto de perfil")
-        // Código a ejecutar cuando se detecta un cambio de imagen de tienda
-        var id_Label = $('#ImagenAnuncioPublicitario');
-        readImage(this, id_Label);
-    });
-    
+        
 // ************************************************************************************************
     //Array contiene las imagenes insertadas, sus elementos sumados no pueden exceder de 10
     SeleccionImagenes = [];
-    function muestraImg(){
+    function muestraImgSecundarias(){
             // Muestra grupo de imagenes
-            console.log("______Desde muestraImg()______")
+            console.log("______Desde muestraImgSecundarias()______")
 
-            document.getElementById("blah_2").style.display = "none";
+            // document.getElementById("ImagenSecundaria").style.display = "none";
             var contenedorPadre = document.getElementById("muestrasImgSec_2");
-            var archivos = document.getElementById("imgInp_2").files;
+            var archivos = document.getElementById("imgSec").files;
             
             var CantidadImagenes = archivos.length
             console.log("Cantidad Imagenes recibidas= ", CantidadImagenes)

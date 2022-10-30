@@ -11,7 +11,7 @@
                 $ContadorSeccion = 1;
                 //$Datos['seccion'] trae información desde CuentaComerciante_C/SeccionesDisponibles
                 foreach($Datos['secciones'] as $row)  :
-                        $ID_Seccion = $row['ID_Seccion']; ?>
+                        // $ID_Seccion = $row['ID_Seccion']; ?>
                         <div class="contInputRadio">
                             <input type="checkbox" name="seccion" id="<?php echo 'ContadorSeccion_' . $ContadorSeccion;?>" value="<?php echo $row['seccion']?>" onclick="transferirSeccion(this.form, 'SeccionPublicar')"/>
 

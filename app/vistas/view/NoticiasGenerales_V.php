@@ -6,7 +6,7 @@
             <legend class="legend_1">Noticias generales</legend>
             <?php
             foreach($Datos['noticiasGenerales'] as $Not_Gen) : ?>
-                <div style="display: flex; margin-bottom: 30px;">
+                <div style="display: flex; margin-bottom: 30px;" id="<?php echo $Not_Gen['ID_Noticia'];?>">
                     <!-- IMAGN NOTICIA -->
                     <div style="width: 30%; margin-right: 1.5%;">          
                         <figure>
@@ -44,14 +44,21 @@
                         <label class="cont_panel--label">Fecha</label>
                         <label class="cont_panel--fecha"><?php echo $Not_Gen['fecha'];?></label>
 
-                        <!-- ACTUALIZAR -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Actualizar</a>
-                        
-                        <!-- PUBLICIDAD -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Publicidad</a>
-                        
+                        <!-- VISITAS -->
+                        <label class="cont_panel--label">Visitas</label>
+                            <?php
+                            foreach($Datos['visitas'] as $Row_2)   : 
+                                if($Not_Gen['ID_Noticia'] == $Row_2['ID_Noticia']){     ?>
+                                    <label class="cont_panel--fecha"><?php echo $Row_2['visitas'];?></label>
+                                        <?php
+                                }
+                            endforeach; ?>
+
+                        <!-- EDITAR -->
+                        <a style="margin-left: 10%" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
+                                                
                         <!-- ELIMINAR -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Eliminar</a>
+                        <label style="margin-left: 50px" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Gen['ID_Noticia'];?>')">Eliminar</label>
                     </div>
                 </div>
                 <?php
@@ -60,3 +67,6 @@
     </div>
 </body>
 </html>
+
+<script src="<?php echo RUTA_URL.'/public/javascript/E_NoticiasGenerales.js?v=' . rand();?>"></script>
+<script src="<?php echo RUTA_URL.'/public/javascript/A_NoticiasGenerales.js?v=' . rand();?>"></script>

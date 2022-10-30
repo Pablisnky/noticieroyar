@@ -1,4 +1,4 @@
-<div"> 
+<div> 
 <?php
 foreach($Datos['ImagenSeleccionada'] as $Key) :   ?>
     <figure>

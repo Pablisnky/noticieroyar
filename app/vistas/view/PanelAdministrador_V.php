@@ -11,6 +11,7 @@
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/agenda">Agenda</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/obituario">Obituario</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/publicidad">Publicidad</a></li>
+        <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/coleccion">Colecciones</a></li>
         <li><a class="cont_panel--li" href="#">Perfil</a></li>
         <li><hr style="margin: 2%"></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>">Sitio web</a></li>

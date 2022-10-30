@@ -67,12 +67,15 @@
 
 			//CONSULTA si existe algun anuncio sociado a la noticia seleccionada
             $Publicidad = $this->ConsultaNoticia_M->consultarAnuncioNoticiaPortada($ID_Noticia);
+
+            //Se INSERTA la visita a la noticia
+            $this->ConsultaNoticia_M->insertarVisita($ID_Noticia);
             
             $Datos = [
                 'detalleNoticia' => $DetalleNoticia, //ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido, fecha, fuente
                 'imagenesNoticia' => $ImagenesNoticia, //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
                 'publicidad' => $Publicidad,
-                'video' => $VideoNoticia //ID_Noticia, nombreVideo
+                'video' => $VideoNoticia, //ID_Noticia, nombreVideo
             ];
             
             // echo "<pre>";
@@ -101,6 +104,5 @@
             
             $this->vista("header/header_SoloEstilos"); 
             $this->vista("view/ajax/ImagenSeleccionada_V", $Datos ); 
-
         }
     }

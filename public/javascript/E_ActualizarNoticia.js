@@ -5,10 +5,10 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
 
 //************************************************************************************************
     //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
-    window.addEventListener("click", function(e){   
-        var click = e.target
-        console.log("Se hizo click en: ", click)
-    }, false)
+    // window.addEventListener("click", function(e){   
+    //     var click = e.target
+    //     console.log("Se hizo click en: ", click)
+    // }, false)
     
 //************************************************************************************************
     //Muestra la cantidad de caracteres que quedan mientras se escribe
@@ -77,17 +77,22 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
         //Se limpia el input secciones en caso de haber seleccionado alguna
         document.getElementById("SeccionPublicar").value = ""
     } 
+    
 
 //************************************************************************************************    
-        //
-        function ConfirmarTrasferir(){
-            document.getElementById("MostrarSeccion").style.display = "none"
-    
-        } 
+    //
+    function CerrarModalAnuncios(){
+        document.getElementById("MostrarAnuncios").style.display = "none"
+    } 
+//************************************************************************************************    
+    //
+    function ConfirmarTrasferir(){
+        document.getElementById("MostrarSeccion").style.display = "none"
+    } 
 
-//************************************************************************************************  
+//**********************************************************************************************
      function transferirSeccion(form, id){
-        console.log("______Desde transferirSeccion()______")
+        console.log("______Desde transferirSeccion()______", form + id)
         //Se declara el array que contendra la cantidad de categorias seleccionadas
         var TotalCategoria = []
 
@@ -104,6 +109,36 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
         } 
 
         //Se transfiere el valor del radio boton seleccionado al input del formulario
-        document.getElementById(id).value = TotalCategoria
-              
+        document.getElementById(id).value = TotalCategoria           
     }
+
+//************************************************************************************************  
+function transferirAnuncio(form){
+    console.log("______Desde transferirAnuncio()______", form )
+
+    //Se reciben los elementos del formulario mediante su atributo name
+    ID_Anuncio = form.anuncio
+
+    // //Se recorre todos los elementos para encontrar el que esta seleccionado
+    for(var i = 0; i<ID_Anuncio.length; i++){ 
+        if(ID_Anuncio[i].checked){
+            //Se toma el valor del seleccionado
+            Seleccionado = ID_Anuncio[i].value
+            // TotalCategoria.push(Seleccionado );
+        }            
+    } 
+    
+    console.log("ID_Anuncio", Seleccionado)
+
+    //Se transfiere el valor del radio boton seleccionado al input del formulario
+    document.getElementById("ID_Anuncio").value = Seleccionado
+
+    //Se cambia el valor del input que da acceso a actualizar cuando el controlador recibe los datos
+    document.getElementById("Actualiza").value = 'SiActualizar'
+
+    //Coloca el curso en el ancla
+    window.location.hash = "#Contenedor_Anuncio"; 
+
+    //Se cierra la venana modal
+    document.getElementById("MostrarAnuncios").style.display = "none"  
+}

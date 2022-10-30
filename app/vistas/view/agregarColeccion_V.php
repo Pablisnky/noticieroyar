@@ -6,34 +6,50 @@
 
 <div style="margin-left: 20%;">
     <fieldset class="fieldset_1" id="Portada"> 
-        <legend class="legend_1">Agregar Publicidad</legend>
-            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibePublicidadAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <legend class="legend_1">Agregar Colección Yaracuy 180°</legend>
+            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeColeccionAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <label class="cont_panel--label">Imagen principal</label>
                 <div style="display: flex; margin-bottom: 30px">
 
-                    <!-- IMAGEN PRINCIPALANUNCIO PUBLICITARIO -->
+                    <!-- IMAGEN PRINCIPAL COLECCION -->
                     <div style=" width: 30%">    
-                        <label class="Default_pointer" for="imgInp">    
+                        <label class="Default_pointer" for="imgCol">    
                             <figure>
-                                <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                                <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="ImgColeccion" src="<?php echo RUTA_URL?>/public/images/colecciones/imagen.png"/>
                             </figure>
                         </label>
-                        <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
+                        <input class="Default_ocultar" type="file" name="imagenPrincipalColec" id="imgCol"/>
                     </div>
 
                     <div style="width: 100%; padding-left: 1%">
-                        <!-- RAZON SOCIAL -->
-                        <label class="cont_panel--label">Razón social</label>
+                        <!-- TITULO COLECCION -->
+                        <label class="cont_panel--label">Titulo</label>
                         <input class="cont_panel--titulo" type="text" name="razon" id="Razon"/> 
+                        
+                        <!-- DESCRIPCION COLECCION -->
+                        <label class="cont_panel--label">Descripción</label>
+                        <textarea></textarea>
+                        
+                        <!-- SERIE COLECCION -->
+                        <label class="cont_panel--label">Serie</label>
+                        <select>
+                            <option></option>
+                        </select>
 
-                        <!-- FECHA CADUCACION -->
-                        <label class="cont_panel--label">Fecha caducación</label>
-                        <input class="cont_panel--titulo" type="text" name="fecha" id="Fecha" placeholder="00-00-0000" onkeydown="mascaraFecha(this.value, 'Fecha')"/>
-                    </div>                     
+                        <!-- NOTICIA ASIGNADA -->
+                        <label class="cont_panel--label">Noticia asignada</label>
+                        <input class="cont_panel--titulo" type="text" name="noticia"/>
+                        
+                        <!-- IMAGENES SECUNDARIAS COLECCION-->     
+                        <label class="cont_panel--label" style="display: block" for="imgCol_2">Imagenes secundarias</label>
+                        <input class="" type="file" name="imagenesSecCol[]" multiple="multiple" id="imgCol_2" onchange="muestraImgCol()"/>  
+                               
+                        <!-- muestra las imagenes secundarias dela coleccion -->
+                        <div class="cont_panel--imagenSec" id="muestrasImg_Coleccion"></div>  
                 </div>
                 
                 <div> 
-                    <input class="boton" type="submit" id="Boton_Agregar" value="Agregar anuncio"/>  
+                    <input class="boton" type="submit" id="Boton_Agregar" value="Agregar colección"/>  
                 </div>            
             </form>
     </fieldset>
@@ -50,10 +66,10 @@
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php echo rand();?>"></script> 
 <script src="<?php echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script> 
 
-<script>       
-    //Da una vista previa de la foto principal de la noticia
-    function readImage(input, id_Label){
-        // console.log("______Desde readImage()______", input + ' | ' + id_Label)
+<script>               
+    //Da una vista previa a la imagen principal de la coleccion asociada a la noticia
+    function readColeccion(input, id_Label){
+        // console.log("______Desde readAnuncio()______", input + ' | ' + id_Label)
         if(input.files && input.files[0]){
             var reader = new FileReader();
             reader.onload = function(e){
@@ -62,22 +78,22 @@
             reader.readAsDataURL(input.files[0]);
         }
     }        
-    $("#imgInp").change(function(){
+    $("#imgCol").change(function(){
         // console.log("Desde cargar foto de perfil")
         // Código a ejecutar cuando se detecta un cambio de imagen de tienda
-        var id_Label = $('#blah');
-        readImage(this, id_Label);
+        var id_Label = $('#ImgColeccion');
+        readColeccion(this, id_Label);
     });
 
 // ************************************************************************************************    
     //Array contiene las imagenes insertadas, sus elementos sumados no pueden exceder de 10
     SeleccionImagenes = [];
-    function muestraImg(){
+    function muestraImgCol(){
             // Muestra grupo de imagenes
-            // console.log("______Desde muestraImg()______")
+            // console.log("______Desde muestraImgCol()______")
 
-            var contenedorPadre = document.getElementById("muestrasImg_2");
-            var archivos = document.getElementById("ImgInp_2").files;
+            var contenedorPadre = document.getElementById("muestrasImg_Coleccion");
+            var archivos = document.getElementById("imgCol_2").files;
             
             var CantidadImagenes = archivos.length
             console.log("Cantidad Imagenes recibidas= ", CantidadImagenes)

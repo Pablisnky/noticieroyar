@@ -19,7 +19,7 @@
                  ORDER BY fecha
                  DESC"
             );
-            // SELECT noticias.ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM noticias INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia WHERE fecha BETWEEN DATE_SUB(CURDATE(), INTERVAL 15 DAY) AND CURDATE() ORDER BY ID_Noticia DESC; 
+
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
@@ -31,8 +31,10 @@
         //SELECT de los anuncios asociados a las noticias de portada
         public function consultarAnuncioNoticiaPortada(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Anuncio, ID_Noticia
-                FROM publicidad"
+                "SELECT anuncios.ID_Anuncio, ID_Noticia
+                FROM noticias_anuncios
+                INNER JOIN anuncios ON noticias_anuncios.ID_Anuncio=anuncios.ID_Anuncio
+                WHERE nombre_imagenPublicidad != 'imagen.png' "
             );
 
             if($stmt->execute()){
@@ -58,6 +60,7 @@
                 return false;
             }
         }
+
         //SELECT de los videos asociados a la noticia de portada 
         public function consultarVideosNoticiaPortada(){
             $stmt = $this->dbh->query(
@@ -115,8 +118,9 @@
         public function consultarAnuncioNoticiaPortadaEspec($ID_noticia){
             $stmt = $this->dbh->prepare(
                 "SELECT  ID_Noticia, COUNT(ID_Noticia) AS cantidad 
-                FROM publicidad
-                WHERE ID_Noticia = :ID_NOTICIA"
+                FROM noticias_anuncios
+                INNER JOIN anuncios ON noticias_anuncios.ID_Anuncio=anuncios.ID_Anuncio
+                WHERE ID_Noticia = :ID_NOTICIA AND nombre_imagenPublicidad != 'imagen.png' "
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
@@ -221,6 +225,41 @@
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':ID_NOTICIA', $ID_NoticiaConsultar, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        //SELECT de colecciones asociados a las noticias
+        public function consultarColeccionPortada(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion 
+                FROM colecciones
+                INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion"
+            );
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        //Se CONSULTA la imagen que se solicito en detalles
+        public function consultarDetalleImagen($ID_ImagenMiniatura){
+            $stmt = $this->dbh->prepare(
+                "SELECT nombre_imColeccion
+                 FROM imagnescolecciones 
+                 WHERE ID_ImagenColeccion  = :ID_IMAGEN"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_IMAGEN', $ID_ImagenMiniatura, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);

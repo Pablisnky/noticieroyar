@@ -33,6 +33,9 @@ function conexionAJAX(){
 document.getElementById("SeccionPublicar").addEventListener('click', Llamar_seccionesDisponible, false)
 document.getElementById("SeccionPublicar").addEventListener('keydown', Llamar_seccionesDisponible, false)
 
+document.getElementById("Anuncio").addEventListener('click', Llamar_AnunciosDisponible, false)
+document.getElementById("Anuncio").addEventListener('keydown', Llamar_AnunciosDisponible, false)
+
 //************************************************************************************************
 function Llamar_seccionesDisponible(){
     // console.log("_____ Desde Llamar_seccionesDisponible() _____ ")
@@ -59,4 +62,30 @@ function respuesta_seccion(){
     }
 }
 
-//************************************************************************************************
+// *************************************************************************************************
+function Llamar_AnunciosDisponible(){
+    console.log("_____ Desde Llamar_AnunciosDisponible() _____ ")
+    var url = "../Panel_C/Anuncios"
+    http_request.open('GET', url, true)  
+    peticion.onreadystatechange = respuesta_AnunciosDisponible
+    peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+    peticion.send("null")
+}                                                           
+function respuesta_AnunciosDisponible(){
+    if(peticion.readyState == 4){
+        if(peticion.status == 200){    
+            //Coloca el cursor en el top de la pagina
+            window.scroll(0, 0)
+            
+            document.getElementById("Contenedor_91").innerHTML = peticion.responseText
+        } 
+        else{
+            alert('Problemas con la petición.')
+        }
+    }
+    else{ //en caso contrario, mostramos un gif simulando una precarga
+        // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+    }
+}
+
+// *************************************************************************************************

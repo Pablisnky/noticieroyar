@@ -6,7 +6,7 @@
             <legend class="legend_1">Noticias en portada</legend>
             <?php
             foreach($Datos['noticiasPortadas'] as $Not_Prin) : ?>
-                <div style="display: flex; margin-bottom: 30px">                
+                <div style=" display: flex; margin-bottom: 30px" id="<?php echo $Not_Prin['ID_Noticia'];?>">                
                     <!-- IMAGN NOTICIA -->
                     <div style="width: 30%; margin-right: 1.5%">       
                         <figure>
@@ -25,8 +25,8 @@
                         <label class="cont_panel--titulo"><?php echo $Not_Prin['titulo'];?></label>
                         
                         <!-- SUBTITULO -->
-                        <label class="cont_panel--label">Resumen</label>
-                        <label class="cont_panel--resumen"><?php echo $Not_Prin['subtitulo'];?></label>
+                        <!-- <label class="cont_panel--label">Resumen</label>
+                        <label class="cont_panel--resumen"><?php echo $Not_Prin['subtitulo'];?></label> -->
                         
                         <!-- SECCION -->
                         <label class="cont_panel--label">Seccion</label>                            
@@ -40,19 +40,36 @@
                             endforeach; ?>
                         </ul>
                         
+                        <!-- COLECCION -->
+                        <label class="cont_panel--label">Coleccion 180°</label>
+                        <?php
+                            foreach($Datos['coleccion'] as $Row_3)   : 
+                                if($Not_Prin['ID_Noticia'] == $Row_3['ID_Noticia']){  ?>
+                                    <label class="cont_panel--fecha"><?php echo $Row_3['nombreColeccion'];?></label>
+                                        <?php
+                                }
+                            endforeach; ?>
+                        
                         <!-- FECHA -->
                         <label class="cont_panel--label">Fecha</label>
                         <label class="cont_panel--fecha"><?php echo $Not_Prin['fecha'];?></label>
+
+                        <!-- VISITAS -->
+                        <label class="cont_panel--label">Visitas</label>
+                            <?php
+                            foreach($Datos['visitas'] as $Row_2)   : 
+                                if($Not_Prin['ID_Noticia'] == $Row_2['ID_Noticia']){     ?>
+                                    <label class="cont_panel--fecha"><?php echo $Row_2['visitas'];?></label>
+                                        <?php
+                                }
+                            endforeach; ?>
                         
                         <div id="PanelEdicion">
-                            <!-- ACTUALIZAR -->
-                            <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Actualizar</a>
-                            
-                            <!-- PUBLICIDAD -->
-                            <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_noticia_principal/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Publicidad</a>
-                            
+                            <!-- EDITAR -->
+                            <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
+                                                        
                             <!-- ELIMINAR -->
-                            <label class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Prin['ID_Noticia'];?>')">Eliminar</label>
+                            <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Prin['ID_Noticia'];?>')">Eliminar</label>
                         </div>
                     </div>
                 </div>

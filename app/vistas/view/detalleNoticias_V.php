@@ -12,7 +12,15 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
     } 
 }   ?>
 
-<div class="detalle_cont--main" id="cont_efemerides">
+<div class="detalle_cont--main" id="cont_efemerides">   
+    <!-- MEMBRETE FIJO -->
+    <div class="detalle_cont--divFijo">
+        <a class="detalle_cont--membrete" href="<?php echo RUTA_URL . '/Inicio_C';?>">www.NoticieroYaracuy.com</a> 
+        <label class="detalle_cont--fecha">San Felipe, <?php echo $Datos['detalleNoticia'][0]['fecha'];?> </label>
+        <!-- ICONO CERRAR -->
+        <span class="material-icons-outlined cont_modal--cerrar detalle_cont--cerrar Default_pointer" id="CerrarVentana">cancel</span>
+    </div> 
+
     <div class="detalle_cont">         
         <div class="detalle_cont--imagen">
             
@@ -34,14 +42,7 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
                 endforeach; ?>
             </div> 
         </div>
-        <div class="detalle_cont--informacion">    
-            <div class="detalle_cont--divFijo">
-                <!-- MEMBRETE FIJO -->
-                <a class="detalle_cont--membrete" href="<?php echo RUTA_URL . '/Inicio_C';?>">www.NoticieroYaracuy.com</a> 
-			    <label class="detalle_cont--fecha">San Felipe, <?php echo $Datos['detalleNoticia'][0]['fecha'];?> </label>
-                <!-- ICONO CERRAR -->
-                <span class="material-icons-outlined cont_modal--cerrar detalle_cont--cerrar Default_pointer" id="CerrarVentana">cancel</span>
-            </div>        
+        <div class="detalle_cont--informacion">        
 
             <!-- TITULO -->
             <h1 class="detalle_cont--titulo"><?php echo $Datos['detalleNoticia'][0]['titulo']?></h1> 
@@ -60,11 +61,15 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
     <!-- VIDEO -->
     <div class="detalle_cont--video"">
         <?php
-        if(!empty($Datos['video'][0]['ID_Noticia'])){
+        if(!empty($Datos['video'][0]['nombreVideo'])){
             if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['video'][0]['ID_Noticia']){   ?>
                 <video style="width: 100%;" src="<?php echo RUTA_URL?>/public/video/<?php echo $Datos['video'][0]['nombreVideo']?>" controls></video> 
                 <?php
             }
+        }
+        else if(!empty($Datos['video'][0]['youTube']) == 1){  ?>
+            <iframe style="width: 100%; height: 200px" src="https://www.youtube.com/embed/hfIhnjJSxro" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <?php
         }       ?>
     </div>
 

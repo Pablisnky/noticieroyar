@@ -7,83 +7,99 @@
 <div style="margin-left: 20%;">
     <fieldset class="fieldset_1" id="Portada"> 
         <legend class="legend_1">Agregar Noticia</legend>
-            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" onsubmit="return validarAgregarNoticia()">
-                <div style="display: flex; margin-bottom: 30px">
-                    <div style=" width: 30%">    
-                        <!-- IMAGEN PRINCIPAL -->
-                        <div>
-                            <label class="cont_panel--label">Imagen principal</label>
-                            <label class="Default_pointer" for="imgInp">    
-                                <figure>
-                                    <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
-                                </figure>
-                            </label>
-                            <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
-                        </div>
-                        <!-- VIDEO -->
-                        <div style="margin-top: 50px">    
-                            <label class="cont_panel--label">Video</label>
+        <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" onsubmit="return validarAgregarNoticia()">
+            <div style="display: flex; margin-bottom: 30px">
+                <div style=" width: 30%">    
+
+                    <!-- IMAGEN PRINCIPAL imagenAnunio-->
+                    <div>
+                        <label class="cont_panel--label">Imagen principal</label>
+                        <label class="Default_pointer" for="imgInp">    
                             <figure>
-                                    <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/video/video.png"/>
-                                </figure>
-                                <!-- <video src="<?php echo RUTA_URL?>/public/video/Si_te_vas.mp4" poster="<?php echo RUTA_URL?>/public/video/video.png" controls width="300" height="200"></video> -->
-                        </div>
+                                <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                            </figure>
+                        </label>
+                        <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
                     </div>
-                    <div style="width: 100%; padding-left: 1%" id="AgregarNoticia">
-                        <!-- TITULO -->
-                        <label class="cont_panel--label">TItulo</label>
-                        <textarea class="textarea--titulo" name="titulo" id="Titulo"></textarea> 
-                        <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="80" readonly/>
 
-                        <!-- RESUMEN -->
-                        <label class="cont_panel--label">Resumen</label>
-                        <textarea class="textarea--resumen" name="subtitulo" id="Resumen"></textarea> 
-                        <input class="cont_panel--contador" type="text" id="ContadorResumen" value="120" readonly/>
+                    <!-- IMAGEN ANUNCIO PUBLICITARIO -->
+                    <div style="margin-top: 30px">
+                        <label class="cont_panel--label">Anuncio publicitario</label>
+                        <label class="Default_pointer" id="Anuncio">
+                            <figure> 
+                                <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImgAnuncio" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                            </figure>
+                        </label>
+                        <input class="Default_ocultar" type="text" id="ID_Anuncio" name="id_anuncio"/>
+                    </div>
 
-                        <!-- CONTENIDO -->
-                        <label class="cont_panel--label">Contenido</label>
-                        <textarea class="cont_panel--textarea Default--textarea--scrol" name="contenido" id="Contenido" autosize="none"></textarea> 
-                        <input class="cont_panel--contador" type="text" id="ContadorContenido" value="2000" readonly/>
-                        
-                        <!-- SECCION -->
-                        <label class="cont_panel--label">Sección</label>
-                        <input class="cont_panel--titulo" type="text" name="seccion" id="SeccionPublicar"/>
-                        
-                        <!-- FECHA  onkeyup=""-->
-                        <label class="cont_panel--label">Fecha (ingresar solo números)</label>
-                        <input class="cont_panel--titulo" type="text" name="fecha" id="Fecha" placeholder="00-00-0000" onkeydown="mascaraFecha(this.value, 'Fecha')"/>
-                        
-                        <!-- FUENTE -->
-                        <label class="cont_panel--label">Fuente</label>
-                        <select class="cont_panel--titulo" name="fuente" id="Fuente" onchange="especificarFuente()">
-                            <option>Lisbella Paez CNP 13.162</option>
-                            <?php
-                            foreach($Datos['fuentes'] as $Key)   :   ?>
-                                <option value="<?php echo $Key['fuente']?>"><?php echo $Key['fuente']?></option>
-                                <?php
-                            endforeach;     ?>
-                            <option value="Otra">Otra</option>
-                        </select>
-                        <div id="InsertarFuente"></div>
-                        
-                        <!-- IMAGENES SECUNDARIAS -->     
-                        <label class="cont_panel--label" style="display: block" for="ImgInp_2">Imagenes secundarias</label>
-                        <input class="" type="file" name="imagenesSec[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
-                               
-                        <!-- muestra las imagenes secundarias -->
-                        <div class="cont_panel--imagenSec" id="muestrasImg_2"></div>                    
-                    </div>                     
+                    <!-- VIDEO -->
+                    <div style="margin-top: 30px">    
+                        <label class="cont_panel--label">Video</label>
+                        <figure>
+                            <img class="cont_panel--video" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/video/video.png"/>
+                        </figure>
+                            <!-- <video src="<?php echo RUTA_URL?>/public/video/Si_te_vas.mp4" poster="<?php echo RUTA_URL?>/public/video/video.png" controls width="300" height="200"></video> -->
+                    </div>
                 </div>
-                
-                <div> 
-                    <input class="boton" type="submit" id="Boton_Agregar" value="Agregar noticia"/>  
-                </div>            
-            </form>
+                <div style="width: 100%; padding-left: 1%" id="AgregarNoticia">
+                    <!-- TITULO -->
+                    <label class="cont_panel--label">TItulo</label>
+                    <textarea class="textarea--titulo" name="titulo" id="Titulo"></textarea> 
+                    <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="80" readonly/>
+
+                    <!-- RESUMEN -->
+                    <label class="cont_panel--label">Resumen</label>
+                    <textarea class="textarea--resumen" name="subtitulo" id="Resumen"></textarea> 
+                    <input class="cont_panel--contador" type="text" id="ContadorResumen" value="120" readonly/>
+
+                    <!-- CONTENIDO -->
+                    <label class="cont_panel--label">Contenido</label>
+                    <textarea class="cont_panel--textarea Default--textarea--scrol" name="contenido" id="Contenido" autosize="none"></textarea> 
+                    <input class="cont_panel--contador" type="text" id="ContadorContenido" value="2000" readonly/>
+                    
+                    <!-- SECCION -->
+                    <label class="cont_panel--label">Sección</label>
+                    <input class="cont_panel--titulo" type="text" name="seccion" id="SeccionPublicar"/>
+                    
+                    <!-- FECHA  onkeyup=""-->
+                    <label class="cont_panel--label">Fecha (ingresar solo números)</label>
+                    <input class="cont_panel--titulo" type="text" name="fecha" id="Fecha" placeholder="00-00-0000" onkeydown="mascaraFecha(this.value, 'Fecha')"/>
+                    
+                    <!-- FUENTE -->
+                    <label class="cont_panel--label">Fuente</label>
+                    <select class="cont_panel--titulo" name="fuente" id="Fuente" onchange="especificarFuente()">
+                        <option>Lisbella Paez CNP 13.162</option>
+                        <?php
+                        foreach($Datos['fuentes'] as $Key)   :   ?>
+                            <option value="<?php echo $Key['fuente']?>"><?php echo $Key['fuente']?></option>
+                            <?php
+                        endforeach;     ?>
+                        <option value="Otra">Otra</option>
+                    </select>
+                    <div id="InsertarFuente"></div>
+                    
+                    <!-- IMAGENES SECUNDARIAS -->     
+                    <label class="cont_panel--label" style="display: block" for="ImgInp_2">Imagenes secundarias</label>
+                    <input class="" type="file" name="imagenesSec[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
+                            
+                    <!-- muestra las imagenes secundarias -->
+                    <div class="cont_panel--imagenSec" id="muestrasImg_2"></div>                    
+                </div>                     
+            </div>
+            
+            <div> 
+                <input class="boton" type="submit" id="Boton_Agregar" value="Agregar noticia"/>  
+            </div>            
+        </form>
     </fieldset>
 </div>
 
 <!--div alimentado desde modal_seccionesDisponibles_V.php que muestra las secciones -->    
 <div id="Contenedor_80"></div>
+
+<!--div alimentado desde modal_anunciosDisponibles_V.php que muestra las anuncios publicitarios -->    
+<div id="Contenedor_91"></div>
 
 </body>
 </html>

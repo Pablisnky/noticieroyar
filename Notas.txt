@@ -8,16 +8,24 @@ Resoluciones
     320 x 534 (Maria Esther Samsumg mini S3)
     320 x 570 (Maria Esther ZTE)
     320 x 640 (Pablo Alcatel - Antonieta)
-
     360 x 720 (Lisbella)
-    393 x 873 (Lisbella Redmi)
-    360 x 640 (Claudia)
+    393 x 873 (Lisbella Redmi uso diario)
+    360 x 800 (Lisbella Redmi solo fotos)
     393 x 851 (Monica - Esther Xiaomi - Orlando Valladares)
     ---------------
     1280 x 800 (tablet Canaima horizontal)
     ---------------
     1366 x 768 (Pablo Labtop)
     1280 x 1024 (Lisbella PC)
-    1920 x 1080 (PC local)
 
 *******************************************************************************
+
+/* .efectoZoom{
+	overflow:hidden;
+}
+.efectoZoom:hover .efectoZoom--imagen{
+	transition:all .5s ease-in-out;
+	-webkit-transform:scale(1.3);
+	transform:scale(1.3);
+	filter: opacity(.6);
+}  */

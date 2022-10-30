@@ -30,20 +30,20 @@ function conexionAJAX(){
     } 
 
 // *************************************************************************************************
-    //Muestra 
-    function Llamar_VerMiniatura(ID_ImagenMiniatura){
-        // console.log("______Desde Llamar_VerMiniatura()______", ID_ImagenMiniatura)
+    //Esta funcion no retorna nada al documento donde se llama, solo ejecuta la accion de eliminar la noticia del servidor
+    function Llamar_EliminarNoticia(ID_Noticia){
+        // console.log("______Desde Llamar_EliminarNoticia()______", ID_Noticia)
         
-        var url = "../muestraImagenSeleccionada/" + ID_ImagenMiniatura
+        var url = "../Panel_C/eliminar_noticia/" + ID_Noticia
         http_request.open('GET', url, true)  
-        peticion.onreadystatechange = respuesta_VerMiniatura
+        peticion.onreadystatechange = respuesta_EliminarNoticia
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
         peticion.send("null")
     }                                                                        
-    function respuesta_VerMiniatura(){
+    function respuesta_EliminarNoticia(){
         if(peticion.readyState == 4){
-            if(peticion.status == 200){  
-                document.getElementById('Contenedor_Imagen').innerHTML = peticion.responseText 
+            if(peticion.status == 200){ 
+                //No recibe ninguna respuesta del servidor para insertar en el documento, la accion solo es necesaria en el servidor
             } 
             else{
                 alert('Problemas con la petición.')

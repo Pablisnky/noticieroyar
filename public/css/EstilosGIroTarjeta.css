@@ -2,7 +2,7 @@
     perspective: 600px;
 }
 .tarjeta{
-    min-height: 95vh; 
+    height: 85vh !important; 
     margin: auto; 
     position: relative;
     transform-style: preserve-3d; 
@@ -16,12 +16,12 @@
     position: absolute;
     top: 0%;
     left: 0%;
+    height: 85vh !important; 
     backface-visibility: hidden; /*permite mostrar la cara posterior de un elemento*/
 }
 .atras{
-    background-color: red;
     width: 100%;
-    min-height: 100vh; 
+    height: 85vh !important; 
     transform: rotateY(180deg);
 }
 .adelante{

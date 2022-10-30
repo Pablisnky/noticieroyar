@@ -4,6 +4,7 @@
         private $Anuncios;
         private $Imagenes;
         private $Video;
+        private $Coleccion;
 
         public function __construct(){
             $this->ConsultaInicio_M = $this->modelo("Inicio_M");
@@ -22,6 +23,9 @@
 
 			//CONSULTA si existe algun anuncio asociado a cada noticia del dia
             $this->Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortada();
+            
+			//CONSULTA coleccion 180°
+            $this->Coleccion = $this->ConsultaInicio_M->consultarColeccionPortada();
         }
         
         public function index(){  
@@ -43,7 +47,8 @@
                     'ID_NoticiaInicial' =>  $this->NoticiasPortadas[0]['ID_Noticia'],
                     'anuncios' => $this->Anuncios, //ID_Anuncio, ID_Noticia
                     'imagenes' => $this->Imagenes,  //ID_Noticia, COUNT(ID_Noticia)
-                    'videos' => $this->Video //ID_Noticia
+                    'videos' => $this->Video, //ID_Noticia
+                    'colecciones' => $this->Coleccion
                 ];
                 
                 // echo "<pre>";
@@ -131,4 +136,22 @@
              
             $this->vista("view/ajax/NoticiasRadioButom_V", $Datos );   
         }        
+        
+        // muestra la imagen seleccionada en la miniatura de la coleccion
+        public function muestraImagenSeleccionada($ID_ImagenMiniatura){
+            //Se CONSULTA la imagen que se solicito en detalle
+             $DetalleImagen = $this->ConsultaInicio_M->consultarDetalleImagen($ID_ImagenMiniatura);
+           
+            $Datos = [
+                'ImagenSeleccionada' => $DetalleImagen, //nombre_imagenNoticia
+            ];
+
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+            
+            // $this->vista("header/header_SoloEstilos"); 
+            $this->vista("view/ajax/ImagenColeccion_V", $Datos ); 
+        }
     }

@@ -112,11 +112,42 @@
         // SELECT de anuncios publicitarios
         public function consultarAnuncio(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Anuncio, ID_Noticia, nombre_imagenPublicidad, razonSocial, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicio, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulmina
-                FROM publicidad
-                WHERE fechaCulmina > CURDATE()
-                GROUP BY razonSocial
+                "SELECT ID_Anuncio, nombre_imagenPublicidad, razonSocial, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicio, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulmina
+                FROM anuncios
+                -- WHERE fechaCulmina > CURDATE()
+                -- GROUP BY razonSocial
                 ORDER BY fechaCulmina
+                DESC"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        
+        // SELECT de anuncio publicitario especifico
+        public function consultarAnuncioEspecifico($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT anuncios.ID_Anuncio, nombre_imagenPublicidad
+                FROM noticias_anuncios
+                INNER JOIN anuncios ON noticias_anuncios.ID_Anuncio=anuncios.ID_Anuncio
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+        }
+
+        // SELECT de colecciones
+        public function consultarColeccionPanel(){
+            $stmt = $this->dbh->query(
+                "SELECT colecciones.ID_Coleccion , nombreColeccion, nombre_imColeccion
+                FROM colecciones
+                INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
+                WHERE ImagenPrincipalColec = 1
+                ORDER BY ID_Noticia
                 DESC"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -291,6 +322,50 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function consultaVisitasNoticia(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Noticia, COUNT(ID_Noticia) AS 'visitas'
+                FROM visitas
+                GROUP BY ID_Noticia"
+            );
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+
+        }
+        
+        //SELECT de colecciones adjudicadas a cada noticia
+        public function consultarColeccion(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Noticia, nombreColeccion
+                FROM colecciones"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        //CONSULTA si existe un anuncio para una noticia especifica
+        public function consultar_DT_noticia_anuncio($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Anuncio
+                FROM noticias_anuncios 
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+
+        }
 // // ********************************************************************************************************
 // // INSERT 
 // // ********************************************************************************************************
@@ -374,6 +449,20 @@
             $stmt->execute();
 
         }
+        
+        // INSERT de dependencia transitiva entre noticias y anuncios
+        public function Insertar_DT_noticia_anuncio($ID_Noticia, $ID_Anuncio){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO noticias_anuncios(ID_Noticia, ID_Anuncio)VALUES (:ID_NOTICIA, :ID_ANUNCIO)"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas
+            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_ANUNCIO', $ID_Anuncio, PDO::PARAM_INT);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            $stmt->execute();
+        }
 
         //INSERT de solo el ID_Noticia en la tabla imagenes, cuando no se tiene una imagen para la noticia
         public function InsertarID_ImagenPrincipal($ID_Noticia){
@@ -389,6 +478,26 @@
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
                 return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+
+        //INSERT de solo el ID_Noticia en la tabla imagenes, cuando no se tiene una imagen para la noticia
+        public function InsertarID_Anunio(){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO anuncios(nombre_imagenPublicidad) 
+                VALUES (:NOMBRE_ANUNCIO)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindValue(':NOMBRE_ANUNCIO', 'imagen.png', PDO::PARAM_STR);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                //se recupera el ID del registro insertado
+                return $this->dbh->lastInsertId();
             }
             else{
                 return FALSE;
@@ -464,9 +573,9 @@
         }
         
         //INSERT de anuncio publicitario
-        public function InsertarPublicidad($RazonSocial, $FechaCaducidad, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
+        public function InsertarAnuncio($RazonSocial, $FechaCaducidad, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO publicidad(razonSocial, fechaCulmina, nombre_imagenPublicidad, tipo_imagenPublicidad, tamanio_imagenPublicidad) 
+                "INSERT INTO anuncios(razonSocial, fechaCulmina, nombre_imagenPublicidad, tipo_imagenPublicidad, tamanio_imagenPublicidad) 
                 VALUES (:RAZON_SOCIAL, STR_TO_DATE('$FechaCaducidad', '%d-%m-%Y'), :NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN)"
             );
 
@@ -493,6 +602,26 @@
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':FUENTE', $Coinsidencias, PDO::PARAM_STR);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+
+        //INSERT de anuncio seleccionado, se usa cuando se actualiza una noticia que no tenia anuncio
+        public function insertarAnuncioSeleccionado($ID_Noticia, $ID_Anuncio){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO noticias_anuncios (ID_Anuncio, ID_Noticia) 
+                VALUES (:ID_ANUNCIO, :ID_NOTICIA)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_ANUNCIO', $ID_Anuncio, PDO::PARAM_INT);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -616,6 +745,30 @@
             }
         }
 
+        // UODATE de imagen de anuncio publicitario
+        public function ActualizarAnuncio($ID_Anuncio, $Nombre_imagenAnuncio, $Tipo_imagenAnuncio, $Tamanio_imagenAnuncio){            
+            $stmt = $this->dbh->prepare(
+                "UPDATE anuncios 
+                SET nombre_imagenPublicidad = :NOMBRE_IMG_ANUNCIO, tamanio_imagenPublicidad = :TAMANIO_IMG_ANUNCIO, tipo_imagenPublicidad = :TIPO_IMG_ANUNCIO 
+                WHERE ID_Anuncio = :ID_ANUNCIO"
+            );
+
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_ANUNCIO', $ID_Anuncio, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMG_ANUNCIO', $Nombre_imagenAnuncio, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMG_ANUNCIO', $Tipo_imagenAnuncio, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMG_ANUNCIO', $Tamanio_imagenAnuncio, PDO::PARAM_STR);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                // se recupera el ID del registro insertado
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+
         // public function actualizarImagenesSecundarias($ID_imagen, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria){
         //     $stmt = $this->dbh->prepare(
         //         "UPDATE imagenes 
@@ -686,7 +839,28 @@
                 return FALSE;
             }
         }
+        
+        // UODATE de anuncio publicitario correspondiente a una noticia
+        public function actualizar_DT_noticia_anuncio($ID_Noticia, $ID_Anuncio){            
+            $stmt = $this->dbh->prepare(
+                "UPDATE noticias_anuncios  
+                SET ID_Anuncio = :ID_ANUNCIO 
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
 
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_ANUNCIO', $ID_Anuncio, PDO::PARAM_INT);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                // se recupera el ID del registro insertado
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
 
 // // ********************************************************************************************************
 // // DELETE
@@ -739,6 +913,17 @@
                 WHERE ID_Noticia = :ID_NOTICIA"
             );
             $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->execute(); 
+        }
+
+        // Elimina un anuncio publicitario
+        public function eliminarAnuncio($ID_Anuncio){
+            $stmt = $this->dbh->prepare(
+                "DELETE FROM anuncios 
+                WHERE ID_Anuncio = :ID_ANUNCIO"
+            );
+        
+            $stmt->bindValue(':ID_ANUNCIO', $ID_Anuncio, PDO::PARAM_INT);
             $stmt->execute(); 
         }
 }

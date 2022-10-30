@@ -1,4 +1,4 @@
-@media(min-width: 371px) and (max-width: 800px){/*aplicará en cualquier medio con dimensiones entre lo indicado*/
+@media(min-width: 351px) and (max-width: 370px){/*aplicará en cualquier medio con dimensiones menores a lo indicado*/
 		
 	*{
 		user-select: none;
@@ -135,7 +135,7 @@
 		margin-bottom: 1%;
 	}
 	.detalle_cont--fuente{
-		font-size: 0.8em
+		font-size: 0.7em
 	}
 	.detalle_cont--video{
 		width: 100%; 
@@ -149,36 +149,28 @@
 		margin-top: 20%;
 	}
 	.cont_noticia--seccion{
-		margin-bottom: 10%;
+		margin-bottom: 5%;
 	}
 	.cont_noticia--sencilla{
-	   min-width: 65%;
+	   min-width: 60%;
 	   margin: 1%;
 	}
 	.cont_noticia--tituloSeccion{
-	   font-size: 1.5em;
+	   font-size: 1.3em;
 	   width: 70%;
 	   text-align: left;
 	   padding-left: 2%;
 	   margin-left:3%;
 	}
 	.cont_noticia-imagen{
-		height: 24vh; 
+		height: 20vh; 
 		width: 100%;
 		/* object-fit: cover;  */
 	}
 	.cont_noticia--titular{
-		height: 33vw;
+		height: 30vw;
 		width: 100%;
 		overflow-y: hidden;
-	}
-	.cont_noticias--titulo{
-		font-size: 1.5em;
-	}
-	.cont_noticias_informacion--span{
-		padding-left: 5px;
-		font-weight: bold; 
-		font-size: 1em;
 	}
 	.cont_portada{
 		display: block;
@@ -204,7 +196,7 @@
 		padding: 0% 3% 1% 3%; 
 	}
 	.cont_portada--resumen{
-		font-size: 1.3em;
+		font-size: 1.1em;
 		font-weight: lighter ;
 		text-align: justify;
 	}
@@ -227,7 +219,12 @@
 		/* background-color: yellow; */
 		padding-left: 5px;
 		font-weight: bold; 
-		font-size: 1em;
+		font-size: 0.8em;
+	}
+	.cont_noticias_informacion--span{
+		padding-left: 5px;
+		font-weight: bold; 
+		font-size: 0.9em;
 	}
 	.cont_radio{
 		display: flex; 
@@ -248,11 +245,6 @@
 		/* margin-top: 10%; */
 		width: 95%;
 		text-align: center;
-	}
-	.imagen--portada{
-		height: 48vh;  
-		margin: auto;
-		object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 	}
 	.obituario_cont--imagen{
 		margin:auto;
@@ -290,12 +282,8 @@
 		padding: 1.5%;
 		width: 95%;
 	}
-	.textarea--font{
-		border: none;
-		font-size: 1.3em !important; 
-	}
 	.titular--texto{
-		font-size: 1.5em;
+		font-size: 1.3em;
 		padding: 1%;
 	}
 	.subtitulo{	

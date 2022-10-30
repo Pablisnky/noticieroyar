@@ -13,4 +13,4 @@
     <span class="material-icons-outlined cont_modal--cerrar Default_pointer" id="Cerrar--modal">cancel</span>
     <p class="cont_modal--p">Duelo nacional por tragedia en Las Tejerías, estado Aragua.</p>
     <img class="cont_modal--logo" src="<?php echo RUTA_URL?>/public/images/duelo.jpg"/>
-</div> -->s
+</div> -->
