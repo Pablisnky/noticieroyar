@@ -107,6 +107,9 @@
 	font-weight: bold; 
 	font-size: 0.8em;
 }
+.cont_portada_giro{
+	bottom: 40pt;
+}
 .cont_noticias_informacion--span{
 	padding-left: 5px;
 	font-weight: bold; 

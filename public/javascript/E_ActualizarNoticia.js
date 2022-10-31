@@ -114,10 +114,33 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
 
 //************************************************************************************************  
 function transferirAnuncio(form){
-    console.log("______Desde transferirAnuncio()______", form )
+    // console.log("______Desde transferirAnuncio()______", form )
 
     //Se reciben los elementos del formulario mediante su atributo name
     ID_Anuncio = form.anuncio
+
+     // En el caso que la seccion tenga un solo producto, se añade un input radio, sino se añade el Opcion.legth sera undefined y no entrará en el ciclo for
+     if(ID_Anuncio.length == undefined){
+
+     //Se añade una opcion al input tipo radio para que existan al menos dos opciones, cuando es uno el valor de Opcion.length es undefined lo que impide que se ejecute el ciclo for más adelante, esto sucede cuando solo existe un producto en una seccción
+         //Se crea un input tipo radio que pertenezca a los de name="opcion"
+         var NuevoElemento = document.createElement("input")
+
+         //Se dan valores a la propiedades del nuevo elemento 
+         NuevoElemento.name = "anuncio"
+         NuevoElemento.setAttribute("type", "radio");
+        //  console.log(NuevoElemento)
+
+         //Se especifica el elemento donde se va a insertar el nuevo elemento
+         var ElementoPadre = document.getElementById("Contenedor_Radio")
+        //  console.log(ElementoPadre)
+
+         //Se inserta en el DOM el input creado
+         inputNuevo = ElementoPadre.appendChild(NuevoElemento) 
+
+         //Se renombra la variable ID_Anuncio
+         ID_Anuncio = form.anuncio
+     }
 
     // //Se recorre todos los elementos para encontrar el que esta seleccionado
     for(var i = 0; i<ID_Anuncio.length; i++){ 
@@ -128,7 +151,7 @@ function transferirAnuncio(form){
         }            
     } 
     
-    console.log("ID_Anuncio", Seleccionado)
+    // console.log("ID_Anuncio", Seleccionado)
 
     //Se transfiere el valor del radio boton seleccionado al input del formulario
     document.getElementById("ID_Anuncio").value = Seleccionado

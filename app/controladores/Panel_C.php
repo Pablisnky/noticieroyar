@@ -624,7 +624,7 @@
 				// exit;
 								
 				//Usar en remoto
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
 				
 				// usar en local
 				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';

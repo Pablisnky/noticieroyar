@@ -229,6 +229,9 @@
 		font-weight: bold; 
 		font-size: 1em;
 	}
+	.cont_portada_giro{
+		bottom: 40pt;
+	}
 	.cont_radio{
 		display: flex; 
 		justify-content: space-around;

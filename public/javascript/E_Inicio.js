@@ -6,21 +6,19 @@
 //     setTimeout(function(){mostrarModal();}, 1500)
 // })();
 
-//************************************************************************************************
-function mostrarModal(){        
-    document.getElementById("VentanaModal").classList.add("mostrarModal")
-}
-                              
-// document.getElementById("Span_5").addEventListener('click', function(){CerrarModal_X('Busqueda')})
-
+//************************************************************************************************ 
 //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
     // window.addEventListener("click", function(e){   
     //     var click = e.target
     //     console.log("Se hizo click en: ", click)
     // }, false)
 
-//************************************************************************************************    
-    //
+//************************************************************************************************
+function mostrarModal(){        
+    document.getElementById("VentanaModal").classList.add("mostrarModal")
+}   
+
+//************************************************************************************************
     function CerrarModal(){
         document.getElementById("VentanaModal").style.display = "none"
     }
@@ -35,7 +33,7 @@ function mostrarModal(){
             //Se obtiene el elemento padre donde se realizó click
             let current_1 = Tarjeta.parentElement
             let current_2 = current_1.parentElement
-            console.log("Div Padre  ", current_2)
+            // console.log("Div Padre_2  ", current_2)
 
             
             // console.log("ID_Padre tarjeta click ", current_2.id)
@@ -56,7 +54,7 @@ function mostrarModal(){
             //Se obtiene el elemento padre donde se realizó click
             let current_1 = Tarjeta.parentElement
             let current_2 = current_1.parentElement
-            console.log("Div Padre ", current_2)
+            // console.log("Div Padre ", current_2)
 
             document.getElementById(current_2.id).style.transform = "rotateY(0deg)" //Gira la tarjeta
             document.getElementById(current_2.id).style.transformStyle = "preserve-3d" //Voltae para poder leer el lado de atras cuando se pase al frente

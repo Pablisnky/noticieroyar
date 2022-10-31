@@ -48,7 +48,7 @@
                     'anuncios' => $this->Anuncios, //ID_Anuncio, ID_Noticia
                     'imagenes' => $this->Imagenes,  //ID_Noticia, COUNT(ID_Noticia)
                     'videos' => $this->Video, //ID_Noticia
-                    'colecciones' => $this->Coleccion
+                    'colecciones' => $this->Coleccion //ID_Noticia, ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, ubicacionColeccion, comentarioColeccion
                 ];
                 
                 // echo "<pre>";
@@ -83,12 +83,16 @@
 
 			//CONSULTA si existe algun anuncio asociado a la noticia solicitada
             $Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
+            
+			//CONSULTA coleccion 180°
+            $Coleccion = $this->ConsultaInicio_M->consultarColeccionPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
 
             $Datos = [
                 'noticia' => $Noticia, //ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, fecha
                 'cantidadImagenes' => $CantidadImagenes,
                 'videos' => $Video, //ID_Noticia 
-                'anuncios' => $Anuncios
+                'anuncios' => $Anuncios,
+                'colecciones' => $Coleccion
             ];
             
             // echo "<pre>";
@@ -152,6 +156,6 @@
             // exit();
             
             // $this->vista("header/header_SoloEstilos"); 
-            $this->vista("view/ajax/ImagenColeccion_V", $Datos ); 
+            $this->vista("view/ajax/imagenColeccion_V", $Datos ); 
         }
     }

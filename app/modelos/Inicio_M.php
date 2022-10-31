@@ -134,6 +134,26 @@
             }
         }
 
+        //SELECT de las colecciones asociados a la noticia de portada especificada
+        public function consultarColeccionPortadaEspec($ID_noticia){
+            $stmt = $this->dbh->prepare(
+                "  SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion 
+                FROM colecciones
+                INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
+                WHERE ID_Noticia = :ID_NOTICIA "
+            );
+          
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
         //SELECT  de ID_Noticia posterior al introducido como parametro
         public function consultarID_NoticiaPosterior($ID_Noticia){
             $stmt = $this->dbh->prepare(
@@ -237,7 +257,7 @@
         //SELECT de colecciones asociados a las noticias
         public function consultarColeccionPortada(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion 
+                "SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, ubicacionColeccion, comentarioColeccion
                 FROM colecciones
                 INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion"
             );

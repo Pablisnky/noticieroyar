@@ -11,7 +11,7 @@
             $ContadorAnuncio = 1;
             foreach($Datos['anuncios'] as $Row)  :
                     ?>
-                <div class="contInputRadio efectoZoom">
+                <div class="contInputRadio efectoZoom" id="Contenedor_Radio">
                     <input class="Default_ocultar" type="radio" name="anuncio" id="<?php echo 'ContadorAnuncio_' . $ContadorAnuncio;?>" value="<?php echo $Row['ID_Anuncio']?>"  
                               onclick="transferirAnuncio(this.form, document.getElementById('ImgAnuncio').src='<?php echo RUTA_URL;?>/public/images/publicidad/<?php echo $Row['nombre_imagenPublicidad'];?>')"/>
                     

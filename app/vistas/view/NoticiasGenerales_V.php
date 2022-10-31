@@ -58,7 +58,7 @@
                         <a style="margin-left: 10%" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
                                                 
                         <!-- ELIMINAR -->
-                        <label style="margin-left: 50px" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Gen['ID_Noticia'];?>')">Eliminar</label>
+                        <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Gen['ID_Noticia'];?>')">Eliminar</label>
                     </div>
                 </div>
                 <?php

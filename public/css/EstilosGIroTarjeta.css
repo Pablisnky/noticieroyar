@@ -27,3 +27,23 @@
 .adelante{
     transform: rotateY(0deg);
 }
+
+@media(max-width: 350px){
+    .atras{
+        height: 75vh !important; 
+    }
+}
+
+
+@media(min-width: 351px) and (max-width: 370px){
+    .atras{
+        height: 75vh !important; 
+    }
+}
+
+
+@media(min-width: 371px) and (max-width: 800px){
+    .atras{
+        height: 75vh !important; 
+    }
+}

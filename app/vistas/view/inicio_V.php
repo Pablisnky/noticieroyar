@@ -5,7 +5,7 @@
     <?php
     $Iterador = 1;
     foreach($Datos['datosNoticia'] as $Key) :  ?>
-        <div class="cont_portada--noticia contenedor_tarjeta" id="Cont_Portada">
+        <div class="cont_portada--noticia contenedor_tarjeta">
             <div class="tarjeta" id="Tarjeta_<?php echo $Iterador?>">
                 <div class="adelante borde_1" id="adelante_<?php echo $Iterador?>">
                     <!-- IMAGEN -->
@@ -54,47 +54,62 @@
                         <br>
                         <small class="cont_portada_informacion--span"><?php echo $Key['fuente'];?></small>
                     </div> 
-                        <!-- ASIGNA COLECCION 180° -->
+                    
+                    <!-- COLECCION 180° -->
+                        <?php
+                    foreach($Datos['colecciones'] as $Row_5)   :  
+                        if($Key['ID_Noticia'] == $Row_5['ID_Noticia']){ ?>   
+                            <span class="VerMas_JS Default_pointer cont_portada_giro material-icons-outlined ">switch_left</span>
                             <?php
-                        foreach($Datos['colecciones'] as $Row_5)   :  
-                            if($Key['ID_Noticia'] == $Row_5['ID_Noticia']){ ?>   
-                                <span class="VerMas_JS Default_pointer cont_portada_giro material-icons-outlined ">switch_left</span>
-                                <?php
-                            }
-                        endforeach;  ?>   
+                        }
+                    endforeach;  ?>   
                 </div>
                 <div class="atras borde_1" id="atras_<?php echo $Iterador?>">                         
                     <div class="">            
                         <!-- IMAGEN COLECCION-->
+                        <div id="Contenedor_Imagen_<?php echo $Iterador?>">
                                 <?php
                             foreach($Datos['colecciones'] as $Row_6)   :  
                                 if($Key['ID_Noticia'] == $Row_6['ID_Noticia'] AND $Row_6['ImagenPrincipalColec'] == 1){     ?> 
-                        <figure id="Contenedor_Imagen">
-                            <img class="imagen--portada" alt="Fotografia Coleccion" src="<?php echo RUTA_URL?>/public/images/colecciones/<?php echo $Row_6['nombre_imColeccion'];?>"/>  
-                        </figure> <?php
+                                <figure>
+                                    <img class="imagen--portada" alt="Fotografia Coleccion" src="<?php echo RUTA_URL?>/public/images/colecciones/<?php echo $Row_6['nombre_imColeccion'];?>"/>  
+                                </figure> <?php
                                 }
                             endforeach; ?>
-                        
+                        </div>
+                        <div id="NUevoContenedor_Imagen_<?php echo $Iterador?>"></div>
                         <!-- IMAGENES COLECCION EN MINIATURAS-->
-                        <div style="display: flex; justify-content: center;">     
+                        <div style="display: flex; justify-content: center;" id="ContMiniaturas_<?php echo $Iterador?>"> 
                             <?php              
-                            foreach($Datos['colecciones'] as $Row_7) :   ?>
-                                <div style="margin-top: 1%">
-                                    <figure>
-                                        <img class="cont_detalle--imagenMiniatura borde_1" alt="Foto no disponible" src="<?php echo RUTA_URL?>/images/colecciones/<?php echo $Row_7['nombre_imColeccion'];?>" onclick="Llamar_VerMiniatura('<?php echo $Row_7['ID_ImagenColeccion']?>')"/>
-                                    </figure>
-                                </div>
+                            foreach($Datos['colecciones'] as $Row_7) :   
+                                if($Key['ID_Noticia'] == $Row_7['ID_Noticia']){  ?>
+                                    <div style="margin-top: 1%" id="PadreImg_<?php echo $Iterador?>">    
+                                        <figure>
+                                            <img class="cont_detalle--imagenMiniatura borde_1" alt="Foto no disponible" src="<?php echo RUTA_URL?>/images/colecciones/<?php echo $Row_7['nombre_imColeccion'];?>" onclick="Llamar_VerMiniatura('<?php echo $Row_7['ID_ImagenColeccion']?>')"/>
+                                        </figure>
+                                    </div> 
                                     <?php
+                                }
                             endforeach; ?>
                         </div> 
+                        <!-- DESCRIPCION DE LA COLECCION -->
+                        <div>
+                            <?PHP
+                            foreach($Datos['colecciones'] as $Row_7) :   
+                                if($Key['ID_Noticia'] == $Row_7['ID_Noticia']){ ?>
+                                    <p class="cont_portada_atras--titulo"><?php echo $Row_7['nombreColeccion']?></p>
+                                    <p class="cont_portada_atras--descripcion"><?php echo $Row_7['ubicacionColeccion']?></p>
+                                    <p class="cont_portada_atras--descripcion"><?php echo $Row_7['comentarioColeccion']?></p>
+                                    <?php
+                                    break;
+                                }
+                            endforeach; ?>
+                        </div>
                     </div>                  
-                    <p class="cont_portada_atras--titulo">Estatua del cacique Yaracuy</p>
-                    <p class="cont_portada_atras--descripcion">Final Av. Yaracuy de San Felipe</p>
-                    <p class="cont_portada_atras--descripcion">Alejandro Colina</p>
                     <span class="Cerrar_JS Default_pointer cont_portada_giro material-icons-outlined">switch_right</span>
                     <div class="cont_portada_atras--coleccion">
                         <p>COLECCIÓN YARACUY EN 180°</p>
-                        <p class="cont_portada_atras--serie">Vienes de interes cultural</p> 
+                        <p class="cont_portada_atras--serie"><?php echo $Row_7['serie']?></p> 
                     </div> 
                 </div>
             </div>

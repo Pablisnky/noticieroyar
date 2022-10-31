@@ -27,10 +27,10 @@
 
                     <div style="width: 100%;">
                         <!-- ACTUALIZAR -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_publicidad/<?php echo $Row['ID_Anuncio'];?>" rel="noopener noreferrer">Actualizar</a>
+                        <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_publicidad/<?php echo $Row['ID_Anuncio'];?>" rel="noopener noreferrer">Editar</a>
                         
                         <!-- ELIMINAR -->
-                        <label class="Default_pointer" onclick="EliminarAnuncio('<?php echo $Row['ID_Anuncio'];?>')">Eliminar</label>
+                        <label class="Default_pointer" style="color: blue; margin-left: 50px" onclick="EliminarAnuncio('<?php echo $Row['ID_Anuncio'];?>')">Eliminar</label>
                     </div>
                 </div> 
             </div>
