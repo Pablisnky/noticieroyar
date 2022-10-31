@@ -73,21 +73,33 @@
                         endforeach; ?>
                         
                         <!-- IMAGENES COLECCION EN MINIATURAS-->
-                        <div style="display: flex; justify-content: center;">     
+                        <div style="display: flex; justify-content: center;" id="ContMiniaturas_<?php echo $Iterador?>">     
                             <?php              
-                            foreach($Datos['colecciones'] as $Row_7) :   ?>
-                                <div style="margin-top: 1%">
-                                    <figure>
-                                        <img class="cont_detalle--imagenMiniatura borde_1" alt="Foto no disponible" src="<?php echo RUTA_URL?>/images/colecciones/<?php echo $Row_7['nombre_imColeccion'];?>" onclick="Llamar_VerMiniatura('<?php echo $Row_7['ID_ImagenColeccion']?>')"/>
-                                    </figure>
-                                </div>
+                            foreach($Datos['colecciones'] as $Row_7) :   
+                                if($Key['ID_Noticia'] == $Row_7['ID_Noticia']){  ?>
+                                    <div style="margin-top: 1%" id="PadreImg_<?php echo $Iterador?>">
+                                        <figure>
+                                            <img class="cont_detalle--imagenMiniatura borde_1" alt="Foto no disponible" src="<?php echo RUTA_URL?>/images/colecciones/<?php echo $Row_7['nombre_imColeccion'];?>" onclick="Llamar_VerMiniatura('<?php echo $Row_7['ID_ImagenColeccion']?>')"/>
+                                        </figure>
+                                    </div>
                                     <?php
+                                }
                             endforeach; ?>
                         </div> 
                     </div>                  
-                    <p class="cont_portada_atras--titulo">Estatua del cacique Yaracuy</p>
-                    <p class="cont_portada_atras--descripcion">Final Av. Yaracuy de San Felipe</p>
-                    <p class="cont_portada_atras--descripcion">Autor: Alejandro Colina</p>
+                    <!-- DESCRIPCION DE LA COLECCION -->
+                    <div>
+                        <?PHP
+                        foreach($Datos['colecciones'] as $Row_7) :   
+                            if($Key['ID_Noticia'] == $Row_7['ID_Noticia']){ ?>
+                                <p class="cont_portada_atras--titulo"><?php echo $Row_7['nombreColeccion']?></p>
+                                <p class="cont_portada_atras--descripcion"><?php echo $Row_7['ubicacionColeccion']?></p>
+                                <p class="cont_portada_atras--descripcion"><?php echo $Row_7['comentarioColeccion']?></p>
+                                <?php
+                                break;
+                            }
+                        endforeach; ?>
+                    </div>
                     <span class="Cerrar_JS Default_pointer cont_portada_giro material-icons-outlined">switch_right</span>
                     <div class="cont_portada_atras--coleccion">
                         <p>COLECCIÓN YARACUY EN 180°</p>

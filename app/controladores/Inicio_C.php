@@ -69,7 +69,7 @@
             
             if($ID_NoticiaConsultar == Array()){
                 //Se CONSULTA el ID_Noticia de la primera noticia introducida en el dia
-                $ID_NoticiaConsultar = $this->ConsultaInicio_M->consultarID_NoticiaPortadaPrimera($ID_Noticia);
+                $ID_NoticiaConsultar = $this->ConsultaInicio_M->consultarID_NoticiaPortadaPrimera();
             }
 
             //Se CONSULTA la informacion de la noticia solicituada
@@ -111,7 +111,7 @@
 
             if($ID_NoticiaConsultar == Array()){
                 //Se CONSULTA el ID_Noticia de la ultima noticia introducido en el dia
-                $ID_NoticiaConsultar = $this->ConsultaInicio_M->consultarID_NoticiaPortadaUltimo($ID_Noticia);
+                $ID_NoticiaConsultar = $this->ConsultaInicio_M->consultarID_NoticiaPortadaUltimo();
             }
 
             //Se CONSULTA la informacion de la noticia solicitada
@@ -126,11 +126,15 @@
 			//CONSULTA si existe algun anuncio asociado a la noticia solicitada
             $Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
             
+			//CONSULTA coleccion 180°
+            $Coleccion = $this->ConsultaInicio_M->consultarColeccionPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
+            
             $Datos = [
                 'noticia' => $Noticia, //ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, fecha
                 'cantidadImagenes' => $CantidadImagenes,
                 'videos' => $Video, //ID_Noticia 
-                'anuncios' => $Anuncios
+                'anuncios' => $Anuncios,
+                'colecciones' => $Coleccion
             ];
             
             // echo "<pre>";

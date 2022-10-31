@@ -137,7 +137,7 @@
         //SELECT de las colecciones asociados a la noticia de portada especificada
         public function consultarColeccionPortadaEspec($ID_noticia){
             $stmt = $this->dbh->prepare(
-                "  SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion 
+                "  SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, ubicacionColeccion, comentarioColeccion 
                 FROM colecciones
                 INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
                 WHERE ID_Noticia = :ID_NOTICIA "
@@ -197,7 +197,7 @@
         }   
         
         //SELECT de la ultima noticia introducido en el dia
-        public function consultarID_NoticiaPortadaUltimo($ID_Noticia){
+        public function consultarID_NoticiaPortadaUltimo(){
             $stmt = $this->dbh->prepare(
                 "SELECT ID_Noticia 
                 FROM noticias 
@@ -215,13 +215,13 @@
         }  
         
         //SELECT de la primera noticia introducido en el dia
-        public function consultarID_NoticiaPortadaPrimera($ID_Noticia){
+        public function consultarID_NoticiaPortadaPrimera(){
             $stmt = $this->dbh->prepare(
                 "SELECT ID_Noticia 
                 FROM noticias 
                 WHERE ID_Noticia = (SELECT MIN(ID_Noticia) 
                                     FROM noticias 
-                                    WHERE fecha = CURDATE());"
+                                    WHERE fecha BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() );"
             );
 
             if($stmt->execute()){
