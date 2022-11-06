@@ -12,7 +12,7 @@
         //SELECT de las noticias de portada 
         public function consultarNoticiasPortada(){
             $stmt = $this->dbh->query(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion 
                 FROM noticias 
                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
                 INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
@@ -50,7 +50,7 @@
         // SELECT de noticias generales
         public function consultarNoticiasGenerales(){
             $stmt = $this->dbh->query(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha 
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion
                 FROM noticias
                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
                 INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
@@ -85,10 +85,34 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
+        // SELECT de colecciones en noticias generales
+        public function consultarColeccionNoticiasGenerales(){
+            $stmt = $this->dbh->query(
+                "SELECT noticias.ID_Noticia, nombreColeccion 
+                FROM noticias_colecciones 
+                INNER JOIN colecciones ON noticias_colecciones.ID_Coleccion=colecciones.ID_Coleccion 
+                INNER JOIN noticias ON noticias_colecciones.ID_Noticia=noticias.ID_Noticia 
+                WHERE fecha < CURDATE() "
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        // SELECT de anuncios en noticias generales
+        public function consultarAnunciosNoticiasGenerales(){
+            $stmt = $this->dbh->query(
+                "SELECT noticias.ID_Noticia, razonSocial 
+                FROM noticias_anuncios 
+                INNER JOIN anuncios ON noticias_anuncios.ID_Anuncio=anuncios.ID_Anuncio 
+                INNER JOIN noticias ON noticias_anuncios.ID_Noticia=noticias.ID_Noticia 
+                WHERE fecha < CURDATE() "
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         // SELECT de efemerides
         public function consultarEfemerides(){
             $stmt = $this->dbh->query(
-                "SELECT efemeride.ID_Efemeride, titulo, contenido, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_ImagenEfemeride
+                "SELECT efemeride.ID_Efemeride, titulo, contenido, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, nombre_ImagenEfemeride
                 FROM efemeride
                 INNER JOIN imagenesefemerides ON efemeride.ID_Efemeride=imagenesefemerides.ID_Efemeride
                 ORDER BY fecha
@@ -100,7 +124,7 @@
         // SELECT agenda
         public function consultarAgenda(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Agenda, nombre_imagenAgenda, DATE_FORMAT(caducidad, '%d-%m-%Y') AS fecha 
+                "SELECT ID_Agenda, nombre_imagenAgenda, DATE_FORMAT(caducidad, '%d-%m-%Y') AS fechaPublicacion 
                 FROM agenda
                 WHERE disponibilidad = 'activado'
                 ORDER BY caducidad
@@ -109,21 +133,31 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
-        // SELECT de anuncios publicitarios
+        // SELECT de todos los anuncios publicitarios incluyendo caducados
+        public function consultarAnuncioTodos(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Anuncio, nombre_imagenPublicidad, razonSocial, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicioPublicacion, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulminaPublicacion
+                FROM anuncios
+                ORDER BY fechaCulmina
+                DESC"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // SELECT de anuncios publicitarios disponibles
         public function consultarAnuncio(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Anuncio, nombre_imagenPublicidad, razonSocial, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicio, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulmina
+                "SELECT ID_Anuncio, nombre_imagenPublicidad, razonSocial, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicioPublicacion, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulminaPublicacion
                 FROM anuncios
-                -- WHERE fechaCulmina > CURDATE()
+                WHERE fechaCulmina > CURDATE()
                 -- GROUP BY razonSocial
                 ORDER BY fechaCulmina
                 DESC"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
-        
-        // SELECT de anuncio publicitario especifico
+                
+        // SELECT de anuncio publicitario existente en una noticia
         public function consultarAnuncioEspecifico($ID_Noticia){
             $stmt = $this->dbh->prepare(
                 "SELECT anuncios.ID_Anuncio, nombre_imagenPublicidad
@@ -139,15 +173,31 @@
                 return $stmt->fetch(PDO::FETCH_ASSOC);
             }
         }
+        
+        // SELECT de video especifico
+        public function consultarVideoEspecifico($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Noticia, ID_Video, nombreVideo 
+                FROM videos
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
 
-        // SELECT de colecciones
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+        }
+
+        // SELECT de colecciones mostradas en el panel de periodista
         public function consultarColeccionPanel(){
             $stmt = $this->dbh->query(
                 "SELECT colecciones.ID_Coleccion , nombreColeccion, nombre_imColeccion
                 FROM colecciones
                 INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
                 WHERE ImagenPrincipalColec = 1
-                ORDER BY ID_Noticia
+                ORDER BY colecciones.ID_Coleccion
                 DESC"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -168,7 +218,7 @@
         //SELECT de la noticia general
         public function consultarNoticiaGeneral($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_imagenNoticia
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, nombre_imagenNoticia
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                  WHERE noticias.ID_Noticia = :ID_NOTICIA"
@@ -188,7 +238,7 @@
         //SELECT de la noticia a actualizar
         public function consultarNoticiaActualizar($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, secciones.ID_Seccion, titulo, subtitulo, contenido, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_imagenNoticia, ID_Imagen, fuente 
+                "SELECT noticias.ID_Noticia, secciones.ID_Seccion, titulo, subtitulo, contenido, seccion, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, nombre_imagenNoticia, ID_Imagen, fuente 
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
@@ -229,7 +279,7 @@
         //SELECT de la efemeride a actualizar
         public function consultarEfemerideActualizar($ID_Efemeride){
             $stmt = $this->dbh->prepare(
-                "SELECT efemeride.ID_Efemeride, ID_ImagenEfemeride, titulo, contenido, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, nombre_ImagenEfemeride, imagenPrincipalEfemeride
+                "SELECT efemeride.ID_Efemeride, ID_ImagenEfemeride, titulo, contenido, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, nombre_ImagenEfemeride, imagenPrincipalEfemeride
                  FROM efemeride
                  INNER JOIN imagenesefemerides ON efemeride.ID_Efemeride=imagenesefemerides.ID_Efemeride
                  WHERE efemeride.ID_Efemeride = :ID_EFEMERIDE"
@@ -249,7 +299,7 @@
         //SELECT de la agenda a actualizar
         public function consultarAgendaActualizar($ID_Agenda){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Agenda, nombre_imagenAgenda, DATE_FORMAT(caducidad, '%d-%m-%Y') AS fecha
+                "SELECT ID_Agenda, nombre_imagenAgenda, DATE_FORMAT(caducidad, '%d-%m-%Y') AS fechaPublicacion
                  FROM agenda 
                  WHERE ID_Agenda = :ID_AGENDA"
             );
@@ -265,6 +315,46 @@
             }
         }
 
+        //SELECT de la coleccion a actualizar
+        public function consultarColeccionActualizar($ID_Coleccion){
+            $stmt = $this->dbh->prepare(
+                "SELECT colecciones.ID_Coleccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion, nombre_imColeccion
+                 FROM colecciones 
+                 INNER JOIN  imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
+                 WHERE colecciones.ID_Coleccion = :ID_COLECCION"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        // SELECT de las imagenes secundarias de una coleccion
+        public function consultarImagenesColeccionActualizar($ID_Coleccion){
+            $stmt = $this->dbh->prepare(
+                "SELECT nombre_imColeccion
+                FROM imagnescolecciones 
+                WHERE ID_Coleccion = :ID_COLECCION AND ImagenPrincipalColec = :IMG_PRINCIPAL "
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
+            $stmt->bindValue(':IMG_PRINCIPAL', 0, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
         //SELECT de las secciones del periodico
         public function consultarSecciones(){
             $stmt = $this->dbh->query(
@@ -274,6 +364,15 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
+        //SELECT de las serie del periodico
+        public function consultarSeriesColeccion(){
+            $stmt = $this->dbh->query(
+                "SELECT nombreSerie
+                FROM seriecoleccion "
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         //SELECT del ID_Seccion del nombre de una seccion
         public function Consultar_ID_Seccion($Seccion){
             $stmt = $this->dbh->prepare(
@@ -342,11 +441,22 @@
         public function consultarColeccion(){
             $stmt = $this->dbh->query(
                 "SELECT ID_Noticia, nombreColeccion
-                FROM colecciones"
+                FROM colecciones
+                INNER JOIN noticias_colecciones ON colecciones.ID_Coleccion=noticias_colecciones.ID_Coleccion"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
+
+        //SELECT de anuncios publicitarios asociados a cada noticia
+        public function consultarPublicidad(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Noticia, razonSocial
+                FROM anuncios
+                INNER JOIN noticias_anuncios ON anuncios.ID_Anuncio=noticias_anuncios.ID_Anuncio"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+        }
         //CONSULTA si existe un anuncio para una noticia especifica
         public function consultar_DT_noticia_anuncio($ID_Noticia){
             $stmt = $this->dbh->prepare(
@@ -364,8 +474,48 @@
             else{
                 return false;
             }
+        }
+        
+        //CONSULTA si existe una coleccion para una noticia especifica
+        public function consultar_DT_noticia_coleccion($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Coleccion
+                FROM noticias_colecciones 
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        public function consultarColeccionEspecifico($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT colecciones.ID_Coleccion, nombre_imColeccion
+                FROM  noticias_colecciones
+                INNER JOIN colecciones ON noticias_colecciones.ID_Coleccion=colecciones.ID_Coleccion
+                INNER JOIN  imagnescolecciones  ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
 
         }
+
 // // ********************************************************************************************************
 // // INSERT 
 // // ********************************************************************************************************
@@ -435,6 +585,30 @@
             $stmt->execute();
         }
         
+        
+        // INSERT de video de noticia 
+        public function InsertarVideoNoticia($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO videos(ID_Noticia, nombreVideo, tamanioVideo, tipoVideo, youTube) 
+                VALUES (:ID_NOTICIA, :NOMBRE_VIDEO, :TAMANIO_VIDEO, :TIPO_VIDEO, :YOUTUBE)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_VIDEO', $Nombre_video, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_VIDEO', $Tipo_video, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_VIDEO', $Tamanio_video, PDO::PARAM_STR);
+            $stmt->bindValue(':YOUTUBE', 0);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+
         // INSERT de dependencia transitiva entre noticias y secciones
         public function Insertar_DT_noticia_seccion($ID_Noticia, $ID_Seccion){
             $stmt = $this->dbh->prepare(
@@ -464,6 +638,20 @@
             $stmt->execute();
         }
 
+        // INSERT de dependencia transitiva entre noticias y colecciones
+        public function insertar_DT_ColeccionSeleccionada($ID_Noticia, $ID_Coleccion){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO noticias_colecciones(ID_Noticia, ID_Coleccion)VALUES (:ID_NOTICIA, :ID_COLECCION)"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas
+            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            $stmt->execute();
+        }
+
         //INSERT de solo el ID_Noticia en la tabla imagenes, cuando no se tiene una imagen para la noticia
         public function InsertarID_ImagenPrincipal($ID_Noticia){
             $stmt = $this->dbh->prepare(
@@ -475,13 +663,8 @@
             $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
             $stmt->bindValue(':IMG_PRINCIPAL', 1);
 
-            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
-            if($stmt->execute()){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada)
+            $stmt->execute();
         }
 
         //INSERT de solo el ID_Noticia en la tabla imagenes, cuando no se tiene una imagen para la noticia
@@ -527,7 +710,7 @@
             }
         }
 
-        //Se insertan la imagnees de la efemerides
+        //Se inserta la imagen principal de la efemeride
         public function InsertarImagenPrincipalEfemeride($ID_Efemeride, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
             $stmt = $this->dbh->prepare(
                 "INSERT INTO  imagenesefemerides(ID_Efemeride, nombre_ImagenEfemeride, tipo_ImagenEfemeride, tamanio_ImagenEfemeride, imagenPrincipalEfemeride) 
@@ -550,6 +733,52 @@
             }
         }
         
+        //Se inserta la imagen principal de la coleccion
+        public function InsertarImagenPrincipalColeccion($ID_Coleccion, $Nombre_imagenPrincipalColeccion, $Tipo_imagenPrincipalColeccion, $Tamanio_imagenPrincipalColeccion){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO  imagnescolecciones (ID_Coleccion, nombre_imColeccion, tamanio_imColeccion, tipo_imColeccion, ImagenPrincipalColec) 
+                VALUES (:ID_COLECCION, :NOMBRE_IMG_COLECCION, :TIPO_IMG_COLECCION, :TAMANIO_IMG_COLECCION, :IMG_COLECCION_PRINCIPAL)"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMG_COLECCION', $Nombre_imagenPrincipalColeccion, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMG_COLECCION', $Tipo_imagenPrincipalColeccion, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMG_COLECCION', $Tamanio_imagenPrincipalColeccion, PDO::PARAM_STR);
+            $stmt->bindValue(':IMG_COLECCION_PRINCIPAL', 1, PDO::PARAM_INT);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+        
+        //INSERT imagenes secundarias de coleccion
+        public function insertarFotografiasColeccionSecun($ID_Coleccion, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO imagnescolecciones (ID_Coleccion, nombre_imColeccion, tamanio_imColeccion, tipo_imColeccion, ImagenPrincipalColec) 
+                VALUES (:ID_COLECCION, :NOMBRE_IMG_SEC_COLECCION, :TIPO_IMG_SEC_COLECCION, :TAMANIO_IMG_SEC_COLECCION, :IMG_SEC_COLECCION_PRINCIPAL)"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMG_SEC_COLECCION', $Nombre_imagenSecundaria, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMG_SEC_COLECCION', $tipo_imagenSecundaria, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMG_SEC_COLECCION', $tamanio_imagenSecundaria, PDO::PARAM_STR);
+            $stmt->bindValue(':IMG_SEC_COLECCION_PRINCIPAL', 0, PDO::PARAM_INT);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+
         //INSERT de evento en agenda
         public function InsertarAgenda($FechaCaducidad, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda){
             $stmt = $this->dbh->prepare(
@@ -613,7 +842,7 @@
         }
 
         //INSERT de anuncio seleccionado, se usa cuando se actualiza una noticia que no tenia anuncio
-        public function insertarAnuncioSeleccionado($ID_Noticia, $ID_Anuncio){
+        public function insertar_DT_AnuncioSeleccionado($ID_Noticia, $ID_Anuncio){
             $stmt = $this->dbh->prepare(
                 "INSERT INTO noticias_anuncios (ID_Anuncio, ID_Noticia) 
                 VALUES (:ID_ANUNCIO, :ID_NOTICIA)"
@@ -626,6 +855,28 @@
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
                 return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+        
+        //INSERT de coleccion
+        public function InsertarColeccion($Serie, $Coleccion, $Descripcion, $Comentario){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO colecciones (serie, nombreColeccion, descripcionColeccion,  comentarioColeccion) 
+                VALUES (:SERIE, :NOMBRE_COLEC, :DESCRIPCION_COLEC, :COMENTARIO_COLEC)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':SERIE', $Coleccion, PDO::PARAM_STR);
+            $stmt->bindParam(':NOMBRE_COLEC', $Coleccion, PDO::PARAM_STR);
+            $stmt->bindParam(':DESCRIPCION_COLEC', $Descripcion, PDO::PARAM_STR);
+            $stmt->bindParam(':COMENTARIO_COLEC', $Comentario, PDO::PARAM_STR);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return $this->dbh->lastInsertId();
             }
             else{
                 return FALSE;
@@ -768,6 +1019,30 @@
                 return FALSE;
             }
         }
+        
+        // UODATE de imagen de anuncio publicitario
+        public function ActualizarVideo($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video){            
+            $stmt = $this->dbh->prepare(
+                "UPDATE videos 
+                SET nombreVideo = :NOMBRE_VIDEO, tamanioVideo = :TAMANIO_VIDEO, tipoVideo = :TIPO_VIDEO 
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
+
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_VIDEO', $Nombre_video, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_VIDEO', $Tipo_video, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_VIDEO', $Tamanio_video, PDO::PARAM_STR);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                // se recupera el ID del registro insertado
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
 
         // public function actualizarImagenesSecundarias($ID_imagen, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria){
         //     $stmt = $this->dbh->prepare(
@@ -861,6 +1136,54 @@
                 return FALSE;
             }
         }
+        
+        // UODATE de coleccion correspondiente a una noticia
+        public function actualizar_DT_noticia_coleccion($ID_Noticia, $ID_Coleccion){            
+            $stmt = $this->dbh->prepare(
+                "UPDATE noticias_colecciones  
+                SET ID_Coleccion = :ID_COLECCION 
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
+
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                // se recupera el ID del registro insertado
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+
+        // UPDATE de coleccion
+        public function ActualizarColeccion($ID_Coleccion, $Coleccion, $Serie, $Descripcion, $Comentario){           
+            $stmt = $this->dbh->prepare(
+                "UPDATE colecciones  
+                SET nombreColeccion = :NOMBRE_COLECCION, serie = :SERIE_COLECCION, descripcionColeccion = :DESCRIPCION_COLECCION, comentarioColeccion = :COMENTARIO_COLECCION 
+                WHERE ID_Coleccion = :ID_COLECCION"
+            );
+
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':NOMBRE_COLECCION', $Coleccion, PDO::PARAM_STR);
+            $stmt->bindParam(':SERIE_COLECCION', $Serie, PDO::PARAM_STR);
+            $stmt->bindParam(':DESCRIPCION_COLECCION', $Descripcion, PDO::PARAM_STR);
+            $stmt->bindParam(':COMENTARIO_COLECCION', $Comentario, PDO::PARAM_STR);
+            $stmt->bindParam(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                // se recupera el ID del registro insertado
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+        }
 
 // // ********************************************************************************************************
 // // DELETE
@@ -925,5 +1248,16 @@
         
             $stmt->bindValue(':ID_ANUNCIO', $ID_Anuncio, PDO::PARAM_INT);
             $stmt->execute(); 
+        }
+
+        public function eliminarColeccion($ID_Coleccion){
+            $stmt = $this->dbh->prepare(
+                "DELETE FROM colecciones 
+                WHERE ID_Coleccion = :ID_COLECCION"
+            );
+        
+            $stmt->bindValue(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
+            $stmt->execute(); 
+
         }
 }

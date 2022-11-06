@@ -1,26 +1,19 @@
-<!-- ******************************************************************************************** -->
-                                          <!-- FOOTER -->
-<!-- ******************************************************************************************** -->
-
-		<footer class="footer">
-			<div class="contenedor_7"> 
-				<div>
-					<div class="contenedor_98" id="Aplicacion_PWA">
-						<div>
-							<h3 class="footer__h3">APLICACIÓN</h3>
-							<h3 class="footer__h3">MULTIPLATAFORMA</h3>
-						</div>
-						<img class="imagen_5" alt="Logo PWA" src="<?php echo RUTA_URL;?>/public/images/PWA.png"/>
+		<footer>
+			<div class="footer_cont_main"> 
+				<!-- <div class="footer_cont_pwa" id="Aplicacion_PWA">
+					<div>
+						<h3 class="footer_h3">APLICACIÓN</h3>
+						<h3 class="footer_h3">MULTIPLATAFORMA</h3>
 					</div>
-				</div>
-				<div class="contenedor_8">
-					<img class="imagen_3" alt="logo" src="<?php echo RUTA_URL;?>/public/images/logo.png"/>
-					<h5 class="footer__h5">NoticieroYaracuy</h5>
-					<h6 class="footer__h6">Pablo Cabeza - Programador Full Stack - pcabeza7@gmail.com</h6>
-					<h6 class="footer__h6">Lisbella Paez - Dirección de prensa - lisbellapaez@gmail.com</h6>
+					<img class="footer--imagen_3" alt="Logo PWA" src="<?php echo RUTA_URL;?>/public/images/PWA.png"/>
+				</div> -->
+				<h1 class="footer_h1">NoticieroYaracuy.com</h1>	
+				<div class="footer_cont_ADN">				
+					<h5 class="footer_ADN">Nuestro ADN</h5>
+					<h6 class="footer_h6">Lisbella Paez - Dirección de prensa - <small  class="footer--small">lisbellapaez@gmail.com</small></h6>
+					<h6 class="footer_h6">Pablo Cabeza - Programador Full Stack - <small  class="footer--small">pcabeza7@gmail.com</small></h6>
 				</div>
 			</div> 
-		</footer>
-		<script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>     
+		</footer>     
 	</body>
 </html>

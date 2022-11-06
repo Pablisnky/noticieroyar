@@ -16,6 +16,9 @@
 	overflow-y: hidden; 
 	overflow-x: hidden;
 }
+.borde_1{
+	border-color: white;
+}
 .br_1{
 	margin-bottom: 20%;
 }
@@ -107,8 +110,23 @@
 	font-weight: bold; 
 	font-size: 0.8em;
 }
+.cont_portada_atras--membrete{	
+	text-align: left;
+	padding-left: 7%;
+}
+.cont_portada_atras--serie{
+	font-size: 0.9em;
+	text-align: left;
+	padding-left: 15%;
+}
 .cont_portada_giro{
-	bottom: 40pt;
+	bottom: 50pt;
+}
+.cont_portada_giro--atras{
+	bottom: 1pt;
+}
+.cont_portada_atras--coleccion{
+	/* bottom: 5pt; */
 }
 .cont_noticias_informacion--span{
 	padding-left: 5px;
@@ -139,6 +157,8 @@
 }
 .cont_noticia--seccion{
 	margin-bottom: 5%;
+    height: 52vh; 
+	overflow-y: hidden;
 }
 .cont_noticia--tituloSeccion{
    font-size: 1.3em;
@@ -259,7 +279,7 @@
 }
 .detalle_cont--hr{
 	width: 40%;
-	margin: 7% auto -1% auto;
+	margin: 3% auto 7% auto;
 }
 .detalle_cont--fuente{
 	font-size: 0.7em
@@ -271,6 +291,18 @@
 	width: 100%; 
 	margin: auto; 
 	text-align: left
+}
+.detalle_cont--redesSociales-icono{
+	width: 89%;
+	margin-left: 20%;
+}
+.detalle_cont--redesSociales-facebook{
+	width: 45%;
+	margin-left: 20%;
+}
+.detalle_cont--redesSociales-twitter{
+	width: 100%;
+	margin-left: 20%;
 }
 .Default_quitarEscritorio{
 	display: flex;
@@ -312,6 +344,10 @@
 	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
 .publicidad_cont--interno{
+	background-color: initial; 
+	width: 90%; 
+	height: 95vh; 
+	margin: auto;
 	margin-top: 25%;
 }
 .publicidad_cont--imagen{
@@ -321,7 +357,7 @@
 	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
 .publicidad_cont--cerrar{
-   top: 13%;
+   top: 8%;
    left: 85%;
    font-size: 2em !important;	 
 }
@@ -352,6 +388,9 @@
 	min-height: 250px;
 	width: 95%;	
 	padding: 1.5%;
+}
+.whatsapp{ 
+	display: block;
 }
 
 }

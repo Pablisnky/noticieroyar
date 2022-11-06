@@ -42,6 +42,3 @@
 		document.body.appendChild(script);
 	}
 </script>
-
-</body>
-</html>

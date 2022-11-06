@@ -4,8 +4,9 @@
         <title><?php echo NOMBRESITIO;?></title>
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-		<meta name="description" content="Ventas por internet a pedido"/>
-		<meta name="keywords" content="pedido, despacho, compra"/>
+		<meta name="description" content="Noticias de Yaracuy"/>
+		<meta name="keywords" content="noticias, yaracuy, publicidad"/>
+		<meta name="author" content="Pablo Cabeza"/>
 		<meta name="author" content="Pablo Cabeza"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta name="MobileOptimized" content="width"/>
@@ -19,6 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_350.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_370.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_800.css?v=<?php echo rand();?>"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/EstilosGiroTarjeta.css?v=<?php echo rand();?>"/>
 		
 		<!-- <link rel="shortcut icon" type="image/png" href="<?php //echo RUTA_URL;?>/public/images/logo.png"/-->
 		

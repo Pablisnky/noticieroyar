@@ -42,10 +42,6 @@
 <!--div alimentado desde modal_seccionesDisponibles_V.php que muestra las secciones -->    
 <!-- <div id="Contenedor_80"></div> -->
 
-</body>
-</html>
-
-
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php echo rand();?>"></script> 
 <script src="<?php echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script> 
@@ -130,3 +126,5 @@
         }
 </script>
 
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

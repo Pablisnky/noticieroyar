@@ -4,7 +4,7 @@
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
-<div style="margin-left: 20%;">
+<div style="margin-left: 20%; ">
     <fieldset class="fieldset_1" id="Portada"> 
         <legend class="legend_1">Agregar Agenda</legend>
             <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeAgendaAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
@@ -19,7 +19,7 @@
                     </div>        
                     <div>
                         <label>Fecha caducidad</label>
-                        <input type="text" name="caducidad" placeholder="00-00-0000"/>
+                        <input class="cont_panel--select" type="text" name="caducidad" id="datepicker">
                     </div>     
                 </div>
                 <div class=""> 
@@ -29,8 +29,11 @@
     </fieldset>
 </div>
 
+
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcion_Calendario.js?v=<?php echo rand();?>"></script>
+
 <script>       
-    //Da una vista previa de la foto de la noticia
+    //Da una vista previa de la foto del evento 
     function readImage(input, id_Label){
         // console.log("______Desde readImage()______", input + ' | ' + id_Label)
         if(input.files && input.files[0]){
@@ -42,10 +45,17 @@
         }
     }        
     $("#imgInp").change(function(){
-        // console.log("Desde cargar foto de perfil")
-        // Código a ejecutar cuando se detecta un cambio de imagen de tienda
+        // Código a ejecutar cuando se detecta un cambio de imagen
         var id_Label = $('#blah');
         readImage(this, id_Label);
     });
 </script>
 
+<!-- CALENDARIO -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

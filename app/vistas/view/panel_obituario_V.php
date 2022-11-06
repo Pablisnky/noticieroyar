@@ -39,3 +39,6 @@
             endforeach  ?>     
         </fieldset>
     </div>
+    
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

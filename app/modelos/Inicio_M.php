@@ -5,14 +5,14 @@
             parent::__construct();       
         }
         
-// ********************************************************************************************************
+// ***********************************************************************************************
 // SELECT
-// ********************************************************************************************************
+// ***********************************************************************************************
 
         //SELECT de las noticias del dia en curso
         public function consultarNoticiasPortada(){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia,  DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, fuente
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                  WHERE fecha BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() AND ImagenPrincipal = 1
@@ -137,9 +137,10 @@
         //SELECT de las colecciones asociados a la noticia de portada especificada
         public function consultarColeccionPortadaEspec($ID_noticia){
             $stmt = $this->dbh->prepare(
-                "  SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, ubicacionColeccion, comentarioColeccion 
+                "SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion 
                 FROM colecciones
                 INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
+                INNER JOIN noticias_colecciones  ON colecciones.ID_Coleccion=noticias_colecciones.ID_Coleccion
                 WHERE ID_Noticia = :ID_NOTICIA "
             );
           
@@ -235,7 +236,7 @@
         //SELECT noticia de portada especifico
         public function consultarNoticiaPortada($ID_NoticiaConsultar){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha, fuente
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                  WHERE noticias.ID_Noticia = :ID_NOTICIA
@@ -257,9 +258,10 @@
         //SELECT de colecciones asociados a las noticias
         public function consultarColeccionPortada(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, ubicacionColeccion, comentarioColeccion
+                "SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion
                 FROM colecciones
-                INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion"
+                INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
+                INNER JOIN noticias_colecciones  ON colecciones.ID_Coleccion=noticias_colecciones.ID_Coleccion"
             );
 
             if($stmt->execute()){

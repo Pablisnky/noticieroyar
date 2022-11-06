@@ -18,7 +18,7 @@
                     <div style="width: 100%; padding-left: 1%">
                         <!-- FECHA -->
                         <label class="cont_panel--label">Fecha</label>
-                        <label class="cont_panel--fecha"><?php echo $Row['fecha'];?></label>
+                        <label class="cont_panel--fecha"><?php echo $Row['fechaPublicacion'];?></label>
                         
                         <!-- TITULO -->
                         <label class="cont_panel--label">Titulo</label>
@@ -42,3 +42,6 @@
             endforeach  ?>     
         </fieldset>
     </div>
+    
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

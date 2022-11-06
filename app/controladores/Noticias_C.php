@@ -36,12 +36,20 @@
 			//CONSULTA si existe algun anuncio asociado a cada noticia publicada
             $Anuncios = $this->ConsultaNoticia_M->consultarAnuncioNoticiaGenerales();
 
+			//CONSULTA coleccion 180°
+            $Coleccion = $this->ConsultaNoticia_M->consultarColeccionNoticiaGenerales();
+            
+            //CONSULTA imagenes coleccion 180°
+            $ImagnesColeccion = $this->ConsultaNoticia_M->consultarImagenesColeccionNoticiaGenerales();
+
             $Datos = [
                 'secciones' => $Secciones, //seccion
                 'noticiasGenerales' => $NoticiasGenerales, //ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, fecha, fuente
                 'imagenes' => $Imagenes,
                 'videos' => $Videos,
-                'anuncios' => $Anuncios
+                'anuncios' => $Anuncios,
+                'colecciones' => $Coleccion,
+                'imagenesColeccion' => $ImagnesColeccion
             ];
             
             // echo "<pre>";

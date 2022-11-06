@@ -1,6 +1,6 @@
     // elimina una noticia
     function EliminarNoticia(ID_Noticia){
-        console.log("______Desde EliminarNoticia()______", ID_Noticia)
+        // console.log("______Desde EliminarNoticia()______", ID_Noticia)
         let ConfirmaEliminar = confirm("Desea eliminar la noticia");
         
         //Se confirma si se desea eliminar la noticia

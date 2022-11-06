@@ -16,7 +16,7 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
     <!-- MEMBRETE FIJO -->
     <div class="detalle_cont--divFijo">
         <a class="detalle_cont--membrete" href="<?php echo RUTA_URL . '/Inicio_C';?>">www.NoticieroYaracuy.com</a> 
-        <label class="detalle_cont--fecha">San Felipe, <?php echo $Datos['detalleNoticia'][0]['fecha'];?> </label>
+        <label class="detalle_cont--fecha">San Felipe, <?php echo $Datos['detalleNoticia'][0]['fechaPublicacion'];?> </label>
         <!-- ICONO CERRAR -->
         <span class="material-icons-outlined cont_modal--cerrar detalle_cont--cerrar Default_pointer" id="CerrarVentana">cancel</span>
     </div> 
@@ -50,16 +50,43 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
             <!-- RESUMEN -->
             <div class="detalle_cont--resumen">
                 <p style=""><?php echo $Datos['detalleNoticia'][0]['subtitulo']?></p>
-                <hr class="detalle_cont--hr">
 
                 <!-- FUENTE -->
                 <span class="detalle_cont--fuente"><?php echo $Datos['detalleNoticia'][0]['fuente']?></span>
+                <hr class="detalle_cont--hr">
             </div>
+        
+        <!-- Load Facebook SDK for JavaScript -->
+        <!-- <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+        <!-- Your share button code -->
+        <!-- <div class="fb-share-button" 
+        data-href="https://www.facebook.com/sharer/sharer.php?u=<?php // echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php //echo $Datos['detalleNoticia'][0]['ID_Noticia'] ;?>" 
+        data-layout="button_count">
+        </div>   -->
+
+        <!-- COMPARTIR REDES SOCIALES -->
+        <!-- <div class="detalle_cont--redesSociales">
+            <div style=" width: 15%">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>&text=Compartir%20Facebook" target="_blank"><img class="detalle_cont--redesSociales-facebook" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a></div>
+            <div style=" width: 15%">
+            <a class="whatsapp" href="whatsapp://send?text=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-icono" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a></div>
+            <div style=" width: 15%">
+            <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>&text=COmpartir%20Twiter" target="_blank"><img class="detalle_cont--redesSociales-twitter" alt="twitter" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a></div>
+        </div>         -->
         </div>
     </div>
 
     <!-- VIDEO -->
     <div class="detalle_cont--video"">
+
         <?php
         if(!empty($Datos['video'][0]['nombreVideo'])){
             if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['video'][0]['ID_Noticia']){   ?>

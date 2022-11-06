@@ -7,6 +7,9 @@
 		overflow-y: hidden; 
 		overflow-x: hidden;
 	} 
+	.borde_1{
+		border-color: white;
+	}
 	.cont_detalle{
 		width: 100%;
 	}
@@ -80,7 +83,19 @@
 	}
 	.detalle_cont--hr{
 		width: 40%;
-		margin: 7% auto -1% auto;
+		margin: 3% auto 7% auto;
+	}
+	.detalle_cont--redesSociales-icono{
+		width: 89%;
+		margin-left: 20%;
+	}
+	.detalle_cont--redesSociales-facebook{
+		width: 50%;
+		margin-left: 20%;
+	}
+	.detalle_cont--redesSociales-twitter{
+		width: 100%;
+		margin-left: 20%;
 	}
 	.h1--principal{
 		font-size: 1.6em;
@@ -149,7 +164,9 @@
 		margin-top: 20%;
 	}
 	.cont_noticia--seccion{
-		margin-bottom: 5%;
+		margin-bottom: 7%;
+		height: 40vh; 
+		overflow-y: hidden;
 	}
 	.cont_noticia--sencilla{
 	   min-width: 60%;
@@ -168,7 +185,7 @@
 		/* object-fit: cover;  */
 	}
 	.cont_noticia--titular{
-		height: 30vw;
+		height: 35vw;
 		width: 100%;
 		overflow-y: hidden;
 	}
@@ -224,6 +241,9 @@
 	.cont_portada_giro{
 		bottom: 40pt;
 	}
+	.cont_portada_giro--atras{
+		bottom: 1pt;
+	}
 	.cont_noticias_informacion--span{
 		padding-left: 5px;
 		font-weight: bold; 
@@ -264,7 +284,11 @@
 		font-size: 0.8em;
 	}
 	.publicidad_cont--interno{
-		margin-top: 25%;
+		background-color: initial; 
+		width: 90%; 
+		height: 95vh; 
+		margin: auto;
+		margin-top: 15%;
 	}
 	.publicidad_cont--imagen{
 		width: 95%;
@@ -273,7 +297,7 @@
 		object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 	}
 	.publicidad_cont--cerrar{
-	   top: 13%;
+	   top: 5%;
 	   left: 85%;
 	   font-size: 2em !important;	 
 	}
@@ -308,5 +332,8 @@
 	}
 	.tapa-logo--font{
 		font-size: 2em;
+	}
+	.whatsapp{ 
+		display: block;
 	}
 }

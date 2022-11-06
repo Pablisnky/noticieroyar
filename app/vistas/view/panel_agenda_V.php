@@ -18,7 +18,7 @@
                 <div style="">                            
                     <!-- FECHA -->
                     <label style="display: block; width: 150%">Fecha de caducidad</label>
-                    <label><?php echo $Row['fecha'];?></label>
+                    <label><?php echo $Row['fechaPublicacion'];?></label>
 
                     <div style="width: 100%;">
                         <!-- ACTUALIZAR -->
@@ -36,3 +36,6 @@
         endforeach  ?>     
     </fieldset>
 </div>
+
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

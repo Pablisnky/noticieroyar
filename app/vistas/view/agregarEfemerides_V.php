@@ -1,6 +1,12 @@
 <!-- CDN libreria JQuery, necesaria para la previsualización de la imagen--> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+<!-- CDN CALENDARIO -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
@@ -30,8 +36,8 @@
                             <textarea class="cont_panel--textarea" name="contenido" id="Contenido" autosize="none"></textarea> 
                                                         
                             <!-- FECHA -->
-                            <label class="cont_panel--label">Fecha (ingresar solo números)</label>
-                            <input class="cont_panel--titulo" type="text" name="fecha" id="Fecha" placeholder="00-00-0000" onkeydown="mascaraFecha(this.value, 'Fecha')"/>
+                            <label class="cont_panel--label">Fecha</label>
+                            <input class="cont_panel--select" type="text" name="fecha" id="datepicker">
                             
                         </div>                     
                     </div>
@@ -46,6 +52,7 @@
 
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarEfemeride.js?v=<?php echo rand();?>"></script> 
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcion_Calendario.js?v=<?php echo rand();?>"></script>
 
 <script>       
     //Da una vista previa de la foto de la noticia
@@ -67,3 +74,5 @@
     });
 </script>
 
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

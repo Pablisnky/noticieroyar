@@ -50,9 +50,19 @@
                                 }
                             endforeach; ?>
                         
+                        <!-- ANUNCIO -->
+                        <label class="cont_panel--label">Anuncio publicitario</label>
+                        <?php
+                            foreach($Datos['publicidad'] as $Row_3)   : 
+                                if($Not_Prin['ID_Noticia'] == $Row_3['ID_Noticia']){  ?>
+                                    <label class="cont_panel--fecha"><?php echo $Row_3['razonSocial'];?></label>
+                                        <?php
+                                }
+                            endforeach; ?>
+
                         <!-- FECHA -->
                         <label class="cont_panel--label">Fecha</label>
-                        <label class="cont_panel--fecha"><?php echo $Not_Prin['fecha'];?></label>
+                        <label class="cont_panel--fecha"><?php echo $Not_Prin['fechaPublicacion'];?></label>
 
                         <!-- VISITAS -->
                         <label class="cont_panel--label">Visitas</label>
@@ -65,8 +75,11 @@
                             endforeach; ?>
                         
                         <div id="PanelEdicion">
+                            <!-- COMPARTIR -->             
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>" target="_blank">Compartir</a>
+
                             <!-- EDITAR -->
-                            <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
+                            <a style="margin-left: 50px; color: blue;" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
                                                         
                             <!-- ELIMINAR -->
                             <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Prin['ID_Noticia'];?>')">Eliminar</label>
@@ -77,8 +90,9 @@
             endforeach  ?>     
         </fieldset>
     </div>
-</body>
-</html>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/E_NoticiasPortadas.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_NoticiasPortadas.js?v=' . rand();?>"></script>
+
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

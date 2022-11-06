@@ -1,5 +1,11 @@
-<!-- CDN libreria JQuery, necesaria para la previsualización de la imagen--> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- CDN libreria JQuery, necesaria para la previsualización de la imagen y el calendario--> 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+<!-- CDN CALENDARIO -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
@@ -34,23 +40,34 @@
                     </div>
 
                     <!-- VIDEO -->
-                    <div style="margin-top: 30px">    
-                        <label class="cont_panel--label">Video</label>
-                        <figure>
-                            <img class="cont_panel--video" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/video/video.png"/>
-                        </figure>
-                            <!-- <video src="<?php echo RUTA_URL?>/public/video/Si_te_vas.mp4" poster="<?php echo RUTA_URL?>/public/video/video.png" controls width="300" height="200"></video> -->
+                    <div style="margin-top: 30px">  
+                        <label class="cont_panel--label">Video</label>    
+                        <label class="cont_panel--label Default_pointer" for="imgVideo">
+                            <figure id="FigureVideo">
+                                <img class="cont_panel--video" alt="Icono video" id="ImagenCamara" src="<?php echo RUTA_URL?>/public/video/video.png"/>
+                            </figure> 
+                        </label>
+
+                        <video class="cont_panel--imagen"  id="video-tag" >
+                            <source id = "video-source"/>
+                        </video>
+                        <div style="display:flex; justify-content: space-around">
+                            <button style="padding:0% 3%" class="Default_ocultar" id="Reproducir" onclick="reproducir()">Reproducir</button>
+                            <button style="padding:0% 3%" class="Default_ocultar" id="Pausar" onclick="pausar()">Pausar</button>
+                        </div>
+                        <input class="Default_ocultar" type="file" accept="video/*" name="video" id="imgVideo"/>
                     </div>
                 </div>
+                
                 <div style="width: 100%; padding-left: 1%" id="AgregarNoticia">
                     <!-- TITULO -->
                     <label class="cont_panel--label">TItulo</label>
-                    <textarea class="textarea--titulo" name="titulo" id="Titulo"></textarea> 
+                    <textarea class="textarea--panel textarea--titulo" name="titulo" id="Titulo"></textarea> 
                     <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="80" readonly/>
 
                     <!-- RESUMEN -->
                     <label class="cont_panel--label">Resumen</label>
-                    <textarea class="textarea--resumen" name="subtitulo" id="Resumen"></textarea> 
+                    <textarea class="textarea--panel" name="subtitulo" id="Resumen"></textarea> 
                     <input class="cont_panel--contador" type="text" id="ContadorResumen" value="120" readonly/>
 
                     <!-- CONTENIDO -->
@@ -60,15 +77,15 @@
                     
                     <!-- SECCION -->
                     <label class="cont_panel--label">Sección</label>
-                    <input class="cont_panel--titulo" type="text" name="seccion" id="SeccionPublicar"/>
+                    <input class="cont_panel--select" type="text" name="seccion" id="SeccionPublicar"/>
                     
                     <!-- FECHA  onkeyup=""-->
-                    <label class="cont_panel--label">Fecha (ingresar solo números)</label>
-                    <input class="cont_panel--titulo" type="text" name="fecha" id="Fecha" placeholder="00-00-0000" onkeydown="mascaraFecha(this.value, 'Fecha')"/>
+                    <label class="cont_panel--label">Fecha</label>
+                    <input class="cont_panel--select" type="text" name="fecha" id="datepicker">
                     
                     <!-- FUENTE -->
                     <label class="cont_panel--label">Fuente</label>
-                    <select class="cont_panel--titulo" name="fuente" id="Fuente" onchange="especificarFuente()">
+                    <select class="cont_panel--select" name="fuente" id="Fuente" onchange="especificarFuente()">
                         <option>Lisbella Paez CNP 13.162</option>
                         <?php
                         foreach($Datos['fuentes'] as $Key)   :   ?>
@@ -88,7 +105,8 @@
                 </div>                     
             </div>
             
-            <div> 
+            <!-- BOTON DE ENVIO -->
+            <div class="cont_panel--guardar"> 
                 <input class="boton" type="submit" id="Boton_Agregar" value="Agregar noticia"/>  
             </div>            
         </form>
@@ -101,15 +119,20 @@
 <!--div alimentado desde modal_anunciosDisponibles_V.php que muestra las anuncios publicitarios -->    
 <div id="Contenedor_91"></div>
 
-</body>
-</html>
-
 
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php echo rand();?>"></script> 
-<script src="<?php echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script> 
+<script src="<?php echo RUTA_URL;?>/public/javascript/A_AgregarNoticia.js?v=<?php echo rand();?>"></script> 
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcion_Calendario.js?v=<?php echo rand();?>"></script>
 
 <script>       
+    // calendario  
+    $( function() {
+        $( "#datepicker" ).datepicker();
+    } );
+
+// ************************************************************************************************ 
+
     //Da una vista previa de la foto principal de la noticia
     function readImage(input, id_Label){
         // console.log("______Desde readImage()______", input + ' | ' + id_Label)
@@ -127,6 +150,44 @@
         var id_Label = $('#blah');
         readImage(this, id_Label);
     });
+    
+// ************************************************************************************************ 
+    //Da una vista previa del video de la noticia
+    const videoSrc = document.querySelector("#video-source");
+    const videoTag = document.querySelector("#video-tag");
+    const inputTag = document.querySelector("#imgVideo");
+
+    
+    inputTag.addEventListener('change',  readVideo)
+
+    function readVideo(event) {
+
+        document.getElementById("FigureVideo").style.display = "none"
+        document.getElementById("Reproducir").style.display = "inline"
+        document.getElementById("Pausar").style.display = "inline"
+        
+
+        console.log(event.target.files)
+        if (event.target.files && event.target.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            console.log('loaded')
+            videoSrc.src = e.target.result
+            videoTag.load()
+            }.bind(this)
+
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    }
+    
+    window.reproducir = function() {
+                document.getElementById("video-tag").play();
+    }
+
+    window.pausar = function() {
+        document.getElementById("video-tag").pause();
+    };
 
 // ************************************************************************************************    
     //Array contiene las imagenes insertadas, sus elementos sumados no pueden exceder de 10
@@ -189,3 +250,5 @@
         }
 </script>
 
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

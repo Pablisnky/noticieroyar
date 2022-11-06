@@ -62,3 +62,8 @@ function mostrarModal(){
             document.getElementById(current_2.id).style.perspective = "600px"
         }
     }, false)
+
+//************************************************************************************************
+    function VerMiniatura(Nombre_imgColeccion){
+        console.log(Nombre_imgColeccion)
+   }

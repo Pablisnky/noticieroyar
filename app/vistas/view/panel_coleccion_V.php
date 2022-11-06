@@ -21,7 +21,7 @@
                     <label><?php echo $Row['nombreColeccion'];?></label>
                     <br>
                     
-                    <!-- NOTICIA -->
+                    <!-- NOTICIA EN LA QUE APARECE-->
                     <!-- <label class="cont_panel--label">Noticia:</label>
                     <label><?php echo $Row['fechaCulmina'];?></label> -->
 
@@ -30,7 +30,7 @@
                         <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_coleccion/<?php echo $Row['ID_Coleccion'];?>" rel="noopener noreferrer">Actualizar</a>
                         
                         <!-- ELIMINAR -->
-                        <label class="Default_pointer" onclick="EliminarColeccion('<?php echo $Row['ID_Coleccion'];?>')">Eliminar</label>
+                        <label class="Default_pointer" style="color: blue; margin-left: 50px" onclick="EliminarColeccion('<?php echo $Row['ID_Coleccion'];?>')">Eliminar</label>
                     </div>
                 </div> 
             </div>
@@ -38,6 +38,9 @@
         endforeach  ?>     
     </fieldset>
 </div>
-<!-- 
-<script src="<?php echo RUTA_URL.'/public/javascript/E_Publicidad.js?v=' . rand();?>"></script>
-<script src="<?php echo RUTA_URL.'/public/javascript/A_Publicidad.js?v=' . rand();?>"></script> -->
+
+<script src="<?php echo RUTA_URL.'/public/javascript/E_PanelColeccion.js?v=' . rand();?>"></script>
+<script src="<?php echo RUTA_URL.'/public/javascript/A_PanelColeccion.js?v=' . rand();?>"></script>
+
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

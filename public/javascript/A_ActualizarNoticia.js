@@ -35,9 +35,12 @@ document.getElementById("SeccionPublicar").addEventListener('click', Llamar_Actu
 document.getElementById("SeccionPublicar").addEventListener('keydown', Llamar_ActualizarseccionesDisponible, false)
 
 
+    //LLama a la funcion que muestra los anuncion del periodico
 document.getElementById("Anuncio").addEventListener('click', Llamar_AnunciosDisponible, false)
-document.getElementById("Anuncio").addEventListener('keydown', Llamar_AnunciosDisponible, false)
+// document.getElementById("Anuncio").addEventListener('keydown', Llamar_AnunciosDisponible, false)
 
+//LLama a la funcion que muestra las colecciones del periodico
+document.getElementById("Coleccion").addEventListener('click', Llamar_ColeccionesDisponible, false)
 //************************************************************************************************
 function Llamar_ActualizarseccionesDisponible(){
     // console.log("_____ Desde Llamar_ActualizarseccionesDisponible() _____ ")
@@ -66,7 +69,7 @@ function respuesta_ActualizarseccionesDisponible(){
 
 // *************************************************************************************************
 function Llamar_AnunciosDisponible(){
-    console.log("_____ Desde Llamar_AnunciosDisponible() _____ ")
+    // console.log("_____ Desde Llamar_AnunciosDisponible() _____ ")
     var url = "../../Panel_C/Anuncios"
     http_request.open('GET', url, true)  
     peticion.onreadystatechange = respuesta_AnunciosDisponible
@@ -91,3 +94,27 @@ function respuesta_AnunciosDisponible(){
 }
 
 // *************************************************************************************************
+function Llamar_ColeccionesDisponible(){
+    // console.log("_____ Desde Llamar_ColeccionesDisponible() _____ ")
+    var url = "../../Panel_C/modalColecciones"
+    http_request.open('GET', url, true)  
+    peticion.onreadystatechange = respuesta_ColeccionesDisponible
+    peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+    peticion.send("null")
+}                                                           
+function respuesta_ColeccionesDisponible(){
+    if(peticion.readyState == 4){
+        if(peticion.status == 200){    
+            //Coloca el cursor en el top de la pagina
+            window.scroll(0, 0)
+            
+            document.getElementById("Contenedor_92").innerHTML = peticion.responseText
+        } 
+        else{
+            alert('Problemas con la petición.')
+        }
+    }
+    else{ //en caso contrario, mostramos un gif simulando una precarga
+        // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+    }
+}

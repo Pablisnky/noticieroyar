@@ -5,7 +5,7 @@
     <fieldset class="fieldset_1" id="Rowcipales"> 
         <a href="<?php echo RUTA_URL?>/Panel_C/agregar_publicidad" rel="noopener noreferrer"><span class="material-icons-outlined cont_modal--agregar Default_pointer" id="Cerrar--modal">add_circle_outline</span></a>
         
-        <legend class="legend_1">Publicidad</legend>
+        <legend class="legend_1">Anuncios</legend>
         <?php
         foreach($Datos['anuncio'] as $Row) : ?>
             <div style="display: flex; margin-bottom: 5%;" id="<?php echo $Row['ID_Anuncio'];?>">                
@@ -23,7 +23,7 @@
                     
                     <!-- FECHA -->
                     <label class="cont_panel--label">Fecha de caducidad:</label>
-                    <label><?php echo $Row['fechaCulmina'];?></label>
+                    <label><?php echo $Row['fechaCulminaPublicacion'];?></label>
 
                     <div style="width: 100%;">
                         <!-- ACTUALIZAR -->
@@ -41,3 +41,6 @@
 
 <script src="<?php echo RUTA_URL.'/public/javascript/E_Publicidad.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_Publicidad.js?v=' . rand();?>"></script>
+
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

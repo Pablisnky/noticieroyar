@@ -25,8 +25,8 @@
                         <label class="cont_panel--titulo"><?php echo $Not_Gen['titulo'];?></label>
                         
                         <!-- SUBTITULO -->
-                        <label class="cont_panel--label">Resumen</label>
-                        <label class="cont_panel--resumen"><?php echo $Not_Gen['subtitulo'];?></label>
+                        <!-- <label class="cont_panel--label">Resumen</label>
+                        <label class="cont_panel--resumen"><?php echo $Not_Gen['subtitulo'];?></label> -->
                         
                         <!-- SECCION -->
                         <label class="cont_panel--label">Seccion</label>
@@ -40,9 +40,29 @@
                             endforeach; ?>
                         </ul>
                         
+                        <!-- COLECCION -->
+                        <label class="cont_panel--label">Coleccion 180°</label>
+                        <?php
+                            foreach($Datos['coleccion'] as $Row_3)   : 
+                                if($Not_Gen['ID_Noticia'] == $Row_3['ID_Noticia']){  ?>
+                                    <label class="cont_panel--fecha"><?php echo $Row_3['nombreColeccion'];?></label>
+                                        <?php
+                                }
+                            endforeach; ?>
+                        
+                        <!-- ANUNCIO -->
+                        <label class="cont_panel--label">Anuncio publicitario</label>
+                        <?php
+                            foreach($Datos['publicidad'] as $Row_3)   : 
+                                if($Not_Gen['ID_Noticia'] == $Row_3['ID_Noticia']){  ?>
+                                    <label class="cont_panel--fecha"><?php echo $Row_3['razonSocial'];?></label>
+                                        <?php
+                                }
+                            endforeach; ?>
+
                         <!-- FECHA -->
                         <label class="cont_panel--label">Fecha</label>
-                        <label class="cont_panel--fecha"><?php echo $Not_Gen['fecha'];?></label>
+                        <label class="cont_panel--fecha"><?php echo $Not_Gen['fechaPublicacion'];?></label>
 
                         <!-- VISITAS -->
                         <label class="cont_panel--label">Visitas</label>
@@ -53,7 +73,10 @@
                                         <?php
                                 }
                             endforeach; ?>
-
+                            
+                        <!-- COMPARTIR -->     
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Gen['ID_Noticia'];?>" target="_blank">Compartir</a>
+                        
                         <!-- EDITAR -->
                         <a style="margin-left: 10%" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
                                                 
@@ -70,3 +93,6 @@
 
 <script src="<?php echo RUTA_URL.'/public/javascript/E_NoticiasGenerales.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_NoticiasGenerales.js?v=' . rand();?>"></script>
+
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

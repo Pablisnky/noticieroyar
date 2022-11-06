@@ -22,31 +22,21 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
 //************************************************************************************************
     //Muestra la cantidad de caracteres que quedan mientras se escribe
     function contarCaracteres(ID_Contador, ID_Contenido, Max){
-        // console.log("______Desde contarCaracteres()______", ID_Contador + " / " + ID_Contenido + " / " + Max) 
-        var max = Max; 
-        // console.log(max)
-        var cadena = document.getElementById(ID_Contenido).value; 
+        console.log("______Desde contarCaracteres()______", ID_Contador + " / " + ID_Contenido + " / " + Max) 
+        let max = Max; 
+        // console.log(max) 
+        let cadena = document.getElementById(ID_Contenido).value; 
         // console.log(cadena)
-        var longitud = cadena.length; 
+        let longitud = cadena.length; 
 
         if(longitud <= max) { 
             document.getElementById(ID_Contador).value = max-longitud; 
-        } else { 
-            document.getElementById(ID_Contador).value = cadena.subtring(0, max);
         } 
-    } 
-
-//************************************************************************************************
-    //Muestra la cantidad de caracteres que ya tiene el campo; cargado desde BD
-    function CaracteresAlcanzados(ID_Contenido, ID_Contador){
-        // console.log("______Desde CaracteresAlcanzados()______",ID_Contenido + " / " + ID_Contador) 
-
-        var Contenido = document.getElementById(ID_Contenido).value
-        var ContadorContenido = document.getElementById(ID_Contador).value
-
-        var CaracteresDisponibles = ContadorContenido - Contenido.length
-
-        document.getElementById(ID_Contador).value = CaracteresDisponibles
+        else{ //Si se escribe mas de lo permitido no permite continuar
+            // document.getElementById(ID_Contador).value = cadena.subtring(0, max);
+            alert("Limite de caracteres alcanzado")
+            // document.getElementById(ID_Contenido).addEventListener('blur', function(){blaquearInput("Titulo")}, false)
+        } 
     } 
 
 //************************************************************************************************ 
@@ -164,7 +154,12 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
         document.getElementById("MostrarAnuncios").style.display = "none"  
     }
 
-
+//************************************************************************************************  
+    function blaquearInput(ID_Contenido){
+        console.log("______Desde blaquearInput()______") 
+        document.getElementById(ID_Contenido).value = ""
+    }
+    
 //************************************************************************************************  
     function validarAgregarNoticia(){
         document.getElementById("Boton_Agregar").value = "Procesando..."
@@ -173,10 +168,36 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
         document.getElementById("Boton_Agregar").style.color = "var(--OficialOscuro)"
         document.getElementById("Boton_Agregar").classList.add('borde_1')
 
-        let Fecha = document.getElementById('Fecha').value
+        let Titulo = document.getElementById('Titulo').value
+        let Resumen = document.getElementById('Resumen').value
+        let Fecha = document.getElementById('datepicker').value
         let Seccion = document.getElementById('SeccionPublicar').value
-                
-        if(Seccion =="" || Seccion.indexOf(" ") == 0){
+                   
+        if(Titulo =="" || Titulo.indexOf(" ") == 0 || Titulo.length > 80){
+            alert ("El TITULO excede el máximo de caracteres");
+            document.getElementById("Titulo").value = "";
+            document.getElementById("Titulo").focus();
+            // document.getElementById("Titulo").style.backgroundColor = "var(--Fallos)"
+            document.getElementById("Boton_Agregar").value = "Agregar noticia"
+            document.getElementById("Boton_Agregar").disabled = false
+            document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementById("Boton_Agregar").style.color = "var(--OficialClaro)"
+            document.getElementById("Boton_Agregar").classList.remove('borde_1')
+            return false;
+        }
+        else if(Resumen =="" || Resumen.indexOf(" ") == 0 || Titulo.length > 120){
+            alert ("Evalue el contenido del RESUMEN");
+            document.getElementById("Resumen").value = "";
+            document.getElementById("Resumen").focus();
+            // document.getElementById("Resumen").style.backgroundColor = "var(--Fallos)"
+            document.getElementById("Boton_Agregar").value = "Agregar noticia"
+            document.getElementById("Boton_Agregar").disabled = false
+            document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementById("Boton_Agregar").style.color = "var(--OficialClaro)"
+            document.getElementById("Boton_Agregar").classList.remove('borde_1')
+            return false;
+        }
+        else if(Seccion =="" || Seccion.indexOf(" ") == 0){
             alert ("Ingrese una sección para la noticia");
             document.getElementById("SeccionPublicar").value = "";
             document.getElementById("SeccionPublicar").focus();
@@ -190,8 +211,8 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
         }
         else if(Fecha =="" || Fecha.indexOf(" ") == 0){
             alert ("Fecha no valida");
-            document.getElementById("Fecha").value = "";
-            document.getElementById("Fecha").focus();
+            document.getElementById("datepicker").value = "";
+            document.getElementById("datepicker").focus();
             // document.getElementById("Fecha").style.backgroundColor = "var(--Fallos)"
             document.getElementById("Boton_Agregar").value = "Agregar noticia"
             document.getElementById("Boton_Agregar").disabled = false

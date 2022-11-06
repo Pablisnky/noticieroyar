@@ -165,3 +165,34 @@ function transferirAnuncio(form){
     //Se cierra la venana modal
     document.getElementById("MostrarAnuncios").style.display = "none"  
 }
+
+//************************************************************************************************  
+function transferirColeccion(form){
+    // console.log("______Desde transferirAnuncio()______", form )
+
+    //Se reciben los elementos del formulario mediante su atributo name
+    ID_Coleccion = form.coleccion
+
+      // //Se recorre todos los elementos para encontrar el que esta seleccionado
+    for(var i = 0; i<ID_Coleccion.length; i++){ 
+        if(ID_Coleccion[i].checked){
+            //Se toma el valor del seleccionado
+            Seleccionado = ID_Coleccion[i].value
+            // TotalCategoria.push(Seleccionado );
+        }            
+    } 
+    
+    // console.log("ID_Coleccion", Seleccionado)
+
+    //Se transfiere el valor del radio boton seleccionado al input del formulario
+    document.getElementById("ID_Coleccion").value = Seleccionado
+
+    //Se cambia el valor del input que da acceso a actualizar cuando el controlador recibe los datos
+    document.getElementById("Actualiza").value = 'SiActualizar'
+
+    //Coloca el curso en el ancla
+    window.location.hash = "#Contenedor_Coleccion"; 
+
+    //Se cierra la venana modal
+    document.getElementById("MostrarAnuncios").style.display = "none"  
+}

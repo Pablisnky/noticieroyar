@@ -18,30 +18,40 @@
                                 <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="ImgColeccion" src="<?php echo RUTA_URL?>/public/images/colecciones/imagen.png"/>
                             </figure>
                         </label>
-                        <input class="Default_ocultar" type="file" name="imagenPrincipalColec" id="imgCol"/>
+                        <input class="Default_ocultar" type="file" name="imagenPrincipalColeccion" id="imgCol"/>
                     </div>
 
                     <div style="width: 100%; padding-left: 1%">
                         <!-- TITULO COLECCION -->
                         <label class="cont_panel--label">Titulo</label>
-                        <input class="cont_panel--titulo" type="text" name="razon" id="Razon"/> 
+                        <input class="cont_panel--titulo" type="text" name="coleccion"/> 
+                        
+                        <!-- SERIE COLECCION -->
+                        <label class="cont_panel--label">Serie</label>                        
+                        <select class="cont_panel--titulo" name="serie" id="Serie" onchange="especificarSerie()">
+                            <option></option>
+                            <?php
+                            foreach($Datos['series'] as $Key)   :   ?>
+                                <option value="<?php echo $Key['nombreSerie']?>"><?php echo $Key['nombreSerie']?></option>
+                                <?php
+                            endforeach;     ?>
+                        </select>
                         
                         <!-- DESCRIPCION COLECCION -->
                         <label class="cont_panel--label">Descripción</label>
-                        <textarea></textarea>
+                        <textarea name="descripcion"></textarea>
                         
-                        <!-- SERIE COLECCION -->
-                        <label class="cont_panel--label">Serie</label>
-                        <select>
-                            <option></option>
-                        </select>
+                        
+                        <!-- COMENTARIO COLECCION -->
+                        <label class="cont_panel--label">Comentario</label>
+                        <textarea name="comentario"></textarea>
 
                         <!-- NOTICIA ASIGNADA -->
                         <label class="cont_panel--label">Noticia asignada</label>
-                        <input class="cont_panel--titulo" type="text" name="noticia"/>
+                        <input class="cont_panel--titulo" type="text" name="id_noticia"/>
                         
                         <!-- IMAGENES SECUNDARIAS COLECCION-->     
-                        <label class="cont_panel--label" style="display: block" for="imgCol_2">Imagenes secundarias</label>
+                        <!-- <label class="cont_panel--label" style="display: block" for="imgCol_2">Imagenes secundarias</label>
                         <input class="" type="file" name="imagenesSecCol[]" multiple="multiple" id="imgCol_2" onchange="muestraImgCol()"/>  
                                
                         <!-- muestra las imagenes secundarias dela coleccion -->
@@ -58,13 +68,10 @@
 <!--div alimentado desde modal_seccionesDisponibles_V.php que muestra las secciones -->    
 <!-- <div id="Contenedor_80"></div> -->
 
-</body>
-</html>
-
 
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php echo rand();?>"></script> 
-<script src="<?php echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script> 
+<!-- <script src="<?php echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script>  -->
 
 <script>               
     //Da una vista previa a la imagen principal de la coleccion asociada a la noticia
@@ -146,3 +153,6 @@
         }
 </script>
 
+
+<!-- FOOTER -->
+<?php require(RUTA_APP . '/vistas/footer/footer.php');?>

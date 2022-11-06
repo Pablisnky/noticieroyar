@@ -27,6 +27,9 @@
 			
 			//CONSULTA si hay asociado una coleccion 180°
 			$Coleccion = $this->Panel_M->consultarColeccion();
+			
+			//CONSULTA si hay asociado un anuncio pulicitario
+			$Publicidad = $this->Panel_M->consultarPublicidad();
 
 			//suma la cantidad de visitas a una noticia
 			$Visitas = $this->Panel_M->consultaVisitasNoticia();
@@ -37,7 +40,8 @@
 				'seccionesNoticiasPortadas' => $SeccionesNoticiasPortadas,
 				'noticiasGenerales' => $NoticiasGenerales, // $
 				'coleccion' => $Coleccion, //ID_Noticia, nombreColeccion
-				'visitas' => $Visitas
+				'visitas' => $Visitas,
+				'publicidad' => $Publicidad //ID_Noticia, razonSocial
 			];
 
 			// echo '<pre>';
@@ -50,19 +54,22 @@
 			$this->vista('view/noticiasPortadas_V', $Datos);
 		}
 
+		// muestra la noticias generales en el panel de periodistas
 		public function Not_Generales(){ 
 			//CONSULTA las noticias generales
 			$NoticiasGenerales = $this->Panel_M->consultarNoticiasGenerales();
 
 			//CONSULTA las imagenes de noticias generales
 			$imagenesNoticiasGenerales = $this->Panel_M->consultarImagenesNoticiasGenerales();
-			// echo '<pre>';
-			// print_r($NoticiasPortadas);
-			// echo '</pre>';
-			// exit;
 
 			//CONSULTA las secciones de noticias de generales
 			$SeccionessNoticiasGenerales = $this->Panel_M->consultarSeccionessNoticiasGenerales();
+			
+			//CONSULTA si hay asociado una coleccion 180° en las noticias de generales
+			$Coleccion = $this->Panel_M->consultarColeccionNoticiasGenerales();
+			
+			//CONSULTA si hay asociado anuncios publicitario en las noticias de generales
+			$Publicidad = $this->Panel_M->consultarAnunciosNoticiasGenerales();
 			
 			//suma la cantidad de visitas a una noticia
 			$Visitas = $this->Panel_M->consultaVisitasNoticia();
@@ -71,6 +78,8 @@
 				'noticiasGenerales' => $NoticiasGenerales, //ID_Noticia, titulo, imagenNoticia 
 				'imagenesNoticiasGenerales' => $imagenesNoticiasGenerales,
 				'seccionessNoticiasGenerales' => $SeccionessNoticiasGenerales,
+				'coleccion' => $Coleccion, //ID_Noticia, nombreColeccion
+				'publicidad' => $Publicidad, //ID_Noticia, razonSocial 
 				'visitas' => $Visitas
 			];
 
@@ -122,10 +131,10 @@
 			$this->vista('view/panel_agenda_V', $Datos);
 		}
 		
-		//Muestra los anuncios de publicidad disponibles
+		//Muestra todos los anuncios de publicidad, incluyendo los caducados
 		public function publicidad(){ 
 			//CONSULTA los anuncios de publicidad
-			$Anuncio = $this->Panel_M->consultarAnuncio();
+			$Anuncio = $this->Panel_M->consultarAnuncioTodos();
 
 			$Datos = [
 				'anuncio' => $Anuncio
@@ -141,7 +150,7 @@
 			$this->vista('view/panel_publicidad_V', $Datos);
 		}
 				
-		//Muestra los anuncios de publicidad en una ventana modal para seleccionar el deseado
+		//Muestra los anuncios de publicidad disponibles en una ventana modal para seleccionar el deseado
 		public function Anuncios(){ 
 			//CONSULTA los anuncios de publicidad
 			$Anuncio = $this->Panel_M->consultarAnuncio();
@@ -158,6 +167,25 @@
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
 			// $this->vista('header/header_SoloEstilos');
             $this->vista("modal/modal_anunciosDisponibles", $Datos);
+		}
+
+		//Muestra las colecciones en una ventana modal para seleccionar el deseado
+		public function modalColecciones(){ 
+			//CONSULTA las colecciones 
+			$Anuncio = $this->Panel_M->consultarColeccionPanel();
+
+			$Datos = [
+				'coleccionesModal' => $Anuncio//ID_Coleccion, nombreColeccion, nombre_imColeccion
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit;
+		
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			// $this->vista('header/header_SoloEstilos');
+            $this->vista("modal/modal_coleccionesDisponibles", $Datos);
 		}
 
 		//Muestra las colecciones
@@ -178,6 +206,7 @@
 			$this->vista('header/header_SoloEstilos');
 			$this->vista('view/panel_coleccion_V', $Datos);
 		}
+
 		//Muestra obituario
 		public function obituario(){ 
 			//CONSULTA las obituario
@@ -250,9 +279,21 @@
 		// muestra formulario para agregar una coleccion
 		public function agregar_coleccion(){
 
+			//CONSULTA los colecciones 
+			$Series = $this->Panel_M->consultarSeriesColeccion();
+
+			$Datos = [
+				'series' => $Series // nombreSerie
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit;
+
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
 			$this->vista('header/header_SoloEstilos');
-			$this->vista('view/agregarColeccion_V');
+			$this->vista('view/agregarColeccion_V', $Datos);
 		}
 
 		// muestra formulario para agregar una noticia
@@ -291,11 +332,19 @@
 			// CONSULTA el anuncio publicitario de la noticia
 			$Anuncio = $this->Panel_M->consultarAnuncioEspecifico($ID_Noticia);
 			
+			// CONSULTA el video de la noticia
+			$Video = $this->Panel_M->consultarVideoEspecifico($ID_Noticia);
+			
+			// CONSULTA la coleccion de la noticia
+			$Coleccion = $this->Panel_M->consultarColeccionEspecifico($ID_Noticia);
+
 			$Datos = [
 				'noticiaActualizar' => $NoticiaActualizar, //ID_Noticia, titulo, subtitulo, seccion, fecha, nombre_imagenNoticia, ImagenPrincipal, fuente 
 				'imagenesNoticiaActualizar' => $ImagenesNoticiaActualizar, //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
 				'fuentes' => $Fuentes,
-				'anuncio' => $Anuncio //ID_Anuncio, nombre_imagenPublicidad
+				'anuncio' => $Anuncio, //ID_Anuncio, nombre_imagenPublicidad
+				'video' => $Video, //ID_Anuncio, nombre_imagenPublicidad
+				'colecciones' => $Coleccion //ID_Coleccion, nombreColeccion
 			];
 
 			// echo '<pre>';
@@ -346,6 +395,33 @@
 			$this->vista('view/actualizarAgenda_V', $Datos);
 		}
 		
+		// Muestra formulario con la coleccion a actualizar
+		public function actualizar_coleccion($ID_Coleccion){
+			
+			//CONSULTA la coleccion a actualizar
+			$ColeccionActualizar = $this->Panel_M->consultarColeccionActualizar($ID_Coleccion);
+			
+			//CONSULTA las imagenes secundarias de una coleccion a actualizar
+			$ImagenesColeccion = $this->Panel_M->consultarImagenesColeccionActualizar($ID_Coleccion);
+
+			$Series = $this->Panel_M->consultarSeriesColeccion();
+
+			$Datos = [
+				'coleccionActualizar' => $ColeccionActualizar, //ID_Coleccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion, nombre_imColeccion
+				'imagenesSecun' => $ImagenesColeccion, //nombre_imColeccion
+				'series' => $Series 
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit();
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/actualizarColeccion_V', $Datos);
+		}
+
 		// recibe formulario que agrega efemeride
 		public function recibeEfemerideAgregada(){
 			if(isset($_FILES['imagenPrincipal']["name"])){
@@ -386,7 +462,7 @@
 
 		// recibe el formulario que agrega noticia
 		public function recibeNotiAgregada(){
-			if(isset($_FILES['imagenPrincipal']["name"])){
+			if(!empty($_FILES['imagenPrincipal']["name"])){
 				$Titulo = $_POST['titulo'];
 				$Sub_Titulo = $_POST['subtitulo'];
 				$Contenido = $_POST['contenido'];
@@ -519,11 +595,13 @@
 					move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
 
 					//Se INSERTA la imagen principal de la noticia
-					$this->Panel_M->InsertarImagenNoticia($ID_Noticia, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
-				}
-				else{
-					//Se INSERTA solo el ID_Noticia
-					$this->Panel_M->InsertarID_ImagenPrincipal($ID_Noticia);
+					try{
+						$this->Panel_M->InsertarImagenNoticia($ID_Noticia, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+					}
+					catch(PDOException $exepcion){
+						$this->error = $exepcion->getMessage();
+						echo 'Error al conectarse con la base de datos: ' . $this->error;
+					}
 				}
 
 				//INSERTAR IMAGENES SECUNDARIAS
@@ -556,7 +634,7 @@
                 }
 
 				// INSERTAR IMAGEN ANUNCIO PUBLICITARIO
-				//Si existe imagenAnunio y
+				//EL anuncio ya se inserto previamente individualmene, aqui solo se inserta la relacion del ID_Noticia con el ID_Anuncio
 				if($ID_Anuncio != ""){
 					// //Usar en remoto
 					// // $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
@@ -570,7 +648,34 @@
 					//Se inserta la dependencia transiiva entre el anuncio y la noticia
 					$this->Panel_M->Insertar_DT_noticia_anuncio($ID_Noticia, $ID_Anuncio);
 				}
+
+				// INSERTAR VIDEO
+                if($_FILES['video']['name'][0] != ''){
+					$Nombre_video = $_FILES['video']['name'];
+					$Tipo_video = $_FILES['video']['type'];
+					$Tamanio_video = $_FILES['video']['size'];
+					// echo "Nombre_video : " . $Nombre_video . '<br>';
+					// echo "Tipo_video : " .  $Tipo_video . '<br>';
+					// echo "Tamanio_video : " .  $Tamanio_video . '<br>';
+					// exit;
+
+					//Usar en remoto
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
+					
+					// // usar en local
+					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
+					
+					//Se mueve el archivo desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+					move_uploaded_file($_FILES['video']['tmp_name'], $Directorio.$Nombre_video);
+
+					//Se INSERTA el video de la noticia
+					$this->Panel_M->InsertarVideoNoticia($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video);
+				}
 			}				
+			else{
+				echo "Es necesario una imagen para la noticia";
+				exit;
+			}
 
 			header("Location:" . RUTA_URL . "/Panel_C/portadas");
 			die();
@@ -637,6 +742,49 @@
 			}				
 
 			header("Location:" . RUTA_URL . "/Panel_C/publicidad");
+			die();
+		}
+
+		// recibe formulario que agrega una coleccion 
+		public function recibeColeccionAgregada(){
+			if(isset($_FILES['imagenPrincipalColeccion']["name"])){		
+				$ID_Noticia = $_POST['id_noticia'];
+				$Serie = $_POST['serie'];
+				$Coleccion = $_POST['coleccion']; 					
+				$Descripcion = $_POST['descripcion'];				
+				$Comentario = $_POST['comentario'];		
+				
+
+				$Nombre_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['name'];
+				$Tipo_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['type'];
+				$Tamanio_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['size'];
+
+				// echo "Coleccion : " . $Coleccion . '<br>';
+				// echo "Serie : " . $Serie . '<br>';
+				// echo "Descripcion : " . $Descripcion . '<br>';
+				// echo "ID_Noticia : " . $ID_Noticia . '<br>';
+				// echo "Nombre_imagenColeccion : " . $Nombre_imagenPrincipalColeccion . '<br>';
+				// echo "Tipo_imagenColeccion : " .  $Tipo_imagenPrincipalColeccion . '<br>';
+				// echo "Tamanio_imagenColeccion : " .  $Tamanio_imagenPrincipalColeccion . '<br>';
+				// exit;
+								
+				//Usar en remoto
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
+				
+				// usar en local
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
+				
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['imagenPrincipalColeccion']['tmp_name'], $Directorio.$Nombre_imagenPrincipalColeccion);
+				
+				//Se INSERTA la coleccion y se retorna el ID de la inserción
+				$ID_Coleccion = $this->Panel_M->InsertarColeccion($ID_Noticia, $Serie, $Coleccion, $Descripcion, $Comentario); 
+				
+				//Se INSERTA la imagen principal de la coleccion
+				$this->Panel_M->InsertarImagenPrincipalColeccion($ID_Coleccion, $Nombre_imagenPrincipalColeccion, $Tipo_imagenPrincipalColeccion, $Tamanio_imagenPrincipalColeccion);
+			}				
+
+			header("Location:" . RUTA_URL . "/Panel_C/coleccion");
 			die();
 		}
 
@@ -829,7 +977,7 @@
 				// echo $ID_Anuncio;
 				// exit;
 				
-				//Se verifica si ya existe un anuncio para la noticia especificad, sino, se inserta un anuncio, si existe se actualiza
+				//Se verifica si ya existe un anuncio para la noticia especificad, sino, se inserta un anuncio y si existe se actualiza
 				$VerificaAnuncio = $this->Panel_M->consultar_DT_noticia_anuncio($ID_Noticia);
 				
 				// echo '<pre>';
@@ -839,11 +987,82 @@
 
 				if($VerificaAnuncio == Array()){ //Se inserta el anuncio
 					//Se INSERTAR el anuncio
-					$this->Panel_M->insertarAnuncioSeleccionado($ID_Noticia, $ID_Anuncio);
+					$this->Panel_M->insertar_DT_AnuncioSeleccionado($ID_Noticia, $ID_Anuncio);
 				}
 				else{ //Se actualiza el anuncio
 					//Se ACTUALIZA el anuncio que corresponde a la noticia en la tabla de depencia transitiva "noticias_anuncios"
 					$this->Panel_M->actualizar_DT_noticia_anuncio($ID_Noticia, $ID_Anuncio);
+				}
+			}
+
+			// VIDEO
+			//Si se cambio el video se procede a actualizarlo
+			if($_FILES['video']["name"] != ""){			
+				$ID_Video = !empty($_POST['id_video']) ? $_POST['id_video'] : 'No existe';	 
+				$Nombre_video = $_FILES['video']['name'];
+				$Tipo_video = $_FILES['video']['type'];
+				$Tamanio_video = $_FILES['video']['size'];
+				// echo $ID_Video . '<br>';
+				// echo $Nombre_video . '<br>';
+				// echo $Tipo_video . '<br>';
+				// echo $Tamanio_video . '<br>';
+				// exit;
+				
+				if($ID_Video == 'No existe'){//No existe video para acualizar, entonces se inserta
+					//Se INSERTAR el video
+					//Se INSERTA el video de la noticia
+					$this->Panel_M->InsertarVideoNoticia($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video);
+				}
+				else{//Se actualiza el video existente
+					//Se ACTUALIZA el video de la noticia
+					$this->Panel_M->ActualizarVideo($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video);
+				}
+
+				//Usar en remoto
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
+				
+				// usar en local
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
+				// echo "ACTUALIZAR". '<br>';
+				// echo $ID_Noticia . '<br>';
+				// echo $ID_Anuncio;
+				// exit;
+				
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['video']['tmp_name'], $Directorio_1.$Nombre_video);
+			}
+
+			// COLECCION
+			//Si se cambio la coleccion se procede a actualizarlo
+			if($_POST['actualizarCol'] == 'SiActualizarCol'){
+
+				$ID_Coleccion = $_POST['id_coleccion'];
+				
+				//Usar en remoto
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
+				
+				// usar en local
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
+				// echo "ACTUALIZAR". '<br>';
+				// echo 'ID_Noticia ' . $ID_Noticia . '<br>';
+				// echo 'ID_Coleccion ' .  $ID_Coleccion;
+				// exit;
+				
+				//Se verifica si ya existe una coleccion para la noticia especificad, sino, se inserta una coleccion y si existe se actualiza
+				$VerificaColeccion = $this->Panel_M->consultar_DT_noticia_coleccion($ID_Noticia);
+				
+				// echo '<pre>';
+				// print_r($VerificaColeccion);
+				// echo '</pre>';
+				// exit;
+
+				if($VerificaColeccion == Array()){ //Se inserta la coleccion
+					//Se INSERTA la relacion de dependencia transitiva entre la coleccion y la noticia
+					$this->Panel_M->insertar_DT_ColeccionSeleccionada($ID_Noticia, $ID_Coleccion);
+				}
+				else{ //Se actualiza el anuncio
+					//Se ACTUALIZA la coleccion que corresponde a la noticia en la tabla de depencia transitiva "noticias_colecciones"
+					$this->Panel_M->actualizar_DT_noticia_coleccion($ID_Noticia, $ID_Coleccion);
 				}
 			}
 
@@ -935,6 +1154,79 @@
 			die();
 		}
 
+		// recibe formulario que actualiza una coleccion
+		public function recibeColeccionActualizada(){
+			$ID_Coleccion = $_POST['id_coleccion'];
+			$Coleccion = $_POST['coleccion'];
+			$Serie = $_POST['serie'];
+			$Descripcion = $_POST['descripcion']; 
+			$Comentario = $_POST['comentario'];			
+
+			// echo "Coleccion: " . $Coleccion . '<br>';
+			// echo "Serie: " . $Serie . '<br>';
+			// echo "Descripcion : " . $Descripcion . '<br>';
+			// echo "Comentario : " . $Comentario . '<br>';
+			// exit;
+				
+			//Se ACTUALIZA la coleccion  seleccionada
+			$this->Panel_M->ActualizarColeccion($ID_Coleccion, $Coleccion, $Serie, $Descripcion, $Comentario);
+				
+			//Si se hizo click en la imagen de efemeride
+			if($_FILES['imagenPrincipalColeccion']["name"] != ""){					
+				$Nombre_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['name'];
+				$Tipo_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['type'];
+				$Tamanio_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['size'];
+
+				echo "Nombre_imagen Coleccion: " . $Nombre_imagenPrincipalColeccion . '<br>';
+				echo "Tipo_imagen Coleccion: " .  $Tipo_imagenPrincipalColeccion . '<br>';
+				echo "Tamanio_imagen Coleccion: " .  $Tamanio_imagenPrincipalColeccion . '<br>';
+				exit;
+
+				//Usar en remoto
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				
+				// usar en local
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagen);
+
+				//Se ACTUALIZA la imagene de la efemeride
+				$this->Panel_M->ActualizarImagenEfemeride($ID_Efemeride, $Nombre_imagen, $Tipo_imagen, $Tamanio_imagen);
+			}
+			
+			//IMAGENES COLECCION SECUNDARIAS;
+			if($_FILES['imagenesSecCol']['name'][0] != ''){
+				$Cantidad = count($_FILES['imagenesSecCol']['name']);
+				for($i = 0; $i < $Cantidad; $i++){
+					//nombre original del fichero en la máquina cliente.
+					$Nombre_imagenSecundaria = $_FILES['imagenesSecCol']['name'][$i];
+					$Ruta_Temporal_imagenSecundaria = $_FILES['imagenesSecCol']['tmp_name'][$i];
+					$tipo_imagenSecundaria = $_FILES['imagenesSecCol']['type'][$i];
+					$tamanio_imagenSecundaria = $_FILES['imagenesSecCol']['size'][$i];
+					// echo "Nombre_imagen : " . $Nombre_imagenSecundaria . '<br>';
+					// echo "Tipo_imagen : " .  $Ruta_Temporal_imagenSecundaria . '<br>';
+					// echo "Tamanio_imagen : " .  $tipo_imagenSecundaria . '<br>';
+					// echo "Tamanio_imagen : " .  $tamanio_imagenSecundaria . '<br>';
+					// exit;
+					
+					//Usar en remoto
+					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
+
+					//usar en local
+					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
+
+					//Subimos el fichero al servidor
+					move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecCol']['name'][$i]);
+
+					//Se INSERTAN nuevas imagenes secundarias de la noticia
+					$this->Panel_M->insertarFotografiasColeccionSecun($ID_Coleccion, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria);
+				}
+			}
+			header("Location:" . RUTA_URL . "/Panel_C/coleccion");
+			die();
+		}
+
 		// recibe formulario que actualiza una noticia
 		public function recibeEfemerideActualizada(){
 			$ID_Efemeride = $_POST['ID_Efemeride'];
@@ -951,7 +1243,7 @@
 			//Se ACTUALIZA la efemeride seleccionada
 			$this->Panel_M->ActualizarEfemeride($ID_Efemeride, $Titulo, $Contenido, $Fecha);	
 			
-		// 	//Si se cambio la IMAGEN PRINCIPAL se procede a actualizarla
+			//Si se cambio la IMAGEN PRINCIPAL se procede a actualizarla
 			if($_FILES['imagenPrincipal_Efemeride']["name"] != ""){			
 				$ID_imagenEfemeride = $_POST['id_fotoEfemeride'];	
 				$Nombre_imagenPrincipal_Efemeride = $_FILES['imagenPrincipal_Efemeride']['name'];
@@ -1044,6 +1336,15 @@
 			$this->Panel_M->eliminarAnuncio($ID_Anuncio);			
 
 			header("Location:" . RUTA_URL . "/Panel_C/publicidad");
+			die();
+		}
+		
+		//Eliminar anuncio publicitario
+		public function eliminar_coleccion($ID_Coleccion){
+
+			$this->Panel_M->eliminarColeccion($ID_Coleccion);			
+
+			header("Location:" . RUTA_URL . "/Panel_C/coleccion");
 			die();
 		}
 	}

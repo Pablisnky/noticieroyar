@@ -24,7 +24,7 @@
                     <!-- INFORMACION -->
                     <div class="cont_portada--informacion">
                         <hr class="cont_noticia--hr_1 Default_quitarMovil">
-                        <small class="cont_portada_informacion--span"><?php echo $Key['fecha'];?></small>
+                        <small class="cont_portada_informacion--span"><?php echo $Key['fechaPublicacion'];?></small>
                         <?php
                         // CANTIDAD DE IMAGENES
                         foreach($Datos['cantidadImagenes'] as $Row)   :  
@@ -62,24 +62,24 @@
                 </div>            
                 <div class="atras borde_1" id="atras_<?php echo $Iterador?>">                         
                     <div class="">            
-                        <!-- IMAGEN COLECCION-->
+                        <!-- IMAGEN PRINCIPAL COLECCION-->
                             <?php
                         foreach($Datos['colecciones'] as $Row_6)   :  
                             if($Key['ID_Noticia'] == $Row_6['ID_Noticia'] AND $Row_6['ImagenPrincipalColec'] == 1){     ?> 
                             <figure id="Contenedor_Imagen">
-                                <img class="imagen--portada" alt="Fotografia Coleccion" src="<?php echo RUTA_URL?>/public/images/colecciones/<?php echo $Row_6['nombre_imColeccion'];?>"/>  
+                                <img class="imagen--portada" alt="Fotografia Coleccion" src="<?php echo RUTA_URL?>/public/images/colecciones/<?php echo $Row_6['nombre_imColeccion'];?>" id="Imagen_<?php echo $Iterador?>"/>  
                             </figure> <?php
                             }
                         endforeach; ?>
                         
                         <!-- IMAGENES COLECCION EN MINIATURAS-->
-                        <div style="display: flex; justify-content: center;" id="ContMiniaturas_<?php echo $Iterador?>">     
+                        <div style="display: flex; justify-content: center;">     
                             <?php              
                             foreach($Datos['colecciones'] as $Row_7) :   
                                 if($Key['ID_Noticia'] == $Row_7['ID_Noticia']){  ?>
-                                    <div style="margin-top: 1%" id="PadreImg_<?php echo $Iterador?>">
+                                    <div style="margin-top: 1%">
                                         <figure>
-                                            <img class="cont_detalle--imagenMiniatura borde_1" alt="Foto no disponible" src="<?php echo RUTA_URL?>/images/colecciones/<?php echo $Row_7['nombre_imColeccion'];?>" onclick="Llamar_VerMiniatura('<?php echo $Row_7['ID_ImagenColeccion']?>')"/>
+                                            <img class="cont_detalle--imagenMiniatura borde_1" alt="Foto no disponible" src="<?php echo RUTA_URL?>/images/colecciones/<?php echo $Row_7['nombre_imColeccion'];?>" onclick="VerMiniatura(document.getElementById('Imagen_<?php echo $Iterador?>').src='<?php echo RUTA_URL;?>/public/images/colecciones/<?php echo $Row_7['nombre_imColeccion'];?>')"/>
                                         </figure>
                                     </div>
                                     <?php
@@ -93,16 +93,20 @@
                         foreach($Datos['colecciones'] as $Row_7) :   
                             if($Key['ID_Noticia'] == $Row_7['ID_Noticia']){ ?>
                                 <p class="cont_portada_atras--titulo"><?php echo $Row_7['nombreColeccion']?></p>
-                                <p class="cont_portada_atras--descripcion"><?php echo $Row_7['ubicacionColeccion']?></p>
+                                <p class="cont_portada_atras--descripcion"><?php echo $Row_7['descripcionColeccion']?></p>
                                 <p class="cont_portada_atras--descripcion"><?php echo $Row_7['comentarioColeccion']?></p>
                                 <?php
                                 break;
                             }
                         endforeach; ?>
                     </div>
-                    <span class="Cerrar_JS Default_pointer cont_portada_giro material-icons-outlined">switch_right</span>
+
+                    <!-- BOTON DE GIRO 180! -->
+                    <span class="Cerrar_JS Default_pointer cont_portada_giro cont_portada_giro--atras material-icons-outlined">switch_right</span>
                     <div class="cont_portada_atras--coleccion">
-                        <p>COLECCIÓN YARACUY EN 180°</p>
+
+                        <!-- MEMBRETE COLECCION 180° -->
+                        <p class="cont_portada_atras--membrete">COLECCIÓN YARACUY EN 180°</p>
                         <p class="cont_portada_atras--serie">Vienes de interes cultural</p> 
                     </div> 
                 </div>

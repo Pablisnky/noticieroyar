@@ -48,7 +48,7 @@
                     'anuncios' => $this->Anuncios, //ID_Anuncio, ID_Noticia
                     'imagenes' => $this->Imagenes,  //ID_Noticia, COUNT(ID_Noticia)
                     'videos' => $this->Video, //ID_Noticia
-                    'colecciones' => $this->Coleccion //ID_Noticia, ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, ubicacionColeccion, comentarioColeccion
+                    'colecciones' => $this->Coleccion //ID_Noticia, ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion
                 ];
                 
                 // echo "<pre>";
@@ -116,6 +116,10 @@
 
             //Se CONSULTA la informacion de la noticia solicitada
             $Noticia = $this->ConsultaInicio_M->consultarNoticiaPortada($ID_NoticiaConsultar[0]['ID_Noticia']);
+            // echo "<pre>";
+            // print_r($ID_NoticiaConsultar);
+            // echo "</pre>";          
+            // exit();
 
 			//CONSULTA la cantidad de imagenes asociadas a la noticia solicitada
             $CantidadImagenes = $this->ConsultaInicio_M->consultarImagenesNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
