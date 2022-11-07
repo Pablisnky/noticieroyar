@@ -1,5 +1,5 @@
 	//Muestra el sitio web en pantalla completa
-	var imagen = document.getElementById("Cont_galeria_agenda");
+	var imagen = document.getElementById("Miimagen");
 	
 	function getFullscreen(element){
 		console.log("Elemento ", element)

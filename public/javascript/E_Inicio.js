@@ -1,5 +1,6 @@
-// document.getElementById("Cerrar--modal").addEventListener('click', CerrarModal, false)
+document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
 
+document.getElementById("Cerrar--modal").addEventListener('click', function(){CerrarModal('Promocion')}, false)
 //************************************************************************************************
 //Función autoejecuble que muestra la ventana modal automaticmente
 // var VentanaModal = (function(){ 
@@ -13,20 +14,27 @@
     //     console.log("Se hizo click en: ", click)
     // }, false)
 
-//************************************************************************************************
-function mostrarModal(){        
-    document.getElementById("VentanaModal").classList.add("mostrarModal")
-}   
+    function MostrarPromocion(){
+        document.getElementById("Promocion").style.display = "block" 
+        // document.getElementById("Mostrar_Promocion").style.display = "none" 
+        // window.location.reload();
+    }
 
 //************************************************************************************************
-    function CerrarModal(){
-        document.getElementById("VentanaModal").style.display = "none"
+    function mostrarModal(){        
+        document.getElementById("VentanaModal").classList.add("mostrarModal")
+    }   
+
+//************************************************************************************************
+    function CerrarModal(id){
+        document.getElementById(id).style.display = "none"
     }
 
 //************************************************************************************************ 
     //Voltea la tarjeta para mostrar el reverso
     document.getElementById('Cont_Portada').addEventListener('click', function(e){ 
         if(e.target.classList[0] == 'VerMas_JS'){  
+
             let Tarjeta = e.target
             // console.log("Tarjeta click ", Tarjeta)
             
@@ -41,6 +49,11 @@ function mostrarModal(){
             document.getElementById(current_2.id).style.transformStyle = "preserve-3d" //Voltae para poder leer el lado de atras cuando se pase al frente
             document.getElementById(current_2.id).style.transition = ".5s ease" 
             document.getElementById(current_2.id).style.perspective = "600px"
+            
+            //Se oculta el boton de mostrar video promconal            
+            if(window.screen.width < 1000){
+                retrasaOcultar_Boton()
+            }
         }
     }, false)
         
@@ -48,6 +61,7 @@ function mostrarModal(){
     //Voltea la tarjeta para mostrar nuevamente el frente
     document.getElementById('Cont_Portada').addEventListener('click', function(e){ 
         if(e.target.classList[0] == 'Cerrar_JS'){  
+
             let Tarjeta = e.target
             // console.log("Tarjeta click ", Tarjeta)
             
@@ -60,10 +74,33 @@ function mostrarModal(){
             document.getElementById(current_2.id).style.transformStyle = "preserve-3d" //Voltae para poder leer el lado de atras cuando se pase al frente
             document.getElementById(current_2.id).style.transition = ".5s ease"
             document.getElementById(current_2.id).style.perspective = "600px"
+            
+            //Se muestra el boton de mostrar video promconal            
+            if(window.screen.width < 1000){
+                retrasaMostar_Boton()
+            }
         }
     }, false)
+//************************************************************************************************
+    //oculta el boton de mostrar video promconal
+    function retrasaOcultar_Boton(){
+        document.getElementById("Mostrar_Promocion").classList.remove("BotonPromocion--mostrar")
+        document.getElementById("Mostrar_Promocion").classList.add("BotonPromocion--ocultar")
+    }
+    
+
+//************************************************************************************************
+    //oculta el boton de mostrar video promconal
+    function retrasaMostar_Boton(){
+        document.getElementById("Mostrar_Promocion").classList.remove("BotonPromocion--ocultar")
+        document.getElementById("Mostrar_Promocion").classList.add("BotonPromocion--mostrar")
+    }
 
 //************************************************************************************************
     function VerMiniatura(Nombre_imgColeccion){
         console.log(Nombre_imgColeccion)
    }
+   
+   window.pausar = function() {
+    document.getElementById("VideoPromocion").pause();
+};

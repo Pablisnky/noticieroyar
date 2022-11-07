@@ -144,13 +144,12 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        // SELECT de anuncios publicitarios disponibles
+        // SELECT de anuncios publicitarios disponibles para publicar
         public function consultarAnuncio(){
             $stmt = $this->dbh->query(
                 "SELECT ID_Anuncio, nombre_imagenPublicidad, razonSocial, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicioPublicacion, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulminaPublicacion
                 FROM anuncios
-                WHERE fechaCulmina > CURDATE()
-                -- GROUP BY razonSocial
+                WHERE fechaCulmina >= CURDATE()
                 ORDER BY fechaCulmina
                 DESC"
             );
@@ -862,17 +861,16 @@
         }
         
         //INSERT de coleccion
-        public function InsertarColeccion($Serie, $Coleccion, $Descripcion, $Comentario){
+        public function InsertarColeccion($Coleccion, $Serie, $Descripcion){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO colecciones (serie, nombreColeccion, descripcionColeccion,  comentarioColeccion) 
-                VALUES (:SERIE, :NOMBRE_COLEC, :DESCRIPCION_COLEC, :COMENTARIO_COLEC)"
+                "INSERT INTO colecciones (nombreColeccion, serie, descripcionColeccion) 
+                VALUES (:NOMBRE_COLEC, :SERIE, :DESCRIPCION_COLEC)"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':SERIE', $Coleccion, PDO::PARAM_STR);
             $stmt->bindParam(':NOMBRE_COLEC', $Coleccion, PDO::PARAM_STR);
+            $stmt->bindParam(':SERIE', $Coleccion, PDO::PARAM_STR);
             $stmt->bindParam(':DESCRIPCION_COLEC', $Descripcion, PDO::PARAM_STR);
-            $stmt->bindParam(':COMENTARIO_COLEC', $Comentario, PDO::PARAM_STR);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -1160,10 +1158,10 @@
         }
 
         // UPDATE de coleccion
-        public function ActualizarColeccion($ID_Coleccion, $Coleccion, $Serie, $Descripcion, $Comentario){           
+        public function ActualizarColeccion($ID_Coleccion, $Coleccion, $Serie, $Descripcion){           
             $stmt = $this->dbh->prepare(
                 "UPDATE colecciones  
-                SET nombreColeccion = :NOMBRE_COLECCION, serie = :SERIE_COLECCION, descripcionColeccion = :DESCRIPCION_COLECCION, comentarioColeccion = :COMENTARIO_COLECCION 
+                SET nombreColeccion = :NOMBRE_COLECCION, serie = :SERIE_COLECCION, descripcionColeccion = :DESCRIPCION_COLECCION
                 WHERE ID_Coleccion = :ID_COLECCION"
             );
 
@@ -1171,7 +1169,6 @@
             $stmt->bindParam(':NOMBRE_COLECCION', $Coleccion, PDO::PARAM_STR);
             $stmt->bindParam(':SERIE_COLECCION', $Serie, PDO::PARAM_STR);
             $stmt->bindParam(':DESCRIPCION_COLECCION', $Descripcion, PDO::PARAM_STR);
-            $stmt->bindParam(':COMENTARIO_COLECCION', $Comentario, PDO::PARAM_STR);
             $stmt->bindParam(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
@@ -1183,6 +1180,32 @@
                 return FALSE;
             }
 
+        }
+        
+
+        // UODATE de imagen de coleccion
+        public function ActualizarImagenColeccion($ID_Coleccion, $Nombre_imagenPrincipalColeccion, $Tipo_imagenPrincipalColeccion, $Tamanio_imagenPrincipalColeccion){            
+            $stmt = $this->dbh->prepare(
+                "UPDATE imagnescolecciones  
+                SET nombre_imColeccion = :NOMBRE_IMG, tipo_imColeccion = :TIPO_IMG, tamanio_imColeccion = :TAMANIO_IMG 
+                WHERE ID_Coleccion = :ID_COLECCION AND ImagenPrincipalColec = :IMG_RINCIPAL"
+            );
+
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMG', $Nombre_imagenPrincipalColeccion, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMG', $Tipo_imagenPrincipalColeccion, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMG', $Tamanio_imagenPrincipalColeccion, PDO::PARAM_STR);
+            $stmt->bindValue(':IMG_RINCIPAL', 1, PDO::PARAM_INT);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                // se recupera el ID del registro insertado
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
         }
 
 // // ********************************************************************************************************

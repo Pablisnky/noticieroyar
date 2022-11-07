@@ -747,12 +747,10 @@
 
 		// recibe formulario que agrega una coleccion 
 		public function recibeColeccionAgregada(){
-			if(isset($_FILES['imagenPrincipalColeccion']["name"])){		
-				$ID_Noticia = $_POST['id_noticia'];
-				$Serie = $_POST['serie'];
-				$Coleccion = $_POST['coleccion']; 					
-				$Descripcion = $_POST['descripcion'];				
-				$Comentario = $_POST['comentario'];		
+			if(isset($_FILES['imagenPrincipalColeccion']["name"])){
+				$Coleccion = $_POST['coleccion']; 		
+				$Serie = $_POST['serie'];					
+				$Descripcion = $_POST['descripcion'];		
 				
 
 				$Nombre_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['name'];
@@ -762,7 +760,6 @@
 				// echo "Coleccion : " . $Coleccion . '<br>';
 				// echo "Serie : " . $Serie . '<br>';
 				// echo "Descripcion : " . $Descripcion . '<br>';
-				// echo "ID_Noticia : " . $ID_Noticia . '<br>';
 				// echo "Nombre_imagenColeccion : " . $Nombre_imagenPrincipalColeccion . '<br>';
 				// echo "Tipo_imagenColeccion : " .  $Tipo_imagenPrincipalColeccion . '<br>';
 				// echo "Tamanio_imagenColeccion : " .  $Tamanio_imagenPrincipalColeccion . '<br>';
@@ -778,7 +775,7 @@
 				move_uploaded_file($_FILES['imagenPrincipalColeccion']['tmp_name'], $Directorio.$Nombre_imagenPrincipalColeccion);
 				
 				//Se INSERTA la coleccion y se retorna el ID de la inserción
-				$ID_Coleccion = $this->Panel_M->InsertarColeccion($ID_Noticia, $Serie, $Coleccion, $Descripcion, $Comentario); 
+				$ID_Coleccion = $this->Panel_M->InsertarColeccion($Coleccion, $Serie, $Descripcion); 
 				
 				//Se INSERTA la imagen principal de la coleccion
 				$this->Panel_M->InsertarImagenPrincipalColeccion($ID_Coleccion, $Nombre_imagenPrincipalColeccion, $Tipo_imagenPrincipalColeccion, $Tamanio_imagenPrincipalColeccion);
@@ -1159,28 +1156,27 @@
 			$ID_Coleccion = $_POST['id_coleccion'];
 			$Coleccion = $_POST['coleccion'];
 			$Serie = $_POST['serie'];
-			$Descripcion = $_POST['descripcion']; 
-			$Comentario = $_POST['comentario'];			
+			$Descripcion = $_POST['descripcion']; 	
 
+			// echo "ID_Coleccion: " . $ID_Coleccion . '<br>';
 			// echo "Coleccion: " . $Coleccion . '<br>';
 			// echo "Serie: " . $Serie . '<br>';
 			// echo "Descripcion : " . $Descripcion . '<br>';
-			// echo "Comentario : " . $Comentario . '<br>';
 			// exit;
 				
 			//Se ACTUALIZA la coleccion  seleccionada
-			$this->Panel_M->ActualizarColeccion($ID_Coleccion, $Coleccion, $Serie, $Descripcion, $Comentario);
+			$this->Panel_M->ActualizarColeccion($ID_Coleccion, $Coleccion, $Serie, $Descripcion);
 				
-			//Si se hizo click en la imagen de efemeride
+			//Si se hizo click en la imagen de coleccion
 			if($_FILES['imagenPrincipalColeccion']["name"] != ""){					
 				$Nombre_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['name'];
 				$Tipo_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['type'];
 				$Tamanio_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['size'];
 
-				echo "Nombre_imagen Coleccion: " . $Nombre_imagenPrincipalColeccion . '<br>';
-				echo "Tipo_imagen Coleccion: " .  $Tipo_imagenPrincipalColeccion . '<br>';
-				echo "Tamanio_imagen Coleccion: " .  $Tamanio_imagenPrincipalColeccion . '<br>';
-				exit;
+				// echo "Nombre_imagen Coleccion: " . $Nombre_imagenPrincipalColeccion . '<br>';
+				// echo "Tipo_imagen Coleccion: " .  $Tipo_imagenPrincipalColeccion . '<br>';
+				// echo "Tamanio_imagen Coleccion: " .  $Tamanio_imagenPrincipalColeccion . '<br>';
+				// exit;
 
 				//Usar en remoto
 				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
@@ -1189,10 +1185,10 @@
 				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagen);
+				move_uploaded_file($_FILES['imagenPrincipalColeccion']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipalColeccion);
 
-				//Se ACTUALIZA la imagene de la efemeride
-				$this->Panel_M->ActualizarImagenEfemeride($ID_Efemeride, $Nombre_imagen, $Tipo_imagen, $Tamanio_imagen);
+				//Se ACTUALIZA la imagene de la coleccion
+				$this->Panel_M->ActualizarImagenColeccion($ID_Coleccion, $Nombre_imagenPrincipalColeccion, $Tipo_imagenPrincipalColeccion, $Tamanio_imagenPrincipalColeccion);
 			}
 			
 			//IMAGENES COLECCION SECUNDARIAS;

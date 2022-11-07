@@ -1,6 +1,23 @@
 <!-- VENTANA MODAL INICIAL -->
 <?php //require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
 
+<!-- BOTON VIDEO PROMOCIONAL SAN FELIPE -->
+<div style="background-color: var(--FondoImagenDetalle);" id="Miimagen">
+    <div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
+        <span class="material-icons-outlined" style="width: 30px">play_circle</span>
+        <label class="Default_pointer">Ciudad <br class="Default_quitarEscritorio"> San Felipe</label>
+    </div>
+
+    <!-- VIDEO PROMOCIONAL SAN FELIPE -->	
+    <div class="con_portada--promocion" id="Promocion">
+        <span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="Cerrar--modal" onclick="pausar()">cancel</span>
+        <!-- <span class="material-icons-outlined publicidad_cont--full Default_pointer" id="Abrir">open_in_full</span> -->
+        <div>
+            <video class="con_portada--video" id="VideoPromocion" src="<?php echo RUTA_URL?>/public/video/San-Felipe-promocion.mp4" controls loop ></video> 
+        </div>
+    </div>
+</div>
+
 <div class="cont_portada" id="Cont_Portada">
     <?php
     $Iterador = 1;
@@ -66,6 +83,11 @@
                         }
                     endforeach;  ?>   
                 </div>
+
+                <!-- ********************************************************************** -->
+                <!-- TARJETA COLECCION 180° -->
+                <!-- ********************************************************************** -->
+
                 <div class="atras borde_1" id="atras_<?php echo $Iterador?>">                         
                     <div class="">            
                         <!-- IMAGEN PRINCIPAL COLECCION-->
@@ -103,11 +125,11 @@
                             <?PHP
                             foreach($Datos['colecciones'] as $Row_7) :   
                                 if($Key['ID_Noticia'] == $Row_7['ID_Noticia']){ ?>
+                                    <!-- COLECCION -->
                                     <p class="cont_portada_atras--titulo"><?php echo $Row_7['nombreColeccion']?></p>
-                                    <p class="cont_portada_atras--serie"><?php echo $Row_7['serie']?></p> 
-                                    <hr class="cont_portada_atras--hr_1">
-
-                                    <p class="cont_portada_atras--descripcion"><?php echo $Row_7['descripcionColeccion']?></p>
+                                    <!-- <hr class="cont_portada_atras--hr_1"> -->
+                                    <!-- DESCRIPCION -->
+                                    <p class="cont_portada_atras--descripcion Default_puntosSuspensivos"><?php echo $Row_7['descripcionColeccion']?></p>
                                     <?php
                                     break;
                                 }
@@ -121,6 +143,7 @@
                     <!-- MEMBRETE COLECCION 180° -->
                     <div class="cont_portada_atras--coleccion">
                         <p class="cont_portada_atras--membrete">COLECCIÓN YARACUY EN 180°</p>
+                        <p class="cont_portada_atras--serie">Serie: <?php echo $Row_7['serie']?></p> 
                     </div> 
                 </div>
             </div>
@@ -142,8 +165,8 @@
         $Iterador++;
     endforeach;     ?>
 </div>  
-
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_Inicio.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_Inicio.js?v=' . rand();?>"></script>
+<!-- <script src="<?php echo RUTA_URL.'/public/javascript/FullScreem.js?v=' . rand();?>"></script>  -->
 <script src="<?php echo RUTA_URL.'/public/convoca_SW.js';?>"></script>

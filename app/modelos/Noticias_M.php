@@ -4,23 +4,11 @@
         public function __construct(){    
             parent::__construct();       
         }
-        
-        //SELECT de las noticias principales del dia en curso
-        public function consultarNoticiasPrincipales(){
-            // $stmt = $this->dbh->prepare(
-            //     "SELECT ID_Noticia, titulo, subtitulo, imagenNoticia, noticiaPrincipal, portada
-            //     FROM noticias 
-            //     WHERE fecha = CURDATE()"
-            // );
+                
+// ***********************************************************************************************
+// SELECT
+// ***********************************************************************************************
 
-            // if($stmt->execute()){
-            //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // }
-            // else{
-            //     return false;
-            // }
-        } 
-        
 		//Muestra el select con las secciones
 		public function ConsultarSecciones(){
             $stmt = $this->dbh->query(
@@ -37,7 +25,7 @@
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                  INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
                  INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
-                 WHERE fecha <= CURDATE() AND ImagenPrincipal = 1
+                 WHERE ImagenPrincipal = 1
                  ORDER BY fecha
                  DESC"
             );
@@ -81,13 +69,13 @@
             }
         }
         
-        //SELECT de los anuncios asociados a las noticias
+        //SELECT de los anuncios vigentes asociados a las noticias
         public function consultarAnuncioNoticiaGenerales(){
             $stmt = $this->dbh->query(
                 "SELECT anuncios.ID_Anuncio, ID_Noticia
                 FROM noticias_anuncios
                 INNER JOIN anuncios ON noticias_anuncios.ID_Anuncio=anuncios.ID_Anuncio
-                WHERE nombre_imagenPublicidad != 'imagen.png' "
+                WHERE nombre_imagenPublicidad != 'imagen.png' AND fechaCulmina >= CURDATE() "
             );
 
             if($stmt->execute()){
@@ -192,13 +180,13 @@
             }
         }
         
-          //SELECT de los anuncios asociados a las noticias portadas
+          //SELECT del anuncio asociado a la noticia general
         public function consultarAnuncioNoticiaPortada($ID_Noticia){
             $stmt = $this->dbh->prepare(
                 "SELECT anuncios.ID_Anuncio, ID_Noticia, nombre_imagenPublicidad
                  FROM noticias_anuncios 
                  INNER JOIN anuncios ON noticias_anuncios.ID_Anuncio=anuncios.ID_Anuncio
-                 WHERE ID_Noticia = :ID_NOTICIA AND nombre_imagenPublicidad != 'imagen.png' "
+                 WHERE ID_Noticia = :ID_NOTICIA AND nombre_imagenPublicidad != 'imagen.png' AND fechaCulmina >= CURDATE() "
             );
             
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement

@@ -39,28 +39,20 @@
                         
                         <!-- DESCRIPCION COLECCION -->
                         <label class="cont_panel--label">Descripción</label>
-                        <textarea name="descripcion"></textarea>
-                        
-                        
-                        <!-- COMENTARIO COLECCION -->
-                        <label class="cont_panel--label">Comentario</label>
-                        <textarea name="comentario"></textarea>
-
-                        <!-- NOTICIA ASIGNADA -->
-                        <label class="cont_panel--label">Noticia asignada</label>
-                        <input class="cont_panel--titulo" type="text" name="id_noticia"/>
-                        
+                        <textarea class="textarea--panel" name="descripcion" id="Descripcion"></textarea>
+                        <input class="cont_panel--contador" type="text" id="ContadorColeccion" value="150" readonly/>
+                                                
                         <!-- IMAGENES SECUNDARIAS COLECCION-->     
                         <!-- <label class="cont_panel--label" style="display: block" for="imgCol_2">Imagenes secundarias</label>
                         <input class="" type="file" name="imagenesSecCol[]" multiple="multiple" id="imgCol_2" onchange="muestraImgCol()"/>  
                                
                         <!-- muestra las imagenes secundarias dela coleccion -->
                         <div class="cont_panel--imagenSec" id="muestrasImg_Coleccion"></div>  
-                </div>
-                
-                <div> 
-                    <input class="boton" type="submit" id="Boton_Agregar" value="Agregar colección"/>  
-                </div>            
+                    </div>                
+                    <div> 
+                        <input class="boton" type="submit" id="Boton_Agregar" value="Agregar colección"/>  
+                    </div>    
+                </div>        
             </form>
     </fieldset>
 </div>
@@ -69,9 +61,8 @@
 <!-- <div id="Contenedor_80"></div> -->
 
 
-<script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
-<script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php echo rand();?>"></script> 
-<!-- <script src="<?php echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script>  -->
+<!-- <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script> -->
+<script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarColeccion.js?v=<?php echo rand();?>"></script> 
 
 <script>               
     //Da una vista previa a la imagen principal de la coleccion asociada a la noticia

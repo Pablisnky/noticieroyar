@@ -67,7 +67,7 @@
                         foreach($Datos['colecciones'] as $Row_6)   :  
                             if($Key['ID_Noticia'] == $Row_6['ID_Noticia'] AND $Row_6['ImagenPrincipalColec'] == 1){     ?> 
                             <figure id="Contenedor_Imagen">
-                                <img class="imagen--portada" alt="Fotografia Coleccion" src="<?php echo RUTA_URL?>/public/images/colecciones/<?php echo $Row_6['nombre_imColeccion'];?>" id="Imagen_<?php echo $Iterador?>"/>  
+                                <img class="imagen--portada--cole" alt="Fotografia Coleccion" src="<?php echo RUTA_URL?>/public/images/colecciones/<?php echo $Row_6['nombre_imColeccion'];?>" id="Imagen_<?php echo $Iterador?>"/>  
                             </figure> <?php
                             }
                         endforeach; ?>
@@ -92,9 +92,10 @@
                         <?PHP
                         foreach($Datos['colecciones'] as $Row_7) :   
                             if($Key['ID_Noticia'] == $Row_7['ID_Noticia']){ ?>
+                                <!-- COLECCION -->
                                 <p class="cont_portada_atras--titulo"><?php echo $Row_7['nombreColeccion']?></p>
-                                <p class="cont_portada_atras--descripcion"><?php echo $Row_7['descripcionColeccion']?></p>
-                                <p class="cont_portada_atras--descripcion"><?php echo $Row_7['comentarioColeccion']?></p>
+                                <!-- DESCRIPCION -->
+                                <p class="cont_portada_atras--descripcion Default_puntosSuspensivos"><?php echo $Row_7['descripcionColeccion']?></p>
                                 <?php
                                 break;
                             }
@@ -103,11 +104,11 @@
 
                     <!-- BOTON DE GIRO 180! -->
                     <span class="Cerrar_JS Default_pointer cont_portada_giro cont_portada_giro--atras material-icons-outlined">switch_right</span>
+                    
+                    <!-- MEMBRETE COLECCION 180° -->
                     <div class="cont_portada_atras--coleccion">
-
-                        <!-- MEMBRETE COLECCION 180° -->
                         <p class="cont_portada_atras--membrete">COLECCIÓN YARACUY EN 180°</p>
-                        <p class="cont_portada_atras--serie">Vienes de interes cultural</p> 
+                        <p class="cont_portada_atras--serie">Serie: <?php echo $Row_7['serie']?></p> 
                     </div> 
                 </div>
             </div>

@@ -10,6 +10,35 @@
 	.borde_1{
 		border-color: white;
 	}
+	.con_portada--titulo{
+	   position: fixed;
+	   top: 8%;
+	   left: 2%;
+	   z-index: 2;
+	   padding: 1% 3%;
+	   width: 38%;
+	}
+	.con_portada--video{
+		position: relative; 
+		left: initial; 
+		width: 100%; 
+		height: 100vh;
+	}
+	.cont_portada_atras--titulo{
+		font-size: 1.7em;
+	}
+	.cont_portada_atras--descripcion{	
+		font-size: 1.1em;
+		padding: 0% 2%;
+	}
+	.cont_portada_atras--membrete{	
+		width: 90%;
+		line-height: 20px !important;
+	}
+	.cont_portada_atras--serie{
+		font-size: 0.9em;	
+		width: 90%;
+	}
 	.cont_detalle{
 		width: 100%;
 	}
@@ -266,6 +295,9 @@
 	}
 	.Default_quitarMovil{/*no se muestra en version movil*/
 		display: none;
+	}
+	.Default_puntosSuspensivos{
+		-webkit-line-clamp: 9;
 	}
 	.obituario_cont{
 		display: block;

@@ -41,10 +41,6 @@
                         <label class="cont_panel--label">Descripción</label>
                         <textarea class="textarea--panel" name="descripcion"><?php echo $Datos['coleccionActualizar']['descripcionColeccion'];?></textarea>
                                                 
-                        <!-- COMENTARIO COLECCION -->
-                        <label class="cont_panel--label">Comentario</label>
-                        <textarea class="textarea--panel" name="comentario"><?php echo $Datos['coleccionActualizar']['comentarioColeccion'];?></textarea>
-
                         <!-- NOTICIA ASIGNADA -->
                         <label class="cont_panel--label">Noticia asignada</label>
                         <input class="cont_panel--titulo" type="text" name="id_noticia"/>

@@ -291,7 +291,7 @@ textarea{
 	overflow-x: scroll;
 	/* overflow-y: hidden; */
 	/* las siguientes lineas edita la barra scroll */
-    /* scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0); */
+    /* scrollbar-color: rgba(14, 13, 13, 0.5); */
 	scrollbar-width: thin;
  }
  .cont_noticia--tituloSeccion{
@@ -467,9 +467,11 @@ textarea{
 	 padding: 5px 15px;
  }
  .cont_panel--guardar{
-	position: fixed;
-	top: 93vh;
-	right: 5vh;
+	position: sticky;
+	bottom: 1%;
+	right: 3%;
+	float: right;
+	margin-top: 2%;	
  }
 .cont_portada{
 	display: flex;
@@ -595,6 +597,7 @@ textarea{
 }
 .cont_portada_atras--hr_1{
    margin: auto;
+   margin-bottom: 2%;
    width: 30%;
 }
 .cont_noticias_atras--hr_1{
@@ -832,6 +835,34 @@ textarea{
 	font-size: 1.5em;
 	color: white;
 }
+.con_portada--titulo{
+	background-color: orange;
+	font-weight: bold;
+	position: fixed;
+	top: 1.5%;
+	left: 15%;
+	z-index: 1;
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 0.5% 1%;
+	border-radius: 15px;
+}
+.con_portada--promocion{
+	background-color: rgba(0, 0, 0, 0.9);
+	position: fixed; 
+	top: 0%; 
+	z-index: 5; 
+	width: 100%; 
+	height: 100vh; 
+	display: none;
+}
+.con_portada--video{
+	position: relative; 
+	left: 35%; 
+	width: 30%; 
+	height: 100vh
+}
 .cont_portada_atras--informacion{
 	width: 95%;
 	margin: auto;
@@ -842,13 +873,14 @@ textarea{
 	text-align: center;
 	margin-top: 1.5%;
 }
+.cont_portada_atras--membrete{	
+	color: white;
+	line-height: 20px;
+}
 .cont_portada_atras--serie{
 	font-size: 0.9em;
 	text-align: center;
-}
-.cont_portada_atras--membrete{	
 	color: white;
-	line-height: 32px;
 }
 .cont_portada_atras--imagen{
 	width: 100%; 
@@ -969,7 +1001,7 @@ textarea{
 	/*Las proximas lineas permiten colocar tres puntos al final luego de 3 lineas de parrafo */	
 	display: -webkit-box;
 	overflow: hidden;
-	-webkit-line-clamp: 2;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	text-overflow: ellipsis;
 }
@@ -1045,7 +1077,7 @@ textarea{
 	padding: 1%;
 	width: 100%; 
 	height: 100vh;
-	z-index: 20!important;
+	z-index: 50 !important;
 }
 .header__li--Enlaces{
 	color: white;
@@ -1160,6 +1192,14 @@ textarea{
    border-radius: 50%;
    font-size: 2.8em !important;	 
 }
+.publicidad_cont--full{
+   background-color: white;
+   position: absolute;
+   top: 15%;
+   left: 90.5%;
+   border-radius: 50%;
+   font-size: 2.3em !important;	 
+}
 .publicidad_cont--interno{
 	background-color: initial; 
 	width: 60%; 
@@ -1195,24 +1235,26 @@ textarea{
 
   }
 }
+
 .mostrarModal--publicidad{
 	display: flex;
 }
 
-.simplescrollup__button {/*instruccion.php*/
+.simplescrollup__button {
     position: fixed;
     bottom: 1rem;/*3*/
     right: 1rem;/*2*/
     transition: 1s all;
     z-index: 10000;
 }
-.simplescrollup__button--show {/*instruccion.php*/
+.simplescrollup__button--show {
     transform: translateX(0);
 }
-.simplescrollup__button--hide {/*instruccion.php*/
+.simplescrollup__button--hide {
     transform: translateX(100px);
 }
 
+/*al pasar el raton por una imagen le hace un efecto zoom*/
 .efectoZoom{
   overflow:hidden;
 }
@@ -1222,7 +1264,53 @@ textarea{
 	transform:scale(1.3);  
 	filter: opacity(.5);
 } 
+/****************************************************/
 
+/*al pasar el raton por una imagen le hace un efecto de brillo*/
 .efectoBrillo:hover{
 	filter: brightness(115%)
+}
+/****************************************************/
+
+ /* Estilos barra scroll para motor de renderizado Webkit(Safari) y blink (Chromium, Chrome, Opera, Brave, Vivaldi, Maxthon y Microsoft Edge) -- El motor de renderizado Gecko no utiliza pseudoclases, basta con CSS nativo */
+ .cont_noticia--seccion::-webkit-scrollbar {
+    height: 7px;
+}
+.cont_noticia--seccion::-webkit-scrollbar-track {
+    background-color: #ddd5d5;
+	border-radius: 10px;
+}
+  .cont_noticia--seccion::-webkit-scrollbar-thumb {
+    background-color: #aaa3a3;
+}
+/***********************************************************************/
+.BotonPromocion--ocultar{
+	animation-duration: 1s;
+	animation-name: fade_1;
+	animation-fill-mode: forwards;
+}
+@keyframes fade_1 {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/***********************************************************************/
+.BotonPromocion--mostrar{
+	animation-duration: 1s;
+	animation-name: fade_2;
+	animation-fill-mode: forwards;	
+}
+@keyframes fade_2 {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

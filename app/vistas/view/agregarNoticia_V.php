@@ -13,7 +13,7 @@
 <div style="margin-left: 20%;">
     <fieldset class="fieldset_1" id="Portada"> 
         <legend class="legend_1">Agregar Noticia</legend>
-        <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" onsubmit="return validarAgregarNoticia()">
+        <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" id="Agregar" onsubmit="return validarAgregarNoticia()">
             <div style="display: flex; margin-bottom: 30px">
                 <div style=" width: 30%">    
 
@@ -104,13 +104,14 @@
                     <div class="cont_panel--imagenSec" id="muestrasImg_2"></div>                    
                 </div>                     
             </div>
-            
-            <!-- BOTON DE ENVIO -->
-            <div class="cont_panel--guardar"> 
-                <input class="boton" type="submit" id="Boton_Agregar" value="Agregar noticia"/>  
-            </div>            
+                   
         </form>
     </fieldset>
+
+    <!-- BOTON DE ENVIO -->
+    <div class="cont_panel--guardar"> 
+        <input class="boton" type="submit" form="Agregar" id="Boton_Agregar" value="Agregar noticia"/>  
+    </div>     
 </div>
 
 <!--div alimentado desde modal_seccionesDisponibles_V.php que muestra las secciones -->    

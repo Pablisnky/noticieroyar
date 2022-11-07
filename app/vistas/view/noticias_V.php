@@ -62,6 +62,11 @@
                                     }
                                 endforeach;  ?>  
                             </div>
+                            
+                            <!-- ********************************************************************** -->
+                            <!-- TARJETA COLECCION 180° -->
+                            <!-- ********************************************************************** -->
+
                             <div class="atras borde_1 adelante_atras--noticias_V" id="atras_<?php echo $Iterador?>">                         
                                 <div class="">            
                                     <!-- IMAGEN PRINCIPAL COLECCION-->
@@ -99,12 +104,13 @@
                                         <?PHP
                                         foreach($Datos['colecciones'] as $Row_7) :   
                                             if($Key['ID_Noticia'] == $Row_7['ID_Noticia']){ ?>
+                                                <!-- COLECCION -->
                                                 <p class="cont_portada_atras--titulo"><?php echo $Row_7['nombreColeccion']?></p>
+                                                <!-- SERIE -->
                                                 <p class="cont_portada_atras--serie"><?php echo $Row_7['serie']?></p> 
                                                 <hr class="cont_noticias_atras--hr_1">
-
+                                                <!-- DESCRIPCION -->
                                                 <p class="cont_portada_atras--descripcion Default_puntosSuspensivos"><?php echo $Row_7['descripcionColeccion']?></p>
-                                                <!-- <p class="cont_portada_atras--descripcion"><?php echo $Row_7['comentarioColeccion']?></p> -->
                                                 <?php
                                                 break;
                                             }
