@@ -8,10 +8,9 @@
         // SELECT obituario
         public function consultarObituario(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Obituario, nombre_difunto, capilla_velacion, cementerio, ciudad, hora_velacion, funeraria, fecha_entierro
-                FROM obituario
-                WHERE fecha_defuncion = CURDATE()
-                ORDER BY fecha_defuncion
+                "SELECT nombreImagObituario
+                FROM imagenesobiturario 
+                ORDER BY ID_imagObituario 
                 DESC"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

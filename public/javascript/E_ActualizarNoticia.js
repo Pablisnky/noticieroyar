@@ -78,12 +78,6 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
         document.getElementById("SeccionPublicar").value = ""
     } 
     
-
-//************************************************************************************************    
-    //
-    function CerrarModalAnuncios(){
-        document.getElementById("MostrarAnuncios").style.display = "none"
-    } 
 //************************************************************************************************    
     //
     function ConfirmarTrasferir(){

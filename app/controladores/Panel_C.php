@@ -268,6 +268,14 @@
 			$this->vista('view/agregarAgenda_V');
 		}
 		
+		// muestra formulario para agregar un obituario
+		public function agregar_obituario(){
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/agregarObituario_V');
+		}
+
 		// muestra formulario para agregar un anuncio de publicidad
 		public function agregar_publicidad(){
 
@@ -382,7 +390,7 @@
 			$AgendaActualizar = $this->Panel_M->consultarAgendaActualizar($ID_Agenda);
 			
 			$Datos = [
-				'agendaActualizar' => $AgendaActualizar //ID_Agenda, nombre_imagenAgenda, caducidad
+				'agendaActualizar' => $AgendaActualizar //ID_Agenda, nombre_imagenAgenda, fechaPublicacion
 			];
 
 			// echo '<pre>';
@@ -422,6 +430,24 @@
 			$this->vista('view/actualizarColeccion_V', $Datos);
 		}
 
+		// Muestra formulario con el anuncio publicitario a actualizar
+		public function actualizar_publicidad($ID_ANUNCIO){
+			$AgendaActualizar = $this->Panel_M->consultarAnuncioActualizar($ID_ANUNCIO);
+			
+			$Datos = [
+				'anuncioctualizar' => $AgendaActualizar //ID_Anuncio, nombre_imagenPublicidad, fechaCulmina AS finfechaPublicacion
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit();
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/actualizarAnuncio_V', $Datos);
+		}
+		
 		// recibe formulario que agrega efemeride
 		public function recibeEfemerideAgregada(){
 			if(isset($_FILES['imagenPrincipal']["name"])){
@@ -712,6 +738,37 @@
 			die();
 		}
 
+		// recibe formulario que agrega un obituario
+		public function recibeObituarioAgregado(){
+			if(isset($_FILES['imagenObituario']["name"])){			
+				$difunto = $_POST['difunto'];
+				$Nombre_imagenObituario = $_FILES['imagenObituario']['name'];
+				$Tipo_imagenObituario = $_FILES['imagenObituario']['type'];
+				$Tamanio_imagenObituario = $_FILES['imagenObituario']['size'];
+
+				// echo "Caducidad : " . $Caducidad . '<br>';
+				// echo "Nombre_imagen : " . $Nombre_imagenObituario . '<br>';
+				// echo "Tipo_imagen : " .  $Tipo_imagenObituario . '<br>';
+				// echo "Tamanio_imagen : " .  $Tamanio_imagenObituario . '<br>';
+				// exit;
+				
+				//Se INSERTA el evento
+				$this->Panel_M->InsertarObituario($difunto, $Nombre_imagenObituario, $Tipo_imagenObituario, $Tamanio_imagenObituario);
+				
+				//Usar en remoto
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/obituario/';
+				
+				// usar en local
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/obituario/';
+				
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['imagenObituario']['tmp_name'], $Directorio.$Nombre_imagenObituario);
+			}				
+
+			header("Location:" . RUTA_URL . "/Panel_C/obituario");
+			die();
+		}
+
 		// recibe formulario que agrega un anuncio publicitario
 		public function recibePublicidadAgregada(){
 			if(isset($_FILES['imagenPrincipal']["name"])){			
@@ -729,10 +786,10 @@
 				// exit;
 								
 				//Usar en remoto
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
 				
 				// usar en local
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
@@ -750,8 +807,7 @@
 			if(isset($_FILES['imagenPrincipalColeccion']["name"])){
 				$Coleccion = $_POST['coleccion']; 		
 				$Serie = $_POST['serie'];					
-				$Descripcion = $_POST['descripcion'];		
-				
+				$Descripcion = $_POST['descripcion'];						
 
 				$Nombre_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['name'];
 				$Tipo_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['type'];
@@ -1108,46 +1164,42 @@
 		}
 
 		// recibe formulario que actualiza un anuncio publicitario
-		public function recibePublicidadActualizada(){
-			$ID_Efemeride = $_POST['ID_Efemeride'];
-			$Titulo = $_POST['titulo'];
-			$Contenido = $_POST['contenido']; 
-			$Fecha = $_POST['fecha'];			
+		public function recibeAnuncioActualizado(){
+			$ID_Anuncio = $_POST['ID_Anuncio'];
+			$Fecha = $_POST['fecha'];		
 
-			// echo "ID_Efemeride: " . $ID_Efemeride . '<br>';
-			// echo "Titulo: " . $Titulo . '<br>';
-			// echo "Contenido : " . $Contenido . '<br>';
-			// echo "Fecha : " . $Fecha . '<br>';
+			// echo "ID_Anuncio: " . $ID_Anuncio . '<br>';
+			// echo "Fecha: " . $Fecha . '<br>';
 			// exit;
 				
-			//Se ACTUALIZA la efemeride  seleccionada
-			$this->Panel_M->ActualizarEfemeride($ID_Efemeride, $Titulo, $Contenido, $Fecha);
+			//Se ACTUALIZAN los datos del anuncio publicitario seleccionado
+			$this->Panel_M->ActualizarDatosAnuncio($ID_Anuncio, $Fecha);
 				
-			//Si se hizo click en la imagen de efemeride
-			if($_FILES['imagenPrincipal']["name"] != ""){					
-				$Nombre_imagen = $_FILES['imagenPrincipal']['name'];
-				$Tipo_imagen = $_FILES['imagenPrincipal']['type'];
-				$Tamanio_imagen = $_FILES['imagenPrincipal']['size'];
+			//Si se hizo click en la imagen del anuncio
+			if($_FILES['imagenAnuncio']["name"] != ""){					
+				$Nombre_imagen = $_FILES['imagenAnuncio']['name'];
+				$Tipo_imagen = $_FILES['imagenAnuncio']['type'];
+				$Tamanio_imagen = $_FILES['imagenAnuncio']['size'];
 
-				// echo "Nombre_imagen Noticia: " . $Nombre_imagen . '<br>';
-				// echo "Tipo_imagen Noticia: " .  $Tipo_imagen . '<br>';
-				// echo "Tamanio_imagen Noticia: " .  $Tamanio_imagen . '<br>';
+				// echo "Nombre_imagen: " . $Nombre_imagen . '<br>';
+				// echo "Tipo_imagen: " .  $Tipo_imagen . '<br>';
+				// echo "Tamanio_imagen: " .  $Tamanio_imagen . '<br>';
 				// exit;
 
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagen);
+				move_uploaded_file($_FILES['imagenAnuncio']['tmp_name'], $Directorio_1.$Nombre_imagen);
 
-				//Se ACTUALIZA la imagene de la efemeride
-				$this->Panel_M->ActualizarImagenEfemeride($ID_Efemeride, $Nombre_imagen, $Tipo_imagen, $Tamanio_imagen);
+				//Se ACTUALIZA la imagene del anuncio publicitario
+				$this->Panel_M->ActualizarAnuncioPublicitario($ID_Anuncio, $Nombre_imagen, $Tipo_imagen, $Tamanio_imagen);
 			}
 			
-			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
+			header("Location:" . RUTA_URL . "/Panel_C/publicidad");
 			die();
 		}
 
@@ -1341,6 +1393,16 @@
 			$this->Panel_M->eliminarColeccion($ID_Coleccion);			
 
 			header("Location:" . RUTA_URL . "/Panel_C/coleccion");
+			die();
+		}
+		
+		
+		//Eliminar anuncio publicitario
+		public function eliminar_obituario($ID_Obituario){
+
+			$this->Panel_M->eliminarObituario($ID_Obituario);			
+
+			header("Location:" . RUTA_URL . "/Panel_C/obituario");
 			die();
 		}
 	}

@@ -55,3 +55,58 @@ function conexionAJAX(){
     }
 
 // *************************************************************************************************
+    //Verifica que el usuario este logeado antes de realizar un comentario 
+    function Llamar_VerificarSuscripcion(){
+        console.log("______Desde Llamar_VerificarSuscripcion()______")
+        
+        var url = "../../Noticias_C/VerificaLogin"
+        http_request.open('GET', url, true)  
+        peticion.onreadystatechange = respuesta_VerificarSuscripcion
+        peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+        peticion.send("null")
+    }                                                                        
+    function respuesta_VerificarSuscripcion(){
+        if(peticion.readyState == 4){
+            if(peticion.status == 200){  
+                // document.getElementById('Comentario_1').value = ""
+                // document.getElementById('Comentario_1').focus()
+                // document.getElementById('ComentarioInsertado_1').style.display = "block"
+                document.getElementById('ComentarioInsertado_1').innerHTML = peticion.responseText 
+            } 
+            else{ 
+                alert('Problemas con la petición.') 
+            }
+        }
+        else{ //en caso contrario, mostramos un gif simulando una precarga
+            // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+        }
+    }
+// *************************************************************************************************
+    //Inserta un comentario de un suscriptor
+    function Llamar_InsertarComentario(ID_Suscriptor, ID_Noticia){
+        console.log("______Desde Llamar_InsertarComentario()______", ID_Suscriptor + "/" + ID_Noticia )
+        let Comentario = document.getElementById("Comentario_2").value
+        // console.log(Comentario)
+        
+        var url = "../../Noticias_C/recibeComentario/" + ID_Suscriptor + "/" + ID_Noticia  + "/" +Comentario
+        http_request.open('GET', url, true)  
+        peticion.onreadystatechange = respuesta_InsertarComentario
+        peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+        peticion.send("null")
+    }                                                                        
+    function respuesta_InsertarComentario(){
+        if(peticion.readyState == 4){
+            if(peticion.status == 200){  
+                document.getElementById('Comentario_2').value = ""
+                document.getElementById('Comentario_2').focus()
+                document.getElementById('ComentarioInsertado_2').style.display = "block"
+                document.getElementById('ComentarioInsertado_2').innerHTML = peticion.responseText 
+            } 
+            else{
+                alert('Problemas con la petición.')
+            }
+        }
+        else{ //en caso contrario, mostramos un gif simulando una precarga
+            // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+        }
+    }

@@ -219,9 +219,29 @@
             }
         }
 
-    // // ********************************************************************************************************
-    // // INSERTAR
-    // // ********************************************************************************************************
+        // SELECT de comentarios realizado a noticia especifica
+        public function consultarComentario($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT comentario, fecha, hora, nombreSuscriptor, apellidoSuscriptor
+                 FROM comentarios
+                 INNER JOIN suscriptores ON comentarios.ID_Suscriptor=suscriptores.ID_Suscriptor
+                 WHERE ID_Noticia = :ID_NOTICIA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+// ********************************************************************************************************
+// INSERTAR
+// ********************************************************************************************************
         
         public function insertarVisita($ID_Noticia){
             $stmt = $this->dbh->prepare(
@@ -231,6 +251,27 @@
             
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+
+        public function insertarComentario($ID_Noticia, $ID_Suscriptor, $Comentario){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO comentarios (ID_Noticia, ID_Suscriptor, comentario, fecha, hora) 
+                VALUES (:ID_NOTICIA, :ID_SUSCRIPTOR, :COMENTARIO, CURDATE(), CURTIME() )"
+            
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
+            $stmt->bindParam(':COMENTARIO', $Comentario, PDO::PARAM_STR);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){

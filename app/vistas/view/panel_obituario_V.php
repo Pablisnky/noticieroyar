@@ -7,32 +7,22 @@
             <legend class="legend_1">Obituario</legend>
             <?php
             foreach($Datos['obituario'] as $Row) : ?>
-                <div style="display: flex; margin-bottom: 30px">
-                
+                <div style="display: flex; margin-bottom: 30px">                
                     <!-- IMAGEN -->
                     <div class="cont_panel__did-1">       
                         <figure>
-                            <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/obituario.png"/> 
+                            <img class="cont_panel--imagen" name="imagenObituario" alt="Fotografia Obituario" src="<?php echo RUTA_URL?>/public/images/obituario/<?php echo $Row['nombreImagObituario'];?>"/> 
                         </figure>
                     </div>
                     <div style="width: 100%">
                         <!-- NOMBRE DIFUNTO -->
                         <label class="cont_panel--label"><?php echo $Row['nombre_difunto'];?></label>
                         
-                        <!-- TITULO  -->
-                        <!-- <label class="cont_panel--titulo"><?php echo $Row['titulo'];?></label>
-                        
-                        <!-- CONTENIDO -->
-                        <!-- <label class="cont_panel--label"><?php echo $Row['contenido'];?></label> -->
-                        
                         <!-- ACTUALIZAR -->
-                        <a class="" href="<?php echo RUTA_URL?>/Panel_C/actualizar_efemeride/<?php echo $Row['ID_Obituario'];?>" rel="noopener noreferrer">Actualizar</a>
-                        
-                        <!-- PUBLICIDAD -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_noticia_principal/<?php echo $Not_Gen['ID_Obituario'];?>" rel="noopener noreferrer">Publicidad</a>
+                        <!-- <a class="" href="<?php echo RUTA_URL?>/Panel_C/actualizar_efemeride/<?php echo $Row['ID_imagObituario'];?>" rel="noopener noreferrer">Actualizar</a> -->
                         
                         <!-- ELIMINAR -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_efemeride/<?php echo $Row['ID_Obituario'];?>" rel="noopener noreferrer">Eliminar</a>
+                        <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_obituario/<?php echo $Row['ID_imagObituario'];?>" rel="noopener noreferrer">Eliminar</a>
                     </div>
                 </div>
                 <?php

@@ -4,8 +4,8 @@
 <!-- BOTON VIDEO PROMOCIONAL SAN FELIPE -->
 <div style="background-color: var(--FondoImagenDetalle);" id="Miimagen">
     <div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
-        <span class="material-icons-outlined" style="width: 30px">play_circle</span>
-        <label class="Default_pointer">Ciudad <br class="Default_quitarEscritorio"> San Felipe</label>
+        <!-- <span class="material-icons-outlined" style="width: 30px">play_circle</span> -->
+        <!-- <label class="Default_pointer"> Idena<br class="Default_quitarEscritorio"> </label> -->
     </div>
 
     <!-- VIDEO PROMOCIONAL SAN FELIPE -->	
@@ -13,7 +13,7 @@
         <span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="Cerrar--modal" onclick="pausar()">cancel</span>
         <!-- <span class="material-icons-outlined publicidad_cont--full Default_pointer" id="Abrir">open_in_full</span> -->
         <div>
-            <video class="con_portada--video" id="VideoPromocion" src="<?php echo RUTA_URL?>/public/video/San-Felipe-promocion.mp4" controls loop ></video> 
+            <video class="con_portada--video" id="VideoPromocion" src="<?php echo RUTA_URL?>/public/video/Idena.mp4" controls loop ></video> 
         </div>
     </div>
 </div>
@@ -127,7 +127,7 @@
                                 if($Key['ID_Noticia'] == $Row_7['ID_Noticia']){ ?>
                                     <!-- COLECCION -->
                                     <p class="cont_portada_atras--titulo"><?php echo $Row_7['nombreColeccion']?></p>
-                                    <!-- <hr class="cont_portada_atras--hr_1"> -->
+                                    
                                     <!-- DESCRIPCION -->
                                     <p class="cont_portada_atras--descripcion Default_puntosSuspensivos"><?php echo $Row_7['descripcionColeccion']?></p>
                                     <?php

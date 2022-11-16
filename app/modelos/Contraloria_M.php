@@ -1,7 +1,7 @@
 <?php
-    require(RUTA_APP . "/clases/Conexion_BD.php");
+    require(RUTA_APP . "/clases/Conexion_BD_contraloria.php");
 
-    class Inicio_M extends Conexion_BD{
+    class Contraloria_M extends Conexion_BD_contraloria{
 
         public function __construct(){ 
             parent::__construct();  

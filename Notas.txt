@@ -1,3 +1,6 @@
+pcabeza7@gmail.com       pppp
+
+*******************************************************************************
 En local y en remoto
     Cambiar en Configurar.php; 
     .htaccess de la carpeta public
@@ -14,16 +17,17 @@ Resoluciones
     393 x 851 (Monica - Esther Xiaomi - Orlando Valladares)
     ---------------
     1280 x 800 (tablet Canaima horizontal)
+    600 x 900 (labtop Canaima)
     ---------------
     1366 x 768 (Pablo Labtop)
     1280 x 1024 (Lisbella PC)
 
 *******************************************************************************
 
-/* .efectoZoom{
+/* .efectoZoom{ contenedor
 	overflow:hidden;
 }
-.efectoZoom:hover .efectoZoom--imagen{
+.efectoZoom:hover .efectoZoom--imagen{ imagen
 	transition:all .5s ease-in-out;
 	-webkit-transform:scale(1.3);
 	transform:scale(1.3);

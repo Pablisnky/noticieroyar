@@ -10,14 +10,6 @@ class Controlador{
         return new $modelo();
     }
     
-    //Carga modelos dentro de la carpeta "modelos/complementos"
-    public function complementos($complemento){
-        //Se trae el archivo que contiene la clase recibida por parametro y se procede a instanciarla $modelo . "<br>";
-        require_once("../app/modelos/complementos/" . $complemento . ".php");
-        //Se instancia la clase respectiva que pide la información necesaria a la BD
-        return new $complemento();
-    }
-
     //Carga la vista
     public function vista($vista, $Datos=[]){
         // se chequea si el archivo vista existe
@@ -27,12 +19,5 @@ class Controlador{
         else{
             die("La vista no existe");
         }
-    }
-
-    //Carga una plantilla de correo
-    public function correo($correo, $DatosCorreo=[]){
-        require_once("../app/vistas/correo/" . $correo . ".php");
-        //Se instancia la clase respectiva que pide la información necesaria a la BD
-        // return new $correo();
     }
 }

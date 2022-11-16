@@ -42,6 +42,7 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
                 endforeach; ?>
             </div> 
         </div>
+
         <div class="detalle_cont--informacion">        
 
             <!-- TITULO -->
@@ -49,38 +50,27 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
 
             <!-- RESUMEN -->
             <div class="detalle_cont--resumen">
-                <p style=""><?php echo $Datos['detalleNoticia'][0]['subtitulo']?></p>
+                <p><?php echo $Datos['detalleNoticia'][0]['subtitulo']?></p>
 
                 <!-- FUENTE -->
                 <span class="detalle_cont--fuente"><?php echo $Datos['detalleNoticia'][0]['fuente']?></span>
                 <hr class="detalle_cont--hr">
             </div>
         
-        <!-- Load Facebook SDK for JavaScript -->
-        <!-- <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+            <!-- COMPARTIR REDES SOCIALES -->
+            <div class="detalle_cont--redesSociales">
+                <div class="detalle_cont--red">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>&text=Compartir%20Facebook" target="_blank"><img class="detalle_cont--redesSociales-facebook" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
+                </div>
+                <div class="detalle_cont--red">
+                    <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>&text=COmpartir%20Twiter" target="_blank"><img class="detalle_cont--redesSociales-twitter" alt="twitter" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a>
+                </div>          
+                <div class="whatsapp detalle_cont--red">
+                    <a href="whatsapp://send?text=<?php echo $Datos['detalleNoticia'][0]['titulo'];?>%20<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
+                </div>            
+            </div>        
 
-        <!-- Your share button code -->
-        <!-- <div class="fb-share-button" 
-        data-href="https://www.facebook.com/sharer/sharer.php?u=<?php // echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php //echo $Datos['detalleNoticia'][0]['ID_Noticia'] ;?>" 
-        data-layout="button_count">
-        </div>   -->
-
-        <!-- COMPARTIR REDES SOCIALES -->
-        <!-- <div class="detalle_cont--redesSociales">
-            <div style=" width: 15%">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>&text=Compartir%20Facebook" target="_blank"><img class="detalle_cont--redesSociales-facebook" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a></div>
-            <div style=" width: 15%">
-            <a class="whatsapp" href="whatsapp://send?text=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-icono" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a></div>
-            <div style=" width: 15%">
-            <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>&text=COmpartir%20Twiter" target="_blank"><img class="detalle_cont--redesSociales-twitter" alt="twitter" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a></div>
-        </div>         -->
+            <a style=" width: 100%; display: block; text-align: center; margin-top: 2%" href="#marcador_01">10 comentarios a piede página</a>
         </div>
     </div>
 
@@ -104,6 +94,7 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
     <div>
         <textarea class="textarea--contenido textarea--borde textarea--font" id="Contenido" readonly><?php echo $Datos['detalleNoticia'][0]['contenido']?></textarea>
     </div>
+
     
     <a href="#up" class="simplescrollup__button simplescrollup__button--hide"><span class="material-icons-outlined detalle_cont--avion">airplanemode_active</span></a>
 </div>
@@ -113,3 +104,4 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
 <script src="<?php echo RUTA_URL.'/public/javascript/scrollUp.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_DetalleNoticia.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_DetalleNoticia.js?v='. rand();?>"></script>
+<!-- <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script> -->

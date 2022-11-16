@@ -122,3 +122,8 @@
         text.style.height = 'auto';
         text.style.height = text.scrollHeight+'px';
     }
+    
+//************************************************************************************************ 
+    function CerrarModalAnuncios(id){
+        document.getElementById(id).style.display = "none"
+    } 

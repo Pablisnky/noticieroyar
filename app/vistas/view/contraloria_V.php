@@ -5,7 +5,7 @@
         </div>
     </div>
     <div>
-        <a class="a_3" href="<?php echo RUTA_URL . '/Inicio_C/denuncias';?>">Denunciar</a>
+        <a class="a_3" href="<?php echo RUTA_URL . '/Contraloria_C/denuncias';?>">Denunciar</a>
     </div> 
     <div class="contenedor_26">
         <div>
@@ -16,10 +16,10 @@
             <div class="contenedor_27">
                 <label class="label_6">Denuncias de hoy</label>
                 <label class="label_5"><?php echo $Datos;?></label>
-                <label class="label_3">Municipio San Felipe - Yaracuy</label>
+                <label class="label_3">Municipio San Felipe Yaracuy</label>
             </div>
         </div>
     </div>
 </div>
 
-<script src="<?php echo RUTA_URL.'/public/javascript/Funciones_Varias.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>

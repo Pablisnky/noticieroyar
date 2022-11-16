@@ -32,6 +32,8 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_800.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/EstilosGiroTarjeta.css?v=<?php echo rand();?>"/>
 		
+		<!-- <link rel="stylesheet" type="text/css" href="<?php //echo RUTA_URL?>/public/css/estilosContraloria.css?v=<?php echo rand();?>"/> -->
+		
 		<!-- <link rel="shortcut icon" type="image/png" href="<?php //echo RUTA_URL;?>/public/images/logo.png"/>	 -->
 		<link rel="manifest" href="<?php echo RUTA_URL;?>/public/manifest.json"/>
 		
@@ -40,7 +42,6 @@
 
 		<!-- CDN ICONOS DE GOOGLE -->
 		<link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet"/>
-
     </head>
 	<body class="body_1">				
 		<header class="header" id="Header">  
@@ -52,11 +53,18 @@
 				<nav class="header__menuResponsive" id="MenuResponsive">
 					<div class="header--nav">
 						<ul id="MenuContenedor">
-							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>" rel="noopener noreferrer">Noticias</a></li>
+							<li class="menuLi_1"><a class="header__li--Enlaces" href="" rel="noopener noreferrer">Noticias</a></li>
+								<!-- <ul class="menuContenedor_3" id="MenuContenedor_3">
+									<li><a class="header__li--Enlaces enlace_JS"  href="<?php //echo RUTA_URL . '/Noticias_C/NoticiasGenerales#Marcado_1';?>" rel="noopener noreferrer">Cultura</a></li>
+									<li><a class="header__li--Enlaces">Politica</a></li>
+								</ul> -->
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Efemeride_C';?>" rel="noopener noreferrer">Efemerides</a></li>
-							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Agenda_C';?>" rel="noopener noreferrer">Agenda</a></li>
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Agenda_C';?>" rel="noopener noreferrer">Agenda de eventos</a></li>
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Publicidad_C';?>" rel="noopener noreferrer">Publicidad</a></li> <!-- Directorio comercial -->
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Obituario_C';?>" rel="noopener noreferrer">Obituario</a></li>
 							<li><a class="header__li--Enlaces" href="https://yaracultura.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog Yaracultura</a></li>
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C';?>" rel="noopener noreferrer">Abrir sesión</a></li>
+
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Menu_C/afiliacion';?>" rel="noopener noreferrer">Suscribirse</a></li>
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/VitrinaMayorista_C';?>" rel="noopener noreferrer">Editorial</a></li>
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Pod Cast</a></li>
@@ -65,7 +73,6 @@
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Archivo</a></li>
 							<!-- <hr> -->
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Galeria de arte</a></li>
-							<li class=""><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Contraloria social</a></li>
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Contacto_C';?>" rel="noopener noreferrer">Contacto</a></li>
 							<!-- <hr> -->
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Nuestro ADN</a></li>
@@ -79,6 +86,8 @@
 			<label class="header__titulo">Noticiero Yaracuy</label>
 
 			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
+
+			<a href="<?php echo RUTA_URL . '/Login_C';?>">Entrar</a>
 		</header>
 		
 		<!-- MEMBRETE DESPLAZANTE -->

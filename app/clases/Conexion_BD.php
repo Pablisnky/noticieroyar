@@ -1,9 +1,9 @@
 <?php
     class Conexion_BD{
-        private $Host= DB_HOST;
-        private $Usuario= DB_USUARIO;
-        private $Password= DB_PASSWORD;
-        private $Nombre_base= DB_NOMBRE;
+        private $Host = DB_HOST;
+        private $Usuario = DB_USUARIO;
+        private $Password = DB_PASSWORD;
+        private $Nombre_base = DB_NOMBRE;
 
         public $dbh; //database handler
         private $error;
@@ -17,7 +17,7 @@
             );
             try{
                 $this->dbh = new PDO($dsn, $this->Usuario, $this->Password, $Opciones);
-                $this->dbh->exec("set names utf8");
+                $this->dbh->exec("set names UTF8");
 
                 // print_r($this->dbh);
                 // exit;
@@ -27,4 +27,4 @@
                 echo 'Error al conectarse con la base de datos: ' . $this->error;
             }
         }
-    }    
+    }

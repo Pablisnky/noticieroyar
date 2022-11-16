@@ -1,0 +1,376 @@
+<?php 
+    declare(strict_types = 1);
+
+    class Login_C extends Controlador{
+        
+        public function __construct(){  
+            session_start();
+
+            $this->ConsultaLogin_M = $this->modelo("Login_M");
+
+            //La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
+            ocultarErrores();
+        }
+
+        public function index(){
+
+            // unset($_COOKIE ["id_usuario"]);
+            // unset($_COOKIE ["clave"]);
+            //Se verifica si el usuario esta memorizado en las cookie de su computadora y las compara con la BD, para recuperar sus datos y autorellenar el formulario de inicio de sesion, las cookies de registro de usuario se crearon en validarSesion.php
+            if(isset($_COOKIE["id_usuario"]) AND isset($_COOKIE["clave"])){//Si la variable $_COOKIE esta establecida o creada
+                // echo "Cookie afiliado =" . $_COOKIE["id_usuario"] ."<br>";
+                // echo "Cookie clave =" .  $_COOKIE["clave"] ."<br>";
+                
+                $Cookie_usuario = $_COOKIE["id_usuario"];
+                $Cookie_clave = $_COOKIE["clave"];
+                            
+                //Se CONSULTA el correo guardado como Cookie con el ID_Usuario como argumento, se consulta en todos los tipos de usuario que existe
+                $CorreoRecord_Com = $this->ConsultaLogin_M->consultarUsuarioRecordado_Com($Cookie_usuario);
+                $CorreoRecord_May = $this->ConsultaLogin_M->consultarUsuarioRecordado_May($Cookie_usuario);
+                $CorreoRecord_Ven = $this->ConsultaLogin_M->consultarUsuarioRecordado_Ven($Cookie_usuario);
+                $CorreoRecord_Des = $this->ConsultaLogin_M->consultarUsuarioRecordado_Des($Cookie_usuario);
+
+                if(!empty($CorreoRecord_Com)){
+                    $Correo = $CorreoRecord_Com[0]['correo_AfiCom'];
+                }
+                else if(!empty($CorreoRecord_May)){
+                    $Correo = $CorreoRecord_May[0]['correo_AfiMay'];
+                }
+                else if(!empty($CorreoRecord_Ven)){
+                    $Correo = $CorreoRecord_Ven[0]['correo_AfiVen'];
+                }
+                else if(!empty($CorreoRecord_Des)){
+                    $Correo = $CorreoRecord_Des[0]['correo_AfiDes'];
+                }
+
+                $Datos=[
+                    'correoRecord' => $Correo,
+                    'claveRecord' => $Cookie_clave
+                ];
+
+                //Se entra al formulario de sesion que esta rellenado con los datos del usuario
+                $this->vista("header/header");
+                $this->vista("view/login_Vrecord", $Datos);
+            }
+            else{
+                //carga la vista login_V en formulario login
+                $this->vista("header/header_noticia");
+                $this->vista("view/login_V", $Datos);
+            }
+        }
+
+        //Invocado desde login_V
+        public function ValidarSesion(string $Parametros){
+
+            $Recordar = isset($_POST["recordar"]);
+            $No_Recordar = isset($_POST["no_recordar"]);
+            $Clave = $_POST["clave_Arr"];
+            $Correo = $_POST["correo_Arr"];
+
+            // echo $Parametros;
+            // echo 'Recordar: ' . $Recordar . '<br>';
+            // echo 'No_Recordar: ' . $No_Recordar . '<br>';
+            // echo 'Clave: ' . $Clave . '<br>';
+            // echo 'Correo: ' . $Correo . '<br>';
+            // exit;
+ 
+            //Se CONSULTA si el correo existe como usuario suscrito
+            $Suscriptor = $this->ConsultaLogin_M->consultarSuscriptores($Correo);
+
+            // echo "<pre>";
+            // print_r($Suscriptor);
+            // echo "</pre>";
+            // exit;
+
+            if($Suscriptor != Array() ){//Existe como suscriptor
+                $ID_Suscriptor = $Suscriptor[0]['ID_Suscriptor'];
+                $CorreoBD = $Suscriptor[0]['correoSuscriptor'];
+                $Nombre = $Suscriptor[0]['nombreSuscriptor'];
+
+                $CuentaCom = true;
+            }
+            else{                        
+                header('location:' . RUTA_URL . '/Login_C/loginIncorrecto');
+            }
+            
+            //Se crean las cookies para recordar al usuario en caso de que $Recordar exista
+            if($Recordar == 1){ //si pidió memorizar el usuario, se recibe desde principal.php           
+                // Se introduce una cookie en el ordenador del usuario con el identificador del usuario y la cookie aleatoria porque el usuario marca la casilla de recordar
+                setcookie('id_usuario', $ID_Suscriptor, time()+365*24*60*60, '/');
+                setcookie('clave', $Clave, time()+365*24*60*60, '/');
+            }
+                // Se destruyen las cookie para dejar de recordar a usuario
+            if($No_Recordar == 1){ 
+                setcookie('id_usuario','',time() - 3600,'/');
+                setcookie('clave','',time() - 3600,'/');
+            }
+                        
+            //Verifica si los campo que se van a recibir estan vacios
+            if(empty($_POST['correo_Arr']) || empty($_POST['clave_Arr'])){        
+                echo 'Debe Llenar todos los campos vacios'. '<br>';
+                echo '<a href="javascript:history.back()">Regresar</a>';
+            }
+            else{
+                $Correo = $_POST['correo_Arr'];
+                $Clave = $_POST['clave_Arr'];
+        
+                //Se CONSULTA la contraseña enviada, que sea igual a la contraseña de la BD
+                $Hash= $this->ConsultaLogin_M->consultarContrasena($ID_Suscriptor);
+                
+                // echo '<pre>';
+                // print_r($Hash);
+                // echo '</pre>';
+                // exit;
+
+                //se descifra la contraseña con un algoritmo de desencriptado.
+                if($Correo == $CorreoBD AND $Clave == password_verify($Clave, $Hash)){
+                    
+                    //Se crea la sesion exigida en las páginas de una cuenta de suscriptores           
+                    $_SESSION["ID_Suscriptor"] = $ID_Suscriptor;
+
+                    //carga la vista login_V en formulario login
+                    // $this->vista("header/header_noticia");
+                    $this->vista("suscriptores/suscrip_Inicio_V");
+                }
+                else{
+                    echo "Usuario o contraseña no son validos";
+                }                   
+            }   
+        }
+        
+        public function RecuperarClave(){
+            $Correo = $_POST['correo'];
+            //echo 'Correo= ' . $Correo . '<br>';
+        
+            //Se genera un numero aleatorio que será el código de recuperación de contraseña
+            //alimentamos el generador de aleatorios
+            mt_srand (time());
+            //generamos un número aleatorio
+            $Aleatorio = mt_rand(100000,999999); 
+                    
+            //Se INSERTA el código aleatorio en la tabla "codigo-recuperacion para asociarlo al correo del usuario
+            $this->ConsultaLogin_M->insertarCodigoAleatorio($Correo, $Aleatorio);
+            
+            //Se envia correo al usuario informandole el código que debe insertar para verificar
+            $email_to = $Correo;
+            $email_subject = 'Recuperación de contraseña';  
+            $email_message = 'Código de recuperación de contraseña: ' . $Aleatorio;
+            $headers = 'From: PedidoRemoto<administrador@pedidoremoto.com>';
+            // $headers .= '\r\n X-Mailer: PHP/' . phpversion();
+        
+            @mail($email_to, $email_subject, $email_message, $headers);
+            
+            $Datos = [
+                'correo' => $Correo,
+                'bandera' => 'aleatorioinsertado'
+            ];
+
+            // echo '<pre>';
+            // print_r($Datos);
+            // echo '</pre>';
+            // exit;
+
+            $this->vista('header/header_Modal', $Datos); 
+            $this->vista('modal/modal_recuperarCorreo_V', $Datos); 
+        }
+
+        //LLamado desde modal_recuperarCorreo_V.php
+        public function recibeCodigoRecuperacion(){
+            $CodigoUsuario = $_POST["ingresarCodigo"];
+            $Correo= $_POST["correo"];
+
+            // EL numero aleatorio es de tipo string se debe cambiar a entero
+            // echo gettype($CodigoUsuario) . "<br>";
+            settype($CodigoUsuario,"integer");
+            // echo gettype($CodigoUsuario) . "<br>";
+            
+            //Se comprueba el código enviado por el usuario con el código que hay en la BD
+            $VerificaCodigo = $this->ConsultaLogin_M->consultarCodigoAleatorio($Correo, $CodigoUsuario);
+
+            if($VerificaCodigo == 0){//Si el codigo que envia el usuario es diferente al del sistema             
+                
+                $Datos = [
+                    'correo' => $Correo,
+                    'bandera' => 'nuevoIntento'
+                ];
+
+                $this->vista("header/header_Modal"); 
+                $this->vista("modal/modal_recuperarCorreo_V", $Datos);
+
+                // echo "<p class='Inicio_16'>Código invalido</p>";
+                // echo "<a class='Inicio_16' href='javascript:history.go(-1)'>Regresar</a>";
+                // exit();            
+            }
+            else{//Si los códigos coinciden se permite hacer el cambio de contraseña
+                // echo "cambie la contraseña";
+
+                //Se confirma en la BD que el codigo ha sido usado y verificado
+                $this->ConsultaLogin_M->actualizarcodigoVerificado($CodigoUsuario);
+                
+                $Datos = [
+                    'correo' => $Correo,
+                    'bandera' => 'verificado'
+                ];
+
+                $this->vista("header/header_Modal", $Datos); 
+                $this->vista("modal/modal_recuperarCorreo_V", $Datos); 
+            }
+        }
+
+        public function recibeCambioClave(){
+            $ClaveNueva = $_POST["clave"];
+            $RepiteClaveNueva = $_POST["repiteClave"];
+            $Correo = $_POST["correo"];
+
+            // echo "Clave nueva= " . $ClaveNueva . "<br>";
+            // echo "Repite clave nueva= " . $RepiteClaveNueva . "<br>";
+            // echo "Correo= " . $Correo . "<br>";
+
+            //Se verifica que las claves recibidas sean iguales
+            if($ClaveNueva == $RepiteClaveNueva){
+                //se cifra la contraseña con un algoritmo de encriptación
+                $ClaveCifrada = password_hash($ClaveNueva, PASSWORD_DEFAULT);
+                // echo "Clave cifrada= " . $ClaveCifrada . "<br>";
+                
+                //Se consulta el ID_Participante correspondiente al corrreo en las cuentas de Comerciante, despachador, mayorista y vendedor
+                $ID_SuscriptorCom = $this->ConsultaLogin_M->consultarAfiliadosCom($Correo);
+                $ID_SuscriptorMay = $this->ConsultaLogin_M->consultarAfiliadosMay($Correo);
+                $ID_SuscriptorVen = $this->ConsultaLogin_M->consultarAfiliadosVen($Correo);
+                $ID_SuscriptorDes = $this->ConsultaLogin_M->consultarAfiliadosDes($Correo);
+
+                if($ID_SuscriptorCom != Array()){
+                    //Se actualiza en la base de datos la clave del usuario
+                    $this->ConsultaLogin_M->actualizarClaveCom($ID_SuscriptorCom, $ClaveCifrada);
+
+                    //Se destruyen las cookies que recuerdan la contraseña antigua, creadas en validarSesion.php
+                    // echo "Cookie_usuario= " . $_COOKIE["id_usuario"] . "<br>";
+                    // echo "Cookie_clave= " . $_COOKIE["clave"] . "<br>";
+
+                    // setcookie("id_usuario",'',time()-100);
+                    // setcookie("clave",'',time()-100);
+                    
+                    $this->vista('header/header_Modal'); 
+                    $this->vista('modal/modal_recuperarCorreo_V'); 
+                }
+                else if($ID_SuscriptorMay != Array()){
+                    //Se actualiza en la base de datos la clave del usuario
+                    $this->ConsultaLogin_M->actualizarClaveMay($ID_SuscriptorMay, $ClaveCifrada);
+
+                    //Se destruyen las cookies que recuerdan la contraseña antigua, creadas en validarSesion.php
+                    // echo "Cookie_usuario= " . $_COOKIE["id_usuario"] . "<br>";
+                    // echo "Cookie_clave= " . $_COOKIE["clave"] . "<br>";
+
+                    // setcookie("id_usuario",'',time()-100);
+                    // setcookie("clave",'',time()-100);
+                    
+                    $this->vista('header/header_Modal'); 
+                    $this->vista('modal/modal_recuperarCorreo_V'); 
+                }
+                else if($ID_SuscriptorVen != Array()){
+                    //Se actualiza en la base de datos la clave del usuario
+                    $this->ConsultaLogin_M->actualizarClaveVen($ID_SuscriptorVen, $ClaveCifrada);
+
+                    //Se destruyen las cookies que recuerdan la contraseña antigua, creadas en validarSesion.php
+                    // echo "Cookie_usuario= " . $_COOKIE["id_usuario"] . "<br>";
+                    // echo "Cookie_clave= " . $_COOKIE["clave"] . "<br>";
+
+                    // setcookie("id_usuario",'',time()-100);
+                    // setcookie("clave",'',time()-100);
+
+                    //Se introduce el codigo de despacho del vendedor, es el mismo que la clave
+                    $this->ConsultaLogin_M->actualizarCodigoVenta($ID_SuscriptorVen, $ClaveNueva);
+
+                    $Datos = [
+                        'bandera' => 'finalizado'
+                    ];
+
+                    $this->vista('header/header_Modal'); 
+                    $this->vista('modal/modal_recuperarCorreo_V', $Datos); 
+                }
+                else if($ID_SuscriptorDes != Array()){
+                    //Se actualiza en la base de datos la clave del usuario
+                    $this->ConsultaLogin_M->actualizarClaveDes($ID_SuscriptorDes, $ClaveCifrada);
+
+                    //Se destruyen las cookies que recuerdan la contraseña antigua, creadas en validarSesion.php
+                    // echo "Cookie_usuario= " . $_COOKIE["id_usuario"] . "<br>";
+                    // echo "Cookie_clave= " . $_COOKIE["clave"] . "<br>";
+
+                    // setcookie("id_usuario",'',time()-100);
+                    // setcookie("clave",'',time()-100);
+                    
+                    $this->vista('header/header_Modal'); 
+                    $this->vista('modal/modal_recuperarCorreo_V'); 
+                }
+                else{
+                    echo 'No exist el correo';
+                    echo "<a class='Inicio_16' href='javascript:history.go(-3)'>Regresar</a>";
+                    exit;
+                }
+            }
+            else{
+                echo 'Las contraseñas no coinciden';
+                echo '<br>';
+                echo "<a href='javascript: history.go(-1)'>Regresar</a>";
+            }
+        }
+
+        public function loginIncorrecto(){
+            $this->vista("header/header_noticia");
+            $this->vista("modal/modal_falloLogin_V");
+        }
+        
+        public function suscripcion(){
+            $this->vista("header/header_noticia");
+            $this->vista("view/registro_V");
+        }
+
+        public function recibeRegistroSuscriptor(){         
+            //Se reciben todos los campos del formulario de suscripcion, desde registro_V.php se verifica que son enviados por POST y que no estan vacios
+            if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["nombre"]) && !empty($_POST["correo"]) && !empty($_POST["clave"]) && !empty($_POST["confirmarClave"])){               
+                // $RecibeDatos = [
+                //     //Recibe datos de la persona responsable
+                //     'nombre' => filter_input(INPUT_POST, "nombre", FILTER_SANITIZE_STRING),
+                //     'correo' => filter_input(INPUT_POST, "correo", FILTER_SANITIZE_STRING),
+                //     'clave' => filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING),
+                //     'confirmarClave' => filter_input(INPUT_POST, "confirmarClave", FILTER_SANITIZE_STRING)
+                // ];
+                //Recibe datos de la persona responsable
+                $RecibeDatos = [
+                        'nombre' => ucwords($_POST["nombre"]),    
+                        'apellido' => ucwords($_POST["apellido"]),                      
+                        'correo' => mb_strtolower($_POST["correo"]),                       
+                        'municipio' => mb_strtolower($_POST["municipio"]),
+                        'clave' => $_POST["clave"],
+                        'repiteClave' => $_POST["confirmarClave"],
+                ];
+                
+                // echo "<pre>";
+                // print_r($RecibeDatos);
+                // echo "</pre>";
+                // exit;
+            }
+            else{      
+                echo "Debe Llenar todos los campos vacios". "<br>";
+                echo "<a href='javascript:history.back()'>Regresar</a>";
+                exit();
+            }
+            
+            $ID_Suscriptor = $this->ConsultaLogin_M->InsertarSuscriptor($RecibeDatos);
+
+            $options = ['memory_cost' => 1<<10, 'time_cost' => 4, 'threads' => 2];
+            //se cifra la contraseña del afiliado con un algoritmo de encriptación
+            $ClaveCifrada = password_hash($RecibeDatos["clave"], PASSWORD_DEFAULT, $options);
+                            
+            $this->ConsultaLogin_M->InsertarClave($ID_Suscriptor, $ClaveCifrada);
+
+            //Se envia al correo pcabeza7@gmail.com la notificación de nuevo cliente registrado
+            // $email_subject = ''; 
+            // $email_to = 'pcabeza7@gmail.com'; 
+            // $headers = 'From: noticieroyaracuy<master@noticieroyaracuy.com>';
+            // $email_message = 'Suscripcion satisfactoria' . ' ' . $RecibeDatos['Nombre'];
+
+            // mail($email_to, $email_subject, $email_message, $headers); 
+
+            header('location:' . RUTA_URL. '/Login_C');
+        }
+    }

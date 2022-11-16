@@ -127,7 +127,7 @@
                 "SELECT ID_Agenda, nombre_imagenAgenda, DATE_FORMAT(caducidad, '%d-%m-%Y') AS fechaPublicacion 
                 FROM agenda
                 WHERE disponibilidad = 'activado'
-                ORDER BY caducidad
+                ORDER BY ID_Agenda
                 DESC"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -205,10 +205,9 @@
         // SELECT obituario
         public function consultarObituario(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Obituario, nombre_difunto, capilla_velacion, cementerio, ciudad, hora_velacion, funeraria, fecha_entierro
-                FROM obituario
-                WHERE fecha_defuncion = CURDATE()
-                ORDER BY fecha_defuncion
+                "SELECT ID_imagObituario, nombre_difunto, nombreImagObituario
+                FROM  imagenesobiturario 
+                ORDER BY ID_imagObituario 
                 DESC"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -313,7 +312,25 @@
                 return false;
             }
         }
+        
+        //SELECT del anuncio a actualizar
+        public function consultarAnuncioActualizar($ID_Anuncio ){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Anuncio, nombre_imagenPublicidad, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS finfechaPublicacion
+                 FROM anuncios
+                 WHERE ID_Anuncio = :ID_ANUNCIO"
+            );
 
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_ANUNCIO', $ID_Anuncio , PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
         //SELECT de la coleccion a actualizar
         public function consultarColeccionActualizar($ID_Coleccion){
             $stmt = $this->dbh->prepare(
@@ -799,6 +816,28 @@
                 return FALSE;
             }
         }
+
+        //INSERT de obituario en agenda
+        public function InsertarObituario($NombreDIfunto, $Nombre_imagenObituario, $Tipo_imagenObituario, $Tamanio_imagenObituario){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO imagenesobiturario(nombre_difunto, nombreImagObituario, TypoImagObituario, TamanioImagObituario) 
+                VALUES (:DIFUNTO, :NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':DIFUNTO', $NombreDIfunto, PDO::PARAM_STR);
+            $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenObituario, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenObituario, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenObituario, PDO::PARAM_STR);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
         
         //INSERT de anuncio publicitario
         public function InsertarAnuncio($RazonSocial, $FechaCaducidad, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
@@ -995,7 +1034,7 @@
         }
 
         // UODATE de imagen de anuncio publicitario
-        public function ActualizarAnuncio($ID_Anuncio, $Nombre_imagenAnuncio, $Tipo_imagenAnuncio, $Tamanio_imagenAnuncio){            
+        public function ActualizarAnuncioPublicitario($ID_Anuncio, $Nombre_imagen, $Tipo_imagen, $Tamanio_imagen){            
             $stmt = $this->dbh->prepare(
                 "UPDATE anuncios 
                 SET nombre_imagenPublicidad = :NOMBRE_IMG_ANUNCIO, tamanio_imagenPublicidad = :TAMANIO_IMG_ANUNCIO, tipo_imagenPublicidad = :TIPO_IMG_ANUNCIO 
@@ -1017,7 +1056,28 @@
                 return FALSE;
             }
         }
-        
+
+        // UODATE de datos de anuncio publicitario
+        public function ActualizarDatosAnuncio($ID_Anuncio, $Fecha){         
+            $stmt = $this->dbh->prepare(
+                "UPDATE anuncios 
+                SET fechaCulmina = STR_TO_DATE('$Fecha', '%d-%m-%Y')
+                WHERE ID_Anuncio = :ID_ANUNCIO"
+            );
+
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_ANUNCIO', $ID_Anuncio, PDO::PARAM_INT);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                // se recupera el ID del registro insertado
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+
         // UODATE de imagen de anuncio publicitario
         public function ActualizarVideo($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video){            
             $stmt = $this->dbh->prepare(
@@ -1281,6 +1341,15 @@
         
             $stmt->bindValue(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
             $stmt->execute(); 
-
+        }
+        
+        public function eliminarObituario($ID_Obituario){
+            $stmt = $this->dbh->prepare(
+                "DELETE FROM imagenesobiturario  
+                WHERE ID_imagObituario  = :ID_OBITUARIO"
+            );
+        
+            $stmt->bindValue(':ID_OBITUARIO', $ID_Obituario, PDO::PARAM_INT);
+            $stmt->execute(); 
         }
 }

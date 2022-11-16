@@ -1,27 +1,27 @@
-<h1 class="h1--agenda">Agenda</h1>
 
 	<!-- ICONO FULLSCREEM -->
 	<!-- <label class="cont_poncho--label" id="Abrir">FullScreem</label> -->
 
-<div class="cont_galeria" id="Cont_galeria_agenda">
-
-	<!-- ICONO CERRAR -->
-	<!-- <a class="a_1" href="">cerrar</a> -->
-
-    <?php
-    foreach($Datos['agenda'] as $Key) :  ?>
-        <div class="cont_Galeria--item">
-            <figure>
-                <img class="cont_Galeria--img lazyload" alt="Fotografia Principal" data-src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenAgenda'];?>" id="<?php echo $Key['ID_Agenda']?>" loading="lazy" width="320" height="10"/> 
-            </figure>
-        </div>
-        <?php
-    endforeach; ?>
+<div class="cont_galeria--maain">
+	<div>
+		<h1 class="cont_galeria_h1 Default--textoVertical">Agenda de eventos</h1>
+	</div>
+	<div class="cont_galeria" id="Cont_galeria_agenda">
+		<?php
+		foreach($Datos['agenda'] as $Key) :  ?>
+			<div class="cont_Galeria--item">
+				<figure>
+					<img class="cont_Galeria--img lazyload" alt="Fotografia Principal" data-src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenAgenda'];?>" id="<?php echo $Key['ID_Agenda']?>" loading="lazy" width="320" height="10"/> 
+				</figure>
+			</div>
+			<?php
+		endforeach; ?>
+	</div>
 </div>  
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_Agenda.js?v='. rand();?>"></script>
-<script src="<?php echo RUTA_URL.'/public/javascript/FullScreem.js?v='. rand();?>"></script>
+<!-- <script src="<?php //echo RUTA_URL.'/public/javascript/FullScreem.js?v='. rand();?>"></script> -->
 
 <!-- Script para evaluar si el navegador soporta lazy-load -->
 <script>

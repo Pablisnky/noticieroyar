@@ -42,16 +42,37 @@
 	.cont_detalle{
 		width: 100%;
 	}
+	.cont_galeria--maain{
+	   display: block;
+	   margin-top: 15%;
+	   margin-bottom: 4%;
+	}
 	.cont_galeria{
 	   column-count: 1 !important;
-	   width: 100%;
+	   width: 95%;
+	   margin: auto;
+	   margin-top: 5%;
+	   padding-top: 10%;
 	}
 	.cont_Galeria--item{
-		margin-bottom: 20%;
+		margin-bottom: 10%;
+	}
+	.cont_Galeria--img{
+		margin-top: 5%;
+	}
+	.cont_galeria_h1{
+	   background-color: white;
+		font-size: 1.5em;
+		width: 100%;
+		height: 5vh;
 	}
 	.h1--agenda{
 		font-size: 1.9em;
 		margin-top: 20%;
+	}
+	.header{	
+		background-color: white;
+		height: 7%;
 	}
 	.header--nav{
 		margin-left: 10%; 
@@ -66,12 +87,13 @@
 	}
 	.header__titulo{
 		font-size: 2.3em;
-		left: 9%;
+		display: block;
+		margin-top: -4%;
 	}
 	.header__fecha{
 		font-size: 0.9em;
 		position: absolute;
-		bottom: -10pt;
+		bottom: 0pt;
 		left: 53%;
 	}
 	.cont_modal--p{
@@ -174,9 +196,9 @@
 		margin: auto; 
 		text-align: left
 	}
-	.detalle_cont--redesSociales-icono{
-		width: 89%;
-		margin-left: 20%;
+	.detalle_cont--redesSociales{
+		width: 70%;
+		/* height: 20vh; */
 	}
 	.detalle_cont--redesSociales-facebook{
 		width: 45%;
@@ -184,6 +206,10 @@
 	}
 	.detalle_cont--redesSociales-twitter{
 		width: 100%;
+		margin-left: 10%;
+	}
+	.detalle_cont--redesSociales-icono{
+		width: 89%;
 		margin-left: 20%;
 	}
 	.cont_modal--cerrar{
@@ -298,6 +324,10 @@
 	}
 	.Default_puntosSuspensivos{
 		-webkit-line-clamp: 9;
+	}
+	.Default--textoVertical{	
+	   writing-mode: initial;
+	   transform: initial;
 	}
 	.obituario_cont{
 		display: block;

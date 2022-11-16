@@ -31,7 +31,7 @@
                                 <label class="cont_panel--label">Anuncio publicitario</label>
                                 <div id="Contenedor_Anuncio">
                                             <?php
-                                    if(empty($Datos['anuncio']['ID_Anuncio'])){//carga imagen por defecto  ?>
+                                    if(empty($Datos['anuncio']['ID_Anuncio'])){ //carga imagen por defecto  ?>
                                         <div class="cont_edit" >
                                             <label class="Default_pointer"><span class="material-icons-outlined cont_edit--label" id="Anuncio">edit</span> </label>
                                         </div>   
@@ -71,7 +71,7 @@
                                         </figure> 
                                         
                                         <video class="cont_panel--imagen cont_panel--viedo" id="video-tag">
-                                            <source id = "video-source" />
+                                            <source id = "video-source"/>
                                         </video>
 
                                         <div style="display:flex; justify-content: space-around">
@@ -88,7 +88,7 @@
                                                 <label class="Default_pointer" for="imgVideo"><span class="material-icons-outlined cont_edit--label">edit</span></label>
                                             </div> 
                                             <video class="cont_panel--imagen" id="video-tag" controls src="<?php echo RUTA_URL?>/public/video/<?php echo $Datos['video']['nombreVideo'];?>">
-                                                <source id = "video-source" />
+                                                <source id = "video-source"/>
                                             </video>
 
                                             <div style="display:flex; justify-content: space-around">
@@ -258,14 +258,16 @@
 
     function readVideo(event) {
 
-        document.getElementById("FigureVideo").style.display = "none"
+        if(document.getElementById("FigureVideo")){
+            document.getElementById("FigureVideo").style.display = "none"
+        } 
         document.getElementById("video-tag").style.display = "block"
         document.getElementById("Reproducir").style.display = "inline"
         document.getElementById("Pausar").style.display = "inline"
         
 
         console.log(event.target.files)
-        if (event.target.files && event.target.files[0]) {
+        if(event.target.files && event.target.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function(e) {
@@ -279,7 +281,7 @@
     }
     
     window.reproducir = function() {
-                document.getElementById("video-tag").play();
+        document.getElementById("video-tag").play();
     }
 
     window.pausar = function() {

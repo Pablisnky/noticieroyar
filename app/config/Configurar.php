@@ -9,24 +9,25 @@
 // echo dirname(dirname(__FILE__)) . "<br>";
 
 // ************************************************************************************************
-// PARA CONEXION EN LOCAL
+// RUTAS EN LOCAL 
 define("RUTA_APP", dirname(dirname(__FILE__)));
 define("RUTA_URL", "http://localhost/proyectos/noticieroyaracuy");
 define("NOMBRESITIO","noticieroYaracuy");
 
-// //credenciales para conexion a la BD en local
+//CONEXION EN LOCAL NOTICIEROYARACUY
 define("DB_HOST","localhost");
 define("DB_USUARIO","root");
 define("DB_PASSWORD","");
 define("DB_NOMBRE","noticieroYaracuy");
 
 // ************************************************************************************************
-// PARA CONEXION EN REMOTO
+// ************************************************************************************************
+// RUTAS EN REMOTO
 // define("RUTA_APP", dirname(dirname(__FILE__)));
-// define("RUTA_URL", "http://www.noticieroyaracuy.com");
+// define("RUTA_URL", "https://www.noticieroyaracuy.com");
 // define("NOMBRESITIO","NoticieroYaracuy");
 
-// // credenciales para conexion a la BD en remoto
+// // CONEXION EN REMOTO NOTICIEROYARACUY
 // define("DB_HOST","noticieroyaracuy.com");
 // define("DB_USUARIO","noticie2_Pa_Cabeza");
 // define("DB_PASSWORD","007PHPcake");

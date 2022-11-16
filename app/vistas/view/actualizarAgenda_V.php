@@ -7,32 +7,32 @@
     <div style="margin-left: 20%;">
         <fieldset class="fieldset_1" id="Portada"> 
             <legend class="legend_1">Actualizar Agenda</legend>
-                <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeAgendaActualizada" method="POST" enctype="multipart/form-data" autocomplete="off">
-                    <div style="display: flex; margin-bottom: 30px">
-                        <div class="cont_panel__did-1">      
-                            <!-- IMAGEN-->
-                            <figure>
-                                <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['agendaActualizar']['nombre_imagenAgenda'];?>"/> 
-                            </figure>
-                            <label for="imgInp"><span class="span_18 borde_1"><i class="fas fa-pencil-alt icono_4"></i></span></label>
-                            <input class="ocultar" type="file" name="imagenAgenda" id="imgInp"/>
-                        </div>
-                        <div style="width: 100%">                            
-                            <!-- FECHA -->
-                            <label>Fecha de caducidad</label>
-                            <input class="cont_panel--titulo" type="text" name="fecha" value="<?php echo $Datos['agendaActualizar']['fecha'];?>"/>
-                        </div>                     
-                    </div>
-                    <div class=""> 
-                        <input class="Default_ocultar" type="text" name="ID_Agenda" value="<?php echo $Datos['agendaActualizar']['ID_Agenda'];?>"/> 
+            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeAgendaActualizada" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <div style="display: flex; margin-bottom: 30px">
+                    <div class="cont_panel__did-1">      
+                        <!-- IMAGEN-->
+                        <figure>
+                            <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['agendaActualizar']['nombre_imagenAgenda'];?>"/> 
+                        </figure>
 
-                        <input class="boton" type="submit" value="Actualizar agenda"/>  
+                        <label for="imgInp"><span class="span_18 borde_1"><i class="fas fa-pencil-alt icono_4"></i></span></label>
+                        <input class="ocultar" type="file" name="imagenAgenda" id="imgInp"/>
                     </div>
-                </form>
+                                            
+                    <!-- FECHA -->
+                    <div style="width: 100%">    
+                        <label>Fecha de caducidad</label>
+                        <input class="cont_panel--titulo" type="text" name="fecha" value="<?php echo $Datos['agendaActualizar']['fechaPublicacion'];?>"/>
+                    </div>                     
+                </div>
+                <div class=""> 
+                    <input class="Default_ocultar" type="text" name="ID_Agenda" value="<?php echo $Datos['agendaActualizar']['ID_Agenda'];?>"/> 
+
+                    <input class="boton" type="submit" value="Actualizar agenda"/>  
+                </div>
+            </form>
         </fieldset>
     </div>
-
-<!-- <script src="<?php echo RUTA_URL;?>/public/javascript/A_ActualizarNoticia.js?v=<?php echo rand();?>"></script>  -->
 
 <script>       
     //Da una vista previa de la foto de la noticia

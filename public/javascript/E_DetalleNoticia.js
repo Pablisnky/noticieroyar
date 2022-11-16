@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded',function(){resize('Contenido')}, fa
 document.getElementById("CerrarVentana").addEventListener('click', Cerrar, false)
 document.getElementById("Cerrar--modal").addEventListener('click', function(){CerrarModal('VentanaModal--Publicidad')}, false)
 
+
 //************************************************************************************************
 //Función autoejecuble que muestra la ventana modal
 var VentanaModal = (function(){ 
