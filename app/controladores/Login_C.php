@@ -12,7 +12,7 @@
             ocultarErrores();
         }
 
-        public function index(){
+        public function index(string $Bandera){
 
             // unset($_COOKIE ["id_usuario"]);
             // unset($_COOKIE ["clave"]);
@@ -45,7 +45,8 @@
 
                 $Datos=[
                     'correoRecord' => $Correo,
-                    'claveRecord' => $Cookie_clave
+                    'claveRecord' => $Cookie_clave,
+                    'bandera' => $Bandera
                 ];
 
                 //Se entra al formulario de sesion que esta rellenado con los datos del usuario
@@ -53,6 +54,16 @@
                 $this->vista("view/login_Vrecord", $Datos);
             }
             else{
+                
+                $Datos=[
+                    'bandera' => $Bandera
+                ];
+
+                echo "<pre>";
+                print_r($Datos);
+                echo "</pre>";          
+                exit();
+                
                 //carga la vista login_V en formulario login
                 $this->vista("header/header_noticia");
                 $this->vista("view/login_V", $Datos);
@@ -60,18 +71,21 @@
         }
 
         //Invocado desde login_V
-        public function ValidarSesion(string $Parametros){
+        public function ValidarSesion(){
 
             $Recordar = isset($_POST["recordar"]);
             $No_Recordar = isset($_POST["no_recordar"]);
             $Clave = $_POST["clave_Arr"];
             $Correo = $_POST["correo_Arr"];
+            $Bandera = $_POST["bandera"];
+            $ID_Noticia = $_POST["id_noticia"];
 
-            // echo $Parametros;
             // echo 'Recordar: ' . $Recordar . '<br>';
             // echo 'No_Recordar: ' . $No_Recordar . '<br>';
             // echo 'Clave: ' . $Clave . '<br>';
             // echo 'Correo: ' . $Correo . '<br>';
+            // echo 'Bandera: ' . $Bandera . '<br>';
+            // echo 'ID_Noticia: ' . $ID_Noticia . '<br>';
             // exit;
  
             //Se CONSULTA si el correo existe como usuario suscrito
@@ -128,9 +142,15 @@
                     //Se crea la sesion exigida en las páginas de una cuenta de suscriptores           
                     $_SESSION["ID_Suscriptor"] = $ID_Suscriptor;
 
-                    //carga la vista login_V en formulario login
-                    // $this->vista("header/header_noticia");
-                    $this->vista("suscriptores/suscrip_Inicio_V");
+                    if($Bandera == 'comentario'){
+                        
+                        header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/' . $Datos['detalleNoticia'][0]['ID_Noticia']); 
+                    }
+                    else{
+                        //carga la vista login_V en formulario login
+                        // $this->vista("header/header_noticia");
+                        $this->vista("suscriptores/suscrip_Inicio_V");
+                    }
                 }
                 else{
                     echo "Usuario o contraseña no son validos";

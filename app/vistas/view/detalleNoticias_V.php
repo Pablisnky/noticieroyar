@@ -70,13 +70,12 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
                 </div>            
             </div>        
 
-            <a style=" width: 100%; display: block; text-align: center; margin-top: 2%" href="#marcador_01">10 comentarios a piede página</a>
+            <a style="width: 100%; display: block; text-align: center; margin-top: 2%" href="#ComentarioInsertado_1">10 comentarios a piede página</a>
         </div>
     </div>
 
     <!-- VIDEO -->
-    <div class="detalle_cont--video"">
-
+    <div class="detalle_cont--video">
         <?php
         if(!empty($Datos['video'][0]['nombreVideo'])){
             if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['video'][0]['ID_Noticia']){   ?>
@@ -95,13 +94,19 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
         <textarea class="textarea--contenido textarea--borde textarea--font" id="Contenido" readonly><?php echo $Datos['detalleNoticia'][0]['contenido']?></textarea>
     </div>
 
+    <label>Comentarios</label>
+    <br>
+    <textarea onfocus="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>')"></textarea>
+    
+    <div id="ComentarioInsertado_1"></div>
     
     <a href="#up" class="simplescrollup__button simplescrollup__button--hide"><span class="material-icons-outlined detalle_cont--avion">airplanemode_active</span></a>
 </div>
-</body>
-</html>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/scrollUp.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_DetalleNoticia.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_DetalleNoticia.js?v='. rand();?>"></script>
-<!-- <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script> -->
+<script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
+
+</body>
+</html>

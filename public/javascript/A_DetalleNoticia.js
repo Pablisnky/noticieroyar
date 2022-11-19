@@ -30,7 +30,7 @@ function conexionAJAX(){
     } 
 
 // *************************************************************************************************
-    //Muestra 
+    //Muestra las miniaturas de las imagenes de una noticia
     function Llamar_VerMiniatura(ID_ImagenMiniatura){
         // console.log("______Desde Llamar_VerMiniatura()______", ID_ImagenMiniatura)
         
@@ -56,10 +56,10 @@ function conexionAJAX(){
 
 // *************************************************************************************************
     //Verifica que el usuario este logeado antes de realizar un comentario 
-    function Llamar_VerificarSuscripcion(){
-        console.log("______Desde Llamar_VerificarSuscripcion()______")
+    function Llamar_VerificarSuscripcion(ID_Noticia){
+        console.log("______Desde Llamar_VerificarSuscripcion()______", ID_Noticia)
         
-        var url = "../../Noticias_C/VerificaLogin"
+        var url = "../../Noticias_C/VerificaLogin/" + ID_Noticia
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_VerificarSuscripcion
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
@@ -70,7 +70,7 @@ function conexionAJAX(){
             if(peticion.status == 200){  
                 // document.getElementById('Comentario_1').value = ""
                 // document.getElementById('Comentario_1').focus()
-                // document.getElementById('ComentarioInsertado_1').style.display = "block"
+                document.getElementById('ComentarioInsertado_1').classList.add("detalle_cont--comentario")
                 document.getElementById('ComentarioInsertado_1').innerHTML = peticion.responseText 
             } 
             else{ 

@@ -1,5 +1,11 @@
 <!-- CDN libreria JQuery, necesaria para la previsualización de la imagen--> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+<!-- CDN CALENDARIO -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
@@ -153,8 +159,8 @@
                             <input class="cont_panel--titulo" type="text" name="seccion" value="<?php echo $Datos['noticiaActualizar']['seccion'];?>" id="SeccionPublicar"/>
                                                             
                             <!-- FECHA -->
-                            <label class="cont_panel--label">Fecha</label>
-                            <input class="cont_panel--titulo" type="text" name="fecha" value="<?php echo $Datos['noticiaActualizar']['fechaPublicacion'];?>"/>
+                            <label class="cont_panel--label">Fecha</label>                            
+                            <input class="cont_panel--titulo" type="text" name="fecha" id="datepicker" value="<?php echo $Datos['noticiaActualizar']['fechaPublicacion'];?>">
                             
                             <!-- FUENTE -->
                             <label class="cont_panel--label">Fuente</label>
@@ -227,6 +233,7 @@
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/A_ActualizarNoticia.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_ActualizarNoticia.js?v=<?php echo rand();?>"></script> 
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcion_Calendario.js?v=<?php echo rand();?>"></script>
 
 <script>       
     //Da una vista previa de la foto de la noticia

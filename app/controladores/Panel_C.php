@@ -786,10 +786,10 @@
 				// exit;
 								
 				//Usar en remoto
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
 				
 				// usar en local
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
@@ -1062,11 +1062,15 @@
 				// exit;
 				
 				if($ID_Video == 'No existe'){//No existe video para acualizar, entonces se inserta
+					echo "ENtra en el IF";
+					exit;
 					//Se INSERTAR el video
 					//Se INSERTA el video de la noticia
 					$this->Panel_M->InsertarVideoNoticia($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video);
 				}
 				else{//Se actualiza el video existente
+					echo "ENtra en el ELSE";
+					exit;
 					//Se ACTUALIZA el video de la noticia
 					$this->Panel_M->ActualizarVideo($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video);
 				}

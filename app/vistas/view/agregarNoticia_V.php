@@ -79,7 +79,7 @@
                     <label class="cont_panel--label">Sección</label>
                     <input class="cont_panel--select" type="text" name="seccion" id="SeccionPublicar"/>
                     
-                    <!-- FECHA  onkeyup=""-->
+                    <!-- FECHA -->
                     <label class="cont_panel--label">Fecha</label>
                     <input class="cont_panel--select" type="text" name="fecha" id="datepicker">
                     

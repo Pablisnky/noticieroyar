@@ -96,10 +96,10 @@
                 'comentario' =>  $Comentario
             ];
             
-            // echo "<pre>";
-            // print_r($Datos);
-            // echo "</pre>";          
-            // exit();
+            echo "<pre>";
+            print_r($Datos);
+            echo "</pre>";          
+            exit();
             
             $this->vista("header/header_SoloEstilos"); 
             $this->vista("view/detalleNoticias_V", $Datos ); 
@@ -137,16 +137,18 @@
             echo $Comentario;
         }
 
-        //Verifica que el usuario haya hecho login para poder comentar una noicia
-        public function VerificaLogin(){
+        //Verifica que el usuario haya hecho login para poder comentar una noticia
+        public function VerificaLogin($ID_Noticia){
             //Sesion creada en Login_C
             if(isset($_SESSION['ID_Usuaio'])){ //Si existe la sesison 
                 $ID_Usuario = $_SESSION['ID_Usuaio'];
                 echo 'Sesion abierta' . $ID_Usuario;
             }
             else{
-                // $this->vista('header/header_SoloEstilos');
-                $this->vista("view/Login_V");
+                
+                header('Location:'. RUTA_URL . '/Login_C/index/comentario,$ID_Noticia');                
+                // terminamos inmediatamente la ejecución del script, evitando que se envíe más salida al cliente.
+                die(); 
             }
         }
     }
