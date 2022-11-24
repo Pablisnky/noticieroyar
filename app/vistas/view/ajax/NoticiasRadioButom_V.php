@@ -24,13 +24,18 @@
                     <!-- INFORMACION -->
                     <div class="cont_portada--informacion">
                         <hr class="cont_noticia--hr_1 Default_quitarMovil">
-                        <small class="cont_portada_informacion--span"><?php echo $Key['fechaPublicacion'];?></small>
                         <?php
                         // CANTIDAD DE IMAGENES
                         foreach($Datos['cantidadImagenes'] as $Row)   :  
-                            if($Key['ID_Noticia'] == $Row['ID_Noticia']){ ?> 
-                                <small class="cont_portada_informacion--span"><?php echo $Row['cantidad'];?> imagenes</small> 
-                                <?php
+                            if($Key['ID_Noticia'] == $Row['ID_Noticia']){ 
+                                if($Row['cantidad'] > 1 ){ ?> 
+                                    <small class="cont_portada_informacion--span"><?php echo $Row['cantidad'];?> imagenes</small> 
+                                    <?php
+                                }
+                                else{   ?>
+                                    <small class="cont_portada_informacion--span"><?php echo $Row['cantidad'];?> imagen</small> 
+                                    <?php
+                                }      
                             }
                         endforeach;
                         // VIDEO
@@ -40,6 +45,20 @@
                                 <?php
                             }
                         endforeach;
+                        // COMENTARIOS
+                        foreach($Datos['comentario'] as $Row_9)   :  
+                            if($Key['ID_Noticia'] == $Row_9['ID_Noticia']){ 
+                                if($Row_9['cantidadComentario'] > 1 ){ ?>
+                                    <small class="cont_portada_informacion--span"><?php echo $Row_9['cantidadComentario']?> Comentarios</small>
+                                    <?php
+                                }
+                                else{   ?>
+                                    <small class="cont_portada_informacion--span"><?php echo $Row_9['cantidadComentario'];?> Comentario</small> 
+                                    <?php
+                                }    
+                            }
+                        endforeach; 
+                        // SI EXISTE ANUNCIO PUBLICITARIO
                         foreach($Datos['anuncios'] as $Row_2)   :  
                             if($Key['ID_Noticia'] == $Row_2['ID_Noticia']){ ?>
                                 <small class="cont_portada_informacion--span">+ Anuncio</small>
@@ -49,6 +68,10 @@
                         <!-- FUENTE -->
                         <br>
                         <small class="cont_portada_informacion--span"><?php echo $Key['fuente'];?></small>
+                           
+                        <!-- FECHA -->
+                        <br>
+                        <small class="cont_portada_informacion--span"><?php echo $Key['fechaPublicacion'];?></small>
                     </div> 
 
                     <!-- COLECCION 180° -->

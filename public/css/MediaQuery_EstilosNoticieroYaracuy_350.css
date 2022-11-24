@@ -30,6 +30,15 @@
 	font-size: 1em;
 	width: 140px;
 }
+.boton--comentar{
+	margin-left: 2%;
+	margin-bottom: 5%;
+}
+.cont_comentario--BD{
+   margin-top: 1%; 
+   margin-bottom: 5%;
+   padding-left: 3%;
+}
  .comandoMenu_2{
 	 border-radius: 10px;
 	 visibility: visible;
@@ -261,6 +270,11 @@
 .p--efemerides{
 	font-size: 0.8em;
 }
+.contenedor_24{
+	background-color: red;
+	width: 95%;
+	margin: auto;
+}
 .contenedor_111{
 	background-color: white;
 	width: 100%;
@@ -376,6 +390,7 @@
 	position: absolute;
 	top: 0%;
 	left: 9%;
+	margin-left: 8%;
 }
 .header__fecha{
 	font-size: 0.8em;
@@ -395,6 +410,24 @@
 }
 .imagen--portada--cole{
 	height: 40vh;  
+}
+.legend_1{
+	font-size: 1.1em;
+}
+.login_cont{
+	width: 95%;
+	padding-top: 7%; 
+	margin-top: 20%;
+}
+.marcador{
+	padding-top: 5vh;
+	font-size: 1.1em;
+	padding-left: 5%;
+}
+.textarea--comentario{
+	display: block;
+	width: 95%;	
+	margin: auto;
 }
 .publicidad_cont--interno{
 	background-color: initial; 
@@ -419,6 +452,10 @@
 	/* margin-top: 10%; */
 	width: 95%;
 	text-align: center;
+}
+.obituario_cont--item{
+	width: 100%;
+	margin: 15% auto;
 }
 .obituario_cont--imagen{
 	margin:auto;

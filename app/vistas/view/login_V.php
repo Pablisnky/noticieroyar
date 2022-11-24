@@ -1,31 +1,50 @@
-<section>
-    <div class="login_cont" style="min-height: 100%; background-color:white; margin-top: 5%; border-radius: 15px">
-            <form action="<?php echo RUTA_URL . '/Login_C/ValidarSesion';?>" method="POST" name="formLogin" onsubmit = "return validarLogin()">	
-                <fieldset class="fieldset_1" >
-                    <legend class="legend_1">Acceso a suscriptores</legend>
-                    <div class="login_cont--form">
-                        <label class="login_cont--label">e-mail</label>
-                        <input class="login_cont--input borde--input" type="text" name="correo_Arr" id="Correo" autocomplete="off" onkeydown="blanquearInput('Correo')"/>  
+<?php
+    //Se añade la clase cuando se viene desde una noticia a la que se desea hacer un comentario
+    if($Datos){ ?>
+        <style>
+            .detalle_cont--comentario{
+                background-color: var(--FondoDivModal); 
+                position: fixed; 
+                top: 0%;
+                left: 0%;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <?php
+    }
+?>
 
-                        <label class="login_cont--label">Contraseña</label>
-                        <input class="login_cont--input borde--input" type="password" name="clave_Arr" id="Clave"  autocomplete="off"/>             
+<section class="detalle_cont--comentario">
+    <div class="login_cont" style="min-height: 70%; background-color:white;  border-radius: 15px">
+        <form action="<?php echo RUTA_URL . '/Login_C/ValidarSesion';?>" method="POST" name="formLogin" onsubmit = "return validarLogin()">	
+            <fieldset class="fieldset_1" >
+                <legend class="legend_1">Acceso a suscriptores</legend>
+                <div class="login_cont--form">
+                    <label class="login_cont--label">e-mail</label>
+                    <input class="login_cont--input borde--input" type="text" name="correo_Arr" id="Correo" autocomplete="off" onkeydown="blanquearInput('Correo')"/>  
 
-                        <div class="contenedor_45">
-                            <input type="checkbox" id="Recordar" name="recordar" value="1"/>
-                            <label class="label_20" for="Recordar">Recordar datos en este equipo.</label>
-                        </div> 
-                        <div class="login_cont--botonSubmit">
-                            <input class="" type="text" name="bandera" value="<?php echo $Datos['bandera']?>"/>
-                                <?php
-                            if(!empty($Datos['ID_Noticia'])){   ?>
-                                <input class="" type="text" name="id_noticia" value="<?php echo $Datos['ID_Noticia']?>"/>
-                                <?php
-                            }   ?>
-                            <input class="boton boton--largo" type="submit" value="Entrar"/>
-                        </div>
+                    <label class="login_cont--label">Contraseña</label>
+                    <input class="login_cont--input borde--input" type="password" name="clave_Arr" id="Clave"  autocomplete="off"/>             
+
+                    <div class="contenedor_45">
+                        <input type="checkbox" id="Recordar" name="recordar" value="1"/>
+                        <label class="label_20" for="Recordar">Recordar datos en este equipo.</label>
+                    </div> 
+                    
+                    <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
+                    <div class="login_cont--botonSubmit">
+                            <?php
+                        if($Datos){   ?>
+                            <input class="Default_ocultar" type="text" name="bandera" value="<?php echo $Datos['bandera']?>"/>
+                            <input class="Default_ocultar" type="text" name="id_noticia" value="<?php echo $Datos['id_noticia']?>"/>
+                            <?php
+                        }   ?>
+                        <input class="boton boton--largo" type="submit" value="Entrar"/>
                     </div>
-                </fieldset>  
-            </form>
+                </div>
+            </fieldset>  
+        </form>
         <div class="login_cont--recuperarClave">	
             <p class="p_4">¿Olvidaste tu contraseña?</p>
             <label class="Default_link Default_pointer" id="Label_7">Recuperala</label>
@@ -44,5 +63,5 @@
     </div>
 </section>
 		
-<script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js';?>"></script>
-<script src="<?php echo RUTA_URL . '/public/javascript/E_Login.js';?>"></script>
+<script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL . '/public/javascript/E_Login.js?v='. rand();?>"></script>

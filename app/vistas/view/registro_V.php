@@ -22,8 +22,23 @@
                         
                         <!-- MUNICIPIO AFILIADO -->                
                         <label class="login_cont--label">Municipio</label>
-                        <input class="login_cont--input borde--input" type="text" name="municipio" id="Municipio"/> 
-                        
+                        <select class="login_cont--select borde--input" name="municipio" id="Municipio">
+                            <option></option>
+                            <option vlaue="Aristides Bastidas">Aristides Bastidas</option>
+                            <option vlaue="Bolivar">Bolivar</option>
+                            <option vlaue="Bruzual">Bruzual</option>
+                            <option vlaue="Cocorote">Cocorote</option>
+                            <option vlaue="Independencia">Independencia</option>
+                            <option vlaue="Jose Antonio Paez">Jose Antonio Paez</option>
+                            <option vlaue="La Trinidad">La Trinidad</option>
+                            <option vlaue="Manuel Monge">Manuel Monge</option>
+                            <option vlaue="Nirgua">Nirgua</option>
+                            <option vlaue="Peña">Peña</option>
+                            <option vlaue="San Felipe">San Felipe</option>
+                            <option vlaue="Sucre">Sucre</option>
+                            <option vlaue="Urachiche">Urachiche</option>
+                            <option vlaue="Veroes">Veroes</option>
+                        </select>               
                         <div class="contenedor_43" id="Mostrar_verificarNombreTienda"></div>
                     </div>
                 </fieldset>      

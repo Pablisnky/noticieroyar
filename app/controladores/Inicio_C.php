@@ -5,8 +5,11 @@
         private $Imagenes;
         private $Video;
         private $Coleccion;
+        private $CantidadComentario;
 
         public function __construct(){
+            session_start();
+            
             $this->ConsultaInicio_M = $this->modelo("Inicio_M");
 
             //La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
@@ -20,6 +23,9 @@
 
 			//CONSULTA si existe algun video asociadas a cada noticia del dia
             $this->Video = $this->ConsultaInicio_M->consultarVideosNoticiaPortada();
+
+			//CONSULTA la cantidad de comentarios en cada noticia del dia
+            $this->CantidadComentario = $this->ConsultaInicio_M->consultarCantidadComentarioPortada();
 
 			//CONSULTA si existe algun anuncio asociado a cada noticia del dia
             $this->Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortada();
@@ -48,7 +54,8 @@
                     'anuncios' => $this->Anuncios, //ID_Anuncio, ID_Noticia
                     'imagenes' => $this->Imagenes,  //ID_Noticia, COUNT(ID_Noticia)
                     'videos' => $this->Video, //ID_Noticia
-                    'colecciones' => $this->Coleccion //ID_Noticia, ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion
+                    'colecciones' => $this->Coleccion, //ID_Noticia, ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion
+                    'cantidadComentario' => $this->CantidadComentario
                 ];
                 
                 // echo "<pre>";
@@ -81,6 +88,9 @@
 			//CONSULTA si existe algun video de la noticia solicitada
             $Video = $this->ConsultaInicio_M->consultarVideoNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
 
+			//CONSULTA la cantidad de comentarios en cada noticia solicitada
+            $Comentario = $this->ConsultaInicio_M->consultarCantidadComentarioNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
+
 			//CONSULTA si existe algun anuncio asociado a la noticia solicitada
             $Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
             
@@ -91,6 +101,7 @@
                 'noticia' => $Noticia, //ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, fecha
                 'cantidadImagenes' => $CantidadImagenes,
                 'videos' => $Video, //ID_Noticia 
+                'comentario' => $Comentario, //
                 'anuncios' => $Anuncios,
                 'colecciones' => $Coleccion
             ];
@@ -127,6 +138,9 @@
 			//CONSULTA si existe algun video de la noticia solicitada
             $Video = $this->ConsultaInicio_M->consultarVideoNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
 
+			//CONSULTA la cantidad de comentarios en cada noticia solicitada
+            $Comentario = $this->ConsultaInicio_M->consultarCantidadComentarioNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
+
 			//CONSULTA si existe algun anuncio asociado a la noticia solicitada
             $Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortadaEspec($ID_NoticiaConsultar[0]['ID_Noticia']);
             
@@ -137,6 +151,7 @@
                 'noticia' => $Noticia, //ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, fecha
                 'cantidadImagenes' => $CantidadImagenes,
                 'videos' => $Video, //ID_Noticia 
+                'comentario' =>  $Comentario,
                 'anuncios' => $Anuncios,
                 'colecciones' => $Coleccion
             ];

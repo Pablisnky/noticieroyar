@@ -333,6 +333,10 @@
 		width: 95%;
 		text-align: center;
 	}
+	.obituario_cont--item{
+		width: 100%;
+		margin: 15% auto;
+	}
 	.obituario_cont--imagen{
 		margin:auto;
 		width: 50%;

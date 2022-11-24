@@ -1,23 +1,6 @@
 <!-- VENTANA MODAL INICIAL -->
 <?php //require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
 
-<!-- BOTON VIDEO PROMOCIONAL SAN FELIPE -->
-<div style="background-color: var(--FondoImagenDetalle);" id="Miimagen">
-    <div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
-        <!-- <span class="material-icons-outlined" style="width: 30px">play_circle</span> -->
-        <!-- <label class="Default_pointer"> Idena<br class="Default_quitarEscritorio"> </label> -->
-    </div>
-
-    <!-- VIDEO PROMOCIONAL SAN FELIPE -->	
-    <div class="con_portada--promocion" id="Promocion">
-        <span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="Cerrar--modal" onclick="pausar()">cancel</span>
-        <!-- <span class="material-icons-outlined publicidad_cont--full Default_pointer" id="Abrir">open_in_full</span> -->
-        <div>
-            <video class="con_portada--video" id="VideoPromocion" src="<?php echo RUTA_URL?>/public/video/Idena.mp4" controls loop ></video> 
-        </div>
-    </div>
-</div>
-
 <div class="cont_portada" id="Cont_Portada">
     <?php
     $Iterador = 1;
@@ -27,7 +10,7 @@
                 <div class="borde_1 adelante" id="adelante_<?php echo $Iterador?>">
                     <!-- IMAGEN -->
                     <div class="cont_portada--imagen Default_pointer">                        
-                        <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
+                        <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
                     </div>
                     
                     <!-- TITULAR -->
@@ -43,14 +26,18 @@
                     <!-- INFORMACION -->
                     <div class="cont_portada--informacion">
                         <hr class="cont_noticia--hr_1 Default_quitarMovil">
-                        <!-- FECHA -->
-                        <small class="cont_portada_informacion--span"><?php echo $Key['fechaPublicacion'];?></small>
                         <?php
                         // CANTIDAD DE IMAGENES
                         foreach($Datos['imagenes'] as $Row_3)  : 
-                            if($Key['ID_Noticia'] == $Row_3['ID_Noticia']){ ?> 
-                                <small class="cont_portada_informacion--span"><?php echo $Row_3['cantidad'];?> imagenes</small> 
-                                <?php
+                            if($Key['ID_Noticia'] == $Row_3['ID_Noticia']){  
+                                if($Row_3['cantidad'] > 1 ){ ?>
+                                    <small class="cont_portada_informacion--span"><?php echo $Row_3['cantidad'];?> imagenes</small> 
+                                    <?php
+                                }
+                                else{   ?>
+                                    <small class="cont_portada_informacion--span"><?php echo $Row_3['cantidad'];?> imagen</small> 
+                                    <?php
+                                }                                
                             }
                         endforeach;
                         // VIDEO
@@ -60,6 +47,19 @@
                                 <?php
                             }
                         endforeach;
+                        // COMENTARIOS
+                        foreach($Datos['cantidadComentario'] as $Row_6)   :  
+                            if($Key['ID_Noticia'] == $Row_6['ID_Noticia']){ 
+                                if($Row_6['cantidadComentario'] > 1 ){ ?>
+                                    <small class="cont_portada_informacion--span"><?php echo $Row_6['cantidadComentario']?> Comentarios</small>
+                                    <?php
+                                }
+                                else{   ?>
+                                    <small class="cont_portada_informacion--span"><?php echo $Row_6['cantidadComentario'];?> Comentario</small> 
+                                    <?php
+                                }    
+                            }
+                        endforeach;  
                         // SI EXISTE ANUNCIO PUBLICITARIO
                         foreach($Datos['anuncios'] as $Row_2)   :  
                             if($Key['ID_Noticia'] == $Row_2['ID_Noticia']){ ?>
@@ -70,6 +70,10 @@
                         <!-- FUENTE -->
                         <br>
                         <small class="cont_portada_informacion--span"><?php echo $Key['fuente'];?></small>
+                        
+                        <!-- FECHA -->
+                        <br>
+                        <small class="cont_portada_informacion--span"><?php echo $Key['fechaPublicacion'];?></small>
                     </div> 
                     
                     <!-- COLECCION 180° -->

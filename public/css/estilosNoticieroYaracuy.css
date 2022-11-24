@@ -179,7 +179,7 @@ textarea{
  }
  .contenedor_24{
 	 background-color: var(--OficialClaro);
-	 width: 90%;
+	 width: 80%;
 	 margin: 7% auto;
 	 padding: 1%;
 	 border-radius: 15px;
@@ -193,6 +193,8 @@ textarea{
  .contenedor_89{
 	 margin-top: 3%;
 	 display: grid;
+	 /* width: 80%;
+	 margin: auto; */
 	 grid-template-columns: 22% 22% 22% 22%;
 	 column-gap: 1%;/*espacio entre columnas*/
  }
@@ -206,6 +208,10 @@ textarea{
 	 cursor: pointer;
 	 background-color: rgba(51, 51, 51, 0.2);
 	 border-radius: 15px;
+ }
+ .cont_comentario--BD{
+	margin-top: 1%; 
+	padding-left: 3%;
  }
  .cont_galeria--maain{
 	display: flex;
@@ -392,8 +398,7 @@ textarea{
 	align-items: center;
 	position: fixed;
 	width: 80%;
-	height: 30px;
-	
+	height: 30px;	
 	top: 0%;
  }
  .cont_panel--agregarImgSec{
@@ -587,7 +592,7 @@ textarea{
 .cont_portada--titular{
 	width: 95%;
 	margin: auto;
-	margin-top: 1%;
+	/* margin-top: 1%; */
 	text-align: center;
 }
 .cont_portada--imagen{
@@ -707,7 +712,6 @@ textarea{
 	font-size: 0.6em
 }
 .detalle_cont--redesSociales{
-	/* background-color: red; */
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -734,13 +738,26 @@ textarea{
 	color: var(--OficialOscuro);
 	font-size: 3em !important;
 } 
-.detalle_cont--comentario{
-	background-color: var(--FondoDivModal); 
-	position: fixed; 
-	top: 0%;
-	left: 0%;
-	width: 100%;
-	height: 100%;
+.detalle_cont--marcador{
+	/* background-color: red; */
+	font-size: 1.2em;
+	width: 100%; 
+	display: block; 
+	text-align: center; 
+	margin-top: 5%;
+} 
+.detalle_cont--p--comentario{
+	font-size: 1.2em;
+	width: 80%; 
+	display: block; 
+	text-align: justify; 
+}
+
+.marcador{
+	display: block;
+	padding-top: 10vh;
+	font-weight: bold;
+	font-size: 1.2em;
 }
 .detalle_cont--video{
 	width: 30%; 
@@ -748,19 +765,25 @@ textarea{
 	margin-top: 3%;
 	text-align: center
 }
+.detalle_cont--edicion{
+	font-size: 0.8em;
+	color: blue;
+	margin-right: 20px;
+}
 .footer_cont_main{
-	background-color: var(--OficialOscuro);
 	background-image: linear-gradient(to bottom, rgb(54, 47, 47), rgb(0, 0, 0));
 	color: whitesmoke;
 	position: absolute;
 	bottom: 0pt;
 	width: 100%;
-	height: 170px;
-	padding: 1%;
+	padding: 1%;	
 }
-.footer_cont_ADN{
-	float: right;
-	margin-top: 50px;
+.footer_cont{
+	display: flex; 
+	justify-content: space-between;
+	/* align-items: flex-end; */
+	/* height: 40vh; */
+	/* padding-bottom: 2%; */
 }
 .footer_ADN{
 	font-weight: bold;
@@ -771,6 +794,7 @@ textarea{
 .footer_h1{
 	font-size: 2.3em;
 	font-family: Gruppo;
+	/* margin-bottom: 100px; */
 }
 .footer_h3{
 	font-size: 0.8em;
@@ -815,6 +839,15 @@ textarea{
 	padding: 1.5%;
 	display: block;
 }
+.textarea--comentario{
+	margin:auto;
+	/* margin-top: 1%; */
+	/* line-height: 30px; */
+	/* min-height: 250px; */
+	width: 80%;	
+	/* padding: 1.5%; */
+	/* display: block; */
+}
 .textarea--borde{
 	border: none;
 }
@@ -848,7 +881,8 @@ textarea{
 .login_cont{
 	width: 40%;
 	margin: auto;
-	padding-top: 7%; 
+	margin-top: 5%;
+	padding-top: 2%; 
 }
 .login_cont--form{
 	padding-left: 5%;
@@ -860,6 +894,11 @@ textarea{
 	line-height: 30px;
 	padding-left: 10px !important;
 }
+.login_cont--select{
+	height: 30px;
+	width: 47%;
+
+}
 .login_cont--botonSubmit{
 	width: 40%;
 	margin: 8% auto 3% auto;
@@ -867,11 +906,11 @@ textarea{
 }
 .login_cont--recuperarClave{
 	width: 40%;
-	margin: 10% auto;
+	margin: 2% auto;
 	text-align: center;
 }
 .hr_3{ /*convierte una linea en grosor de menos de 1px*/
-	width: 100%;
+	width: 40%;
     border: none;
 	height: 1px;
 	margin: 5%  auto;
@@ -917,7 +956,7 @@ textarea{
 	background-color: rgba(0, 0, 0, 0.9);
 	position: fixed; 
 	top: 0%; 
-	z-index: 5; 
+	z-index: 306 !important; 
 	width: 100%; 
 	height: 100vh; 
 	display: none;
@@ -982,7 +1021,7 @@ textarea{
 .cont_panel--menu{
 	width: 20%;
 	position: fixed !important;
-	z-index: 27 !important;
+	z-index: 2 !important;
 	padding-left: 1%;
 }
 .cont_panel--div-1{
@@ -1036,6 +1075,9 @@ textarea{
 	width: 35px;
 	padding: 7px;
 	text-align: center;
+}
+.comentario--fecha{
+	font-size: 0.8em;
 }
 .Default_font--white{
 	color: white;
@@ -1128,7 +1170,7 @@ textarea{
 	font-size: 3em;
 	font-family: Gruppo;
 	display: block;
-	margin-left: 8%;
+	margin-left: 20%;
 }
 .header--nav{
 	margin-left: 10%; 
@@ -1189,7 +1231,7 @@ textarea{
 	left: 0;
 	width: 100%;
 	min-height: 400%;
-	z-index: 3;
+	z-index: 15;
 	padding-top: 1%;
 }
 .tapa-logo{
@@ -1213,21 +1255,28 @@ textarea{
 .obituario_cont{
 	display: flex;
 	margin: 2% auto;
-	border-color: black;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 15px;
 	padding: 2%;
 }
 .obituario_cont--item{
 	display: inline-block;
-	margin: 0 5px 20px;
 	padding: 0.5%;
 	cursor: pointer;
+	width: 30%;
+	height: 72vh;
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 15px;
 }
 .obituario_cont--imagen{
-	margin-right: 4%;
+	/* background-color: yellow; */
+	margin: auto;
 	width: 55%;
+}
+.obituario_cont--informacion{
+	margin-right: 4%;
+	width: 100%;
+	text-align: center;
 }
 .obituario_cont_main{
 	display: flex; 
@@ -1243,10 +1292,24 @@ textarea{
 	height: 75vh;
 	margin: auto;
 	margin-bottom: 10%;
+} 
+.obituario_cont--tamanioimg--NY{
+	display: inline-block;
+	min-width: 30%;
+	height: 30vh;
+	margin: auto;
+	margin-bottom: 10%;
+}
+.obituario_cont--logo{
+	display: inline-block;
+	width: 100%;
+	height: 10vh;
+	margin: auto;
+	margin-bottom: 10%;
 }
 .obituario_cont--titulo{
 	font-size: 1.7em;
-	margin: 2% auto;
+	margin: auto;
 }
 .obituario_cont--hr{
 	background-color: rgba(68, 64, 64, 0.3);
@@ -1355,7 +1418,7 @@ ul .menuContenedor_3{
     transform: translateX(0);
 }
 .simplescrollup__button--hide {
-    transform: translateX(100px);
+    /* transform: translateX(100px); */
 }
 
 /*al pasar el raton por una imagen le hace un efecto zoom*/

@@ -222,10 +222,12 @@
         // SELECT de comentarios realizado a noticia especifica
         public function consultarComentario($ID_Noticia){
             $stmt = $this->dbh->prepare(
-                "SELECT comentario, fecha, hora, nombreSuscriptor, apellidoSuscriptor
+                "SELECT ID_Comentario, comentarios.ID_Suscriptor, comentario, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaComentario, DATE_FORMAT(hora, '%h:%i %p') AS horaComentario, nombreSuscriptor, apellidoSuscriptor
                  FROM comentarios
                  INNER JOIN suscriptores ON comentarios.ID_Suscriptor=suscriptores.ID_Suscriptor
-                 WHERE ID_Noticia = :ID_NOTICIA"
+                 WHERE ID_Noticia = :ID_NOTICIA
+                 ORDER BY fecha DESC, hora DESC
+                 "
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
@@ -237,6 +239,45 @@
             else{
                 return false;
             }
+        }
+
+        //SELECT de cantidad de comentarios de la noticia
+        public function consultarCantidadComentario($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Noticia, COUNT(ID_Comentario) AS cantidadComentario 
+                FROM comentarios 
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        public function consultarComentarioSuscriptor($ID_Comentario){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Comentario, nombreSuscriptor, apellidoSuscriptor, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaComentario, DATE_FORMAT(hora, '%h:%i %p') AS horaComentario
+                FROM comentarios 
+                INNER JOIN suscriptores ON comentarios.ID_Suscriptor=suscriptores.ID_Suscriptor
+                WHERE ID_Comentario = :ID_COMENTARIO"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_COMENTARIO', $ID_Comentario, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+
         }
 
 // ********************************************************************************************************
@@ -273,12 +314,27 @@
             $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
             $stmt->bindParam(':COMENTARIO', $Comentario, PDO::PARAM_STR);
 
-            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
-                return TRUE;
+                //se recupera el ID del registro insertado
+                return $this->dbh->lastInsertId();
             }
             else{
                 return FALSE;
             }
         }
+
+// ********************************************************************************************************
+// DELETE
+// ********************************************************************************************************
+        
+		// ELimina comentario
+		public function eliminarComentario($ID_Comentario){
+            $stmt = $this->dbh->prepare(
+                "DELETE FROM comentarios 
+                WHERE ID_Comentario = :ID_COMENTARIO"
+            );
+            $stmt->bindParam(':ID_COMENTARIO', $ID_Comentario, PDO::PARAM_INT);
+            $stmt->execute(); 
+		}
+				
     }

@@ -5,10 +5,10 @@
 
 //************************************************************************************************
     //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
-    // window.addEventListener("click", function(e){   
-    //     var click = e.target
-    //     console.log("Se hizo click en: ", click)
-    // }, false)
+    window.addEventListener("click", function(e){   
+        var click = e.target
+        console.log("Se hizo click en: ", click)
+    }, false)
 
 //************************************************************************************************
     //Muestra el menu principal al hacer click en menu amburguesa
@@ -117,13 +117,13 @@
 //************************************************************************************************ 
     //ajusta la altura de un texarea con respecto al contenido que trae de la BD
     function resize(id){
-        console.log("______Desde resize()______", id) 
+        // console.log("______Desde resize()______", id) 
         var text = document.getElementById(id);
         text.style.height = 'auto';
         text.style.height = text.scrollHeight+'px';
     }
     
 //************************************************************************************************ 
-    function CerrarModalAnuncios(id){
-        document.getElementById(id).style.display = "none"
-    } 
+    // function CerrarModalAnuncios(id){
+    //     document.getElementById(id).style.display = "none"
+    // } 

@@ -56,10 +56,10 @@ function conexionAJAX(){
 
 // *************************************************************************************************
     //Verifica que el usuario este logeado antes de realizar un comentario 
-    function Llamar_VerificarSuscripcion(ID_Noticia){
-        console.log("______Desde Llamar_VerificarSuscripcion()______", ID_Noticia)
+    function Llamar_VerificarSuscripcion(ID_Noticia, Bandera){
+        // console.log("______Desde Llamar_VerificarSuscripcion()______", ID_Noticia + "/" + Bandera)
         
-        var url = "../../Noticias_C/VerificaLogin/" + ID_Noticia
+        var url = "../../Noticias_C/VerificaLogin/" + ID_Noticia + "/" + Bandera
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_VerificarSuscripcion
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
@@ -70,8 +70,7 @@ function conexionAJAX(){
             if(peticion.status == 200){  
                 // document.getElementById('Comentario_1').value = ""
                 // document.getElementById('Comentario_1').focus()
-                document.getElementById('ComentarioInsertado_1').classList.add("detalle_cont--comentario")
-                document.getElementById('ComentarioInsertado_1').innerHTML = peticion.responseText 
+                document.getElementById('ComentarioInsertado').innerHTML = peticion.responseText 
             } 
             else{ 
                 alert('Problemas con la petición.') 
@@ -81,14 +80,15 @@ function conexionAJAX(){
             // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
         }
     }
+    
 // *************************************************************************************************
     //Inserta un comentario de un suscriptor
-    function Llamar_InsertarComentario(ID_Suscriptor, ID_Noticia){
-        console.log("______Desde Llamar_InsertarComentario()______", ID_Suscriptor + "/" + ID_Noticia )
-        let Comentario = document.getElementById("Comentario_2").value
+    function Llamar_InsertarComentario(ID_Noticia){
+        // console.log("______Desde Llamar_InsertarComentario()______", ID_Noticia )
+        let Comentario = document.getElementById("Comentario").value
         // console.log(Comentario)
         
-        var url = "../../Noticias_C/recibeComentario/" + ID_Suscriptor + "/" + ID_Noticia  + "/" +Comentario
+        var url = "../../Noticias_C/recibeComentario/" + ID_Noticia  + "/" + Comentario
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_InsertarComentario
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
@@ -97,10 +97,36 @@ function conexionAJAX(){
     function respuesta_InsertarComentario(){
         if(peticion.readyState == 4){
             if(peticion.status == 200){  
-                document.getElementById('Comentario_2').value = ""
-                document.getElementById('Comentario_2').focus()
-                document.getElementById('ComentarioInsertado_2').style.display = "block"
-                document.getElementById('ComentarioInsertado_2').innerHTML = peticion.responseText 
+                document.getElementById('ComentarioInsertado').innerHTML = peticion.responseText 
+
+                document.getElementById('Comentario').value = "";
+                document.getElementById('Comentario').disabled = true
+                document.getElementById('ComentarioInsertado').style.display = "block"
+            } 
+            else{
+                alert('Problemas con la petición.')
+            }
+        }
+        else{ //en caso contrario, mostramos un gif simulando una precarga
+            // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+        }
+    }
+
+// *************************************************************************************************
+    //Esta funcion no retorna nada al documento donde se llama, solo ejecuta la accion de eliminar el comentario del servidor
+    function Llamar_EliminarComentario(ID_Comentario){
+        // console.log("______Desde Llamar_EliminarComentario()______", ID_Comentario)
+        
+        var url = "../../Noticias_C/eliminar_comentario/" + ID_Comentario
+        http_request.open('GET', url, true)  
+        peticion.onreadystatechange = respuesta_EliminarCOmentario
+        peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+        peticion.send("null")
+    }                                                                        
+    function respuesta_EliminarCOmentario(){
+        if(peticion.readyState == 4){
+            if(peticion.status == 200){ 
+                //No recibe ninguna respuesta del servidor para insertar en el documento, la accion solo es necesaria en el servidor
             } 
             else{
                 alert('Problemas con la petición.')

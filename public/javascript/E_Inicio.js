@@ -15,8 +15,8 @@ document.getElementById("Cerrar--modal").addEventListener('click', function(){Ce
     // }, false)
 
     function MostrarPromocion(){
+        document.getElementById("Miimagen").style.display = "block" 
         document.getElementById("Promocion").style.display = "block" 
-        // document.getElementById("Mostrar_Promocion").style.display = "none" 
         // window.location.reload();
     }
 
@@ -101,9 +101,10 @@ document.getElementById("Cerrar--modal").addEventListener('click', function(){Ce
         console.log(Nombre_imgColeccion)
    }
    
-   window.pausar = function() {
-    document.getElementById("VideoPromocion").pause();
-};
+   window.pausar = function(){
+        document.getElementById("VideoPromocion").pause();
+        document.getElementById("Miimagen").style.display = "none"
+    };
 
 //************************************************************************************************
 //Por medio de delegación de eventos se detectan los item del submenu para oculatrlo al hacer click

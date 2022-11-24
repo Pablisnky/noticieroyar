@@ -7,7 +7,7 @@
             <?php
             foreach($Datos['noticiasPortadas'] as $Not_Prin) : ?>
                 <div style=" display: flex; margin-bottom: 30px" id="<?php echo $Not_Prin['ID_Noticia'];?>">                
-                    <!-- IMAGN NOTICIA -->
+                    <!-- IMAGEN NOTICIA -->
                     <div style="width: 30%; margin-right: 1.5%">       
                         <figure>
                             <?php

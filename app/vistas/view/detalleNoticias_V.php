@@ -1,25 +1,12 @@
-<!-- PUBLICIDAD -->   
-<?php       
-if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
-    if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['publicidad'][0]['ID_Noticia']){  ?>
-        <div class="publicidad_cont--main" id="VentanaModal--Publicidad">			
-            <span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="Cerrar--modal">cancel</span>
-            <div class="publicidad_cont--interno">
-                <img class="publicidad_cont--imagen" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Datos['publicidad'][0]['nombre_imagenPublicidad'] ;?>"/>
-            </div>
-        </div>
-        <?php
-    } 
-}   ?>
-
-<div class="detalle_cont--main" id="cont_efemerides">   
+<div class="detalle_cont--main" id="cont_efemerides"> 
+     
     <!-- MEMBRETE FIJO -->
     <div class="detalle_cont--divFijo">
         <a class="detalle_cont--membrete" href="<?php echo RUTA_URL . '/Inicio_C';?>">www.NoticieroYaracuy.com</a> 
-        <label class="detalle_cont--fecha">San Felipe, <?php echo $Datos['detalleNoticia'][0]['fechaPublicacion'];?> </label>
+        <label class="detalle_cont--fecha" id="Up">San Felipe, <?php echo $Datos['detalleNoticia'][0]['fechaPublicacion'];?> </label>
         <!-- ICONO CERRAR -->
         <span class="material-icons-outlined cont_modal--cerrar detalle_cont--cerrar Default_pointer" id="CerrarVentana">cancel</span>
-    </div> 
+    </div>
 
     <div class="detalle_cont">         
         <div class="detalle_cont--imagen">
@@ -66,11 +53,11 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
                     <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>&text=COmpartir%20Twiter" target="_blank"><img class="detalle_cont--redesSociales-twitter" alt="twitter" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a>
                 </div>          
                 <div class="whatsapp detalle_cont--red">
-                    <a href="whatsapp://send?text=<?php echo $Datos['detalleNoticia'][0]['titulo'];?>%20<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
+                <a href="whatsapp://send?text=<?php echo $Datos['detalleNoticia'][0]['titulo']?><?php echo RUTA_URL?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
                 </div>            
             </div>        
-
-            <a style="width: 100%; display: block; text-align: center; margin-top: 2%" href="#ComentarioInsertado_1">10 comentarios a piede página</a>
+            
+            <a class="detalle_cont--marcador" href="#Marcador"><?php echo $Datos['cantidadComentario'][0]['cantidadComentario']?> comentarios a pie de página</a>
         </div>
     </div>
 
@@ -90,18 +77,71 @@ if(!empty($Datos['publicidad'][0]['ID_Noticia'])){
     </div>
 
     <!-- CONTENIDO -->
-    <div>
+    <div >
         <textarea class="textarea--contenido textarea--borde textarea--font" id="Contenido" readonly><?php echo $Datos['detalleNoticia'][0]['contenido']?></textarea>
     </div>
 
-    <label>Comentarios</label>
-    <br>
-    <textarea onfocus="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>')"></textarea>
+    <!-- COMENTARIO --> 
+    <div id="ContedorComentario">
+        <label class="marcador" id="Marcador">Comentarios</label>
+        <br>
+
+        <!-- Se escribe el nuevo comentario -->
+        <textarea class="textarea--comentario" id="Comentario" nome="comentario" onfocus="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>','comentar')"></textarea>
+        <?php
+        if(isset($_SESSION['ID_Suscriptor'])){   ?>
+            <label class="boton boton--comentar" onclick="Llamar_InsertarComentario('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>')">Comentar</label>
+            <?php
+        }   ?>
     
-    <div id="ComentarioInsertado_1"></div>
-    
-    <a href="#up" class="simplescrollup__button simplescrollup__button--hide"><span class="material-icons-outlined detalle_cont--avion">airplanemode_active</span></a>
+        <!-- div carga el nuevo comentario -->
+        <div style="margin-top: 2%" id="ComentarioInsertado"></div>
+
+        <!-- Se cargan los comentarios existentes en BD -->
+        <?php
+        foreach($Datos['comentarios'] as $Row)   :   ?>
+            <div class="cont_comentario--BD" id="<?php echo $Row['ID_Comentario'];?>">
+                <p class="detalle_cont--p--comentario"><?php echo $Row['comentario']?></p>
+                <label class="comentario--fecha"><?php echo $Row['nombreSuscriptor']?></label>
+                <label class="comentario--fecha"><?php echo $Row['apellidoSuscriptor']?></label>&nbsp&nbsp&nbsp
+                <label class="comentario--fecha"><?php echo $Row['fechaComentario']?></label>&nbsp&nbsp&nbsp<label class="comentario--fecha"><?php echo $Row['horaComentario']?></label>
+                <br>
+                <?php
+                if($Row['ID_Suscriptor'] == $Datos['id_suscriptor']){   ?>
+                    <div> 
+                        <label class="detalle_cont--edicion Default_pointer" onclick="EliminarComentario('<?php echo $Row['ID_Comentario'];?>')">ELiminar</label>
+                        <!-- <label class="detalle_cont--edicion Default_pointer">Actualizar</label> -->
+                    </div>
+                    <?php
+                }
+                else{   ?>
+                    <!-- <label class="detalle_cont--edicion Default_pointer" onclick="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>','responder')">Responder</label> -->
+                    <?php
+                }   ?>
+            </div>
+            <?php
+        endforeach;
+        ?>        
+    </div>
+
+    <!-- AVION -->    
+    <!-- <a href="#Up" class="simplescrollup__button simplescrollup__button--hide">Avion<span class="material-icons-outlined detalle_cont--avion">airplanemode_active</span></a> -->
 </div>
+
+<!-- PUBLICIDAD -->   
+<?php       
+
+if(!empty($Datos['publicidad'][0]['ID_Noticia']) AND ($Datos['bandera'] == 'ConAnuncio')){ //Bandera creada en 
+    if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['publicidad'][0]['ID_Noticia']){  ?>
+        <div class="publicidad_cont--main" id="VentanaModal--Publicidad">			
+            <span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="CerrarVentanaModal">cancel</span>
+            <div class="publicidad_cont--interno">
+                <img class="publicidad_cont--imagen" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Datos['publicidad'][0]['nombre_imagenPublicidad'] ;?>"/>
+            </div>
+        </div>
+        <?php
+    } 
+}   ?>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/scrollUp.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_DetalleNoticia.js?v='. rand();?>"></script>

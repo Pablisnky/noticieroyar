@@ -1,5 +1,5 @@
 <!-- Archivo cargado desde Ajax por medio de Llamar_ -->
-<section class="sectionModal section_10" id="MostrarVerificarLogin">
+<!-- <section class="sectionModal" id="MostrarVerificarLogin">
     <div class="contenedor_24"> 
         <h1 class="h1--secciones">No ha iniciado sesión</h1>   
         <span class="material-icons-outlined cont_modal--cerrar Default_pointer" id="Cerrar--modal" onclick = "CerrarModal("MostrarVerificarLogin')">cancel</span>
@@ -25,4 +25,4 @@
             </fieldset>  
         </form>
     </div>
-</section>  
+</section>   -->

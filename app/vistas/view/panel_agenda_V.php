@@ -21,6 +21,9 @@
                     <label><?php echo $Row['fechaPublicacion'];?></label>
 
                     <div style="width: 100%;">
+                        <!-- COMPARTIR -->             
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenAgenda'];?>" target="_blank">Compartir</a>
+
                         <!-- ACTUALIZAR -->
                         <a class="" href="<?php echo RUTA_URL?>/Panel_C/actualizar_agenda/<?php echo $Row['ID_Agenda'];?>" rel="noopener noreferrer">Actualizar</a>
                         

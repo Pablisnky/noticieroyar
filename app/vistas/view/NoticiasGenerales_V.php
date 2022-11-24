@@ -1,7 +1,7 @@
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
    
-    <div style="margin-left:20%;">
+    <div style="margin-left:20%; padding-bottom:10%">
         <fieldset class="fieldset_1">
             <legend class="legend_1">Noticias generales</legend>
             <?php
@@ -23,11 +23,7 @@
                         <!-- TITULO -->
                         <label class="cont_panel--label">Titulo</label>
                         <label class="cont_panel--titulo"><?php echo $Not_Gen['titulo'];?></label>
-                        
-                        <!-- SUBTITULO -->
-                        <!-- <label class="cont_panel--label">Resumen</label>
-                        <label class="cont_panel--resumen"><?php echo $Not_Gen['subtitulo'];?></label> -->
-                        
+                                                
                         <!-- SECCION -->
                         <label class="cont_panel--label">Seccion</label>
                         <ul class="cont_panel--seccion--ul">
@@ -88,8 +84,6 @@
             endforeach  ?>             
         </fieldset>
     </div>
-</body>
-</html>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/E_NoticiasGenerales.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_NoticiasGenerales.js?v=' . rand();?>"></script>

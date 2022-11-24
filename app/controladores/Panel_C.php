@@ -1400,7 +1400,6 @@
 			die();
 		}
 		
-		
 		//Eliminar anuncio publicitario
 		public function eliminar_obituario($ID_Obituario){
 

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
     <head><!-- Google tag (gtag.js) -->
-		<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-E43SZ6L3CQ"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-E43SZ6L3CQ"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 
 			gtag('config', 'G-E43SZ6L3CQ');
-		</script> -->
+		</script>
 
 		<!-- ********************************************************************************************* -->
 		
@@ -53,7 +53,7 @@
 				<nav class="header__menuResponsive" id="MenuResponsive">
 					<div class="header--nav">
 						<ul id="MenuContenedor">
-							<li class="menuLi_1"><a class="header__li--Enlaces" href="" rel="noopener noreferrer">Noticias</a></li>
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>" rel="noopener noreferrer">Noticias</a></li>
 								<!-- <ul class="menuContenedor_3" id="MenuContenedor_3">
 									<li><a class="header__li--Enlaces enlace_JS"  href="<?php //echo RUTA_URL . '/Noticias_C/NoticiasGenerales#Marcado_1';?>" rel="noopener noreferrer">Cultura</a></li>
 									<li><a class="header__li--Enlaces">Politica</a></li>
@@ -63,7 +63,7 @@
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Publicidad_C';?>" rel="noopener noreferrer">Publicidad</a></li> <!-- Directorio comercial -->
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Obituario_C';?>" rel="noopener noreferrer">Obituario</a></li>
 							<li><a class="header__li--Enlaces" href="https://yaracultura.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog Yaracultura</a></li>
-							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C';?>" rel="noopener noreferrer">Abrir sesión</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/NA,NA';?>" rel="noopener noreferrer">Abrir sesión</a></li>
 
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Menu_C/afiliacion';?>" rel="noopener noreferrer">Suscribirse</a></li>
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/VitrinaMayorista_C';?>" rel="noopener noreferrer">Editorial</a></li>
@@ -73,7 +73,7 @@
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Archivo</a></li>
 							<!-- <hr> -->
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Galeria de arte</a></li>
-							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Contacto_C';?>" rel="noopener noreferrer">Contacto</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Contacto_C';?>" rel="noopener noreferrer">Contacto</a></li>
 							<!-- <hr> -->
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Nuestro ADN</a></li>
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">LOGOS REDES SOCIALES</a></li>
@@ -85,9 +85,31 @@
 			<!-- MEMBRETE FIJO -->
 			<label class="header__titulo">Noticiero Yaracuy</label>
 
+			<!-- FECHA -->
 			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
 
-			<a href="<?php echo RUTA_URL . '/Login_C';?>">Entrar</a>
+			<!-- LOGIN -->
+			<?php
+			if(!empty($_SESSION['ID_Suscriptor'])){	?>
+				<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><span class="material-icons-outlined Default_font--black">face_6</span></a>
+				<?php
+			}	?>
+			
+			<!-- BOTON VIDEO PROMOCIONAL SAN FELIPE -->
+			<div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
+				<span class="material-icons-outlined" style="width: 30px">play_circle</span>
+				<label class="Default_pointer" >Ciudad<br class="Default_quitarEscritorio"> San Felipe </label>
+			</div>
+			<div class="con_portada--promocion" id="Miimagen">
+				<!-- VIDEO PROMOCIONAL SAN FELIPE -->	
+				<div id="Promocion">
+					<span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="Cerrar--modal" onclick="pausar()">cancel</span>
+					<!-- <span class="material-icons-outlined publicidad_cont--full Default_pointer" id="Abrir">open_in_full</span> -->
+					<div>
+						<video class="con_portada--video" id="VideoPromocion" src="<?php echo RUTA_URL?>/public/video/San-Felipe-promocion.mp4" controls loop ></video> 
+					</div>
+				</div>
+			</div>
 		</header>
 		
 		<!-- MEMBRETE DESPLAZANTE -->

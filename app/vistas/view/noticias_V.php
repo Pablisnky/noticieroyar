@@ -11,7 +11,7 @@
                     <div class="cont_portada--noticia contenedor_tarjeta">
                         <div class="tarjeta tarjeta--noticias_V" id="Tarjeta_<?php echo $Iterador?>">
                             <div class="cont_noticia--sencilla Default_pointer adelante   adelante_atras--noticias_V">
-                                <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="cont_noticia-imagen" alt="Fotografia" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
+                                <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="cont_noticia-imagen" alt="Fotografia" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
 
                                 <div class="cont_noticia--titular">
                                     <p class="cont_noticias--titulo"><?php echo $Key['titulo'];?></p>

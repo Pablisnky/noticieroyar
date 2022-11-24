@@ -1,17 +1,30 @@
 		<footer>
 			<div class="footer_cont_main"> 
-				<!-- <div class="footer_cont_pwa" id="Aplicacion_PWA">
-					<div>
-						<h3 class="footer_h3">APLICACIÓN</h3>
-						<h3 class="footer_h3">MULTIPLATAFORMA</h3>
-					</div>
-					<img class="footer--imagen_3" alt="Logo PWA" src="<?php echo RUTA_URL;?>/public/images/PWA.png"/>
-				</div> -->
 				<h1 class="footer_h1">NoticieroYaracuy.com</h1>	
-				<div class="footer_cont_ADN">				
-					<h5 class="footer_ADN">Nuestro ADN</h5>
-					<h6 class="footer_h6">Lisbella Paez - Dirección de prensa - <small  class="footer--small">lisbellapaez@gmail.com</small></h6>
-					<h6 class="footer_h6">Pablo Cabeza - Programador Full Stack - <small  class="footer--small">pcabeza7@gmail.com</small></h6>
+				<div class="footer_cont" style="">
+					<div>
+						<h5 class="footer_ADN">Contacto</h5>
+						<h6 class="footer_h6">0424-537.40.44</h6>
+					</div>
+					<div>
+						<h5 class="footer_ADN">Tarifas</h5>
+						<ul>
+							<li>Directorio profesional: 5 $/mes</li>
+							<li>Directorio comercial: 10 $/mes</li>
+							<li>Publicidad en noticias</li>
+								<ul>
+									<li>anuncio por 30 dias en 2 noticias diarias + directorio comercial; 25 $/mes</li>
+									<li>anuncio por 15 dias en 2 noticias diarias + directorio comercial; 15 $/mes</li>
+									<li>anuncio por 7 dias en 2 noticias diarias + directorio comercial; 10 $/mes</li>
+								</ul>
+						</ul>
+					</div>
+					<div class="">				
+						<h5 class="footer_ADN">Nuestro ADN</h5>
+						<h6 class="footer_h6">Pablo Cabeza - Dirección General y tecnología - <small  class="footer--small">pcabeza7@gmail.com</small></h6>
+						<h6 class="footer_h6">Lisbella Paez - Dirección de prensa y contenido - <small  class="footer--small">lisbellapaez@gmail.com</small></h6>
+						<h6 class="footer_h6">Maria Esther Paez - Corrección y redacción - <small  class="footer--small">mariestherpaez@gmail.com</small></h6>
+					</div>
 				</div>
 			</div> 
 		</footer>     

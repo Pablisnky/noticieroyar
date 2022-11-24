@@ -114,6 +114,25 @@
             }
         }
 
+        //SELECT de cantidad de comentarios de las noticias en portada
+        public function consultarCantidadComentarioNoticiaPortadaEspec($ID_noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Noticia, COUNT(ID_Comentario) AS cantidadComentario 
+                FROM comentarios 
+                WHERE ID_Noticia = :ID_NOTICIA"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
         //SELECT de los anuncios asociados a la noticia de portada especificada
         public function consultarAnuncioNoticiaPortadaEspec($ID_noticia){
             $stmt = $this->dbh->prepare(
@@ -283,6 +302,22 @@
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':ID_IMAGEN', $ID_ImagenMiniatura, PDO::PARAM_INT);
 
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        //SELECT de cantidad de comentarios de las noticias en portada
+        public function consultarCantidadComentarioPortada(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Noticia, COUNT(ID_Comentario) AS cantidadComentario 
+                FROM comentarios 
+                GROUP BY ID_Noticia"
+            );
+            
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }

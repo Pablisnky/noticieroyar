@@ -12,7 +12,16 @@
             ocultarErrores();
         }
 
-        public function index(string $Bandera){
+        public function index($DatosAgrupados){
+            //$DatosAgrupados contiene una cadena con el ID_Noticia y el string "SinLogin" separados por coma, se convierte en array para separar los elementos
+            $DatosAgrupados = explode(',', $DatosAgrupados);
+            $ID_Noticia = $DatosAgrupados[0];
+            $Bandera = $DatosAgrupados[1];
+            
+            // echo "ID_Noticia =" .  $ID_Noticia ."<br>";
+            // echo "Bandera =" .  $Bandera ."<br>";
+            // exit;
+
 
             // unset($_COOKIE ["id_usuario"]);
             // unset($_COOKIE ["clave"]);
@@ -50,23 +59,29 @@
                 ];
 
                 //Se entra al formulario de sesion que esta rellenado con los datos del usuario
-                $this->vista("header/header");
+                $this->vista("header/header_noticia");
                 $this->vista("view/login_Vrecord", $Datos);
             }
-            else{
+            else if($DatosAgrupados[0] != 'NA'){//Entra cuando viene de una noticia y desea hacer comentario
                 
                 $Datos=[
+                    'id_noticia' => $ID_Noticia,
                     'bandera' => $Bandera
                 ];
 
-                echo "<pre>";
-                print_r($Datos);
-                echo "</pre>";          
-                exit();
+                // echo "<pre>";
+                // print_r($Datos);
+                // echo "</pre>";          
+                // exit();
                 
                 //carga la vista login_V en formulario login
                 $this->vista("header/header_noticia");
                 $this->vista("view/login_V", $Datos);
+            }
+            else{//Enra cuando inicia sesion desde el menu hamburguesa
+                //carga la vista login_V en formulario login
+                $this->vista("header/header_noticia");
+                $this->vista("view/login_V");
             }
         }
 
@@ -77,8 +92,8 @@
             $No_Recordar = isset($_POST["no_recordar"]);
             $Clave = $_POST["clave_Arr"];
             $Correo = $_POST["correo_Arr"];
-            $Bandera = $_POST["bandera"];
-            $ID_Noticia = $_POST["id_noticia"];
+            $Bandera = !empty($_POST["bandera"]) ? $_POST["bandera"]: 'NoAplica';
+            $ID_Noticia = !empty($_POST["id_noticia"]) ? $_POST["id_noticia"]: 'NoAplica';
 
             // echo 'Recordar: ' . $Recordar . '<br>';
             // echo 'No_Recordar: ' . $No_Recordar . '<br>';
@@ -100,6 +115,7 @@
                 $ID_Suscriptor = $Suscriptor[0]['ID_Suscriptor'];
                 $CorreoBD = $Suscriptor[0]['correoSuscriptor'];
                 $Nombre = $Suscriptor[0]['nombreSuscriptor'];
+                $Apellido = $Suscriptor[0]['apellidoSuscriptor'];
 
                 $CuentaCom = true;
             }
@@ -119,7 +135,7 @@
                 setcookie('clave','',time() - 3600,'/');
             }
                         
-            //Verifica si los campo que se van a recibir estan vacios
+            //Verifica si los campos que se van a recibir estan vacios
             if(empty($_POST['correo_Arr']) || empty($_POST['clave_Arr'])){        
                 echo 'Debe Llenar todos los campos vacios'. '<br>';
                 echo '<a href="javascript:history.back()">Regresar</a>';
@@ -142,18 +158,28 @@
                     //Se crea la sesion exigida en las páginas de una cuenta de suscriptores           
                     $_SESSION["ID_Suscriptor"] = $ID_Suscriptor;
 
-                    if($Bandera == 'comentario'){
+                    if($Bandera == 'SinLogin'){// si va a hacer un comentario y no esta logeado
                         
-                        header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/' . $Datos['detalleNoticia'][0]['ID_Noticia']); 
+                        header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/' .  $ID_Noticia  .   ',sinAnuncio,#ContedorComentario'); 
                     }
-                    else{
-                        //carga la vista login_V en formulario login
-                        // $this->vista("header/header_noticia");
-                        $this->vista("suscriptores/suscrip_Inicio_V");
+                    else{//carga el panel de suscriptores 
+                        $Datos = [                            
+                            'nombre' => $Nombre,
+                            'apellido' => $Apellido
+                        ];
+
+                        // echo '<pre>';
+                        // print_r($Datos);
+                        // echo '</pre>';
+                        // exit;
+                        
+                        $this->vista("header/header_SoloEstilos");
+                        $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
                     }
                 }
                 else{
-                    echo "Usuario o contraseña no son validos";
+                    $this->vista("header/header_noticia");
+                    $this->vista("modal/modal_falloLogin_V");
                 }                   
             }   
         }
@@ -391,6 +417,26 @@
 
             // mail($email_to, $email_subject, $email_message, $headers); 
 
-            header('location:' . RUTA_URL. '/Login_C');
+            header('location:' . RUTA_URL. '/Login_C/index/NA,NA');
+        }
+
+        public function accesoSuscriptor(){
+            if($_SESSION["ID_Suscriptor"]){
+                //Se consultan datos del suscriptor
+                $Suscriptor = $this->ConsultaLogin_M->DatosSuscriptor($_SESSION["ID_Suscriptor"]);
+              
+                $Datos = [
+                    'nombre' => $Suscriptor[0]['nombreSuscriptor'],
+                    'apellido' => $Suscriptor[0]['apellidoSuscriptor']
+                ];
+
+                // echo "<pre>";
+                // print_r($Datos);
+                // echo "</pre>";
+                // exit;
+
+                $this->vista("header/header_suscriptor");
+                $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
+            }
         }
     }

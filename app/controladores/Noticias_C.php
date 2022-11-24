@@ -64,7 +64,17 @@
         }
 
         // muestra la noticia completamente
-        public function detalleNoticia($ID_Noticia){
+        public function detalleNoticia($DatosAgrupados){
+            //$DatosAgrupados contiene una cadena separados por coma, se convierte en array para separar los elementos
+
+            // echo $DatosAgrupados . '<br>';
+            $DatosAgrupados = explode(',', $DatosAgrupados);
+
+            $ID_Noticia = $DatosAgrupados[0];
+            $Bandera = $DatosAgrupados[1];
+            // echo $ID_Noticia . '<br>';
+            // echo $Bandera . '<br>';
+            // exit();
             
             //Se CONSULTA los detalle de la noticia que se solicito
             $DetalleNoticia = $this->ConsultaNoticia_M->consultarNoticiaDetalle($ID_Noticia);
@@ -81,6 +91,9 @@
 			//CONSULTA los suscriptres que han realizado comentarios y el comentario
             $Comentario = $this->ConsultaNoticia_M->consultarComentario($ID_Noticia);
 
+			//CONSULTA la cantidad de comentarios de la noticia
+            $CantidadComentario = $this->ConsultaNoticia_M->consultarCantidadComentario($ID_Noticia);
+
             //Se INSERTA la visita a la noticia
             $this->ConsultaNoticia_M->insertarVisita($ID_Noticia);
             
@@ -93,16 +106,18 @@
                 'publicidad' => $Publicidad,
                 'video' => $VideoNoticia, //ID_Noticia, nombreVideo
                 'id_suscriptor' => $ID_Suscriptor,
-                'comentario' =>  $Comentario
+                'comentarios' =>  $Comentario, //ID_Comentario, ID_Suscriptor, comentario, fechaComentario, horaComentario, nombreSuscriptor, apellidoSuscriptor
+                'cantidadComentario' => $CantidadComentario,//ID_Noticia, COUNT(ID_Comentario) AS cantidadComentario
+                'bandera' => $Bandera//ConAnuncio
             ];
             
-            echo "<pre>";
-            print_r($Datos);
-            echo "</pre>";          
-            exit();
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
             
             $this->vista("header/header_SoloEstilos"); 
-            $this->vista("view/detalleNoticias_V", $Datos ); 
+            $this->vista("view/detalleNoticias_V", $Datos); 
         }
         
         // muestra la imagen seleccionada en la miniatura de una noticia
@@ -123,32 +138,62 @@
             $this->vista("view/ajax/ImagenSeleccionada_V", $Datos ); 
         }
 
-        public function recibeComentario($ID_Noticia, $ID_Suscriptor, $Comentario){	
+        public function recibeComentario($ID_Noticia, $Comentario){	
 
 			// echo $ID_Noticia . '<br>';
-			// echo $ID_Suscriptor . '<br>';
+			// echo $_SESSION["ID_Suscriptor"] . '<br>';
 			// echo $Comentario . '<br>';
 			// exit;
           
-            //Se INSERTA el comentario de la noticia
-            $this->ConsultaNoticia_M->insertarComentario($ID_Noticia, $ID_Suscriptor, $Comentario);
+            //Se INSERTA el comentario de la noticia y se retorna su ID
+            $ID_Comentario = $this->ConsultaNoticia_M->insertarComentario($ID_Noticia, $_SESSION["ID_Suscriptor"], $Comentario);
+
+            $ConsultarComentario = $this->ConsultaNoticia_M->consultarComentarioSuscriptor($ID_Comentario);            
             
-            // Informacion enviada a detalesNoticias_V.php para el textarea que recibe el comentario
-            echo $Comentario;
+            $Datos = [
+                'comentario' => $Comentario, //
+                'datosComentario' => $ConsultarComentario //ID_Comentario,nombreSuscriptor, apellidoSuscriptor, fechaComentario, horaComentario 
+            ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+
+            $this->vista("header/header_SoloEstilos"); 
+            $this->vista("view/ajax/nuevoComentario_V", $Datos); 
+        }
+
+        //Agrega una respuesta a un comentario existene
+        public function agregarRespuesta($ID_Noticia ){
+            echo $ID_Noticia ;
         }
 
         //Verifica que el usuario haya hecho login para poder comentar una noticia
-        public function VerificaLogin($ID_Noticia){
-            //Sesion creada en Login_C
-            if(isset($_SESSION['ID_Usuaio'])){ //Si existe la sesison 
-                $ID_Usuario = $_SESSION['ID_Usuaio'];
-                echo 'Sesion abierta' . $ID_Usuario;
-            }
-            else{
-                
-                header('Location:'. RUTA_URL . '/Login_C/index/comentario,$ID_Noticia');                
+        public function VerificaLogin($ID_Noticia, $Bandera){
+            // echo $ID_Noticia . '<br>';
+            // echo $Bandera . '<br>';
+			// exit;
+
+            //Sesion creada en Login_C sino existe se muestra el formulario para logearse
+            if(!isset($_SESSION['ID_Suscriptor']) AND $Bandera == 'comentar'){ 
+                header('Location:'. RUTA_URL . '/Login_C/index/' . $ID_Noticia . ',SinLogin');                
                 // terminamos inmediatamente la ejecución del script, evitando que se envíe más salida al cliente.
                 die(); 
-            }
+            }        
+            else if(!isset($_SESSION['ID_Suscriptor']) AND $Bandera == 'responder'){
+                header('Location:'. RUTA_URL . '/Noticias_C/agregarRespuesta/' . $ID_Noticia );                
+                // terminamos inmediatamente la ejecución del script, evitando que se envíe más salida al cliente.
+                die(); 
+            } 
         }
+         
+        // ELimina comentario
+		public function eliminar_comentario($ID_Comentario){
+			
+			$this->ConsultaNoticia_M->eliminarComentario($ID_Comentario);		
+
+			header("Location:" . RUTA_URL . "/Noticia_C/detalleNoticia");
+			die();
+		}
     }

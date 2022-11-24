@@ -48,7 +48,7 @@
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Publicidad_C';?>" rel="noopener noreferrer">Publicidad</a></li> <!-- Directorio comercial -->
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Obituario_C';?>" rel="noopener noreferrer">Obituario</a></li>
 							<li><a class="header__li--Enlaces" href="https://yaracultura.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog Yaracultura</a></li>
-							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C';?>" rel="noopener noreferrer">Abrir sesión</a></li>
+							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/NA,NA';?>" rel="noopener noreferrer">Abrir sesión</a></li>
 							
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Contraloria_C';?>" rel="noopener noreferrer">Contraloria social</a></li>
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Menu_C/afiliacion';?>" rel="noopener noreferrer">Suscribirse</a></li>
@@ -73,9 +73,11 @@
 			<!-- MEMBRETE FIJO -->
 			<label class="header__titulo">Noticiero Yaracuy</label>
 
+			<!-- FECHA -->
 			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
 			
-			<!-- <a href="<?php echo RUTA_URL . '/Login_C';?>">Entrar</a> -->
+			<!-- LOGIN -->
+			<!-- <a href="<?php //echo RUTA_URL . '/Login_C';?>">Entrar</a> -->
 		</header>
 		
 		<!-- MEMBRETE DESPLAZANTE -->

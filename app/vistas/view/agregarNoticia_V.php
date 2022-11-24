@@ -10,11 +10,11 @@
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
-<div style="margin-left: 20%;">
+<div style="margin-left: 20%; margin-bottom: 50px">
     <fieldset class="fieldset_1" id="Portada"> 
         <legend class="legend_1">Agregar Noticia</legend>
         <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" id="Agregar" onsubmit="return validarAgregarNoticia()">
-            <div style="display: flex; margin-bottom: 30px">
+            <div style="display: flex;">
                 <div style=" width: 30%">    
 
                     <!-- IMAGEN PRINCIPAL imagenAnunio-->
@@ -63,7 +63,7 @@
                     <!-- TITULO -->
                     <label class="cont_panel--label">TItulo</label>
                     <textarea class="textarea--panel textarea--titulo" name="titulo" id="Titulo"></textarea> 
-                    <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="80" readonly/>
+                    <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="85" readonly/>
 
                     <!-- RESUMEN -->
                     <label class="cont_panel--label">Resumen</label>
@@ -73,7 +73,7 @@
                     <!-- CONTENIDO -->
                     <label class="cont_panel--label">Contenido</label>
                     <textarea class="cont_panel--textarea Default--textarea--scrol" name="contenido" id="Contenido" autosize="none"></textarea> 
-                    <input class="cont_panel--contador" type="text" id="ContadorContenido" value="2000" readonly/>
+                    <input class="cont_panel--contador" type="text" id="ContadorContenido" value="3000" readonly/>
                     
                     <!-- SECCION -->
                     <label class="cont_panel--label">Sección</label>
