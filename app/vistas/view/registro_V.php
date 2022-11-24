@@ -2,7 +2,7 @@
 <section id="Section_5">
     <div syle="height: 100%; background-color: yellow">
         <div style="min-height: 100%;" class="login_cont">
-            <form action="../Login_C/recibeRegistroSuscriptor" method="POST" id="FormularioCom" name="formRegistroCom" autocomplete="off" onsubmit="return validarAfiliacionCom()">
+            <form action="../../Login_C/recibeRegistroSuscriptor" method="POST" id="FormularioCom" name="formRegistroCom" autocomplete="off" onsubmit="return validarAfiliacionCom()">
                 <fieldset class="fieldset_1">
                     <legend class="legend_1">Registro de suscripción</legend> 
                     
@@ -56,7 +56,10 @@
                         <input class="login_cont--input borde--input" type="password" name="confirmarClave" id="ConfirmarClave"/>
                     </div>          
                 </fieldset>        
-                <div class="login_cont--botonSubmit">            
+                
+                <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
+                <div class="login_cont--botonSubmit">  
+                    <input class="Default_ocultar" type="text" name="id_noticia" value="<?php echo $Datos['id_noticia']?>"/>  
                     <input class="boton" type="submit" value="Suscribirse"/>
                 </div>  
             </form>

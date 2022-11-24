@@ -37,7 +37,7 @@
                             <?php
                         if($Datos){   ?>
                             <input class="Default_ocultar" type="text" name="bandera" value="<?php echo $Datos['bandera']?>"/>
-                            <input class="Default_ocultar" type="text" name="id_noticia" value="<?php echo $Datos['id_noticia']?>"/>
+                            <input class="" type="text" name="id_noticia" value="<?php echo $Datos['id_noticia']?>"/>
                             <?php
                         }   ?>
                         <input class="boton boton--largo" type="submit" value="Entrar"/>
@@ -50,7 +50,7 @@
             <label class="Default_link Default_pointer" id="Label_7">Recuperala</label>
             <hr class="hr_3">
             <p class="p_4">¿Quieres suscribirte?<p>
-            <a class="" href="<?php echo RUTA_URL . '/Login_C/suscripcion';?>">Suscripción</a>
+            <a class="" href="<?php echo RUTA_URL . '/Login_C/suscripcion/' . $Datos['id_noticia'];?>">Suscripción</a>
         </div>
     </div>
 

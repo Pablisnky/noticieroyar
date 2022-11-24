@@ -35,6 +35,9 @@
 			//CONSULTA el video asociado a cada noticia publiciada
             $Videos = $this->ConsultaNoticia_M->consultarVideoNoticiaGenerales();
 
+			//CONSULTA la cantidad de comentarios en cada noticia del dia
+            $CantidadComentario = $this->ConsultaNoticia_M->consultarCantidadComentarioNoticiaGenerales();
+
 			//CONSULTA si existe algun anuncio asociado a cada noticia publicada
             $Anuncios = $this->ConsultaNoticia_M->consultarAnuncioNoticiaGenerales();
 
@@ -51,7 +54,8 @@
                 'videos' => $Videos,
                 'anuncios' => $Anuncios,
                 'colecciones' => $Coleccion,
-                'imagenesColeccion' => $ImagnesColeccion
+                'imagenesColeccion' => $ImagnesColeccion,
+                'cantidadCmentarios' => $CantidadComentario //ID_Noticia, cantidadComentario
             ];
             
             // echo "<pre>";

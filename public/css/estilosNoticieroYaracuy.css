@@ -333,7 +333,7 @@ textarea{
 	margin-bottom: 0.5%;
  }
  .cont_noticia--sencilla{
-    height: 50vh !important; 
+    height: 55vh !important; 
 	/* width: 100%; */
 	/* min-width: 25%;
 	max-width: 25%; */
@@ -341,12 +341,13 @@ textarea{
  }
  .cont_noticia-imagen{
 	 height: 30vh; 
-	 width: 80%;
+	 width: 90%;
 	 margin: auto;
 	 object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
  }
  .cont_noticia--titular{
-	width: 80%;
+	/* background-color: red; */
+	width: 90%;
 	margin: auto;
 	margin-bottom: 5px;
 	/* padding: 0.5% 2% 4% 3%; */

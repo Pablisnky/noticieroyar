@@ -365,9 +365,19 @@
             $this->vista("modal/modal_falloLogin_V");
         }
         
-        public function suscripcion(){
+        public function suscripcion($ID_Noticia){
+            
+            $Datos = [
+                'id_noticia' => $ID_Noticia
+            ];
+
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";
+            // exit;
+
             $this->vista("header/header_noticia");
-            $this->vista("view/registro_V");
+            $this->vista("view/registro_V", $Datos );
         }
 
         public function recibeRegistroSuscriptor(){         
@@ -382,12 +392,13 @@
                 // ];
                 //Recibe datos de la persona responsable
                 $RecibeDatos = [
-                        'nombre' => ucwords($_POST["nombre"]),    
-                        'apellido' => ucwords($_POST["apellido"]),                      
-                        'correo' => mb_strtolower($_POST["correo"]),                       
-                        'municipio' => mb_strtolower($_POST["municipio"]),
-                        'clave' => $_POST["clave"],
-                        'repiteClave' => $_POST["confirmarClave"],
+                        'id_noticia' => $_POST['id_noticia'],
+                        'nombre' => ucwords($_POST['nombre']),    
+                        'apellido' => ucwords($_POST['apellido']),                      
+                        'correo' => mb_strtolower($_POST['correo']),                       
+                        'municipio' => mb_strtolower($_POST['municipio']),
+                        'clave' => $_POST['clave'],
+                        'repiteClave' => $_POST['confirmarClave']
                 ];
                 
                 // echo "<pre>";
@@ -396,11 +407,12 @@
                 // exit;
             }
             else{      
-                echo "Debe Llenar todos los campos vacios". "<br>";
-                echo "<a href='javascript:history.back()'>Regresar</a>";
+                // echo "Debe Llenar todos los campos vacios". "<br>";
+                // echo "<a href='javascript:history.back()'>Regresar</a>";
                 exit();
             }
             
+            // /SE inserta el suscriptor nuevo y se recupera su ID_Suscriptor
             $ID_Suscriptor = $this->ConsultaLogin_M->InsertarSuscriptor($RecibeDatos);
 
             $options = ['memory_cost' => 1<<10, 'time_cost' => 4, 'threads' => 2];
@@ -417,7 +429,11 @@
 
             // mail($email_to, $email_subject, $email_message, $headers); 
 
-            header('location:' . RUTA_URL. '/Login_C/index/NA,NA');
+            //Se crea la sesion exigida en las páginas de una cuenta de suscriptores           
+            $_SESSION["ID_Suscriptor"] = $ID_Suscriptor;
+
+            $ID_Noticia = $RecibeDatos['id_noticia']; 
+            header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/' . $ID_Noticia  .   ',sinAnuncio,#ContedorComentario'); 
         }
 
         public function accesoSuscriptor(){

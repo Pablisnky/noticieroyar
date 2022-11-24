@@ -86,6 +86,22 @@
             }
         }
         
+        //SELECT de cantidad de comentarios de las noticias en portada
+        public function consultarCantidadComentarioNoticiaGenerales(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Noticia, COUNT(ID_Comentario) AS cantidadComentario 
+                FROM comentarios 
+                GROUP BY ID_Noticia"
+            );
+            
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
         //SELECT de colecciones asociados a las noticias
         public function consultarColeccionNoticiaGenerales(){
             $stmt = $this->dbh->query(

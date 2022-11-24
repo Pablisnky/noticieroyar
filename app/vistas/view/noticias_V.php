@@ -16,11 +16,10 @@
                                 <div class="cont_noticia--titular">
                                     <p class="cont_noticias--titulo"><?php echo $Key['titulo'];?></p>
                                     <hr class="cont_noticia--hr_1">
-                                    <!-- FECHA -->
-                                    <small class="cont_noticias_informacion--span"><?php echo $Key['fechaPublicacion'];?></small style="font-size: 0.8em;">
-                                    <br>
+                                    
+                                    <!-- INFORMACION -->
                                     <?php
-                                    // IMAGENES
+                                    // CANTIDAD DE IMAGENES
                                     foreach($Datos['imagenes'] as $Row_3)   :  
                                         if($Key['ID_Noticia'] == $Row_3['ID_Noticia']){ 
                                             if($Row_3['cantidad'] == 1){ ?> 
@@ -40,16 +39,35 @@
                                             <?php
                                         }
                                     endforeach;
-                                    // ANUNCIO PUBLICITARIO
+                                    // COMENTARIOS
+                                    foreach($Datos['cantidadCmentarios'] as $Row_10)   :  
+                                        if($Key['ID_Noticia'] == $Row_10['ID_Noticia']){ 
+                                            if($Row_10['cantidadComentario'] > 1 ){ ?>
+                                                <small class="cont_portada_informacion--span"><?php echo $Row_10['cantidadComentario']?> Comentarios</small>
+                                                <?php
+                                            }
+                                            else{   ?>
+                                                <small class="cont_portada_informacion--span"><?php echo $Row_10['cantidadComentario'];?> Comentario</small> 
+                                                <?php
+                                            }    
+                                        }
+                                    endforeach; 
+                                    //  SI EXISTE ANUNCIO PUBLICITARIO
                                     foreach($Datos['anuncios'] as $Row_2)   :  
                                         if($Key['ID_Noticia'] == $Row_2['ID_Noticia']){ ?>
                                             <small class="cont_noticias_informacion--span">+ Anuncio</small>
                                             <?php
                                         }
                                     endforeach; ?>
+
                                     <!-- FUENTE -->
                                     <br>
-                                    <small class="cont_noticias_informacion--span"><?php echo $Key['fuente'];?></small>                                
+                                    <small class="cont_noticias_informacion--span"><?php echo $Key['fuente'];?></small>     
+
+                                    <!-- FECHA -->
+                                    <br>
+                                    <small class="cont_noticias_informacion--span"><?php echo $Key['fechaPublicacion'];?></small style="font-size: 0.8em;">
+                                    <br>                           
                                 </div> 
                                 <!-- COLECCION 180° -->
                                     <?php

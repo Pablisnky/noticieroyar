@@ -95,7 +95,7 @@
         }   ?>
     
         <!-- div carga el nuevo comentario -->
-        <div style="margin-top: 2%" id="ComentarioInsertado"></div>
+        <div class="cont_comentario--BD" style="margin-top: 2%" id="ComentarioInsertado"></div>
 
         <!-- Se cargan los comentarios existentes en BD -->
         <?php
