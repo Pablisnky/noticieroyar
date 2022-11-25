@@ -14,3 +14,12 @@
     <p class="cont_modal--p">Duelo nacional por tragedia en Las Tejerías, estado Aragua.</p>
     <img class="cont_modal--logo" src="<?php echo RUTA_URL?>/public/images/duelo.jpg"/>
 </div> -->
+
+<!-- MODAL BUENAS NUEVAS -->
+<div class="cont_modal" id="VentanaModal">		 	
+	<span class="material-icons-outlined cont_modal--cerrar detalle_cont--cerrar_BuenasNuevas Default_pointer" id="CerrarVentana">cancel</span>	
+	<h1 class="cont_modal--h1_titulo">www.noticieroyaracuy.com</h1>
+	<p class="cont_modal--h1_BuenasNuevs">Buenas nuevas</p>
+	<p class="cont_modal--p_BuenasNuevs">Ya puedes opinar sobre las noticias e interactuar con otros lectores con la opción "Comentar"</p>
+	<img class="cont_modal--logo" src="<?php echo RUTA_URL?>/public/images/imprenta.jpg"/>
+</div>

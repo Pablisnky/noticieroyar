@@ -1,19 +1,20 @@
 document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
 
-document.getElementById("Cerrar--modal").addEventListener('click', function(){CerrarModal('Promocion')}, false)
+document.getElementById("CerrarVentana").addEventListener('click', function(){CerrarModal('VentanaModal')}, false)
 //************************************************************************************************
 //Función autoejecuble que muestra la ventana modal automaticmente
-// var VentanaModal = (function(){ 
-//     setTimeout(function(){mostrarModal();}, 1500)
-// })();
+var VentanaModal = (function(){ 
+    setTimeout(function(){mostrarModal();}, 100)
+})();
 
 //************************************************************************************************ 
 //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
-    // window.addEventListener("click", function(e){   
-    //     var click = e.target
-    //     console.log("Se hizo click en: ", click)
-    // }, false)
+    window.addEventListener("click", function(e){   
+        var click = e.target
+        console.log("Se hizo click en: ", click)
+    }, false)
 
+//************************************************************************************************ 
     function MostrarPromocion(){
         document.getElementById("Miimagen").style.display = "block" 
         document.getElementById("Promocion").style.display = "block" 
@@ -27,6 +28,7 @@ document.getElementById("Cerrar--modal").addEventListener('click', function(){Ce
 
 //************************************************************************************************
     function CerrarModal(id){
+        console.log("______Desde CerrarModal()______", id)
         document.getElementById(id).style.display = "none"
     }
 

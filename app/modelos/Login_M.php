@@ -20,16 +20,16 @@
             }
         }     
         
-        public function consultarContrasena($ID_Afiliado){
+        public function consultarContrasena($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
                 "SELECT * 
                 FROM suscriptorespasword  
-                WHERE ID_Suscriptor = :ID_AFILIADO" );
+                WHERE ID_Suscriptor = :ID_SUSCRIPTOR" );
 
-            $stmt->bindValue(':ID_AFILIADO', $ID_Afiliado, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
             
             if($stmt->execute()){
-                return $stmt->fetchColumn(PDO::FETCH_ASSOC);
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             else{
                 return 'Existe un fallo en la consulta consultarContrasena()'; 

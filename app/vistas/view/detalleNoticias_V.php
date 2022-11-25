@@ -98,30 +98,33 @@
         <div class="cont_comentario--BD" style="margin-top: 2%" id="ComentarioInsertado"></div>
 
         <!-- Se cargan los comentarios existentes en BD -->
-        <?php
-        foreach($Datos['comentarios'] as $Row)   :   ?>
-            <div class="cont_comentario--BD" id="<?php echo $Row['ID_Comentario'];?>">
-                <p class="detalle_cont--p--comentario"><?php echo $Row['comentario']?></p>
-                <label class="comentario--fecha"><?php echo $Row['nombreSuscriptor']?></label>
-                <label class="comentario--fecha"><?php echo $Row['apellidoSuscriptor']?></label>&nbsp&nbsp&nbsp
-                <label class="comentario--fecha"><?php echo $Row['fechaComentario']?></label>&nbsp&nbsp&nbsp<label class="comentario--fecha"><?php echo $Row['horaComentario']?></label>
-                <br>
-                <?php
-                if($Row['ID_Suscriptor'] == $Datos['id_suscriptor']){   ?>
-                    <div> 
-                        <label class="detalle_cont--edicion Default_pointer" onclick="EliminarComentario('<?php echo $Row['ID_Comentario'];?>')">ELiminar</label>
-                        <!-- <label class="detalle_cont--edicion Default_pointer">Actualizar</label> -->
-                    </div>
-                    <?php
-                }
-                else{   ?>
-                    <!-- <label class="detalle_cont--edicion Default_pointer" onclick="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>','responder')">Responder</label> -->
-                    <?php
-                }   ?>
-            </div>
+        <div class="cont_comentariosGuardados">
             <?php
-        endforeach;
-        ?>        
+            foreach($Datos['comentarios'] as $Row)   :   ?>
+                <div class="cont_comentario--BD" id="<?php echo $Row['ID_Comentario'];?>">
+                    <p class="detalle_cont--p--comentario" readonly><?php echo $Row['comentario']?></p>
+                    <div class="comentario--informacion">
+                        <label class="comentario--fecha"><?php echo $Row['nombreSuscriptor']?></label>
+                        <label class="comentario--fecha"><?php echo $Row['apellidoSuscriptor']?></label>&nbsp&nbsp&nbsp
+                        <label class="comentario--fecha"><?php echo $Row['fechaComentario']?></label>&nbsp&nbsp&nbsp<label class="comentario--fecha"><?php echo $Row['horaComentario']?></label>
+                    </div> 
+                    <?php
+                    if($Row['ID_Suscriptor'] == $Datos['id_suscriptor']){   ?>
+                        <div> 
+                            <label class="detalle_cont--edicion Default_pointer" onclick="EliminarComentario('<?php echo $Row['ID_Comentario'];?>')">ELiminar</label>
+                            <!-- <label class="detalle_cont--edicion Default_pointer">Actualizar</label> -->
+                        </div>
+                        <?php
+                    }
+                    else{   ?>
+                        <!-- <label class="detalle_cont--edicion Default_pointer" onclick="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>','responder')">Responder</label> -->
+                        <?php
+                    }   ?>
+                </div>
+                <?php
+            endforeach;
+            ?>      
+        </div>  
     </div>
 
     <!-- AVION -->    
@@ -130,18 +133,18 @@
 
 <!-- PUBLICIDAD -->   
 <?php       
-
-if(!empty($Datos['publicidad'][0]['ID_Noticia']) AND ($Datos['bandera'] == 'ConAnuncio')){ //Bandera creada en 
-    if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['publicidad'][0]['ID_Noticia']){  ?>
-        <div class="publicidad_cont--main" id="VentanaModal--Publicidad">			
-            <span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="CerrarVentanaModal">cancel</span>
-            <div class="publicidad_cont--interno">
-                <img class="publicidad_cont--imagen" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Datos['publicidad'][0]['nombre_imagenPublicidad'] ;?>"/>
+    if(!empty($Datos['publicidad'][0]['ID_Noticia']) AND ($Datos['bandera'] == 'ConAnuncio')){ //Bandera creada en 
+        if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['publicidad'][0]['ID_Noticia']){  ?>
+            <div class="publicidad_cont--main" id="VentanaModal--Publicidad">			
+                <span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="CerrarVentanaModal">cancel</span>
+                <div class="publicidad_cont--interno">
+                    <img class="publicidad_cont--imagen" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Datos['publicidad'][0]['nombre_imagenPublicidad'] ;?>"/>
+                </div>
             </div>
-        </div>
-        <?php
-    } 
-}   ?>
+            <?php
+        } 
+    }   
+?>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/scrollUp.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_DetalleNoticia.js?v='. rand();?>"></script>

@@ -55,6 +55,21 @@
 		font-size: 1.9em;
 		margin-top: 20%;
 	}
+	.boton{
+		font-size: 1em;
+		width: 140px;
+	}
+	.boton--comentar{
+		margin-left: 2%;
+		margin-bottom: 5%;
+	}
+	.cont_comentario--BD{
+	   margin-bottom: 5%;
+	   padding-left: 3%;
+	}
+	.cont_comentariosGuardados{
+		margin-top: 10%;
+	}
 	.header{	
 		background-color: white;
 		height: 7%;
@@ -80,6 +95,19 @@
 		position: absolute;
 		bottom: 0pt;
 		left: 53%;
+	}
+	.cont_modal--h1_titulo{
+		margin-top: 15%;
+		font-size: 1.6em;
+	}
+	.cont_modal--h1_BuenasNuevs{
+		margin-top: 13%;
+		font-size: 2.5em;
+	}
+	.cont_modal--p_BuenasNuevs{
+		width: 90%;
+		margin-top: 15%;
+		font-size: 1.5em;
 	}
 	.cont_modal--p{
 		margin-top: 20%;
@@ -196,6 +224,11 @@
 		width: 100%; 
 		margin: auto; 
 		text-align: left
+	}
+	.detalle_cont--cerrar_BuenasNuevas{
+		top: 3%;
+		right: 4%;
+		font-size: 2.2em !important;
 	}
 	.cont_modal--cerrar{
 	   font-size: 2.3em !important;	 
@@ -326,6 +359,22 @@
 	}
 	.imagen--portada--cole{
 		height: 40vh;  
+	}
+	.login_cont{
+		width: 95%;
+		padding-top: 7%; 
+		margin-top: 20%;
+	}
+	.marcador{
+		padding-top: 5vh;
+		font-size: 1.1em;
+		padding-left: 5%;
+		margin-bottom: -5%;
+	}
+	.textarea--comentario{
+		display: block;
+		width: 95%;	
+		margin: auto;
 	}
 	.obituario_cont{
 		display: block;

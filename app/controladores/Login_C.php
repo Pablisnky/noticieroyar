@@ -140,12 +140,9 @@
                 echo 'Debe Llenar todos los campos vacios'. '<br>';
                 echo '<a href="javascript:history.back()">Regresar</a>';
             }
-            else{
-                $Correo = $_POST['correo_Arr'];
-                $Clave = $_POST['clave_Arr'];
-        
+            else{        
                 //Se CONSULTA la contraseña enviada, que sea igual a la contraseña de la BD
-                $Hash= $this->ConsultaLogin_M->consultarContrasena($ID_Suscriptor);
+                $Hash = $this->ConsultaLogin_M->consultarContrasena($ID_Suscriptor);
                 
                 // echo '<pre>';
                 // print_r($Hash);
@@ -153,14 +150,13 @@
                 // exit;
 
                 //se descifra la contraseña con un algoritmo de desencriptado.
-                if($Correo == $CorreoBD AND $Clave == password_verify($Clave, $Hash)){
+                if($Correo == $CorreoBD AND $Clave == password_verify($Clave, $Hash[0]['claveCifrada'])){
                     
                     //Se crea la sesion exigida en las páginas de una cuenta de suscriptores           
                     $_SESSION["ID_Suscriptor"] = $ID_Suscriptor;
-
+                    
                     if($Bandera == 'SinLogin'){// si va a hacer un comentario y no esta logeado
-                        
-                        header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/' .  $ID_Noticia  .   ',sinAnuncio,#ContedorComentario'); 
+                        header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/'.$ID_Noticia.',sinAnuncio,#ContedorComentario'); 
                     }
                     else{//carga el panel de suscriptores 
                         $Datos = [                            

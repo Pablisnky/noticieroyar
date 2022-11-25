@@ -35,9 +35,11 @@
 	margin-bottom: 5%;
 }
 .cont_comentario--BD{
-   margin-top: 1%; 
    margin-bottom: 5%;
    padding-left: 3%;
+}
+.cont_comentariosGuardados{
+	margin-top: 10%;
 }
  .comandoMenu_2{
 	 border-radius: 10px;
@@ -102,6 +104,19 @@
 	font-size: 1.5em;
 	 margin-top: 10%;
 }
+.cont_modal--h1_titulo{
+	margin-top: 15%;
+	font-size: 1.5em;
+}
+.cont_modal--h1_BuenasNuevs{
+	margin-top: 13%;
+	font-size: 2.5em;
+}
+.cont_modal--p_BuenasNuevs{
+	width: 90%;
+	margin-top: 15%;
+	font-size: 1.5em;
+}
 .cont_modal--p{
 	margin-top: 20%;
 	font-size: 1.8em;
@@ -109,7 +124,7 @@
 .cont_modal--logo{
 	width: 95%;
 	margin: auto;
-	bottom: 45pt;
+	bottom: 30pt;
 	left: 2.5%;
 }
 .cont_modal--cerrar{
@@ -307,6 +322,11 @@
 	right: 4%;
 	font-size: 2.2em !important;
 }
+.detalle_cont--cerrar_BuenasNuevas{
+	top: 3%;
+	right: 4%;
+	font-size: 2.2em !important;
+}
 .detalle_cont--informacion{
 	width: 95%;
 	margin: auto;
@@ -423,6 +443,7 @@
 	padding-top: 5vh;
 	font-size: 1.1em;
 	padding-left: 5%;
+	margin-bottom: -5%;
 }
 .textarea--comentario{
 	display: block;

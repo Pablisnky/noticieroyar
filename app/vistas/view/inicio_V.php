@@ -1,5 +1,5 @@
 <!-- VENTANA MODAL INICIAL -->
-<?php //require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
+<?php require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
 
 <div class="cont_portada" id="Cont_Portada">
     <?php
@@ -40,6 +40,7 @@
                                 }                                
                             }
                         endforeach;
+
                         // VIDEO
                         foreach($Datos['videos'] as $Row_4)  : 
                             if($Key['ID_Noticia'] == $Row_4['ID_Noticia']){ ?> 
@@ -47,6 +48,7 @@
                                 <?php
                             }
                         endforeach;
+
                         // COMENTARIOS
                         foreach($Datos['cantidadComentario'] as $Row_6)   :  
                             if($Key['ID_Noticia'] == $Row_6['ID_Noticia']){ 
@@ -60,13 +62,15 @@
                                 }    
                             }
                         endforeach;  
+
                         // SI EXISTE ANUNCIO PUBLICITARIO
                         foreach($Datos['anuncios'] as $Row_2)   :  
                             if($Key['ID_Noticia'] == $Row_2['ID_Noticia']){ ?>
                                 <small class="cont_portada_informacion--span">+ Anuncio</small>
                                 <?php
                             }
-                        endforeach;  ?>                     
+                        endforeach;  ?>   
+
                         <!-- FUENTE -->
                         <br>
                         <small class="cont_portada_informacion--span"><?php echo $Key['fuente'];?></small>

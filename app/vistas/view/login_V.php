@@ -28,8 +28,8 @@
                     <input class="login_cont--input borde--input" type="password" name="clave_Arr" id="Clave"  autocomplete="off"/>             
 
                     <div class="contenedor_45">
-                        <input type="checkbox" id="Recordar" name="recordar" value="1"/>
-                        <label class="label_20" for="Recordar">Recordar datos en este equipo.</label>
+                        <input class="Default_ocultar" type="checkbox" id="Recordar" name="recordar" value="1"/>
+                        <label class="Default_ocultar" class="label_20" for="Recordar">Recordar datos en este equipo.</label>
                     </div> 
                     
                     <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
@@ -37,7 +37,7 @@
                             <?php
                         if($Datos){   ?>
                             <input class="Default_ocultar" type="text" name="bandera" value="<?php echo $Datos['bandera']?>"/>
-                            <input class="" type="text" name="id_noticia" value="<?php echo $Datos['id_noticia']?>"/>
+                            <input class="Default_ocultar" type="text" name="id_noticia" value="<?php echo $Datos['id_noticia']?>"/>
                             <?php
                         }   ?>
                         <input class="boton boton--largo" type="submit" value="Entrar"/>
