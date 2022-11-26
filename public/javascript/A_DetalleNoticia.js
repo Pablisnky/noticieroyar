@@ -57,7 +57,7 @@ function conexionAJAX(){
 // *************************************************************************************************
     //Verifica que el usuario este logeado antes de realizar un comentario 
     function Llamar_VerificarSuscripcion(ID_Noticia, Bandera){
-        // console.log("______Desde Llamar_VerificarSuscripcion()______", ID_Noticia + "/" + Bandera)
+        console.log("______Desde Llamar_VerificarSuscripcion()______", ID_Noticia + "/" + Bandera)
         
         var url = "../../Noticias_C/VerificaLogin/" + ID_Noticia + "/" + Bandera
         http_request.open('GET', url, true)  

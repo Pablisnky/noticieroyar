@@ -612,8 +612,8 @@
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
             $stmt->bindParam(':NOMBRE_VIDEO', $Nombre_video, PDO::PARAM_STR);
-            $stmt->bindParam(':TAMANIO_VIDEO', $Tipo_video, PDO::PARAM_STR);
-            $stmt->bindParam(':TIPO_VIDEO', $Tamanio_video, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_VIDEO', $Tamanio_video,PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_VIDEO',  $Tipo_video, PDO::PARAM_STR);
             $stmt->bindValue(':YOUTUBE', 0);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )

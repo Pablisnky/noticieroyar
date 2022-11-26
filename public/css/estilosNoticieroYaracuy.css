@@ -858,7 +858,7 @@ textarea{
 	margin: auto;
 	margin-top: 1%;
 	line-height: 30px;
-	min-height: 250px;
+	/* min-height: 5vh; */
 	width: 80%;	
 	padding: 1.5%;
 	display: block;

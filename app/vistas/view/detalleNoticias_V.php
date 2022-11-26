@@ -117,7 +117,7 @@
                         <?php
                     }
                     else{   ?>
-                        <!-- <label class="detalle_cont--edicion Default_pointer" onclick="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>','responder')">Responder</label> -->
+                        <label class="detalle_cont--edicion Default_pointer" onclick="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>','responder')">Responder</label>
                         <?php
                     }   ?>
                 </div>

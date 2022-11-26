@@ -186,7 +186,7 @@
                 die(); 
             }        
             else if(!isset($_SESSION['ID_Suscriptor']) AND $Bandera == 'responder'){
-                header('Location:'. RUTA_URL . '/Noticias_C/agregarRespuesta/' . $ID_Noticia );                
+                header('Location:'. RUTA_URL . '/Login_C/index/' . $ID_Noticia . ',responder');                
                 // terminamos inmediatamente la ejecución del script, evitando que se envíe más salida al cliente.
                 die(); 
             } 

@@ -62,7 +62,23 @@
                 $this->vista("header/header_noticia");
                 $this->vista("view/login_Vrecord", $Datos);
             }
-            else if($DatosAgrupados[0] != 'NA'){//Entra cuando viene de una noticia y desea hacer comentario
+            else if($Bandera == 'SinLogin'){//Entra cuando viene de una noticia y desea hacer comentario
+                
+                $Datos=[
+                    'id_noticia' => $ID_Noticia,
+                    'bandera' => $Bandera
+                ];
+
+                // echo "<pre>";
+                // print_r($Datos);
+                // echo "</pre>";          
+                // exit();
+                
+                //carga la vista login_V en formulario login
+                $this->vista("header/header_noticia");
+                $this->vista("view/login_V", $Datos);
+            }
+            else if($Bandera == 'responder'){//Entra cuando viene de una noticia y desea responder un comentario existente
                 
                 $Datos=[
                     'id_noticia' => $ID_Noticia,
@@ -155,7 +171,10 @@
                     //Se crea la sesion exigida en las páginas de una cuenta de suscriptores           
                     $_SESSION["ID_Suscriptor"] = $ID_Suscriptor;
                     
-                    if($Bandera == 'SinLogin'){// si va a hacer un comentario y no esta logeado
+                    if($Bandera == 'SinLogin'){// si va a hacer un comentario y esta logeado, bandera creada en 
+                        header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/'.$ID_Noticia.',sinAnuncio,#ContedorComentario'); 
+                    }
+                    else if($Bandera == 'responder'){// si va a responder un comentario y no esta logeado
                         header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/'.$ID_Noticia.',sinAnuncio,#ContedorComentario'); 
                     }
                     else{//carga el panel de suscriptores 
