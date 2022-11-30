@@ -38,6 +38,7 @@
                         if($Datos){   ?>
                             <input class="Default_ocultar" type="text" name="bandera" value="<?php echo $Datos['bandera']?>"/>
                             <input class="Default_ocultar" type="text" name="id_noticia" value="<?php echo $Datos['id_noticia']?>"/>
+                            <input class="" type="text" name="id_comentario" value="<?php echo $Datos['id_comentario']?>"/>
                             <?php
                         }   ?>
                         <input class="boton boton--largo" type="submit" value="Entrar"/>

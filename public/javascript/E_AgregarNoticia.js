@@ -2,10 +2,10 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
 
 
 
-document.getElementById("Titulo").addEventListener('keydown', function(){contarCaracteres("ContadorTitulo", "Titulo", 85)}, false)
-document.getElementById("Titulo").addEventListener('keydown', function(){valida_LongitudDes(85, "Titulo")}, false)
-document.getElementById("Titulo").addEventListener('keyup', function(){contarCaracteres("ContadorTitulo", "Titulo", 85)}, false)
-document.getElementById("Titulo").addEventListener('keyup', function(){valida_LongitudDes(85, "Titulo")}, false)
+document.getElementById("Titulo").addEventListener('keydown', function(){contarCaracteres("ContadorTitulo", "Titulo", 90)}, false)
+document.getElementById("Titulo").addEventListener('keydown', function(){valida_LongitudDes(90, "Titulo")}, false)
+document.getElementById("Titulo").addEventListener('keyup', function(){contarCaracteres("ContadorTitulo", "Titulo", 90)}, false)
+document.getElementById("Titulo").addEventListener('keyup', function(){valida_LongitudDes(90, "Titulo")}, false)
 
 
 
@@ -15,15 +15,15 @@ document.getElementById("Resumen").addEventListener('keyup', function(){contarCa
 document.getElementById("Resumen").addEventListener('keyup', function(){valida_LongitudDes(120, "Resumen")}, false)
 
 
-document.getElementById("Contenido").addEventListener('keydown', function(){contarCaracteres("ContadorContenido", "Contenido", 3000)}, false)
-document.getElementById("Contenido").addEventListener('keydown', function(){valida_LongitudDes(3000, "Contenido")}, false)
-document.getElementById("Contenido").addEventListener('keyup', function(){contarCaracteres("ContadorContenido", "Contenido", 3000)}, false)
-document.getElementById("Contenido").addEventListener('keyup', function(){valida_LongitudDes(3000, "Contenido")}, false)
+document.getElementById("Contenido").addEventListener('keydown', function(){contarCaracteres("ContadorContenido", "Contenido", 7000)}, false)
+document.getElementById("Contenido").addEventListener('keydown', function(){valida_LongitudDes(7000, "Contenido")}, false)
+document.getElementById("Contenido").addEventListener('keyup', function(){contarCaracteres("ContadorContenido", "Contenido", 7000)}, false)
+document.getElementById("Contenido").addEventListener('keyup', function(){valida_LongitudDes(7000, "Contenido")}, false)
 
 
 
 //llama a la funcion cuando detecta cambio en el textarea, Ej: al pegar un texto
-document.getElementById("Titulo").addEventListener("input", (event) => contarCaracteres("ContadorTitulo", "Titulo", 80));
+document.getElementById("Titulo").addEventListener("input", (event) => contarCaracteres("ContadorTitulo", "Titulo", 90));
 document.getElementById("Resumen").addEventListener("input", (event) => contarCaracteres("ContadorResumen", "Resumen", 120));
 //************************************************************************************************
     //obtiendo informacion del DOM para identificar el elemento donde se hizo click 

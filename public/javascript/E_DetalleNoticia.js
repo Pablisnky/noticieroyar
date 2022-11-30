@@ -7,6 +7,7 @@ document.getElementById("CerrarVentana").addEventListener('click', Cerrar, false
 document.getElementById("CerrarVentanaModal").addEventListener('click', function(){CerrarModal('VentanaModal--Publicidad')}, false)
 
 document.getElementById("Comentario").addEventListener('keyup', function(){autosize('Comentario')}, false)
+document.getElementById("Comentario").addEventListener('keydown', function(){autosize('Comentario')}, false)
 
 //************************************************************************************************
 //Función autoejecuble que muestra la ventana modal que contiene la publicidad
@@ -28,18 +29,18 @@ function mostrarModal(){
 //************************************************************************************************   
 //cierra ventana modal que contiene la publicidad
 function CerrarModal(id){
-    console.log("______Desde CerrarModal()______", id) 
+    // console.log("______Desde CerrarModal()______", id) 
     document.getElementById(id).style.display = "none"
 }
 
 //************************************************************************************************ 
 //ajusta la altura de un texarea con respecto al contenido que trae de la BD
-function resize(id){
-    console.log("______Desde resize()______", id) 
-    let text = document.getElementById(id);
-    text.style.height = 'auto';
-    text.style.height = text.scrollHeight+'px';
-}
+// function resize(id){
+//     // console.log("______Desde resize()______", id) 
+//     let text = document.getElementById(id);
+//     text.style.height = 'auto';
+//     text.style.height = text.scrollHeight+'px';
+// }
 
 //************************************************************************************************ 
 // //ajusta la altura de un texarea con respecto al contenido que trae de la BD
@@ -100,3 +101,52 @@ function EliminarComentarioNuevo(ID_Comentario){
         },0);
     }
 
+//**********************************************************************************************
+// function transferirComentario(ID_Comentario){
+//     console.log("______Desde transferirComentario()______", ID_Comentario)
+    
+//     let Respuesta = document.getElementById("ComentarioRespuesta").value
+//     console.log(Respuesta)
+
+//     //Se transfiere el valor del textarea  al <p></p> del formulario
+//     document.getElementById(ID_Comentario).value = Respuesta   
+//     document.getElementById("MostrarSeccion").style.display = "none"        
+// }
+
+//**********************************************************************************************
+function mostrar_DivRespuesta(ID_Comentario, ID_BotonRespuesta){
+    // console.log("______Desde mostrar_DivRespuesta()______", ID_Comentario + "/" + ID_BotonRespuesta)
+    document.getElementById(ID_Comentario).style.display = "block"; 
+    document.getElementById(ID_BotonRespuesta).style.display = "none"; 
+}
+
+//************************************************************************************************ 
+function enviarRespuesta(form, ID_Comentario){
+    console.log("______Desde enviarRespuesta()______") 
+    console.log(form)
+    console.log(ID_Comentario)
+}
+
+function mostrarRrespuesta(ID_Comentario, Respuesta, ID_Respuesta, ID_LabelEnviar, ID_insertaRespuesta){
+    console.log("______Desde mostrarRrespuesta()______ ",ID_Comentario + "/" + Respuesta + "/" + ID_Respuesta + "/" + ID_LabelEnviar)
+    // let A = document.getElementById(ID_RespuestaInsertada).value = Respuesta
+    
+    document.getElementById(ID_Respuesta).style.display = "none"
+    document.getElementById(ID_LabelEnviar).style.display = "none"
+    document.getElementById(ID_insertaRespuesta).textContent = Respuesta
+
+    //Se crea un parrafo que contendra la respuesta a un comentario
+    // var NuevoElemento = document.createElement("p")
+
+    // //Se dan valores a la propiedades del nuevo elemento 
+    // NuevoElemento.id = "respuestaCOmentario_" + ID_Comentario
+    // NuevoElemento.textContent = Respuesta
+    // console.log("NuevoElemento", NuevoElemento)
+
+    // //Se especifica el elemento donde se va a insertar el nuevo elemento
+    // var ElementoPadre = document.getElementById(ID_DivPadre)
+    // console.log("ElementoPadre", ElementoPadre)
+
+    // //Se inserta en el DOM el parafo creado
+    // ElementoPadre.appendChild(NuevoElemento) 
+}

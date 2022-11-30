@@ -63,7 +63,7 @@
                     <!-- TITULO -->
                     <label class="cont_panel--label">TItulo</label>
                     <textarea class="textarea--panel textarea--titulo" name="titulo" id="Titulo"></textarea> 
-                    <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="85" readonly/>
+                    <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="90" readonly/>
 
                     <!-- RESUMEN -->
                     <label class="cont_panel--label">Resumen</label>
@@ -73,7 +73,7 @@
                     <!-- CONTENIDO -->
                     <label class="cont_panel--label">Contenido</label>
                     <textarea class="cont_panel--textarea Default--textarea--scrol" name="contenido" id="Contenido" autosize="none"></textarea> 
-                    <input class="cont_panel--contador" type="text" id="ContadorContenido" value="3000" readonly/>
+                    <input class="cont_panel--contador" type="text" id="ContadorContenido" value="7000" readonly/>
                     
                     <!-- SECCION -->
                     <label class="cont_panel--label">Sección</label>

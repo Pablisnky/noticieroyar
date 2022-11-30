@@ -77,17 +77,17 @@
     </div>
 
     <!-- CONTENIDO -->
-    <div >
+    <div>
         <textarea class="textarea--contenido textarea--borde textarea--font" id="Contenido" readonly><?php echo $Datos['detalleNoticia'][0]['contenido']?></textarea>
     </div>
 
     <!-- COMENTARIO --> 
     <div id="ContedorComentario">
         <label class="marcador" id="Marcador">Comentarios</label>
-        <br>
+        </br>
 
         <!-- Se escribe el nuevo comentario -->
-        <textarea class="textarea--comentario" id="Comentario" nome="comentario" onfocus="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>','comentar')"></textarea>
+        <textarea class="textarea--comentario" id="Comentario" nome="comentario" onfocus="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>','comentar','NA')"></textarea>
         <?php
         if(isset($_SESSION['ID_Suscriptor'])){   ?>
             <label class="boton boton--comentar" onclick="Llamar_InsertarComentario('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>')">Comentar</label>
@@ -98,7 +98,7 @@
         <div class="cont_comentario--BD" style="margin-top: 2%" id="ComentarioInsertado"></div>
 
         <!-- Se cargan los comentarios existentes en BD -->
-        <div class="cont_comentariosGuardados">
+        <div class="">
             <?php
             foreach($Datos['comentarios'] as $Row)   :   ?>
                 <div class="cont_comentario--BD" id="<?php echo $Row['ID_Comentario'];?>">
@@ -108,6 +108,30 @@
                         <label class="comentario--fecha"><?php echo $Row['apellidoSuscriptor']?></label>&nbsp&nbsp&nbsp
                         <label class="comentario--fecha"><?php echo $Row['fechaComentario']?></label>&nbsp&nbsp&nbsp<label class="comentario--fecha"><?php echo $Row['horaComentario']?></label>
                     </div> 
+
+                    <!-- Respuesta a comentario -->
+                    <div class="cont_comentario--respuesta Default_ocultar" id="Respuesta_<?php echo $Row['ID_Comentario'];?>">
+                        <!-- se escribe la respuesta -->
+                        <textarea class="textarea--comentario" id="TextoRespuesta_<?php echo $Row['ID_Comentario'];?>" onfocus = "Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>','responder',',<?php echo $Row['ID_Comentario'];?>')"></textarea>
+
+                        <!-- se muestra la respuesesta junto al usuario la fecha y la hora -->
+                        <p id="insertaRespuesta_<?php echo $Row['ID_Comentario'];?>"></p>
+                        
+                        <!-- BOTON ENVIAR -->
+                        <?php
+                        if(isset($_SESSION['ID_Suscriptor'])){   ?>
+                            <label class="detalle_cont--edicion detalle_cont--label Default_pointer" id="labelEnviar_<?php echo $Row['ID_Comentario'];?>" onclick="Llamar_InsertarRespuesta('<?php echo $Row['ID_Comentario']?>','TextoRespuesta_<?php echo $Row['ID_Comentario'];?>','labelEnviar_<?php echo $Row['ID_Comentario'];?>','insertaRespuesta_<?php echo $Row['ID_Comentario'];?>','<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>')">Enviar</label>
+
+                            <div class="comentario--informacion">
+                                <label class="comentario--fecha"><?php echo $Datos['nombre']?></label>
+                                <label class="comentario--fecha"><?php echo $Datos['apellido']?></label>&nbsp&nbsp&nbsp
+                                <!-- <label class="comentario--fecha"><?php echo $Datos['']?></label>&nbsp&nbsp&nbsp<label class="comentario--fecha"><?php echo $Datos['horaComentario']?></label> -->
+                            </div> 
+                            <?php
+                        }   ?>
+                    </div>                    
+
+                    <!-- BOTONES DE ELIMINAR - RESPONDER -->
                     <?php
                     if($Row['ID_Suscriptor'] == $Datos['id_suscriptor']){   ?>
                         <div> 
@@ -117,14 +141,42 @@
                         <?php
                     }
                     else{   ?>
-                        <label class="detalle_cont--edicion Default_pointer" onclick="Llamar_VerificarSuscripcion('<?php echo $Datos['detalleNoticia'][0]['ID_Noticia']?>','responder')">Responder</label>
+                        <label class="detalle_cont--edicion Default_pointer" id="botonRespuesta_<?php echo $Row['ID_Comentario'];?>" onclick="mostrar_DivRespuesta('Respuesta_<?php echo $Row['ID_Comentario'];?>','botonRespuesta_<?php echo $Row['ID_Comentario'];?>')">Responder</label>
                         <?php
                     }   ?>
                 </div>
+                
+                <!-- Se cargan las respuestas a los comentarios existentes en BD -->
+                <div class="">
+                    <?php
+                    foreach($Datos['respuestas'] as $Row_2)   : 
+                        if($Row['ID_Comentario'] == $Row_2['ID_Comentario']){  ?>
+                            <div class="cont_respuesta--BD" id="<?php echo $Row_2['ID_Comentario'];?>">
+                                <p class="detalle_cont--p--comentario" readonly><?php echo $Row_2['respuesta']?></p>
+                                <div class="comentario--informacion">
+                                    <label class="comentario--fecha"><?php echo $Row_2['nombreSuscriptor']?></label>
+                                    <label class="comentario--fecha"><?php echo $Row_2['apellidoSuscriptor']?></label>&nbsp&nbsp&nbsp
+                                    <label class="comentario--fecha"><?php echo $Row_2['fecha_Respuesta']?></label>&nbsp&nbsp&nbsp<label class="comentario--fecha"><?php echo $Row_2['hora_Respuesta']?></label>
+                                </div>               
+
+                                <!-- BOTON DE ELIMINAR RESPUESTA -->
+                                <?php
+                                // if($Row_2['ID_Suscriptor'] == $Datos['id_suscriptor']){   ?>
+                                    <!-- <div> 
+                                        <label class="detalle_cont--edicion Default_pointer" onclick="EliminarRespuesta('<?php echo $Row_2['ID_Respuesta'];?>')">ELiminar</label>
+                                    </div> -->
+                                    <?php
+                                // } ?>
+                            </div>
+                            <?php
+                        }
+                    endforeach;
+                    ?>      
+                </div> 
                 <?php
             endforeach;
             ?>      
-        </div>  
+        </div>   
     </div>
 
     <!-- AVION -->    
@@ -146,7 +198,6 @@
     }   
 ?>
 
-<script src="<?php echo RUTA_URL.'/public/javascript/scrollUp.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_DetalleNoticia.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_DetalleNoticia.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>

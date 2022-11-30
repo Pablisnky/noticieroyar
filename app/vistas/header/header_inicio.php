@@ -58,7 +58,7 @@
 									<li><a class="header__li--Enlaces enlace_JS"  href="<?php //echo RUTA_URL . '/Noticias_C/NoticiasGenerales#Marcado_1';?>" rel="noopener noreferrer">Cultura</a></li>
 									<li><a class="header__li--Enlaces">Politica</a></li>
 								</ul> -->
-							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Efemeride_C';?>" rel="noopener noreferrer">Efemerides</a></li>
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Efemeride_C';?>" rel="noopener noreferrer">Efemérides</a></li>
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Agenda_C';?>" rel="noopener noreferrer">Agenda de eventos</a></li>
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Publicidad_C';?>" rel="noopener noreferrer">Publicidad</a></li> <!-- Directorio comercial -->
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Obituario_C';?>" rel="noopener noreferrer">Obituario</a></li>

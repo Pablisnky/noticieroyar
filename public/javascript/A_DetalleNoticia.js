@@ -56,10 +56,10 @@ function conexionAJAX(){
 
 // *************************************************************************************************
     //Verifica que el usuario este logeado antes de realizar un comentario 
-    function Llamar_VerificarSuscripcion(ID_Noticia, Bandera){
-        console.log("______Desde Llamar_VerificarSuscripcion()______", ID_Noticia + "/" + Bandera)
+    function Llamar_VerificarSuscripcion(ID_Noticia, Bandera, ID_Comentario){
+        console.log("______Desde Llamar_VerificarSuscripcion()______", ID_Noticia + "/" + Bandera + "/" + ID_Comentario)
         
-        var url = "../../Noticias_C/VerificaLogin/" + ID_Noticia + "/" + Bandera
+        var url = "../../Noticias_C/VerificaLogin/" + ID_Noticia + "/" + Bandera + "/" + ID_Comentario
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_VerificarSuscripcion
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
@@ -127,6 +127,39 @@ function conexionAJAX(){
         if(peticion.readyState == 4){
             if(peticion.status == 200){ 
                 //No recibe ninguna respuesta del servidor para insertar en el documento, la accion solo es necesaria en el servidor
+            } 
+            else{
+                alert('Problemas con la petición.')
+            }
+        }
+        else{ //en caso contrario, mostramos un gif simulando una precarga
+            // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+        }
+    }
+
+// *************************************************************************************************
+    //Inserta una respuesta a un comentario existente
+    function Llamar_InsertarRespuesta(ID_Comentario, ID_Respuesta, ID_LabelEnviar, ID_insertaRespuesta, ID_Noticia){
+        console.log("______Desde Llamar_InsertarRespuesta()______", ID_Comentario + "/" + ID_Respuesta + "/" + ID_LabelEnviar + "/" + ID_insertaRespuesta + "/" + ID_Noticia)
+        let Respuesta = document.getElementById(ID_Respuesta).value
+        // console.log(Respuesta)
+        
+        var url = "../../Noticias_C/recibeRespuesta/" + ID_Comentario  + "/" + Respuesta + "/" + ID_Noticia
+        http_request.open('GET', url, true)  
+        peticion.onreadystatechange = respuesta_InsertarRespuesta
+        peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+        peticion.send("null")
+        
+        mostrarRrespuesta(ID_Comentario, Respuesta, ID_Respuesta, ID_LabelEnviar, ID_insertaRespuesta)
+    }                                                                        
+    function respuesta_InsertarRespuesta(){
+        if(peticion.readyState == 4){
+            if(peticion.status == 200){  
+                //No recibe ninguna respuesta del servidor para insertar en el documento, la accion solo es necesaria en el servidor
+                // document.getElementById(ID_RespuestaInsertada).innerHTML = peticion.responseText 
+                // document.getElementById('Respuesta').value = "";
+                // document.getElementById('Respuesta').disabled = true
+                // document.getElementById('RespuestaInsertada').style.display = "block"
             } 
             else{
                 alert('Problemas con la petición.')

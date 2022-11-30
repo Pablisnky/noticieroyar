@@ -94,6 +94,9 @@
             
 			//CONSULTA los suscriptres que han realizado comentarios y el comentario
             $Comentario = $this->ConsultaNoticia_M->consultarComentario($ID_Noticia);
+            
+			//CONSULTA los suscriptres que han dado respuesta a comentarios y la respuesta
+            $Respuesta = $this->ConsultaNoticia_M->consultarRespuesta($ID_Noticia);
 
 			//CONSULTA la cantidad de comentarios de la noticia
             $CantidadComentario = $this->ConsultaNoticia_M->consultarCantidadComentario($ID_Noticia);
@@ -103,7 +106,9 @@
             
             // SESION creada en Login_C.php
             $ID_Suscriptor = !empty($_SESSION['ID_Suscriptor']) ? $_SESSION['ID_Suscriptor'] : 'No existe';
-            
+            $Nombre = !empty($_SESSION["nombreSuscriptor"]) ? $_SESSION["nombreSuscriptor"] : 'No existe';
+            $Apellido = !empty($_SESSION["apellidoSuscriptor"]) ? $_SESSION["apellidoSuscriptor"] : 'No existe';
+
             $Datos = [
                 'detalleNoticia' => $DetalleNoticia, //ID_Noticia, titulo, subtitulo, nombre_imagenNoticia, contenido, fecha, fuente
                 'imagenesNoticia' => $ImagenesNoticia, //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
@@ -111,8 +116,11 @@
                 'video' => $VideoNoticia, //ID_Noticia, nombreVideo
                 'id_suscriptor' => $ID_Suscriptor,
                 'comentarios' =>  $Comentario, //ID_Comentario, ID_Suscriptor, comentario, fechaComentario, horaComentario, nombreSuscriptor, apellidoSuscriptor
+                'respuestas' => $Respuesta,
                 'cantidadComentario' => $CantidadComentario,//ID_Noticia, COUNT(ID_Comentario) AS cantidadComentario
-                'bandera' => $Bandera//ConAnuncio
+                'bandera' => $Bandera,//ConAnuncio
+                'nombre' => $Nombre,// sesion creadas en Login_C
+                'apellido' => $Apellido// sesion creadas en Login_C
             ];
             
             // echo "<pre>";
@@ -144,10 +152,10 @@
 
         public function recibeComentario($ID_Noticia, $Comentario){	
 
-			// echo $ID_Noticia . '<br>';
-			// echo $_SESSION["ID_Suscriptor"] . '<br>';
-			// echo $Comentario . '<br>';
-			// exit;
+			echo $ID_Noticia . '<br>';
+			echo $_SESSION["ID_Suscriptor"] . '<br>';
+			echo $Comentario . '<br>';
+			exit;
           
             //Se INSERTA el comentario de la noticia y se retorna su ID
             $ID_Comentario = $this->ConsultaNoticia_M->insertarComentario($ID_Noticia, $_SESSION["ID_Suscriptor"], $Comentario);
@@ -168,15 +176,30 @@
             $this->vista("view/ajax/nuevoComentario_V", $Datos); 
         }
 
-        //Agrega una respuesta a un comentario existene
-        public function agregarRespuesta($ID_Noticia ){
-            echo $ID_Noticia ;
+        //Se inserta una respuesta a un comentario
+        public function recibeRespuesta($ID_Comentario, $Respuesta, $ID_Noticia){
+
+            //Se INSERTA la respuesta al comentario de la noticia y se retorna su ID
+            $ID_Respuesta = $this->ConsultaNoticia_M->insertarRespuesta($ID_Noticia, $ID_Comentario, $_SESSION["ID_Suscriptor"], $Respuesta);
+            
+            // $ConsultarRespuesta = $this->ConsultaNoticia_M->consultarRespuestaSuscriptor($ID_Respuesta); 
+            
+            // $Datos = [
+            //     'respuesta' => $Respuesta, //
+            //     'datosRespuesta' => $ConsultarRespuesta //ID_Respuesta, nombreSuscriptor, apellidoSuscriptor, fecha_Respuesta, hora_Respuesta 
+            // ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
         }
 
         //Verifica que el usuario haya hecho login para poder comentar una noticia
-        public function VerificaLogin($ID_Noticia, $Bandera){
+        public function VerificaLogin($ID_Noticia, $Bandera, $ID_Comentario){
             // echo $ID_Noticia . '<br>';
             // echo $Bandera . '<br>';
+            // echo $_SESSION['ID_Suscriptor']. '<br>';
 			// exit;
 
             //Sesion creada en Login_C sino existe se muestra el formulario para logearse
@@ -186,10 +209,27 @@
                 die(); 
             }        
             else if(!isset($_SESSION['ID_Suscriptor']) AND $Bandera == 'responder'){
-                header('Location:'. RUTA_URL . '/Login_C/index/' . $ID_Noticia . ',responder');                
+                header('Location:'. RUTA_URL . '/Login_C/index/' . $ID_Noticia . ',responder' . $ID_Comentario);                
                 // terminamos inmediatamente la ejecución del script, evitando que se envíe más salida al cliente.
                 die(); 
             } 
+        }
+
+        //Se consulta el comentario al que se va a dar una respuesta
+        public function responderComentario($ID_Comentario){
+            $ComentarioResponder = $this->ConsultaNoticia_M->consultarComentarioResponder($ID_Comentario);            
+            
+            $Datos = [
+                'datosComentario' => $ComentarioResponder //ID_Comentario, comentario
+            ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+
+            $this->vista("header/header_SoloEstilos");
+            $this->vista("modal/modal_ResponderComentario",$Datos);
         }
          
         // ELimina comentario

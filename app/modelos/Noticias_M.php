@@ -293,8 +293,48 @@
             else{
                 return false;
             }
+        }
+
+        public function consultarComentarioResponder($ID_Comentario){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Comentario, comentario
+                FROM comentarios 
+                WHERE ID_Comentario = :ID_COMENTARIO"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_COMENTARIO', $ID_Comentario, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        //SELECT de las respuesta a los comentarios
+        public function consultarRespuesta($ID_Noticia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Comentario, respuesta, DATE_FORMAT(fechaRespuesta, '%d-%m-%Y') AS fecha_Respuesta, DATE_FORMAT(horaRespuesta, '%h:%i %p') AS hora_Respuesta, nombreSuscriptor, apellidoSuscriptor
+                 FROM comentariosrespuestas
+                 INNER JOIN suscriptores ON comentariosrespuestas.ID_Suscriptor=suscriptores.ID_Suscriptor
+                 WHERE ID_Noticia = :ID_NOTICIA
+                 ORDER BY fechaRespuesta DESC, horaRespuesta DESC "
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
 
         }
+        
 
 // ********************************************************************************************************
 // INSERTAR
@@ -337,6 +377,29 @@
             else{
                 return FALSE;
             }
+        }
+
+        public function insertarRespuesta($ID_Noticia, $ID_Comentario, $ID_Suscriptor, $Respuesta){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO comentariosrespuestas (ID_Noticia, ID_Comentario, ID_Suscriptor, respuesta , fechaRespuesta, horaRespuesta) 
+                VALUES (:ID_NOTICIA, :ID_COMENTARIO, :ID_SUSCRIPTOR, :RESPUESTA, CURDATE(), CURTIME())"
+            
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_COMENTARIO', $ID_Comentario, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
+            $stmt->bindParam(':RESPUESTA', $Respuesta, PDO::PARAM_STR);
+
+            if($stmt->execute()){
+                //se recupera el ID del registro insertado
+                return $this->dbh->lastInsertId();
+            }
+            else{
+                return FALSE;
+            }
+
         }
 
 // ********************************************************************************************************

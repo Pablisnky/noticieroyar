@@ -1,5 +1,5 @@
 <div class="cont_detalle" id="cont_efemerides">
-    <h1 class="h1--principal">Efemeride</h1>
+    <h1 class="h1--principal">Efeméride</h1>
     <?php
     foreach($Datos['efemerideHoy'] as $Key) :  ?>
 

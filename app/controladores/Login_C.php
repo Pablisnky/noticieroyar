@@ -17,9 +17,11 @@
             $DatosAgrupados = explode(',', $DatosAgrupados);
             $ID_Noticia = $DatosAgrupados[0];
             $Bandera = $DatosAgrupados[1];
+            $ID_Comentario = !empty($DatosAgrupados[2]) ? $DatosAgrupados[2]: 'NoAplica';
             
             // echo "ID_Noticia =" .  $ID_Noticia ."<br>";
             // echo "Bandera =" .  $Bandera ."<br>";
+            // echo "ID_Comentario =" .  $ID_Comentario ."<br>";
             // exit;
 
 
@@ -66,6 +68,7 @@
                 
                 $Datos=[
                     'id_noticia' => $ID_Noticia,
+                    'id_comentario' => $ID_Comentario,
                     'bandera' => $Bandera
                 ];
 
@@ -82,6 +85,7 @@
                 
                 $Datos=[
                     'id_noticia' => $ID_Noticia,
+                    'id_comentario' => $ID_Comentario,
                     'bandera' => $Bandera
                 ];
 
@@ -110,6 +114,7 @@
             $Correo = $_POST["correo_Arr"];
             $Bandera = !empty($_POST["bandera"]) ? $_POST["bandera"]: 'NoAplica';
             $ID_Noticia = !empty($_POST["id_noticia"]) ? $_POST["id_noticia"]: 'NoAplica';
+            $ID_Comentario = !empty($_POST["id_comentario"]) ? $_POST["id_comentario"]: 'NoAplica';
 
             // echo 'Recordar: ' . $Recordar . '<br>';
             // echo 'No_Recordar: ' . $No_Recordar . '<br>';
@@ -117,6 +122,7 @@
             // echo 'Correo: ' . $Correo . '<br>';
             // echo 'Bandera: ' . $Bandera . '<br>';
             // echo 'ID_Noticia: ' . $ID_Noticia . '<br>';
+            // echo 'ID_Comentario: ' . $ID_Comentario . '<br>';
             // exit;
  
             //Se CONSULTA si el correo existe como usuario suscrito
@@ -132,6 +138,9 @@
                 $CorreoBD = $Suscriptor[0]['correoSuscriptor'];
                 $Nombre = $Suscriptor[0]['nombreSuscriptor'];
                 $Apellido = $Suscriptor[0]['apellidoSuscriptor'];
+
+                $_SESSION["nombreSuscriptor"] = $Nombre;
+                $_SESSION["apellidoSuscriptor"] = $Apellido;
 
                 $CuentaCom = true;
             }
@@ -165,17 +174,18 @@
                 // echo '</pre>';
                 // exit;
 
+                // LOGEADO
                 //se descifra la contraseña con un algoritmo de desencriptado.
                 if($Correo == $CorreoBD AND $Clave == password_verify($Clave, $Hash[0]['claveCifrada'])){
                     
                     //Se crea la sesion exigida en las páginas de una cuenta de suscriptores           
                     $_SESSION["ID_Suscriptor"] = $ID_Suscriptor;
                     
-                    if($Bandera == 'SinLogin'){// si va a hacer un comentario y esta logeado, bandera creada en 
+                    if($Bandera == 'SinLogin'){// si va a hacer un comentario y esta logeado
                         header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/'.$ID_Noticia.',sinAnuncio,#ContedorComentario'); 
                     }
-                    else if($Bandera == 'responder'){// si va a responder un comentario y no esta logeado
-                        header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/'.$ID_Noticia.',sinAnuncio,#ContedorComentario'); 
+                    else if($Bandera == 'responder'){// si va a responder un comentario y esta logeado
+                        header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/'.$ID_Noticia.',sinAnuncio,#'.$ID_Comentario); 
                     }
                     else{//carga el panel de suscriptores 
                         $Datos = [                            
