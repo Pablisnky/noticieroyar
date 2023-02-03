@@ -1,11 +1,11 @@
-document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
+// document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
 
-document.getElementById("CerrarVentana").addEventListener('click', function(){CerrarModal('VentanaModal')}, false)
+// document.getElementById("CerrarVentana").addEventListener('click', function(){CerrarModal('VentanaModal')}, false)
 //************************************************************************************************
 //Función autoejecuble que muestra la ventana modal automaticmente
-var VentanaModal = (function(){ 
-    setTimeout(function(){mostrarModal();}, 100)
-})();
+// var VentanaModal = (function(){ 
+//     setTimeout(function(){mostrarModal();}, 100)
+// })();
 
 //************************************************************************************************ 
 //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
@@ -44,7 +44,6 @@ var VentanaModal = (function(){
             let current_1 = Tarjeta.parentElement
             let current_2 = current_1.parentElement
             // console.log("Div Padre_2  ", current_2)
-
             
             // console.log("ID_Padre tarjeta click ", current_2.id)
             document.getElementById(current_2.id).style.transform = "rotateY(180deg)" //Gira la tarjeta
@@ -56,6 +55,9 @@ var VentanaModal = (function(){
             if(window.screen.width < 1000){
                 retrasaOcultar_Boton()
             }
+        }
+        else{
+            console.log("Entra en el Else")
         }
     }, false)
         

@@ -192,10 +192,17 @@
                     <div class="cont_panel--imagenSec">
                         <?php
                         foreach($Datos['imagenesNoticiaActualizar'] as $Row) : ?>                   
-                            <div style="margin: 1%">
-                                <div class="cont_edit">
-                                    <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
-                                    <label class="Default_pointer" for="imgInp_3"><span class="material-icons-outlined cont_edit--label">edit</span></label>
+                            <div style="margin: 1%; background-color:yellow">
+                                <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
+                                <div class="cont_edit--dosBotones">
+                                    <!-- EDITAR -->
+                                    <div class="cont_edit--Boton">
+                                        <label class="Default_pointer" for="imgInp_3"><span class="material-icons-outlined">edit</span></label>
+                                    </div>
+                                    <!-- ELIMINAR -->
+                                    <div class="cont_edit--Boton">
+                                        <label class="Default_pointer" for="imgInp_3"><span class="material-icons-outlined">clear</span></label>
+                                    </div>
                                 </div> 
                                 <figure> 
                                     <img class="actualizar_cont--imagen" alt="Fotografia Principal" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenNoticia'];?>"/> 

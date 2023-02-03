@@ -23,6 +23,7 @@
     top: 0%;
     left: 0%;
     height: 85vh !important; 
+    width: 100%;
     backface-visibility: hidden; /*permite mostrar la cara posterior de un elemento*/
 }
 .atras{

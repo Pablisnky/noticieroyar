@@ -1,5 +1,5 @@
 <!-- VENTANA MODAL INICIAL -->
-<?php require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
+<?php //require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
 
 <div class="cont_portada" id="Cont_Portada">
     <?php
@@ -83,13 +83,13 @@
                     <!-- COLECCION 180° -->
                         <?php
                     //Se evala si la noticia tiene una serie de la colecion 180°
-                    foreach($Datos['colecciones'] as $Row_5)   :  
-                        if($Key['ID_Noticia'] == $Row_5['ID_Noticia']){ ?>   
-                            <span class="VerMas_JS Default_pointer cont_portada_giro material-icons-outlined ">switch_left</span>
+                    // foreach($Datos['colecciones'] as $Row_5)   :  
+                        // if($Key['ID_Noticia'] == $Row_5['ID_Noticia']){ ?>   
+                            <!-- <span class="VerMas_JS Default_pointer cont_portada_giro material-icons-outlined ">switch_left</span> -->
                             <?php
-                            break;
-                        }
-                    endforeach;  ?>   
+                            // break;
+                        // }
+                    // endforeach;  ?>   
                 </div>
 
                 <!-- ********************************************************************** -->
@@ -136,6 +136,9 @@
                                     <!-- COLECCION -->
                                     <p class="cont_portada_atras--titulo"><?php echo $Row_7['nombreColeccion']?></p>
                                     
+                                    <!-- AUTOR -->
+                                    <p class="cont_portada_atras--artista"><?php echo $Row_7['artistaColeccion']?></p>
+                                    
                                     <!-- DESCRIPCION -->
                                     <p class="cont_portada_atras--descripcion Default_puntosSuspensivos"><?php echo $Row_7['descripcionColeccion']?></p>
                                     <?php
@@ -145,36 +148,38 @@
                         </div>
                     </div>                  
 
-                    <!-- BOTON DE GIRO 180! -->
+                    <!-- BOTON DE GIRO 180 PARA VOLVER A LA PARTE FRONTAL -->
                     <span class="Cerrar_JS Default_pointer cont_portada_giro cont_portada_giro--atras material-icons-outlined">switch_right</span>
 
                     <!-- MEMBRETE COLECCION 180° -->
                     <div class="cont_portada_atras--coleccion">
-                        <p class="cont_portada_atras--membrete">COLECCIÓN YARACUY EN 180°</p>
-                        <p class="cont_portada_atras--serie">Serie: <?php echo $Row_7['serie']?></p> 
+                        <label  class="cont_portada_atras--serie"><?php echo $Row_7['artistaColeccion']?> </label> 
+                        <label  class="cont_portada_atras--serie"> <?php echo $Row_7['contactoArtista']?></label>
                     </div> 
                 </div>
             </div>
         </div>     
 
-        <!-- BOTONES DEL PANEL FRONTAL -->
+        <!-- BOTONES DEL PANEL FRONTAL -->	
         <div class="cont_portada--botones">
             <div>
-                <span class="material-icons-outlined Default_pointer" onclick="Llamar_NoticiaAnterior('<?php echo $Key['ID_Noticia'];?>')">arrow_back_ios_new</span>
+                <a class="boton boton--altoDosLinneas" href="<?php echo RUTA_URL . '/Contraloria_C';?>">Contraloría social</a>
+                <!-- <span class="material-icons-outlined Default_pointer" onclick="Llamar_NoticiaAnterior('<?php echo $Key['ID_Noticia'];?>')">arrow_back_ios_new</span> -->
             </div>
             <div>
-                <label class="boton boton--corto"><a class="Default_font--white" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
+                <label class="boton boton--altoDosLinneas"><a class="Default_font--white" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
             </div>         
             <div>
-                <span class="material-icons-outlined Default_pointer" onclick="Llamar_NoticiaPosterior('<?php echo $Datos['datosNoticia'][0]['ID_Noticia'];?>')">arrow_forward_ios</span>
+                <a class="boton boton--altoDosLinneas" href="<?php echo RUTA_URL . '/GaleriaArte_C';?>">Galeria de arte regional</a>
+                <!-- <span class="material-icons-outlined Default_pointer" onclick="Llamar_NoticiaPosterior('<?php echo $Datos['datosNoticia'][0]['ID_Noticia'];?>')">arrow_forward_ios</span> -->
             </div>
         </div>         
         <?php
         $Iterador++;
     endforeach;     ?>
 </div>  
+
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_Inicio.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_Inicio.js?v=' . rand();?>"></script>
-<!-- <script src="<?php echo RUTA_URL.'/public/javascript/FullScreem.js?v=' . rand();?>"></script>  -->
 <script src="<?php echo RUTA_URL.'/public/convoca_SW.js';?>"></script>

@@ -33,8 +33,9 @@ html{
     scroll-behavior: smooth; /*da el efecto de movimiento suave al ir a un marcador ancla*/
 }
 body{
+	
 	height: 100%;	
-	margin-bottom: 20%;	
+	/* margin-bottom: 20%; */
     scroll-behavior: smooth; /*da el efecto de movimiento suave al ir a un marcador ancla*/ 
 }
 input[type=text], select, textarea{
@@ -81,10 +82,30 @@ textarea{
 .a_11{
 	text-align: center;
 }
-.a_3A{
-	color: black;
-	font-size: 1.3em;
+.a_3{
+	background-color: rgba(6, 6, 29, 1) !important;
+	color: white !important;
+	border-radius: 10px;
+	text-align: center;
+	display: block; 
 	width: 100%;
+	margin: auto;
+	font-size: 1.1em;
+	padding: 2%;
+	border-color: rgba(6, 6, 29, 1)!important;
+	border-width: 1px;
+	border-style: solid;
+}
+.a_3:hover{
+	cursor: pointer;
+	background-color:rgba(0, 0, 255, 0.1) !important ;
+	color:rgba(6, 6, 29, 1)!important;
+	border-color: rgba(6, 6, 29, 1)!important;
+	border-width: 1px;
+	border-style: solid;
+} 
+.a_3--small{
+	width: 40%;
 }
 .actualizar_cont--label{ 
 	position: relative; 
@@ -126,6 +147,25 @@ textarea{
 	height: 50px;
 	/* visibility: hidden; */
 }
+.boton{
+	background-color: var(--OficialOscuro);
+	width: 190px;
+	height: 30px;
+	line-height: 30px;
+	color: white;
+	display: block;
+	border: none;
+	text-align: center;
+	border-radius: 10px;
+}
+.boton:hover{
+	background-color: var(--OficialClaro);
+	cursor: pointer;
+	color: var(--OficialOscuro);
+	border-color: var(--OficialOscuro);
+	border-width: 1px;
+	border-style: solid;
+}
 .borde{
 	border-color: black;
 	border-width: 1px;
@@ -155,27 +195,116 @@ textarea{
 	border-radius: 15px;
 	text-align: center;
 }
-.boton{
-	background-color: var(--OficialOscuro);
-	width: 190px;
-	height: 30px;
-	line-height: 30px;
-	color: white;
-	display: block;
-	border: none;
+.p_1{
 	text-align: center;
-	border-radius: 10px;
+	font-size: 1.3em;
+	line-height: 40px;
 }
-.boton:hover{
-	background-color: var(--OficialClaro);
-	cursor: pointer;
-	color: var(--OficialOscuro);
-	border-color: var(--OficialOscuro);
-	border-width: 1px;
-	border-style: solid;
+.cont_Artista--main{
+	margin-top: 5%;
+}
+.cont_Artista{
+	margin-top: 2%;
+	width: 100%; 
+}
+.cont_Artista--botones{
+	display: flex; 
+	flex-wrap: wrap; 
+	width: 90%;
+	margin: auto;
+	justify-content: space-around;
+}
+.cont_Artista--img{
+	min-width: 100%; 
+	height: 25vw;
+	width: 20vw;
+	margin: auto;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.cont_Artista--leyenda_1{
+	font-family: 'Moon Dance', cursive;
+	font-size: 1.5em;
+}
+.cont_obras{	
+	background-color: #000000;
+	width: 100%;
+}
+.cont_Contraloria{
+	margin: 8% auto 1% auto;
+	min-height: 100vh;
+}
+.cont_Contraloria--texto{
+	/* margin: 40px auto; */
+}
+.cont_Contraloria--p{
+	width: 70%;
+	margin: auto;
+}
+.cont_Contraloria--botones{
+	display: flex; 
+	justify-content: space-between;
+	width: 30%; 
+	margin: auto;
+	margin-top: 8%;
+}
+.contenedor_26{
+	display: grid;
+	grid-template-columns: 30fr 70fr;
+	margin: auto;
+	margin-top: 3%;
+	width: 90%;
+}
+.contenedor_27{
+	width: 100%;
+}	
+.label_3{/*quienesSomos - inicio*/
+	text-align: center;
+	display: block;
+	width: 100%;
+	font-size:1em;
+}	
+.label_5{
+	color:#040652 ;
+	text-align: center;
+	display: block;
+	font-size: 3em !important;
+	font-weight: bold;
+	font-family: 'Raleway', sans-serif;
+}
+.label_6{
+	font-size: 1.5em !important;
+	font-weight: bold;
+	display: block;
+	text-align: center;
+}
+.li_1{
+	margin-left: 7%;
+	margin-bottom: 1%;
+	font-size: 1.1em;
+	list-style:inside;
 }
  .comandoMenu_2{
 	 display: none;
+ }
+ .cont_contraloriaDenuncias{
+	 display: flex;/*para centrar verticalmente el div hijo*/
+	 align-items: center;/*para centrar verticalmente el div hijo*/
+ }
+ .cont_descripcionArtista{
+	display: flex;
+	background-color: black;
+	position: fixed;
+	top: 0vh;
+	left: 0vh;
+	width: 100%;
+	height: 100vh;
+	margin-left: -100%;
+	transition: 0.5s;
+ }
+ .cont_descripcionArtista--img{
+	height: 100vh;
+	width: 100%;
+	object-fit: contain;
  }
  .contenedor_24{
 	 background-color: var(--OficialClaro);
@@ -198,6 +327,97 @@ textarea{
 	 grid-template-columns: 22% 22% 22% 22%;
 	 column-gap: 1%;/*espacio entre columnas*/
  }
+ .cont_carrito{
+	 background-color: black;
+	 width: 100%;
+	 min-height: 100vh;
+	 position: absolute;
+	 top: 0%;
+	 left: 0%;
+	 z-index: 2;
+	 display: none;
+	 text-align: center;
+ }
+ .cont_carrito--principal{
+	 min-height: 100%;
+	 padding-top: 3%;
+ }
+ .cont_carrito--h1{
+	 color:white; 
+	 font-size: 2em;
+	 font-family: Gruppo !important;
+ }
+ .cont_carrito--flex{
+	 display: flex;
+	 justify-content: center;
+	 margin: auto;
+	 width: 50%;
+	 height: 60vh;
+ }
+ .cont_carrito--div-1{
+	 width: 100%; 
+ }
+ .cont_carrito--img{
+	 height: 100%;
+	 object-fit: contain; 
+	 display: inline;
+ }
+ .cont_carrito--leyenda{
+	 padding-left: 5%;
+	 text-align: left;
+	 font-family: Gruppo !important;
+ }
+ .cont_carrito--boton{
+	 font-size: 1.5em;
+	 font-weight: bold;
+	 font-family: Gruppo;
+	 color:black; 
+	 background-color:orange;
+	 padding: 0.5%;
+	 border-radius: 5px;
+	 cursor: pointer;
+	 width: 200px;
+	 display: inline-block;
+ }
+ .cont_carrito--label{
+	 color: white;
+	 cursor: pointer;
+ }
+ .cont_carrito--MetodoPago{
+	display: flex;
+	justify-content: space-between;
+	text-align: left;
+	width: 25%;
+	margin-left: 37.5%;
+ }
+ .cont_carrito--MetodoPago--items{
+	font-family: Gruppo;
+	text-align: left;
+	/* width: 50%; */
+	margin-bottom: 3%;
+ }
+ .cont_denuncia{
+	margin: 8% auto;
+	width: 70%;
+ }
+ .cont_denuncia--flex{
+	display: flex;
+ }
+ .cont_denuncia--textarea{
+	width: 100%;
+ }
+ .cont_denuncia--imagen{
+	/* width: 100%;  */
+	height: 12vw;
+	margin: auto;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+ }
+ .cont_denuncia--video{
+	/* width: 100%;  */
+	height: 8vw;
+	margin: auto;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+ }
  .contInputRadio{
 	 margin-bottom: 10% !important;
  }
@@ -217,6 +437,104 @@ textarea{
 	margin-left: 5%;
 	margin-top: 2%;
  }
+ .cont_ObraDetalle{
+	width: 100%;
+	height: 100vh;
+ }
+ .cont_ObraDetalle--label{
+	 position: fixed;
+	 right: 8%;
+	 top: 4%;
+	 cursor: pointer
+ }
+ .cont_ObraDetalle--img{
+	 width: 70%; 
+	 height: 100%; 
+	 margin-left: 5%;
+	 padding-top: 1%;
+ }
+.cont_ObraDetalle--cerrar{
+	color: white;
+	position: fixed;
+	right: 2%;
+	top: 2.3%;
+	font-size: 2em;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-radius: 50%;
+	z-index: 2;
+}
+ .imagen_3{
+	 width: 100%;
+	 height: 100%;
+	 object-fit: contain; 
+ }
+ .imagen_11{
+	 width: 60px;
+	 height: 60px;
+	 margin: auto;
+	 cursor: pointer;
+	 object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+ } 
+ .cont_ObraDetalle--leyenda{
+	 position: absolute;
+	 bottom: 6%;
+	 right: 2%;
+	 padding: 0.5% 1%;
+	 border-radius: 15px;
+ }
+ .cont_ObraDetalle--h1{
+	 width: 100%;
+	 color: white;
+	 font-size: 1.6em !important;
+ }
+ .cont_ObraDetalle--p1{
+	 color: white;
+	 font-size: 1em;
+ }
+ .cont_ObraDetalle--iconoLeft{
+	 color: rgba(255, 255, 255, 0.7);
+	 font-size: 2em;
+	 position: fixed;
+	 z-index: 1;
+	 top: 50% !important;
+	 left: 3%;
+	 cursor: pointer;
+ }
+ .cont_ObraDetalle--iconoRight{
+	 color: rgba(255, 255, 255, 0.7);
+	 font-size: 2em;
+	 position: fixed;
+	 z-index: 1;
+	 top: 50% !important;
+	 left: 95%;
+	 cursor: pointer;
+ }
+ .cont_ObraDetalle--miniaturas{/*detallePoncho*/
+	 display: flex; /*Organiza los elementos horizontalmente*/
+	 text-align: center;
+	 width: 50%;
+	 left: 5%;
+	 position: absolute;
+	 bottom: 10pt;
+ }
+ .disponible{
+	 color: white;
+	 position: absolute;
+	 top: 2%;
+	 left: 2%;
+ }
+ .disponible--true{
+	 cursor: pointer;
+ }
+ .cont_miniaturas{
+	 height: 10%; 
+	 width: 60%;
+	 margin: auto;
+	 display: flex;
+ }
  .cont_respuesta--BD{
 	margin-top: 1%; 
 	padding-left: 7%;
@@ -227,34 +545,34 @@ textarea{
 	margin-top: 5%;
  }
  .cont_galeria{
-	 column-count: 3 !important;
-	column-fill: balance ;
-	width: 90%;
+	column-count: 3 !important;
+	column-fill: balance;
+	width: 100%;
+	padding-left: 5%; 
+ }
+ .cont_galeria--obras{
+	width: 100%;
 	margin: auto;
-	margin: auto;
-	margin-left: 7%;
+	padding-top: 2%;
  }
  .cont_galeria_h1{
 	 background-color: rgba(255, 165, 0, 0.7);
 	 position: fixed;
 	 font-size: 2.3em;
 	 text-align: center;
-	 /* margin-top: 5%; */
 	 height: 100vh;
 	 width: 4%;
 	 float: left;	
-	 /* z-index: 20; */
  }
  .cont_Galeria--item{
 	 display: inline-block;
-	 margin: 0 5px 20px;
+	 margin: 0 5px 40px;
 	 padding: 0.5%;
 	 cursor: pointer;
  }
  .cont_Galeria--img{
-	 width: 100%;
-	 height: 100%;
-	 margin-top: 10%;
+	 width: 90%;
+	 height: 90%;
  }
  .cont_modal{
 	 background-color: rgba(0, 0, 0, 0.9);
@@ -574,10 +892,33 @@ textarea{
 	border-color: black;
 	border-width: 1px;
 	border-style: solid;
-	margin-bottom: -40px; /*este margen lo uso para que la imagen se pegue arriba del div, el position relaive deja un espacio en blanco del alto de su height*/
+	margin-bottom: -40px; /*este margen se usa para que la imagen se pegue arriba del div, el position relaive deja un espacio en blanco del alto de su height*/
 }
 .cont_edit--label{
 	font-size: 1.3em;
+}
+.cont_edit--Boton{
+	background-color: white;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 100%; 
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+}
+.cont_edit--dosBotones{
+	position: relative;
+	top: 4%;
+	left: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 30px;
+	margin-bottom: -30px;/*este margen se usa para que la imagen se pegue arriba del div, el position relaive deja un espacio en blanco del alto de su height*/
+	width: 50%;
 }
 .cont_detalle--imagen{
 	margin: auto;
@@ -624,6 +965,12 @@ textarea{
 	text-align: center;
 	font-size: 1em;
 }
+.cont_GaleriaArte--boton{
+	width: 40%;
+}
+.cont_GaleriaArte--boton:hover{
+	cursor: pointer;
+}
 .cont_portada--noticia{
 	width: 30%;
 	margin-bottom: 2%;
@@ -634,7 +981,6 @@ textarea{
 .cont_portada--titular{
 	width: 95%;
 	margin: auto;
-	/* margin-top: 1%; */
 	text-align: center;
 }
 .cont_portada--imagen{
@@ -685,6 +1031,38 @@ textarea{
 	padding-left: 5px;
 	font-weight: bold; 
 	font-size: 1em;
+}
+.denuncias--texto{
+	width: 95%;
+	margin: auto;
+	/* margin-top: 2vh; */
+	padding: 0.5%;
+	text-align: justify;
+}
+.denuncias--detalles{
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+	width: 90%;
+	margin: auto;
+}
+.denuncias--footer{
+	position: absolute;
+	bottom: 0pt;
+	width: 100%;
+	height: 55px;
+	text-align: center;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	padding-top: 1%;
+}
+.denuncia--dias{
+	color:#040652 ;
+	text-align: center;
+	display: block;
+	font-size: 1.5em !important;
+	font-weight: bold;
+	font-family: 'Raleway', sans-serif;
 }
 .detalle_cont{
 	display:flex; 
@@ -771,11 +1149,9 @@ textarea{
 }
 .detalle_cont--redesSociales-facebook{
 	width: 55%;
-	/* margin-left: 20%; */
 }
 .detalle_cont--redesSociales-twitter{
 	width: 100%;
-	/* margin-left: 20%; */
 }
 .detalle_cont--redesSociales-Whatsapp{
 	width: 89%;
@@ -812,7 +1188,7 @@ textarea{
 }
 .detalle_cont--edicion{
 	font-size: 0.8em;
-	color: blue;
+	/* color: blue; */
 }
 .detalle_cont--label{
 	display: block;
@@ -1032,6 +1408,12 @@ textarea{
 	text-align: center;
 	margin-top: 1.5%;
 }
+.cont_portada_atras--artista{
+	font-family: 'Moon Dance', cursive;
+	font-size: 1.7em;
+	/* font-weight: bold; */
+	text-align: center;
+}
 .cont_portada_atras--membrete{	
 	color: white;
 	line-height: 20px;
@@ -1040,6 +1422,8 @@ textarea{
 	font-size: 0.9em;
 	text-align: center;
 	color: white;
+	line-height: 40px;
+	height: 40px;
 }
 .cont_portada_atras--imagen{
 	width: 100%; 
@@ -1058,7 +1442,7 @@ textarea{
 	text-align: center;
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
-	padding-top: 1%;
+	/* padding-top: 1%; */
 }
 .cont_portada_giro--atras{
 	background-color: rgb(255, 255, 255);
@@ -1163,6 +1547,9 @@ textarea{
 .Default_quitarEscritorio{/*no se muestra en escritorio*/
 	display: none;
 }
+.Default_quitarMovil{/*no se muestra en movil*/
+	display: block;
+}
 .Default--textarea--scrol{
 	overflow: initial;
 	overflow-y: scroll;
@@ -1229,7 +1616,7 @@ textarea{
 	font-size: 3em;
 	font-family: Gruppo;
 	display: block;
-	margin-left: 20%;
+	/* margin-left: 10%; */
 }
 .header--nav{
 	margin-left: 10%; 
@@ -1266,7 +1653,7 @@ textarea{
 	display: inline-block !important;
 	margin-left: 25%;
 }
-.menuLi_2{/**/
+.menuLi_2{
 	padding-top: 0%; 
 	display: block !important;
 	/* width: 110% !important; */
@@ -1328,7 +1715,6 @@ textarea{
 	border-radius: 15px;
 }
 .obituario_cont--imagen{
-	/* background-color: yellow; */
 	margin: auto;
 	width: 55%;
 }
@@ -1423,6 +1809,13 @@ textarea{
 	height: 100%;
 	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
+.small_1{
+	display: block;
+	padding-left: 2%;
+	font-size: 0.9em;
+	color: var(--TextoClaro);
+	margin-top: 1%;
+}
 .menuLi_1:hover ~ ul{/*Se aplica un hover a un elemento, seleccionando otro elemento distinto*/
 	background-color: var(--HoverEnlaces);
 	display: inline-block !important;
@@ -1480,24 +1873,25 @@ ul .menuContenedor_3{
     /* transform: translateX(100px); */
 }
 
+/****************************************************/
 /*al pasar el raton por una imagen le hace un efecto zoom*/
-.efectoZoom{
+.efectoZoom{/*colocar al padre*/
   overflow:hidden;
 }
-.efectoZoom:hover .efectoZoom--imagen{
+.efectoZoom:hover .efectoZoom--imagen{/*colocar al hijo (imagen)*/
 	transition:all .5s ease-in-out;
 	-webkit-transform:scale(1.3);
 	transform:scale(1.3);  
-	filter: opacity(.5);
+	/* filter: opacity(.5); */
 } 
-/****************************************************/
 
+/****************************************************/
 /*al pasar el raton por una imagen le hace un efecto de brillo*/
 .efectoBrillo:hover{
-	filter: brightness(115%)
+	filter: brightness(120%)
 }
-/****************************************************/
 
+/****************************************************/
  /* Estilos de barra scroll para motor de renderizado Webkit(Safari) y blink (Chromium, Chrome, Opera, Brave, Vivaldi, Maxthon y Microsoft Edge) -- El motor de renderizado Gecko no utiliza pseudoclases, basta con CSS nativo */
  .cont_noticia--seccion::-webkit-scrollbar {
     height: 7px;
@@ -1509,6 +1903,7 @@ ul .menuContenedor_3{
   .cont_noticia--seccion::-webkit-scrollbar-thumb {
     background-color: #aaa3a3;
 }
+
 /***********************************************************************/
 /* Oculta el boton del video de la pagina de inicio al rotarla tarjeta */
 .BotonPromocion--ocultar{

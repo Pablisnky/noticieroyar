@@ -40,11 +40,7 @@
                         <!-- DESCRIPCION COLECCION -->
                         <label class="cont_panel--label">Descripción</label>
                         <textarea class="textarea--panel" name="descripcion"><?php echo $Datos['coleccionActualizar']['descripcionColeccion'];?></textarea>
-                                                
-                        <!-- NOTICIA ASIGNADA -->
-                        <label class="cont_panel--label">Noticia asignada</label>
-                        <input class="cont_panel--titulo" type="text" name="id_noticia"/>
-                        
+                                                                        
                         <!-- IMAGENES SECUNDARIAS COLECCION-->     
                         <label class="cont_panel--label" style="display: block" for="imgCol_Sec">Imagenes secundarias</label>
                         <input class="" type="file" name="imagenesSecCol[]" multiple="multiple" id="imgCol_Sec" onchange="muestraImgCol_Secun()"/>  

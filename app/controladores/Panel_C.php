@@ -206,6 +206,25 @@
 			$this->vista('header/header_SoloEstilos');
 			$this->vista('view/panel_coleccion_V', $Datos);
 		}
+		
+		//Muestra todos artistas de la galeria de arte
+		public function galeria(){ 
+			//CONSULTA los artistas de la galeria de arte 
+			$Artistas = $this->Panel_M->consultaArtistasPanel();
+
+			$Datos = [
+				'artistas' => $Artistas //ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit;
+		
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/panel_artistas_V', $Datos);
+		}
 
 		//Muestra obituario
 		public function obituario(){ 
@@ -304,6 +323,26 @@
 			$this->vista('view/agregarColeccion_V', $Datos);
 		}
 
+		// muestra formulario para agregar un artista
+		public function agregar_artista(){
+
+			//CONSULTA las categorias de formas arte existente 
+			$FormaArte = $this->Panel_M->consultarFormaArte();
+
+			$Datos = [
+				'forma' => $FormaArte // formaArte
+			]; 
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit;
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/agregarArtista_V', $Datos);
+		}
+
 		// muestra formulario para agregar una noticia
 		public function agregar_noticia(){
 			//CONSULTA las secciones que tienen el periodico
@@ -324,128 +363,6 @@
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
 			$this->vista('header/header_SoloEstilos');
 			$this->vista('view/agregarNoticia_V', $Datos);
-		}
-		
-		// Muestra formulario con la noticia a actualizar
-		public function actualizar_noticia($ID_Noticia){
-			//CONSULTA la noticia a actualizar
-			$NoticiaActualizar = $this->Panel_M->consultarNoticiaActualizar($ID_Noticia);
-
-			//CONSULTA las imagenes de la noticia a actualizar
-			$ImagenesNoticiaActualizar = $this->Panel_M->consultarImagenesNoticiaActualizar($ID_Noticia);
-
-			// CONSULTA las fuentes del periodico
-			$Fuentes = $this->Panel_M->consultarFuentes();
-			
-			// CONSULTA el anuncio publicitario de la noticia
-			$Anuncio = $this->Panel_M->consultarAnuncioEspecifico($ID_Noticia);
-			
-			// CONSULTA el video de la noticia
-			$Video = $this->Panel_M->consultarVideoEspecifico($ID_Noticia);
-			
-			// CONSULTA la coleccion de la noticia
-			$Coleccion = $this->Panel_M->consultarColeccionEspecifico($ID_Noticia);
-
-			$Datos = [
-				'noticiaActualizar' => $NoticiaActualizar, //ID_Noticia, titulo, subtitulo, seccion, fecha, nombre_imagenNoticia, ImagenPrincipal, fuente 
-				'imagenesNoticiaActualizar' => $ImagenesNoticiaActualizar, //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
-				'fuentes' => $Fuentes,
-				'anuncio' => $Anuncio, //ID_Anuncio, nombre_imagenPublicidad
-				'video' => $Video, //ID_Anuncio, nombre_imagenPublicidad
-				'colecciones' => $Coleccion //ID_Coleccion, nombreColeccion
-			];
-
-			// echo '<pre>';
-			// print_r($Datos);
-			// echo '</pre>';
-			// exit();
-
-			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
-			$this->vista('view/actualizarNoticia_V', $Datos);
-		}
-		
-		// Muestra formulario con la efemeride a actualizar
-		public function actualizar_efemeride($ID_Efemeride){
-			//CONSULTA la efemeride a actualizar
-			$EfemerideActualizar = $this->Panel_M->consultarEfemerideActualizar($ID_Efemeride);
-			
-			$Datos = [
-				'efemerideActualizar' => $EfemerideActualizar //titulo, contenido, fecha, nombre_ImagenEfemeride, imagenPrincipalEfemeride
-			];
-
-			// echo '<pre>';
-			// print_r($Datos);
-			// echo '</pre>';
-			// exit();
-
-			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
-			$this->vista('view/actualizarEfemeride_V', $Datos);
-		}
-		
-		// Muestra formulario con el evento a actualizar
-		public function actualizar_agenda($ID_Agenda){
-			//CONSULTA el evento de agenda a actualizar
-			$AgendaActualizar = $this->Panel_M->consultarAgendaActualizar($ID_Agenda);
-			
-			$Datos = [
-				'agendaActualizar' => $AgendaActualizar //ID_Agenda, nombre_imagenAgenda, fechaPublicacion
-			];
-
-			// echo '<pre>';
-			// print_r($Datos);
-			// echo '</pre>';
-			// exit();
-
-			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
-			$this->vista('view/actualizarAgenda_V', $Datos);
-		}
-		
-		// Muestra formulario con la coleccion a actualizar
-		public function actualizar_coleccion($ID_Coleccion){
-			
-			//CONSULTA la coleccion a actualizar
-			$ColeccionActualizar = $this->Panel_M->consultarColeccionActualizar($ID_Coleccion);
-			
-			//CONSULTA las imagenes secundarias de una coleccion a actualizar
-			$ImagenesColeccion = $this->Panel_M->consultarImagenesColeccionActualizar($ID_Coleccion);
-
-			$Series = $this->Panel_M->consultarSeriesColeccion();
-
-			$Datos = [
-				'coleccionActualizar' => $ColeccionActualizar, //ID_Coleccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion, nombre_imColeccion
-				'imagenesSecun' => $ImagenesColeccion, //nombre_imColeccion
-				'series' => $Series 
-			];
-
-			// echo '<pre>';
-			// print_r($Datos);
-			// echo '</pre>';
-			// exit();
-
-			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
-			$this->vista('view/actualizarColeccion_V', $Datos);
-		}
-
-		// Muestra formulario con el anuncio publicitario a actualizar
-		public function actualizar_publicidad($ID_ANUNCIO){
-			$AgendaActualizar = $this->Panel_M->consultarAnuncioActualizar($ID_ANUNCIO);
-			
-			$Datos = [
-				'anuncioctualizar' => $AgendaActualizar //ID_Anuncio, nombre_imagenPublicidad, fechaCulmina AS finfechaPublicacion
-			];
-
-			// echo '<pre>';
-			// print_r($Datos);
-			// echo '</pre>';
-			// exit();
-
-			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
-			$this->vista('view/actualizarAnuncio_V', $Datos);
 		}
 		
 		// recibe formulario que agrega efemeride
@@ -473,10 +390,10 @@
 				$this->Panel_M->InsertarImagenPrincipalEfemeride($ID_Efemeride, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
 
 				//Usar en remoto
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
@@ -612,10 +529,10 @@
 					//exit;
 
 					//Usar en remoto
-					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 					
 					// usar en local
-					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 					
 					//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 					move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
@@ -646,10 +563,10 @@
 						// exit;
 						
                         //Usar en remoto
-                        // $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+                        $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 
                         //usar en local
-                        $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+                        // $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 
                         //Subimos el fichero al servidor
                         move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSec']['name'][$i]);
@@ -663,10 +580,10 @@
 				//EL anuncio ya se inserto previamente individualmene, aqui solo se inserta la relacion del ID_Noticia con el ID_Anuncio
 				if($ID_Anuncio != ""){
 					// //Usar en remoto
-					// // $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 					
 					// // usar en local
-					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 					
 					//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 					move_uploaded_file($_FILES['imagenAnunio']['tmp_name'], $Directorio.$Nombre_imagenAnunio);
@@ -685,17 +602,17 @@
 					// echo "Tamanio_video : " .  $Tamanio_video . '<br>';
 					// exit;
 
+					//Se INSERTA el video de la noticia
+					$this->Panel_M->InsertarVideoNoticia($ID_Noticia, $Nombre_video, $Tamanio_video, $Tipo_video);
+					
 					//Usar en remoto
-					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
+					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
 					
 					// // usar en local
-					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
 					
 					//Se mueve el archivo desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 					move_uploaded_file($_FILES['video']['tmp_name'], $Directorio.$Nombre_video);
-
-					//Se INSERTA el video de la noticia
-					$this->Panel_M->InsertarVideoNoticia($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video);
 				}
 			}				
 			else{
@@ -725,10 +642,10 @@
 				$this->Panel_M->InsertarAgenda($FechaCaducidad, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda);
 				
 				//Usar en remoto
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenAgenda']['tmp_name'], $Directorio.$Nombre_imagenAgenda);
@@ -756,10 +673,10 @@
 				$this->Panel_M->InsertarObituario($difunto, $Nombre_imagenObituario, $Tipo_imagenObituario, $Tamanio_imagenObituario);
 				
 				//Usar en remoto
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/obituario/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/obituario/';
 				
 				// usar en local
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/obituario/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/obituario/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenObituario']['tmp_name'], $Directorio.$Nombre_imagenObituario);
@@ -786,10 +703,10 @@
 				// exit;
 								
 				//Usar en remoto
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
 				
 				// usar en local
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
@@ -822,10 +739,10 @@
 				// exit;
 								
 				//Usar en remoto
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
 				
 				// usar en local
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipalColeccion']['tmp_name'], $Directorio.$Nombre_imagenPrincipalColeccion);
@@ -839,6 +756,204 @@
 
 			header("Location:" . RUTA_URL . "/Panel_C/coleccion");
 			die();
+		}
+		
+		// recibe formulario que agrega un artista 
+		public function recibeArtistaAgregado(){
+			if(isset($_FILES['imagenPerfil']["name"])){
+				$NombreArtista = $_POST['nombreArtista'];
+				$ApellidoArtista = $_POST['apellidoArtista'];
+				$CategoriaArtista = $_POST['categoriaArtista'];
+				$MunicipioArtista = $_POST['municipioArtista'];									
+				$Nombre_imagenPerfil = $_FILES['imagenPerfil']['name'];
+				$Tamanio_imagenPerfil = $_FILES['imagenPerfil']['size'];
+				$Tipo_imagenPerfil = $_FILES['imagenPerfil']['type'];
+
+				// echo "Nombre Artista : " . $NombreArtista . '<br>';
+				// echo "Apellido Artista : " . $ApellidoArtista . '<br>';
+				// echo "Categoria Artista : " . $CategoriaArtista . '<br>';
+				// echo "Municipio Artista : " . $MunicipioArtista . '<br>';
+				// echo "Nombre_imagenPerfil : " . $Nombre_imagenPerfil . '<br>';
+				// echo "Tamanio_imagenPerfil : " .  $Tamanio_imagenPerfil . '<br>';
+				// echo "Tipo_imagenPerfil : " .  $Tipo_imagenPerfil . '<br>';
+				// exit;
+								
+				//Se INSERTA el perfil del artista y se devuelve el ID_Artista
+				$ID_Artista = $this->Panel_M->InsertarArtista($NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil);				
+
+                //Se crea el directorio donde iran las obras del artista
+                $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista;
+
+                if(!file_exists($CarpetaArtista)){
+                    mkdir($CarpetaArtista, 0777, true);
+                }
+				
+                //Se crea el directorio donde iran las fotos de perfil del artista
+                $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil';
+
+				if(!file_exists($CarpetaPerfilArtista)){
+                    mkdir($CarpetaPerfilArtista, 0777, true);
+                }
+				
+				// INSSERTA IMAGEN DE PERFIL EN SERVIDOR
+				//Usar en remoto
+				$DirectorioPerfil = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/'. $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista. '/perfil/';
+
+				// usar en local
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/galeria/Andreina_Zavarce/';
+				
+				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['imagenPerfil']['tmp_name'], $DirectorioPerfil.$Nombre_imagenPerfil);
+			}	
+
+			header("Location:" . RUTA_URL . "/Panel_C/galeria");
+			die();
+		}
+		
+		// Muestra formulario con la noticia a actualizar
+		public function actualizar_noticia($ID_Noticia){
+			//CONSULTA la noticia a actualizar
+			$NoticiaActualizar = $this->Panel_M->consultarNoticiaActualizar($ID_Noticia);
+
+			//CONSULTA las imagenes de la noticia a actualizar
+			$ImagenesNoticiaActualizar = $this->Panel_M->consultarImagenesNoticiaActualizar($ID_Noticia);
+
+			// CONSULTA las fuentes del periodico
+			$Fuentes = $this->Panel_M->consultarFuentes();
+			
+			// CONSULTA el anuncio publicitario de la noticia
+			$Anuncio = $this->Panel_M->consultarAnuncioEspecifico($ID_Noticia);
+			
+			// CONSULTA el video de la noticia
+			$Video = $this->Panel_M->consultarVideoEspecifico($ID_Noticia);
+			
+			// CONSULTA la coleccion de la noticia
+			$Coleccion = $this->Panel_M->consultarColeccionEspecifico($ID_Noticia);
+
+			$Datos = [
+				'noticiaActualizar' => $NoticiaActualizar, //ID_Noticia, titulo, subtitulo, seccion, fecha, nombre_imagenNoticia, ImagenPrincipal, fuente 
+				'imagenesNoticiaActualizar' => $ImagenesNoticiaActualizar, //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
+				'fuentes' => $Fuentes,
+				'anuncio' => $Anuncio, //ID_Anuncio, nombre_imagenPublicidad
+				'video' => $Video, //ID_Anuncio, nombre_imagenPublicidad
+				'colecciones' => $Coleccion //ID_Coleccion, nombreColeccion
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit();
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/actualizarNoticia_V', $Datos);
+		}
+		
+		// Muestra formulario con la efemeride a actualizar
+		public function actualizar_efemeride($ID_Efemeride){
+			//CONSULTA la efemeride a actualizar
+			$EfemerideActualizar = $this->Panel_M->consultarEfemerideActualizar($ID_Efemeride);
+			
+			$Datos = [
+				'efemerideActualizar' => $EfemerideActualizar //titulo, contenido, fecha, nombre_ImagenEfemeride, imagenPrincipalEfemeride
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit();
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/actualizarEfemeride_V', $Datos);
+		}
+		
+		// Muestra formulario con el evento a actualizar
+		public function actualizar_agenda($ID_Agenda){
+			//CONSULTA el evento de agenda a actualizar
+			$AgendaActualizar = $this->Panel_M->consultarAgendaActualizar($ID_Agenda);
+			
+			$Datos = [
+				'agendaActualizar' => $AgendaActualizar //ID_Agenda, nombre_imagenAgenda, fechaPublicacion
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit();
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/actualizarAgenda_V', $Datos);
+		}
+		
+		// Muestra formulario con la coleccion a actualizar
+		public function actualizar_coleccion($ID_Coleccion){
+			
+			//CONSULTA la coleccion a actualizar
+			$ColeccionActualizar = $this->Panel_M->consultarColeccionActualizar($ID_Coleccion);
+			
+			//CONSULTA las imagenes secundarias de una coleccion a actualizar
+			$ImagenesColeccion = $this->Panel_M->consultarImagenesColeccionActualizar($ID_Coleccion);
+
+			$Series = $this->Panel_M->consultarSeriesColeccion();
+
+			$Datos = [
+				'coleccionActualizar' => $ColeccionActualizar, //ID_Coleccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion, nombre_imColeccion
+				'imagenesSecun' => $ImagenesColeccion, //nombre_imColeccion
+				'series' => $Series 
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit();
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/actualizarColeccion_V', $Datos);
+		}
+
+		// Muestra formulario con el artista a actualizar
+		public function actualizar_artista($ID_Artista){
+			
+			//CONSULTA datos del artista a actualizar
+			$ArtistaActualizar = $this->Panel_M->consultarArtistaActualizar($ID_Artista);
+			
+			//CONSULTA las obras del artista a actualizar
+			$ObrasArtista = $this->Panel_M->consultarObrasArtistaActualizar($ID_Artista);
+
+			$Datos = [
+				'artistaActualizar' => $ArtistaActualizar, //ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
+				'ObrasArtista' => $ObrasArtista //nombreObra, imagenObra
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit();
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/actualizarArtista_V', $Datos);
+		}
+		
+		// Muestra formulario con el anuncio publicitario a actualizar
+		public function actualizar_publicidad($ID_ANUNCIO){
+			$AgendaActualizar = $this->Panel_M->consultarAnuncioActualizar($ID_ANUNCIO);
+			
+			$Datos = [
+				'anuncioctualizar' => $AgendaActualizar //ID_Anuncio, nombre_imagenPublicidad, fechaCulmina AS finfechaPublicacion
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit();
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/actualizarAnuncio_V', $Datos);
 		}
 
 		// recibe formulario que actualiza una noticia
@@ -973,10 +1088,10 @@
 				// exit;
 				
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
@@ -1001,10 +1116,10 @@
 					// exit;
 					
 					//Usar en remoto
-					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 
 					//usar en local
-					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 
 					//Subimos el fichero al servidor
 					move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecundarias']['name'][$i]);
@@ -1021,10 +1136,10 @@
 				$ID_Anuncio = $_POST['id_anuncio'];
 				
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
 				// echo "ACTUALIZAR". '<br>';
 				// echo $ID_Noticia . '<br>';
 				// echo $ID_Anuncio;
@@ -1064,20 +1179,18 @@
 				
 				if($ID_Video == 'No existe'){//No existe video para actualizar, entonces se inserta
 					//Se INSERTA el video de la noticia
-					$this->Panel_M->InsertarVideoNoticia($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video);
+					$this->Panel_M->InsertarVideoNoticia($ID_Noticia, $Nombre_video, $Tamanio_video, $Tipo_video);
 				}
 				else{//Se actualiza el video existente
-					echo "ENtra en el ELSE";
-					exit;
 					//Se ACTUALIZA el video de la noticia
-					$this->Panel_M->ActualizarVideo($ID_Noticia, $Nombre_video, $Tipo_video, $Tamanio_video);
+					$this->Panel_M->ActualizarVideo($ID_Noticia, $Nombre_video, $Tamanio_video, $Tipo_video);
 				}
 
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
 								
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['video']['tmp_name'], $Directorio_1.$Nombre_video);
@@ -1090,10 +1203,10 @@
 				$ID_Coleccion = $_POST['id_coleccion'];
 				
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
 				// echo "ACTUALIZAR". '<br>';
 				// echo 'ID_Noticia ' . $ID_Noticia . '<br>';
 				// echo 'ID_Coleccion ' .  $ID_Coleccion;
@@ -1145,10 +1258,10 @@
 				// exit;
 
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenAgenda']['tmp_name'], $Directorio_1.$Nombre_imagenAgenda);
@@ -1185,10 +1298,10 @@
 				// exit;
 
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenAnuncio']['tmp_name'], $Directorio_1.$Nombre_imagen);
@@ -1229,10 +1342,10 @@
 				// exit;
 
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipalColeccion']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipalColeccion);
@@ -1257,10 +1370,10 @@
 					// exit;
 					
 					//Usar en remoto
-					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
+					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
 
 					//usar en local
-					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
+					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
 
 					//Subimos el fichero al servidor
 					move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecCol']['name'][$i]);
@@ -1273,7 +1386,7 @@
 			die();
 		}
 
-		// recibe formulario que actualiza una noticia
+		// recibe formulario que actualiza una efemeride
 		public function recibeEfemerideActualizada(){
 			$ID_Efemeride = $_POST['ID_Efemeride'];
 			$Titulo = $_POST['titulo'];
@@ -1303,10 +1416,10 @@
 				// exit;
 				
 				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 				
 				// usar en local
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
@@ -1314,37 +1427,75 @@
 				//Se ACTUALIZA la imagen principal de la noticia
 				$this->Panel_M->ActualizarImagenEfemeride($ID_imagenEfemeride, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
 			}
-
-		// 	//IMAGENES SECUNDARIAS;
-		// 	if($_FILES['imagenesSecundarias']['name'][0] != ''){
-		// 		$Cantidad = count($_FILES['imagenesSecundarias']['name']);
-		// 		for($i = 0; $i < $Cantidad; $i++){
-		// 			//nombre original del fichero en la máquina cliente.
-		// 			$Nombre_imagenSecundaria = $_FILES['imagenesSecundarias']['name'][$i];
-		// 			$Ruta_Temporal_imagenSecundaria = $_FILES['imagenesSecundarias']['tmp_name'][$i];
-		// 			$tipo_imagenSecundaria = $_FILES['imagenesSecundarias']['type'][$i];
-		// 			$tamanio_imagenSecundaria = $_FILES['imagenesSecundarias']['size'][$i];
-		// 			// echo "Nombre_imagen : " . $Nombre_imagenSecundaria . '<br>';
-		// 			// echo "Tipo_imagen : " .  $Ruta_Temporal_imagenSecundaria . '<br>';
-		// 			// echo "Tamanio_imagen : " .  $tipo_imagenSecundaria . '<br>';
-		// 			// echo "Tamanio_imagen : " .  $tamanio_imagenSecundaria . '<br>';
-		// 			// exit;
-					
-		// 			//Usar en remoto
-					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
-
-		// 			//usar en local
-					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
-
-		// 			//Subimos el fichero al servidor
-		// 			move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecundarias']['name'][$i]);
-
-		// 			//Se INSERTAR nuevas imagenes secundarias de la noticia
-		// 			$this->Panel_M->insertarFotografiasSecun($ID_Noticia, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria);
-		// 		}
-		// 	}
 			
 			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
+			die();
+		}
+
+		// recibe formulario que actualiza el perfil de un artista y sus obras
+		public function recibeArtistaActualizado(){
+			$ID_Artista = $_POST['id_artista'];
+			$NombreArtista = $_POST['nombreArtista'];
+			$ApellidoArtista = $_POST['apellidoArtista'];
+			$CategoriaArtista = $_POST['categoriaArtista']; 	
+			$MunicipioArtista = $_POST['municipioArtista']; 
+
+			$Nombre_imagenPerfil = $_FILES['imagenPerfil']['name'];
+			$Tamanio_imagenPerfil = $_FILES['imagenPerfil']['size'];
+			$Tipo_imagenPerfil = $_FILES['imagenPerfil']['type'];
+
+			// echo "ID_Artista: " . $ID_Artista . '<br>';
+			// echo "NombreArtista: " . $NombreArtista . '<br>';
+			// echo "ApellidoArtista: " . $ApellidoArtista . '<br>';
+			// echo "CategoriaArtista : " . $CategoriaArtista . '<br>';
+			// echo "MunicipioArtista : " . $MunicipioArtista . '<br>';
+			// echo "Nombre_imagenPerfil: " . $Nombre_imagenPerfil . '<br>';
+			// echo "Tamanio_imagenPerfil: " .  $Tamanio_imagenPerfil . '<br>';
+			// echo "Tipo_imagenPerfil: " .  $Tipo_imagenPerfil . '<br>';
+			// exit;
+				
+			//Se ACTUALIZA el perfil del artista seleccionado
+			$this->Panel_M->ActualizarArtista($ID_Artista, $NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil);
+							
+			//Usar en remoto
+			$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
+			
+			// usar en local
+			// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
+			
+			//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+			move_uploaded_file($_FILES['imagenPerfil']['tmp_name'], $Directorio_1.$Nombre_imagenPerfil);
+			
+			//RECIBE IMAGENES OBRAS SOLO SI SE HA PRESIONADO EL BOTON DE AGRAGAR OBRA
+			if($_FILES['imagenesObras']['name'][0] != ''){
+				$Cantidad = count($_FILES['imagenesObras']['name']);
+				for($i = 0; $i < $Cantidad; $i++){
+					//nombre original del fichero en la máquina cliente.
+					$Nombre_imageneObra = $_FILES['imagenesObras']['name'][$i];
+					$Ruta_Temporal_imageneObra = $_FILES['imagenesObras']['tmp_name'][$i];
+					$tipo_imageneObra = $_FILES['imagenesObras']['type'][$i];
+					$tamanio_imageneObra = $_FILES['imagenesObras']['size'][$i];
+					// echo "Nombre_imageneObra: " . $Nombre_imageneObra . '<br>';
+					// echo "Tipo_imageneObra: " .  $Ruta_Temporal_imageneObra . '<br>';
+					// echo "Tamanio_imageneObra: " .  $tipo_imageneObra . '<br>';
+					// echo "Tamanio_imageneObra: " .  $tamanio_imageneObra . '<br>';
+					// exit;
+					
+					//Usar en remoto
+					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/';
+
+					//usar en local
+					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
+
+					//Subimos el fichero al servidor
+					move_uploaded_file($Ruta_Temporal_imageneObra, $directorio_3.$_FILES['imagenesObras']['name'][$i]);
+
+					//Se INSERTAN nuevas obras
+					$this->Panel_M->insertarObra($ID_Artista, $Nombre_imageneObra, $tamanio_imageneObra, $tipo_imageneObra);
+				}
+			}
+
+			header("Location:" . RUTA_URL . "/Panel_C/galeria");
 			die();
 		}
 		
@@ -1352,7 +1503,8 @@
 		public function eliminar_noticia($ID_Noticia){
 			
 			$this->Panel_M->eliminarNoticia($ID_Noticia);			
-			$this->Panel_M->eliminarImagenesNoticia($ID_Noticia);
+			$this->Panel_M->eliminarImagenesNoticia($ID_Noticia);	
+			$this->Panel_M->eliminarVideoNoticia($ID_Noticia);
 
 			header("Location:" . RUTA_URL . "/Panel_C/Not_Generales");
 			die();
@@ -1400,6 +1552,15 @@
 			$this->Panel_M->eliminarObituario($ID_Obituario);			
 
 			header("Location:" . RUTA_URL . "/Panel_C/obituario");
+			die();
+		}
+		
+		//Eliminar artista
+		public function eliminar_Artista($ID_Artista){
+
+			$this->Panel_M->eliminarArtista($ID_Artista);			
+
+			header("Location:" . RUTA_URL . "/Panel_C/galeria");
 			die();
 		}
 	}

@@ -152,10 +152,10 @@
 
         public function recibeComentario($ID_Noticia, $Comentario){	
 
-			echo $ID_Noticia . '<br>';
-			echo $_SESSION["ID_Suscriptor"] . '<br>';
-			echo $Comentario . '<br>';
-			exit;
+			// echo $ID_Noticia . '<br>';
+			// echo $_SESSION["ID_Suscriptor"] . '<br>';
+			// echo $Comentario . '<br>';
+			// exit;
           
             //Se INSERTA el comentario de la noticia y se retorna su ID
             $ID_Comentario = $this->ConsultaNoticia_M->insertarComentario($ID_Noticia, $_SESSION["ID_Suscriptor"], $Comentario);

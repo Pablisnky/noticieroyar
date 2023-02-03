@@ -11,7 +11,7 @@
             type: 'bar'
         },
         title: {
-            text: 'Servicios más denunciados en el Municipio San Felipe edo. Yaracuy',
+            text: 'Servicios más reportados en el Municipio San Felipe edo. Yaracuy',
             style:{
                    color: 'rgba(6, 6, 29, 0.9)',
                    fontSize: '16px'
@@ -25,16 +25,16 @@
             } 
         },
         xAxis: {
-            categories: ['Agua potable', 'Hospital Central','Escuela Republica Nicaragua','Aguas servidas','Teatro Andres Bello']
+            categories: ['Agua potable', 'Salud','Aseo urbano','Aguas servidas','Transporte urbano']
         },
         yAxis: {
             title: {
-                text: 'Denuncias'
+                text: 'Reportes'
             }
         },
         series: [ {showInLegend: false,
             name: '',
-            data: [5, 7, 12, 26, 8]
+            data: [10, 5, 3, 7, 3]
         }],
     });
 });

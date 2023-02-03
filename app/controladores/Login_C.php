@@ -17,6 +17,7 @@
             $DatosAgrupados = explode(',', $DatosAgrupados);
             $ID_Noticia = $DatosAgrupados[0];
             $Bandera = $DatosAgrupados[1];
+
             $ID_Comentario = !empty($DatosAgrupados[2]) ? $DatosAgrupados[2]: 'NoAplica';
             
             // echo "ID_Noticia =" .  $ID_Noticia ."<br>";
@@ -86,6 +87,23 @@
                 $Datos=[
                     'id_noticia' => $ID_Noticia,
                     'id_comentario' => $ID_Comentario,
+                    'bandera' => $Bandera
+                ];
+
+                // echo "<pre>";
+                // print_r($Datos);
+                // echo "</pre>";          
+                // exit();
+                
+                //carga la vista login_V en formulario login
+                $this->vista("header/header_noticia");
+                $this->vista("view/login_V", $Datos);
+            }   
+            else if($Bandera == 'denuncia'){//Bamdera creada en COntraloria_C/VerificaLogin Entra cuando se desea realizar una denuncia
+                
+                $Datos=[
+                    'id_noticia' => 'NoAPlica',
+                    'id_comentario' => 'NoAPlica',
                     'bandera' => $Bandera
                 ];
 
@@ -186,6 +204,9 @@
                     }
                     else if($Bandera == 'responder'){// si va a responder un comentario y esta logeado
                         header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/'.$ID_Noticia.',sinAnuncio,#'.$ID_Comentario); 
+                    }
+                    else if($Bandera == 'denuncia'){// si va a realizar una denuncia
+                        header('Location:'. RUTA_URL . '/Contraloria_C/denuncias'); 
                     }
                     else{//carga el panel de suscriptores 
                         $Datos = [                            

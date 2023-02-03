@@ -38,7 +38,7 @@
 		<link rel="manifest" href="<?php echo RUTA_URL;?>/public/manifest.json"/>
 		
 		<!-- CDN FUENTES DE GOOGLE-->
-        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo'>
+        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo|Moon+Dance'>
 
 		<!-- CDN ICONOS DE GOOGLE -->
 		<link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet"/>
@@ -63,6 +63,9 @@
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Publicidad_C';?>" rel="noopener noreferrer">Publicidad</a></li> <!-- Directorio comercial -->
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Obituario_C';?>" rel="noopener noreferrer">Obituario</a></li>
 							<li><a class="header__li--Enlaces" href="https://yaracultura.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog Yaracultura</a></li>
+							<hr>
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Contraloria_C';?>" rel="noopener noreferrer">Contraloría social</a></li>
+                			<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/GaleriaArte_C';?>">Galeria de arte regional</a></li>
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/NA,NA';?>" rel="noopener noreferrer">Abrir sesión</a></li>
 
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Menu_C/afiliacion';?>" rel="noopener noreferrer">Suscribirse</a></li>
@@ -74,7 +77,6 @@
 							<!-- <hr> -->
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Galeria de arte</a></li>
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Contacto_C';?>" rel="noopener noreferrer">Contacto</a></li>
-							<!-- <hr> -->
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">Nuestro ADN</a></li>
 							<li class="Default_ocultar"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/CE';?>" rel="noopener noreferrer">LOGOS REDES SOCIALES</a></li>
 						</ul>
@@ -96,20 +98,19 @@
 			}	?>
 			
 			<!-- BOTON VIDEO PROMOCIONAL SAN FELIPE -->
-			<div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
-				<span class="material-icons-outlined" style="width: 30px">play_circle</span>
-				<label class="Default_pointer" >Ciudad<br class="Default_quitarEscritorio"> San Felipe </label>
-			</div>
-			<div class="con_portada--promocion" id="Miimagen">
-				<!-- VIDEO PROMOCIONAL SAN FELIPE -->	
+			<!-- <div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
+				<span class="material-icons-outlined" style="width: 30px" id="CerrarVentana">play_circle</span>
+				<label class="Default_pointer" >Calle<br class="Default_quitarEscritorio"> Los Gaiteros </label>
+			</div> -->
+			<!-- VIDEO PROMOCIONAL SAN FELIPE -->	
+			<!-- <div class="con_portada--promocion" id="Miimagen">
 				<div id="Promocion">
 					<span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="Cerrar--modal" onclick="pausar()">cancel</span>
-					<!-- <span class="material-icons-outlined publicidad_cont--full Default_pointer" id="Abrir">open_in_full</span> -->
 					<div>
-						<video class="con_portada--video" id="VideoPromocion" src="<?php echo RUTA_URL?>/public/video/San-Felipe-promocion.mp4" controls loop ></video> 
+						<video class="con_portada--video" id="VideoPromocion" src="<?php echo RUTA_URL?>/public/video/Calle_Los_Gaiteros.mp4" controls loop ></video> 
 					</div>
 				</div>
-			</div>
+			</div>  -->
 		</header>
 		
 		<!-- MEMBRETE DESPLAZANTE -->
