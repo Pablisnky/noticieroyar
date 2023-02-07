@@ -4,6 +4,10 @@
         public function __construct(){ 
             parent::__construct();  
         }
+        
+// ********************************************************************************************************
+// SELECT 
+// ********************************************************************************************************
 
         public function consultarSuscriptores($Correo){
             $stmt = $this->dbh->prepare(
@@ -36,6 +40,22 @@
             }
         } 
         
+        public function consultarCodigoAleatorio($Correo, $CodigoUsuario){
+            $stmt = $this->dbh->prepare(
+                "SELECT codigoAleatorio
+                FROM codigorecuperacion    
+                WHERE correo = :CORREO" );
+
+            $stmt->bindParam(':CORREO', $Correo, PDO::PARAM_INT);
+            
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return 'Existe un fallo en la consulta consultarContrasena()'; 
+            }
+        } 
+        
         public function DatosSuscriptor($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
                 "SELECT nombreSuscriptor, apellidoSuscriptor
@@ -45,6 +65,21 @@
             
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        public function consultarSuscriptor($Correo){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Suscriptor 
+                FROM suscriptores  
+                WHERE correoSuscriptor = :CORREO");
+            $stmt->bindValue(':CORREO', $Correo, PDO::PARAM_STR);
+            
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
             }
             else{
                 return false;
@@ -94,6 +129,69 @@
             }
             else{
                 return 'Existe un fallo en la consulta InsertarSuscripcion()';
+            }
+        }
+        
+        // INSERTA codigo de verificacion para recuperar contraseña
+        public function insertarCodigoAleatorio($Correo, $Aleatorio){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO codigorecuperacion(correo, codigoAleatorio, fechaSolicitud, horaSolicitud) 
+                VALUES (:CORREO, :ALEATORIO, CURDATE(), CURTIME())"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':CORREO', $Correo, PDO::PARAM_STR);
+            $stmt->bindParam(':ALEATORIO', $Aleatorio, PDO::PARAM_INT);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return 'Existe un fallo en la consulta InsertarSuscripcion()';
+            }
+        }
+
+// ********************************************************************************************************
+// UPDATE 
+// ********************************************************************************************************
+
+        public function actualizarcodigoVerificado($CodigoUsuario){
+            $stmt = $this->dbh->prepare(
+                "UPDATE codigorecuperacion 
+                SET codigoVerificado = 1 
+                WHERE codigoAleatorio = :ALEATORIO"
+            );
+            
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindValue(':ALEATORIO', $CodigoUsuario);
+
+            // Se ejecuta la actualización de los datos en la tabla
+            if($stmt->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        
+        public function actualizarClaveSuscriptor($ID_Suscriptor, $ClaveCifrada){
+            $stmt = $this->dbh->prepare(
+                "UPDATE suscriptorespasword 
+                SET claveCifrada = :CLAVE_CIFRADA 
+                WHERE ID_Suscriptor = :ID_SUSCRIPTOR")
+            ;
+           
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor['ID_Suscriptor']);
+            $stmt->bindParam(':CLAVE_CIFRADA', $ClaveCifrada);
+
+            // Se ejecuta la actualización de los datos en la tabla
+            if($stmt->execute()){
+                return true;
+            }
+            else{
+                return false;
             }
         }
     }           

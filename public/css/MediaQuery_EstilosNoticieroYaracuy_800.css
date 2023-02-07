@@ -39,6 +39,37 @@
 		font-size: 0.9em;	
 		width: 90%;
 	}
+	.cont_reportes{
+	   width: 98%;
+	   margin: 10% auto;
+	}
+	.cont_denuncia{
+		margin: 25% auto;
+		width: 100%;
+	 }
+	 .cont_denuncia--flex{
+		display: initial;
+	 }
+	 .cont_denuncia--img{
+		width: 90%;
+	 }
+	 .cont_denuncia--imagen{
+		height: 50vw;
+	 }
+	 .cont_denuncia--contenido{
+		width: 100%;
+	 }
+	 .cont_denuncia--label{
+		margin-top: 5%;
+	 }
+	 .cont_denuncia--botonSubmit{
+		 margin: 15% auto 3% auto;
+	 }
+	 .p_1{
+		text-align: justify;
+		 font-size: 1.2em;
+		 line-height: 30px;
+	 }
 	.cont_detalle{
 		width: 100%;
 	}
@@ -85,6 +116,17 @@
 	.cont_comentariosGuardados{
 		margin-top: 10%;
 		width: 95%;
+		margin: auto;
+	}	
+	.cont_Contraloria{
+		margin: 25% auto 1% auto;
+	}
+	.cont_Contraloria--texto{
+		margin: 20% auto;
+		padding: 0% 4%;
+	}
+	.cont_Contraloria--botones{
+		width: 100%; 
 		margin: auto;
 	}
 	.header{	

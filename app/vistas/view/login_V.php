@@ -1,9 +1,21 @@
 <?php
     //Se añade la clase cuando se viene desde una noticia a la que se desea hacer un comentario
-    if($Datos){ ?>
+    if(($Datos['bandera'] == 'responder')){ ?>
         <style>
             .detalle_cont--comentario{
                 background-color: var(--FondoDivModal); 
+                position: fixed; 
+                top: 0%;
+                left: 0%;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <?php
+    }
+    else{   ?>
+        <style>
+            .detalle_cont--comentario{
                 position: fixed; 
                 top: 0%;
                 left: 0%;
@@ -33,7 +45,7 @@
                     </div> 
                     
                     <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
-                    <div class="login_cont--botonSubmit">
+                    <div class="contBoton">
                             <?php
                         if($Datos){   ?>
                             <input class="Default_ocultar" type="text" name="bandera" value="<?php echo $Datos['bandera']?>"/>
@@ -41,7 +53,7 @@
                             <input class="Default_ocultar" type="text" name="id_comentario" value="<?php echo $Datos['id_comentario']?>"/>
                             <?php
                         }   ?>
-                        <input class="boton boton--largo" type="submit" value="Entrar"/>
+                        <input class="boton" type="submit" value="Entrar"/>
                     </div>
                 </div>
             </fieldset>  
@@ -59,10 +71,10 @@
     <div class="Default_ocultar" id="Contenedor_43"">
         <?php 
             $Datos = '';
-            require(RUTA_APP . "/vistas/modal/modal_recuperarCorreo.php"); 
+            require(RUTA_APP . "/vistas/modal/modal_recuperarCorreo_V.php"); 
         ?>
     </div>
 </section>
 		
-<script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_Login.js?v='. rand();?>"></script>

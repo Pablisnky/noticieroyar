@@ -234,7 +234,7 @@ textarea{
 	min-height: 100vh;
 }
 .cont_Contraloria--texto{
-	/* margin: 40px auto; */
+	padding: 2%;
 }
 .cont_Contraloria--p{
 	width: 70%;
@@ -246,6 +246,11 @@ textarea{
 	width: 30%; 
 	margin: auto;
 	margin-top: 8%;
+}
+.cont_contraloriaDenuncias{
+	display: flex;/*para centrar verticalmente el div hijo*/
+	align-items: center;/*para centrar verticalmente el div hijo*/
+	margin-top: 3%;
 }
 .contenedor_26{
 	display: grid;
@@ -285,10 +290,6 @@ textarea{
 }
  .comandoMenu_2{
 	 display: none;
- }
- .cont_contraloriaDenuncias{
-	 display: flex;/*para centrar verticalmente el div hijo*/
-	 align-items: center;/*para centrar verticalmente el div hijo*/
  }
  .cont_descripcionArtista{
 	display: flex;
@@ -406,6 +407,12 @@ textarea{
  .cont_denuncia--textarea{
 	width: 100%;
  }
+ .cont_denuncia--img{
+	width: 30%;
+ }
+ .cont_denuncia--contenido{
+	width: 70%;
+ }
  .cont_denuncia--imagen{
 	/* width: 100%;  */
 	height: 12vw;
@@ -417,6 +424,11 @@ textarea{
 	height: 8vw;
 	margin: auto;
 	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+ }
+ .cont_denuncia--botonSubmit{
+	 width: 40%;
+	 margin: 5% auto 3% auto;
+	 text-align: center;
  }
  .contInputRadio{
 	 margin-bottom: 10% !important;
@@ -780,6 +792,15 @@ textarea{
 	justify-content: space-around;
 	width: 100%;
  }
+ .cont_reportes{
+	/* background-color: yellow; */
+	width: 30%;
+	margin-bottom: 5%;
+ }
+ .cont_reportes--leyenda{
+	/* background-color: black; */
+	margin-top: 5%;
+ }
  .imagen--obituario{
 	/* max-width: 30%;  */
 	/* height: 17vw; */
@@ -938,8 +959,17 @@ textarea{
 	width: 50px;
 	height: 40px;
 }
-.cont_efemerides{
-	
+.cont_efemeride{
+	display: block;
+    width: 80%;
+	margin: auto;
+	min-height: 100vh;
+	padding-bottom: 0%;
+}
+.cont_efemeride--br{
+	margin-bottom: 1%;
+}
+.cont_efemerides{	
 	display: block;
     width: 80%;
 	margin: auto;
@@ -961,9 +991,9 @@ textarea{
 	font-size: 0.9em;
 }
 .h2--efemerides{
-	margin: auto;
+	margin: 3% auto 1% auto;
 	text-align: center;
-	font-size: 1em;
+	font-size: 1.5em;
 }
 .cont_GaleriaArte--boton{
 	width: 40%;
@@ -980,7 +1010,7 @@ textarea{
 }
 .cont_portada--titular{
 	width: 95%;
-	margin: auto;
+	margin: 1% auto;
 	text-align: center;
 }
 .cont_portada--imagen{
@@ -1043,8 +1073,12 @@ textarea{
 	display: flex;
 	justify-content: space-between;
 	text-align: center;
-	width: 90%;
+	width: 98%;
 	margin: auto;
+}
+.denuncias--detalles--p{
+	font-size: 0.9em;
+	margin-bottom: 3%;
 }
 .denuncias--footer{
 	position: absolute;
@@ -1060,7 +1094,7 @@ textarea{
 	color:#040652 ;
 	text-align: center;
 	display: block;
-	font-size: 1.5em !important;
+	font-size: 1.2em !important;
 	font-weight: bold;
 	font-family: 'Raleway', sans-serif;
 }
@@ -1245,6 +1279,9 @@ textarea{
 	width: 40%;
 	margin: auto;
 }
+.hr_1{
+	margin: 5% 0%;
+}
 .textarea--titulo{
 	height: 50px;
 }
@@ -1285,6 +1322,7 @@ textarea{
 .textarea--font{
 	border: none;
 	font-size: 1.4em; 
+	padding-bottom: 5%;
 }
 .detalle_cont--divFijo{
 	background-color: white;
@@ -1328,12 +1366,12 @@ textarea{
 .login_cont--select{
 	height: 30px;
 	width: 47%;
-
 }
-.login_cont--botonSubmit{
+.contBoton{
 	width: 40%;
 	margin: 8% auto 3% auto;
-	text-align: center;
+	display: flex;
+	justify-content: center;
 }
 .login_cont--recuperarClave{
 	width: 40%;
@@ -1521,6 +1559,7 @@ textarea{
 }
 .comentario--informacion{
 	/* margin-top: -2%; */
+	
 }
 .Default_font--white{
 	color: white;
@@ -1609,7 +1648,7 @@ textarea{
 	/*flex-grow: 1;distribuye proporcionalmente los elementos internos en el eje horizontal, es necesario que el elemento padre tenga la propiedad display con el valor flex*/
 }
 .header--menu{	
-	font-size: 2.5em !important;
+	width: 2.5em;
 	cursor: pointer;
 }
 .header__titulo{
@@ -1673,12 +1712,20 @@ textarea{
 .sectionModal{
 	background-color: var(--FondoDivModal);
 	position: fixed;
-	top: 0;
-	left: 0;
+	top: 0%;
+	left: 0%;
 	width: 100%;
 	min-height: 400%;
-	z-index: 15;
+	z-index: 35;
 	padding-top: 1%;
+}
+.sectionModal__div{
+	background-color: var(--OficialClaro);
+	margin: 10% auto;
+	width: 50%;
+	text-align: center;
+	border-radius: 15px;
+	padding: 2%;
 }
 .tapa-logo{
 	display: block;
@@ -1937,3 +1984,4 @@ ul .menuContenedor_3{
     opacity: 1;
   }
 }
+/***********************************************************************/

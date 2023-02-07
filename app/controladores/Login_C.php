@@ -65,7 +65,7 @@
                 $this->vista("header/header_noticia");
                 $this->vista("view/login_Vrecord", $Datos);
             }
-            else if($Bandera == 'SinLogin'){//Entra cuando viene de una noticia y desea hacer comentario
+            else if($Bandera == 'SinLogin' || $Bandera == 'panelSuscriptor'){//Entra cuando viene de una noticia y desea hacer comentario o cambio de contraseña
                 
                 $Datos=[
                     'id_noticia' => $ID_Noticia,
@@ -99,7 +99,7 @@
                 $this->vista("header/header_noticia");
                 $this->vista("view/login_V", $Datos);
             }   
-            else if($Bandera == 'denuncia'){//Bamdera creada en COntraloria_C/VerificaLogin Entra cuando se desea realizar una denuncia
+            else if($Bandera == 'denuncia'){//Bamdera creada en Contraloria_C/VerificaLogin Entra cuando se desea realizar una denuncia
                 
                 $Datos=[
                     'id_noticia' => 'NoAPlica',
@@ -116,7 +116,7 @@
                 $this->vista("header/header_noticia");
                 $this->vista("view/login_V", $Datos);
             }
-            else{//Enra cuando inicia sesion desde el menu hamburguesa
+            else{//Enra cuando inicia sesion desde el menu hamburguesa 
                 //carga la vista login_V en formulario login
                 $this->vista("header/header_noticia");
                 $this->vista("view/login_V");
@@ -208,7 +208,10 @@
                     else if($Bandera == 'denuncia'){// si va a realizar una denuncia
                         header('Location:'. RUTA_URL . '/Contraloria_C/denuncias'); 
                     }
-                    else{//carga el panel de suscriptores 
+                    else if($Bandera == 'panelSuscriptor'){// si va a realizar una denuncia
+                    //     header('Location:'. RUTA_URL . '/Contraloria_C'); 
+                    // }
+                    // else{//carga el panel de suscriptores  NoAplica
                         $Datos = [                            
                             'nombre' => $Nombre,
                             'apellido' => $Apellido
@@ -240,17 +243,17 @@
             //generamos un número aleatorio
             $Aleatorio = mt_rand(100000,999999); 
                     
-            //Se INSERTA el código aleatorio en la tabla "codigo-recuperacion para asociarlo al correo del usuario
+            //Se INSERTA el código aleatorio en la tabla "codigo-recuperacion" para asociarlo al correo del usuario
             $this->ConsultaLogin_M->insertarCodigoAleatorio($Correo, $Aleatorio);
             
             //Se envia correo al usuario informandole el código que debe insertar para verificar
             $email_to = $Correo;
             $email_subject = 'Recuperación de contraseña';  
             $email_message = 'Código de recuperación de contraseña: ' . $Aleatorio;
-            $headers = 'From: PedidoRemoto<administrador@pedidoremoto.com>';
+            $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
             // $headers .= '\r\n X-Mailer: PHP/' . phpversion();
         
-            @mail($email_to, $email_subject, $email_message, $headers);
+            // @mail($email_to, $email_subject, $email_message, $headers);
             
             $Datos = [
                 'correo' => $Correo,
@@ -262,7 +265,7 @@
             // echo '</pre>';
             // exit;
 
-            $this->vista('header/header_Modal', $Datos); 
+            $this->vista('header/header_SoloEstilos'); 
             $this->vista('modal/modal_recuperarCorreo_V', $Datos); 
         }
 
@@ -304,7 +307,7 @@
                     'bandera' => 'verificado'
                 ];
 
-                $this->vista("header/header_Modal", $Datos); 
+                $this->vista("header/header_SoloEstilos", $Datos); 
                 $this->vista("modal/modal_recuperarCorreo_V", $Datos); 
             }
         }
@@ -323,16 +326,20 @@
                 //se cifra la contraseña con un algoritmo de encriptación
                 $ClaveCifrada = password_hash($ClaveNueva, PASSWORD_DEFAULT);
                 // echo "Clave cifrada= " . $ClaveCifrada . "<br>";
+                // exit;
                 
-                //Se consulta el ID_Participante correspondiente al corrreo en las cuentas de Comerciante, despachador, mayorista y vendedor
-                $ID_SuscriptorCom = $this->ConsultaLogin_M->consultarAfiliadosCom($Correo);
-                $ID_SuscriptorMay = $this->ConsultaLogin_M->consultarAfiliadosMay($Correo);
-                $ID_SuscriptorVen = $this->ConsultaLogin_M->consultarAfiliadosVen($Correo);
-                $ID_SuscriptorDes = $this->ConsultaLogin_M->consultarAfiliadosDes($Correo);
+                //Se consulta el ID_Suscriptor correspondiente al correo 
+                $ID_Suscriptor = $this->ConsultaLogin_M->consultarSuscriptor($Correo);
+                // echo "<pre>";
+                // print_r($ID_Suscriptor);
+                // echo "</pre>";          
 
-                if($ID_SuscriptorCom != Array()){
+                // echo 'ID_Suscriptor' . $ID_Suscriptor['ID_Suscriptor'];
+                // exit();
+
+                if($ID_Suscriptor != Array()){
                     //Se actualiza en la base de datos la clave del usuario
-                    $this->ConsultaLogin_M->actualizarClaveCom($ID_SuscriptorCom, $ClaveCifrada);
+                    $this->ConsultaLogin_M->actualizarClaveSuscriptor($ID_Suscriptor, $ClaveCifrada);
 
                     //Se destruyen las cookies que recuerdan la contraseña antigua, creadas en validarSesion.php
                     // echo "Cookie_usuario= " . $_COOKIE["id_usuario"] . "<br>";
@@ -341,56 +348,7 @@
                     // setcookie("id_usuario",'',time()-100);
                     // setcookie("clave",'',time()-100);
                     
-                    $this->vista('header/header_Modal'); 
-                    $this->vista('modal/modal_recuperarCorreo_V'); 
-                }
-                else if($ID_SuscriptorMay != Array()){
-                    //Se actualiza en la base de datos la clave del usuario
-                    $this->ConsultaLogin_M->actualizarClaveMay($ID_SuscriptorMay, $ClaveCifrada);
-
-                    //Se destruyen las cookies que recuerdan la contraseña antigua, creadas en validarSesion.php
-                    // echo "Cookie_usuario= " . $_COOKIE["id_usuario"] . "<br>";
-                    // echo "Cookie_clave= " . $_COOKIE["clave"] . "<br>";
-
-                    // setcookie("id_usuario",'',time()-100);
-                    // setcookie("clave",'',time()-100);
-                    
-                    $this->vista('header/header_Modal'); 
-                    $this->vista('modal/modal_recuperarCorreo_V'); 
-                }
-                else if($ID_SuscriptorVen != Array()){
-                    //Se actualiza en la base de datos la clave del usuario
-                    $this->ConsultaLogin_M->actualizarClaveVen($ID_SuscriptorVen, $ClaveCifrada);
-
-                    //Se destruyen las cookies que recuerdan la contraseña antigua, creadas en validarSesion.php
-                    // echo "Cookie_usuario= " . $_COOKIE["id_usuario"] . "<br>";
-                    // echo "Cookie_clave= " . $_COOKIE["clave"] . "<br>";
-
-                    // setcookie("id_usuario",'',time()-100);
-                    // setcookie("clave",'',time()-100);
-
-                    //Se introduce el codigo de despacho del vendedor, es el mismo que la clave
-                    $this->ConsultaLogin_M->actualizarCodigoVenta($ID_SuscriptorVen, $ClaveNueva);
-
-                    $Datos = [
-                        'bandera' => 'finalizado'
-                    ];
-
-                    $this->vista('header/header_Modal'); 
-                    $this->vista('modal/modal_recuperarCorreo_V', $Datos); 
-                }
-                else if($ID_SuscriptorDes != Array()){
-                    //Se actualiza en la base de datos la clave del usuario
-                    $this->ConsultaLogin_M->actualizarClaveDes($ID_SuscriptorDes, $ClaveCifrada);
-
-                    //Se destruyen las cookies que recuerdan la contraseña antigua, creadas en validarSesion.php
-                    // echo "Cookie_usuario= " . $_COOKIE["id_usuario"] . "<br>";
-                    // echo "Cookie_clave= " . $_COOKIE["clave"] . "<br>";
-
-                    // setcookie("id_usuario",'',time()-100);
-                    // setcookie("clave",'',time()-100);
-                    
-                    $this->vista('header/header_Modal'); 
+                    $this->vista('header/header_SoloEstilos'); 
                     $this->vista('modal/modal_recuperarCorreo_V'); 
                 }
                 else{
@@ -398,7 +356,7 @@
                     echo "<a class='Inicio_16' href='javascript:history.go(-3)'>Regresar</a>";
                     exit;
                 }
-            }
+            } 
             else{
                 echo 'Las contraseñas no coinciden';
                 echo '<br>';

@@ -23,7 +23,7 @@
 
         public function consultarDenuncia(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Denuncia, descripcionDenuncia, ubicacionDenuncia, municipioDenuncia, solucionado, DATE_FORMAT(fechaDenuncia, '%d-%m-%Y') AS fecha_denuncia
+                "SELECT ID_Denuncia, ID_Suscriptor, descripcionDenuncia, ubicacionDenuncia, municipioDenuncia, solucionado, DATE_FORMAT(fechaDenuncia, '%d-%m-%Y') AS fecha_denuncia
                 FROM denuncias 
                 ORDER BY ID_Denuncia
                 DESC"
@@ -56,15 +56,36 @@
                 return false;
             }
         }
+        
+        public function consultarDenunciaCantidadImagenes(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Denuncia, COUNT(ID_Denuncia) AS cantidad
+                FROM imagenesdenuncias 
+                GROUP BY ID_Denuncia"
+            );
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // CONSULTA el suscriptor que realizo una denuncia especifica
+        public function denunciaSuscriptor(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_Suscriptor, nombreSuscriptor, apellidoSuscriptor
+                FROM suscriptores"
+            );
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);            
+        }
 
         // INSERT de la denuncia
-        public function InsertarDenuncia($Descripcion, $Ubicacion, $Municipio){
+        public function InsertarDenuncia($ID_Suscriptor, $Descripcion, $Ubicacion, $Municipio){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO denuncias (descripcionDenuncia, ubicacionDenuncia, municipioDenuncia, fechaDenuncia, horaDenuncia) 
-                VALUES (:DESCRIPCION, :UBICACION, :MUNICIPIO, CURDATE(), CURTIME())"
+                "INSERT INTO denuncias (ID_Suscriptor, descripcionDenuncia, ubicacionDenuncia, municipioDenuncia, fechaDenuncia, horaDenuncia) 
+                VALUES (:ID_SUSCRIPTOR, :DESCRIPCION, :UBICACION, :MUNICIPIO, CURDATE(), CURTIME())"
             );
             
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
             $stmt->bindParam(':DESCRIPCION', $Descripcion, PDO::PARAM_STR);
             $stmt->bindParam(':UBICACION', $Ubicacion, PDO::PARAM_STR);
             $stmt->bindParam(':MUNICIPIO', $Municipio, PDO::PARAM_STR);
@@ -98,6 +119,84 @@
             }
             else{
                 return FALSE;
+            }
+        }
+        
+        // SELECT de detalles de una denuncia especifica
+        public function consultarDetalleDenuncia($ID_Denuncia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Denuncia, descripcionDenuncia, ubicacionDenuncia, municipioDenuncia, solucionado, DATE_FORMAT(fechaDenuncia, '%d-%m-%Y') AS fecha_denuncia
+                FROM denuncias 
+                WHERE ID_Denuncia = :ID_DENUNCIA"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_DENUNCIA', $ID_Denuncia, PDO::PARAM_INT);
+            
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        //Se CONSULTA la imagen principal de una denuncia especifica
+        public function consultarDenunciaImagenPrincipal($ID_Denuncia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Denuncia, nombre_imgDenuncia
+                FROM imagenesdenuncias  
+                WHERE ID_Denuncia = :ID_DENUNCIA AND ImagenPrincipalDenuncia = :IMAGPRINCIPAL"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_DENUNCIA', $ID_Denuncia, PDO::PARAM_INT);
+            $stmt->bindValue(':IMAGPRINCIPAL', 1, PDO::PARAM_INT);
+            
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        //Se CONSULTA laS imagenes secundarias de una denuncia especifica
+        public function consultarDenunciaImagenesSecundarias($ID_Denuncia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Denuncia, nombre_imgDenuncia
+                FROM imagenesdenuncias  
+                WHERE ID_Denuncia = :ID_DENUNCIA AND ImagenPrincipalDenuncia = :IMAGPRINCIPAL"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_DENUNCIA', $ID_Denuncia, PDO::PARAM_INT);
+            $stmt->bindValue(':IMAGPRINCIPAL', 0, PDO::PARAM_INT);
+            
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        // CONSULTA cuantos dias lleva una denuncia especifica
+        public function diasDenunciaActivaEspecifica($ID_Denuncia){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Denuncia, DATEDIFF(CURDATE(), fechaDenuncia) AS dias
+                FROM denuncias
+                WHERE ID_Denuncia = :ID_DENUNCIA"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_DENUNCIA', $ID_Denuncia, PDO::PARAM_INT);
+            
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
             }
         }
     }

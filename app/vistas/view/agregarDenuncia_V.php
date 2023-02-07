@@ -6,7 +6,7 @@
         <legend class="legend_1">Reporte ciudadano</legend>    
         <form action="<?php echo RUTA_URL; ?>/Contraloria_C/recibeDenunciaAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" id="Agregar" onsubmit="return validarAgregarNoticia()">
             <div class="cont_denuncia--flex">
-                <div style="width: 30%">
+                <div class="cont_denuncia--img">
                     <!-- IMAGEN -->                
                     <div>
                         <label class="Default_pointer" for="imgInp">    
@@ -35,16 +35,16 @@
                         <!-- <input class="Default_ocultar" type="file" accept="video/*" name="videoDenuncia" id="imgVideo"/> -->
                     </div>
                 </div>   
-                <div  style="width: 70%">
+                <div class="cont_denuncia--contenido">
                     <!-- DENUNCIA -->                
-                    <label class="login_cont--label">Descripción</label>
+                    <label class="login_cont--label cont_denuncia--label">Descripción</label>
                     <textarea class="cont_denuncia--textarea borde--input" name="descripcion" id="Descripcion"></textarea>
                     
-                    <label class="login_cont--label">Ubicación (escuela, centro de salud, calle, oficina publica, servicio publico, urb, etc)</label>
+                    <label class="login_cont--label cont_denuncia--label">Ubicación (escuela, centro de salud, calle, oficina publica, urb, etc)</label>
                     <textarea class="cont_denuncia--textarea borde--input" name="ubicacion" id="Ubicacion"></textarea> 
                     
                     <!-- MUNICIPIO AFILIADO -->                
-                    <label class="login_cont--label">Municipio</label>
+                    <label class="login_cont--label cont_denuncia--label">Municipio</label>
                     <select class="login_cont--select borde--input" name="municipio" id="Municipio">
                         <option></option>
                         <option value="San Felipe">Independencia</option>
@@ -57,18 +57,21 @@
                     <br>
                     <small class="small_1">El usuario de seguimiento realiza una inspección visual del problema para verificar que haya sido resuelto.</small>
                     <br>
-                    
+                   
                     <!-- IMAGENES SECUNDARIAS -->     
-                    <label class="login_cont--label" for="Img_Denuncia">Imagenes secundarias</label>
-                    <input class="" type="file" name="imagenesDenunciaSecundaria[]" multiple="multiple" id="Img_Denuncia" onchange="muestraImg()"/>  
+                    <!-- <label class="login_cont--label" for="Img_Denuncia">Imagenes secundarias</label> -->
+                    <label class="boton  cont_denuncia--label" for="Img_Denuncia">Añadir mas imagenes</label> 
+                    <input class="Default_ocultar" type="file" name="imagenesDenunciaSecundaria[]" multiple="multiple" id="Img_Denuncia" onchange="muestraImg()"/>  
                             
                     <!-- muestra las imagenes secundarias -->
                     <div class="cont_panel--imagenSec" id="muestrasImgDenuncia_2"></div>  
                 </div>
             </div>     
 
-            <!-- BOTON DE ENVIO -->
-            <div class="cont_panel--guardar"> 
+            <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
+            <div class="cont_denuncia--botonSubmit"> 
+                <!-- $_SESSION["ID_Suscriptor"] sesion creada en Login_C/ValidarSesion -->
+                <!-- <input class="" type="text" name="id_suscriptor" value="<?php echo $_SESSION["ID_Suscriptor"];?>">  -->
                 <input class="boton" type="submit" form="Agregar" id="Boton_Agregar" value="Enviar"/>  
             </div>   
         </form>    
@@ -99,48 +102,48 @@
     
 // ************************************************************************************************ 
     //Da una vista previa del video de la denuncia
-    const videoSrc = document.querySelector("#video-source");
-    const videoTag = document.querySelector("#video-tag");
-    const inputTag = document.querySelector("#imgVideo");
+    // const videoSrc = document.querySelector("#video-source");
+    // const videoTag = document.querySelector("#video-tag");
+    // const inputTag = document.querySelector("#imgVideo");
 
     
-    inputTag.addEventListener('change',  readVideo)
+    // inputTag.addEventListener('change',  readVideo)
 
-    function readVideo(event) {
+    // function readVideo(event) {
 
-        document.getElementById("FigureVideo").style.display = "none"
-        document.getElementById("Reproducir").style.display = "inline"
-        document.getElementById("Pausar").style.display = "inline"
+    //     document.getElementById("FigureVideo").style.display = "none"
+    //     document.getElementById("Reproducir").style.display = "inline"
+    //     document.getElementById("Pausar").style.display = "inline"
         
+    //     // console.log(event.target.files)
+    //     if (event.target.files && event.target.files[0]) {
+    //         var reader = new FileReader();
 
-        console.log(event.target.files)
-        if (event.target.files && event.target.files[0]) {
-            var reader = new FileReader();
+    //         reader.onload = function(e) {
+    //         console.log('loaded')
+    //         videoSrc.src = e.target.result
+    //         videoTag.load()
+    //         }.bind(this)
 
-            reader.onload = function(e) {
-            console.log('loaded')
-            videoSrc.src = e.target.result
-            videoTag.load()
-            }.bind(this)
-
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    }
+    //         reader.readAsDataURL(event.target.files[0]);
+    //     }
+    // }
     
-    window.reproducir = function() {
-                document.getElementById("video-tag").play();
-    }
+    // window.reproducir = function() {
+    //             document.getElementById("video-tag").play();
+    // }
 
-    window.pausar = function() {
-        document.getElementById("video-tag").pause();
-    };
+    // window.pausar = function() {
+    //     document.getElementById("video-tag").pause();
+    // };
 
 // ************************************************************************************************  
     //Array contiene las imagenes secundarias insertadas, sus elementos sumados no pueden exceder de 10
     SeleccionImagenes = [];
+
     function muestraImg(){
             // Muestra grupo de imagenes
-            // console.log("______Desde muestraImg()______")
+            console.log("______Desde muestraImg()______")
 
             var contenedorPadre = document.getElementById("muestrasImgDenuncia_2");
             var archivos = document.getElementById("Img_Denuncia").files;

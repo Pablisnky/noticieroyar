@@ -57,7 +57,7 @@
             $this->vista("view/agregarDenuncia_V");
         }
         
-        //Metodo cargado desde header_V - inicio_V
+        //Metodo cargado desde agregarDenuncias_V.php
         public function recibeDenunciaAgregada(){
             $Descripcion = $_POST['descripcion'];
             $Ubicacion = $_POST['ubicacion'];
@@ -70,8 +70,9 @@
             // echo "UsuarioSeguimineto : " . $UsuarioSeguimineto . '<br>';
             // exit;
 
-            //Se INSERTA la denuncia y se retorna el ID de la inserción
-            $ID_Denuncia = $this->ConsultaContraloria_M->InsertarDenuncia($Descripcion, $Ubicacion, $Municipio);
+            //Se INSERTA la denuncia y se retorna el ID de la inserción 
+            //$_SESSION["ID_Suscriptor"] sesion creada en Login_C/ValidarSesion
+            $ID_Denuncia = $this->ConsultaContraloria_M->InsertarDenuncia($_SESSION["ID_Suscriptor"], $Descripcion, $Ubicacion, $Municipio);
 
             // echo '<pre>';
             // print_r($ID_Denuncia);
@@ -149,15 +150,17 @@
             //Se CONSULTA las denuncias realizadas 
             $Denuncias = $this->ConsultaContraloria_M->consultarDenuncia();
             
-            //Se CONSULTA las imagenes principales de denuncias realizadas             
+            //Se CONSULTA la imagen principal de denuncias realizadas             
             $DenunciasImagenesPricipales = $this->ConsultaContraloria_M->consultarDenunciaImagenes();
             
-            $ImagenPrincipal = 0;
-            //Se CONSULTA las imagenes secundarias de denuncias realizadas             
-            $DenunciasImagenesSecundarias = $this->ConsultaContraloria_M->consultarDenunciaImagenes($ImagenPrincipal);
+            //Se CONSULTA la cantidad de imagenes secundarias en cada denuncia realizada            
+            $DenunciasImagenesSecundarias = $this->ConsultaContraloria_M->consultarDenunciaCantidadImagenes();
             
             // CONSULTA cuantos ias lleva una denuncia
             $diasDenunciaActiva = $this->ConsultaContraloria_M->diasDenunciaActiva();
+            
+            // CONSULTA el suscriptor que realizo una denuncia
+            $DenunciaSuscriptor = $this->ConsultaContraloria_M->denunciaSuscriptor();
 
             //Se CONSULTA los videos de denuncias realizadas 
             // $DenunciasVideo = $this->ConsultaContraloria_M->consultarDenunciaVideo();
@@ -166,16 +169,46 @@
             // $DenunciasComentarios = $this->ConsultaContraloria_M->consultarDenunciaCOmentarios();
 
             $Datos = [
-                'descripcion' => $Denuncias, //ID_Denuncia, descripcionDenuncia, ubicacionDenuncia, solucionado,municipioDenuncia, fecha_denuncia
+                'descripcion' => $Denuncias, //ID_Denuncia, ID_Suscriptor, descripcionDenuncia, ubicacionDenuncia, solucionado,municipioDenuncia, fecha_denuncia
                 'imagenesDenunciaPrincipal' => $DenunciasImagenesPricipales, //ID_Denuncia, ID_imagDenuncia, nombre_imgDenuncia, ImagenPrincipalDenuncia
-                'imagenesDenunciaSecundaria' => $DenunciasImagenesSecundarias, //ID_Denuncia,ID_imagDenuncia, nombre_imgDenuncia, ImagenPrincipalDenuncia
-                'diasDenuncia' => $diasDenunciaActiva //ID_Denuncia, dias
+                'imagenesDenunciaSecundaria' => $DenunciasImagenesSecundarias, //cantidad
+                'diasDenuncia' => $diasDenunciaActiva, //ID_Denuncia, dias
+                'denunciaSuscriptor' => $DenunciaSuscriptor //ID_Suscriptor, nombreSuscriptor, apellidoSuscriptor
             ];
             
             // echo '<pre>';
             // print_r($Datos);
             // echo '</pre>';
             // exit;
+            
+            $this->vista("header/header_noticia");
+            $this->vista("view/denuncias_V", $Datos);
+        }
+
+        public function detalleDenuncia($ID_Denuncia){
+            //Se CONSULTA los detalles de una denuncia especifica
+            $Denuncia = $this->ConsultaContraloria_M->consultarDetalleDenuncia($ID_Denuncia);
+            
+            //Se CONSULTA la imagene principal de una denuncia especifica
+            $DenunciaImagenPrncipal = $this->ConsultaContraloria_M->consultarDenunciaImagenPrincipal($ID_Denuncia);
+
+            //Se CONSULTA las imagenes secundarias de una denuncia especifica
+            $DenunciaImagenesSecundarias = $this->ConsultaContraloria_M->consultarDenunciaImagenesSecundarias($ID_Denuncia);
+            
+            // CONSULTA cuantos dias lleva una denuncia especifica
+            $diasDenunciaActiva = $this->ConsultaContraloria_M->diasDenunciaActivaEspecifica($ID_Denuncia);
+
+            $Datos = [
+                'descripcion' => $Denuncia, //ID_Denuncia, descripcionDenuncia, ubicacionDenuncia, solucionado,municipioDenuncia, fecha_denuncia
+                'imagenDenunciaPrincipal' => $DenunciaImagenPrncipal, //ID_Denuncia, ID_imagDenuncia, nombre_imgDenuncia, ImagenPrincipalDenuncia
+                'imagenesDenunciaSecundaria' => $DenunciaImagenesSecundarias, //cantidad
+                'diasDenuncia' => $diasDenunciaActiva //ID_Denuncia, dias
+            ];
+            
+            echo '<pre>';
+            print_r($Datos);
+            echo '</pre>';
+            exit;
             
             $this->vista("header/header_noticia");
             $this->vista("view/denuncias_V", $Datos);

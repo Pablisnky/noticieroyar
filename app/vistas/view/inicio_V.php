@@ -163,15 +163,15 @@
         <!-- BOTONES DEL PANEL FRONTAL -->	
         <div class="cont_portada--botones">
             <div>
-                <a class="boton boton--altoDosLinneas" href="<?php echo RUTA_URL . '/Contraloria_C';?>">Contraloría social</a>
-                <!-- <span class="material-icons-outlined Default_pointer" onclick="Llamar_NoticiaAnterior('<?php echo $Key['ID_Noticia'];?>')">arrow_back_ios_new</span> -->
+                <!-- <a class="boton boton--altoDosLinneas" href="<?php echo RUTA_URL . '/Contraloria_C';?>">Contraloría social</a> -->
+                <img class="Default_pointer" style="text-align: center; display:block; margin: auto; font-size: 2em;" onclick="Llamar_NoticiaAnterior('<?php echo $Key['ID_Noticia'];?>')" src="<?php echo RUTA_URL . '/public/iconos/chevronIzquierdo/outline_arrow_back_ios_new_black_24dp.png'?>"/>
             </div>
             <div>
-                <label class="boton boton--altoDosLinneas"><a class="Default_font--white" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
+                <label class="boton"><a class="Default_font--white" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
             </div>         
             <div>
-                <a class="boton boton--altoDosLinneas" href="<?php echo RUTA_URL . '/GaleriaArte_C';?>">Galeria de arte regional</a>
-                <!-- <span class="material-icons-outlined Default_pointer" onclick="Llamar_NoticiaPosterior('<?php echo $Datos['datosNoticia'][0]['ID_Noticia'];?>')">arrow_forward_ios</span> -->
+                <!-- <a class="boton boton--altoDosLinneas" href="<?php echo RUTA_URL . '/GaleriaArte_C';?>">Galeria de arte regional</a> -->
+                <img class="Default_pointer" style="text-align: center; display:block; margin: auto; font-size: 2em;" onclick="Llamar_NoticiaPosterior('<?php echo $Datos['datosNoticia'][0]['ID_Noticia'];?>')"src="<?php echo RUTA_URL . '/public/iconos/chevronDerecha/outline_arrow_forward_ios_black_24dp.png'?>"/>
             </div>
         </div>         
         <?php

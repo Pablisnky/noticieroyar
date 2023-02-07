@@ -1,10 +1,15 @@
-document.addEventListener('DOMContentLoaded',function(){resize('Contenido')}, false)
+document.addEventListener('DOMContentLoaded', ajustarTexarea(), false)
 
-//************************************************************************************************ 
-    //ajusta la altura de un texarea con respecto al contenido que trae de la BD
-    function resize(id){
-        console.log("______Desde resize()______", id) 
-        var text = document.getElementById(id);
+function ajustarTexarea(){
+    
+    var elemento = document.getElementsByClassName('Efemeride--JS')
+    var cantidadELementos = elemento.length
+    // console.log(cantidadELementos)
+    
+    for(let i = 0; i < cantidadELementos; i++){
+        // console.log() 
+        var text = elemento[i];
         text.style.height = 'auto';
         text.style.height = text.scrollHeight+'px';
     }
+}

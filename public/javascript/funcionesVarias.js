@@ -33,13 +33,12 @@
     //Oculta el menu principal en responsive haciendo click por fuera del boton menu
     if(document.getElementById("MenuResponsive")){
         let div = document.getElementById("MenuResponsive")
-        let span = document.getElementById("Span_6")
         let C = document.getElementById("Tapa_Logo")
 
         window.addEventListener("click", function(e){
             //obtiendo informacion del DOM del elemento donde se hizo click 
-            // var click = e.target
-            // console.log(click)
+            var click = e.target
+            console.log(click)
             AltoVitrina = document.body.scrollHeight
             if(div.style.marginTop == "0%"){
                 div.style.marginTop = "-250%"

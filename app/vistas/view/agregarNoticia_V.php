@@ -193,6 +193,7 @@
 // ************************************************************************************************    
     //Array contiene las imagenes insertadas, sus elementos sumados no pueden exceder de 10
     SeleccionImagenes = [];
+    
     function muestraImg(){
             // Muestra grupo de imagenes
             // console.log("______Desde muestraImg()______")

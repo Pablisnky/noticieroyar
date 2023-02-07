@@ -75,4 +75,4 @@
 </script>
 
 <!-- FOOTER -->
-<?php require(RUTA_APP . '/vistas/footer/footer.php');?>
+<?php //require(RUTA_APP . '/vistas/footer/footer.php');?>

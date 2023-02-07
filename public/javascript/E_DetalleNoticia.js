@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded',function(){resize('Contenido')}, fa
 
 document.getElementById("CerrarVentana").addEventListener('click', Cerrar, false)
 
-document.getElementById("CerrarVentanaModal").addEventListener('click', function(){CerrarModal('VentanaModal--Publicidad')}, false)
+if(document.getElementById("CerrarVentanaModal")){
+    document.getElementById("CerrarVentanaModal").addEventListener('click', function(){CerrarModal('VentanaModal--Publicidad')}, false)
+}
 
 document.getElementById("Comentario").addEventListener('keyup', function(){autosize('Comentario')}, false)
 document.getElementById("Comentario").addEventListener('keydown', function(){autosize('Comentario')}, false)

@@ -1,5 +1,11 @@
 <!-- CDN libreria JQuery, necesaria para la previsualización de la imagen--> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+<!-- CDN CALENDARIO -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
@@ -27,9 +33,11 @@
                             <textarea class="cont_panel--textarea" name="contenido" id="Contenido"><?php echo $Datos['efemerideActualizar']['contenido'];?></textarea> 
                             
                             <!-- FECHA -->
-                            <input class="cont_panel--titulo" type="text" name="fecha" value="<?php echo $Datos['efemerideActualizar']['fecha'];?>"/>
+                            <input class="cont_panel--titulo" type="text" name="fecha" id="datepicker" value="<?php echo $Datos['efemerideActualizar']['fechaPublicacion'];?>"/>
                         </div>                     
                     </div>
+
+                    <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
                     <div class=""> 
                         <input class="Default_ocultar" type="text" name="ID_Efemeride" value="<?php echo $Datos['efemerideActualizar']['ID_Efemeride'];?>"/> 
                         <input class="Default_ocultar" type="text" name="id_fotoEfemeride" value="<?php echo $Datos['efemerideActualizar']['ID_ImagenEfemeride'];?>" />
@@ -42,9 +50,10 @@
 
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script> 
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_ActualizarEfemeride.js?v=<?php echo rand();?>"></script> 
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcion_Calendario.js?v=<?php echo rand();?>"></script>
 
 <script>       
-    //Da una vista previa de la foto de la noticia
+    //Da una vista previa de la foto de la efemeride
     function readImage(input, id_Label){
         // console.log("______Desde readImage()______", input + ' | ' + id_Label)
         if(input.files && input.files[0]){
@@ -64,4 +73,4 @@
 </script>
 
 <!-- FOOTER -->
-<?php require(RUTA_APP . '/vistas/footer/footer.php');?>
+<?php //require(RUTA_APP . '/vistas/footer/footer.php');?>
