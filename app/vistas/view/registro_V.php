@@ -1,6 +1,5 @@
-
 <section id="Section_5">
-    <div syle="height: 100%; background-color: yellow">
+    <div syle="height: 100%;">
         <div style="min-height: 100%;" class="login_cont">
             <form action="../../Login_C/recibeRegistroSuscriptor" method="POST" id="FormularioCom" name="formRegistroCom" autocomplete="off" onsubmit="return validarAfiliacionCom()">
                 <fieldset class="fieldset_1">
@@ -58,7 +57,7 @@
                 </fieldset>        
                 
                 <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
-                <div class="login_cont--botonSubmit">  
+                <div class="contBoton">  
                     <input class="Default_ocultar" type="text" name="id_noticia" value="<?php echo $Datos['id_noticia']?>"/>  
                     <input class="boton" type="submit" value="Suscribirse"/>
                 </div>  
@@ -68,5 +67,5 @@
 </section>
 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js';?>"></script>
-<script src="<?php echo RUTA_URL . '/public/javascript/E_Registros.js';?>"></script>
+<!-- <script src="<?php //echo RUTA_URL . '/public/javascript/E_Registros.js';?>"></script> -->
 <script src="<?php echo RUTA_URL . '/public/javascript/A_Registros.js';?>"></script>

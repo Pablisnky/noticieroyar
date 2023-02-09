@@ -69,7 +69,7 @@
             </div>     
 
             <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
-            <div class="cont_denuncia--botonSubmit"> 
+            <div class="contBoton"> 
                 <!-- $_SESSION["ID_Suscriptor"] sesion creada en Login_C/ValidarSesion -->
                 <!-- <input class="" type="text" name="id_suscriptor" value="<?php echo $_SESSION["ID_Suscriptor"];?>">  -->
                 <input class="boton" type="submit" form="Agregar" id="Boton_Agregar" value="Enviar"/>  

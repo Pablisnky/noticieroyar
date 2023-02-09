@@ -1,3 +1,4 @@
+<!-- invocado desde Contraloria_C/VerificaLogin -->
 <?php
     //Se añade la clase cuando se viene desde una noticia a la que se desea hacer un comentario
     if(($Datos['bandera'] == 'responder')){ ?>
@@ -59,10 +60,10 @@
             </fieldset>  
         </form>
         <div class="login_cont--recuperarClave">	
-            <p class="p_4">¿Olvidaste tu contraseña?</p>
+            <p>¿Olvidaste tu contraseña?</p>
             <label class="Default_link Default_pointer" id="Label_7">Recuperala</label>
             <hr class="hr_3">
-            <p class="p_4">¿Quieres suscribirte?<p>
+            <p>¿Quieres suscribirte?<p>
             <a class="" href="<?php echo RUTA_URL . '/Login_C/suscripcion/' . $Datos['id_noticia'];?>">Suscripción</a>
         </div>
     </div>

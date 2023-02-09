@@ -67,7 +67,7 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        // CONSULTA el suscriptor que realizo una denuncia especifica
+        // CONSULTA el suscriptor que realizo una denuncia
         public function denunciaSuscriptor(){
             $stmt = $this->dbh->query(
                 "SELECT ID_Suscriptor, nombreSuscriptor, apellidoSuscriptor
@@ -164,7 +164,7 @@
         //Se CONSULTA laS imagenes secundarias de una denuncia especifica
         public function consultarDenunciaImagenesSecundarias($ID_Denuncia){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Denuncia, nombre_imgDenuncia
+                "SELECT ID_imagDenuncia , nombre_imgDenuncia
                 FROM imagenesdenuncias  
                 WHERE ID_Denuncia = :ID_DENUNCIA AND ImagenPrincipalDenuncia = :IMAGPRINCIPAL"
             );
@@ -198,5 +198,45 @@
             else{
                 return false;
             }
+        }
+        
+        //Se CONSULTA la imagen que se solicito en detalles
+        public function consultarDetalleImagen($ID_ImagenMiniatura){
+            $stmt = $this->dbh->prepare(
+                "SELECT nombre_imgDenuncia 
+                 FROM imagenesdenuncias  
+                 WHERE ID_imagDenuncia  = :ID_IMAGEN"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_IMAGEN', $ID_ImagenMiniatura, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        // CONSULTA el suscriptor que realizo una denuncia especifica
+        public function denunciaSuscriptorEspecifica($ID_Denuncia){
+            $stmt = $this->dbh->prepare(
+                "SELECT suscriptores.ID_Suscriptor, nombreSuscriptor, apellidoSuscriptor
+                FROM suscriptores
+                INNER JOIN denuncias ON suscriptores.ID_Suscriptor=denuncias.ID_Suscriptor
+                WHERE denuncias.ID_Denuncia = :ID_DENUNCIA"
+            );
+            
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_DENUNCIA', $ID_Denuncia, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }           
         }
     }

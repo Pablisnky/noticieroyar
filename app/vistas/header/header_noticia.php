@@ -82,7 +82,11 @@
 			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
 			
 			<!-- LOGIN -->
-			<!-- <a href="<?php //echo RUTA_URL . '/Login_C';?>">Entrar</a> -->
+			<?php
+			if(!empty($_SESSION['ID_Suscriptor'])){	?>
+				<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><img class="loginCarita" src="<?php echo RUTA_URL . '/public/iconos/login/outline_face_6_black_24dp.png'?>"/></a>				
+				<?php
+			}	?>
 		</header>
 		
 		<!-- MEMBRETE DESPLAZANTE -->

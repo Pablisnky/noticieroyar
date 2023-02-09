@@ -1,4 +1,4 @@
-<div class="cont_portada" id="Cont_Portada" style="background-color:">
+<div class="cont_portada" id="Cont_Portada">
     <?php
     $Iterador = 1;
     foreach($Datos['descripcion'] as $Key) :  ?>

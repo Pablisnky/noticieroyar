@@ -369,6 +369,7 @@
             $this->vista("modal/modal_falloLogin_V");
         }
         
+        //Invocado desde login_V.php
         public function suscripcion($ID_Noticia){
             
             $Datos = [
@@ -384,8 +385,9 @@
             $this->vista("view/registro_V", $Datos );
         }
 
+        //invocado desde Contraloria_C/VerificaLogin
         public function recibeRegistroSuscriptor(){         
-            //Se reciben todos los campos del formulario de suscripcion, desde registro_V.php se verifica que son enviados por POST y que no estan vacios
+            //Se reciben todos los campos del formulario de suscripcion, se verifica que son enviados por POST y que no estan vacios
             if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["nombre"]) && !empty($_POST["correo"]) && !empty($_POST["clave"]) && !empty($_POST["confirmarClave"])){               
                 // $RecibeDatos = [
                 //     //Recibe datos de la persona responsable
@@ -416,28 +418,34 @@
                 exit();
             }
             
-            // /SE inserta el suscriptor nuevo y se recupera su ID_Suscriptor
+            // Se inserta el suscriptor nuevo y se recupera su ID_Suscriptor
             $ID_Suscriptor = $this->ConsultaLogin_M->InsertarSuscriptor($RecibeDatos);
 
-            $options = ['memory_cost' => 1<<10, 'time_cost' => 4, 'threads' => 2];
             //se cifra la contraseña del afiliado con un algoritmo de encriptación
+            $options = ['memory_cost' => 1<<10, 'time_cost' => 4, 'threads' => 2];
             $ClaveCifrada = password_hash($RecibeDatos["clave"], PASSWORD_DEFAULT, $options);
                             
             $this->ConsultaLogin_M->InsertarClave($ID_Suscriptor, $ClaveCifrada);
 
             //Se envia al correo pcabeza7@gmail.com la notificación de nuevo cliente registrado
-            // $email_subject = ''; 
-            // $email_to = 'pcabeza7@gmail.com'; 
-            // $headers = 'From: noticieroyaracuy<master@noticieroyaracuy.com>';
-            // $email_message = 'Suscripcion satisfactoria' . ' ' . $RecibeDatos['Nombre'];
+            $email_subject = 'Suscripción de usuario'; 
+            $email_to = 'pcabeza7@gmail.com'; 
+            $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
+            $email_message = $RecibeDatos['nombre'] . ' ' . $RecibeDatos['apellido'] . ' se ha registrado en la plataforma';
 
-            // mail($email_to, $email_subject, $email_message, $headers); 
+            mail($email_to, $email_subject, $email_message, $headers); 
 
             //Se crea la sesion exigida en las páginas de una cuenta de suscriptores           
             $_SESSION["ID_Suscriptor"] = $ID_Suscriptor;
 
-            $ID_Noticia = $RecibeDatos['id_noticia']; 
-            header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/' . $ID_Noticia  .   ',sinAnuncio,#ContedorComentario'); 
+            //Se redirige segun venga de una noticia o de una denuncia
+            if($RecibeDatos['id_noticia'] != 'NoAplica'){
+                $ID_Noticia = $RecibeDatos['id_noticia']; 
+                header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/' . $ID_Noticia  .   ',sinAnuncio,#ContedorComentario'); 
+            }
+            else{
+                header('Location:'. RUTA_URL . '/Contraloria_C/denuncias'); 
+            }
         }
 
         public function accesoSuscriptor(){

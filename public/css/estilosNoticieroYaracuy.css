@@ -617,10 +617,10 @@ textarea{
  .cont_modal--agregar{
 	background-color: rgb(180, 248, 180);
 	position: fixed;
-	top: 1%;
-	right: 2%;
+	top: 2%;
+	right: 1.5%;
 	border-radius: 50%;
-	font-size: 3.5em !important;	
+	width: 3em;	
 	color: black; 
  }
  .cont_modal--h1{
@@ -892,6 +892,30 @@ textarea{
 	margin: auto;
 	min-height: 100vh;
 	padding-bottom: 5%;
+}
+.cont_detalleDenuncia--flex{
+	display: flex;
+	margin: auto;
+	margin-top: 5%;
+	width: 95%;
+	padding-bottom: 15%;
+}
+.cont_detalleDenuncia--titulo{
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.cont_detalleDenuncia--imagen{
+	width: 50%;
+}
+.cont_detalleDenuncia--contenido{
+	width: 50%;
+}
+.cont_detalleDenuncia--cerrar{
+	position: absolute;
+	width: 2em;
+	top: 15%;
+	right: 5%;
 }
 .cont_panel__agenda--imagen{
 	width: 30%;
@@ -1170,6 +1194,9 @@ textarea{
 	font-weight: bold; 
 	font-size: 0.6em
 }
+.detalle_cont--red{
+	width: 30%;
+}
 .detalle_cont--redesSociales{
 	display: flex;
 	justify-content: space-around;
@@ -1177,9 +1204,6 @@ textarea{
 	width: 20%;
 	margin: auto;
 	margin-top: 15%;
-}
-.detalle_cont--red{
-	width: 30%;
 }
 .detalle_cont--redesSociales-facebook{
 	width: 55%;
@@ -1347,6 +1371,12 @@ textarea{
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
 }
+.loginCarita{
+	/* text-align: center; 
+	display:block; 
+	margin: auto; 
+	font-size: 2em; */
+}
 .login_cont{
 	width: 40%;
 	margin: auto;
@@ -1369,7 +1399,7 @@ textarea{
 }
 .contBoton{
 	width: 40%;
-	margin: 8% auto 3% auto;
+	margin: 8% auto 1% auto;
 	display: flex;
 	justify-content: center;
 }

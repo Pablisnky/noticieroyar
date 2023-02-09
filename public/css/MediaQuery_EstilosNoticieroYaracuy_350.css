@@ -82,6 +82,44 @@
 	 margin-top: 3%;
 	 width: 90%; */
  }
+ .cont_denuncia{
+	margin: 25% auto;
+	width: 100%;
+ }
+ .cont_denuncia--flex{
+	display: initial;
+ }
+ .cont_denuncia--img{
+	width: 90%;
+ }
+ .cont_denuncia--imagen{
+	height: 50vw;
+ }
+ .cont_denuncia--contenido{
+	width: 100%;
+ }
+ .cont_denuncia--label{
+	margin-top: 5%;
+ }
+ .cont_denuncia--botonSubmit{
+	 margin: 15% auto 3% auto;
+ }
+ .cont_detalleDenuncia--flex{
+	 display: block;
+	 margin-top: 15%;
+ }
+ .cont_detalleDenuncia--imagen{
+	 width: 100%;
+ }
+ .cont_detalleDenuncia--contenido{
+	 width: 100%;
+ }
+ .cont_detalleDenuncia--cerrar{
+	 position: absolute;
+	 width: 2em;
+	 top: 45%;
+	 right: 5%;
+ }
  .p_1{
 	text-align: justify;
 	 font-size: 1.2em;
@@ -102,9 +140,6 @@
 	 width: 100%; 
 	 height: 85vh;
  }
- .contBoton--100{
-	 width: 100%;
- }  
  .cont_galeria--maain{
 	display: block;
 	margin-top: 15%;
@@ -390,7 +425,7 @@
 }
 .detalle_cont--hr{
 	width: 40%;
-	margin: 3% auto 7% auto;
+	margin: 7% auto 5% auto;
 }
 .detalle_cont--fuente{
 	font-size: 0.7em
@@ -405,6 +440,7 @@
 }
 .detalle_cont--redesSociales{
 	width: 70%;
+	margin-left: 15%;
 }
 .detalle_cont--redesSociales-facebook{
 	width: 45%;

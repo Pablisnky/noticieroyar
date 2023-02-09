@@ -9,6 +9,43 @@
 	} 
 	.borde_1{
 		border-color: white;
+	}	
+	.p_1{
+	   text-align: justify;
+		font-size: 1.2em;
+		line-height: 30px;
+	}
+	.cont_Contraloria{
+		margin: 25% auto 1% auto;
+	}
+	.cont_Contraloria--texto{
+		margin: 20% auto;
+		padding: 0% 4%;
+	}
+	.cont_Contraloria--botones{
+		width: 100%; 
+		margin: auto;
+	}
+	.cont_detalleDenuncia--flex{
+		display: block;
+		margin-top: 15%;
+	}
+	.cont_detalleDenuncia--imagen{
+		width: 100%;
+	}
+	.cont_detalleDenuncia--contenido{
+		width: 100%;
+	}
+	.cont_detalleDenuncia--cerrar{
+		position: absolute;
+		width: 2em;
+		top: 45%;
+		right: 5%;
+	}
+	.cont_detalleDenuncia--titulo{
+		text-align: center;
+		font-size: 1.4em;
+		font-weight: bold;
 	}
 	.con_portada--titulo{
 		position: fixed;
@@ -23,6 +60,10 @@
 		left: initial; 
 		width: 100%; 
 		height: 100vh;
+	}
+	.cont_reportes{
+	   width: 98%;
+	   margin: 10% auto;
 	}
 	.cont_detalle{
 		width: 100%;
@@ -97,6 +138,7 @@
 		font-size: 2.3em;
 		display: block;
 		margin-top: -4%;
+		margin-left: 13%;
 	}
 	.header__fecha{
 		font-size: 0.9em;
@@ -372,6 +414,10 @@
 		width: 95%;
 		padding-top: 7%; 
 		margin-top: 20%;
+	}
+	.login_cont--recuperarClave{
+		margin-top: 10%;
+		width: 90%;
 	}
 	.marcador{
 		padding-top: 5vh;

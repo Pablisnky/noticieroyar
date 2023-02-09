@@ -46,9 +46,7 @@
 	<body class="body_1">				
 		<header class="header" id="Header">  
 			<div>							
-				<!-- ICONO HAMBURGUESA"-->
-				<!-- <label id="ComandoMenu" onclick="mostrarMenu()"><span class="material-icons-outlined header--menu" id="Span_6">menu</span></label> -->
-				
+				<!-- ICONO HAMBURGUESA"-->				
 				<img class="header--menu" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>
 				
 				<!-- BARRA DE NAVEGACION -->
@@ -95,7 +93,7 @@
 			<!-- LOGIN -->
 			<?php
 			if(!empty($_SESSION['ID_Suscriptor'])){	?>
-				<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><span class="material-icons-outlined Default_font--black">face_6</span></a>
+				<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><img src="<?php echo RUTA_URL . '/public/iconos/login/outline_face_6_black_24dp.png'?>"/></a>				
 				<?php
 			}	?>
 			

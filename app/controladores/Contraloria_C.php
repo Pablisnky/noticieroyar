@@ -35,8 +35,8 @@
             }    
             else{
                 $Datos=[
-                    'id_noticia' => 'NoAPlica',
-                    'id_comentario' => 'NoAPlica',
+                    'id_noticia' => 'NoAplica',
+                    'id_comentario' => 'NoAplica',
                     'bandera' => 'denuncia'
                 ];
 
@@ -198,19 +198,41 @@
             // CONSULTA cuantos dias lleva una denuncia especifica
             $diasDenunciaActiva = $this->ConsultaContraloria_M->diasDenunciaActivaEspecifica($ID_Denuncia);
 
+            // CONSULTA el suscriptor que realizo una denuncia
+            $DenunciaSuscriptor = $this->ConsultaContraloria_M->denunciaSuscriptorEspecifica($ID_Denuncia);
+
             $Datos = [
                 'descripcion' => $Denuncia, //ID_Denuncia, descripcionDenuncia, ubicacionDenuncia, solucionado,municipioDenuncia, fecha_denuncia
-                'imagenDenunciaPrincipal' => $DenunciaImagenPrncipal, //ID_Denuncia, ID_imagDenuncia, nombre_imgDenuncia, ImagenPrincipalDenuncia
-                'imagenesDenunciaSecundaria' => $DenunciaImagenesSecundarias, //cantidad
-                'diasDenuncia' => $diasDenunciaActiva //ID_Denuncia, dias
+                'imagenDenunciaPrincipal' => $DenunciaImagenPrncipal, //ID_Denuncia, nombre_imgDenuncia
+                'imagenesDenunciaSecundaria' => $DenunciaImagenesSecundarias, //ID_imagDenuncia, nombre_imgDenuncia
+                'diasDenuncia' => $diasDenunciaActiva, //ID_Denuncia, dias
+                'denunciaSuscriptor' => $DenunciaSuscriptor //ID_Suscriptor, nombreSuscriptor, apellidoSuscriptor
             ];
             
-            echo '<pre>';
-            print_r($Datos);
-            echo '</pre>';
-            exit;
+            // echo '<pre>';
+            // print_r($Datos);
+            // echo '</pre>';
+            // exit;
             
-            $this->vista("header/header_noticia");
-            $this->vista("view/denuncias_V", $Datos);
+            $this->vista("header/header_SoloEstilos");
+            $this->vista("view/detalleDenuncia_V", $Datos);
+        }
+        
+        // muestra la imagen seleccionada en la miniatura de una denuncia
+        public function muestraImagenSeleccionada($ID_ImagenMiniatura){
+            //Se CONSULTA la imagen que se solicito en detalle
+             $DetalleImagen = $this->ConsultaContraloria_M->consultarDetalleImagen($ID_ImagenMiniatura);
+           
+            $Datos = [
+                'ImagenSeleccionada' => $DetalleImagen, //nombre_imgDenuncia
+            ];
+
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+            
+            //No se cargan los estilos porque es una llamada Ajax
+            $this->vista("view/ajax/ImagenDenunciaSeleccionada_V", $Datos ); 
         }
     }

@@ -65,6 +65,32 @@
 	 .cont_denuncia--botonSubmit{
 		 margin: 15% auto 3% auto;
 	 }
+	 .cont_detalleDenuncia--flex{
+		 display: block;
+		 margin-top: 15%;
+	 }
+	 .cont_detalleDenuncia--titulo{
+		 text-align: center;
+		 font-size: 1.2em;
+		 font-weight: bold;
+	 }
+	 .cont_detalleDenuncia--imagen{
+		 width: 100%;
+	 }
+	 .cont_detalleDenuncia--contenido{
+		 width: 100%;
+	 }
+	 .cont_detalleDenuncia--cerrar{
+		 position: absolute;
+		 width: 2em;
+		 top: 45%;
+		 right: 5%;
+	 }
+	 .cont_detalleDenuncia--titulo{
+		 text-align: center;
+		 font-size: 1.4em;
+		 font-weight: bold;
+	 }
 	 .p_1{
 		text-align: justify;
 		 font-size: 1.2em;
@@ -410,6 +436,10 @@
 		width: 95%;
 		padding-top: 7%; 
 		margin-top: 20%;
+	}
+	.login_cont--recuperarClave{
+		margin-top: 10%;
+		width: 90%;
 	}
 	.marcador{
 		padding-top: 5vh;
