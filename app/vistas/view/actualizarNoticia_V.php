@@ -192,19 +192,14 @@
                     <div class="cont_panel--imagenSec">
                         <?php
                         foreach($Datos['imagenesNoticiaActualizar'] as $Row) : ?>                   
-                            <div style="margin: 1%; background-color:yellow">
+                            <div style="margin: 1%;" id=PadreImagenes">
                                 <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
-                                <div class="cont_edit--dosBotones">
-                                    <!-- EDITAR -->
-                                    <div class="cont_edit--Boton">
-                                        <label class="Default_pointer" for="imgInp_3"><span class="material-icons-outlined">edit</span></label>
-                                    </div>
-                                    <!-- ELIMINAR -->
-                                    <div class="cont_edit--Boton">
-                                        <label class="Default_pointer" for="imgInp_3"><span class="material-icons-outlined">clear</span></label>
+                                <div class="cont_edit--dosBotones" id="Cont_Botones--<?php echo $Row['ID_Imagen'];?>">
+                                    <div>
+                                        <img class="Default_pointer" style="width: 2em" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="EliminarImagenSecundaria('<?php echo $Row['ID_Imagen'];?>','Cont_Botones--<?php echo $Row['ID_Imagen'];?>')"/>
                                     </div>
                                 </div> 
-                                <figure> 
+                                <figure id="<?php echo $Row['ID_Imagen'];?>"> 
                                     <img class="actualizar_cont--imagen" alt="Fotografia Principal" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
                                 </figure>
                             </div>
@@ -365,4 +360,4 @@
 </script>
 
 <!-- FOOTER -->
-<?php require(RUTA_APP . '/vistas/footer/footer.php');?>
+<?php //require(RUTA_APP . '/vistas/footer/footer.php');?>

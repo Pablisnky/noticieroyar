@@ -11,62 +11,81 @@
                         <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['noticia'][0]['nombre_imagenNoticia'];?>"/></a>
                     </div>
 
-                    <!-- TITULAR -->
-                    <div class="cont_portada--titular">                   
-                        <h2 class="titular--texto"><?php echo $Datos['noticia'][0]['titulo'];?></h2>
-                    </div>
-                                
-                    <!-- RESUMEN -->
-                    <div class="cont_portada--texto">                   
-                        <h2 class="cont_portada--resumen"><?php echo $Key['subtitulo'];?></h2>
+                    <div class="cont_portada--tituloResumen">
+                        <!-- TITULAR -->
+                        <div class="cont_portada--titular">                   
+                            <h2 class="titular--texto"><?php echo $Datos['noticia'][0]['titulo'];?></h2>
+                        </div>
+                                    
+                        <!-- RESUMEN -->
+                        <div class="cont_portada--texto Default_puntosSuspensivos">                   
+                            <h2 class="cont_portada--resumen"><?php echo $Key['subtitulo'];?></h2>
+                        </div>
                     </div>
 
-                    <!-- INFORMACION -->
+                    <!-- INFORMACION EN ICONOS  -->
                     <div class="cont_portada--informacion">
-                        <hr class="cont_noticia--hr_1 Default_quitarMovil">
                         <?php
                         // CANTIDAD DE IMAGENES
                         foreach($Datos['cantidadImagenes'] as $Row)   :  
-                            if($Key['ID_Noticia'] == $Row['ID_Noticia']){ 
-                                if($Row['cantidad'] > 1 ){ ?> 
-                                    <small class="cont_portada_informacion--span"><?php echo $Row['cantidad'];?> imagenes</small> 
-                                    <?php
-                                }
-                                else{   ?>
-                                    <small class="cont_portada_informacion--span"><?php echo $Row['cantidad'];?> imagen</small> 
-                                    <?php
-                                }      
+                            if($Key['ID_Noticia'] == $Row['ID_Noticia']){ ?> 
+                                <div style="display: flex; align-items:center;">
+                                    <small style="margin-right: 5px"><?php echo $Row['cantidad'];?></small> 
+                                    <img style="width: 1.4em" src="<?php echo RUTA_URL . '/public/iconos/imagenes/outline_photo_camera_black_24dp.png'?>"/>
+                                </div>
+                                    <?php  
                             }
                         endforeach;
+
                         // VIDEO
-                        foreach($Datos['videos'] as $Row_4)  : 
-                            if($Key['ID_Noticia'] == $Row_4['ID_Noticia']){ ?> 
-                                <small class="cont_portada_informacion--span">video</small> 
-                                <?php
-                            }
-                        endforeach;
-                        // COMENTARIOS
-                        foreach($Datos['comentario'] as $Row_9)   :  
-                            if($Key['ID_Noticia'] == $Row_9['ID_Noticia']){ 
-                                if($Row_9['cantidadComentario'] > 1 ){ ?>
-                                    <small class="cont_portada_informacion--span"><?php echo $Row_9['cantidadComentario']?> Comentarios</small>
+                        if($Datos['videos'] != Array ()){
+                            foreach($Datos['videos'] as $Row_4)  : 
+                                if($Key['ID_Noticia'] == $Row_4['ID_Noticia']){ ?> 
+                                    <div style="display: flex; align-items:center;">
+                                        <small style="margin-right: 5px">1</small> 
+                                        <img style="width: 1.8em" src="<?php echo RUTA_URL . '/public/iconos/video/outline_videocam_black_24dp.png'?>"/>                            
+                                    </div>
                                     <?php
                                 }
-                                else{   ?>
-                                    <small class="cont_portada_informacion--span"><?php echo $Row_9['cantidadComentario'];?> Comentario</small> 
+                            endforeach;   
+                        }                         
+                        else{   ?>
+                            <div style="display: flex; align-items:center;">
+                                <small style="margin-right: 5px">0</small>
+                                <img style="width: 1.8em" src="<?php echo RUTA_URL . '/public/iconos/video/outline_videocam_black_24dp.png'?>"/>                               
+                            </div>
+                            <?php
+                        }
+
+                        // COMENTARIOS 
+                            if($Datos['comentario'] != 'NULL'){  ?>
+                                <div style="display: flex; align-items:center; ">
+                                    <small style="margin-right: 5px"><?php echo $Datos['comentario']['cantidadComentario']?></small>
+                                    <img style="width: 1.4em" src="<?php echo RUTA_URL . '/public/iconos/comentario/outline_speaker_notes_black_24dp.png'?>"/>
+                                </div>
                                     <?php
-                                }    
                             }
-                        endforeach; 
+                            else{   ?>
+                                <div style="display: flex; align-items:center;">
+                                    <small style="margin-right: 5px">0</small>
+                                    <img style="width: 1.4em" src="<?php echo RUTA_URL . '/public/iconos/comentario/outline_speaker_notes_black_24dp.png'?>"/>
+                                </div>
+                                <?php
+                            }  
+
                         // SI EXISTE ANUNCIO PUBLICITARIO
                         foreach($Datos['anuncios'] as $Row_2)   :  
                             if($Key['ID_Noticia'] == $Row_2['ID_Noticia']){ ?>
-                                <small class="cont_portada_informacion--span">+ Anuncio</small>
+                                <div style="display: flex; align-items:center;">
+                                    <small style="font-weight: bold;">+ Anuncio</small>
+                            </div>
                                 <?php
                             }
-                        endforeach;  ?>     
+                        endforeach;  ?>  
+                    </div>
+
+                    <div style="background-color: ">   
                         <!-- FUENTE -->
-                        <br>
                         <small class="cont_portada_informacion--span"><?php echo $Key['fuente'];?></small>
                            
                         <!-- FECHA -->
@@ -140,13 +159,13 @@
         <!-- BOTONES DEL PANEL FRONTAL -->
         <div class="cont_portada--botones">
             <div>
-                <span class="material-icons-outlined Default_pointer Default--seleccion" onclick="Llamar_NoticiaAnterior('<?php echo $Key['ID_Noticia'];?>')">arrow_back_ios_new</span>
+                <img class="Default_pointer" style="text-align: center; display:block; margin: auto; font-size: 2em;" onclick="Llamar_NoticiaAnterior('<?php echo $Key['ID_Noticia'];?>')" src="<?php echo RUTA_URL . '/public/iconos/chevronIzquierdo/outline_arrow_back_ios_new_black_24dp.png'?>"/>
             </div>
             <div>
                 <label class="boton boton--corto"><a class="Default_font--white" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
             </div>         
             <div>
-                <span class="material-icons-outlined Default_pointer Default--seleccion" onclick="Llamar_NoticiaPosterior('<?php echo $Key['ID_Noticia'];?>')">arrow_forward_ios</span>
+                <img class="Default_pointer" style="text-align: center; display:block; margin: auto; font-size: 2em;" onclick="Llamar_NoticiaPosterior('<?php echo $Key['ID_Noticia'];?>')"src="<?php echo RUTA_URL . '/public/iconos/chevronDerecha/outline_arrow_forward_ios_black_24dp.png'?>"/>
             </div>
         </div>    
         <?php

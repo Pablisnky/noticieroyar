@@ -140,6 +140,14 @@
                     //Se INSERTAN las imagenes secundarias de la noticia
                     $this->ConsultaContraloria_M->InsertarImagenlDenuncia($ID_Denuncia, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria, $ImagenPrincipal);
                 }
+                
+                //Se envia al correo pcabeza7@gmail.com la notificación de nueva denuncia introducida
+                $email_subject = 'Nueva denuncia de usuario'; 
+                $email_to = 'pcabeza7@gmail.com'; 
+                $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
+                $email_message = $Descripcion . '; ' . $Ubicacion . '; ' . $Municipio . '; ';
+                
+                mail($email_to, $email_subject, $email_message, $headers); 
             }
 
 			header("Location:" . RUTA_URL . "/Contraloria_C/verDenuncias");

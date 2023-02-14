@@ -82,6 +82,10 @@
             
             //Se CONSULTA los detalle de la noticia que se solicito
             $DetalleNoticia = $this->ConsultaNoticia_M->consultarNoticiaDetalle($ID_Noticia);
+            // echo "<pre>";
+            // print_r($DetalleNoticia);
+            // echo "</pre>";          
+            // // exit();
 
             //Se consulta las imagenes de la noticia
             $ImagenesNoticia = $this->ConsultaNoticia_M->consultarImagenesNoticia($ID_Noticia);
@@ -164,13 +168,21 @@
             
             $Datos = [
                 'comentario' => $Comentario, //
-                'datosComentario' => $ConsultarComentario //ID_Comentario,nombreSuscriptor, apellidoSuscriptor, fechaComentario, horaComentario 
+                'datosComentario' => $ConsultarComentario //ID_Comentario, nombreSuscriptor, apellidoSuscriptor, fechaComentario, horaComentario 
             ];
             
             // echo "<pre>";
             // print_r($Datos);
             // echo "</pre>";          
             // exit();
+            
+            //Se envia al correo pcabeza7@gmail.com la notificación de nuevo comentario en una denuncia
+            $email_subject = 'Nuevo comentario de usuario'; 
+            $email_to = 'pcabeza7@gmail.com'; 
+            $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
+            $email_message = $Comentario . '; ' . $ID_Noticia;
+            
+            mail($email_to, $email_subject, $email_message, $headers); 
 
             $this->vista("header/header_SoloEstilos"); 
             $this->vista("view/ajax/nuevoComentario_V", $Datos); 
@@ -202,7 +214,7 @@
             // echo $_SESSION['ID_Suscriptor']. '<br>';
 			// exit;
 
-            //Sesion creada en Login_C sino existe se muestra el formulario para logearse
+            //Sesion creada en Login_Cy sino existe se muestra el formulario para logearse
             if(!isset($_SESSION['ID_Suscriptor']) AND $Bandera == 'comentar'){ 
                 header('Location:'. RUTA_URL . '/Login_C/index/' . $ID_Noticia . ',SinLogin');                
                 // terminamos inmediatamente la ejecución del script, evitando que se envíe más salida al cliente.

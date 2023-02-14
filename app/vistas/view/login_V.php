@@ -17,6 +17,7 @@
     else{   ?>
         <style>
             .detalle_cont--comentario{
+                background-color: white; 
                 position: fixed; 
                 top: 0%;
                 left: 0%;
@@ -63,8 +64,8 @@
             <p>¿Olvidaste tu contraseña?</p>
             <label class="Default_link Default_pointer" id="Label_7">Recuperala</label>
             <hr class="hr_3">
-            <p>¿Quieres suscribirte?<p>
-            <a class="" href="<?php echo RUTA_URL . '/Login_C/suscripcion/' . $Datos['id_noticia'];?>">Suscripción</a>
+            <p>¿Quieres suscribirte?</p>
+            <a href="<?php echo RUTA_URL . '/Login_C/suscripcion/' . $Datos['id_noticia'];?>">Suscripción</a>
         </div>
     </div>
 

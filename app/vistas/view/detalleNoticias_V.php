@@ -99,7 +99,7 @@
         <div class="cont_comentario--BD" style="margin-top: 2%" id="ComentarioInsertado"></div>
 
         <!-- Se cargan los comentarios existentes en BD -->
-        <div class="">
+        <div>
             <?php
             foreach($Datos['comentarios'] as $Row)   :   ?>
                 <div class="cont_comentario--BD" id="<?php echo $Row['ID_Comentario'];?>">
@@ -148,7 +148,7 @@
                 </div>
                 
                 <!-- Se cargan las respuestas a los comentarios existentes en BD -->
-                <div class="">
+                <div>
                     <?php
                     foreach($Datos['respuestas'] as $Row_2)   : 
                         if($Row['ID_Comentario'] == $Row_2['ID_Comentario']){  ?>
@@ -184,7 +184,7 @@
     <!-- <a href="#Up" class="simplescrollup__button simplescrollup__button--hide">Avion<span class="material-icons-outlined detalle_cont--avion">airplanemode_active</span></a> -->
 </div>
 
-<!-- PUBLICIDAD -->   
+<!-- VENTANA EMERGENTE CON PUBLICIDAD -->   
 <?php       
     if(!empty($Datos['publicidad'][0]['ID_Noticia']) AND ($Datos['bandera'] == 'ConAnuncio')){ //Bandera creada en 
         if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['publicidad'][0]['ID_Noticia']){  ?>

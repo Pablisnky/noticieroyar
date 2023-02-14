@@ -12,13 +12,14 @@
             ocultarErrores();
         }
 
+        //Recibe dos parametros (ID_Noticia y el string "SinLogin") en una cadena separados por coma
         public function index($DatosAgrupados){
-            //$DatosAgrupados contiene una cadena con el ID_Noticia y el string "SinLogin" separados por coma, se convierte en array para separar los elementos
+            // $DatosAgrupados se convierte en array para separar los elementos
             $DatosAgrupados = explode(',', $DatosAgrupados);
             $ID_Noticia = $DatosAgrupados[0];
             $Bandera = $DatosAgrupados[1];
 
-            $ID_Comentario = !empty($DatosAgrupados[2]) ? $DatosAgrupados[2]: 'NoAplica';
+            $ID_Comentario = !empty($DatosAgrupados[2]) ? $DatosAgrupados[2]: 'SinID_Comentario';
             
             // echo "ID_Noticia =" .  $ID_Noticia ."<br>";
             // echo "Bandera =" .  $Bandera ."<br>";
@@ -44,15 +45,6 @@
 
                 if(!empty($CorreoRecord_Com)){
                     $Correo = $CorreoRecord_Com[0]['correo_AfiCom'];
-                }
-                else if(!empty($CorreoRecord_May)){
-                    $Correo = $CorreoRecord_May[0]['correo_AfiMay'];
-                }
-                else if(!empty($CorreoRecord_Ven)){
-                    $Correo = $CorreoRecord_Ven[0]['correo_AfiVen'];
-                }
-                else if(!empty($CorreoRecord_Des)){
-                    $Correo = $CorreoRecord_Des[0]['correo_AfiDes'];
                 }
 
                 $Datos=[
@@ -226,9 +218,19 @@
                         $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
                     }
                 }
-                else{
+                else{ //en caso de clave o usuario incorrecto                    
+                    $Datos = [                 
+                        'id_noticia' => $ID_Noticia,           
+                        'bandera' => $Bandera
+                    ];
+
+                    // echo '<pre>';
+                    // print_r($Datos);
+                    // echo '</pre>';
+                    // exit;
+
                     $this->vista("header/header_noticia");
-                    $this->vista("modal/modal_falloLogin_V");
+                    $this->vista("modal/modal_falloLogin_V", $Datos);
                 }                   
             }   
         }
@@ -253,7 +255,7 @@
             $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
             // $headers .= '\r\n X-Mailer: PHP/' . phpversion();
         
-            // @mail($email_to, $email_subject, $email_message, $headers);
+            @mail($email_to, $email_subject, $email_message, $headers);
             
             $Datos = [
                 'correo' => $Correo,
@@ -364,10 +366,10 @@
             }
         }
 
-        public function loginIncorrecto(){
-            $this->vista("header/header_noticia");
-            $this->vista("modal/modal_falloLogin_V");
-        }
+        // public function loginIncorrecto(){
+        //     $this->vista("header/header_noticia");
+        //     $this->vista("modal/modal_falloLogin_V");
+        // }
         
         //Invocado desde login_V.php
         public function suscripcion($ID_Noticia){

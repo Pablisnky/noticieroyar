@@ -64,8 +64,9 @@
         //SELECT de los videos asociados a la noticia de portada 
         public function consultarVideosNoticiaPortada(){
             $stmt = $this->dbh->query(
-                "SELECT  ID_Noticia
-                FROM videos"
+                "SELECT ID_Noticia, COUNT(ID_Noticia) AS cantidadVideo
+                FROM videos
+                GROUP BY ID_Noticia"
             );
 
             if($stmt->execute()){
@@ -126,7 +127,7 @@
             $stmt->bindParam(':ID_NOTICIA', $ID_noticia, PDO::PARAM_INT);
 
             if($stmt->execute()){
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $stmt->fetch(PDO::FETCH_ASSOC);
             }
             else{
                 return false;
@@ -318,6 +319,48 @@
                 GROUP BY ID_Noticia"
             );
             
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        public function consultarNoticiasSinComentarios(){
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias.ID_Noticia 
+                FROM noticias 
+                LEFT JOIN comentarios ON noticias.ID_Noticia=comentarios.ID_Noticia
+                WHERE comentario IS NULL
+                ORDER BY noticias.ID_Noticia
+                DESC"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            // $stmt->bindValue(':COMENTARIO', '', PDO::PARAM_STR);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        public function consultarNoticiaSinVideo(){
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias.ID_Noticia 
+                FROM noticias 
+                LEFT JOIN videos ON noticias.ID_Noticia=videos.ID_Noticia
+                WHERE nombreVideo IS NULL
+                ORDER BY noticias.ID_Noticia
+                DESC"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            // $stmt->bindValue(':COMENTARIO', '', PDO::PARAM_STR);
+
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }

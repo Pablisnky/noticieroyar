@@ -242,6 +242,7 @@ textarea{
 }
 .cont_Contraloria--botones{
 	display: flex; 
+	flex-wrap: wrap; 
 	justify-content: space-between;
 	width: 30%; 
 	margin: auto;
@@ -249,6 +250,7 @@ textarea{
 }
 .cont_contraloriaDenuncias{
 	display: flex;/*para centrar verticalmente el div hijo*/
+	flex-wrap: wrap; 
 	align-items: center;/*para centrar verticalmente el div hijo*/
 	margin-top: 3%;
 }
@@ -293,6 +295,7 @@ textarea{
  }
  .cont_descripcionArtista{
 	display: flex;
+	flex-wrap: wrap; 
 	background-color: black;
 	position: fixed;
 	top: 0vh;
@@ -316,6 +319,7 @@ textarea{
  }
  .contenedor_102{
 	 display: flex; /*Organiza los elementos horizontalmente*/
+	 flex-wrap: wrap; 
 	 justify-content: center;
 	 align-items: center;
 	 width: 100%;
@@ -350,6 +354,7 @@ textarea{
  }
  .cont_carrito--flex{
 	 display: flex;
+	 flex-wrap: wrap; 
 	 justify-content: center;
 	 margin: auto;
 	 width: 50%;
@@ -386,6 +391,7 @@ textarea{
  }
  .cont_carrito--MetodoPago{
 	display: flex;
+	flex-wrap: wrap; 
 	justify-content: space-between;
 	text-align: left;
 	width: 25%;
@@ -403,6 +409,7 @@ textarea{
  }
  .cont_denuncia--flex{
 	display: flex;
+	flex-wrap: wrap; 
  }
  .cont_denuncia--textarea{
 	width: 100%;
@@ -526,6 +533,7 @@ textarea{
  }
  .cont_ObraDetalle--miniaturas{/*detallePoncho*/
 	 display: flex; /*Organiza los elementos horizontalmente*/
+	 flex-wrap: wrap; 
 	 text-align: center;
 	 width: 50%;
 	 left: 5%;
@@ -668,6 +676,7 @@ textarea{
  }
  .cont_noticia--seccion{
 	display: flex;
+	flex-wrap: nowrap; 
 	justify-content: flex-start;
 	align-content: flex-start;/*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
 	/* height: 100%; */
@@ -712,7 +721,7 @@ textarea{
 	font-size: 0.8em;
  }
  .cont_noticia--hr_1{
-	margin: 2%;
+	margin: 1%;
 	width: 30%;
  }
  .cont_noticias_atras--coleccion{
@@ -749,10 +758,12 @@ textarea{
  }
  .cont_panel{
 	 display: flex;
+	 flex-wrap: wrap; 
  }
  .cont_panel--MenuIndice{
 	background-color: rgb(180, 248, 180);
 	display: flex;
+	flex-wrap: wrap; 
 	justify-content: space-evenly;
 	align-items: center;
 	position: fixed;
@@ -772,6 +783,7 @@ textarea{
  }
  .cont_panel--datos{
 	 display: flex;
+	 flex-wrap: wrap; 
 	 align-items: center;
  }
  .cont_panel--datos__did-1{
@@ -895,6 +907,7 @@ textarea{
 }
 .cont_detalleDenuncia--flex{
 	display: flex;
+	flex-wrap: wrap; 
 	margin: auto;
 	margin-top: 5%;
 	width: 95%;
@@ -929,6 +942,7 @@ textarea{
 	top: 2%;
 	left: 78%;
 	display: flex;
+	flex-wrap: wrap; 
 	align-items: center;
 	justify-content: center;
 	width: 40px;
@@ -944,26 +958,28 @@ textarea{
 }
 .cont_edit--Boton{
 	background-color: white;
-	width: 40px;
-	height: 40px;
+	width: 25px;
+	height: 25px;
 	display: flex;
+	flex-wrap: wrap; 
 	align-items: center;
 	justify-content: center;
 	border-radius: 100%; 
 	border-color: black;
-	border-width: 1px;
+	border-width: 2px;
 	border-style: solid;
 }
 .cont_edit--dosBotones{
 	position: relative;
-	top: 4%;
-	left: 50%;
+	top: 2%;
+	left: 85%;
 	display: flex;
+	flex-wrap: wrap; 
 	align-items: center;
 	justify-content: space-between;
 	height: 30px;
 	margin-bottom: -30px;/*este margen se usa para que la imagen se pegue arriba del div, el position relaive deja un espacio en blanco del alto de su height*/
-	width: 50%;
+	width: 40%;
 }
 .cont_detalle--imagen{
 	margin: auto;
@@ -1037,16 +1053,23 @@ textarea{
 	margin: 1% auto;
 	text-align: center;
 }
+.cont_portada--tituloResumen{
+	height: 24vh;
+}
 .cont_portada--imagen{
 	max-height: 50vh; 
 	margin: auto;
 	/*object-fit: contain; fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
 .cont_portada--informacion{
-	padding-left: 10px
+	/* background-color: red; */
+	margin-bottom: 0.2vh;
+	display: flex;
+	flex-wrap: wrap; 
+	justify-content: space-around;
 }
 .cont_portada_informacion--span{
-	padding-left: 5px;
+	padding-left: 15px;
 	font-weight: bold; 
 	font-size: 0.9em;
 }
@@ -1095,6 +1118,7 @@ textarea{
 }
 .denuncias--detalles{
 	display: flex;
+	flex-wrap: wrap; 
 	justify-content: space-between;
 	text-align: center;
 	width: 98%;
@@ -1124,6 +1148,7 @@ textarea{
 }
 .detalle_cont{
 	display:flex; 
+	flex-wrap: nowrap; 
 	width: 100%;
 	margin-top: 1%
 }
@@ -1199,6 +1224,7 @@ textarea{
 }
 .detalle_cont--redesSociales{
 	display: flex;
+	flex-wrap: wrap; 
 	justify-content: space-around;
 	align-items: center;
 	width: 20%;
@@ -1262,6 +1288,7 @@ textarea{
 }
 .footer_cont{
 	display: flex; 
+	flex-wrap: wrap; 
 	justify-content: space-between;
 	/* align-items: flex-end; */
 	/* height: 40vh; */
@@ -1401,6 +1428,7 @@ textarea{
 	width: 40%;
 	margin: 8% auto 1% auto;
 	display: flex;
+	flex-wrap: wrap; 
 	justify-content: center;
 }
 .login_cont--recuperarClave{
@@ -1422,7 +1450,7 @@ textarea{
 .cont_portada--texto{
 	width: 95%;
 	margin: auto;
-	margin-top: 2vh;
+	/* margin-top: 1vh; */
 	padding: 0.5%;
 	text-align: justify;
 }
@@ -1439,13 +1467,13 @@ textarea{
 	color: white;
 }
 .con_portada--titulo{
-	background-color: orange;
 	font-weight: bold;
 	position: fixed;
 	top: 1.5%;
 	left: 15%;
 	z-index: 1;
 	display:flex;
+	flex-wrap: wrap; 
 	justify-content: space-around;
 	align-items: center;
 	padding: 0.5% 1%;
@@ -1546,6 +1574,7 @@ textarea{
 }
 .cont_radio{
 	display: flex; 
+	flex-wrap: wrap; 
 	justify-content: space-around;
 	width: 100%;
 	padding: 2%;
@@ -1654,6 +1683,7 @@ textarea{
 	left: 0%;
 	width: 100%;
 	display: flex;
+	flex-wrap: wrap; 
 	justify-content: space-around;
 	align-items: center;
 	z-index: 1;
@@ -1665,6 +1695,7 @@ textarea{
 	width: 100%;
 	z-index: 3 !important;
 	display: flex;
+	flex-wrap: wrap; 
 	align-items: center;
 }
 .header__li--Enlaces{
@@ -1725,14 +1756,19 @@ textarea{
 .menuLi_2{
 	padding-top: 0%; 
 	display: block !important;
-	/* width: 110% !important; */
-	/* text-align: left !important; */
 }
 .modal_falloLogin{
 	width: 40%;
 	margin: auto;
 	padding-top: 8%; /*antes mrgin-top: 10%*/
 	min-height: 90%;
+}
+.modal_falloLogin--fieldset{
+	background-color: var(--OficialClaro);
+}
+.modal_falloLogin--h1{
+	margin-bottom: 2%;
+	text-align: center;
 }
 .modal_falloLogin--cont{
 	text-align: center;
@@ -1777,6 +1813,7 @@ textarea{
 }
 .obituario_cont{
 	display: flex;
+	flex-wrap: wrap; 
 	margin: 2% auto;
 	padding: 2%;
 }
@@ -1934,6 +1971,7 @@ ul .menuContenedor_3{
 
 .mostrarModal--publicidad{
 	display: flex;
+	flex-wrap: wrap; 
 }
 
 .simplescrollup__button {

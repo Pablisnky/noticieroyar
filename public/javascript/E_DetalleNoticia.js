@@ -18,8 +18,10 @@ var VentanaModal = (function(){
 })();
 
 //************************************************************************************************
-function mostrarModal(){        
-    document.getElementById("VentanaModal--Publicidad").classList.add("mostrarModal--publicidad")
+function mostrarModal(){  
+    if(document.getElementById("VentanaModal--Publicidad")){     
+        document.getElementById("VentanaModal--Publicidad").classList.add("mostrarModal--publicidad")
+    }
 }
 
 //************************************************************************************************ 
@@ -69,7 +71,7 @@ function CerrarModal(id){
         // Quita la noticia de pantalla
         //Se detecta  el contenedor que contiene el comentario a eliminar
         let DivEliminar = document.getElementById(ID_Comentario)
-        console.log(DivEliminar)
+        // console.log(DivEliminar)
 
         //Se detecta el elemento padre que contiene el elemento a eliminar
         let Padre = DivEliminar.parentElement
@@ -94,7 +96,7 @@ function EliminarComentarioNuevo(ID_Comentario){
 //************************************************************************************************
     //Ajusta la altura del texarea según se vaya escribiendo en el mismo                
     function autosize(id){
-        console.log("______Desde autosize()______", id)
+        // console.log("______Desde autosize()______", id)
         var el = document.getElementById(id);
         
         setTimeout(function(){
@@ -124,13 +126,13 @@ function mostrar_DivRespuesta(ID_Comentario, ID_BotonRespuesta){
 
 //************************************************************************************************ 
 function enviarRespuesta(form, ID_Comentario){
-    console.log("______Desde enviarRespuesta()______") 
+    // console.log("______Desde enviarRespuesta()______") 
     console.log(form)
     console.log(ID_Comentario)
 }
 
 function mostrarRrespuesta(ID_Comentario, Respuesta, ID_Respuesta, ID_LabelEnviar, ID_insertaRespuesta){
-    console.log("______Desde mostrarRrespuesta()______ ",ID_Comentario + "/" + Respuesta + "/" + ID_Respuesta + "/" + ID_LabelEnviar)
+    // console.log("______Desde mostrarRrespuesta()______ ",ID_Comentario + "/" + Respuesta + "/" + ID_Respuesta + "/" + ID_LabelEnviar)
     // let A = document.getElementById(ID_RespuestaInsertada).value = Respuesta
     
     document.getElementById(ID_Respuesta).style.display = "none"

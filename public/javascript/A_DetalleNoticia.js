@@ -57,7 +57,7 @@ function conexionAJAX(){
 // *************************************************************************************************
     //Verifica que el usuario este logeado antes de realizar un comentario 
     function Llamar_VerificarSuscripcion(ID_Noticia, Bandera, ID_Comentario){
-        console.log("______Desde Llamar_VerificarSuscripcion()______", ID_Noticia + "/" + Bandera + "/" + ID_Comentario)
+        // console.log("______Desde Llamar_VerificarSuscripcion()______", ID_Noticia + "/" + Bandera + "/" + ID_Comentario)
         
         var url = "../../Noticias_C/VerificaLogin/" + ID_Noticia + "/" + Bandera + "/" + ID_Comentario
         http_request.open('GET', url, true)  
@@ -140,7 +140,7 @@ function conexionAJAX(){
 // *************************************************************************************************
     //Inserta una respuesta a un comentario existente
     function Llamar_InsertarRespuesta(ID_Comentario, ID_Respuesta, ID_LabelEnviar, ID_insertaRespuesta, ID_Noticia){
-        console.log("______Desde Llamar_InsertarRespuesta()______", ID_Comentario + "/" + ID_Respuesta + "/" + ID_LabelEnviar + "/" + ID_insertaRespuesta + "/" + ID_Noticia)
+        // console.log("______Desde Llamar_InsertarRespuesta()______", ID_Comentario + "/" + ID_Respuesta + "/" + ID_LabelEnviar + "/" + ID_insertaRespuesta + "/" + ID_Noticia)
         let Respuesta = document.getElementById(ID_Respuesta).value
         // console.log(Respuesta)
         

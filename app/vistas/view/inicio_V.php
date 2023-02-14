@@ -13,66 +13,89 @@
                         <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
                     </div>
                     
-                    <!-- TITULAR -->
-                    <div class="cont_portada--titular">                   
-                        <h2 class="titular--texto"><?php echo $Key['titulo'];?></h2>
-                    </div>
-                    
-                    <!-- RESUMEN -->
-                    <div class="cont_portada--texto">                   
-                        <h2 class="cont_portada--resumen"><?php echo $Key['subtitulo'];?></h2>
+                    <div class="cont_portada--tituloResumen">
+                        <!-- TITULAR -->
+                        <div class="cont_portada--titular">                   
+                            <h2 class="titular--texto"><?php echo $Key['titulo'];?></h2>
+                        </div>
+                        
+                        <!-- RESUMEN -->
+                        <div class="cont_portada--texto">                   
+                            <h2 class="cont_portada--resumen Default_puntosSuspensivos"><?php echo $Key['subtitulo'];?></h2>
+                        </div>
                     </div>
 
-                    <!-- INFORMACION -->
+                    <!-- INFORMACION EN ICONOS -->
                     <div class="cont_portada--informacion">
-                        <hr class="cont_noticia--hr_1 Default_quitarMovil">
                         <?php
                         // CANTIDAD DE IMAGENES
                         foreach($Datos['imagenes'] as $Row_3)  : 
-                            if($Key['ID_Noticia'] == $Row_3['ID_Noticia']){  
-                                if($Row_3['cantidad'] > 1 ){ ?>
-                                    <small class="cont_portada_informacion--span"><?php echo $Row_3['cantidad'];?> imagenes</small> 
-                                    <?php
-                                }
-                                else{   ?>
-                                    <small class="cont_portada_informacion--span"><?php echo $Row_3['cantidad'];?> imagen</small> 
-                                    <?php
-                                }                                
+                            if($Key['ID_Noticia'] == $Row_3['ID_Noticia']){    ?>
+                                <div style="display: flex; align-items:center; ">
+                                    <small style="margin-right: 5px"><?php echo $Row_3['cantidad'];?></small> 
+                                    <img style="width: 1.4em" src="<?php echo RUTA_URL . '/public/iconos/imagenes/outline_photo_camera_black_24dp.png'?>"/>
+                                </div>
+                                    <?php                           
                             }
                         endforeach;
 
-                        // VIDEO
+                        // CANTIDAD DE VIDEO
                         foreach($Datos['videos'] as $Row_4)  : 
                             if($Key['ID_Noticia'] == $Row_4['ID_Noticia']){ ?> 
-                                <small class="cont_portada_informacion--span">video</small> 
+                                <div style="display: flex; align-items:center; background-color: ">
+                                    <small style="margin-right: 5px"><?php echo $Row_4['cantidadVideo'];?></small> 
+                                    <img style="width: 1.8em" src="<?php echo RUTA_URL . '/public/iconos/video/outline_videocam_black_24dp.png'?>"/>                            
+                                </div>
+                                <?php
+                            }
+                        endforeach;
+                        
+                        // SIN VIDEO
+                        foreach($Datos['noticiasSinVideo'] as $Row_9)   :  
+                            if($Key['ID_Noticia'] == $Row_9['ID_Noticia']){     ?>
+                                <div style="display: flex; align-items:center; background-color: ">
+                                    <small style="margin-right: 5px">0</small>
+                                    <img src="<?php echo RUTA_URL . '/public/iconos/video/outline_videocam_black_24dp.png'?>"/>                               
+                                </div>
                                 <?php
                             }
                         endforeach;
 
                         // COMENTARIOS
                         foreach($Datos['cantidadComentario'] as $Row_6)   :  
-                            if($Key['ID_Noticia'] == $Row_6['ID_Noticia']){ 
-                                if($Row_6['cantidadComentario'] > 1 ){ ?>
-                                    <small class="cont_portada_informacion--span"><?php echo $Row_6['cantidadComentario']?> Comentarios</small>
+                            if($Key['ID_Noticia'] == $Row_6['ID_Noticia']){  ?>
+                            <div style="display: flex; align-items:center; background-color: ">
+                                <small style="margin-right: 5px"><?php echo $Row_6['cantidadComentario']?> </small>
+                                <img style="width: 1.4em" src="<?php echo RUTA_URL . '/public/iconos/comentario/outline_speaker_notes_black_24dp.png'?>"/>                                
+                            </div>
                                     <?php
-                                }
-                                else{   ?>
-                                    <small class="cont_portada_informacion--span"><?php echo $Row_6['cantidadComentario'];?> Comentario</small> 
-                                    <?php
-                                }    
+                            }
+                        endforeach;  
+                        
+                        // SIN COMENTARIOS
+                        foreach($Datos['noticiasSinComentarios'] as $Row_8)   :  
+                            if($Key['ID_Noticia'] == $Row_8['ID_Noticia']){     ?>
+                                <div style="display: flex; align-items:center; background-color: ">
+                                    <small style="margin-right: 5px">0</small>
+                                    <img style="width: 1.4em" src="<?php echo RUTA_URL . '/public/iconos/comentario/outline_speaker_notes_black_24dp.png'?>"/>                               
+                                </div>
+                                <?php
                             }
                         endforeach;  
 
                         // SI EXISTE ANUNCIO PUBLICITARIO
                         foreach($Datos['anuncios'] as $Row_2)   :  
                             if($Key['ID_Noticia'] == $Row_2['ID_Noticia']){ ?>
-                                <small class="cont_portada_informacion--span">+ Anuncio</small>
+                                <div style="display: flex; align-items:center; background-color: ">
+                                    <small style="font-weight: bold;">+ Anuncio</small>
+                                </div>
                                 <?php
                             }
                         endforeach;  ?>   
+                    </div>
 
+                    <div>
                         <!-- FUENTE -->
-                        <br>
                         <small class="cont_portada_informacion--span"><?php echo $Key['fuente'];?></small>
                         
                         <!-- FECHA -->

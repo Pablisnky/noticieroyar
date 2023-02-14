@@ -41,7 +41,7 @@
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo|Moon+Dance'>
 
 		<!-- CDN ICONOS DE GOOGLE -->
-		<link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet"/>
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet"/> -->
     </head>
 	<body class="body_1">				
 		<header class="header" id="Header">  

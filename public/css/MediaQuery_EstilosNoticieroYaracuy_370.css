@@ -26,6 +26,28 @@
 		width: 100%; 
 		margin: auto;
 	}
+	.cont_denuncia{
+	   margin: 25% auto;
+	   width: 100%;
+	}
+	.cont_denuncia--flex{
+	   display: initial;
+	}
+	.cont_denuncia--img{
+	   width: 90%;
+	}
+	.cont_denuncia--imagen{
+	   height: 50vw;
+	}
+	.cont_denuncia--contenido{
+	   width: 100%;
+	}
+	.cont_denuncia--label{
+	   margin-top: 5%;
+	}
+	.cont_denuncia--botonSubmit{
+		margin: 15% auto 3% auto;
+	}
 	.cont_detalleDenuncia--flex{
 		display: block;
 		margin-top: 15%;
@@ -352,12 +374,15 @@
 		width: 100%;
 		bottom: 15pt;
 	}
+	.cont_portada--tituloResumen{
+		height: 19vh;
+	}
 	.cont_portada--informacion{
-		padding-left: 15px;
+		padding-top: 1%;
+		margin-bottom: 0vh;
 	}
 	.cont_portada_informacion--span{
-		/* background-color: yellow; */
-		padding-left: 5px;
+		padding-left: 15px;
 		font-weight: bold; 
 		font-size: 0.8em;
 	}
@@ -406,6 +431,14 @@
 	.Default--textoVertical{	
 	   writing-mode: initial;
 	   transform: initial;
+	}
+	.Default_puntosSuspensivos{	
+		/*Las proximas lineas permiten colocar tres puntos al final luego de 3 lineas de parrafo */	
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		text-overflow: ellipsis;
 	}
 	.imagen--portada--cole{
 		height: 40vh;  

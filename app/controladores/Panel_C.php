@@ -799,8 +799,8 @@
 				//Usar en remoto
 				$DirectorioPerfil = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/'. $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista. '/perfil/';
 
-				// usar en local
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/galeria/Andreina_Zavarce/';
+				// // usar en local
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/galeria/Andreina_Zavarce/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPerfil']['tmp_name'], $DirectorioPerfil.$Nombre_imagenPerfil);
@@ -1460,8 +1460,8 @@
 			//Usar en remoto
 			$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
 			
-			// usar en local
-			// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
+			// // usar en local
+			$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
 			
 			//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 			move_uploaded_file($_FILES['imagenPerfil']['tmp_name'], $Directorio_1.$Nombre_imagenPerfil);
@@ -1484,8 +1484,8 @@
 					//Usar en remoto
 					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/';
 
-					//usar en local
-					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
+					// //usar en local
+					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
 
 					//Subimos el fichero al servidor
 					move_uploaded_file($Ruta_Temporal_imageneObra, $directorio_3.$_FILES['imagenesObras']['name'][$i]);
@@ -1562,5 +1562,14 @@
 
 			header("Location:" . RUTA_URL . "/Panel_C/galeria");
 			die();
+		}
+
+		//Eliminar imagen secundaria de noticia
+		public function eliminar_imagenSecundariaNoticia($ID_Imagen){
+
+			$this->Panel_M->eliminarImagenSecundariaNoticia($ID_Imagen);			
+
+			// header("Location:" . RUTA_URL . "/Panel_C/");
+			// die();
 		}
 	}

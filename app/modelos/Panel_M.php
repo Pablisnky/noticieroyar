@@ -1498,10 +1498,20 @@
         public function eliminarArtista($ID_Artista){
             $stmt = $this->dbh->prepare(
                 "DELETE FROM artistas  
-                WHERE ID_Artista   = :ID_ARTISTA"
+                WHERE ID_Artista = :ID_ARTISTA"
             );
         
             $stmt->bindValue(':ID_ARTISTA', $ID_Artista , PDO::PARAM_INT);
+            $stmt->execute(); 
+        }
+
+        public function eliminarImagenSecundariaNoticia($ID_Imagen){
+            $stmt = $this->dbh->prepare(
+                "DELETE FROM imagenes  
+                WHERE ID_Imagen = :ID_IMAGEN"
+            );
+        
+            $stmt->bindValue(':ID_IMAGEN', $ID_Imagen , PDO::PARAM_INT);
             $stmt->execute(); 
         }
 }
