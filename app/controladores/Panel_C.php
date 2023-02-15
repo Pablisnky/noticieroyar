@@ -24,10 +24,7 @@
 
 			//CONSULTA las noticias generales
 			$NoticiasGenerales = $this->Panel_M->consultarNoticiasGenerales();
-			
-			//CONSULTA si hay asociado una coleccion 180°
-			$Coleccion = $this->Panel_M->consultarColeccion();
-			
+						
 			//CONSULTA si hay asociado un anuncio pulicitario
 			$Publicidad = $this->Panel_M->consultarPublicidad();
 
@@ -38,8 +35,7 @@
 				'noticiasPortadas' => $NoticiasPortadas, //ID_Noticia, titulo, imagenNoticia 
 				'imagenesNoticiasPortadas' => $ImagenesNoticiasPortadas,
 				'seccionesNoticiasPortadas' => $SeccionesNoticiasPortadas,
-				'noticiasGenerales' => $NoticiasGenerales, // $
-				'coleccion' => $Coleccion, //ID_Noticia, nombreColeccion
+				'noticiasGenerales' => $NoticiasGenerales, // 
 				'visitas' => $Visitas,
 				'publicidad' => $Publicidad //ID_Noticia, razonSocial
 			];
@@ -64,10 +60,7 @@
 
 			//CONSULTA las secciones de noticias de generales
 			$SeccionessNoticiasGenerales = $this->Panel_M->consultarSeccionessNoticiasGenerales();
-			
-			//CONSULTA si hay asociado una coleccion 180° en las noticias de generales
-			$Coleccion = $this->Panel_M->consultarColeccionNoticiasGenerales();
-			
+						
 			//CONSULTA si hay asociado anuncios publicitario en las noticias de generales
 			$Publicidad = $this->Panel_M->consultarAnunciosNoticiasGenerales();
 			
@@ -78,7 +71,6 @@
 				'noticiasGenerales' => $NoticiasGenerales, //ID_Noticia, titulo, imagenNoticia 
 				'imagenesNoticiasGenerales' => $imagenesNoticiasGenerales,
 				'seccionessNoticiasGenerales' => $SeccionessNoticiasGenerales,
-				'coleccion' => $Coleccion, //ID_Noticia, nombreColeccion
 				'publicidad' => $Publicidad, //ID_Noticia, razonSocial 
 				'visitas' => $Visitas
 			];

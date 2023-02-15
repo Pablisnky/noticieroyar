@@ -432,6 +432,14 @@
 	   writing-mode: initial;
 	   transform: initial;
 	}
+	/*Las proximas lineas permiten colocar tres puntos al final luego de 3 lineas de parrafo */	
+	.Default_puntosSuspensivos{	
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		text-overflow: ellipsis;
+	}
 	.login_cont{
 		width: 95%;
 		padding-top: 7%; 

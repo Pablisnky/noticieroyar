@@ -470,8 +470,8 @@
 .Default_quitarMovil{/*no se muestra en version movil*/
 	display: none;
 }
+/*Las proximas lineas permiten colocar tres puntos al final luego de 3 lineas de parrafo */	
 .Default_puntosSuspensivos{	
-	/*Las proximas lineas permiten colocar tres puntos al final luego de 3 lineas de parrafo */	
 	display: -webkit-box;
 	overflow: hidden;
 	-webkit-line-clamp: 3;

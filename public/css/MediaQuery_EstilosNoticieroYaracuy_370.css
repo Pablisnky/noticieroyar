@@ -416,8 +416,6 @@
 		justify-content: space-around;
 		width: 80%;
 		margin: 0% auto 0% auto;
-		/* position: relative;
-		bottom: 20pt; */
 	}
 	.Default_quitarEscritorio{
 		display: flex;
@@ -432,8 +430,8 @@
 	   writing-mode: initial;
 	   transform: initial;
 	}
-	.Default_puntosSuspensivos{	
-		/*Las proximas lineas permiten colocar tres puntos al final luego de 3 lineas de parrafo */	
+	/* Las proximas lineas permiten colocar tres puntos al final luego de 3 lineas de parrafo  */
+	.Default_puntosSuspensivos{	 
 		display: -webkit-box;
 		overflow: hidden;
 		-webkit-line-clamp: 3;

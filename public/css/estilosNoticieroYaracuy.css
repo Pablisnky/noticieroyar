@@ -1659,6 +1659,14 @@ textarea{
    writing-mode: vertical-rl; /*coloca el texto verticalmente*/
    transform: rotate(180deg); /*gira el texto para que se lea de abajo hacia arriba*/
 }
+.Default_puntosSuspensivos{	
+	/*Las proximas lineas permiten colocar tres puntos al final luego de 3 lineas de parrafo */	
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+}
 .fieldset_1{
 	width: 95%;
 	margin: auto;

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded',function(){resize('Contenido')}, false)
 
-// document.getElementById("Contenido").addEventListener('click', function(){resize('Contenido')}, false)
+document.getElementById("Contenedor_91").addEventListener('click', function(){CerrarModalAnuncios('MostrarAnuncios')}, false)
+
 document.getElementById("Contenido").addEventListener('keydown', function(){autosize('Contenido')}, false)
 
 //************************************************************************************************
@@ -222,3 +223,19 @@ function EliminarImagenSecundaria(ID_Imagen, Botones){
 }
 
 //************************************************************************************************
+
+//************************************************************************************************
+    //Valida el formulario de actualizar noticia
+    function validarActualizarNoticia(){
+        document.getElementsByClassName("boton")[0].value = "Actualizando ..."
+        document.getElementsByClassName("boton")[0].disabled = "disabled"
+        document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialClaro)"
+        document.getElementsByClassName("boton")[0].style.color = "var(--OficialOscuro)"
+        document.getElementsByClassName("boton")[0].classList.add('borde_1')
+        
+        let usuario = document.getElementById('Correo').value
+        let clave = document.getElementById('Clave').value  
+        
+        //Si se superan todas las validaciones la función devuelve verdadero
+        return true
+    }

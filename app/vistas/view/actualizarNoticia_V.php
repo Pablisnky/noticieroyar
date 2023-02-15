@@ -13,7 +13,7 @@
     <!--PANEL NOTICIAS PRINCIPALES --> 
         <div style="margin-left: 20%; padding-top: 20px;" >        
             <!-- NOTICIA -->
-            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiActualizada" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiActualizada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit = "return validarActualizarNoticia()">
                 <a id="marcador_01" class="ancla"></a>
                 <fieldset class="fieldset_1" id="Portada"> 
                 <legend class="legend_1">Actualizar Noticia</legend>

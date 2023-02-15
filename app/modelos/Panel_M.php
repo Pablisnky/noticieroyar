@@ -86,16 +86,16 @@
         }
         
         // SELECT de colecciones en noticias generales
-        public function consultarColeccionNoticiasGenerales(){
-            $stmt = $this->dbh->query(
-                "SELECT noticias.ID_Noticia, nombreColeccion 
-                FROM noticias_colecciones 
-                INNER JOIN colecciones ON noticias_colecciones.ID_Coleccion=colecciones.ID_Coleccion 
-                INNER JOIN noticias ON noticias_colecciones.ID_Noticia=noticias.ID_Noticia 
-                WHERE fecha < CURDATE() "
-            );
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
+        // public function consultarColeccionNoticiasGenerales(){
+        //     $stmt = $this->dbh->query(
+        //         "SELECT noticias.ID_Noticia, nombreColeccion 
+        //         FROM noticias_colecciones 
+        //         INNER JOIN colecciones ON noticias_colecciones.ID_Coleccion=colecciones.ID_Coleccion 
+        //         INNER JOIN noticias ON noticias_colecciones.ID_Noticia=noticias.ID_Noticia 
+        //         WHERE fecha < CURDATE() "
+        //     );
+        //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // }
         
         // SELECT de anuncios en noticias generales
         public function consultarAnunciosNoticiasGenerales(){
@@ -503,14 +503,14 @@
         }
         
         //SELECT de colecciones adjudicadas a cada noticia
-        public function consultarColeccion(){
-            $stmt = $this->dbh->query(
-                "SELECT ID_Noticia, nombreColeccion
-                FROM colecciones
-                INNER JOIN noticias_colecciones ON colecciones.ID_Coleccion=noticias_colecciones.ID_Coleccion"
-            );
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
+        // public function consultarColeccion(){
+        //     $stmt = $this->dbh->query(
+        //         "SELECT ID_Noticia, nombreColeccion
+        //         FROM colecciones
+        //         INNER JOIN noticias_colecciones ON colecciones.ID_Coleccion=noticias_colecciones.ID_Coleccion"
+        //     );
+        //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // }
 
         //SELECT de anuncios publicitarios asociados a cada noticia
         public function consultarPublicidad(){

@@ -35,17 +35,7 @@
                                 }
                             endforeach; ?>
                         </ul>
-                        
-                        <!-- COLECCION -->
-                        <label class="cont_panel--label">Coleccion 180°</label>
-                        <?php
-                            foreach($Datos['coleccion'] as $Row_3)   : 
-                                if($Not_Gen['ID_Noticia'] == $Row_3['ID_Noticia']){  ?>
-                                    <label class="cont_panel--fecha"><?php echo $Row_3['nombreColeccion'];?></label>
-                                        <?php
-                                }
-                            endforeach; ?>
-                        
+                                                
                         <!-- ANUNCIO -->
                         <label class="cont_panel--label">Anuncio publicitario</label>
                         <?php

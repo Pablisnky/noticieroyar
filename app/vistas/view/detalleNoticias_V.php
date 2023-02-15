@@ -6,7 +6,7 @@
         <label class="detalle_cont--fecha" id="Up">San Felipe, <?php echo $Datos['detalleNoticia'][0]['fechaPublicacion'];?> </label>
 
         <!-- ICONO CERRAR -->
-        <img class="material-icons-outlined cont_modal--cerrar detalle_cont--cerrar Default_pointer" style="width: 1em;" id="CerrarVentana" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>
+        <img class=" cont_modal--cerrar detalle_cont--cerrar Default_pointer" style="width: 1em;" id="CerrarVentana" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>
     </div>
 
     <div class="detalle_cont">         
@@ -47,12 +47,18 @@
         
             <!-- COMPARTIR REDES SOCIALES -->
             <div class="detalle_cont--redesSociales">
+
+                <!-- FACEBOOK -->
                 <div class="detalle_cont--red">
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>&text=Compartir%20Facebook" target="_blank"><img class="detalle_cont--redesSociales-facebook" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
                 </div>
+
+                <!-- TWITTER -->
                 <div class="detalle_cont--red">
                     <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>&text=COmpartir%20Twiter" target="_blank"><img class="detalle_cont--redesSociales-twitter" alt="twitter" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a>
                 </div>          
+                
+                <!-- WHATSAPP -->
                 <div class="whatsapp detalle_cont--red">
                 <a href="whatsapp://send?text=<?php echo $Datos['detalleNoticia'][0]['titulo']?>...<?php echo RUTA_URL?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
                 </div>            
