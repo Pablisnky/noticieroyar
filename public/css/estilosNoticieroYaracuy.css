@@ -464,7 +464,7 @@ textarea{
 	 position: fixed;
 	 right: 8%;
 	 top: 4%;
-	 cursor: pointer
+	 cursor: pointer;
  }
  .cont_ObraDetalle--img{
 	 width: 70%; 
@@ -1467,16 +1467,17 @@ textarea{
 	color: white;
 }
 .con_portada--titulo{
+	background-color: orange;
 	font-weight: bold;
 	position: fixed;
-	top: 1.5%;
+	/* top: 1%; */
 	left: 15%;
 	z-index: 1;
 	display:flex;
 	flex-wrap: wrap; 
 	justify-content: space-around;
 	align-items: center;
-	padding: 0.5% 1%;
+	padding: 0.3% 1%;
 	border-radius: 15px;
 }
 .con_portada--promocion{
@@ -1721,10 +1722,11 @@ textarea{
 	cursor: pointer;
 }
 .header__titulo{
+	/* background-color: red; */
 	font-size: 3em;
 	font-family: Gruppo;
 	display: block;
-	/* margin-left: 10%; */
+	margin-left: 10%;
 }
 .header--nav{
 	margin-left: 10%; 

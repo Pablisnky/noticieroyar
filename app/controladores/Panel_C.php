@@ -1,5 +1,6 @@
 <?php
     class Panel_C extends Controlador{
+        private $Panel_M;
 	
 		public function __construct(){
 			$this->Panel_M = $this->modelo("Panel_M");

@@ -4,7 +4,7 @@
 <div class="cont_denuncia">     
     <fieldset class="fieldset_1">
         <legend class="legend_1">Reporte ciudadano</legend>    
-        <form action="<?php echo RUTA_URL; ?>/Contraloria_C/recibeDenunciaAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" id="Agregar" onsubmit="return validarAgregarNoticia()">
+        <form action="<?php echo RUTA_URL; ?>/Contraloria_C/recibeDenunciaAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" id="Agregar" onsubmit="return validarAgregarDenuncia()">
             <div class="cont_denuncia--flex">
                 <div class="cont_denuncia--img">
                     <!-- IMAGEN -->                
@@ -63,7 +63,7 @@
                     <label class="boton  cont_denuncia--label" for="Img_Denuncia">Añadir mas imagenes</label> 
                     <input class="Default_ocultar" type="file" name="imagenesDenunciaSecundaria[]" multiple="multiple" id="Img_Denuncia" onchange="muestraImg()"/>  
                             
-                    <!-- muestra las imagenes secundarias -->
+                    <!-- mMUESTRA LAS IMAGENES SECUNDARIAS -->
                     <div class="cont_panel--imagenSec" id="muestrasImgDenuncia_2"></div>  
                 </div>
             </div>     
@@ -79,9 +79,12 @@
 </div>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL.'/public/javascript/E_AgregarDenuncia.js?v='. rand();?>"></script>
+
+
+
 
 <script> 
-
     //Da una vista previa de la foto principal de la denuncia
     function readImage(input, id_Label){
         // console.log("______Desde readImage()______", input + ' | ' + id_Label)

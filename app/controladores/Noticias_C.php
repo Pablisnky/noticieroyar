@@ -1,5 +1,6 @@
 <?php
     class Noticias_C extends Controlador{
+        private $ConsultaNoticia_M;
 
         public function __construct(){
             session_start();
@@ -180,7 +181,7 @@
             $email_subject = 'Nuevo comentario de usuario'; 
             $email_to = 'pcabeza7@gmail.com'; 
             $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
-            $email_message = $Comentario . '; ' . $ID_Noticia;
+            $email_message = $Comentario . '; ID_Noticia' . $ID_Noticia;
             
             mail($email_to, $email_subject, $email_message, $headers); 
 

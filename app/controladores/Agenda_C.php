@@ -1,5 +1,6 @@
 <?php
     class Agenda_C extends Controlador{
+        private $ConsultaAgenda_M;
 
         public function __construct(){
             $this->ConsultaAgenda_M = $this->modelo("Agenda_M");
@@ -15,6 +16,11 @@
             $Datos = [
                 'agenda' => $Agenda, //ID_Agenda, nombre_imagenAgenda
             ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
 
             $this->vista("header/header_noticia"); 
             $this->vista("view/agenda_V", $Datos);   

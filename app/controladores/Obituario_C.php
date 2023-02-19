@@ -1,5 +1,6 @@
 <?php
     class Obituario_C extends Controlador{
+        private $ConsultaObituario_M;
 
         public function __construct(){
             $this->ConsultaObituario_M = $this->modelo("Obituario_M");

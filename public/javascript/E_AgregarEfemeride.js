@@ -83,6 +83,7 @@ document.getElementById("Contenido").addEventListener('keydown', function(){auto
         document.getElementById("Boton_Agregar").disabled = "disabled"
         document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialClaro)"
         document.getElementById("Boton_Agregar").style.color = "var(--OficialOscuro)"
+        document.getElementById("Boton_Agregar").style.cursor = "wait"
         document.getElementById("Boton_Agregar").classList.add('borde_1')
 
         let Fecha = document.getElementById('Fecha').value

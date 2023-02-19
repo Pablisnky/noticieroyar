@@ -1,5 +1,6 @@
 <?php
     class Contacto_C extends Controlador{
+        private $ConsultaContacto_M;
 
         public function __construct(){
             $this->ConsultaContacto_M = $this->modelo("Contacto_M");

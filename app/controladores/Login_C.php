@@ -2,6 +2,7 @@
     declare(strict_types = 1);
 
     class Login_C extends Controlador{
+        private $ConsultaLogin_M;
         
         public function __construct(){  
             session_start();

@@ -97,20 +97,21 @@
 				<?php
 			}	?>
 			
-			<!-- BOTON VIDEO PROMOCIONAL SAN FELIPE -->
-			<!-- <div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
-				<span class="material-icons-outlined" style="width: 30px" id="CerrarVentana">play_circle</span>
-				<label class="Default_pointer" >Calle<br class="Default_quitarEscritorio"> Los Gaiteros </label>
-			</div> -->
-			<!-- VIDEO PROMOCIONAL SAN FELIPE -->	
-			<!-- <div class="con_portada--promocion" id="Miimagen">
+			<!-- BOTON VIDEO PROMOCIONAL -->
+			<div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
+				<img style="width: 2.5em" id="CerrarVentana" src="<?php echo RUTA_URL . '/public/iconos/video/outline_videocam_black_24dp.png'?>"/> 
+				<label class="Default_pointer" >Turismo<br class="Default_quitarEscritorio"> en Yaracuy </label>
+			</div>
+			<!-- VIDEO PROMOCIONAL -->	
+			<div class="con_portada--promocion" id="Miimagen">
 				<div id="Promocion">
-					<span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="Cerrar--modal" onclick="pausar()">cancel</span>
+					<!-- ICONO CERRAR VIDEO -->
+					<img class=" publicidad_cont--cerrar Default_pointer" style="width: 1em;" id="Cerrar--modal" onclick="pausar()" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>
 					<div>
-						<video class="con_portada--video" id="VideoPromocion" src="<?php echo RUTA_URL?>/public/video/Calle_Los_Gaiteros.mp4" controls loop ></video> 
+						<video class="con_portada--video" id="VideoPromocion" src="<?php echo RUTA_URL?>/public/video/TurismoYaracuy.mp4" controls loop ></video> 
 					</div>
 				</div>
-			</div>  -->
+			</div> 
 		</header>
 		
 		<!-- MEMBRETE DESPLAZANTE -->

@@ -142,7 +142,7 @@
                     <?php
                     if($Row['ID_Suscriptor'] == $Datos['id_suscriptor']){   ?>
                         <div> 
-                            <label class="detalle_cont--edicion Default_pointer" onclick="EliminarComentario('<?php echo $Row['ID_Comentario'];?>')">ELiminar</label>
+                            <label class="detalle_cont--edicion Default_pointer" onclick="EliminarComentario('<?php echo $Row['ID_Comentario'];?>')">Eliminar</label>
                             <!-- <label class="detalle_cont--edicion Default_pointer">Actualizar</label> -->
                         </div>
                         <?php

@@ -276,21 +276,21 @@
         }
         
         //SELECT de colecciones asociados a las noticias
-        public function consultarColeccionPortada(){
-            $stmt = $this->dbh->query(
-                "SELECT ID_Noticia, colecciones.ID_Coleccion, artistaColeccion, contactoArtista, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion
-                FROM colecciones
-                INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
-                INNER JOIN noticias_colecciones  ON colecciones.ID_Coleccion=noticias_colecciones.ID_Coleccion"
-            );
+        // public function consultarColeccionPortada(){
+        //     $stmt = $this->dbh->query(
+        //         "SELECT ID_Noticia, colecciones.ID_Coleccion, artistaColeccion, contactoArtista, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion
+        //         FROM colecciones
+        //         INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
+        //         INNER JOIN noticias_colecciones  ON colecciones.ID_Coleccion=noticias_colecciones.ID_Coleccion"
+        //     );
 
-            if($stmt->execute()){
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }
-            else{
-                return false;
-            }
-        }
+        //     if($stmt->execute()){
+        //         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //     }
+        //     else{
+        //         return false;
+        //     }
+        // }
         
         //Se CONSULTA la imagen que se solicito en detalles
         public function consultarDetalleImagen($ID_ImagenMiniatura){

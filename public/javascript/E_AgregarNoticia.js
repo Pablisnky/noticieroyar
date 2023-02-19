@@ -179,6 +179,7 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
         document.getElementById("Boton_Agregar").disabled = "disabled"
         document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialClaro)"
         document.getElementById("Boton_Agregar").style.color = "var(--OficialOscuro)"
+        document.getElementById("Boton_Agregar").style.cursor = "wait"
         document.getElementById("Boton_Agregar").classList.add('borde_1')
 
         let Titulo = document.getElementById('Titulo').value

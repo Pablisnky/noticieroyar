@@ -1,10 +1,10 @@
 <?php
     class Inicio_C extends Controlador{
+        private $ConsultaInicio_M;
         private $NoticiasPortadas;
         private $Anuncios;
         private $Imagenes;
         private $Video;
-        private $Coleccion;
         private $CantidadComentario;
         private $NoticiasSinComentarios;
         private $NoticiasSinVideo;
@@ -37,9 +37,6 @@
 
 			//CONSULTA si existe algun anuncio asociado a cada noticia del dia
             $this->Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortada();
-            
-			//CONSULTA coleccion 180°
-            $this->Coleccion = $this->ConsultaInicio_M->consultarColeccionPortada();
         }
         
         public function index(){  
@@ -61,8 +58,7 @@
                     'ID_NoticiaInicial' =>  $this->NoticiasPortadas[0]['ID_Noticia'],
                     'anuncios' => $this->Anuncios, //ID_Anuncio, ID_Noticia
                     'imagenes' => $this->Imagenes,  //ID_Noticia, COUNT(ID_Noticia)
-                    'videos' => $this->Video, //ID_Noticia, cantidadVideo
-                    'colecciones' => $this->Coleccion, //ID_Noticia, ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion
+                    'videos' => $this->Video, //ID_Noticia, cantidadVideocomentarioColeccion
                     'cantidadComentario' => $this->CantidadComentario,
                     'noticiasSinComentarios' => $this->NoticiasSinComentarios,
                     'noticiasSinVideo' => $this->NoticiasSinVideo

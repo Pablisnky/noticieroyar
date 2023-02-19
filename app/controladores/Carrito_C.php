@@ -1,5 +1,6 @@
 <?php
 	class Carrito_C extends Controlador{
+        private $Carrito_M;
 		
 		public function __construct(){
             $this->Carrito_M = $this->modelo("Carrito_M");

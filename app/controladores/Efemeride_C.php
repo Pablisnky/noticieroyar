@@ -1,5 +1,6 @@
 <?php
     class Efemeride_C extends Controlador{
+        private $ConsultaEfemeride_M;
 
         public function __construct(){
             $this->ConsultaEfemeride_M = $this->modelo("Efemeride_M");

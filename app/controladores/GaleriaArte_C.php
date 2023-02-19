@@ -1,5 +1,6 @@
 <?php    
     class GaleriaArte_C extends Controlador{
+        private $ConsultaGaleriaArte_M;
         
         public function __construct(){           
             $this->ConsultaGaleriaArte_M = $this->modelo("GaleriaArte_M");

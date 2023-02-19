@@ -2,6 +2,7 @@
     session_start();
     
     class Contraloria_C extends Controlador{
+        private $ConsultaContraloria_M;
         
         public function __construct(){           
             $this->ConsultaContraloria_M = $this->modelo("Contraloria_M");

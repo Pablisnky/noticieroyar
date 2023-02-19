@@ -2,7 +2,8 @@
 	var imagen = document.getElementById("Miimagen");
 	
 	function getFullscreen(element){
-		console.log("Elemento ", element)
+		// console.log("FullScreem imagen: ", element)
+
 		if(element.requestFullscreen) {
 			element.requestFullscreen();
 		} 
@@ -18,7 +19,8 @@
 	}
 
 	// getFullscreen(imagen);
-
-	document.getElementById("Abrir").addEventListener("click", function(){//E= el id dela fotografia donde se hizo click  DOMContentLoaded
-		getFullscreen(imagen);
-	},false);
+	if(document.getElementById("Abrir")){
+		document.getElementById("Abrir").addEventListener("click", function(){//E= el id dela fotografia donde se hizo click  DOMContentLoaded
+			getFullscreen(imagen);
+		},false);
+	}

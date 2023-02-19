@@ -4,7 +4,7 @@
 <div style="color: white; background-color: black">
 
 	<!-- ICONO FULLSCREEM -->
-	<label class="cont_ObraDetalle--label" id="Abrir"><i class="fas fa-expand-alt" style="font-size: 1.7em"></i></label>
+	<img class="cont_ObraDetalle--label" style="text-align: center; display:inline; margin: auto; width: 1.8em;" id="Abrir" src="<?php echo RUTA_URL . '/public/iconos/fullScreem/outline_open_in_full_white_24dp.png'?>"/>
 
 	<div style="background-color: black" id="Miimagen">
 

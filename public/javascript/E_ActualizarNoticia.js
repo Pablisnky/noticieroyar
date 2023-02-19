@@ -231,6 +231,7 @@ function EliminarImagenSecundaria(ID_Imagen, Botones){
         document.getElementsByClassName("boton")[0].disabled = "disabled"
         document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialClaro)"
         document.getElementsByClassName("boton")[0].style.color = "var(--OficialOscuro)"
+        document.getElementsByClassName("boton")[0].style.cursor = "wait"
         document.getElementsByClassName("boton")[0].classList.add('borde_1')
         
         let usuario = document.getElementById('Correo').value

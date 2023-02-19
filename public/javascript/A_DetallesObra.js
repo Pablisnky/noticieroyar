@@ -32,7 +32,7 @@ function conexionAJAX(){
 // *************************************************************************************************
     //Muestra cada obra individualmente en un slider
     function Llamar_detalleObra(ID_Obra, ID_Artista, Recorrido){
-        console.log("______Desde Llamar_detalleObra()______", ID_Obra + "/" + ID_Artista + "/" + Recorrido)
+        // console.log("______Desde Llamar_detalleObra()______", ID_Obra + "/" + ID_Artista + "/" + Recorrido)
 
         var url = "../../GaleriaArte_C/diapositivaObra/" + ID_Obra  + "/" + ID_Artista + "/" + Recorrido
         http_request.open('GET', url, true)  
@@ -83,7 +83,7 @@ function conexionAJAX(){
 // Invocada desde detalleObra_V.php - detalleObra_V.php
     function Llamar_carrito(ID_Artista, nombreArtista, apellidoArtista, imagenObra, nombreObra, TecnicaObra, MedidaObra){
         // localStorage.setItem('ContenidoCarrito', 1);
-        console.log("______Desde Llamar_carrito()______", ID_Artista + "/" + nombreArtista + "/" + apellidoArtista + "/" + imagenObra + "/" + nombreObra + "/" + TecnicaObra + "/" + MedidaObra)
+        // console.log("______Desde Llamar_carrito()______", ID_Artista + "/" + nombreArtista + "/" + apellidoArtista + "/" + imagenObra + "/" + nombreObra + "/" + TecnicaObra + "/" + MedidaObra)
         
         var url = "../../Carrito_C/carrito_obras/" + ID_Artista + "/" + nombreArtista + "/" + apellidoArtista + "/" + imagenObra  + "/" + nombreObra  + "/" + TecnicaObra  + "/" + MedidaObra;
         http_request.open('GET', url, true)  

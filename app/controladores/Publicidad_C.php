@@ -1,5 +1,6 @@
 <?php
     class Publicidad_C extends Controlador{
+        private $ConsultaAgenda_M;
 
         public function __construct(){
             $this->ConsultaAgenda_M = $this->modelo("Publicidad_M");

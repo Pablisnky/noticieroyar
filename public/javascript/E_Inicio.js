@@ -1,8 +1,8 @@
-// document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
+document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
 
 // document.getElementById("CerrarVentana").addEventListener('click', function(){CerrarModal('VentanaModal')}, false)
 //************************************************************************************************
-//Función autoejecuble que muestra la ventana modal automaticmente
+//Función autoejecuble que muestra la ventana modal automatica inicial
 // var VentanaModal = (function(){ 
 //     setTimeout(function(){mostrarModal();}, 100)
 // })();
