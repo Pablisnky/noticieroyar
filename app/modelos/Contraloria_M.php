@@ -4,6 +4,22 @@
         public function __construct(){ 
             parent::__construct();  
         }
+        
+        //Consulta el correo del administrador del sitio web
+        public function ConsultaCorreoAdministrador(){
+            $stmt = $this->dbh->prepare(
+                "SELECT correoAdmin
+                FROM administrador 
+                WHERE ID_Administrador = 1"
+            );      
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return 'Existe un fallo en la consulta consultarDenunciaDiaria()'; 
+            }
+        }
 
         //Consulta la cantidad de denuncias en el día
         public function consultarDenunciaDiaria(){

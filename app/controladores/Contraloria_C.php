@@ -30,14 +30,14 @@
             //Sesion creada en Login_C sino existe se muestra el formulario para logearse
             if(!isset($_SESSION['ID_Suscriptor'])){ 
 
-                header('Location:'. RUTA_URL . '/Login_C/index/NoAplica,denuncia');                
+                header('Location:'. RUTA_URL . '/Login_C/index/SinID_Denuncia,denuncia');                
                 // terminamos inmediatamente la ejecución del script, evitando que se envíe más salida al cliente.
                 die(); 
             }    
             else{
                 $Datos=[
-                    'id_noticia' => 'NoAplica',
-                    'id_comentario' => 'NoAplica',
+                    'id_noticia' => 'SinID_Denuncia',
+                    'id_comentario' => 'SinID_Comentario',
                     'bandera' => 'denuncia'
                 ];
 
@@ -141,10 +141,15 @@
                     //Se INSERTAN las imagenes secundarias de la noticia
                     $this->ConsultaContraloria_M->InsertarImagenlDenuncia($ID_Denuncia, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria, $ImagenPrincipal);
                 }
+
+                //Se consulta el correo a donde llegara la notificación de nueva denuncia
+                $CorreoAdmin = $this->ConsultaContraloria_M->ConsultaCorreoAdministrador();       
+                // echo $CorreoAdmin['correoAdmin'];
+                // exit();
                 
-                //Se envia al correo pcabeza7@gmail.com la notificación de nueva denuncia introducida
+                //Se envia al correo la notificación de nueva denuncia introducida
                 $email_subject = 'Nueva denuncia de usuario'; 
-                $email_to = 'pcabeza7@gmail.com'; 
+                $email_to = $CorreoAdmin['correoAdmin']; 
                 $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
                 $email_message = $Descripcion . '; ' . $Ubicacion . '; ' . $Municipio . '; ';
                 

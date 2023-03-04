@@ -1,4 +1,4 @@
-document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
+// document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
 
 // document.getElementById("CerrarVentana").addEventListener('click', function(){CerrarModal('VentanaModal')}, false)
 //************************************************************************************************
@@ -9,10 +9,10 @@ document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPr
 
 //************************************************************************************************ 
 //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
-    window.addEventListener("click", function(e){   
-        var click = e.target
-        console.log("Se hizo click en: ", click)
-    }, false)
+    // window.addEventListener("click", function(e){   
+    //     var click = e.target
+    //     console.log("Se hizo click en: ", click)
+    // }, false)
 
 //************************************************************************************************ 
     function MostrarPromocion(){

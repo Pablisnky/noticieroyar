@@ -59,7 +59,7 @@
                                 <div style="margin: 1%">
                                     <div class="cont_edit">
                                         <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
-                                        <label class="Default_pointer" for="imgInp_3"><span class="material-icons-outlined cont_edit--label">edit</span></label>
+                                        <label class="Default_pointer" for="imgInp_3"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
                                     </div> 
                                     <figure> 
                                         <img class="actualizar_cont--imagen" alt="Fotografia Principal" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Datos['artistaActualizar'][0]['ID_Artista'];?>_<?php echo $Datos['artistaActualizar'][0]['nombreArtista'];?>_<?php echo $Datos['artistaActualizar'][0]['apellidoArtista'];?>/<?php echo $Row['imagenObra'];?>"/> 

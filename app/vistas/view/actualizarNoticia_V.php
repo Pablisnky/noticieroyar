@@ -1,6 +1,4 @@
 <!-- CDN libreria JQuery, necesaria para la previsualización de la imagen--> 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-
 <!-- CDN CALENDARIO -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
@@ -24,7 +22,8 @@
                             <div>
                                 <label class="cont_panel--label">Imagen principal</label>
                                 <div class="cont_edit">
-                                    <label class="Default_pointer" for="imgInp"><span class="material-icons-outlined cont_edit--label">edit</span></label>
+                                    <!-- ICONO EDITAR -->
+                                    <label class="Default_pointer" for="imgInp"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
                                 </div> 
                                 <figure>
                                     <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImagenPrincipal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['noticiaActualizar']['nombre_imagenNoticia'];?>"/> 
@@ -38,8 +37,10 @@
                                 <div id="Contenedor_Anuncio">
                                             <?php
                                     if(empty($Datos['anuncio']['ID_Anuncio'])){ //carga imagen por defecto  ?>
-                                        <div class="cont_edit" >
-                                            <label class="Default_pointer"><span class="material-icons-outlined cont_edit--label" id="Anuncio">edit</span> </label>
+                                        <div class="cont_edit">
+                                            <!-- ICONO EDITAR -->
+                                            <label class="Default_pointer" id="Anuncio"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                                            <!-- <label class="Default_pointer"><span class="material-icons-outlined cont_edit--label" id="Anuncio">edit</span> </label> -->
                                         </div>   
                                         <!-- IMAGEN ANUNCIO PUBLICITARIO-->
                                         <figure>
@@ -52,7 +53,9 @@
                                     }
                                     else{   ?>
                                         <div class="cont_edit">
-                                            <label class="Default_pointer" id="Anuncio"><span class="material-icons-outlined cont_edit--label">edit</span></label>
+                                            <!-- ICONO EDITAR -->
+                                            <label class="Default_pointer" id="Anuncio"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                                            <!-- <label class="Default_pointer" id="Anuncio"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
                                         </div>   
                                         <figure>
                                             <img class="cont_panel--imagen" alt="Fotografia Anuncio" id="ImgAnuncio" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Datos['anuncio']['nombre_imagenPublicidad'];?>"/> 
@@ -70,7 +73,8 @@
                                         <?php
                                     if(empty($Datos['video']['ID_Noticia'])){//carga camara por defecto  ?> 
                                         <div class="cont_edit">
-                                            <label class="Default_pointer" for="imgVideo"><span class="material-icons-outlined cont_edit--label">edit</span></label>
+                                            <label class="Default_pointer" for="imgVideo"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                                            <!-- <label class="Default_pointer" for="imgVideo"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
                                         </div> 
                                         <figure id="FigureVideo">
                                             <img class="cont_panel--video" alt="Icono video" id="ImagenCamara" src="<?php echo RUTA_URL?>/public/video/video.png"/>
@@ -91,7 +95,8 @@
                                     else{  //si existe un video y se va a actualizar ?> 
                                         <div>
                                             <div class="cont_edit">
-                                                <label class="Default_pointer" for="imgVideo"><span class="material-icons-outlined cont_edit--label">edit</span></label>
+                                                <label class="Default_pointer" for="imgVideo"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                                                <!-- <label class="Default_pointer" for="imgVideo"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
                                             </div> 
                                             <video class="cont_panel--imagen" id="video-tag" controls src="<?php echo RUTA_URL?>/public/video/<?php echo $Datos['video']['nombreVideo'];?>">
                                                 <source id = "video-source"/>
@@ -114,8 +119,9 @@
                                 <div id="Contenedor_Coleccion">
                                             <?php
                                     if(empty($Datos['colecciones'][0]['ID_Coleccion'])){//carga imagen por defecto  ?>
-                                        <div class="cont_edit" >
-                                            <label class="Default_pointer"><span class="material-icons-outlined cont_edit--label" id="Coleccion">edit</span> </label>
+                                        <div class="cont_edit">
+                                            <label class="Default_pointer" id="Coleccion"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                                            <!-- <label class="Default_pointer"><span class="material-icons-outlined cont_edit--label" id="Coleccion">edit</span> </label> -->
                                         </div>                                           
                                         <!-- IMAGEN COLECCION-->
                                         <figure>
@@ -127,7 +133,8 @@
                                     }
                                     else{ //si existe una coleccion y se va a actualizar  ?>
                                         <div class="cont_edit">
-                                            <label class="Default_pointer" id="Coleccion"><span class="material-icons-outlined cont_edit--label">edit</span></label>
+                                            <label class="Default_pointer" id="Coleccion"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                                            <!-- <label class="Default_pointer" id="Coleccion"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
                                         </div>   
                                         <figure>
                                             <img class="cont_panel--imagen" alt="Fotografia Coleccion" id="ImgColeccion" src="<?php echo RUTA_URL?>/public/images/colecciones/<?php echo $Datos['colecciones'][0]['nombre_imColeccion'];?>"/> 
@@ -182,7 +189,7 @@
                 <a id="marcador_02" class="ancla"></a>
                 <fieldset class="fieldset_1">   
                     <!-- AGREGAR MAS IMAGENES SECUNDARIAS -->
-                    <label class="actualizar_cont--label Default_pointer" for="imgSec"><span class="material-icons-outlined actualizar_cont--span">add_circle_outline</span></label>
+                    <label class="actualizar_cont--label Default_pointer" for="imgSec"><img class=" actualizar_cont--span" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></label>
                     <input class="Default_ocultar" type="file" name="imagenesSecundarias[]" multiple="multiple" id="imgSec" onchange="muestraImgSecundarias()"/>
 
                     <br><br> 

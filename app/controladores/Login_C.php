@@ -13,7 +13,7 @@
             ocultarErrores();
         }
 
-        //Recibe dos parametros (ID_Noticia y el string "SinLogin") en una cadena separados por coma
+        //Recibe dos parametros (ID_Noticia y un string) en una cadena separados por coma
         public function index($DatosAgrupados){
             // $DatosAgrupados se convierte en array para separar los elementos
             $DatosAgrupados = explode(',', $DatosAgrupados);
@@ -95,8 +95,8 @@
             else if($Bandera == 'denuncia'){//Bamdera creada en Contraloria_C/VerificaLogin Entra cuando se desea realizar una denuncia
                 
                 $Datos=[
-                    'id_noticia' => 'NoAPlica',
-                    'id_comentario' => 'NoAPlica',
+                    'id_noticia' => 'SinID_Denuncia',
+                    'id_comentario' => 'SinID_Comentario',
                     'bandera' => $Bandera
                 ];
 
@@ -185,7 +185,7 @@
                 // echo '</pre>';
                 // exit;
 
-                // LOGEADO
+                // LOGEADO Y REDIRECIONAMIENTO
                 //se descifra la contraseña con un algoritmo de desencriptado.
                 if($Correo == $CorreoBD AND $Clave == password_verify($Clave, $Hash[0]['claveCifrada'])){
                     
@@ -429,10 +429,15 @@
             $ClaveCifrada = password_hash($RecibeDatos["clave"], PASSWORD_DEFAULT, $options);
                             
             $this->ConsultaLogin_M->InsertarClave($ID_Suscriptor, $ClaveCifrada);
+            
+            //Se consulta el correo a donde llegara la notificación de nueva denuncia
+            $CorreoAdmin = $this->ConsultaLogin_M->ConsultaCorreoAdministrador();       
+            // echo $CorreoAdmin['correoAdmin'];
+            // exit();
 
-            //Se envia al correo pcabeza7@gmail.com la notificación de nuevo cliente registrado
+            //Se envia al correo  la notificación de nuevo cliente registrado
             $email_subject = 'Suscripción de usuario'; 
-            $email_to = 'pcabeza7@gmail.com'; 
+            $email_to = $CorreoAdmin['correoAdmin']; 
             $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
             $email_message = $RecibeDatos['nombre'] . ' ' . $RecibeDatos['apellido'] . ' se ha registrado en la plataforma';
 
@@ -442,7 +447,7 @@
             $_SESSION["ID_Suscriptor"] = $ID_Suscriptor;
 
             //Se redirige segun venga de una noticia o de una denuncia
-            if($RecibeDatos['id_noticia'] != 'NoAplica'){
+            if($RecibeDatos['id_noticia'] != 'SinID_Denuncia'){
                 $ID_Noticia = $RecibeDatos['id_noticia']; 
                 header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/' . $ID_Noticia  .   ',sinAnuncio,#ContedorComentario'); 
             }

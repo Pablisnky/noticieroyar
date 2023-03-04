@@ -11,16 +11,16 @@
             ocultarErrores();
         }
         
-        public function index(){                            
-            $this->vista("header/header_noticia"); 
-            $this->vista("view/Noticias_V");   
-        }
+        // public function index(){                            
+        //     $this->vista("header/header_noticia"); 
+        //     $this->vista("view/Noticias_V");   
+        // }
 
-        public function NoticiaPrincipal($ID_Noticia){  
+        // public function NoticiaPrincipal($ID_Noticia){  
 
-            $this->vista("header/header_noticia"); 
-            $this->vista("view/Noticia_V");   
-        }
+        //     $this->vista("header/header_noticia"); 
+        //     $this->vista("view/Noticia_V");   
+        // }
         
         // muestra las noticias generales
         public function NoticiasGenerales(){  
@@ -177,9 +177,14 @@
             // echo "</pre>";          
             // exit();
             
-            //Se envia al correo pcabeza7@gmail.com la notificación de nuevo comentario en una denuncia
+            //Se consulta el correo a donde llegara la notificación de nueva denuncia
+            $CorreoAdmin = $this->ConsultaNoticia_M->ConsultaCorreoAdministrador();           
+            // echo $CorreoAdmin['correoAdmin'];
+            // exit();
+
+            //Se envia al correo la notificación de nuevo comentario en una denuncia
             $email_subject = 'Nuevo comentario de usuario'; 
-            $email_to = 'pcabeza7@gmail.com'; 
+            $email_to = $CorreoAdmin['correoAdmin']; 
             $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
             $email_message = $Comentario . '; ID_Noticia' . $ID_Noticia;
             
@@ -208,7 +213,7 @@
             // exit();
         }
 
-        //Verifica que el usuario haya hecho login para poder comentar una noticia
+        //Verifica que el usuario haya hecho login para poder comentar una noticia; invocado dsde A_DetalleNoticia.js
         public function VerificaLogin($ID_Noticia, $Bandera, $ID_Comentario){
             // echo $ID_Noticia . '<br>';
             // echo $Bandera . '<br>';

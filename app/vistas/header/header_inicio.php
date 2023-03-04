@@ -31,17 +31,11 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_370.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_800.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/EstilosGiroTarjeta.css?v=<?php echo rand();?>"/>
-		
-		<!-- <link rel="stylesheet" type="text/css" href="<?php //echo RUTA_URL?>/public/css/estilosContraloria.css?v=<?php echo rand();?>"/> -->
-		
-		<!-- <link rel="shortcut icon" type="image/png" href="<?php //echo RUTA_URL;?>/public/images/logo.png"/>	 -->
+				
 		<link rel="manifest" href="<?php echo RUTA_URL;?>/public/manifest.json"/>
 		
 		<!-- CDN FUENTES DE GOOGLE-->
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo|Moon+Dance'>
-
-		<!-- CDN ICONOS DE GOOGLE -->
-		<!-- <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet"/> -->
     </head>
 	<body class="body_1">				
 		<header class="header" id="Header">  
@@ -98,20 +92,20 @@
 			}	?>
 			
 			<!-- BOTON VIDEO PROMOCIONAL -->
-			<div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
-				<img style="width: 2.5em" id="CerrarVentana" src="<?php echo RUTA_URL . '/public/iconos/video/outline_videocam_black_24dp.png'?>"/> 
+			<!-- <div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
+				<img style="width: 2.5em" id="CerrarVentana" src="<?php //echo RUTA_URL . '/public/iconos/video/outline_videocam_black_24dp.png'?>"/> 
 				<label class="Default_pointer" >Turismo<br class="Default_quitarEscritorio"> en Yaracuy </label>
-			</div>
+			</div> -->
 			<!-- VIDEO PROMOCIONAL -->	
-			<div class="con_portada--promocion" id="Miimagen">
+			<!-- <div class="con_portada--promocion" id="Miimagen">
 				<div id="Promocion">
 					<!-- ICONO CERRAR VIDEO -->
-					<img class=" publicidad_cont--cerrar Default_pointer" style="width: 1em;" id="Cerrar--modal" onclick="pausar()" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>
+					<!-- <img class=" publicidad_cont--cerrar Default_pointer" style="width: 1em;" id="Cerrar--modal" onclick="pausar()" src="<?php //echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>
 					<div>
-						<video class="con_portada--video" id="VideoPromocion" src="<?php echo RUTA_URL?>/public/video/TurismoYaracuy.mp4" controls loop ></video> 
+						<video class="con_portada--video" id="VideoPromocion" src="<?php //echo RUTA_URL?>/public/video/TurismoYaracuy.mp4" controls loop ></video> 
 					</div>
 				</div>
-			</div> 
+			</div>   -->
 		</header>
 		
 		<!-- MEMBRETE DESPLAZANTE -->

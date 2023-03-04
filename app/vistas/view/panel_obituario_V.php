@@ -3,7 +3,10 @@
 
 <div style="margin-left: 20%;">
     <fieldset class="fieldset_1" id="Rowcipales"> 
-    <a href="<?php echo RUTA_URL?>/Panel_C/agregar_obituario" rel="noopener noreferrer"><span class="material-icons-outlined cont_modal--agregar Default_pointer" id="Cerrar--modal">add_circle_outline</span></a> 
+        <!-- ICONO AGREGAR -->
+        <a href="<?php echo RUTA_URL?>/Panel_C/agregar_obituario" rel="noopener noreferrer"><img class="cont_modal--agregar Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a> 
+
+        <!-- <a href="<?php //echo RUTA_URL?>/Panel_C/agregar_obituario" rel="noopener noreferrer"><span class="material-icons-outlined cont_modal--agregar Default_pointer" id="Cerrar--modal">add_circle_outline</span></a>  -->
         <legend class="legend_1">Obituario</legend>
         <div class="contenedor--obituario">
         <?php

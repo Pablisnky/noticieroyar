@@ -21,9 +21,9 @@
 					</div>
 					<div class="">				
 						<h5 class="footer_ADN">Nuestro ADN</h5>
-						<h6 class="footer_h6">Pablo Cabeza - Dirección General y tecnología - <small  class="footer--small">pcabeza7@gmail.com</small></h6>
-						<h6 class="footer_h6">Lisbella Paez - Dirección de prensa y contenido - <small  class="footer--small">lisbellapaez@gmail.com</small></h6>
-						<h6 class="footer_h6">Maria Esther Paez - Corrección y redacción - <small  class="footer--small">mariestherpaez@gmail.com</small></h6>
+						<h6 class="footer_h6">Pablo- Dirección General y tecnología - <small  class="footer--small"></small></h6>
+						<h6 class="footer_h6">Lisbella- Dirección de prensa y contenido - <small  class="footer--small"></small></h6>
+						<h6 class="footer_h6">Maria Esther- Corrección y redacción - <small  class="footer--small"></small></h6>
 					</div>
 				</div>
 			</div> 

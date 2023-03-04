@@ -1,4 +1,4 @@
-<!-- invocado desde Contraloria_C/VerificaLogin -->
+<!-- invocado desde Contraloria_C/VerificaLogin y -->
 <?php
     //Se añade la clase cuando se viene desde una noticia a la que se desea hacer un comentario
     if(($Datos['bandera'] == 'responder')){ ?>

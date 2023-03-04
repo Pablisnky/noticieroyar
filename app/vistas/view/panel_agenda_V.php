@@ -3,6 +3,7 @@
 
 <div style="margin-left: 20%;">
     <fieldset class="fieldset_1" id="Rowcipales"> 
+        <!-- ICONO AGREGAR -->
         <a href="<?php echo RUTA_URL?>/Panel_C/agregar_agenda" rel="noopener noreferrer"><img class="cont_modal--agregar Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a>       
         
         <legend class="legend_1">Agenda</legend>

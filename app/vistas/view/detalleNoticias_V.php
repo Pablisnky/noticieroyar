@@ -194,8 +194,12 @@
 <?php       
     if(!empty($Datos['publicidad'][0]['ID_Noticia']) AND ($Datos['bandera'] == 'ConAnuncio')){ //Bandera creada en 
         if($Datos['detalleNoticia'][0]['ID_Noticia'] == $Datos['publicidad'][0]['ID_Noticia']){  ?>
-            <div class="publicidad_cont--main" id="VentanaModal--Publicidad">			
-                <span class="material-icons-outlined publicidad_cont--cerrar Default_pointer" id="CerrarVentanaModal">cancel</span>
+            <div class="publicidad_cont--main" id="VentanaModal--Publicidad">		
+
+                <!-- ICONO CERRAR -->
+                <img class="cont_modal--cerrar Default_pointer" style="width: 1em;" id="CerrarVentanaModal" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>	
+
+                <!-- IMAGEN DE PUBLICIDAD -->
                 <div class="publicidad_cont--interno">
                     <img class="publicidad_cont--imagen" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Datos['publicidad'][0]['nombre_imagenPublicidad'] ;?>"/>
                 </div>

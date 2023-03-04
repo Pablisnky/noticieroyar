@@ -1,7 +1,7 @@
 <section id="Section_5">
     <div syle="height: 100%;">
         <div style="min-height: 100%;" class="login_cont">
-            <form action="../../Login_C/recibeRegistroSuscriptor" method="POST" id="FormularioCom" name="formRegistroCom" autocomplete="off" onsubmit="return validarAfiliacionCom()">
+            <form action="../../Login_C/recibeRegistroSuscriptor" method="POST" id="FormularioCom" name="formRegistroCom" autocomplete="off" onsubmit="return validarRegistro()">
                 <fieldset class="fieldset_1">
                     <legend class="legend_1">Registro de suscripción</legend> 
                     
@@ -67,5 +67,5 @@
 </section>
 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js';?>"></script>
-<!-- <script src="<?php //echo RUTA_URL . '/public/javascript/E_Registros.js';?>"></script> -->
-<script src="<?php echo RUTA_URL . '/public/javascript/A_Registros.js';?>"></script>
+<script src="<?php echo RUTA_URL . '/public/javascript/E_Registro.js';?>"></script>
+<!-- <script src="<?php echo RUTA_URL . '/public/javascript/A_Registros.js';?>"></script> -->
