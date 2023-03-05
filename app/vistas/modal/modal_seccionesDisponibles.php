@@ -3,7 +3,9 @@
     <div class="contenedor_24"> 
       <div class="contenedor_102">
         <h1 class="h1--secciones">Seleccione una sección</h1>   
-        <span class="material-icons-outlined cont_modal--cerrar Default_pointer" id="Cerrar--modal" onclick="CerrarModal()">cancel</span>
+        
+        <!-- ICONO CERRAR -->
+        <img class=" cont_modal--cerrar  Default_pointer" style="width: 1em;" id="Cerrar--modal" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"onclick="CerrarModal()"/>
       </div>
       <form>
             <div class="contenedor_89">

@@ -458,6 +458,7 @@
         }
 
         //SELECT de los ID_Seccion de varias secciones
+        // $SeccionesVarias contiene un string con los ID_Seccion separados por comas
         public function ConsultarVarios_ID_Seccion($SeccionesVarias){
             $stmt = $this->dbh->prepare(
                 "SELECT ID_Seccion

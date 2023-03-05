@@ -724,6 +724,11 @@ textarea{
 	margin: 1%;
 	width: 30%;
  }
+ .cont_noticias--libreria{
+	/* background-color: red; */
+	min-width: 15%;
+	padding-top: 5%;
+ }
  .cont_noticias_atras--coleccion{
 	 background-color: rgb(0, 0, 0);
 	 position: absolute;
@@ -805,7 +810,6 @@ textarea{
 	width: 100%;
  }
  .cont_reportes{
-	/* background-color: yellow; */
 	width: 30%;
 	margin-bottom: 5%;
  }
@@ -1034,6 +1038,30 @@ textarea{
 	margin: 3% auto 1% auto;
 	text-align: center;
 	font-size: 1.5em;
+}
+.cont_archivo{
+	display: flex;
+	flex-wrap: wrap; 
+	justify-content: space-around;	
+	padding-top: 7%;
+}
+.cont_archivo--seccion{
+	font-family: Gruppo;
+	display: block;
+	padding-left: 10%;
+	font-size: 2em;
+}
+.cont_archivo--noticia{
+	width: 20%;
+}
+.cont_archivo--membrete{
+	background-color: white;
+	position: fixed;
+	width: 100%;
+}
+/* .cont_archivo>div:first-child{ */
+	/*flex: 0 1 100% !important;ocupa toda la primera fila de la distribucion flex, el padre debe tener flex-wrap*/
+	/* margin: 0% auto 2% auto; */
 }
 .cont_GaleriaArte--boton{
 	width: 40%;
@@ -1272,7 +1300,6 @@ textarea{
 }
 .detalle_cont--edicion{
 	font-size: 0.8em;
-	/* color: blue; */
 }
 .detalle_cont--label{
 	display: block;

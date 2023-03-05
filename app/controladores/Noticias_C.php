@@ -26,9 +26,29 @@
         public function NoticiasGenerales(){  
             //Se CONSULTA las seccion
             $Secciones = $this->ConsultaNoticia_M->consultarSecciones();
+       
+            // echo "<pre>";
+            // print_r($Secciones);
+            // echo "</pre>";   
+            // exit;
 
-            //Se CONSULTA las noticia generales por cada seccion
-            $NoticiasGenerales = $this->ConsultaNoticia_M->consultarNoticiasGenerales();
+            $NoticiasSeccion = [];
+
+            foreach($Secciones as $Row) :
+                $ID_Seccion = $Row['ID_Seccion'];
+                // echo $Seccion;
+                // echo '<br>';
+                
+                //Se consulta las noticias y se agrupan por seccion
+                $NoticiasGenerales = $this->ConsultaNoticia_M->consultarNoticiasGenerales($ID_Seccion);
+
+                array_push($NoticiasSeccion, $NoticiasGenerales);
+            endforeach;
+            
+            // echo "<pre>";
+            // print_r($NoticiasSeccion);
+            // echo "</pre>"; 
+            // exit;
 
 			//CONSULTA la cantidad de imagenes asociadas a cada noticia publiciada
             $Imagenes = $this->ConsultaNoticia_M->consultarImagenesNoticiaGenerales();
@@ -49,8 +69,8 @@
             $ImagnesColeccion = $this->ConsultaNoticia_M->consultarImagenesColeccionNoticiaGenerales();
 
             $Datos = [
-                'secciones' => $Secciones, //seccion
-                'noticiasGenerales' => $NoticiasGenerales, //ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, fecha, fuente
+                'secciones' => $Secciones, //ID_Seccion, seccion
+                'noticiasSeccion' => $NoticiasSeccion, //ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, fecha, fuente
                 'imagenes' => $Imagenes,
                 'videos' => $Videos,
                 'anuncios' => $Anuncios,
@@ -258,4 +278,22 @@
 			header("Location:" . RUTA_URL . "/Noticia_C/detalleNoticia");
 			die();
 		}
+
+        //muestra el archivo de noticias segun la sección
+        public function archivo($ID_Seccion){
+            
+            $TodasNoticiasGenerales = $this->ConsultaNoticia_M->consultarTodasNoticiasGenerales($ID_Seccion);
+ 
+            $Datos = [
+                'todasNoticiasGenerales' => $TodasNoticiasGenerales //ID_Noticia, titulo, subtitulo, ID_Seccion, seccion, portada, nombre_imagenNoticia, fechaPublicacion, fuente
+            ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+
+            $this->vista("header/header_SoloEstilos"); 
+            $this->vista("view/archivo_V", $Datos); 
+        }
     }

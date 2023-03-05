@@ -34,14 +34,37 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);			
 		}
 
-        public function consultarNoticiasGenerales(){
+        // 
+        public function consultarNoticiasGenerales($ID_Seccion){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, secciones.ID_Seccion, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                  INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
                  INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
-                 WHERE ImagenPrincipal = 1
+                 WHERE secciones.ID_Seccion = $ID_Seccion AND ImagenPrincipal = 1
+                 ORDER BY fecha
+                 DESC
+                 LIMIT 15"
+            );
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        // 
+        public function consultarTodasNoticiasGenerales($ID_Seccion){
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, secciones.ID_Seccion, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
+                 FROM noticias 
+                 INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
+                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                 INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
+                 WHERE secciones.ID_Seccion = $ID_Seccion AND ImagenPrincipal = 1
                  ORDER BY fecha
                  DESC"
             );
