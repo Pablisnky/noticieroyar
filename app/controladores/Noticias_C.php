@@ -33,6 +33,7 @@
             // exit;
 
             $NoticiasSeccion = [];
+            $CantidadSeccion = [];
 
             foreach($Secciones as $Row) :
                 $ID_Seccion = $Row['ID_Seccion'];
@@ -41,15 +42,14 @@
                 
                 //Se consulta las noticias y se agrupan por seccion
                 $NoticiasGenerales = $this->ConsultaNoticia_M->consultarNoticiasGenerales($ID_Seccion);
+                
+                // Muestra la cantidad de noticias por cada sección
+                $CantidadNoticiasSeccion = $this->ConsultaNoticia_M->consultarCantidadNoticiasSeccion($ID_Seccion);
 
                 array_push($NoticiasSeccion, $NoticiasGenerales);
+                array_push($CantidadSeccion, $CantidadNoticiasSeccion);
             endforeach;
             
-            // echo "<pre>";
-            // print_r($NoticiasSeccion);
-            // echo "</pre>"; 
-            // exit;
-
 			//CONSULTA la cantidad de imagenes asociadas a cada noticia publiciada
             $Imagenes = $this->ConsultaNoticia_M->consultarImagenesNoticiaGenerales();
             
@@ -71,6 +71,7 @@
             $Datos = [
                 'secciones' => $Secciones, //ID_Seccion, seccion
                 'noticiasSeccion' => $NoticiasSeccion, //ID_Noticia, titulo, subtitulo, seccion, portada, nombre_imagenNoticia, fecha, fuente
+                'cantidadSeccion' => $CantidadSeccion,
                 'imagenes' => $Imagenes,
                 'videos' => $Videos,
                 'anuncios' => $Anuncios,
@@ -279,11 +280,11 @@
 			die();
 		}
 
-        //muestra el archivo de noticias segun la sección
+        //muestra todas las noticias segun la sección
         public function archivo($ID_Seccion){
             
             $TodasNoticiasGenerales = $this->ConsultaNoticia_M->consultarTodasNoticiasGenerales($ID_Seccion);
- 
+             
             $Datos = [
                 'todasNoticiasGenerales' => $TodasNoticiasGenerales //ID_Noticia, titulo, subtitulo, ID_Seccion, seccion, portada, nombre_imagenNoticia, fechaPublicacion, fuente
             ];

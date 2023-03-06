@@ -93,6 +93,23 @@
             }
         }
         
+        public function consultarCantidadNoticiasSeccion($ID_Seccion){
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias_secciones.ID_Seccion, COUNT(noticias.ID_Noticia) AS cantidad 
+                 FROM noticias 
+                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia  
+                 WHERE noticias_secciones.ID_Seccion = $ID_Seccion
+                 GROUP BY noticias_secciones.ID_Seccion"
+            );
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
         //SELECT de videos asociados a las noticias 
         public function consultarVideoNoticiaGenerales(){
             $stmt = $this->dbh->query(
