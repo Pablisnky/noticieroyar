@@ -10,6 +10,21 @@
 	.borde_1{
 		border-color: white;
 	}
+    .contenedor_tarjeta{
+        min-width: 65%;
+    }
+	.cont_podcast{
+		width: 95%;
+		margin: auto;
+		padding-top: 10%;
+	}
+	.cont_podcast--titulo{
+		font-size: 1.3em;
+		text-align: center;
+		font-weight: bold;
+		margin: 0.5% auto 1.5% auto;
+		margin-bottom: -35px; /*este margen se usa para que la imagen se pegue arriba del div, el position relaive deja un espacio en blanco del alto de su height*/
+	}
 	.con_portada--titulo{
 	   position: fixed;
 	   top: 8%;
@@ -231,6 +246,26 @@
 		font-size: 1em;
 		margin-top: 5%;
 	}
+	.cont_archivo{
+		padding-top: 30%;
+	}
+	.cont_archivo--header{
+		/* background-color: blue; */
+		left: -20% !important; 
+	}
+	.cont_archivo--seccion{
+		margin-top: 2%;
+		padding-left: 10%;
+		font-size: 1.7em;
+		padding-left: 5%;
+	}
+	.cont_archivo--noticia{
+		width: 45%;
+	}
+	.cont_archivo--paginacion-numeros{
+		width: 8%;
+		margin-bottom: 4%;
+	}
 	.cont_detalle--imagen{
 		height: 80vw;
 		margin-top: 15%;
@@ -327,7 +362,7 @@
 		overflow-y: hidden;
 	}
 	.cont_noticia--sencilla{
-	   min-width: 65%;
+	   min-width: 95%;
 	   margin: 1%;
 	}
 	.cont_noticia--tituloSeccion{
@@ -355,6 +390,10 @@
 		padding-left: 5px;
 		font-weight: bold; 
 		font-size: 1em;
+	}
+	.cont_noticias--libreria{
+	   min-width: 50%;
+	   padding-top: 15%;
 	}
 	.cont_portada{
 		display: block;

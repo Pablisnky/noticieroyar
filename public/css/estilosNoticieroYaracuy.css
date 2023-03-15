@@ -515,7 +515,7 @@ textarea{
  }
  .cont_ObraDetalle--iconoLeft{
 	 color: rgba(255, 255, 255, 0.7);
-	 font-size: 2em;
+	 width: 2.5em;
 	 position: fixed;
 	 z-index: 1;
 	 top: 50% !important;
@@ -524,7 +524,7 @@ textarea{
  }
  .cont_ObraDetalle--iconoRight{
 	 color: rgba(255, 255, 255, 0.7);
-	 font-size: 2em;
+	 width: 2.5em;
 	 position: fixed;
 	 z-index: 1;
 	 top: 50% !important;
@@ -578,11 +578,12 @@ textarea{
  .cont_galeria_h1{
 	 background-color: rgba(255, 165, 0, 0.7);
 	 position: fixed;
+	 left: 0%;
 	 font-size: 2.3em;
 	 text-align: center;
 	 height: 100vh;
 	 width: 4%;
-	 float: left;	
+	 float: left;
  }
  .cont_Galeria--item{
 	 display: inline-block;
@@ -703,8 +704,8 @@ textarea{
  .cont_noticia--sencilla{
     height: 55vh !important; 
 	/* width: 100%; */
-	/* min-width: 25%;
-	max-width: 25%; */
+	/* min-width: 25%; */
+	/*max-width: 25%; */
 	/* margin-left: 2%; */
  }
  .cont_noticia-imagen{
@@ -725,10 +726,13 @@ textarea{
 	width: 30%;
  }
  .cont_noticias--libreria{
-	/* background-color: red; */
 	min-width: 15%;
 	padding-top: 5%;
  }
+ .contenedor_tarjeta{
+    perspective: 600px;
+    min-width: 25%;
+}
  .cont_noticias_atras--coleccion{
 	 background-color: rgb(0, 0, 0);
 	 position: absolute;
@@ -894,14 +898,6 @@ textarea{
 	float: right;
 	margin-top: 2%;	
  }
-.cont_portada{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-    width: 100%;
-	height: 100vh;
-	margin-top: 6%;
-}
 .cont_detalle{
 	display: block;
     width: 80%;
@@ -1040,6 +1036,7 @@ textarea{
 	font-size: 1.5em;
 }
 .cont_archivo{
+	/* background-color: yellow; */
 	display: flex;
 	flex-wrap: wrap; 
 	justify-content: space-around;	
@@ -1059,6 +1056,14 @@ textarea{
 	position: fixed;
 	width: 100%;
 }
+.cont_archivo--paginacion{
+	display: flex;
+	justify-content: center;
+	
+}
+.cont_archivo--paginacion-numeros{
+	width: 2%;
+}
 /* .cont_archivo>div:first-child{ */
 	/*flex: 0 1 100% !important;ocupa toda la primera fila de la distribucion flex, el padre debe tener flex-wrap*/
 	/* margin: 0% auto 2% auto; */
@@ -1068,6 +1073,45 @@ textarea{
 }
 .cont_GaleriaArte--boton:hover{
 	cursor: pointer;
+}
+.cont_podcast{
+	width: 25%;
+	margin-bottom: 2%;
+}
+.cont_podcast_individual{
+	background-color: rgba(122, 106, 106, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.cont_podcast--audio{
+	width: 100%;
+}
+.cont_podcast--2{
+	margin-top: -5%
+}
+.cont_podcast--descripcion{
+	margin: auto;
+	margin-bottom: 5%;
+	padding: 0% 3%;
+	text-align: justify;
+}
+.cont_podcast--imagen{
+	height: 40vh;  
+	width: 100%;
+	margin: auto;
+	object-fit: fill; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+}
+.cont_portada{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+    width: 100%;
+	height: 100vh;
+	margin-top: 6%;
 }
 .cont_portada--noticia{
 	width: 30%;
@@ -1090,7 +1134,6 @@ textarea{
 	/*object-fit: contain; fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
 .cont_portada--informacion{
-	/* background-color: red; */
 	margin-bottom: 0.2vh;
 	display: flex;
 	flex-wrap: wrap; 
@@ -1258,6 +1301,12 @@ textarea{
 	width: 20%;
 	margin: auto;
 	margin-top: 15%;
+}
+.detalle_cont--redesSociales--Panel{
+	display: flex;
+	width: 20%;
+	margin-bottom: 1.5%;
+	justify-content: left;
 }
 .detalle_cont--redesSociales-facebook{
 	width: 55%;
@@ -1749,7 +1798,6 @@ textarea{
 	cursor: pointer;
 }
 .header__titulo{
-	/* background-color: red; */
 	font-size: 3em;
 	font-family: Gruppo;
 	display: block;

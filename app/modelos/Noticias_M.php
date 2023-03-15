@@ -57,7 +57,7 @@
         }
 
         // 
-        public function consultarTodasNoticiasGenerales($ID_Seccion){
+        public function consultarTodasNoticiasGenerales($ID_Seccion, $Limit, $Desde){
             $stmt = $this->dbh->prepare(
                 "SELECT noticias.ID_Noticia, titulo, subtitulo, secciones.ID_Seccion, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
                  FROM noticias 
@@ -66,8 +66,13 @@
                  INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
                  WHERE secciones.ID_Seccion = $ID_Seccion AND ImagenPrincipal = 1
                  ORDER BY fecha
-                 DESC"
+                 DESC 
+                 LIMIT $Desde, $Limit"
+                 //se muestran $limit registros desde el registro Nro $desde
             );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            // $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);

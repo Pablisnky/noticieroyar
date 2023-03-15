@@ -8,17 +8,16 @@
 			element.requestFullscreen();
 		} 
 		else if(element.mozRequestFullScreen) {
-		element.mozRequestFullScreen();
+			element.mozRequestFullScreen();
 		} 
 		else if(element.webkitRequestFullscreen) {
-		element.webkitRequestFullscreen();
+			element.webkitRequestFullscreen();
 		} 
 		else if(element.msRequestFullscreen) {
-		element.msRequestFullscreen();
+			element.msRequestFullscreen();
 		}
 	}
 
-	// getFullscreen(imagen);
 	if(document.getElementById("Abrir")){
 		document.getElementById("Abrir").addEventListener("click", function(){//E= el id dela fotografia donde se hizo click  DOMContentLoaded
 			getFullscreen(imagen);

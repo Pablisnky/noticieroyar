@@ -1,7 +1,3 @@
-// document.getElementById("Contenido").addEventListener('click', function(){resize('Contenido')}, false)
-// document.getElementById("Contenido").addEventListener('keydown', function(){autosize('Contenido')}, false)
-
-//************************************************************************************************
     //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
     // window.addEventListener("click", function(e){   
     //     var click = e.target
@@ -33,12 +29,3 @@
             return
         }
     }
-    
-//************************************************************************************************
-    //, esta fue eliminada del servidor evia AJAX en Llamar_EliminarNoticia()
-   
-// document.getElementById('PanelEdicion').addEventListener('click', function(event){ 
-//     if((event.target.id == "Domicilio_No") || (event.target.id == "Domicilio_Si")){ 
-
-//     }
-// }, false); 

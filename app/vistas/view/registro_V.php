@@ -65,7 +65,6 @@
         </div>
     </div>
 </section>
-
+                    
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js';?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_Registro.js';?>"></script>
-<!-- <script src="<?php echo RUTA_URL . '/public/javascript/A_Registros.js';?>"></script> -->

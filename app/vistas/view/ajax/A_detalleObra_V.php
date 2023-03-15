@@ -43,8 +43,13 @@
 ?>
 
 <!-- FLECHAS DE AVANCE Y RETROCESO -->
-<i class="fas fa-chevron-left  cont_ObraDetalle--iconoLeft primerPoncho" onclick="Llamar_detalleObra('<?php echo $ID_MostrarObra;?>','<?php echo $Datos['artista']['ID_Artista'];?>','Retroceder')"></i>
-<i class="fas fa-chevron-right cont_ObraDetalle--iconoRight ultimoPoncho" onclick="Llamar_detalleObra('<?php echo $ID_MostrarObra;?>','<?php echo $Datos['artista']['ID_Artista'];?>','Avanzar')"></i>
+<img class="Default_pointer cont_ObraDetalle--iconoLeft" onclick="Llamar_detalleObra('<?php echo $ID_MostrarObra;?>','<?php echo $Datos['artista']['ID_Artista'];?>','Retroceder')" src="<?php echo RUTA_URL . '/public/iconos/chevronIzquierdo/outline_arrow_back_ios_white_24dp.png'?>"/>
+
+<!-- <i class="fas fa-chevron-left  cont_ObraDetalle--iconoLeft primerPoncho" onclick="Llamar_detalleObra('<?php //echo $ID_MostrarObra;?>','<?php //echo $Datos['artista']['ID_Artista'];?>','Retroceder')"></i> -->
+
+<img class="Default_pointer cont_ObraDetalle--iconoRight" onclick="Llamar_detalleObra('<?php echo $ID_MostrarObra;?>','<?php echo $Datos['artista']['ID_Artista'];?>','Avanzar')" src="<?php echo RUTA_URL . '/public/iconos/chevronDerecha/outline_arrow_forward_ios_white_24dp.png'?>"/>
+
+<!-- <i class="fas fa-chevron-right cont_ObraDetalle--iconoRight ultimoPoncho" onclick="Llamar_detalleObra('<?php //echo $ID_MostrarObra;?>','<?php //echo $Datos['artista']['ID_Artista'];?>','Avanzar')"></i> -->
 
 <div class="cont_ObraDetalle--img">	
 	<?php				?>

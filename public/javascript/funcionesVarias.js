@@ -38,7 +38,7 @@
         window.addEventListener("click", function(e){
             //obtiendo informacion del DOM del elemento donde se hizo click 
             var click = e.target
-            console.log(click)
+            // console.log(click)
             AltoVitrina = document.body.scrollHeight
             if(div.style.marginTop == "0%"){
                 div.style.marginTop = "-250%"

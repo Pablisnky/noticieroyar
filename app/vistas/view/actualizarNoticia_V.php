@@ -112,39 +112,6 @@
                                         <?php
                                     }   ?> 
                             </div>
-                            
-                            <!-- COLECCION --> 
-                            <div style="margin-top: 60px">
-                                <label class="cont_panel--label">Colección</label>
-                                <div id="Contenedor_Coleccion">
-                                            <?php
-                                    if(empty($Datos['colecciones'][0]['ID_Coleccion'])){//carga imagen por defecto  ?>
-                                        <div class="cont_edit">
-                                            <label class="Default_pointer" id="Coleccion"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
-                                            <!-- <label class="Default_pointer"><span class="material-icons-outlined cont_edit--label" id="Coleccion">edit</span> </label> -->
-                                        </div>                                           
-                                        <!-- IMAGEN COLECCION-->
-                                        <figure>
-                                            <img class="cont_panel--imagen" name="imagenColeccion" alt="Fotografia Coleccion" id="ImgColeccion" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
-                                        </figure>
-                                        <input class="Default_ocultar" type="text" name="id_coleccion" id="ID_Coleccion" value="no existe"/>
-                                        <input class="Default_ocultar" type="text" value="SiActualizarCol" name="actualizarCol" id="ActualizCol"/>
-                                        <?php
-                                    }
-                                    else{ //si existe una coleccion y se va a actualizar  ?>
-                                        <div class="cont_edit">
-                                            <label class="Default_pointer" id="Coleccion"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
-                                            <!-- <label class="Default_pointer" id="Coleccion"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
-                                        </div>   
-                                        <figure>
-                                            <img class="cont_panel--imagen" alt="Fotografia Coleccion" id="ImgColeccion" src="<?php echo RUTA_URL?>/public/images/colecciones/<?php echo $Datos['colecciones'][0]['nombre_imColeccion'];?>"/> 
-                                        </figure>      
-                                        <input class="Default_ocultar" type="text" name="id_coleccion" id="ID_Coleccion" value="<?php echo $Datos['colecciones'][0]['ID_Coleccion'];?>"/>
-                                        <input class="Default_ocultar" type="text" value="SiActualizarCol" name="actualizarCol" id="ActualizCol"/>
-                                        <?php
-                                    }   ?> 
-                                </div> 
-                            </div>
                         </div>
 
                         <div style="width: 100%; padding-left: 1%">
@@ -236,7 +203,7 @@
 <div id="Contenedor_91"></div>
 
 <!--div alimentado desde modal_coleccionesDisponibles_V.php que muestra las colecciones publicitarios -->    
-<div id="Contenedor_92"></div>
+<!-- <div id="Contenedor_92"></div> -->
 
 
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>

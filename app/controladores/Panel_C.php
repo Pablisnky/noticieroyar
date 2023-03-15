@@ -24,7 +24,7 @@
 			$ImagenesNoticiasPortadas = $this->Panel_M->consultarImagenesNoticiasPortada();
 
 			//CONSULTA las noticias generales
-			$NoticiasGenerales = $this->Panel_M->consultarNoticiasGenerales();
+			// $NoticiasGenerales = $this->Panel_M->consultarNoticiasGenerales();
 						
 			//CONSULTA si hay asociado un anuncio pulicitario
 			$Publicidad = $this->Panel_M->consultarPublicidad();
@@ -34,9 +34,9 @@
 
 			$Datos = [
 				'noticiasPortadas' => $NoticiasPortadas, //ID_Noticia, titulo, imagenNoticia 
-				'imagenesNoticiasPortadas' => $ImagenesNoticiasPortadas,
+				'imagenesNoticias' => $ImagenesNoticiasPortadas, //ID_Noticia, nombre_imagenNoticia
 				'seccionesNoticiasPortadas' => $SeccionesNoticiasPortadas,
-				'noticiasGenerales' => $NoticiasGenerales, // 
+				// 'noticiasGenerales' => $NoticiasGenerales, // 
 				'visitas' => $Visitas,
 				'publicidad' => $Publicidad //ID_Noticia, razonSocial
 			];
@@ -47,14 +47,36 @@
 			// exit;
 		
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
+			$this->vista('header/header_OpenGraph', $Datos);
 			$this->vista('view/noticiasPortadas_V', $Datos);
 		}
 
-		// muestra la noticias generales en el panel de periodistas
-		public function Not_Generales(){ 
+		// muestra las noticias generales en el panel de periodistas, se hace mediante de paginación de 25 noticias por pagina
+		public function Not_Generales($pagina = 1){         
+            # Cuántos productos mostrar por página 
+            $NoticiasPorPagina = 3;
+
+            // Por defecto se muestra la página 1; pero si está presente en la URL, tomamos esa
+            if(isset($_GET["pagina"])) {
+                $pagina = $_GET["pagina"];
+            }
+
+            # El límite es el número de productos por página
+            $Limit = $NoticiasPorPagina;
+            // echo 'Noticias a mostrar ' . $Limit . '<br>';
+
+            # El offset es saltar X productos que viene dado por multiplicar la página - 1 * los productos por página
+            $Desde = ($pagina - 1) * $NoticiasPorPagina;
+            // echo 'Desde la Nro ' . $Desde . '<br>';
+
+            // Muestra la cantidad de noticias generales y poder saber cuántas páginas se van a mostrar
+            $CantidadNoticiasGenerales = $this->Panel_M->consultarCantidadNoticiasGenerales();
+
+            //Para obtener las páginas se divide el conteo entre los productos por página, y se redondea hacia arriba
+            $paginas = ceil($CantidadNoticiasGenerales[0]['cantidad'] / $NoticiasPorPagina);
+
 			//CONSULTA las noticias generales
-			$NoticiasGenerales = $this->Panel_M->consultarNoticiasGenerales();
+			$NoticiasGenerales = $this->Panel_M->consultarNoticiasGeneralesPaginacion($Limit, $Desde);
 
 			//CONSULTA las imagenes de noticias generales
 			$imagenesNoticiasGenerales = $this->Panel_M->consultarImagenesNoticiasGenerales();
@@ -69,11 +91,14 @@
 			$Visitas = $this->Panel_M->consultaVisitasNoticia();
 
 			$Datos = [
-				'noticiasGenerales' => $NoticiasGenerales, //ID_Noticia, titulo, imagenNoticia 
-				'imagenesNoticiasGenerales' => $imagenesNoticiasGenerales,
-				'seccionessNoticiasGenerales' => $SeccionessNoticiasGenerales,
+				'noticiasGenerales' => $NoticiasGenerales, //ID_Noticia, titulo, subtitulo, fechaPublicacion      
+				'imagenesNoticia' => $imagenesNoticiasGenerales, //ID_Noticia, nombre_imagenNoticia
+				'seccionessNoticiasGenerales' => $SeccionessNoticiasGenerales, //ID_Noticia, seccion
 				'publicidad' => $Publicidad, //ID_Noticia, razonSocial 
-				'visitas' => $Visitas
+				'visitas' => $Visitas, //ID_Noticia, COUNT(ID_Noticia) AS 'visitas'
+                'pagina' => $pagina,
+                'paginas' => $paginas,
+                'cantidadNoticiasGenerales' => $CantidadNoticiasGenerales //ID_Noticia, COUNT(noticias.ID_Noticia) AS cantidad 
 			];
 
 			// echo '<pre>';
@@ -82,7 +107,7 @@
 			// exit;
 		
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
+			$this->vista('header/header_OpenGraph', $Datos);
 			$this->vista('view/NoticiasGenerales_V', $Datos);
 		}
 		
@@ -158,7 +183,6 @@
 			// exit;
 		
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			// $this->vista('header/header_SoloEstilos');
             $this->vista("modal/modal_anunciosDisponibles", $Datos);
 		}
 
@@ -177,7 +201,6 @@
 			// exit;
 		
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			// $this->vista('header/header_SoloEstilos');
             $this->vista("modal/modal_coleccionesDisponibles", $Datos);
 		}
 
@@ -792,7 +815,7 @@
 				//Usar en remoto
 				$DirectorioPerfil = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/'. $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista. '/perfil/';
 
-				// // usar en local
+				// // // usar en local
 				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/galeria/Andreina_Zavarce/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
@@ -821,15 +844,15 @@
 			$Video = $this->Panel_M->consultarVideoEspecifico($ID_Noticia);
 			
 			// CONSULTA la coleccion de la noticia
-			$Coleccion = $this->Panel_M->consultarColeccionEspecifico($ID_Noticia);
+			// $Coleccion = $this->Panel_M->consultarColeccionEspecifico($ID_Noticia);
 
 			$Datos = [
 				'noticiaActualizar' => $NoticiaActualizar, //ID_Noticia, titulo, subtitulo, seccion, fecha, nombre_imagenNoticia, ImagenPrincipal, fuente 
 				'imagenesNoticiaActualizar' => $ImagenesNoticiaActualizar, //ID_Noticia, ID_Imagen, nombre_imagenNoticia, ImagenPrincipal
 				'fuentes' => $Fuentes,
 				'anuncio' => $Anuncio, //ID_Anuncio, nombre_imagenPublicidad
-				'video' => $Video, //ID_Anuncio, nombre_imagenPublicidad
-				'colecciones' => $Coleccion //ID_Coleccion, nombreColeccion
+				'video' => $Video //ID_Anuncio, nombre_imagenPublicidad
+				// 'colecciones' => $Coleccion //ID_Coleccion, nombreColeccion
 			];
 
 			// echo '<pre>';
@@ -1453,7 +1476,7 @@
 			//Usar en remoto
 			$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
 			
-			// // usar en local
+			// // // usar en local
 			$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
 			
 			//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
@@ -1477,7 +1500,7 @@
 					//Usar en remoto
 					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/';
 
-					// //usar en local
+					// // //usar en local
 					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
 
 					//Subimos el fichero al servidor

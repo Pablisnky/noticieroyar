@@ -1,7 +1,4 @@
-.contenedor_tarjeta{
-    perspective: 600px;
-    min-width: 25%;
-}
+
 .tarjeta{
     height: 85vh !important; 
     width: 100%;
@@ -40,24 +37,13 @@
 
 /* ******************************************************************************************* */
 @media(max-width: 350px){
-    .atras{
-        height: 74vh !important; 
-    }
-    .contenedor_tarjeta{
-        min-width: 70%;
-    }
-    .adelante_atras--noticias_V{
-        min-width: 100%;
-    }
+    
 }
 
 /* ******************************************************************************************** */
 @media(min-width: 351px) and (max-width: 370px){
     .atras{
         height: 77vh !important; 
-    }
-    .contenedor_tarjeta{
-        min-width: 65%;
     }
     .adelante_atras--noticias_V{
         min-width: 100%;
@@ -73,9 +59,6 @@
 @media(min-width: 371px) and (max-width: 800px){
     .atras{
         height: 77vh !important; 
-    }
-    .contenedor_tarjeta{
-        min-width: 65%;
     }
     .adelante_atras--noticias_V{
         min-width: 100%;

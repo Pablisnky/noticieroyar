@@ -11,7 +11,7 @@
                     <div style="width: 30%; margin-right: 1.5%">       
                         <figure>
                             <?php
-                            foreach($Datos['imagenesNoticiasPortadas'] as $Row)   : 
+                            foreach($Datos['imagenesNoticias'] as $Row)   : 
                                 if($Not_Prin['ID_Noticia'] == $Row['ID_Noticia']){  ?>
                                     <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
                                     <?php
@@ -23,11 +23,7 @@
                         <!-- TITULO -->
                         <label class="cont_panel--label">Titulo</label>
                         <label class="cont_panel--titulo"><?php echo $Not_Prin['titulo'];?></label>
-                        
-                        <!-- SUBTITULO -->
-                        <!-- <label class="cont_panel--label">Resumen</label>
-                        <label class="cont_panel--resumen"><?php //echo $Not_Prin['subtitulo'];?></label> -->
-                        
+                                                
                         <!-- SECCION -->
                         <label class="cont_panel--label">Seccion</label>                            
                         <ul class="cont_panel--seccion--ul">
@@ -55,21 +51,30 @@
                         <label class="cont_panel--fecha"><?php echo $Not_Prin['fechaPublicacion'];?></label>
 
                         <!-- VISITAS -->
-                        <label class="cont_panel--label">Visitas</label>
+                        <!-- <label class="cont_panel--label">Visitas</label> -->
                             <?php
                             foreach($Datos['visitas'] as $Row_2)   : 
                                 if($Not_Prin['ID_Noticia'] == $Row_2['ID_Noticia']){     ?>
-                                    <label class="cont_panel--fecha"><?php echo $Row_2['visitas'];?></label>
+                                    <!-- <label class="cont_panel--fecha"><?php echo $Row_2['visitas'];?></label> -->
                                         <?php
                                 }
                             endforeach; ?>
                         
-                        <div id="PanelEdicion">
-                            <!-- COMPARTIR -->             
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>" target="_blank">Compartir</a>
+                        <div>
+                            <div class=" detalle_cont--redesSociales--Panel">
+                                <!-- COMPARTIR FACEBOOK -->       
+                                <div class="detalle_cont--red">      
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>" target="_blank" rel="noopener noreferrer"><img style="height: 1.8em;" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
+                                </div> 
+                                
+                                <!-- COMPARTIR TWITTER -->
+                                <div class="detalle_cont--red">
+                                    <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>&text=<?php echo $Not_Prin['titulo'];?>" target="_blank"><img style="height: 2em;" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a>
+                                </div>  
+                            </div>
 
                             <!-- EDITAR -->
-                            <a style="margin-left: 50px; color: blue;" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
+                            <a style="margin-left: ; color: blue;" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
                                                         
                             <!-- ELIMINAR -->
                             <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Prin['ID_Noticia'];?>')">Eliminar</label>

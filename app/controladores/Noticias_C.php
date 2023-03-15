@@ -154,7 +154,7 @@
             // echo "</pre>";          
             // exit();
             
-            $this->vista("header/header_SoloEstilos"); 
+            $this->vista("header/header_OpenGraph", $Datos); 
             $this->vista("view/detalleNoticias_V", $Datos); 
         }
         
@@ -280,13 +280,38 @@
 			die();
 		}
 
-        //muestra todas las noticias segun la sección
-        public function archivo($ID_Seccion){
+        //muestra todas las noticias segun la sección, se hace mediante de paginación de 25 noticias por pagina
+        public function archivo($ID_Seccion, $pagina = 1){          
+            # Cuántos productos mostrar por página 
+            $NoticiasPorPagina = 25;
+
+            // Por defecto se muestra la página 1; pero si está presente en la URL, tomamos esa
+            if(isset($_GET["pagina"])) {
+                $pagina = $_GET["pagina"];
+            }
+
+            # El límite es el número de productos por página
+            $Limit = $NoticiasPorPagina;
+            // echo 'Noticias a mostrar ' . $Limit . '<br>';
+
+            # El offset es saltar X productos que viene dado por multiplicar la página - 1 * los productos por página
+            $Desde = ($pagina - 1) * $NoticiasPorPagina;
+            // echo 'Desde la Nro ' . $Desde . '<br>';
             
-            $TodasNoticiasGenerales = $this->ConsultaNoticia_M->consultarTodasNoticiasGenerales($ID_Seccion);
-             
+            // Muestra la cantidad de noticias por cada sección y poder saber cuántas páginas se van a mostrar
+            $CantidadNoticiasSeccion = $this->ConsultaNoticia_M->consultarCantidadNoticiasSeccion($ID_Seccion);
+
+            //Para obtener las páginas se divide el conteo entre los productos por página, y se redondea hacia arriba
+            $paginas = ceil($CantidadNoticiasSeccion[0]['cantidad'] / $NoticiasPorPagina);
+
+            //Se consultan las noticias que se mostraran segun la pagina seleccionada en paginación
+            $TodasNoticiasGenerales = $this->ConsultaNoticia_M->consultarTodasNoticiasGenerales($ID_Seccion, $Limit, $Desde);
+
             $Datos = [
-                'todasNoticiasGenerales' => $TodasNoticiasGenerales //ID_Noticia, titulo, subtitulo, ID_Seccion, seccion, portada, nombre_imagenNoticia, fechaPublicacion, fuente
+                'todasNoticiasGenerales' => $TodasNoticiasGenerales, //ID_Noticia, titulo, subtitulo, ID_Seccion, seccion, portada, nombre_imagenNoticia, fechaPublicacion, fuente
+                'pagina' => $pagina,
+                'paginas' => $paginas,
+                'cantidadNoticiasSeccion' => $CantidadNoticiasSeccion
             ];
             
             // echo "<pre>";

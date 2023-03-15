@@ -192,7 +192,6 @@
             // echo "</pre>";          
             // exit();
             
-            // $this->vista("header/header_SoloEstilos"); 
             $this->vista("view/ajax/imagenColeccion_V", $Datos ); 
         }
     }

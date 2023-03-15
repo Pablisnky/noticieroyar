@@ -59,7 +59,41 @@
                 ORDER BY fecha
                 DESC"
             );
+
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // SELECT de noticias generales
+        public function consultarNoticiasGeneralesPaginacion($Limit, $Desde){
+            $stmt = $this->dbh->query(
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion
+                FROM noticias
+                INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
+                WHERE fecha < CURDATE()
+                GROUP BY titulo
+                ORDER BY fecha
+                DESC
+                LIMIT $Desde, $Limit"
+                 //se muestran $limit registros desde el registro Nro $desde
+            );
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        public function consultarCantidadNoticiasGenerales(){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Noticia, COUNT(noticias.ID_Noticia) AS cantidad 
+                 FROM noticias 
+                 WHERE fecha < CURDATE()"
+            );
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
         }
         
         //SELECT de las imagenes de las noticias generales
@@ -561,25 +595,25 @@
             }
         }
 
-        public function consultarColeccionEspecifico($ID_Noticia){
-            $stmt = $this->dbh->prepare(
-                "SELECT colecciones.ID_Coleccion, nombre_imColeccion
-                FROM  noticias_colecciones
-                INNER JOIN colecciones ON noticias_colecciones.ID_Coleccion=colecciones.ID_Coleccion
-                INNER JOIN  imagnescolecciones  ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
-                WHERE ID_Noticia = :ID_NOTICIA"
-            );
+        // public function consultarColeccionEspecifico($ID_Noticia){
+        //     $stmt = $this->dbh->prepare(
+        //         "SELECT colecciones.ID_Coleccion, nombre_imColeccion
+        //         FROM  noticias_colecciones
+        //         INNER JOIN colecciones ON noticias_colecciones.ID_Coleccion=colecciones.ID_Coleccion
+        //         INNER JOIN  imagnescolecciones  ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
+        //         WHERE ID_Noticia = :ID_NOTICIA"
+        //     );
 
-            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+        //     //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+        //     $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
 
-            if($stmt->execute()){
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }
-            else{
-                return false;
-            }
-        }
+        //     if($stmt->execute()){
+        //         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //     }
+        //     else{
+        //         return false;
+        //     }
+        // }
 
         // CONSULTA los artistas registrados en la galeria
         public function consultaArtistasPanel(){

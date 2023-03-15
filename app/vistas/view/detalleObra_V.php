@@ -1,15 +1,11 @@
-<!-- CDN iconos de font-awesome-->
-<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'/>
-
 <div style="color: white; background-color: black">
 
 	<!-- ICONO FULLSCREEM -->
 	<img class="cont_ObraDetalle--label" style="text-align: center; display:inline; margin: auto; width: 1.8em;" id="Abrir" src="<?php echo RUTA_URL . '/public/iconos/fullScreem/outline_open_in_full_white_24dp.png'?>"/>
 
 	<div style="background-color: black" id="Miimagen">
-
-		<!-- ICONO CERRAR -->
-		<a class="cont_ObraDetalle--cerrar" href="<?php echo RUTA_URL . '/GaleriaArte_C/artistas/' . $Datos['detalleObra']['ID_Artista'];?>"><i class="fas fa-times" style="font-size: 1em"></i></a>
+		
+        <a href="<?php echo RUTA_URL . '/GaleriaArte_C/artistas/' . $Datos['detalleObra']['ID_Artista'];?>"><img class="Default_pointer" style=" position: fixed; right: 2%; top: 3.3%; width: 40px; height: 40px;" id="CerrarVentana" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_white_24dp.png'?>"/></a>
 
 		<div class="cont_ObraDetalle" id="Cont_PinturaDetalle">
 			<?php
@@ -37,8 +33,9 @@
 			?>
 
 			<!-- FLECHAS DE AVANCE Y RETROCESO -->
-			<i class="fas fa-chevron-left cont_ObraDetalle--iconoLeft" onclick="Llamar_detalleObra('<?php echo $Datos['detalleObra']['ID_Obra'];?>','<?php echo $Datos['detalleObra']['ID_Artista'];?>','Retroceder')"></i>
-			<i class="fas fa-chevron-right cont_ObraDetalle--iconoRight" onclick="Llamar_detalleObra(<?php echo $Datos['detalleObra']['ID_Obra'];?>,'<?php echo $Datos['detalleObra']['ID_Artista'];?>','Avanzar')"></i>
+			<img class="Default_pointer cont_ObraDetalle--iconoLeft" onclick="Llamar_detalleObra('<?php echo $Datos['detalleObra']['ID_Obra'];?>','<?php echo $Datos['detalleObra']['ID_Artista'];?>','Retroceder')" src="<?php echo RUTA_URL . '/public/iconos/chevronIzquierdo/outline_arrow_back_ios_white_24dp.png'?>"/>
+			
+			<img class="Default_pointer cont_ObraDetalle--iconoRight" onclick="Llamar_detalleObra('<?php echo $Datos['detalleObra']['ID_Obra'];?>','<?php echo $Datos['detalleObra']['ID_Artista'];?>','Avanzar')" src="<?php echo RUTA_URL . '/public/iconos/chevronDerecha/outline_arrow_forward_ios_white_24dp.png'?>"/>
 
 			<div class="cont_ObraDetalle--img">		
 

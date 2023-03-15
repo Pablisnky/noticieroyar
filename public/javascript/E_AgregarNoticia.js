@@ -182,12 +182,26 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
         document.getElementById("Boton_Agregar").style.cursor = "wait"
         document.getElementById("Boton_Agregar").classList.add('borde_1')
 
+        let ImagenPrin = document.getElementById('imgInp').value 
         let Titulo = document.getElementById('Titulo').value
         let Resumen = document.getElementById('Resumen').value
         let Fecha = document.getElementById('datepicker').value
         let Seccion = document.getElementById('SeccionPublicar').value
+        
+        //Patron de entrada para archivos de carga permitidos
+        var Ext_Permitidas = /^[.jpg|.jpeg|.png]*$/
                    
-        if(Titulo =="" || Titulo.indexOf(" ") == 0 || Titulo.length > 80){
+        if(Ext_Permitidas.exec(ImagenPrin) == false || ImagenPrin.size > 2000000){
+            alert("Introduzca una imagen con extención .jpeg .jpg .png menor a 2 Mb")
+            document.getElementById("imgInp").value = "";
+            document.getElementsByClassName("boton")[0].value = "Guardar"
+            document.getElementsByClassName("boton")[0].disabled = false
+            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
+            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+            return false;
+        }
+        else if(Titulo =="" || Titulo.indexOf(" ") == 0 || Titulo.length > 80){
             alert ("El TITULO excede el máximo de caracteres");
             document.getElementById("Titulo").value = "";
             document.getElementById("Titulo").focus();
