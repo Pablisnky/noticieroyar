@@ -92,7 +92,7 @@
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             else{
-                return false;
+                return "Hubo un fallo";
             }
         }
         

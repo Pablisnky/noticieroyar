@@ -7,8 +7,26 @@
 		foreach($Datos['agenda'] as $Key) :  ?>
 			<div class="cont_Galeria--item" >
 				<figure id="">
-					<img class="cont_Galeria--img lazyload" id="Imagen_<?php echo $Key['ID_Agenda']?>" data-src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_imagenAgenda'];?>" loading="lazy" width="320" height="10" /> 
+					<img class="cont_Galeria--img lazyload" id="Imagen_<?php echo $Key['ID_Agenda']?>" data-src="<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Key['nombre_imagenAgenda'];?>" loading="lazy" width="320" height="10" /> 
 				</figure>
+			</div>
+
+			<!-- REDES SOCIALES -->
+			<div class="detalle_cont--redesSociales--Panel" style="width: 70%; margin:-8% auto 15% 20% ">
+				<!-- COMPARTIR FACEBOOK -->       
+				<div class="detalle_cont--red">      
+					<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/agenda_C/redes_sociales/<?php echo $Key['ID_Agenda'];?>" target="_blank" rel="noopener noreferrer"><img style="height: 1.8em;" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
+				</div> 
+				
+				<!-- COMPARTIR TWITTER -->
+				<div class="detalle_cont--red">
+					<a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/agenda_C/redes_sociales/<?php echo $Key['ID_Agenda'];?>" target="_blank"><img style="height: 2em;" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a>
+				</div>  
+				
+				<!-- WHATSAPP -->
+				<div class="detalle_cont--red">
+					<a href="whatsapp://send?text=<?php echo RUTA_URL?>/agenda_C/redes_sociales/<?php echo $Key['ID_Agenda'];?>" data-action="share/whatsapp/share"><img style="height: 2em;" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
+				</div>  
 			</div>
 			<?php
 		endforeach; ?>

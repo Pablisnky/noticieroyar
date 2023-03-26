@@ -7,10 +7,10 @@
         <li><a class="cont_panel--li" href="#">Comentarios</a></li>
         <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Denuncias</a></li>
         <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Noticias guardadas</a></li>
-        <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Inicio_C" rel="noopener noreferrer">Inicio</a></li>
+        <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/CuentaComerciante_C/Productos" rel="noopener noreferrer">Clasificados</a></li>
 
         <li><hr style="margin: 2%"></li>
-        <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/CerrarSesion_C">Cerrar sesión</a></li>
+        <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/CerrarSesion_C" rel="noopener noreferrer">Cerrar sesión</a></li>
     </ul>
 </div>
     

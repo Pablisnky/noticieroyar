@@ -154,6 +154,9 @@
             // echo "</pre>";          
             // exit();
             
+            // echo RUTA_URL . '/Noticias_C/detalleNoticia/' .     $Datos['detalleNoticia'][0]['ID_Noticia'] . ',' .$Datos['bandera'];
+            // exit;
+            
             $this->vista("header/header_OpenGraph", $Datos); 
             $this->vista("view/detalleNoticias_V", $Datos); 
         }

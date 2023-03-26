@@ -13,7 +13,7 @@
                 <!-- IMAGN  -->
                 <div class="cont_panel__agenda--imagen">       
                     <figure>
-                        <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenAgenda'];?>"/> 
+                        <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Row['nombre_imagenAgenda'];?>"/> 
                     </figure>
                 </div>
                 <div style="">                            

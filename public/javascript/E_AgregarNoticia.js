@@ -183,8 +183,8 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
         document.getElementById("Boton_Agregar").classList.add('borde_1')
 
         let ImagenPrin = document.getElementById('imgInp').value 
-        let Titulo = document.getElementById('Titulo').value
-        let Resumen = document.getElementById('Resumen').value
+        let Titulo = document.getElementById('Titulo').value.trim()
+        let Resumen = document.getElementById('Resumen').value.trim()
         let Fecha = document.getElementById('datepicker').value
         let Seccion = document.getElementById('SeccionPublicar').value
         

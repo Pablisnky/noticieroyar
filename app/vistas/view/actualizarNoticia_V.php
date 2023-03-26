@@ -26,7 +26,7 @@
                                     <label class="Default_pointer" for="imgInp"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
                                 </div> 
                                 <figure>
-                                    <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImagenPrincipal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['noticiaActualizar']['nombre_imagenNoticia'];?>"/> 
+                                    <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImagenPrincipal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Datos['noticiaActualizar']['nombre_imagenNoticia'];?>"/> 
                                 </figure>                                
                                 <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
                             </div>

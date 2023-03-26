@@ -1,5 +1,5 @@
 <?php 
-    declare(strict_types = 1);
+    // declare(strict_types = 1);
 
     class Login_C extends Controlador{
         private $ConsultaLogin_M;
@@ -13,7 +13,7 @@
             ocultarErrores();
         }
 
-        //Recibe dos parametros (ID_Noticia y un string) en una cadena separados por coma
+        //Recibe dos parametros (ID_Noticia y un string bandera de donde viene) en una cadena separados por coma
         public function index($DatosAgrupados){
             // $DatosAgrupados se convierte en array para separar los elementos
             $DatosAgrupados = explode(',', $DatosAgrupados);
@@ -40,9 +40,6 @@
                             
                 //Se CONSULTA el correo guardado como Cookie con el ID_Usuario como argumento, se consulta en todos los tipos de usuario que existe
                 $CorreoRecord_Com = $this->ConsultaLogin_M->consultarUsuarioRecordado_Com($Cookie_usuario);
-                $CorreoRecord_May = $this->ConsultaLogin_M->consultarUsuarioRecordado_May($Cookie_usuario);
-                $CorreoRecord_Ven = $this->ConsultaLogin_M->consultarUsuarioRecordado_Ven($Cookie_usuario);
-                $CorreoRecord_Des = $this->ConsultaLogin_M->consultarUsuarioRecordado_Des($Cookie_usuario);
 
                 if(!empty($CorreoRecord_Com)){
                     $Correo = $CorreoRecord_Com[0]['correo_AfiCom'];
@@ -109,10 +106,22 @@
                 $this->vista("header/header_noticia");
                 $this->vista("view/login_V", $Datos);
             }
-            else{//Enra cuando inicia sesion desde el menu hamburguesa 
+            else{//cuando viene de iniciar sesion en menu hamburguesa
                 //carga la vista login_V en formulario login
+
+                $Datos=[
+                    'id_noticia' => 'SinID_Denuncia',
+                    'id_comentario' => 'SinID_Comentario',
+                    'bandera' => 'SinBandera'
+                ];
+
+                // echo "<pre>";
+                // print_r($Datos);
+                // echo "</pre>";          
+                // exit();
+
                 $this->vista("header/header_noticia");
-                $this->vista("view/login_V");
+                $this->vista("view/login_V", $Datos);
             }
         }
 
@@ -136,15 +145,26 @@
             // echo 'ID_Comentario: ' . $ID_Comentario . '<br>';
             // exit;
  
-            //Se CONSULTA si el correo existe como usuario suscrito
-            $Suscriptor = $this->ConsultaLogin_M->consultarSuscriptores($Correo);
+            //Se crean las cookies para recordar al usuario en caso de que $Recordar exista
+            // if($Recordar == 1){ //si pidió memorizar el usuario, se recibe desde principal.php           
+                // Se introduce una cookie en el ordenador del usuario con el identificador del usuario y la cookie aleatoria porque el usuario marca la casilla de recordar
+            //     setcookie('id_usuario', $ID_Suscriptor, time()+365*24*60*60, '/');
+            //     setcookie('clave', $Clave, time()+365*24*60*60, '/');
+            // }
+                // Se destruyen las cookie para dejar de recordar a usuario
+            // if($No_Recordar == 1){ 
+            //     setcookie('id_usuario','',time() - 3600,'/');
+            //     setcookie('clave','',time() - 3600,'/');
+            // }
 
+            //Se CONSULTA si el correo existe como suscritor
+            $Suscriptor = $this->ConsultaLogin_M->consultarSuscriptores($Correo);
+            
             // echo "<pre>";
             // print_r($Suscriptor);
             // echo "</pre>";
-            // exit;
-
-            if($Suscriptor != Array() ){//Existe como suscriptor
+            
+            if($Suscriptor != Array()){// Existe como suscriptor 
                 $ID_Suscriptor = $Suscriptor[0]['ID_Suscriptor'];
                 $CorreoBD = $Suscriptor[0]['correoSuscriptor'];
                 $Nombre = $Suscriptor[0]['nombreSuscriptor'];
@@ -153,30 +173,8 @@
                 $_SESSION["nombreSuscriptor"] = $Nombre;
                 $_SESSION["apellidoSuscriptor"] = $Apellido;
 
-                $CuentaCom = true;
-            }
-            else{                        
-                header('location:' . RUTA_URL . '/Login_C/loginIncorrecto');
-            }
-            
-            //Se crean las cookies para recordar al usuario en caso de que $Recordar exista
-            if($Recordar == 1){ //si pidió memorizar el usuario, se recibe desde principal.php           
-                // Se introduce una cookie en el ordenador del usuario con el identificador del usuario y la cookie aleatoria porque el usuario marca la casilla de recordar
-                setcookie('id_usuario', $ID_Suscriptor, time()+365*24*60*60, '/');
-                setcookie('clave', $Clave, time()+365*24*60*60, '/');
-            }
-                // Se destruyen las cookie para dejar de recordar a usuario
-            if($No_Recordar == 1){ 
-                setcookie('id_usuario','',time() - 3600,'/');
-                setcookie('clave','',time() - 3600,'/');
-            }
-                        
-            //Verifica si los campos que se van a recibir estan vacios
-            if(empty($_POST['correo_Arr']) || empty($_POST['clave_Arr'])){        
-                echo 'Debe Llenar todos los campos vacios'. '<br>';
-                echo '<a href="javascript:history.back()">Regresar</a>';
-            }
-            else{        
+                $CuentaCom = true;   
+
                 //Se CONSULTA la contraseña enviada, que sea igual a la contraseña de la BD
                 $Hash = $this->ConsultaLogin_M->consultarContrasena($ID_Suscriptor);
                 
@@ -218,6 +216,21 @@
                         $this->vista("header/header_SoloEstilos");
                         $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
                     }
+                    else if($Bandera == 'SinBandera'){// entra al panel de suscriptor
+
+                        $Datos = [                            
+                            'nombre' => $Nombre,
+                            'apellido' => $Apellido
+                        ];
+
+                        // echo '<pre>';
+                        // print_r($Datos);
+                        // echo '</pre>';
+                        // exit;
+                    
+                        $this->vista("header/header_SoloEstilos");
+                        $this->vista("suscriptores/suscrip_inicio_V", $Datos);
+                    }
                 }
                 else{ //en caso de clave o usuario incorrecto                    
                     $Datos = [                 
@@ -232,8 +245,27 @@
 
                     $this->vista("header/header_noticia");
                     $this->vista("modal/modal_falloLogin_V", $Datos);
-                }                   
-            }   
+                }    
+            }
+            else{  //en caso de clave o usuario incorrecto                    
+                $Datos = [                 
+                    'id_noticia' => 'SInID_Noticia',           
+                    'bandera' => $Bandera
+                ];
+
+                // echo '<pre>';
+                // print_r($Datos);
+                // echo '</pre>';
+                // exit;
+
+                $this->vista("header/header_noticia");
+                $this->vista("modal/modal_falloLogin_V", $Datos);                
+            }
+            
+            //Se CONSULTA al controlador CuentaComerciante_C si el correo existe como comerciante.
+            // require(RUTA_APP . "/controladores/CuentaComerciante_C.php");
+            // $DatosComerciante = new CuentaComerciante_C();
+            // $Comerciante = $DatosComerciante->consultarComerciante($Correo);
         }
         
         public function RecuperarClave(){

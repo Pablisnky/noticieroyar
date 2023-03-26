@@ -1,6 +1,7 @@
     // elimina una noticia
-    function EliminarNoticia(ID_Noticia){
-        // console.log("______Desde EliminarNoticia()______", ID_Noticia)
+    function EliminarNoticia(ID_Noticia, NombreImagen){
+        // console.log("______Desde EliminarNoticia()______", ID_Noticia + '-' + NombreImagen)
+        
         let ConfirmaEliminar = confirm("Desea eliminar la noticia");
         
         //Se confirma si se desea eliminar la noticia
@@ -16,8 +17,8 @@
 
             //Se elimina el elemento
             Padre.removeChild(DivEliminar)
-            
-            Llamar_EliminarNoticia(ID_Noticia)
+
+            Llamar_EliminarNoticia(ID_Noticia, NombreImagen)
         } 
         else{
             return

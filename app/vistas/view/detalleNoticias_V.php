@@ -19,7 +19,7 @@
             
             <!-- IMAGEN -->
             <figure id="Contenedor_Imagen">
-                <img class="cont_detalle--imagen" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['imagenesNoticia'][0]['nombre_imagenNoticia'];?>"/>  
+                <img class="cont_detalle--imagen" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Datos['imagenesNoticia'][0]['nombre_imagenNoticia'];?>"/>  
             </figure>
             
             <!-- IMAGENES SECUNDARIAS EN MINIATURAS -->
@@ -28,7 +28,7 @@
                 foreach($Datos['imagenesNoticia'] as $key) :   ?>
                     <div style="margin-top: 1%">
                         <figure>
-                            <img class="cont_detalle--imagenMiniatura borde_1" alt="Foto no disponible" src="<?php echo RUTA_URL?>/images/<?php echo $key['nombre_imagenNoticia'];?>" onclick="Llamar_VerMiniatura('<?php echo $key['ID_Imagen']?>')"/>
+                            <img class="cont_detalle--imagenMiniatura borde_1" alt="Foto no disponible" src="<?php echo RUTA_URL?>/images/noticias/<?php echo $key['nombre_imagenNoticia'];?>" onclick="Llamar_VerMiniatura('<?php echo $key['ID_Imagen']?>')"/>
                         </figure>
                     </div>
                         <?php
@@ -65,7 +65,10 @@
                 
                 <!-- WHATSAPP -->
                 <div class="whatsapp detalle_cont--red">
-                <a href="whatsapp://send?text=<?php echo $Datos['detalleNoticia'][0]['titulo']?>...<?php echo RUTA_URL?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
+                <?php 
+                    $Titulo = $Datos['detalleNoticia'][0]['titulo'];         
+                ?>
+                <a href="whatsapp://send?text=<?php echo $Titulo?>&nbsp;<?php echo RUTA_URL?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
                 </div>            
             </div>        
             

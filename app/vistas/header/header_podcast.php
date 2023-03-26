@@ -32,4 +32,4 @@
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo'>        
     </head>
     <body>		
-   <!-- No se cierrra la etiqueta <body> porque se cierra es el footer -->
+    <!-- No se cierrra la etiqueta <body> porque se cierra es el footer -->

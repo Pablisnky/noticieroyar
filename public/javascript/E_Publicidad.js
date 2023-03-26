@@ -1,10 +1,10 @@
     //Confirma si se desea eliminar una noticia
-    function EliminarAnuncio(ID_Anuncio){
-        // console.log("______Desde EliminarAnuncio()______", ID_Anuncio)
+    function EliminarAnuncio(ID_Anuncio, NombreImagen){
+        // console.log("______Desde EliminarAnuncio()______", ID_Anuncio + '-' + NombreImagen)
+
         let ConfirmaEliminar = confirm("Desea eliminar el anuncio");
         
         if(ConfirmaEliminar == true){
-            Llamar_EliminarAnuncio(ID_Anuncio)
                         
             // Quita la noticia de pantalla
             //Se detecta  el contenedor que contiene la noticia a eliminar
@@ -17,6 +17,8 @@
 
             //Se elimina el elemento
             Padre.removeChild(DivEliminar)
+            
+            Llamar_EliminarAnuncio(ID_Anuncio, NombreImagen)
         } 
         else{
             return

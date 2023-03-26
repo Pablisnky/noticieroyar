@@ -22,7 +22,27 @@
             // echo "</pre>";          
             // exit();
 
-            $this->vista("header/header_noticia"); 
+            $this->vista("header/header_agenda", $Datos); 
             $this->vista("view/agenda_V", $Datos);   
+        }
+
+        public function redes_sociales($ID_Agenda){
+            //consulta los eventos en agenda de hoy
+			$Agenda = $this->ConsultaAgenda_M->consultarArchivoAgendaEspecifico($ID_Agenda);
+
+            $Datos = [
+                'agenda' => $Agenda, // ID_Agenda, nombre_imagenAgenda
+            ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+
+            $this->vista("header/header_agenda", $Datos); 
+            $this->vista("view/agenda_RedesSociales_V", $Datos); 
+            
+			// header("Location:" . RUTA_URL . "/Agenda_C");
+
         }
     }

@@ -20,7 +20,21 @@
             else{
                 return false;
             }
+        }
+        
+        public function consultarArchivoAgendaEspecifico($ID_Agenda){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Agenda, nombre_imagenAgenda
+                 FROM agenda 
+                 WHERE ID_Agenda = $ID_Agenda"
+            );
 
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
         }
         
     }

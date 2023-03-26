@@ -36,8 +36,6 @@
 			<!-- FECHA -->
 			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
 			
-			<!-- LOGIN -->
-			<!-- <a href="<?php //echo RUTA_URL . '/Login_C';?>">Entrar</a> -->
 		</header>
 		
 		<!-- MEMBRETE DESPLAZANTE -->

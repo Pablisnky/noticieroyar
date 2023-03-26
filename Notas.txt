@@ -36,3 +36,5 @@ Resoluciones
 	transform:scale(1.3);
 	filter: opacity(.6);
 }  */
+
+extension=gd esta extencion en php.ini se activo para que pudiera funcionar las funciones imagecreatefromjpeg()

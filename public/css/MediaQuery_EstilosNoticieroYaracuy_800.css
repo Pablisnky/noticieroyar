@@ -585,4 +585,114 @@
 	.whatsapp{ 
 		display: block;
 	}
+	
+	
+	
+	
+	
+	
+	
+.boton--alto{
+	line-height: 20px;
+}
+	.th_1{
+		width: 12%;
+	}
+	.th_2{
+		width: 40%;
+	}
+	.th_4{
+		height: 30px;
+		font-size: 0.6em;
+	}
+	.contInputRadio__label{
+		font-size: 0.9em !important;
+	}
+	.h2_2{
+		font-size: 0.9em;
+	}
+	.br_2{
+		display: block;
+	}
+	.boton--carrito{
+		width: 130px;
+	}
+	.h1_1{
+		font-weight: normal;
+		text-align: center;
+		font-size: 1.5em;
+	}
+	.contenedor_13{
+		display: block; 
+		width: 100%;
+		margin-top: 35% !important;
+	}
+	.contenedor_95{
+		/* grid-template-columns: 100%; */
+		margin: auto;
+		width: 100%!important;
+		/* max-height: 180px; */
+		margin-bottom: 15%;
+		padding: 1%;
+	}
+	.contenedor_61{
+		z-index: 1;
+		width: 100%;
+		margin-left: 0%;
+		height: 7%;
+	}
+	.contenedor_21{
+		margin-bottom: 0%;
+		padding-bottom: 0%;
+	}
+	.contenedor_31{
+		padding: 0%;
+	}
+	.input_5{
+		font-size: 0.9em !important;
+	}
+	.contenedor_19{
+		/* background-color: brown; */
+		width: 100%;
+		float: initial;
+		margin-left: 0%;
+	}
+	.contenedor_14{
+		width: 100%;
+		display: none;
+		height: 20px;
+		margin-left: 0%;
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+	.contBoton{
+		margin-top: 8%;
+		width: 100%;
+	}
+	.contBoton--margin{
+		margin-top: 4%;
+	}
+	.th_1{
+		width: 12%;
+	}
+	.th_2{
+		width: 40%;
+	}
+	.th_4{
+		height: 30px;
+		font-size: 0.6em;
+	}
+	.contGeneral{
+		margin-bottom: 8%;
+	}
+	.contInputRadio__label{
+		font-size: 0.9em !important;
+		padding-left: 10px;
+	}
+	.h2_2{
+		font-size: 0.9em;
+	}
+	.br_2{
+		display: block;
+	}
 }

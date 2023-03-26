@@ -4,16 +4,17 @@
     <div style="margin-left: 20%;">
         <fieldset class="fieldset_1" id="Not_Principales"> 
             <legend class="legend_1">Noticias en portada</legend>
+             
             <?php
             foreach($Datos['noticiasPortadas'] as $Not_Prin) : ?>
                 <div style=" display: flex; margin-bottom: 30px" id="<?php echo $Not_Prin['ID_Noticia'];?>">                
                     <!-- IMAGEN NOTICIA -->
-                    <div style="width: 30%; margin-right: 1.5%">       
+                    <div style="width: 30%; margin-right: 1.5%">      
                         <figure>
                             <?php
                             foreach($Datos['imagenesNoticias'] as $Row)   : 
                                 if($Not_Prin['ID_Noticia'] == $Row['ID_Noticia']){  ?>
-                                    <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
+                                <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
                                     <?php
                                 }
                             endforeach; ?>
@@ -77,7 +78,7 @@
                             <a style="margin-left: ; color: blue;" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
                                                         
                             <!-- ELIMINAR -->
-                            <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Prin['ID_Noticia'];?>')">Eliminar</label>
+                            <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Prin['ID_Noticia'];?>','<?php echo $Datos['imagenesNoticias'][0]['nombre_imagenNoticia'];?>')">Eliminar</label>
                         </div>
                     </div>
                 </div>

@@ -31,10 +31,10 @@ function conexionAJAX(){
 
 // *************************************************************************************************
     //Esta funcion no retorna nada al documento donde se llama, solo ejecuta la accion de eliminar la noticia del servidor
-    function Llamar_EliminarNoticia(ID_Noticia){
-        // console.log("______Desde Llamar_EliminarNoticia()______", ID_Noticia)
+    function Llamar_EliminarNoticia(ID_Noticia, Nombre_Imagen){
+        console.log("______Desde Llamar_EliminarNoticia()______", ID_Noticia + '-' + Nombre_Imagen)
         
-        var url = "../Panel_C/eliminar_noticia/" + ID_Noticia
+        var url = "../Panel_C/eliminar_noticia/" + ID_Noticia + '-' + Nombre_Imagen
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_EliminarNoticia
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")

@@ -1,9 +1,9 @@
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
    
-    <div style="margin-left:20%; padding-bottom:10%">
+    <div class="cont_noticiasGenerales">
         <!-- PAGINACION -->
-        <ul class="cont_archivo--paginacion">
+        <ul class="cont_noticiasGenerales--paginacion">
             <!-- BOTON RETROCEDER -->
             <!-- Si la página actual es mayor a uno, se muestra el botón para ir una página atrás -->
             <?php if ($Datos['pagina'] > 1) { ?>
@@ -39,7 +39,7 @@
                             <?php
                             foreach($Datos['imagenesNoticia'] as $Row)   : 
                                 if($Not_Gen['ID_Noticia'] == $Row['ID_Noticia']){  ?>
-                                    <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
+                                    <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
                                     <?php
                                 }
                             endforeach; ?>
@@ -93,7 +93,7 @@
                         <a style="margin-left: 10%" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
                                                 
                         <!-- ELIMINAR -->
-                        <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Gen['ID_Noticia'];?>')">Eliminar</label>
+                        <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Gen['ID_Noticia'];?>','<?php echo $Datos['imagenesNoticia'][0]['nombre_imagenNoticia'];?>')">Eliminar</label>
                     </div>
                 </div>
                 <?php

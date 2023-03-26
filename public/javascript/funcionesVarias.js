@@ -116,13 +116,26 @@
 //************************************************************************************************ 
     //ajusta la altura de un texarea con respecto al contenido que trae de la BD
     function resize(id){
-        // console.log("______Desde resize()______", id) 
-        var text = document.getElementById(id);
+        console.log("______Desde resize()______", id) 
+        let text = document.getElementById(id);
         text.style.height = 'auto';
-        text.style.height = text.scrollHeight+'px';
+        text.style.height = text.scrollHeight + 'px';
     }
     
 //************************************************************************************************ 
     function CerrarModalAnuncios(id){
         document.getElementById(id).style.display = "none"
     } 
+    
+//************************************************************************************************ 
+// //ajusta la altura de un texarea con respecto al contenido que trae de la BD
+// function resize_02(){
+//     console.log("______Desde resize_02()______") 
+//     let text = document.getElementsByTagName('textarea');
+//     console.log(text)
+//     console.log(text.length)
+//     for(let i = 0; i < text.length; i++){
+//         text[i].style.height = 'auto';
+//         text[i].style.height = text.scrollHeight+'px';
+//     }
+// }

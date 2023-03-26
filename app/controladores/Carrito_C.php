@@ -1,75 +1,89 @@
 <?php
-	class Carrito_C extends Controlador{
-        private $Carrito_M;
-		
-		public function __construct(){
-            $this->Carrito_M = $this->modelo("Carrito_M");
-			
+    //Archivo llamado desde A_Clasificados.js por medio de llamar_PedidoEnCarrito()
+    class Carrito_C extends Controlador{
+        private $ConsultaCarrito_M;
+        private $PrecioDolar;
+
+        public function __construct(){
+            session_start();  
+            
+            $this->ConsultaCarrito_M = $this->modelo("Carrito_M");
+
             //La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
             ocultarErrores();
-		}
+        }
+    
+        public function index($ID_Suscriptor){  
+            $ID_Suscriptor = 6;
+            //SELECT para buscar información del vendedor
+            $ContactoTienda = $this->ConsultaCarrito_M->consultarVendedor($ID_Suscriptor);
 
-		//Invocada al hacer click sobre el icono de carrito de compras
-		public function index(){
-			
-			if(!isset($Datos)){
-				echo "El carrito esta vacio;";
-			}
-			else{
-				$this->load->view('carrito_V', $Datos);
-			}
-		}
+            //SELECT para buscar información de pago por transferencia de la tienda
+            $Banco = $this->ConsultaCarrito_M->consultarCtaBanco($ID_Suscriptor); 
+            
+            //SELECT para buscar información de pago por PagoMovil de la tienda
+            $PagoMovil = $this->ConsultaCarrito_M->consultarPagoMovil($ID_Suscriptor); 
+            
+            //SELECT para buscar información de pago por Reserve de la tienda
+            $Reserve = $this->ConsultaCarrito_M->consultarReserve($ID_Suscriptor); 
+            
+            //SELECT para buscar información de pago por Paypal de la tienda
+            $Paypal = $this->ConsultaCarrito_M->consultarPaypal($ID_Suscriptor); 
+            
+            //SELECT para buscar información de pago por Zelle de la tienda
+            $Zelle = $this->ConsultaCarrito_M->consultarZelle($ID_Suscriptor); 
+            
+            //SELECT para buscar información de otros metodos de pago de la tienda
+            $OtrosPagos = $this->ConsultaCarrito_M->consultarOtrosPagos($ID_Suscriptor); 
+                        
+            //Solicita el precio del dolar a la clase Divisas_C 
+            require(RUTA_APP . '/controladores/Divisas_C.php');
+            $this->PrecioDolar = new Divisas_C();
 
-		//Invocado desde A_DetalleObra.js
-		public function carrito_obras($ID_Artista, $NombreArtista, $ApellidoArtista, $NombreImgObra, $NombreObra, $TecnicaObra, $MedidaObra){
-			// echo $ID_Artista . '<br>';
-			// echo $NombreArtista . '<br>';
-			// echo $ApellidoArtista . '<br>';
-			// echo $NombreImgObra . '<br>';
-			// echo $NombreObra . '<br>';
-			// echo $TecnicaObra . '<br>';
-			// echo $MedidaObra . '<br>';
-			// exit;
+            // echo '<pre>';
+            // print_r($this->PrecioDolar);
+            // echo '</pre>';
 
-			//Las variables se reciben desde Ajax, y los espacios en blancos que contengan fueron reemlazados por %20, con la funcion removerCaracteres se reemlazo por espacios en blanoc
-			function removerCaracteres($url) {
-				// Tranformamos todo a minusculas
-				$url = strtolower($url);
-				//Rememplazamos caracteres especiales latinos
-				$find = array('á', 'é', 'í', 'ó', 'ú', 'ñ', 20);
-				$repl = array('a', 'e', 'i', 'o', 'u', 'n', ' ');
-				$url = str_replace ($find, $repl, $url);
-				// Añadimos los guiones
-				$find = array(' ', '&', '\r\n', '\n', '+'); 
-				$url = str_replace ($find, '-', $url);
-				// Eliminamos y Reemplazamos demás caracteres especiales
-				$find = array('/[^a-z0-9\-<>]/', '/[\-]+/', '/<[^>]*>/');
-				$repl = array('', '-', '');
-				$url = preg_replace ($find, $repl, $url);
-				return $url;
-			}
-			//Imprime titulo-de-prueba-url-amigable
-			$NombreObra=  removerCaracteres($NombreObra);
-			$TecnicaObra=  removerCaracteres($TecnicaObra);
-			$TecnicaObra=  removerCaracteres($TecnicaObra);
+            $DolarHoy = $this->PrecioDolar->Dolar;
 
-			str_replace("-"," ",$NombreObra);
+            //El delivery cuesta 1,3 dolares, se entrega un numero entero
+            $CostoDelivery = 1.30 * $DolarHoy;
 
-			$Datos = [
-				'id_artista' => $ID_Artista,
-				'nombreArtista' => $NombreArtista,
-				'apellidoArtista' => $ApellidoArtista,
-				'nombreImgObra' => $NombreImgObra,
-				'nombre_Pintura' => str_replace("-"," ",$NombreObra),
-				'tecnica_Pintura' => str_replace("-"," ",$TecnicaObra),
-				'medida_Pintura' => str_replace("-"," ",$TecnicaObra)
-			];
+            $Datos = [
+                'Banco' => $Banco, //bancoNombre, bancoCuenta, bancoTitular, bancoRif
+                'Pagomovil' => $PagoMovil, //cedula_pagomovil, banco_pagomovil, telefono_pagomovil               
+                'Reserve' => $Reserve,//usuarioReserve
+                'Paypal' => $Paypal,//correo_paypal
+                'Zelle' => $Zelle,//correo_zelle
+                'OtrosPagos' => $OtrosPagos, //efectivoBolivar, efectivoDolar, acordado
+                'ID_Suscriptor' => $ID_Suscriptor,
+                'TelefonoTienda' => $ContactoTienda, //telefono_AfiCom
+                'Delivery' => $CostoDelivery,
+                'DolarHoy' => $DolarHoy          
+            ];
 
-			// echo '<pre style="color: white">';
-			// print_r($Datos);
-			// echo '</pre>';
-			// exit;
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+            
+            $Carrito = 1806;  
+            $_SESSION['Carrito'] = $Carrito; 
+            //Se crea esta sesion para impedir que se acceda a la pagina que procesa el formulario (RecibePedido_V.php) o se recargue mandandolo varias veces a la base de datos
+            
+            $this->vista("view/carrito_V", $Datos);
+        }        
+        
+        public function UsuarioRegistrado($Cedula){
+            //Se CONSULTA si el usuario esta suscrito
+            $Usuario = $this->ConsultaCarrito_M->consultarUsuario($Cedula);
 
-			$this->vista('view/ajax/A_carrito_V', $Datos);
-		}
-	}
+            if($Usuario == Array ()){
+                echo 'Usuario no registrado';
+            }
+            else{
+                //Se separa cada variable pooque llegara a Javascript como una cadena de texto, luego se convertira en un array utilizando las , como caracter separador 
+                echo $Usuario[0]['nombre_usu'] . ',' . $Usuario[0]['apellido_usu'] . ',' .  $Usuario[0]['cedula_usu'] . ',' .$Usuario[0]['telefono_usu'] . ',' . $Usuario[0]['correo_usu'] . ',' . $Usuario[0]['estado_usu'] . ',' . $Usuario[0]['ciudad_usu'] . ',' . $Usuario[0]['direccion_usu'] . ',' . $Usuario[0]['ID_Usuario'];
+            }
+        }
+    }
