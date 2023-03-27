@@ -365,85 +365,85 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
 
 //************************************************************************************************
     //invocada desde opciones_V.php al regresar a vitrina_V.php, agrega las leyendas en cada seccion  con los productos que estas tienen cargado en carrito
-    function TransferirPedido(){
+    // function TransferirPedido(){
 
-        //Se especifica la seccion donde se va a insertar la leyenda en vitrina_V.php, este localStorage se creo en verOpciones()
-        InputLeyendaDinamico = localStorage.getItem('ContSeccion')
-        Padre = document.getElementById(InputLeyendaDinamico)
-        // console.log("Cont_Seccion", Padre)
+    //     //Se especifica la seccion donde se va a insertar la leyenda en vitrina_V.php, este localStorage se creo en verOpciones()
+    //     InputLeyendaDinamico = localStorage.getItem('ContSeccion')
+    //     Padre = document.getElementById(InputLeyendaDinamico)
+    //     // console.log("Cont_Seccion", Padre)
 
-        //Se guarda la sección donde esta el producto cargado a pedido
-        Seccion = localStorage.getItem('SeccionCLick')     
-        // console.log("Seccion", Seccion)   
+    //     //Se guarda la sección donde esta el producto cargado a pedido
+    //     Seccion = localStorage.getItem('SeccionCLick')     
+    //     // console.log("Seccion", Seccion)   
 
-        //Se recorre todos los elementos que contengan la clase input_15 para eliminarlos
-        //Se especifica a que seccion pertenecen los productos que se van a eliminar
-        elementoHijo = Padre.getElementsByClassName("input_15")
+    //     //Se recorre todos los elementos que contengan la clase input_15 para eliminarlos
+    //     //Se especifica a que seccion pertenecen los productos que se van a eliminar
+    //     elementoHijo = Padre.getElementsByClassName("input_15")
 
-        //Se cuentan cuantos productos exiten en el contenedor
-        Elementos = elementoHijo.length
+    //     //Se cuentan cuantos productos exiten en el contenedor
+    //     Elementos = elementoHijo.length
 
-        if(Elementos){
-            for(let i = 0; i<Elementos; i++){ 
-                //Por cada vuelta elimina el primer hijo con la clase "input_15"
-                Padre.removeChild(elementoHijo[0])
-            }
-        }
+    //     if(Elementos){
+    //         for(let i = 0; i<Elementos; i++){ 
+    //             //Por cada vuelta elimina el primer hijo con la clase "input_15"
+    //             Padre.removeChild(elementoHijo[0])
+    //         }
+    //     }
 
-        //Se evaluaran solo los elementos del array "AlContenedor" que correspondan a la sección donde se hizo click
-        function ProductoEditado(Seccion){
-            var existe = false;
+    //     //Se evaluaran solo los elementos del array "AlContenedor" que correspondan a la sección donde se hizo click
+    //     function ProductoEditado(Seccion){
+    //         var existe = false;
 
-            // El método filter() crea una nueva matriz con todos los elementos que pasan la prueba dada por la función proporcionada
-            var filtered = AlContenedor.filter(function(item){
-                return item.Seccion == Seccion; 
-            });
+    //         // El método filter() crea una nueva matriz con todos los elementos que pasan la prueba dada por la función proporcionada
+    //         var filtered = AlContenedor.filter(function(item){
+    //             return item.Seccion == Seccion; 
+    //         });
 
-            let id_dinamico = 1
-            for(let i = 0; i < filtered.length; i++){
-                existe = true;
-                //Se crean los input que cargaran las leyendas contenidas en el array filtered
-                var NuevoElemento = document.createElement("input")
+    //         let id_dinamico = 1
+    //         for(let i = 0; i < filtered.length; i++){
+    //             existe = true;
+    //             //Se crean los input que cargaran las leyendas contenidas en el array filtered
+    //             var NuevoElemento = document.createElement("input")
 
-                //Se dan propiedades al nuevo elemento creado (leyenda)
-                NuevoElemento.value = filtered[i].Cantidad + ' ' + filtered[i].Producto + ' = ' + filtered[i].Total + ' Bs.'
-                NuevoElemento.classList.add("input_15")
-                NuevoElemento.name = "leyenda"
-                NuevoElemento.id = filtered[i].ID_Opcion 
-                NuevoElemento.readOnly = true
+    //             //Se dan propiedades al nuevo elemento creado (leyenda)
+    //             NuevoElemento.value = filtered[i].Cantidad + ' ' + filtered[i].Producto + ' = ' + filtered[i].Total + ' Bs.'
+    //             NuevoElemento.classList.add("input_15")
+    //             NuevoElemento.name = "leyenda"
+    //             NuevoElemento.id = filtered[i].ID_Opcion 
+    //             NuevoElemento.readOnly = true
 
-                //Se especifica el elemento donde se va a insertar el nuevo elemento            
-                var ElementoPadre = document.getElementById(InputLeyendaDinamico)
+    //             //Se especifica el elemento donde se va a insertar el nuevo elemento            
+    //             var ElementoPadre = document.getElementById(InputLeyendaDinamico)
                 
-                //Se inserta en el DOM el input creado
-                ElementoPadre.appendChild(NuevoElemento) 
+    //             //Se inserta en el DOM el input creado
+    //             ElementoPadre.appendChild(NuevoElemento) 
                 
-                // -------------------------------------
+    //             // -------------------------------------
 
-                //Se crean los botones para dar la opción de eliminar las leyendas creadas
-                var EliminarLeyenda = document.createElement("label")
+    //             //Se crean los botones para dar la opción de eliminar las leyendas creadas
+    //             var EliminarLeyenda = document.createElement("label")
 
-                //Se dan propiedades al nuevo boton creado 
-                EliminarLeyenda.innerHTML = "X"
-                EliminarLeyenda.classList.add("input_15", "input_15--eliminar")
-                // EliminarLeyenda.id = filtered[i].ID_Opcion      
-                EliminarLeyenda.readOnly = true
-                EliminarLeyenda.onclick = Eliminar_Leyenda
+    //             //Se dan propiedades al nuevo boton creado 
+    //             EliminarLeyenda.innerHTML = "X"
+    //             EliminarLeyenda.classList.add("input_15", "input_15--eliminar")
+    //             // EliminarLeyenda.id = filtered[i].ID_Opcion      
+    //             EliminarLeyenda.readOnly = true
+    //             EliminarLeyenda.onclick = Eliminar_Leyenda
           
-                localStorage.setItem('ID_Label_X', EliminarLeyenda.id)
+    //             localStorage.setItem('ID_Label_X', EliminarLeyenda.id)
 
-                //Se especifica el elemento donde se va a insertar el nuevo elemento            
-                var ElementoPadre = document.getElementById(InputLeyendaDinamico)
+    //             //Se especifica el elemento donde se va a insertar el nuevo elemento            
+    //             var ElementoPadre = document.getElementById(InputLeyendaDinamico)
                 
-                //Se inserta en el DOM el input creado
-                ElementoPadre.appendChild(EliminarLeyenda) 
+    //             //Se inserta en el DOM el input creado
+    //             ElementoPadre.appendChild(EliminarLeyenda) 
 
-                id_dinamico++         
-            }
-            return existe;
-        }
-        ProductoEditado(Seccion)       
-    }
+    //             id_dinamico++         
+    //         }
+    //         return existe;
+    //     }
+    //     ProductoEditado(Seccion)       
+    // }
 
 //************************************************************************************************
     function Eliminar_Leyenda(e){
@@ -478,8 +478,9 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
     }
 //************************************************************************************************
     //invocada al cargarse llamar_Opciones() en Funciones_Ajax.js especifica los productos que ya estan cargados al carrito de compra y muestra su leyenda en la vista opciones_V.php
-    function ProductosEnCarrito(){             
-    
+    function ProductosEnCarrito(){   
+        console.log("______Desde ProductosEnCarrito()______")
+
         //Se filtran las leyendas que correspondan a la seccion seleccionada
         var filtered = AlContenedor.filter(function(item){
             return item.Cont_Seccion == LS_ID_Cont_Seccion 
@@ -566,7 +567,7 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
             '</td><td class="td_3">' + AlContenedor[i].Precio + " Bs." +
             '</td><td class="td_3">' + AlContenedor[i].Total + " Bs." + '</td></tr></tbody>'
 
-            // console.log("AlContenedor", AlContenedor[i].Cantidad)
+            console.log("AlContenedor", AlContenedor[i].Total)
         }
     }
     

@@ -106,7 +106,7 @@
                                 <!-- BOTON MAS Y MENOS -->
                                 <div class="contenedor_16">
                                     <label class="menos MenosJS" id="<?php echo 'ID_BotonMenos_'. $ContadorLabel;?>">-</label>
-                                    <input class="input_2" type="text" id="<?php echo 'Item_'. $ContadorLabel;?>"  value="1"/>
+                                    <input class="input_2" type="text" id="<?php echo 'Item_'. $ContadorLabel;?>"  value = "1"/>
                                     <label class="mas MasJS" id="<?php echo 'ID_BotonMas_'. $ContadorLabel;?>">+</label>
 
                                     <i class="fas fa-ban icono_7" id="<?php echo 'ID_BloquearMas_'. $ContadorLabel;?>" onclick="BotonBloqueado()"></i>
