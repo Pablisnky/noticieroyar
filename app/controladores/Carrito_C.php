@@ -44,7 +44,7 @@
             // print_r($this->PrecioDolar);
             // echo '</pre>';
 
-            $DolarHoy = $this->PrecioDolar->Dolar;
+            $DolarHoy = $this->PrecioDolar->index();
 
             //El delivery cuesta 1,3 dolares, se entrega un numero entero
             $CostoDelivery = 1.30 * $DolarHoy;

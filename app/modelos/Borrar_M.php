@@ -32,11 +32,11 @@
             $stmt->execute();
         }        
 
-        public function ConsultarImagenesNoticias(){
+        public function ConsultarImagenes(){
             $stmt = $this->dbh->prepare(
-                "SELECT nombre_imagenNoticia 
-                 FROM imagenes 
-                 ORDER BY ID_Imagen 
+                "SELECT nombre_ImagenEfemeride 
+                 FROM imagenesefemerides 
+                 ORDER BY ID_ImagenEfemeride 
                  DESC"
             );
 

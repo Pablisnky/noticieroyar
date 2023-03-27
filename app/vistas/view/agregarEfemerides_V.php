@@ -21,9 +21,9 @@
                                 <label class="cont_panel--label">Imagen principal</label>
                                 <label class="Default_pointer" for="imgInp">    
                                 <figure>
-                                    <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                                    <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
                                 </figure>
-                                <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
+                                <input class="Default_ocultar" type="file" name="imagenEfemeride" id="imgInp"/>
                             </div>
                         </div>
                         <div style="width: 100%; padding-left: 1%">

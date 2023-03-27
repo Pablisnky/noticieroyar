@@ -6,67 +6,53 @@
         // private $ApellidoArtista;
 
         public function index($Bandera, $Nombre_Imagen, $Tipo_Imagen, $Tamanio_Imagen, $Temporal_Imagen, $ID_Artista = null, $NombreArtista = null, $ApellidoArtista = null){
-            // echo $Nombre_Imagen . '<br>';
-            // echo $Tipo_Imagen . '<br>';
-            // echo $Tamanio_Imagen . '<br>';
-            // echo $Temporal_Imagen . '<br>';
+            // echo 'Bandera: ' . $Bandera . '<br>';
+            // echo 'Nombre_Imagen: ' .  $Nombre_Imagen . '<br>';
+            // echo 'Tipo_Imagen: ' .  $Tipo_Imagen . '<br>';
+            // echo 'Tamanio_Imagen: ' .  $Tamanio_Imagen . '<br>';
+            // echo 'Temporal_Imagen: ' .  $Temporal_Imagen . '<br>';
             // exit;
-            if($Bandera == 'ImagenPublicidad'){ //viene de Panel_C/recibePublicidadAgregada
-                // $Nombre_Imagen = $Nombre_Imagen;
-                // $Tipo_Imagen = $_FILES['ImagenPublicidad']['type'];
-                // $Tamanio_Imagen = $_FILES['ImagenPublicidad']['size'];
-                // $Temporal_Imagen = $_FILES['ImagenPublicidad']['tmp_name'];
 
-                // Ruta de la carpeta donde se guardarán las imagenenes de publicidad
+            if($Bandera == 'ImagenPublicidad'){ //viene de Panel_C/recibePublicidadAgregada
+                
                 // Usar en remoto
-                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
+                $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
                 
                 // usar en local
-                $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
+                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
             } 
             else if($Bandera == 'ImagenPerfilArtista'){ //viene de Panel_C/recibeArtistaAgregado
-                // $Nombre_Imagen = $Nombre_Imagen;
-                // $Tipo_Imagen = $_FILES['ImagenPerfilArtista']['type'];
-                // $Tamanio_Imagen = $_FILES['ImagenPerfilArtista']['size'];
-                // $Temporal_Imagen = $_FILES['ImagenPerfilArtista']['tmp_name'];
                 
-                // Ruta de la carpeta donde se guardarán las imagen de perfil del artista
                 // Usar en remoto
-                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/'. $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista. '/perfil/';
+                $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/'. $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista. '/perfil/';
 
-                // usar en local
+                // // usar en local
                 $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
             }
             else if($Bandera == 'ImagenPrincipalNoticia'){ //viene de Panel_C/recibeNotiAgregada
-                // $Nombre_Imagen = $_FILES['ImagenPrincipalNoticia']['name'];
-                // $Tipo_Imagen = $_FILES['ImagenPrincipalNoticia']['type'];
-                // $Tamanio_Imagen = $_FILES['ImagenPrincipalNoticia']['size'];
-                // $Temporal_Imagen = $_FILES['ImagenPrincipalNoticia']['tmp_name'];
                 
-                // Ruta de la carpeta donde se guardarán las imagen de perfil del artista
-                //Usar en remoto
-                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/';
+                //Usar en remoto ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/';
                 
-                // usar en local
-                $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/';
+                // usar en local ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/';
             }
-            else if($Bandera == 'imagenProducto'){ //viene de CUentaComercial_C/recibeProductoPublicar
-                // $Nombre_Imagen = $Nombre_Imagen;
-                // $Tipo_Imagen = $_FILES['imagenProducto']['type'];
-                // $Tamanio_Imagen = $_FILES['imagenProducto']['size'];
-                // $Temporal_Imagen = $_FILES['imagenProducto']['tmp_name'];
+            else if($Bandera == 'imagenProducto'){ //viene de CuentaComercial_C/recibeProductoPublicar
                 
-                //Usar en remoto
+                //Usar en remoto ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/';
+
+                //usar en local ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/';             
+            }
+            else if($Bandera = ''){//viene de 
+                
+                //Usar en remoto ruta de la carpeta donde se guardarán las imagen de perfil del artista
                 // $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/';
 
-                //usar en local
-                $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/';             
+                //usar en local ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/'; 
             }
-
-            // echo $patch . '<br>';
-            // echo $Nombre_Imagen . '<br>';
-            // echo $Tipo_Imagen . '<br>';
-            // exit;
 
             if(isset($Nombre_Imagen)){
                                 
@@ -81,10 +67,9 @@
                     //Si las imagenes tienen una resolución y un peso aceptable se suben tal cual
                     if($medidasimagen[0] < 1280 && $Tamanio_Imagen < 300000){
 
-                        move_uploaded_file($Temporal_Imagen, $patch. '/' . $Nombre_Imagen);	
+                        move_uploaded_file($Temporal_Imagen, $patch . '/' . $Nombre_Imagen);	
                     }
                     else{	//Si no, se generan nuevas imagenes optimizadas	
-            
                         //Redimensionar
                         $rtOriginal = $Temporal_Imagen;
             
@@ -134,10 +119,12 @@
                         }
 
                         // echo 'fichero comprimido exitosamente';
+                        // exit;
                     }
                 }
                 else{
                     // echo 'fichero no soportado';
+                    // exit;
                 } 
             }
         }

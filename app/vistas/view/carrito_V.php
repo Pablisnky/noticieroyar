@@ -3,7 +3,7 @@
 <!-- Se coloca el SDN para la libreria JQuery, necesaria para la previsualización del capture--> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<section class="sectionModal--carrito" id="sectionModal--carrito">
+<section class="sectionModal--carrito" id="SectionModal--carrito">
     
     <!-- ICONO REGRESAR -->
     <img class="Default_pointer" class="icono--regresar" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/flechaIzquierda/outline_arrow_back_white_24dp.png'?>" onclick="ocultarPedido()"/>
@@ -36,6 +36,8 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <input class="Default_ocultar" type="text" id="Pedido" name="pedido"/>
                 </div>
             </article>
 
@@ -483,8 +485,6 @@
                         <article>
                             <div class="contBoton">
                                 <input class="Default_ocultar" type="text" name="id_tienda" value="<?php echo $Datos['ID_Tienda']?>"/>
-
-                                <input class="Default_ocultar" type="text" id="Pedido" name="pedido"/>
 
                                 <!-- Cargado via Ajax cuando el usuario es recordado -->
                                 <input class="Default_ocultar" type="text" id="ID_Usuario" name="ID_Usuario"/>

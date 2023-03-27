@@ -1455,7 +1455,7 @@
                 "DELETE FROM imagenes 
                 WHERE ID_Noticia = :ID_NOTICIA"
             );
-            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
             $stmt->execute(); 
         }
         
@@ -1465,7 +1465,7 @@
                 "DELETE FROM videos  
                 WHERE ID_Noticia = :ID_NOTICIA"
             );
-            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
             $stmt->execute(); 
         }
         
@@ -1473,6 +1473,16 @@
         public function eliminarEfemeride($ID_Efemeride){
             $stmt = $this->dbh->prepare(
                 "DELETE FROM efemeride 
+                WHERE ID_Efemeride = :ID_EFEMERIDE"
+            );
+            $stmt->bindParam(':ID_EFEMERIDE', $ID_Efemeride, PDO::PARAM_INT);
+            $stmt->execute(); 
+        }
+        
+        // Elimina imagnes de efemerides
+        public function eliminarImagenesEfemerides($ID_Efemeride){
+            $stmt = $this->dbh->prepare(
+                "DELETE FROM imagenesefemerides 
                 WHERE ID_Efemeride = :ID_EFEMERIDE"
             );
             $stmt->bindParam(':ID_EFEMERIDE', $ID_Efemeride, PDO::PARAM_INT);
@@ -1495,7 +1505,7 @@
                 "DELETE FROM noticias_secciones 
                 WHERE ID_Noticia = :ID_NOTICIA"
             );
-            $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
             $stmt->execute(); 
         }
 
@@ -1506,7 +1516,7 @@
                 WHERE ID_Anuncio = :ID_ANUNCIO"
             );
         
-            $stmt->bindValue(':ID_ANUNCIO', $ID_Anuncio, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_ANUNCIO', $ID_Anuncio, PDO::PARAM_INT);
             $stmt->execute(); 
         }
 
@@ -1516,7 +1526,7 @@
                 WHERE ID_Coleccion = :ID_COLECCION"
             );
         
-            $stmt->bindValue(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_COLECCION', $ID_Coleccion, PDO::PARAM_INT);
             $stmt->execute(); 
         }
         
@@ -1526,7 +1536,7 @@
                 WHERE ID_imagObituario  = :ID_OBITUARIO"
             );
         
-            $stmt->bindValue(':ID_OBITUARIO', $ID_Obituario, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_OBITUARIO', $ID_Obituario, PDO::PARAM_INT);
             $stmt->execute(); 
         }
         
@@ -1536,7 +1546,7 @@
                 WHERE ID_Artista = :ID_ARTISTA"
             );
         
-            $stmt->bindValue(':ID_ARTISTA', $ID_Artista , PDO::PARAM_INT);
+            $stmt->bindParam(':ID_ARTISTA', $ID_Artista , PDO::PARAM_INT);
             $stmt->execute(); 
         }
 
@@ -1546,7 +1556,7 @@
                 WHERE ID_Imagen = :ID_IMAGEN"
             );
         
-            $stmt->bindValue(':ID_IMAGEN', $ID_Imagen , PDO::PARAM_INT);
+            $stmt->bindParam(':ID_IMAGEN', $ID_Imagen , PDO::PARAM_INT);
             $stmt->execute(); 
         }
 }

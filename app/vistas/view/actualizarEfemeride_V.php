@@ -19,7 +19,7 @@
                         <!-- IMAGEN-->
                         <div style=" width: 30%"> 
                             <figure>
-                                <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['efemerideActualizar']['nombre_ImagenEfemeride'];?>"/> 
+                                <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/efemerides/<?php echo $Datos['efemerideActualizar']['nombre_ImagenEfemeride'];?>"/> 
                             </figure>
                             <label for="imgInp"><span class="span_18 borde_1"><i class="fas fa-pencil-alt icono_4"></i></span></label>
                             <input class="ocultar" type="file" name="imagenPrincipal_Efemeride" id="imgInp"/>

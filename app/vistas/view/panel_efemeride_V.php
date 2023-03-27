@@ -15,7 +15,7 @@
                     <!-- IMAGEN EFEMERIDE -->
                     <div style=" width: 30%">       
                         <figure>
-                            <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_ImagenEfemeride'];?>"/> 
+                            <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/efemerides/<?php echo $Row['nombre_ImagenEfemeride'];?>"/> 
                         </figure>
                     </div>
                     <div style="width: 100%; padding-left: 1%">
@@ -38,7 +38,7 @@
                         <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_noticia_principal/<?php echo $Not_Gen['ID_Efemeride'];?>" rel="noopener noreferrer">Publicidad</a>
                         
                         <!-- ELIMINAR -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_efemeride/<?php echo $Row['ID_Efemeride'];?>" rel="noopener noreferrer">Eliminar</a>
+                        <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_efemeride/<?php echo $Row['ID_Efemeride'];?>,<?php echo $Row['nombre_ImagenEfemeride'];?>" rel="noopener noreferrer">Eliminar</a>
                     </div>
                 </div>
                 <?php

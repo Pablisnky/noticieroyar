@@ -66,7 +66,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                             </div>
                         </div> 
                         <small class="small_1">El sistema realiza automaticamente la conversión Bolivar / Dolar según BCV. <strong class="strong_1">( $ 1 = Bs. <?php echo number_format($Datos['dolarHoy'], 4, ",", ".");?>)</strong></small>
-                        <input class="ocultar" id="CambioOficial" type="text" value="<?php echo $Datos['dolarHoy'];?>"/>
+                        <input class="Default_ocultar" id="CambioOficial" type="text" value="<?php echo $Datos['dolarHoy'];?>"/>
                         <br>
 
                         <!-- CANTIDAD EN EXISTENCIA -->
@@ -82,7 +82,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                     <input class="Default_ocultar" type="text" name="id_suscriptor" value="<?php echo $ID_Suscriptor;?>"/>
                     <input class="Default_ocultar" type="text" name="id_producto" value="<?php echo $ID_Producto;?>">
                     <input class="Default_ocultar" type="text" name="id_opcion" value="<?php echo $ID_Opcion;?>">
-                    <!-- <input class="Default_ocultar" type="text" name="id_imagen" value="<?php echo $ID_ImagenPrincipal;?>"/> -->
+                    <!-- <input class="Default_ocultar" type="text" name="id_imagen" value="<?php //echo $ID_ImagenPrincipal;?>"/> -->
 
                     <input class="boton" type="submit" value="Guardar cambios"/>
                 </div>  

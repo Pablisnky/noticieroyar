@@ -173,8 +173,6 @@
                 $_SESSION["nombreSuscriptor"] = $Nombre;
                 $_SESSION["apellidoSuscriptor"] = $Apellido;
 
-                $CuentaCom = true;   
-
                 //Se CONSULTA la contraseña enviada, que sea igual a la contraseña de la BD
                 $Hash = $this->ConsultaLogin_M->consultarContrasena($ID_Suscriptor);
                 
@@ -229,7 +227,7 @@
                         // exit;
                     
                         $this->vista("header/header_SoloEstilos");
-                        $this->vista("suscriptores/suscrip_inicio_V", $Datos);
+                        $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
                     }
                 }
                 else{ //en caso de clave o usuario incorrecto                    

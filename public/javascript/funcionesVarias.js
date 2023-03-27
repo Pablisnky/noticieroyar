@@ -13,6 +13,7 @@
 //************************************************************************************************
     //Muestra el menu principal al hacer click en menu amburguesa
     function mostrarMenu(){  
+        // console.log("______Desde mostrarMenu()______")
         let A = document.getElementById("MenuResponsive")
         let C = document.getElementById("Tapa_Logo")
 

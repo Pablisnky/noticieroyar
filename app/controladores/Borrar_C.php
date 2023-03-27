@@ -12,7 +12,7 @@
         
 		// Se usa solo para cargar el metodo que se desea probar
 		public function index(){			
-			header('location:' . RUTA_URL . '/Borrar_C/');
+			header('location:' . RUTA_URL . '/Borrar_C');
 		}
 
 		// Metodo para filtrar y sabear datos introducidos por los usuarios en formularios
@@ -49,7 +49,7 @@
 		// Metodo hace una copia de archivos de un directorio a otro
         public function cambia_directorio(){
 
-			$ConsultaImagenes = $this->Borrar_M->ConsultarImagenesNoticias();
+			$ConsultaImagenes = $this->Borrar_M->ConsultarImagenes();
 
             $Datos = [
 				'consultaImagenes' => $ConsultaImagenes
@@ -67,16 +67,16 @@
 				// en remoto desde la carpeta "home"
 				
 				// directorio actual en local
-				$currentLocation = dirname(RUTA_APP) . '/public/images/' . $Row['nombre_imagenNoticia'];
+				// $currentLocation = dirname(RUTA_APP) . '/public/images/' . $Row['nombre_ImagenEfemeride'];
 				
 				// directorio actual en remoto
-				// $currentLocation = dirname(dirname(dirname(__FILE__))) . '/public/images/' . $Row['nombre_imagenNoticia'];
+				$currentLocation = dirname(dirname(dirname(__FILE__))) . '/public/images/' . $Row['nombre_ImagenEfemeride'];
 				
 				//nuevo directoio en local
-				$newLocation = dirname(RUTA_APP) . '/public/images/noticias/' . $Row['nombre_imagenNoticia'];
+				// $newLocation = dirname(RUTA_APP) . '/public/images/noticias/' . $Row['nombre_ImagenEfemeride'];
 
 				//nuevo directoio en remoto
-				// $newLocation = dirname(dirname(dirname(__FILE__))) . '/public/images/noticias/' . $Row['nombre_imagenNoticia'];
+				$newLocation = dirname(dirname(dirname(__FILE__))) . '/public/images/efemerides/' . $Row['nombre_ImagenEfemeride'];
 
 				//Se cambia de directorio
 				$moved = rename($currentLocation, $newLocation);

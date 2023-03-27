@@ -1,7 +1,7 @@
 <?php
     class Clasificados_C extends Controlador{
         private $ConsultaClasificados_M;
-        public $Dolar;
+        private $PrecioDolar;
 
         public function __construct(){
             $this->ConsultaClasificados_M = $this->modelo("Clasificados_M");
@@ -13,20 +13,18 @@
         public function index(){  
             //COnsulta todos los productos publicados en clasificados            
             $Productos = $this->ConsultaClasificados_M->consultarProductos(); 
-            
+
             //Solicita el precio del dolar a la clase Divisas_C 
             require(RUTA_APP . '/controladores/Divisas_C.php');
-            $this->Dolar = new Divisas_C();
+            $this->PrecioDolar = new Divisas_C();
 
-            // echo '<pre>';
-            // print_r($this->PrecioDolar);
-            // echo '</pre>';
-
-            $DolarHoy = $this->Dolar->Dolar;
+            // $DolarHoy = $this->PrecioDolar->index();
+            // echo gettype($DolarHoy);
+            // print_r($DolarHoy);
 
             $Datos=[
                 'productos' => $Productos, //ID_Producto, ID_Suscriptor, producto, nombre_img, opcion, precioBolivar, precioDolar, cantidad, disponible
-                'dolarHoy' => $DolarHoy
+                'dolarHoy' =>  $this->PrecioDolar->index()
             ];
             
             // echo "<pre>";
@@ -37,5 +35,4 @@
             $this->vista("header/header_noticia"); 
             $this->vista("view/clasificados_V", $Datos); 
         }  
-
     }

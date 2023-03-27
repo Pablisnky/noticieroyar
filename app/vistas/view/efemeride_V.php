@@ -11,7 +11,7 @@
             <!-- IMAGEN -->
             <div class="">                        
                 <figure>
-                    <img class="cont_efemerides--imagen" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/<?php echo $Key['nombre_ImagenEfemeride'];?>"/> 
+                    <img class="cont_efemerides--imagen" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/efemerides/<?php echo $Key['nombre_ImagenEfemeride'];?>"/> 
                 </figure>
             </div>
             

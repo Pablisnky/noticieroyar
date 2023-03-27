@@ -1,8 +1,4 @@
-// document.getElementById("Contenedor_34").addEventListener('click', function(){autofocus('Input_9')}, false)
 
-//************************************************************************************************    
-
-//************************************************************************************************ 
     //Voltea la tarjeta para mostrar el reverso
     document.getElementById('Cont_Noticia').addEventListener('click', function(e){ 
         if(e.target.classList[0] == 'VerMas_JS'){  

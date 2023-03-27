@@ -1,6 +1,4 @@
-<!-- Archivo cargado en div id= "Mostrar_Opciones" en vitrina_V.php por petición Ajax desde por medio de llamar_Opciones()-->
-
-<section  class="section_3 section_9" id="Section_3">  <!-- -->
+<section  class="section_3 section_9" id="Section_3"> 
     <div class="contenedor_90 p_9">       
         <h1 class="h1_1">Clasificados</h1> 
     </div>
@@ -38,13 +36,13 @@
                                     <?php
                                     if($ImagenProducto == 'imagen.png'){ ?>
                                         <figure>
-                                            <img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/images/imagen.png"/> 
+                                            <img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> 
                                         </figure>
                                         <?php
                                     }
                                     else{   ?>
                                         <figure>
-                                            <img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/> 
+                                            <img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/> 
                                         </figure>
                                         <?php 
                                     }
@@ -90,19 +88,19 @@
                             
                                 <!-- LEYENDA -->
                                 <div class="contenedor_19">
-                                    <!-- cantidad alimentado desde E_Vitrina.js agregarProducto()-->
+                                    <!-- cantidad alimentado desde E_Clasificados.js agregarProducto()-->
                                     <input type="text" class="input_1e Default_ocultar" id="<?php echo 'Cantidad_' . $ContadorLabel;?>"/>
-                                    <!-- producto - alimentado desde E_Vitrina.js agregarProducto() -->
+                                    <!-- producto - alimentado desde E_Clasificados.js agregarProducto() -->
                                     <input type="text" class="input_1a Default_ocultar" name="Desc_Producto" id="<?php echo 'Producto_' . $ContadorLabel;?>"/>
-                                    <!-- opcion alimentado desde E_Vitrina.js agregarProducto()-->
+                                    <!-- opcion alimentado desde E_Clasificados.js agregarProducto()-->
                                     <input type="text" class="input_1c Default_ocultar" name="" id="<?php echo 'Opcion_' . $ContadorLabel;?>"/>
-                                    <!-- Precio - alimentado desde E_Vitrina.js agregarProducto() -->
+                                    <!-- Precio - alimentado desde E_Clasificados.js agregarProducto() -->
                                     <input type="text" class="input_1d Default_ocultar" id="<?php echo 'Precio_' . $ContadorLabel;?>"/>
-                                    <!-- Total - alimentado desde E_Vitrina.js agregarProducto()-->
+                                    <!-- Total - alimentado desde E_Clasificados.js agregarProducto()-->
                                     <input type="text" class="input_1f Default_ocultar" id="<?php echo 'Total_' . $ContadorLabel;?>"/>
 
-                                    <!-- LEYENDA - alimentado desde E_Vitrina.js agregarProducto() -->
-                                    <input class="input_2a" type="text" name="leyenda" id="<?php echo 'Leyenda_'. $ContadorLabel;?>"/>
+                                    <!-- LEYENDA - alimentado desde E_Clasificados.js agregarProducto() -->
+                                    <input class="input_2a" type="text" name="leyenda" id="<?php echo 'Leyenda_'. $ContadorLabel;?>" readonly/>
                                 </div> 
 
                                 <!-- BOTON MAS Y MENOS -->

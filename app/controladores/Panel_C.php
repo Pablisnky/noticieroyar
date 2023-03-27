@@ -376,36 +376,36 @@
 		
 		// recibe formulario que agrega efemeride
 		public function recibeEfemerideAgregada(){
-			if(isset($_FILES['imagenPrincipal']["name"])){
+			if(isset($_FILES['imagenEfemeride']["name"])){
 				$Titulo = $_POST['titulo'];
 				$Contenido = $_POST['contenido'];
 				$Fecha = $_POST['fecha'];						
-				$Nombre_imagenPrincipal = $_FILES['imagenPrincipal']['name'];
-				$Tipo_imagenPrincipal = $_FILES['imagenPrincipal']['type'];
-				$Tamanio_imagenPrincipal = $_FILES['imagenPrincipal']['size'];
+				$Nombre_imagenEfemeride = $_FILES['imagenEfemeride']['name'];
+				$Tipo_imagenEfemeride = $_FILES['imagenEfemeride']['type'];
+				$Tamanio_imagenEfemeride = $_FILES['imagenEfemeride']['size'];
 
 				// echo "Titulo : " . $Titulo . '<br>';
 				// echo "Contenido : " . $Contenido . '<br>';
 				// echo "Fecha : " . $Fecha . '<br>';
-				// echo "Nombre_imagen : " . $Nombre_imagenPrincipal . '<br>';
-				// echo "Tipo_imagen : " .  $Tipo_imagenPrincipal . '<br>';
-				// echo "Tamanio_imagen : " .  $Tamanio_imagenPrincipal . '<br>';
+				// echo "Nombre_imagen : " . $Nombre_imagenEfemeride . '<br>';
+				// echo "Tipo_imagen : " .  $Tipo_imagenEfemeride . '<br>';
+				// echo "Tamanio_imagen : " .  $Tamanio_imagenEfemeride . '<br>';
 				// exit;
 				
 				//Se INSERTA la efemeride y se retorna el ID de la inserción
 				$ID_Efemeride = $this->Panel_M->InsertarEfemeride($Titulo, $Contenido, $Fecha);
 				
 				//Se INSERTA la imagen principal de la efemeride
-				$this->Panel_M->InsertarImagenPrincipalEfemeride($ID_Efemeride, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+				$this->Panel_M->InsertarImagenPrincipalEfemeride($ID_Efemeride, $Nombre_imagenEfemeride, $Tipo_imagenEfemeride, $Tamanio_imagenEfemeride);
 
 				//Usar en remoto
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/efemerides/';
 				
 				// usar en local
-				// // $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/efemerides/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-				// move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio.$Nombre_imagenPrincipal);
+				move_uploaded_file($_FILES['imagenEfemeride']['tmp_name'], $Directorio . $Nombre_imagenEfemeride);
 			}				
 
 			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
@@ -559,7 +559,8 @@
 					$Bandera = 'ImagenPrincipalNoticia';
 					require(RUTA_APP . '/helpers/Comprimir_Imagen.php');
 					$this->Comprimir = new Comprimir_Imagen();
-					$this->Comprimir->index($Bandera, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal,$Tamanio_imagenPrincipal, $Tempora_imagenPrincipal,);	
+
+					$this->Comprimir->index($Bandera, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal,$Tamanio_imagenPrincipal, $Tempora_imagenPrincipal);	
 				}
 
 				//INSERTAR IMAGENES SECUNDARIAS
@@ -594,14 +595,14 @@
 				// INSERTAR IMAGEN ANUNCIO PUBLICITARIO
 				//EL anuncio ya se inserto previamente individualmene, aqui solo se inserta la relacion del ID_Noticia con el ID_Anuncio
 				if($ID_Anuncio != ""){
-					// //Usar en remoto
+					//Usar en remoto
 					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
 					
-					// // usar en local
-					// // $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+					// usar en local
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
 					
 					//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-					// move_uploaded_file($_FILES['imagenAnunio']['tmp_name'], $Directorio.$Nombre_imagenAnunio);
+					move_uploaded_file($_FILES['imagenAnunio']['tmp_name'], $Directorio.$Nombre_imagenAnunio);
 
 					//Se inserta la dependencia transiiva entre el anuncio y la noticia
 					$this->Panel_M->Insertar_DT_noticia_anuncio($ID_Noticia, $ID_Anuncio);
@@ -623,11 +624,11 @@
 					//Usar en remoto
 					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
 					
-					// // usar en local
-					// // $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
+					// usar en local
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
 					
 					//Se mueve el archivo desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-					// move_uploaded_file($_FILES['video']['tmp_name'], $Directorio.$Nombre_video);
+					move_uploaded_file($_FILES['video']['tmp_name'], $Directorio . $Nombre_video);
 				}
 			}				
 			else{
@@ -1133,7 +1134,7 @@
 					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/';
 
 					//usar en local
-					// // $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/';
+					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/';
 
 					//Subimos el fichero al servidor
 					move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecundarias']['name'][$i]);
@@ -1222,6 +1223,7 @@
 				
 				// usar en local
 				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
+				
 				// echo "ACTUALIZAR". '<br>';
 				// echo 'ID_Noticia ' . $ID_Noticia . '<br>';
 				// echo 'ID_Coleccion ' .  $ID_Coleccion;
@@ -1431,16 +1433,16 @@
 				// exit;
 				
 				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/efemerides/';
 				
 				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/efemerides/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
+				move_uploaded_file($_FILES['imagenPrincipal_Efemeride']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal_Efemeride);
 
 				//Se ACTUALIZA la imagen principal de la noticia
-				$this->Panel_M->ActualizarImagenEfemeride($ID_imagenEfemeride, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+				$this->Panel_M->ActualizarImagenEfemeride($ID_imagenEfemeride, $Nombre_imagenPrincipal_Efemeride, $Tipo_imagenPrincipal_Efemeride, $Tamanio_imagenPrincipal_Efemeride);
 			}
 			
 			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
@@ -1533,20 +1535,34 @@
 			$this->Panel_M->eliminarVideoNoticia($ID_Noticia);
 
 			// Se elimina del directorio del servidor
+			// en remoto
+			unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/' . $NombreImagen); 
+
 			// en local
 			// unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/' .$NombreImagen); 
-			
-			// en remoto
-			unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/' . $NombreImagen); 	
 
 			header("Location:" . RUTA_URL . "/Panel_C/Not_Generales");
 			die();
 		}
 		
 		// ELimina efemeride
-		public function eliminar_efemeride($ID_Efemeride){
+		public function eliminar_efemeride($DatosAgrupados){
+            //$DatosAgrupados contiene una cadena con el ID_Efemeride y el nombre del archivo imagen, separados por coma, se convierte en array para separar los elementos
+			
+            $DatosAgrupados = explode(",", $DatosAgrupados);
+            
+            $ID_Efemeride = $DatosAgrupados[0];
+            $NombreImagen = $DatosAgrupados[1];
 
-			$this->Panel_M->eliminarEfemeride($ID_Efemeride);			
+			$this->Panel_M->eliminarEfemeride($ID_Efemeride);
+			$this->Panel_M->eliminarImagenesEfemerides($ID_Efemeride);			
+
+			// Se elimina del directorio del servidor
+			// en remoto
+			unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/efemerides/' . $NombreImagen); 
+			
+			// en local
+			// unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/efemerides/' .$NombreImagen); 
 
 			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
 			die();

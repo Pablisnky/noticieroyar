@@ -205,7 +205,7 @@
             $this->vista('suscriptores/suscrip_publicar_V', $Datos);
         }
 
-        //Invocado desde cuenta_productos_V.php
+        // muestra foermulario para actualizar un producto especifico
         public function actualizarProducto($DatosAgrupados){
             //$DatosAgrupados contiene una cadena con el ID_Producto y la opcion separados por coma, se convierte en array para separar los elementos
             // echo $DatosAgrupados;
@@ -218,7 +218,10 @@
 
             //CONSULTA las especiicaciones de un producto determinado
             $Especificaciones = $this->ConsultaCuenta_M->consultarDescripcionProducto($ID_Producto);
-            
+            // echo '<pre>';
+            // print_r($Especificaciones);
+            // echo '</pre>';
+            // exit();
             //CONSULTAN la imagen principal del producto
             $ImagenPrin = $this->ConsultaCuenta_M->consultarImagenPrincipal($ID_Producto);
             
@@ -229,7 +232,7 @@
             $Datos = [
                 'especificaciones' => $Especificaciones, //ID_Producto, ID_Opcion, producto, opcion, precioBolivar, precioDolar, cantidad, disponible
                 'imagenPrin' => $ImagenPrin, //ID_Imagen, nombre_img
-                'dolarHoy' => $this->PrecioDolar->Dolar
+                'dolarHoy' => $this->PrecioDolar->index()
             ];
 
             // echo '<pre>';
@@ -399,7 +402,7 @@
                         $CarpetaImagenes = $_SERVER['DOCUMENT_ROOT'] . '/public/images/tiendas/' . $_SESSION['ID_Suscriptor'];
 
                         // Usar en local
-                        // $CarpetaImagenes = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/tiendas/' . $_SESSION['ID_Suscriptor'];
+                        // // $CarpetaImagenes = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/tiendas/' . $_SESSION['ID_Suscriptor'];
 
                         if(!file_exists($CarpetaImagenes)){
                             mkdir($CarpetaImagenes, 0777, true);
@@ -410,10 +413,11 @@
                         $directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/tiendas/'. $_SESSION['ID_Suscriptor'] . '/';
 
                         //usar en local
-                        // $directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/tiendas/'. $_SESSION['nombre_Tien'] . '/';
+                        // // $directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/tiendas/'. $_SESSION['nombre_Tien'] . '/';
                         
                         //se muestra el directorio temporal donde se guarda el archivo
                         //echo $_FILES['imagen']['tmp_name'];
+
                         // finalmente se mueve la imagen desde el directorio temporal a nuestra ruta indicada anteriormente utilizando la función move_uploaded_files
                         move_uploaded_file($_FILES['imagen_Tienda']['tmp_name'], $directorio_1.$nombre_imgTienda);
 
@@ -850,7 +854,7 @@
         	header('location:' . RUTA_URL. '/CuentaComerciante_C/Editar');
         }
         
-        //Invocado en suscrip_publicar_V.php recibe el formulario para cargar un nuevo producto
+        //recibe el formulario para cargar un nuevo producto
         public function recibeProductoPublicar(){
             $Publicar = $_SESSION['Publicar'];  
             if($Publicar == 1906){// Anteriormente en el metodo "Publicar" se generó la variable $_SESSION["Publicar"] con un valor de 1906; con esto se evita que no se pueda recarga esta página.
@@ -896,15 +900,16 @@
                 //********************************************************
                 //Si se selecionó alguna imagen entra
                 if($_FILES['imagenProducto']["name"] != ''){
-                    $nombre_imgProducto = $_FILES['imagenProducto']['name'] != '' ? $_FILES['imagenProducto']['name'] : 'imagen.png';
-                    $tipo_imgProducto = $_FILES['imagenProducto']['type'] != '' ? $_FILES['imagenProducto']['type'] : 'image/png';
-                    $tamanio_imgProducto = $_FILES['imagenProducto']['size'] != '' ?  $_FILES['imagenProducto']['size'] : '28,0 KB';
+                    $nombre_imgProducto = $_FILES['imagenProducto']['name'];
+                    $tipo_imgProducto = $_FILES['imagenProducto']['type'];
+                    $tamanio_imgProducto = $_FILES['imagenProducto']['size'];
+                    $Temporal_imgProducto = $_FILES['imagenProducto']['tmp_name'];
 
                     // echo 'Nombre de la imagen = ' . $nombre_imgProducto . '<br>';
                     // echo 'Tipo de archivo = ' .$tipo_imgProducto .  '<br>';
                     // echo 'Tamaño = ' . $tamanio_imgProducto . '<br>';
-                    // echo 'Tamaño maximo permitido = 2.000.000' . '<br>';// en bytes
-                    // echo 'Ruta del servidor = ' . $_SERVER['DOCUMENT_ROOT'] . '<br>';
+                    // //se muestra el directorio temporal donde se guarda el archivo
+                    // echo $_FILES['imagen']['tmp_name'];
                     // exit();
 
                     //Si existe imagenProducto y tiene un tamaño correcto (maximo 2Mb)
@@ -915,10 +920,10 @@
                             
                             //Se crea el directorio donde iran las imagenes de la tienda
                             // Usar en remoto
-                            // $CarpetaProductos = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/productos';
+                            $CarpetaProductos = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/productos';
 
                             // Usar en local
-                            $CarpetaProductos = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/productos';
+                            // $CarpetaProductos = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/productos';
                             
                             if(!file_exists($CarpetaProductos)){
                                 mkdir($CarpetaProductos, 0777, true);
@@ -932,7 +937,7 @@
                             $Bandera = 'imagenProducto';
                             require(RUTA_APP . '/helpers/Comprimir_Imagen.php');
                             $this->Comprimir = new Comprimir_Imagen();
-                            $this->Comprimir->index($Bandera);
+                            $this->Comprimir->index($Bandera, $nombre_imgProducto, $tipo_imgProducto, $tamanio_imgProducto, $Temporal_imgProducto);
                             
                             $this->Productos();
                         }
@@ -953,10 +958,10 @@
                     //Se crea el directorio donde iran las imagenes de la tienda
 
                     // Usar en remoto
-                    // $CarpetaProductos = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/productos';
+                    $CarpetaProductos = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/productos';
 
                     // Usar en local
-                    $CarpetaProductos = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/productos';
+                    // $CarpetaProductos = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/productos';
                     
                     if(!file_exists($CarpetaProductos)){
                         mkdir($CarpetaProductos, 0777, true);
@@ -1001,51 +1006,29 @@
             // ********************************************************
             // Si se selecionó alguna nueva imagen
             if($_FILES['imagenPrinci_Editar']["name"] != ''){
-                $nombre_imgProducto = $_FILES['imagenPrinci_Editar']['name'];
-                $tipo = $_FILES['imagenPrinci_Editar']['type'];
-                $tamanio = $_FILES['imagenPrinci_Editar']['size'];
+                $nombre_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['name'];
+                $tipo_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['type'];
+                $tamanio_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['size'];
+                $Temporal_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['tmp_name'];
 
                 // echo "Nombre de la imagen = " . $nombre_imgProducto . "<br>";
                 // echo "Tipo de archivo = " . $tipo .  "<br>";
                 // echo "Tamaño = " . $tamanio . "<br>";
-                // echo "Tamaño maximo permitido = 300.000 Bytes" . "<br>";// en bytes
-                // echo "Ruta del servidor = " . $_SERVER['DOCUMENT_ROOT'] . "<br><br>";
+                // //se muestra el directorio temporal donde se guarda el archivo
+                // echo $_FILES['imagen']['tmp_name'];
                 // exit;
 
-                //Si se selecciono una imagen para cambiar y tiene un tamaño correcto
-                if(($nombre_imgProducto == !NULL) AND ($tamanio <= 300000)){
-                    //indicamos los formatos que permitimos subir a nuestro servidor
-                    if (($_FILES["imagenPrinci_Editar"]["type"] == "image/jpeg")
-                        || ($_FILES["imagenPrinci_Editar"]["type"] == "image/jpg") || ($_FILES["imagenPrinci_Editar"]["type"] == "image/png")){
+                // ACTUALIZA IMAGEN PRINCIPAL DE NOTICIA EN SERVIDOR
+                // se comprime y se inserta el archivo en el directorio de servidor 
+                $Bandera = 'imagenProducto';
+                require(RUTA_APP . '/helpers/Comprimir_Imagen.php');
+                $this->Comprimir = new Comprimir_Imagen();
+                $this->Comprimir->index($Bandera, $nombre_imgProductoActualizar, $tipo_imgProductoActualizar, $tamanio_imgProductoActualizar, $Temporal_imgProductoActualizar);
 
-                        // Ruta donde se guardarán las imágenes que subamos la variable superglobal
-                        // $_SERVER['DOCUMENT_ROOT'] nos coloca en la base de nuestro directorio en el servidor
-
-                        //Usar en remoto
-                        // $directorio_4 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/';
-
-                        // usar en local
-                        $directorio_4 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/noticieroyaracuy/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/';
-
-                        //directorio temporal donde se guarda el archivo
-                        //echo $_FILES['imagen']['tmp_name'];
-
-                        // finalmente se mueve la imagen desde el directorio temporal a nuestra ruta indicada anteriormente utilizando la función move_uploaded_files
-                        move_uploaded_file($_FILES['imagenPrinci_Editar']['tmp_name'], $directorio_4.$nombre_imgProducto);
-
-                        //Se ACTUALIZA la fotografia principal del producto
-                        $this->ConsultaCuenta_M->actualizarImagenPrincipalProducto($RecibeProducto['ID_Producto'], $nombre_imgProducto, $tipo, $tamanio);
-                    }
-                    else{
-                        //si no cumple con el formato
-                        echo 'Solo puede cargar imagenes con formato jpg, jpeg o png' . '<br>';
-                        echo '<a href="javascript: history.go(-1)">Regresar</a>';
-                        exit();
-                    }
-                }
+                //Se ACTUALIZA la fotografia principal del producto
+                $this->ConsultaCuenta_M->actualizarImagenPrincipalProducto($RecibeProducto['ID_Producto'], $nombre_imgProductoActualizar, $tipo_imgProductoActualizar, $tamanio_imgProductoActualizar);
             }
-
-
+        
             // ********************************************************
             //Estas sentencias de actualización deben realizarce por medio de transsacciones
 
@@ -1088,10 +1071,10 @@
                 $NombreImagenEliminar = $KeyImagenes['nombre_img'];
 
                 //Usar en remoto
-                // unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/' . $NombreImagenEliminar);
+                unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/' . $NombreImagenEliminar);
                     
                 //usar en local
-                unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/noticieroyaracuy/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/' . $NombreImagenEliminar);
+                // unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/noticieroyaracuy/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/' . $NombreImagenEliminar);
             endforeach;
               
             // *************************************************************************************
@@ -1194,7 +1177,7 @@
                     $CarpetaSecciones = $_SERVER['DOCUMENT_ROOT'] . '/public/images/tiendas/' . $_SESSION['ID_Suscriptor'] . '/secciones';
                     
                     // Usar en local
-                    // $CarpetaSecciones = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/tiendas/' . $_SESSION['ID_Suscriptor'] . '/secciones';
+                    // // $CarpetaSecciones = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/tiendas/' . $_SESSION['ID_Suscriptor'] . '/secciones';
                     
                     if(!file_exists($CarpetaSecciones)){
                         mkdir($CarpetaSecciones, 0777, true);
@@ -1204,7 +1187,7 @@
                     $directorio_6 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/tiendas/'. $_SESSION['ID_Suscriptor'] . '/secciones/';
 
                     //usar en local
-                    // $directorio_6 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/tiendas/'. $_SESSION['ID_Suscriptor'] . '/secciones/';
+                    // // $directorio_6 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/tiendas/'. $_SESSION['ID_Suscriptor'] . '/secciones/';
                     
                     //Se mueve la imagen desde el directorio temporal a nuestra ruta indicada anteriormente utilizando la función move_uploaded_files
                     move_uploaded_file($_FILES['img_Seccion']['tmp_name'], $directorio_6.$nombre_imgSeccion);
