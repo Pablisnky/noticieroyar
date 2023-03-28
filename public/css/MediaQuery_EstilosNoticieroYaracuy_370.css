@@ -619,15 +619,14 @@
 	.contenedor_13{
 		display: block; 
 		width: 100%;
-		margin-top: 35% !important;
+		margin-top: 35%;
 	}
 	.contenedor_95{
-		/* grid-template-columns: 100%; */
 		margin: auto;
-		width: 100%!important;
+		width: 100%;
 		/* max-height: 180px; */
-		margin-bottom: 15%;
-		padding: 1%;
+		margin-bottom: 4%;
+		column-gap: 1%; /*espacio entre columnas*/
 	}
 	.contenedor_61{
 		z-index: 1;
@@ -688,5 +687,15 @@
 	}
 	.br_2{
 		display: block;
+	}
+	.label_4{
+		top: 2%;
+	}
+	.contOpciones{
+		margin-bottom: 12%;
+	}
+	.contenedor_24{
+		margin-top: 10%;
+		width: 95%;
 	}
 }

@@ -333,17 +333,17 @@ textarea{
 .contenedor_13{
 	display: flex; /*Organiza los elementos horizontalmente*/
 	flex-wrap: wrap;
-	align-content: flex-start; /*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
-	/* width: 90%; */
-	margin: auto;
 	justify-content: space-between;
-	margin-top: 4%;
+	align-content: flex-start; /*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
+	width: 95%;
+	margin: auto;
+	margin-top: 8%;
 }
 .contenedor_95{
 	display: grid;
-	grid-template-columns: 50% 50%;
+	grid-template-columns: 50fr 50fr;
 	column-gap: 5%; /*espacio entre columnas*/
-	width: 30% !important; 
+	width: 30%; 
 	max-height: 180px; 
 	margin-bottom: 3%; 
 	padding: 1%;
@@ -474,7 +474,7 @@ textarea{
 	width: 40%;
 	font-size: 0.9em;
 	padding: 1%;
-	border-radius: 10px;
+	/* border-radius: 10px; */
 }
 .label_4:hover{
 	background-color: var(--OficialClaro);
@@ -529,18 +529,14 @@ textarea{
 	text-align: right;
 }
 .contenedor_14{
-	display: none;
-	height: 20px;
+	/* background-color: red; */
+	display: none; 
+	/* height: 20px; */
 	grid-column-start: 1;
 	grid-column-end: 3;
 }
 .contOpciones{
-	border-radius: 15px;
-	text-align: center;
-	width: 100%;
-	padding: 1%;
-	margin: auto;
-	cursor: pointer;
+	margin-bottom: 10%;
 }
 .contOpciones--pointer{
 	cursor: default;
@@ -549,8 +545,8 @@ textarea{
 	object-fit: contain !important; /*esta propiedad necesita el ancho y alto de la imagen definidos*/
 	width: 190px;
 	max-height: 120px;
-	/* display: block;
-	margin-top: 0px; */
+	/* display: block;*/
+	/* margin-top: 0px;  */
 }
 .contenedor_95{
 	display: grid;
@@ -558,7 +554,7 @@ textarea{
 	column-gap: 5%; /*espacio entre columnas*/
 	width: 32%;
 	max-height: 150px;
-	margin-bottom: 5%;
+	margin-bottom: 2%;
 }
 .h1_1{
 	font-weight: normal;
@@ -567,8 +563,9 @@ textarea{
 	/* margin-bottom: 2%; */
 }
 .contenedor_19{
-	width: 100%;
-	float: left;
+	/* background-color: red;
+	width: 90%;
+	float: left; */
 }
 .contenedor_61{
 	background-color: var(--OficialOscuro);
@@ -578,11 +575,11 @@ textarea{
 	align-items: center;/*para centrar verticalmente el div hijo junto con display flex*/
 	position: fixed;
 	bottom: 0 !important;
-	width: 22%;
+	width: 25%;
 	margin-left:40%;
 	border-top-left-radius: 80px 60px;
 	border-top-right-radius: 80px 60px;
-	height: 6%;
+	height: 7%;
 	z-index: 1;
 }
 .contenedor_21{
@@ -596,7 +593,7 @@ textarea{
 	justify-content: center;
 	align-items: center;
 	width: 90%;
-	height: 30px;
+	height: 40px;
 	border-color: yellow;
 	border-width: 2px;
 	border-style: solid;
@@ -607,6 +604,12 @@ textarea{
 	font-size: 0.9em;
 	color: var(--TextoClaro);
 	margin-top: 1%;
+}
+.small_1{
+	font-size: 0.9em;
+}
+.small_1A{
+	text-align: center;
 }
 .small_4{
 	font-size: 0.7em;
@@ -627,11 +630,10 @@ textarea{
 	cursor: pointer;
 }
 .input_2a{
-	/* background-color: rgba(83, 16, 16, 0); */
 	font-size: 0.9em;
 	text-align: center;
 	font-weight: bold;
-	border: none;
+	border: none; 
 	display: inline-block;
 	width: 100%;
 	margin-top: 3%;
@@ -672,10 +674,9 @@ textarea{
 }
 .icono--regresar{
 	display: inline-block;
-	/* color:white;  */
 	width: 2em; 
-	margin-left: 15% !important; 
-	margin-top: 2%
+	margin-left: 2% !important; 
+	/* margin-top: 1% */
 }
 .h2_2{
 	font-weight: normal;
@@ -710,6 +711,35 @@ textarea{
 .contOculto{
 	display: none;
 }
+/* *********************agregados el 27_03_2023********************** */
+.section_9{
+	width: 100%;
+}
+
+
+
+
+
+.contenedor_122{
+	margin: auto;
+	margin-top: 1%;
+	margin-bottom: 6%;
+	display: grid;
+	width: 90%;
+	grid-template-columns: 50fr 50fr;
+	column-gap: 3%;
+}
+.imagen_9{
+	width: 100%;
+	/* text-align: center; */
+	height: 350px;
+	/* opacity: 0; */
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+
+
+
+
 
 
 
@@ -799,9 +829,16 @@ textarea{
 	 display: none;
 	 text-align: center;
  }
+ .cont_carrito--regresar{
+	background-color:  var(--OficialOscuro);
+	position: fixed;
+	width: 100%;
+	top: 0%;
+	height: 30px;
+ }
  .cont_carrito--principal{
-	 min-height: 100%;
-	 padding-top: 3%;
+	min-height: 100%;
+	padding-top: 3%;
  }
  .cont_carrito--h1{
 	 color:white; 
@@ -1543,7 +1580,7 @@ textarea{
 	cursor: pointer;
 }
 .cont_podcast{
-	width: 25%;
+	min-width: 25%;
 	margin-bottom: 2%;
 }
 .cont_podcast_individual{
@@ -2508,16 +2545,6 @@ textarea{
 	width: 100%;
 	height: 100%;
 	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
-}
-.small_1{
-	display: block;
-	padding-left: 2%;
-	font-size: 0.9em;
-	color: var(--TextoClaro);
-	margin-top: 1%;
-}
-.small_1A{
-	text-align: center;
 }
 .menuLi_1:hover ~ ul{/*Se aplica un hover a un elemento, seleccionando otro elemento distinto*/
 	background-color: var(--HoverEnlaces);

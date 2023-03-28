@@ -6,8 +6,10 @@
 <section class="sectionModal--carrito" id="SectionModal--carrito">
     
     <!-- ICONO REGRESAR -->
-    <img class="Default_pointer" class="icono--regresar" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/flechaIzquierda/outline_arrow_back_white_24dp.png'?>" onclick="ocultarPedido()"/>
-    
+    <div class="cont_carrito--regresar">
+        <img class="icono--regresar Default_pointer" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/flechaIzquierda/outline_arrow_back_white_24dp.png'?>" onclick="ocultarPedido()"/>
+    </div>
+
     <!-- ORDEN DE COMPRA -->
     <section> 
         <div class="contenedor_24 contenedor_24--carrito" id="Contenedor_24">
@@ -45,7 +47,7 @@
                 <div class="contGeneral">  
                     <div class="contInputRadio--carrito">     
                         <input type="radio" name="entrega" id="Domicilio_No" value="Domicilio_No"  form="DatosUsuario"/>
-                        <label class="contInputRadio__label" for="Domicilio_No">Recoger pedido en tienda: 0,00 Bs.</label>
+                        <label class="contInputRadio__label" for="Domicilio_No">Entrega acordado con vendedor: 0,00 Bs.</label>
                     </div>                    
                     <div class="contInputRadio--carrito">
                         <input type="radio" name="entrega" id="Domicilio_Si" value="Domicilio_Si" form="DatosUsuario" checked/>

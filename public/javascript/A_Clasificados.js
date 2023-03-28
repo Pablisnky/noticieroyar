@@ -32,7 +32,7 @@ function conexionAJAX(){
 //-------------------------------------------------------------------------------------------------
 //Muestra la orden de compra
 function llamar_PedidoEnCarrito(ID_Suscriptor, ValorDolar){
-    console.log("______Desde llamar_PedidoEnCarrito()______",ID_Suscriptor + "/" + ValorDolar)
+    // console.log("______Desde llamar_PedidoEnCarrito()______",ID_Suscriptor + "/" + ValorDolar)
     var url="Carrito_C/index/" + ID_Suscriptor
     http_request.open('GET', url, true);    
     peticion.onreadystatechange = respuesta_PedidoEnCarrito;
@@ -64,47 +64,48 @@ function respuesta_PedidoEnCarrito(){
 
 //****************************************************************************************************
 //Muestra los productos que tiene una sección
-function llamar_Opciones(ID_Tienda, ID_Seccion, OpcionSeleccionada = 'NoAplica'){
-    var url="../../Opciones_C/index/" + ID_Tienda + "/" + ID_Seccion  + "/" + OpcionSeleccionada
-    http_request.open('GET', url, true)
-    //Se define que función va hacer invocada cada vez que cambie onreadystatechange
-    peticion.onreadystatechange = respuesta_Opciones
-    peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
-    peticion.send("null")    
-}                                                           
-function respuesta_Opciones(){
-    if(peticion.readyState == 4){
-        if(peticion.status == 200){
-            //Se verifica si se coloca la tapa cuando se viene desde el buscador para no mostrar la vista vitrina
-            if(document.getElementById("Tapa_1")){
-                document.getElementById("Tapa_1").style.display = "none"
-            }
+// function llamar_Opciones(ID_Tienda, ID_Seccion, OpcionSeleccionada = 'NoAplica'){
+//     var url="../../Opciones_C/index/" + ID_Tienda + "/" + ID_Seccion  + "/" + OpcionSeleccionada
+//     http_request.open('GET', url, true)
+//     //Se define que función va hacer invocada cada vez que cambie onreadystatechange
+//     peticion.onreadystatechange = respuesta_Opciones
+//     peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+//     peticion.send("null")    
+// }                                                           
+// function respuesta_Opciones(){
+//     if(peticion.readyState == 4){
+//         if(peticion.status == 200){
+//             //Se verifica si se coloca la tapa cuando se viene desde el buscador para no mostrar la vista vitrina
+//             if(document.getElementById("Tapa_1")){
+//                 document.getElementById("Tapa_1").style.display = "none"
+//             }
 
-            //Coloca el cursor en el top de la pagina
-            window.scroll(0, 0)
+//             //Coloca el cursor en el top de la pagina
+//             window.scroll(0, 0)
 
-            //Se recibe la respuesta el servidor
-            document.getElementById('Mostrar_Opciones').innerHTML = peticion.responseText;
+//             //Se recibe la respuesta el servidor
+//             document.getElementById('Mostrar_Opciones').innerHTML = peticion.responseText;
                         
-            //Se consulta el alto de la página vitrina, este tamaño varia segun las secciones que tenga un tienda
-            AltoVitrina = document.body.scrollHeight
+//             //Se consulta el alto de la página vitrina, este tamaño varia segun las secciones que tenga un tienda
+//             AltoVitrina = document.body.scrollHeight
 
-            //Este alto se estable al div padre en opciones_V para garantizar que cubra todo el contenido de vitrina_V ya que opciones_V es un contenedor coloca via Ajax en vitrina_V y debe sobreponerse sobre todo lo que hay en vitrina_V.php
-            document.getElementById("Contenedor_13Js").style.minHeight = AltoVitrina + "px"
+//             //Este alto se estable al div padre en opciones_V para garantizar que cubra todo el contenido de vitrina_V ya que opciones_V es un contenedor coloca via Ajax en vitrina_V y debe sobreponerse sobre todo lo que hay en vitrina_V.php
+//             document.getElementById("Contenedor_13Js").style.minHeight = AltoVitrina + "px"
             
-            //la función es llamada tres veces si se coloca fuera (No se porque)
-            ProductosEnCarrito()
-        } 
-        else{
-            alert('Hubo problemas con la petición')
-        }
-    }
-    // else{ //en caso contrario, mostramos un gif simulando una precarga
-    //     document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';    
-    // }    
-}
+//             //la función es llamada tres veces si se coloca fuera (No se porque)
+//             ProductosEnCarrito()
+//         } 
+//         else{
+//             alert('Hubo problemas con la petición')
+//         }
+//     }
+//     // else{ //en caso contrario, mostramos un gif simulando una precarga
+//     //     document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';    
+//     // }    
+// }
 
 //****************************************************************************************************
+// Muestra el formulario de usuario
 function Llamar_UsuarioRegistrado(cedula){
     var url="../../Carrito_C/UsuarioRegistrado/" + cedula
     http_request.open('GET', url, true);    

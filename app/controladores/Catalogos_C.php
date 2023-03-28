@@ -1,10 +1,10 @@
 <?php
-    class Clasificados_C extends Controlador{
-        private $ConsultaClasificados_M;
+    class Catalogos_C extends Controlador{
+        private $ConsultaCatalagos_M;
         private $PrecioDolar;
 
         public function __construct(){
-            $this->ConsultaClasificados_M = $this->modelo("Clasificados_M");
+            $this->ConsultaCatalagos_M = $this->modelo("Catalogo_M");
 
             //La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
             ocultarErrores();
@@ -12,7 +12,7 @@
         
         public function index(){  
             //COnsulta todos los productos publicados en clasificados            
-            $Productos = $this->ConsultaClasificados_M->consultarProductos(); 
+            $Productos = $this->ConsultaCatalagos_M->consultarProductos(); 
 
             //Solicita el precio del dolar a la clase Divisas_C 
             require(RUTA_APP . '/controladores/Divisas_C.php');
@@ -33,7 +33,7 @@
             // exit();
             
             $this->vista("header/header_noticia"); 
-            $this->vista("view/clasificados_V", $Datos); 
+            $this->vista("view/catalogos_V", $Datos); 
         }  
         
         //Invocado desde E_Vitrinas.js por medio de mostrarDetalles()
@@ -80,7 +80,7 @@
             // echo "</pre>";
             // exit();
             
-            $this->vista("header/header_ProductoAmpliado", $Datos);
+            $this->vista("header/header_SoloEstilos", $Datos);
             $this->vista("view/descr_Producto_V", $Datos);
         } 
     }

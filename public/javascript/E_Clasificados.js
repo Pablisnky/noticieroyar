@@ -146,27 +146,15 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
     //invocada desde clasificados_V.php añade un producto al carrito   
     function agregarProducto(form, ID_Etiqueta, ID_Cont_Leyenda, ID_InputCantidad, ID_InputProducto, ID_InputOpcion, ID_InputPrecio, ID_InputTotal, ID_InputLeyenda, ID_Cont_Producto, ID_InputDisplayCan, existencia, ID_BotonMas, ID_BloqueoMas){
         // console.log("______Desde agregarProducto()______") 
-        // console.log(form)    
-        // console.log(ID_Etiqueta)   
-        // console.log(ID_Cont_Leyenda)   
-        // console.log(ID_InputCantidad)    
-        // console.log(ID_InputProducto)   
-        // console.log(ID_InputOpcion)   
-        // console.log(ID_InputPrecio)   
-        // console.log(ID_InputTotal)   
-        // console.log(ID_InputLeyenda)
-        // console.log(ID_Cont_Producto)
-        // console.log(ID_InputDisplayCan)
-        // console.log("Existencia en BD", existencia)
         
         //Se recibe el control del formulario con el nombre "opcion"
-        Opcion = form.opcion
+        Opcion = form.opcion        
 
         // En el caso que la seccion tenga un solo producto, se añade un input radio, sino se añade el Opcion.legth sera undefined y no entrará en el ciclo for
         if(Opcion.length == undefined){
 
         //Se añade una opcion al input tipo radio para que existan al menos dos opciones, cuando es uno el valor de Opcion.length es undefined lo que impide que se ejecute el ciclo for más adelante, esto sucede cuando solo existe un producto en una seccción
-            //Se crea un input tipo radio que pertenezca a los de name="opcion"
+            //Se crea un input tipo radio que pertenezca a los de name = "opcion"
             var NuevoElemento = document.createElement("input")
 
             //Se dan valores a la propiedades del nuevo elemento 
@@ -194,10 +182,11 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
         localStorage.setItem('ID_cont_LeyendaDinamico',Cont_Leyenda_Click) 
         LS_ID_Cont_Leyenda = localStorage.getItem('ID_cont_LeyendaDinamico')
         
-        //Se recibe el ID del input que va a mostrar la cantidad del producto donde se hizo click
+        //Se recibe el ID del input que va a mostrar la cantidad (en este momento es 1) del producto donde se hizo click
         Input_CantidadClick = ID_InputCantidad
         localStorage.setItem('ID_InputCantidad', Input_CantidadClick)
         LS_ID_InputCantidad = localStorage.getItem('ID_InputCantidad')
+        console.log("🚀 ~ file: E_Clasificados.js:189 ~ agregarProducto ~ LS_ID_InputCantidad:", LS_ID_InputCantidad)
 
         //Se recibe el ID del input que va a mostrar el producto donde se hizo click
         Input_ProductoClick = ID_InputProducto
@@ -247,11 +236,6 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
                 Separado[2] = Separado[2].slice(0,-1)//Opcion
                 Separado[3] = Separado[3].slice(0,-1)//Procio
 
-                // console.log(Separado[0])
-                // console.log(Separado[1])
-                // console.log(Separado[2])
-                // console.log(Separado[3])
-
                 //Se oculta el boton "Agregar" del elemento donde se hizo click
                 document.getElementById(LabelClick).style.display = "none"
    
@@ -260,9 +244,6 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
 
                 //Se muestra la cantidad de producto deseada por el usuario donde se hizo click
                 Cantidad_uno = document.getElementById(Input_CantidadClick).value = 1
-
-                //Se muestra el ID_Opcion en BD donde se hizo click
-                // document.getElementById(Input_ProductoClick).value = Separado[1]
                 
                 //Se muestra el producto donde se hizo click
                 document.getElementById(Input_ProductoClick).value = Separado[1]             
@@ -270,9 +251,8 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
                 //Se muestra la opcion de producto donde se hizo click
                 document.getElementById(Input_OpcionClick).value = Separado[2]
 
-                //Se muestra el precio del producto donde se hizo click
+                //Se muestra el precio del producto donde se hizo click, que será el mismo precio del total porque es un solo producto
                 Precio = document.getElementById(Input_PrecioClick).value = Separado[3]
-                // console.log(Precio)
                    
                 //Si un producto se eliminó en una entrada anterior es necesario activar nuevamente el input donde ira la leyenda y los botones de más y menos
                 document.getElementById(Input_LeyendaClick).style.display = "block"          
@@ -285,12 +265,11 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
 
                 var ID_BotonMas = document.getElementById(ID_BotonMas).id
                 var ID_BotonBloqueo = document.getElementById(ID_BloqueoMas).id
-                // console.log(ID_BotonMas + " " + ID_BotonBloqueo )
 
-                //Guarda en el objeto "AlContenedor", la leyenda del producto segun su contenedor de seccion, cada detalle en si es un array, por lo que AlContenedor es un array de objetos
-                Contenedores = new ContenedorCar(LS_ID_Cont_Leyenda, LS_ID_InputLeyenda, LS_ID_BotonAgregar, LS_ID_InputCantidad, LS_ID_InputProducto, LS_ID_InputOpcion, LS_ID_InputPrecio, LS_ID_InputTotal, LS_ID_InputDisplayCant, Cantidad_uno, Separado[0], Separado[1], Separado[2], Separado[3], existencia, ID_BotonMas, ID_BotonBloqueo)
+                //Guarda en el objeto "AlContenedor", la leyenda del producto, cada detalle en si es un array, por lo que AlContenedor es un array de objetos
+                Contenedores = new ContenedorCar(LS_ID_Cont_Leyenda, LS_ID_InputLeyenda, LS_ID_BotonAgregar, LS_ID_InputCantidad, LS_ID_InputProducto, LS_ID_InputOpcion, LS_ID_InputPrecio, LS_ID_InputTotal, LS_ID_InputDisplayCant, Cantidad_uno, Separado[0], Separado[1], Separado[2], Separado[3], Separado[3], existencia, ID_BotonMas, ID_BotonBloqueo)
                              
-                //Si la existencia en BD es igual a 1 se oculta el boton de mas y menos para que no se añadan más productos al carrito
+                  //Si la existencia en BD es igual a 1 se oculta el boton de mas y menos para que no se añadan más productos al carrito
                 if(existencia == Cantidad_uno){
                     document.getElementById(ID_BotonMas).style.display = "none" 
                     document.getElementById(ID_BloqueoMas).style.display = "inline" 
@@ -303,7 +282,6 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
         }
 
         AlContenedor.push(Contenedores)
-        // console.log("AlContenedor desde agregar", AlContenedor)
         
         //Se muestra el div que contiene el icono del carrito
         DisplayDestello()
@@ -476,62 +454,62 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
             DisplayDestello();
         }
     }
-//************************************************************************************************
-    //invocada al cargarse llamar_Opciones() en Funciones_Ajax.js especifica los productos que ya estan cargados al carrito de compra y muestra su leyenda en la vista opciones_V.php
-    function ProductosEnCarrito(){   
-        console.log("______Desde ProductosEnCarrito()______")
 
-        //Se filtran las leyendas que correspondan a la seccion seleccionada
-        var filtered = AlContenedor.filter(function(item){
-            return item.Cont_Seccion == LS_ID_Cont_Seccion 
-        })
+//************************************************************************************************
+    //Especifica los productos que ya estan cargados al carrito de compra y muestra su leyenda en la vista opciones_V.php
+    // function ProductosEnCarrito(){   
+    //     console.log("______Desde ProductosEnCarrito()______")
+
+    //     //Se filtran las leyendas que correspondan a la seccion seleccionada
+    //     var filtered = AlContenedor.filter(function(item){
+    //         return item.Cont_Seccion == LS_ID_Cont_Seccion 
+    //     })
         
-        for(let i = 0; i < filtered.length; i++){
-            //Del objeto filtrado filtered se toman las propiedades Cont_Leyenda para rellenar la leyenda
-            //Si el objeto "AlContenedor" tiene el array de un producto no se muestra el boton "Agregar" en este contenedor
-            document.getElementById(filtered[i].ID_Boton_Agregar).style.display = "none"
+    //     for(let i = 0; i < filtered.length; i++){
+    //         //Del objeto filtrado filtered se toman las propiedades Cont_Leyenda para rellenar la leyenda
+    //         //Si el objeto "AlContenedor" tiene el array de un producto no se muestra el boton "Agregar" en este contenedor
+    //         document.getElementById(filtered[i].ID_Boton_Agregar).style.display = "none"
             
-            //Detectar el contenedor de la leyenda del producto en opciones_V.php donde se hizo click  
-            document.getElementById(filtered[i].Cont_Leyenda).style.display = "block"
+    //         //Detectar el contenedor de la leyenda del producto en opciones_V.php donde se hizo click  
+    //         document.getElementById(filtered[i].Cont_Leyenda).style.display = "block"
             
-            //Dar valor al input de la leyenda   
-            document.getElementById(filtered[i].ID_Input_Leyenda).style.display = "block"
-            document.getElementById(filtered[i].ID_InputCantidad).value = filtered[i].Cantidad 
-            document.getElementById(filtered[i].ID_InputProducto).value = filtered[i].Producto 
-            // document.getElementById(filtered[i].ID_InputOpcion).value = filtered[i].Opcion 
-            document.getElementById(filtered[i].ID_InputPrecio).value = filtered[i].Precio 
-            document.getElementById(filtered[i].ID_InputTotal).value = filtered[i].Total 
+    //         //Dar valor al input de la leyenda   
+    //         document.getElementById(filtered[i].ID_Input_Leyenda).style.display = "block"
+    //         document.getElementById(filtered[i].ID_InputCantidad).value = filtered[i].Cantidad 
+    //         document.getElementById(filtered[i].ID_InputProducto).value = filtered[i].Producto 
+    //         // document.getElementById(filtered[i].ID_InputOpcion).value = filtered[i].Opcion 
+    //         document.getElementById(filtered[i].ID_InputPrecio).value = filtered[i].Precio 
+    //         document.getElementById(filtered[i].ID_InputTotal).value = filtered[i].Total 
 
-            document.getElementById(filtered[i].ID_InputDisplayCant).value = filtered[i].Cantidad      
-            document.getElementById(filtered[i].ID_Input_Leyenda).value = filtered[i].Cantidad + ' ' + filtered[i].Producto +  ' = ' + filtered[i].Total + ' Bs.'
+    //         document.getElementById(filtered[i].ID_InputDisplayCant).value = filtered[i].Cantidad      
+    //         document.getElementById(filtered[i].ID_Input_Leyenda).value = filtered[i].Cantidad + ' ' + filtered[i].Producto +  ' = ' + filtered[i].Total + ' Bs.'
 
-            //Se busca el boton más y el respectivo boton de bloqueo de la leyenda analizada
-            if(Number(filtered[i].Existencia) == filtered[i].Cantidad){
-                document.getElementById(filtered[i].ID_BotonMas).style.display = "none" 
-                document.getElementById(filtered[i].ID_BotonBloqueo).style.display = "inline" 
-            }
-            else{
-                document.getElementById(filtered[i].ID_BotonMas).style.display = "inline" 
-                document.getElementById(filtered[i].ID_BotonBloqueo).style.display = "none"
+    //         //Se busca el boton más y el respectivo boton de bloqueo de la leyenda analizada
+    //         if(Number(filtered[i].Existencia) == filtered[i].Cantidad){
+    //             document.getElementById(filtered[i].ID_BotonMas).style.display = "none" 
+    //             document.getElementById(filtered[i].ID_BotonBloqueo).style.display = "inline" 
+    //         }
+    //         else{
+    //             document.getElementById(filtered[i].ID_BotonMas).style.display = "inline" 
+    //             document.getElementById(filtered[i].ID_BotonBloqueo).style.display = "none"
 
-            }
-            // console.log(Number(filtered[i].Existencia))
-            // console.log(filtered[i].Cantidad)
-        }        
+    //         }
+    //         // console.log(Number(filtered[i].Existencia))
+    //         // console.log(filtered[i].Cantidad)
+    //     }        
 
-        Pre_decremento()
-        Pre_incremento()
-    }    
+    //     Pre_decremento()
+    //     Pre_incremento()
+    // }    
 
 //************************************************************************************************
-    //invocada desde A_Clasificados.js por medio de llamar_PedidoEnCarrito(), muestra "La orden de compra"
+    //muestra "La orden de compra"
     function PedidoEnCarrito(ValorDolar){
-        console.log("______Desde PedidoEnCarrito()______", Number(ValorDolar))
+        // console.log("______Desde PedidoEnCarrito()______", ValorDolar)
         
-        //Se muestra el monto de la compra en "La Orden". (sin carga por despacho)
+        //Se muestra el monto total de la compra en "La Orden". (sin carga por despacho)
         document.getElementById("MontoTienda").value = SeparadorMiles(TotalDisplayCarrito)
-        
-        //Se obtiene el monto del envio, esta tarado al precio de un dolar, la tarifa báscia, (Esto ya se hizo lineas arriba, corregir para que se haga una sola vez)
+        //Se obtiene el monto del envio, esta tarado al precio de un dolar
         envio = document.getElementById("PrecioEnvio").value
 
         //Se calcula el monto total de la compra incluyendo comision y envio
@@ -551,10 +529,8 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
         document.getElementById("MontoTotalDolares").value = SeparadorMiles(MontoTotalDolares)
         
         //Se envia a Carrito_V.php todo el pedido que se encuentra en el array de objeto JSON AlContenedor[]
-        console.log("AlContenedor", AlContenedor)
         //1.- Se convierte el JSON en un string
         var sendJSON = JSON.stringify(AlContenedor)
-        // console.log(sendJSON)
 
         //2.- Se envia al input que lo almacena en la vista carrito_V.php
         document.getElementById('Pedido').value = sendJSON
@@ -566,8 +542,6 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
             '</td><td class="td_2 hyphen">' +  AlContenedor[i].Producto + 
             '</td><td class="td_3">' + AlContenedor[i].Precio + " Bs." +
             '</td><td class="td_3">' + AlContenedor[i].Total + " Bs." + '</td></tr></tbody>'
-
-            console.log("AlContenedor", AlContenedor[i].Total)
         }
     }
     
@@ -624,22 +598,19 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
 
             //Se obtiene el elemento padre donde se encuentra el boton mas al que se hizo click
             let current = e.target.parentElement
+            console.log("🚀 ~ file: E_Clasificados.js:601 ~ incrementar ~ current:", current)
             
             //Se obtiene el valor de la cantidad de existencia del producto
             let BloquearMasJS = current.getElementsByClassName("BloquearMasJS")[0]
-            // console.log(Number(BloquearMasJS.value))
             
             //Se obtiene el boton "más" respectivo al producto seleccionado
             let ID_LabelMas = current.getElementsByClassName("MasJS")[0].id
-            // console.log(ID_LabelMas)
 
             //Se obtiene el boton "más" respectivo al producto seleccionado
             let ID_LabelBloqueo = current.getElementsByClassName("icono_7")[0].id
-            // console.log(ID_LabelBloqueo)
 
             //Se busca el input del display que se quiere incrementar            
             let inputSeleccionado = current.getElementsByClassName("input_2")[0]
-            // console.log(inputSeleccionado)
 
             //Se accede a la propiedad valor del input display 
             let valor = inputSeleccionado.value
@@ -652,11 +623,7 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
 
                 //Muestra la cantidad en el input display
                 inputSeleccionado.value = A
-                // console.log(inputSeleccionado)
                 
-                //Input seccion Aqui se muestra la seccion de la tienda
-                // let Seccion = inputSeleccionadoLeyen.getElementsByClassName("input_1g")[0].value
-
                 //ID_Producto desde BD 
                 let Producto = inputSeleccionadoLeyen.getElementsByClassName("input_1a")[0].value
                 
@@ -667,7 +634,6 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
                 let Precio = inputSeleccionadoLeyen.getElementsByClassName("input_1d")[0].value
                                 
                 //Se cambia el formato del precio, se reemplaza la coma por punto para poder hacer la multiplicacion, luego se convierte a numero 
-                // console.log(typeof Precio)
                 Precio = Precio.replace(/,/g, '.')
                 Precio = Number(Precio)
 
@@ -678,7 +644,7 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
                 Total = String(Total)
                 Total = Total.replace(/\./g, ',')
 
-                //Input total Aqui se mostrará el total(al parecer no hace falta)
+                //Input total Aqui se mostrará el total (al parecer no hace falta)
                 inputSeleccionadoLeyen.getElementsByClassName("input_1f")[0].value = Total
                 
                 //Muestra la leyenda en cada producto seleccionado por el usuario
@@ -689,7 +655,7 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
 
                 //Se verifica que el producto existe en el array AlContenedor y que contiene el pedidio, se edita la cantidad y el monto total acumulado por ese producto, esta informacion es la que va al resumen de la orden y a cada leyenda
                 function ProductoEditado(Producto){
-                    // console.log("Entra en ProductoEditado()", Producto)
+                    // console.log("------ Entra en ProductoEditado() --------", Producto)
                     var existe = false;
                     for(i = 0; i < AlContenedor.length; i++){
                         if(AlContenedor[i].Producto == Producto ){ 
@@ -902,7 +868,6 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
                 // console.log(AlContenedor)
                 //Se oculta el display carrito cuando el pedido sea de cero Bolivares y se muestra el boton de agregar opcion
                 if(TotalDisplayCarrito == 0 ){ 
-                    // console.log(LS_ID_Cont_Leyenda)
                     //Se oculta la leyenda del producto
                     // inputSeleccionadoLeyen.getElementsByClassName("input_2a")[0].style.visibility = "hidden"
                                         
@@ -913,8 +878,7 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
                     //Se busca el nodo padre que contiene el input donde esta el producto a eliminar
                     // let elementoHijo = current.parentElement
                     // let elementoPadre = elementoHijo.parentElement
-                    // elementoPadre.removeChild(elementoHijo);      
-                    // console.log("Aún quedan productos en el pedido")              
+                    // elementoPadre.removeChild(elementoHijo);                   
                 }
             }  
             
@@ -1229,9 +1193,10 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
 
 //************************************************************************************************
     //Abre la ventana de detalles de producto, invocado en opciones_V.php
-    function mostrarDetalles(ContadorLabel, Nombre_Tienda, Slogan_Tienda, ID_Tienda, Producto, Opcion, PrecioBolivar, Fotografia, ID_Producto, PrecioDolar, Existencia){
-        // console.log("______Desde mostrarDetalles()______", ContadorLabel +"/"+ Nombre_Tienda +"/"+ Slogan_Tienda +"/"+ ID_Tienda +"/"+ Producto +"/"+ Opcion +"/"+ PrecioBolivar +"/"+ Fotografia +"/"+ ID_Producto +"/"+ PrecioDolar)
-        window.open(`../../Opciones_C/productoAmpliado/${'Etiqueta_' + ContadorLabel},${Nombre_Tienda},${Slogan_Tienda},${ID_Tienda},${Producto},${Opcion},${PrecioBolivar},${Fotografia},${ID_Producto},${PrecioDolar},${Existencia}`, "ventana1", "width=1300,height=650,scrollbars=YES")   
+    function mostrarDetalles(ContadorLabel, Producto, Opcion, PrecioBolivar, Fotografia, ID_Producto, PrecioDolar, Existencia, ID_Suscriptor){
+        console.log("______Desde mostrarDetalles()______", ContadorLabel +"/"+ Producto +"/"+ Opcion +"/"+ PrecioBolivar +"/"+ Fotografia +"/"+ ID_Producto +"/"+ PrecioDolar +"/"+ ID_Suscriptor)
+
+        window.open(`Clasificados_C/productoAmpliado/${'Etiqueta_' + ContadorLabel},${Producto},${Opcion},${PrecioBolivar},${Fotografia},${ID_Producto},${PrecioDolar},${Existencia},${ID_Suscriptor}`, "ventana1", "width=1300,height=650,scrollbars=YES")   
     }
 
 //************************************************************************************************
