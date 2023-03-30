@@ -339,6 +339,10 @@ textarea{
 	margin: auto;
 	margin-top: 8%;
 }
+.cont_suscrip_productos-13{
+	width: 98%;
+	margin-top: 1%;
+}
 .contenedor_95{
 	display: grid;
 	grid-template-columns: 50fr 50fr;
@@ -347,6 +351,9 @@ textarea{
 	max-height: 180px; 
 	margin-bottom: 3%; 
 	padding: 1%;
+}
+.contenedor_95--margin{ 
+	margin-bottom: 3% !important;
 }
 .contenedor_9{
 	background-size: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
@@ -380,11 +387,11 @@ textarea{
 	border-radius: 50%;
 	text-align: center;
 }
-.contenedor_42{
-	width: 90%;
-	margin: auto;
+.cont_suscrip_productos{
+	width: 85%;
+	margin-left: 15%;
 	padding-top: 2%; /*antes mrgin-top: 10%*/
-	min-height: 90%;
+	/* min-height: 90%; */
 }
 .contenedor_108{
 	padding-bottom: 10%;
@@ -399,7 +406,15 @@ textarea{
 	left: 0px;
 	width: 100%;
 	height: 40px!important;
-	/* z-index: 1 !important; */
+}
+.cont_catalogos{
+	background-color: var(--OficialClaro);
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 70px!important;
+	z-index: 1;
 }
 .contenedor_91{
 	display: block;
@@ -410,6 +425,14 @@ textarea{
 	font-size: 1.7em;
 	text-align: center;
 	font-weight: normal ;
+}
+.input_4{
+	width: 50%;
+	border: none;
+	margin: auto;
+	margin-bottom: 1%;
+	cursor: default;
+	display: block;
 }
 .input_8{
 	width: 95%;
@@ -529,14 +552,14 @@ textarea{
 	text-align: right;
 }
 .contenedor_14{
-	/* background-color: red; */
 	display: none; 
 	/* height: 20px; */
 	grid-column-start: 1;
 	grid-column-end: 3;
 }
 .contOpciones{
-	margin-bottom: 10%;
+	margin-bottom: 1%;
+	height: 120px;
 }
 .contOpciones--pointer{
 	cursor: default;
@@ -547,10 +570,21 @@ textarea{
 	max-height: 120px;
 	/* display: block;*/
 	/* margin-top: 0px;  */
+	
+}
+.contOpciones--vendedor{
+	width: 100%;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	margin-top: -4px;
+}
+.contenedor--vendedor--p{
+	font-size: 0.8em;
+	text-align: right;
 }
 .contenedor_95{
 	display: grid;
-	grid-template-columns: 50% 50%;
+	grid-template-columns: 50fr 50fr;
 	column-gap: 5%; /*espacio entre columnas*/
 	width: 32%;
 	max-height: 150px;
@@ -562,10 +596,13 @@ textarea{
 	font-size: 1.7em;
 	/* margin-bottom: 2%; */
 }
-.contenedor_19{
-	/* background-color: red;
-	width: 90%;
-	float: left; */
+.h1_11{
+	display: block;
+	font-weight: bold;
+	line-height: 25px;
+}
+.h1_1--fontZise{
+	font-size: 1.3em;
 }
 .contenedor_61{
 	background-color: var(--OficialOscuro);
@@ -722,19 +759,124 @@ textarea{
 
 .contenedor_122{
 	margin: auto;
-	margin-top: 1%;
+	margin-top: 2%;
 	margin-bottom: 6%;
 	display: grid;
 	width: 90%;
 	grid-template-columns: 50fr 50fr;
-	column-gap: 3%;
+	column-gap: 1%;
 }
 .imagen_9{
 	width: 100%;
-	/* text-align: center; */
-	height: 350px;
-	/* opacity: 0; */
+	margin-top: 1%;
+	height: 60vh;
 	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.font--center{
+	text-align: center;
+}
+.label_22{
+	background-color:  var(--BandaAlerta);
+	color: var(--OficialOscuro);
+	width: 40%;
+	margin: auto;
+	display: block;
+	text-align: center;
+	font-size: 1.5em;
+	padding: 0.5%;
+}
+.contGridUna{
+	width: 100%;
+}
+.contenedor_122--imagen{
+	background-color: blue;
+	/* height: 50%; */
+}
+.cont_detalle_Producto--informacion{
+	width: 50%;
+	margin: 3% auto;
+	padding-left: 5%;
+}
+.cont_detalle_Producto--p{
+	line-height: 30px;
+}
+.cont_detalle_Producto--suscriptor{
+	display: flex;
+	align-items: center;
+	padding-left: 20px;
+}
+.contenedor_15{
+	width: 70%;
+	/* height: 400px; */
+	margin: auto;
+	margin-bottom: -10%;
+	text-align: center;
+	z-index: 2; /*verificar - se colocó para ver si todo el div se pone por arriba de los elementos hijos y no se ve el efecto click sobre estos en responsive; esto en realidad se soluciona con teoria de niveles de apilamiento, como se hizo con los div que contienen las categorias en inicio_V.php que al hacer click sobre los que no tienen tiendas no llevan a la categoria en cuestión*/
+}
+.contenedor_17{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 0% auto ;
+}
+.contenedor_17>div:first-child{
+	flex: 0 1 100% !important;/*ocupa toda la primera fila de la distribucion flex, el padre debe tener flex-wrap*/
+}
+.h3_4{
+	background-color: var(--OficialClaro);
+	padding: 0.5% 0%;
+	font-weight: bold;
+	font-size: 1em;
+	margin: auto;
+	width: 100%;
+}
+.p_2{
+	text-align: left;
+	padding-left: 2%;
+	padding-right: 1%;
+	font-size: 0.7em;
+	cursor: pointer;
+	width: 100%;
+}
+.p_18{
+	text-align: center;
+	font-size: 0.9em !important;
+}
+.contenedor_161{
+	display: flex;
+	width: 90%;
+	margin: 2% auto;
+}
+.contenedor_161--fijo{
+	/* margin-top: 30px; */
+}
+.p_19{
+	text-align: left;
+	display: inline-block !important;
+	font-size: 0.9em !important;
+	width: 90%;
+}
+.contenedor_163{
+	/* height: 140px; */
+	/* overflow-y: scroll; */
+}
+.contenedor_125{
+	display: flex;
+	text-align: center;
+	width: 100%;
+	margin-top: 2%;
+}
+.cont_precio{
+	width: 100%;
+	margin: 3% auto;
+	/* margin-bottom: 2%; */
+}
+.icono--face{
+	width: 20px;
+}
+.contOpciones--nuevo{
+	text-align: center;
+	font-size: 0.9em;
 }
 
 
@@ -802,6 +944,10 @@ textarea{
  }
  .contenedor_24--carrito{
 	margin-top: 2%
+ }
+ .contenedor_24--widt{
+	 width: 40%;
+	 text-align: center;
  }
  .contenedor_102{
 	 display: flex; /*Organiza los elementos horizontalmente*/
@@ -1820,7 +1966,7 @@ textarea{
 }
 .detalle_cont--redesSociales{
 	display: flex;
-	flex-wrap: wrap; 
+	flex-wrap: nowrap; 
 	justify-content: space-around;
 	align-items: center;
 	width: 20%;
@@ -2164,6 +2310,9 @@ textarea{
 	z-index: 2 !important;
 	padding-left: 1%;
 }
+.cont_panel--suscrip{
+	width: 15%;
+}
 .cont_panel--div-1{
 	margin: 10% auto;
 }
@@ -2240,6 +2389,9 @@ textarea{
 }
 .Default_ocultar{
 	display: none; /*No ocupa el espacio en el documento html*/
+}
+.Default_invisible{
+	visibility: hidden; /*ocupa el espacio en el documento html*/
 }
 .Default_pointer{
 	cursor: pointer;

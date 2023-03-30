@@ -625,7 +625,10 @@
 	.contenedor_13{
 		display: block; 
 		width: 100%;
-		margin-top: 35% !important;
+		margin-top: 35%;
+	}
+	.contenedor_13--marginTop{
+		margin-top: 25%;
 	}
 	.contenedor_95{
 		/* grid-template-columns: 100%; */
@@ -634,6 +637,9 @@
 		/* max-height: 180px; */
 		margin-bottom: 15%;
 		padding: 1%;
+	}
+	.contenedor_95--margin{ 
+		margin-bottom: 15% !important;
 	}
 	.contenedor_61{
 		z-index: 1;
@@ -694,5 +700,17 @@
 	}
 	.br_2{
 		display: block;
+	}
+	.contenedor_122{
+		width: 100%;
+		grid-template-columns: 100fr;
+		column-gap: initial;
+	}
+	.contenedor_90{
+		height: 50px!important;
+	}
+	.contOpciones--vendedor{
+		margin-top: -5px;
+		padding-right: 8px;
 	}
 }

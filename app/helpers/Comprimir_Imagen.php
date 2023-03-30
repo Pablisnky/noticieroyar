@@ -26,31 +26,38 @@
                 // Usar en remoto
                 $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/'. $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista. '/perfil/';
 
-                // // usar en local
-                $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
+                // usar en local
+                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
             }
             else if($Bandera == 'ImagenPrincipalNoticia'){ //viene de Panel_C/recibeNotiAgregada
                 
-                //Usar en remoto ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                //Usar en remoto         ruta de la carpeta donde se guardarán las imagen de perfil del artista
                 $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/';
                 
-                // usar en local ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                // usar en local         ruta de la carpeta donde se guardarán las imagen de perfil del artista
                 // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/';
             }
             else if($Bandera == 'imagenProducto'){ //viene de CuentaComercial_C/recibeProductoPublicar
                 
-                //Usar en remoto ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                //Usar en remoto          ruta de la carpeta donde se guardarán las imagen de perfil del artista
                 $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/';
 
-                //usar en local ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                //usar en local         ruta de la carpeta donde se guardarán las imagen de perfil del artista
                 // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/';             
             }
-            else if($Bandera = ''){//viene de 
+            else if($Bandera == 'imagenAgenda'){ //viene de CuentaComercial_C/recibeAgendaAgregada
                 
-                //Usar en remoto ruta de la carpeta donde se guardarán las imagen de perfil del artista
-                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/';
+                //Usar en remoto         ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/agenda/';
 
-                //usar en local ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                //usar en local          ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/agenda/';             
+            }
+            else if($Bandera = ''){//viene de                 
+                //Usar en remoto         ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/';
+
+                //usar en local          ruta de la carpeta donde se guardarán las imagen de perfil del artista
                 // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/'; 
             }
 

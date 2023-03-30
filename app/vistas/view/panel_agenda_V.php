@@ -16,7 +16,7 @@
                         <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Row['nombre_imagenAgenda'];?>"/> 
                     </figure>
                 </div>
-                <div style="">                            
+                <div>                            
                     <!-- FECHA -->
                     <label style="display: block; width: 150%">Fecha de caducidad</label>
                     <label><?php echo $Row['fechaPublicacion'];?></label>
@@ -29,10 +29,10 @@
                         <a class="" href="<?php echo RUTA_URL?>/Panel_C/actualizar_agenda/<?php echo $Row['ID_Agenda'];?>" rel="noopener noreferrer">Actualizar</a>
                         
                         <!-- PUBLICIDAD -->
-                        <!-- <a href="<?php echo RUTA_URL?>/Panel_C/<?php echo $Row['ID_Agenda'];?>" rel="noopener noreferrer">Publicidad</a> -->
+                        <!-- <a href="<?php //echo RUTA_URL?>/Panel_C/<?php //echo $Row['ID_Agenda'];?>" rel="noopener noreferrer">Publicidad</a> -->
                         
                         <!-- ELIMINAR -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_agenda/<?php echo $Row['ID_Agenda'];?>" rel="noopener noreferrer">Eliminar</a>
+                        <a href="<?php echo RUTA_URL?>/Panel_C/eliminar_agenda/<?php echo $Row['ID_Agenda'];?>,<?php echo $Row['nombre_imagenAgenda'];?>" rel="noopener noreferrer">Eliminar</a>
                     </div>
                 </div> 
             </div>
@@ -42,4 +42,4 @@
 </div>
 
 <!-- FOOTER -->
-<?php require(RUTA_APP . '/vistas/footer/footer.php');?>
+<?php //require(RUTA_APP . '/vistas/footer/footer.php');?>

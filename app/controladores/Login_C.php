@@ -125,7 +125,7 @@
             }
         }
 
-        //Invocado desde login_V
+        //Invocado desde login_V, verfica información de ingreso enviada por el usuario e inicia sesion
         public function ValidarSesion(){
 
             $Recordar = isset($_POST["recordar"]);
@@ -197,13 +197,13 @@
                     else if($Bandera == 'denuncia'){// si va a realizar una denuncia
                         header('Location:'. RUTA_URL . '/Contraloria_C/denuncias'); 
                     }
-                    else if($Bandera == 'panelSuscriptor'){// si va a realizar una denuncia
-                    //     header('Location:'. RUTA_URL . '/Contraloria_C'); 
-                    // }
+                    else if($Bandera == 'panelSuscriptor'){// si va a inciar sesion
                     // else{//carga el panel de suscriptores  NoAplica
                         $Datos = [                            
                             'nombre' => $Nombre,
-                            'apellido' => $Apellido
+                            'apellido' => $Apellido,
+                            'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
+                            'telefono' => $Suscriptor[0]['telefonoSuscriptor']
                         ];
 
                         // echo '<pre>';
@@ -212,13 +212,15 @@
                         // exit;
                         
                         $this->vista("header/header_SoloEstilos");
-                        $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
+                        $this->vista("suscriptores/panel_suscrip_V", $Datos);
                     }
                     else if($Bandera == 'SinBandera'){// entra al panel de suscriptor
 
                         $Datos = [                            
                             'nombre' => $Nombre,
-                            'apellido' => $Apellido
+                            'apellido' => $Apellido,
+                            'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
+                            'telefono' => $Suscriptor[0]['telefonoSuscriptor']
                         ];
 
                         // echo '<pre>';
@@ -418,7 +420,7 @@
             $this->vista("view/registro_V", $Datos );
         }
 
-        //invocado desde Contraloria_C/VerificaLogin
+        //Recibe los datos de un usurio que a llenado el formulario de suscripcion
         public function recibeRegistroSuscriptor(){         
             //Se reciben todos los campos del formulario de suscripcion, se verifica que son enviados por POST y que no estan vacios
             if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["nombre"]) && !empty($_POST["correo"]) && !empty($_POST["clave"]) && !empty($_POST["confirmarClave"])){               
@@ -446,8 +448,8 @@
                 // exit;
             }
             else{      
-                // echo "Debe Llenar todos los campos vacios". "<br>";
-                // echo "<a href='javascript:history.back()'>Regresar</a>";
+                echo "Debe Llenar todos los campos vacios". "<br>";
+                echo "<a href='javascript:history.back()'>Regresar</a>";
                 exit();
             }
             
@@ -473,27 +475,34 @@
 
             mail($email_to, $email_subject, $email_message, $headers); 
 
-            //Se crea la sesion exigida en las páginas de una cuenta de suscriptores           
-            $_SESSION["ID_Suscriptor"] = $ID_Suscriptor;
+            //carga la vista login_V que contiene el formulario login
+            $Datos=[
+                'id_noticia' => 'SinID_Denuncia',
+                'id_comentario' => 'SinID_Comentario',
+                'bandera' => 'SinBandera'
+            ];
 
-            //Se redirige segun venga de una noticia o de una denuncia
-            if($RecibeDatos['id_noticia'] != 'SinID_Denuncia'){
-                $ID_Noticia = $RecibeDatos['id_noticia']; 
-                header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/' . $ID_Noticia  .   ',sinAnuncio,#ContedorComentario'); 
-            }
-            else{
-                header('Location:'. RUTA_URL . '/Contraloria_C/denuncias'); 
-            }
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+
+            $this->vista("header/header_noticia");
+            $this->vista("view/login_V", $Datos);
         }
 
+        //carga la vista panel_suscriptor porque el usuario inicio sesion, se llega aqui por medio de la carita del header
         public function accesoSuscriptor(){
             if($_SESSION["ID_Suscriptor"]){
+
                 //Se consultan datos del suscriptor
                 $Suscriptor = $this->ConsultaLogin_M->DatosSuscriptor($_SESSION["ID_Suscriptor"]);
               
                 $Datos = [
                     'nombre' => $Suscriptor[0]['nombreSuscriptor'],
-                    'apellido' => $Suscriptor[0]['apellidoSuscriptor']
+                    'apellido' => $Suscriptor[0]['apellidoSuscriptor'],
+                    'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
+                    'telefono' => $Suscriptor[0]['telefonoSuscriptor']
                 ];
 
                 // echo "<pre>";

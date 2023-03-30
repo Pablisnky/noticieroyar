@@ -50,7 +50,8 @@
 
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Efemeride_C';?>" rel="noopener noreferrer">Efemérides</a></li>
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Agenda_C';?>" rel="noopener noreferrer">Agenda de eventos</a></li>
-							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Publicidad_C';?>" rel="noopener noreferrer">Publicidad</a></li> <!-- Directorio comercial -->
+							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Clasificados_C';?>" rel="noopener noreferrer">Clasificados</a></li> 
+							<!-- Directorio comercial -->
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Obituario_C';?>" rel="noopener noreferrer">Obituario</a></li>
 							<li><a class="header__li--Enlaces" href="https://yaracultura.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog Yaracultura</a></li>
 							<hr class="hr_1">
@@ -87,7 +88,7 @@
 			<!-- LOGIN -->
 			<?php
 			if(!empty($_SESSION['ID_Suscriptor'])){	?>
-				<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><img class="loginCarita" src="<?php echo RUTA_URL . '/public/iconos/login/outline_face_6_black_24dp.png'?>"/></a>				
+				<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><img class="loginCarita" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
 				<?php
 			}	?>
 		</header>

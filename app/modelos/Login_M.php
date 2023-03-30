@@ -74,7 +74,7 @@
         
         public function DatosSuscriptor($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
-                "SELECT nombreSuscriptor, apellidoSuscriptor
+                "SELECT nombreSuscriptor, apellidoSuscriptor, telefonoSuscriptor, pseudonimoSuscripto
                 FROM suscriptores 
                 WHERE ID_Suscriptor = :ID_SUSCRIPTOR");
             $stmt->bindValue(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_STR);

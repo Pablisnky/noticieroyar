@@ -1193,10 +1193,10 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
 
 //************************************************************************************************
     //Abre la ventana de detalles de producto, invocado en opciones_V.php
-    function mostrarDetalles(ContadorLabel, Producto, Opcion, PrecioBolivar, Fotografia, ID_Producto, PrecioDolar, Existencia, ID_Suscriptor){
-        console.log("______Desde mostrarDetalles()______", ContadorLabel +"/"+ Producto +"/"+ Opcion +"/"+ PrecioBolivar +"/"+ Fotografia +"/"+ ID_Producto +"/"+ PrecioDolar +"/"+ ID_Suscriptor)
+    function mostrarDetalles(ContadorLabel, Producto, Opcion, PrecioBolivar, Fotografia, ID_Producto, PrecioDolar, Existencia, ID_Suscriptor, Nuevo){
+        // console.log("______Desde mostrarDetalles()______", ContadorLabel +"/"+ Producto +"/"+ Opcion +"/"+ PrecioBolivar +"/"+ Fotografia +"/"+ ID_Producto +"/"+ PrecioDolar +"/"+ ID_Suscriptor +"/"+ Nuevo)
 
-        window.open(`Clasificados_C/productoAmpliado/${'Etiqueta_' + ContadorLabel},${Producto},${Opcion},${PrecioBolivar},${Fotografia},${ID_Producto},${PrecioDolar},${Existencia},${ID_Suscriptor}`, "ventana1", "width=1300,height=650,scrollbars=YES")   
+        window.open(`Clasificados_C/productoAmpliado/${'Etiqueta_' + ContadorLabel},${Producto},${Opcion},${PrecioBolivar},${Fotografia},${ID_Producto},${PrecioDolar},${Existencia},${ID_Suscriptor},${Nuevo}`, "ventana1", "scrollbars=YES")    
     }
 
 //************************************************************************************************

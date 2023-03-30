@@ -1,12 +1,16 @@
+<!-- MENU LATERAL -->
+<?php require(RUTA_APP . '/vistas/suscriptores/panel_suscrip_V.php');?>
+
 <?php     
 //se invoca sesion con el ID_Suscriptor creada en validarSesion.php para autentificar la entrada a la vista
 if(!empty($_SESSION["ID_Suscriptor"])){
     $ID_Suscriptor = $_SESSION["ID_Suscriptor"];  
     ?>
 
-    <section class="contenedor_42 contenedor_108">
+    <section class="cont_suscrip_productos">
         <h2 class="h2_9">Anuncios clasificados</h2>
-        <div class="contenedor_13"> 
+
+        <div class="contenedor_13 cont_suscrip_productos-13"> 
             <?php 
             $Contador = 1; 
     
@@ -25,7 +29,10 @@ if(!empty($_SESSION["ID_Suscriptor"])){
 
                 ?>
 
+                    <!-- ICONO AGREGAR -->
+                    <a href="<?php echo RUTA_URL . '/CuentaComerciante_C/Publicar/';?>" rel="noopener noreferrer"><img class="cont_modal--agregar Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a>
                 <div class="contenedor_95 borde_1" id="<?php echo 'Cont_Producto_' . $Contador;?>">
+                 
                 
                     <!-- IMAGEN PRINCIPAL -->
                     <div class="contenedor_9 contenedor_9--pointer">

@@ -13,6 +13,7 @@
                 ORDER BY ID_imagObituario 
                 DESC"
             );
+            
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         

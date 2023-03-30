@@ -29,11 +29,11 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
 //************************************************************************************************
 
 ///Escucha en cuenta_publicar_V.php por medio de delegación de eventos debido ya que el evento no esta cargado en el DOM por ser una solicitud Ajax   
-    document.getElementById('Contenedor_80').addEventListener('click',function(event){    
-    if(event.target.id == 'Span_5'){
-        CerrarModal_X('MostrarSeccion')
-    }
-}, false);
+//     document.getElementById('Contenedor_80').addEventListener('click',function(event){    
+//     if(event.target.id == 'Span_5'){
+//         CerrarModal_X('MostrarSeccion')
+//     }
+// }, false);
 
 //************************************************************************************************
     //Llamada desde cuenta_publicar_V.php
@@ -41,8 +41,6 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
         document.getElementById("Ejemplo_Secciones").style.display = "grid"
     }   
 
-//************************************************************************************************
-    
 //************************************************************************************************
     //Realia el cambio de moneda Dolar a Bolivar
     function CambioMonetarioBolivar(Monto, id){
@@ -70,10 +68,10 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
     }
 
 //************************************************************************************************
-function ReiniciaCampo(id_1, id_2){
-    document.getElementById(id_1).value = ''
-    document.getElementById(id_2).value = ''
-}
+    function ReiniciaCampo(id_1, id_2){
+        document.getElementById(id_1).value = ''
+        document.getElementById(id_2).value = ''
+    }
 
 // -------------------------------------------------------------------------------------------
 //Impide que se sigan introduciendo caracteres al alcanzar el limite maximo, llamada desde index.php 
@@ -105,232 +103,6 @@ function ReiniciaCampo(id_1, id_2){
     //             document.getElementById("ContenidoDes").value = cadena.subtring(0, max);
     //         } 
     // } 
-
-// -------------------------------------------------------------------------------------------
-    // //Impide que se sigan introduciendo caracteres al alcanzar el limite maximo, llamada desde index.php 
-    // var contenido_descripcion = "";    
-    // function valida_LongitudDes(){  
-    // var num_caracteres_permitidos = 20;
-
-    // //se averigua la cantidad de caracteres escritos
-    // num_caracteres = document.forms[0].descripcion.value.length; 
-
-    // if(num_caracteres > num_caracteres_permitidos){ 
-    //     document.forms[0].descripcion.value = contenido_descripcion; 
-    // }
-    // else{ 
-    //     contenido_descripcion = document.forms[0].descripcion.value; 
-    // } 
-    // } 
-    
-//************************************************************************************************
-    //invocada desde cuenta_publicar.php selecciona una sección donde estará un producto
-    function transferirSeccion(form, id){
-        console.log("______Desde transferirSeccion()______")
-        //Se declara el array que contendra la cantidad de categorias seleccionadas
-        // var TotalCategoria = []
-
-        //Se reciben los elementos del formulario mediante su atributo name
-        Seccion = form.seccion
-
-        //Se recorre todos los elementos para encontrar el que esta seleccionado
-        for(var i = 0; i<Seccion.length; i++){ 
-            if(Seccion[i].checked){
-                //Se toma el valor del seleccionado
-                Seleccionado = Seccion[i].value
-            }            
-        } 
-
-        //Se transfiere el valor del radio boton seleccionado al input del formulario
-        document.getElementById(id).value = Seleccionado
-             
-        ocultar("MostrarSeccion") 
-    }
-
-//************************************************************************************************
-    //Valida el formulario de cargar producto
-    function validarPublicacion(){
-        let Producto = document.getElementById('ContenidoPro').value
-        let Descripcion = document.getElementById('ContenidoDes').value 
-        // let ImagenPrin = document.getElementById('imgInp').value 
-        let PrecioBs = document.getElementById('PrecioBs').value 
-        let PrecioDolar = document.getElementById('PrecioDolar').value 
-        let Seccion = document.getElementById('SeccionPublicar').value 
-        let Fecha_Dotacion = document.getElementById('Fecha_Dotacion').value 
-        let Incremento = document.getElementById('Incremento').value 
-        let FechaReposicion = document.getElementById('Fecha_Reposicion').value 
-        document.getElementsByClassName("boton")[0].value = "Guardando ..."
-        document.getElementsByClassName("boton")[0].disabled = "disabled"
-        document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialClaro)"
-        document.getElementsByClassName("boton")[0].style.color = "var(--OficialOscuro)"
-        document.getElementsByClassName("boton")[0].classList.add('borde_1')    
-
-        // //Patron de entrada solo acepta numeros
-        let P_Numeros = /^[0-9,.]*$/
-
-        //Patron de entrada para archivos de carga permitidos
-        // var Ext_Permitidas = /^[.jpg|.jpeg|.png]*$/
-        
-        //Patron para fechas
-        var P_Fecha = /^\d{1,2}\-\d{1,2}\-\d{2,4}$/;
-        
-        // if(Ext_Permitidas.exec(ImagenPrin) == false || ImagenPrin.size > 2000000){
-        //     alert("Introduzca una imagen con extención .jpeg .jpg .png menor a 2 Mb")
-        //     document.getElementById("imgInp").value = "";
-        //     document.getElementsByClassName("boton")[0].value = "Guardar"
-        //     document.getElementsByClassName("boton")[0].disabled = false
-        //     document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-        //     document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-        //     document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-        //     return false;
-        // }
-        if(Producto == "" || Producto.indexOf(" ") == 0 || Producto.length > 55){
-            alert ("Necesita introducir un Producto")
-            document.getElementById("ContenidoPro").value = "";
-            document.getElementById("ContenidoPro").focus()
-            document.getElementById("ContenidoPro").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Guardar"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(Descripcion == "" || Descripcion.indexOf(" ") == 0 || Descripcion.length > 505){
-            alert ("Introduzca una Descripcion")
-            document.getElementById("ContenidoDes").value = ""
-            document.getElementById("ContenidoDes").focus()
-            document.getElementById("ContenidoDes").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Guardar"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(PrecioBs == "" || PrecioBs.indexOf(" ") == 0 || PrecioBs.length > 20 || P_Numeros.test(PrecioBs) == false){
-            alert ("Introduzca un Precio (Solo números)")
-            document.getElementById("PrecioBs").value = ""
-            // document.getElementById("PrecioBs").focus()
-            // document.getElementById("PrecioBs").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Guardar"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(PrecioDolar == "" || PrecioDolar.indexOf(" ") == 0 || PrecioDolar.length > 20 || P_Numeros.test(PrecioDolar) == false){
-            alert ("Introduzca un Precio (Solo números)")
-            document.getElementById("PrecioDolar").value = ""
-            document.getElementById("PrecioDolar").focus()
-            document.getElementById("PrecioDolar").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Guardar"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(Seccion == "" || Seccion.indexOf(" ") == 0 || Seccion.length > 50){
-            alert ("Introduzca una Sección")
-            document.getElementById("SeccionPublicar").value = ""
-            document.getElementById("SeccionPublicar").focus()
-            document.getElementById("SeccionPublicar").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Guardar"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        }        
-        else if(P_Fecha.test(Fecha_Dotacion) == false || Fecha_Dotacion == "" || Fecha_Dotacion.indexOf(" ") == 0){
-            alert ("Introduzca la fecha de dotación")
-            document.getElementById("Fecha_Dotacion").value = ""
-            document.getElementById("Fecha_Dotacion").focus()
-            document.getElementById("Fecha_Dotacion").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Guardar"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(Incremento == "" || Incremento.indexOf(" ") == 0){
-            alert ("Introduzca el porcentaje de incremento")
-            document.getElementById("Incremento").value = ""
-            document.getElementById("Incremento").focus()
-            document.getElementById("Incremento").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Guardar"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        } 
-        else if(P_Fecha.test(FechaReposicion) == false || FechaReposicion == "" || FechaReposicion.indexOf(" ") == 0){
-            alert ("Introduzca una fecha de reposicion")
-            document.getElementById("FechaReposicion").value = ""
-            document.getElementById("FechaReposicion").focus()
-            document.getElementById("FechaReposicion").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Guardar"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        } 
-        //Si se superan todas las validaciones la función devuelve verdadero
-        return true
-    }
-    
-//************************************************************************************************
-    //Muestra el div para ampliar informacicón del producto
-    Desplegado = false
-    function AmpliarDescripcion(){
-        if(Desplegado == false){
-            document.getElementById("Contenedor_128").style.display = "block"
-            Desplegado = true
-        }
-        else{
-            document.getElementById("Contenedor_128").style.display = "none"
-            Desplegado = false
-        }
-    }
-
-//************************************************************************************************
-    //Añade un nuevo input para crear una nueva caracteristica del producto
-    var incremento = 1
-    function AgregarCaracteristica(){
-        console.log("______Desde AgregarCaracteristica()______")
-        
-        //Contenedor a clonar 
-        let clonar = document.getElementById("Contenedor_82")
-
-        //Contenedor padre
-        let Padre = document.getElementById("Contenedor_128")
-        console.log("div padre", Padre)
-
-        //Se crea el clon
-        let Div_clon = clonar.cloneNode(true)
-        console.log("div clon", Div_clon)
-
-        //Se da un ID al input que se encuentra en el nuevo elemento clonado
-        Div_clon.getElementsByClassName("caract_js")[0].id = 'InputClon_' + incremento 
-                
-        //El valor del nuevo input debe estar vacio
-        Div_clon.getElementsByClassName("caract_js")[0].value = "" 
-
-        //El placeholder del nuevo input 
-        Div_clon.getElementsByClassName("caract_js")[0].placeholder="Nueva caracteristica del producto "
-        
-        //Se indica el elemento que sera referencia para insertar el nuevo nodo
-        let BotonAgregar = document.getElementById("Label_5")
-
-        //Se especifica el div padre y la posición donde se insertará el nuevo nodo
-        Padre.insertBefore(Div_clon, BotonAgregar)
-        incremento++
-    }
 
 //************************************************************************************************ 
     //Elimina imagenes previsualizadas
@@ -364,4 +136,104 @@ function ReiniciaCampo(id_1, id_2){
         PadreImagen.removeChild(imagen);  
         PadreImagen.removeChild(Etiqueta);
     }
+    
+//************************************************************************************************
+    //Valida el formulario de cargar producto
+    function validarPublicacion(){
+        let ImagenPrin = document.getElementById('imgInp').value 
+        let Producto = document.getElementById('ContenidoPro').value
+        let Descripcion = document.getElementById('ContenidoDes').value 
+        let PrecioBs = document.getElementById('PrecioBs').value 
+        let PrecioDolar = document.getElementById('PrecioDolar').value 
+        let Cantidad = document.getElementById('Cantidad').value 
+        document.getElementsByClassName("boton")[0].value = "Guardando ..."
+        document.getElementsByClassName("boton")[0].disabled = true
+        document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialClaro)"
+        document.getElementsByClassName("boton")[0].style.color = "var(--OficialOscuro)"
+        document.getElementsByClassName("boton")[0].classList.add('borde_1')    
 
+        // //Patron de entrada solo acepta numeros
+        // let P_Numeros = /^[0-9,.]*$/
+
+        //Patron de entrada para archivos de carga permitidos
+        var Ext_Permitidas = /^[.jpg|.jpeg|.png]*$/
+                
+        if(Ext_Permitidas.exec(ImagenPrin) == false || ImagenPrin.size > 2000000){
+            alert("Introduzca una imagen con extención .jpeg .jpg .png menor a 2 Mb")
+            document.getElementById("imgInp").value = "";
+            document.getElementsByClassName("boton")[0].value = "Agregar producto"
+            document.getElementsByClassName("boton")[0].disabled = false
+            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
+            document.getElementsByClassName("boton")[0].style.cursor = "pointer"
+            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+            return false;
+        }        
+        else if(Producto == "" || Producto.indexOf(" ") == 0 || Producto.length > 55){
+            alert ("Necesita introducir un nombre Producto")
+            document.getElementById("ContenidoPro").value = "";
+            document.getElementById("ContenidoPro").focus()
+            document.getElementById("ContenidoPro").style.backgroundColor = "var(--Fallos)"
+            document.getElementsByClassName("boton")[0].value = "Agregar producto"
+            document.getElementsByClassName("boton")[0].disabled = false
+            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
+            document.getElementsByClassName("boton")[0].style.cursor = "pointer"
+            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+            return false;
+        }  
+        else if(Descripcion == "" || Descripcion.indexOf(" ") == 0 || Descripcion.length > 100){
+            alert ("Introduzca una Descripcion de producto")
+            document.getElementById("ContenidoDes").value = ""
+            document.getElementById("ContenidoDes").focus()
+            document.getElementById("ContenidoDes").style.backgroundColor = "var(--Fallos)"
+            document.getElementsByClassName("boton")[0].value = "Agregar producto"
+            document.getElementsByClassName("boton")[0].disabled = false
+            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
+            document.getElementsByClassName("boton")[0].style.cursor = "pointer"
+            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+            return false;
+        }
+        else if(PrecioBs == "" || PrecioBs.indexOf(" ") == 0 || PrecioBs.length > 20){
+            alert ("Introduzca un Precio")
+            document.getElementById("PrecioBs").value = ""
+            document.getElementById("PrecioBs").focus()
+            document.getElementById("PrecioBs").style.backgroundColor = "var(--Fallos)"
+            document.getElementsByClassName("boton")[0].value = "Agregar producto"
+            document.getElementsByClassName("boton")[0].disabled = false
+            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
+            document.getElementsByClassName("boton")[0].style.cursor = "pointer"
+            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+            return false;
+        }
+        else if(PrecioDolar == "" || PrecioDolar.indexOf(" ") == 0 || PrecioDolar.length > 20){
+            alert ("Introduzca un Precio")
+            document.getElementById("PrecioDolar").value = ""
+            document.getElementById("PrecioDolar").focus()
+            document.getElementById("PrecioDolar").style.backgroundColor = "var(--Fallos)"
+            document.getElementsByClassName("boton")[0].value = "Agregar producto"
+            document.getElementsByClassName("boton")[0].disabled = false
+            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
+            document.getElementsByClassName("boton")[0].style.cursor = "pointer"
+            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+            return false;
+        }
+        else if(Cantidad == "" || Cantidad == 0 || Cantidad.indexOf(" ") == 0 || Cantidad.length > 3){
+            alert ("Introduzca la cantidad de unidades disponibles")
+            document.getElementById("Cantidad").value = ""
+            document.getElementById("Cantidad").focus()
+            document.getElementById("Cantidad").style.backgroundColor = "var(--Fallos)"
+            document.getElementsByClassName("boton")[0].value = "Agregar producto"
+            document.getElementsByClassName("boton")[0].disabled = false
+            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
+            document.getElementsByClassName("boton")[0].style.cursor = "pointer"
+            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+            return false;
+        }    
+        //Si se superan todas las validaciones la función devuelve verdadero
+        return true
+    }

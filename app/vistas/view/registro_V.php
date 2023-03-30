@@ -16,7 +16,7 @@
 
                         <!-- CORREO AFILIADO -->
                         <label class="login_cont--label">Correo electronico</label>
-                        <input class="login_cont--input borde--input" type="text" name="correo" id="CorreoAfiCom" onblur="llamar_verificaCorreo(id, 'AfiCom')" onfocus="removerContenidoDiv()"/>
+                        <input class="login_cont--input borde--input" type="text" name="correo" id="Correo" onblur="llamar_verificaCorreo(id, 'AfiCom')" onfocus="removerContenidoDiv()"/>
                         <div class="contenedor_43" id="Mostrar_verificaCorreo"></div>
                         
                         <!-- MUNICIPIO AFILIADO -->                
@@ -41,6 +41,7 @@
                         <div class="contenedor_43" id="Mostrar_verificarNombreTienda"></div>
                     </div>
                 </fieldset>      
+
                 <fieldset class="fieldset_1 fieldset_2">
                     <legend class="legend_1">Datos de accceso</legend>  
                     <div class="login_cont--form">

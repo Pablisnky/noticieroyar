@@ -6,6 +6,10 @@
 		public function __construct(){
 			$this->Panel_M = $this->modelo("Panel_M");
 			
+			// se comprime y se inserta el archivo en el directorio de servidor 
+			require(RUTA_APP . '/helpers/Comprimir_Imagen.php');
+			$this->Comprimir = new Comprimir_Imagen();
+
 			//La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
 			ocultarErrores();
 		}
@@ -392,6 +396,12 @@
 				// echo "Tamanio_imagen : " .  $Tamanio_imagenEfemeride . '<br>';
 				// exit;
 				
+				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+				$Nombre_imagenEfemeride = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenEfemeride);
+
+				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+				$Nombre_imagenEfemeride = mt_rand() . '_' . $Nombre_imagenEfemeride;
+
 				//Se INSERTA la efemeride y se retorna el ID de la inserción
 				$ID_Efemeride = $this->Panel_M->InsertarEfemeride($Titulo, $Contenido, $Fecha);
 				
@@ -540,27 +550,25 @@
 					$Nombre_imagenPrincipal = $_FILES['imagenPrincipal']['name'];
 					$Tipo_imagenPrincipal = $_FILES['imagenPrincipal']['type'];
 					$Tamanio_imagenPrincipal = $_FILES['imagenPrincipal']['size'];
-					$Tempora_imagenPrincipal = $_FILES['imagenPrincipal']['tmp_name'];
+					$Temporal_imagenPrincipal = $_FILES['imagenPrincipal']['tmp_name'];
 					// echo "Nombre_imagen : " . $Nombre_imagenPrincipal . '<br>';
 					// echo "Tipo_imagen : " .  $Tipo_imagenPrincipal . '<br>';
 					// echo "Tamanio_imagen : " .  $Tamanio_imagenPrincipal . '<br>';
 					//exit;
 
+					//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+					$Nombre_imagenPrincipal = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenPrincipal);
+
 					// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 					$Nombre_imagenPrincipal = mt_rand() . '_' . $Nombre_imagenPrincipal;
-					// echo $Nombre_imagenPrincipal;
-					// exit;
 
-					//Se INSERTA la imagen principal de la noticia
+					//Se INSERTA la imagen principal de la noticia en BD
 					$this->Panel_M->InsertarImagenNoticia($ID_Noticia, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
 					
 					// INSSERTA IMAGEN PRINCIPAL DE NOTICIA EN SERVIDOR
 					// se comprime y se inserta el archivo en el directorio de servidor 
 					$Bandera = 'ImagenPrincipalNoticia';
-					require(RUTA_APP . '/helpers/Comprimir_Imagen.php');
-					$this->Comprimir = new Comprimir_Imagen();
-
-					$this->Comprimir->index($Bandera, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal,$Tamanio_imagenPrincipal, $Tempora_imagenPrincipal);	
+					$this->Comprimir->index($Bandera, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal,$Tamanio_imagenPrincipal, $Temporal_imagenPrincipal);	
 				}
 
 				//INSERTAR IMAGENES SECUNDARIAS
@@ -593,16 +601,8 @@
                 }
 
 				// INSERTAR IMAGEN ANUNCIO PUBLICITARIO
-				//EL anuncio ya se inserto previamente individualmene, aqui solo se inserta la relacion del ID_Noticia con el ID_Anuncio
+				//EL anuncio ya se inserto en la platorma en la seccion "Anuncios" del panel_administrador, aqui solo se inserta la relacion del ID_Noticia con el ID_Anuncio
 				if($ID_Anuncio != ""){
-					//Usar en remoto
-					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
-					
-					// usar en local
-					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
-					
-					//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-					move_uploaded_file($_FILES['imagenAnunio']['tmp_name'], $Directorio.$Nombre_imagenAnunio);
 
 					//Se inserta la dependencia transiiva entre el anuncio y la noticia
 					$this->Panel_M->Insertar_DT_noticia_anuncio($ID_Noticia, $ID_Anuncio);
@@ -647,24 +647,28 @@
 				$Nombre_imagenAgenda = $_FILES['imagenAgenda']['name'];
 				$Tipo_imagenAgenda = $_FILES['imagenAgenda']['type'];
 				$Tamanio_imagenAgenda = $_FILES['imagenAgenda']['size'];
+				$Temporal_imagenAgenda = $_FILES['imagenAgenda']['tmp_name'];
 
-				// echo "Caducidad : " . $Caducidad . '<br>';
+				// echo "Caducidad : " . $FechaCaducidad . '<br>';
 				// echo "Nombre_imagen : " . $Nombre_imagenAgenda . '<br>';
 				// echo "Tipo_imagen : " .  $Tipo_imagenAgenda . '<br>';
 				// echo "Tamanio_imagen : " .  $Tamanio_imagenAgenda . '<br>';
+				// echo "Temporal_imagen : " .  $Temporal_imagenAgenda . '<br>';
 				// exit;
+				
+				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+				$Nombre_imagenAgenda = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenAgenda);
+
+				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+				$Nombre_imagenAgenda = mt_rand() . '_' . $Nombre_imagenAgenda;
 				
 				//Se INSERTA el evento
 				$this->Panel_M->InsertarAgenda($FechaCaducidad, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda);
-				
-				//Usar en remoto
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/agenda/';
-				
-				// usar en local
-				// // $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/agenda/';
-				
-				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-				move_uploaded_file($_FILES['imagenAgenda']['tmp_name'], $Directorio.$Nombre_imagenAgenda);
+
+				// INSSERTA IMAGEN DE AGENDA EN SERVIDOR
+				// se comprime y se inserta el archivo en el directorio de servidor 
+				$Bandera = 'imagenAgenda';
+				$this->Comprimir->index($Bandera, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda, $Temporal_imagenAgenda, );
 			}				
 
 			header("Location:" . RUTA_URL . "/Panel_C/agenda");
@@ -692,7 +696,7 @@
 				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/obituario/';
 				
 				// usar en local
-				// // $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/obituario/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/obituario/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenObituario']['tmp_name'], $Directorio.$Nombre_imagenObituario);
@@ -710,6 +714,7 @@
 				$Nombre_imagenPrincipal = $_FILES['imagenPrincipal']['name'];
 				$Tipo_imagenPrincipal = $_FILES['imagenPrincipal']['type'];
 				$Tamanio_imagenPrincipal = $_FILES['imagenPrincipal']['size'];
+				$Temporal_imagenPrincipal = $_FILES['imagenPrincipal']['tmp_name'];
 
 				// echo "Razon : " . $RazonSocial . '<br>';
 				// echo "Fecha : " . $FechaCaducidad . '<br>';
@@ -718,11 +723,10 @@
 				// echo "Tamanio_imagen : " .  $Tamanio_imagenPrincipal . '<br>';
 				// exit;		
 				
+				// INSSERTA IMAGEN DE PYBLICIDAD EN SERVIDOR
 				// se comprime y se inserta el archivo en el directorio de servidor 
 				$Bandera = 'ImagenPublicidad';
-				require(RUTA_APP . '/helpers/Comprimir_Imagen.php');
-				$this->Comprimir = new Comprimir_Imagen();
-				$this->Comprimir->index($Bandera);
+				$this->Comprimir->index($Bandera, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal,$Tamanio_imagenPrincipal, $Temporal_imagenPrincipal);
 								
 				//Se INSERTA la publicidad
 				$this->Panel_M->InsertarAnuncio($RazonSocial, $FechaCaducidad, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
@@ -734,41 +738,7 @@
 
 		// recibe formulario que agrega una coleccion 
 		public function recibeColeccionAgregada(){
-			if(isset($_FILES['imagenPrincipalColeccion']["name"])){
-				$Coleccion = $_POST['coleccion']; 		
-				$Serie = $_POST['serie'];					
-				$Descripcion = $_POST['descripcion'];						
-
-				$Nombre_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['name'];
-				$Tipo_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['type'];
-				$Tamanio_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['size'];
-
-				// echo "Coleccion : " . $Coleccion . '<br>';
-				// echo "Serie : " . $Serie . '<br>';
-				// echo "Descripcion : " . $Descripcion . '<br>';
-				// echo "Nombre_imagenColeccion : " . $Nombre_imagenPrincipalColeccion . '<br>';
-				// echo "Tipo_imagenColeccion : " .  $Tipo_imagenPrincipalColeccion . '<br>';
-				// echo "Tamanio_imagenColeccion : " .  $Tamanio_imagenPrincipalColeccion . '<br>';
-				// exit;
-								
-				//Usar en remoto
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
-				
-				// usar en local
-				// // $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
-				
-				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-				move_uploaded_file($_FILES['imagenPrincipalColeccion']['tmp_name'], $Directorio.$Nombre_imagenPrincipalColeccion);
-				
-				//Se INSERTA la coleccion y se retorna el ID de la inserción
-				$ID_Coleccion = $this->Panel_M->InsertarColeccion($Coleccion, $Serie, $Descripcion); 
-				
-				//Se INSERTA la imagen principal de la coleccion
-				$this->Panel_M->InsertarImagenPrincipalColeccion($ID_Coleccion, $Nombre_imagenPrincipalColeccion, $Tipo_imagenPrincipalColeccion, $Tamanio_imagenPrincipalColeccion);
-			}				
-
-			header("Location:" . RUTA_URL . "/Panel_C/coleccion");
-			die();
+			echo "BORRAR";
 		}
 		
 		// recibe formulario que agrega un artista 
@@ -781,6 +751,7 @@
 				$Nombre_imagenPerfil = $_FILES['imagenPerfil']['name'];
 				$Tamanio_imagenPerfil = $_FILES['imagenPerfil']['size'];
 				$Tipo_imagenPerfil = $_FILES['imagenPerfil']['type'];
+				$Temporal_imagenPerfil = $_FILES['imagenPerfil']['tmp_name'];
 
 				// echo "Nombre Artista : " . $NombreArtista . '<br>';
 				// echo "Apellido Artista : " . $ApellidoArtista . '<br>';
@@ -791,27 +762,30 @@
 				// echo "Tipo_imagenPerfil : " .  $Tipo_imagenPerfil . '<br>';
 				// exit;
 								
+				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+				$Nombre_imagenPerfil = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenPerfil);
+
+				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+				$Nombre_imagenPerfil = mt_rand() . '_' . $Nombre_imagenPerfil;
+
 				//Se INSERTA el perfil del artista y se devuelve el ID_Artista
 				$ID_Artista = $this->Panel_M->InsertarArtista($NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil);				
 
-                //Se crea el directorio donde iran las obras del artista
-				// local
-                // $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista;
-
-                // Se crea el directorio donde iran las obras del artista
-				// remoto
+				// remoto      Se crea el directorio donde iran las obras del artista
                 $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista;
+
+				// local     Se crea el directorio donde iran las obras del artista
+                // $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista;
 
                 if(!file_exists($CarpetaArtista)){
                     mkdir($CarpetaArtista, 0777, true);
                 }
 				
-                //Se crea el directorio donde iran las fotos de perfil del artista
-				// local
-                // $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil';
-
 				// remoto
                 $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista.  '/perfil';
+
+				// local        Se crea el directorio donde iran las fotos de perfil del artista
+                // $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil';
 
 				if(!file_exists($CarpetaPerfilArtista)){
                     mkdir($CarpetaPerfilArtista, 0777, true);
@@ -820,9 +794,7 @@
 				// INSSERTA IMAGEN DE PERFIL EN SERVIDOR
 				// se comprime y se inserta el archivo en el directorio de servidor 
 				$Bandera = 'ImagenPerfilArtista';
-				require(RUTA_APP . '/helpers/Comprimir_Imagen.php');
-				$this->Comprimir = new Comprimir_Imagen();
-				$this->Comprimir->index($Bandera, $ID_Artista, $NombreArtista, $ApellidoArtista);
+				$this->Comprimir->index($Bandera, $Nombre_imagenPerfil, $Tipo_imagenPerfil,$Tamanio_imagenPerfil, $Temporal_imagenPerfil, $ID_Artista, $NombreArtista, $ApellidoArtista);
 			}	
 
 			header("Location:" . RUTA_URL . "/Panel_C/galeria");
@@ -1102,6 +1074,12 @@
 				// echo "Tamanio_imagen: " .  $Tamanio_imagenPrincipal . '<br>';
 				// exit;
 				
+				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+				$Nombre_imagenPrincipal = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenPrincipal);
+
+				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+				$Nombre_imagenPrincipal = mt_rand() . '_' . $Nombre_imagenPrincipal;
+				
 				//Usar en remoto
 				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/';
 				
@@ -1274,6 +1252,12 @@
 				// echo "Tamanio_imagen agenda: " .  $Tamanio_imagenAgenda . '<br>';
 				// exit;
 
+				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+				$Nombre_imagenAgenda = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenAgenda);
+
+				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+				$Nombre_imagenAgenda = mt_rand() . '_' . $Nombre_imagenAgenda;
+
 				//Usar en remoto
 				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/agenda/';
 				
@@ -1333,74 +1317,7 @@
 
 		// recibe formulario que actualiza una coleccion
 		public function recibeColeccionActualizada(){
-			$ID_Coleccion = $_POST['id_coleccion'];
-			$Coleccion = $_POST['coleccion'];
-			$Serie = $_POST['serie'];
-			$Descripcion = $_POST['descripcion']; 	
-
-			// echo "ID_Coleccion: " . $ID_Coleccion . '<br>';
-			// echo "Coleccion: " . $Coleccion . '<br>';
-			// echo "Serie: " . $Serie . '<br>';
-			// echo "Descripcion : " . $Descripcion . '<br>';
-			// exit;
-				
-			//Se ACTUALIZA la coleccion  seleccionada
-			$this->Panel_M->ActualizarColeccion($ID_Coleccion, $Coleccion, $Serie, $Descripcion);
-				
-			//Si se hizo click en la imagen de coleccion
-			if($_FILES['imagenPrincipalColeccion']["name"] != ""){					
-				$Nombre_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['name'];
-				$Tipo_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['type'];
-				$Tamanio_imagenPrincipalColeccion = $_FILES['imagenPrincipalColeccion']['size'];
-
-				// echo "Nombre_imagen Coleccion: " . $Nombre_imagenPrincipalColeccion . '<br>';
-				// echo "Tipo_imagen Coleccion: " .  $Tipo_imagenPrincipalColeccion . '<br>';
-				// echo "Tamanio_imagen Coleccion: " .  $Tamanio_imagenPrincipalColeccion . '<br>';
-				// exit;
-
-				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/';
-				
-				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/';
-				
-				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-				move_uploaded_file($_FILES['imagenPrincipalColeccion']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipalColeccion);
-
-				//Se ACTUALIZA la imagene de la coleccion
-				$this->Panel_M->ActualizarImagenColeccion($ID_Coleccion, $Nombre_imagenPrincipalColeccion, $Tipo_imagenPrincipalColeccion, $Tamanio_imagenPrincipalColeccion);
-			}
-			
-			//IMAGENES COLECCION SECUNDARIAS;
-			if($_FILES['imagenesSecCol']['name'][0] != ''){
-				$Cantidad = count($_FILES['imagenesSecCol']['name']);
-				for($i = 0; $i < $Cantidad; $i++){
-					//nombre original del fichero en la máquina cliente.
-					$Nombre_imagenSecundaria = $_FILES['imagenesSecCol']['name'][$i];
-					$Ruta_Temporal_imagenSecundaria = $_FILES['imagenesSecCol']['tmp_name'][$i];
-					$tipo_imagenSecundaria = $_FILES['imagenesSecCol']['type'][$i];
-					$tamanio_imagenSecundaria = $_FILES['imagenesSecCol']['size'][$i];
-					// echo "Nombre_imagen : " . $Nombre_imagenSecundaria . '<br>';
-					// echo "Tipo_imagen : " .  $Ruta_Temporal_imagenSecundaria . '<br>';
-					// echo "Tamanio_imagen : " .  $tipo_imagenSecundaria . '<br>';
-					// echo "Tamanio_imagen : " .  $tamanio_imagenSecundaria . '<br>';
-					// exit;
-					
-					//Usar en remoto
-					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
-
-					//usar en local
-					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
-
-					//Subimos el fichero al servidor
-					move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecCol']['name'][$i]);
-
-					//Se INSERTAN nuevas imagenes secundarias de la noticia
-					$this->Panel_M->insertarFotografiasColeccionSecun($ID_Coleccion, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria);
-				}
-			}
-			header("Location:" . RUTA_URL . "/Panel_C/coleccion");
-			die();
+			echo 'BORRAR';
 		}
 
 		// recibe formulario que actualiza una efemeride
@@ -1431,6 +1348,12 @@
 				// echo "Tipo_imagen: " .  $Tipo_imagenPrincipal_Efemeride . '<br>';
 				// echo "Tamanio_imagen: " .  $Tamanio_imagenPrincipal_Efemeride . '<br>';
 				// exit;
+				
+				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+				$Nombre_imagenPrincipal_Efemeride = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenPrincipal_Efemeride);
+
+				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+				$Nombre_imagenPrincipal_Efemeride = mt_rand() . '_' . $Nombre_imagenPrincipal_Efemeride;
 				
 				//Usar en remoto
 				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/efemerides/';
@@ -1470,15 +1393,16 @@
 			// echo "Tamanio_imagenPerfil: " .  $Tamanio_imagenPerfil . '<br>';
 			// echo "Tipo_imagenPerfil: " .  $Tipo_imagenPerfil . '<br>';
 			// exit;
+			
+			//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+			$Nombre_imagenPerfil = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenPerfil);
+
+			// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+			$Nombre_imagenPerfil = mt_rand() . '_' . $Nombre_imagenPerfil;
 				
 			//Se ACTUALIZA el perfil del artista seleccionado
 			$this->Panel_M->ActualizarArtista($ID_Artista, $NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil);
 			
-            // //Solicita el  
-            // require(RUTA_APP . '/helpers/Comprimir_Imagen.php');
-            // $this->Comprimir = new Comprimir_Imagen();
-			// $this->Comprimir->index();
-
 			//Usar en remoto
 			$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
 			
@@ -1569,9 +1493,22 @@
 		}
 		
 		// ELimina agenda
-		public function eliminar_agenda($ID_Agenda){
+		public function eliminar_agenda($DatosAgrupados){
+            //$DatosAgrupados contiene una cadena con el ID_Efemeride y el nombre del archivo imagen, separados por coma, se convierte en array para separar los elementos
+
+            $DatosAgrupados = explode(",", $DatosAgrupados);
+            
+            $ID_Agenda = $DatosAgrupados[0];
+            $NombreImagen = $DatosAgrupados[1];
 
 			$this->Panel_M->eliminarAgenda($ID_Agenda);			
+
+			// Se elimina del directorio del servidor
+			// en remoto
+			unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/agenda/' . $NombreImagen); 
+			
+			// en local
+			// unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/agenda/' .$NombreImagen); 
 
 			header("Location:" . RUTA_URL . "/Panel_C/agenda");
 			die();
@@ -1590,12 +1527,12 @@
 			$this->Panel_M->eliminarAnuncio($ID_Anuncio);	
 
 			// Se elimina del directorio del servidor
+			// en remoto
+			unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/' . $NombreImagen);
+
 			// en local
 			// unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/' .$NombreImagen); 
-			
-			// en remoto
-			unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/' . $NombreImagen); 		
-
+					
 			header("Location:" . RUTA_URL . "/Panel_C/publicidad");
 			die();
 		}

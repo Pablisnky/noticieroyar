@@ -58,4 +58,4 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <!-- FOOTER -->
-<?php require(RUTA_APP . '/vistas/footer/footer.php');?>
+<?php //require(RUTA_APP . '/vistas/footer/footer.php');?>

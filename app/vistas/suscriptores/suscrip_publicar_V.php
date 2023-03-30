@@ -1,3 +1,6 @@
+<!-- MENU LATERAL -->
+<?php require(RUTA_APP . '/vistas/suscriptores/panel_suscrip_V.php');?>
+
 <?php    
 //se invoca sesion con el ID_Afiliado creada en validarSesion.php para autentificar la entrada a la vista
 if(!empty($_SESSION["Publicar"])){
@@ -36,7 +39,7 @@ if(!empty($_SESSION["Publicar"])){
 
                         <!-- DESCRIPCION -->
                         <textarea class="textarea_1 textarea_4 borde_1 borde_2" name="descripcion" id="ContenidoDes"  placeholder="Descripción" tabindex="2" onkeydown="blanquearInput('ContenidoDes')"></textarea>
-                        <input class="contador" type="text" id="ContadorDes" value="500" readonly/>
+                        <input class="contador" type="text" id="ContadorDes" value="100" readonly/>
 
                         <!-- PRECIO -->                    
                         <div style="display: flex; justify-content: space-around;">

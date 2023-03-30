@@ -20,8 +20,6 @@
 		<!--ETIQUETAS META TWITTER --> 
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name='twitter:image' content='<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Datos['agenda']['nombre_imagenAgenda'];?>'>
-		<!-- <meta name="twitter:image:width" content="700">-->
-		<!-- <meta name="twitter:image:height" content="200">  -->
 		        
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL;?>/public/css/estilosNoticieroYaracuy.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL;?>/public/css/MediaQuery_EstilosNoticieroYaracuy_350.css?v=<?php echo rand();?>"/>

@@ -1,3 +1,6 @@
+<!-- MENU LATERAL -->
+<?php require(RUTA_APP . '/vistas/suscriptores/panel_suscrip_V.php');?>
+
 <?php 
 //se invoca sesion con el ID_Afiliado creada en validarSesion.php para autentificar la entrada a la vista
 if(!empty($_SESSION["ID_Suscriptor"])){
@@ -39,6 +42,15 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                             </figure>
                         </label>
                         <input class="Default_ocultar" type="file" name="imagenPrinci_Editar" id="imgInp"/>
+
+                        <!-- <div class="contInputRadio--carrito">
+                            <input class="" type="radio" name="grupo" id="Nuevo" onclick="gestionarClickRadio(this)"/>
+                            <label class="contInputRadio__label" for="Nuevo">Articulo nuevo</label>
+                        </div>
+                        <div class="contInputRadio--carrito">
+                            <input class="" type="radio" name="grupo" id="Usado" onclick="gestionarClickRadio(this)"/>
+                            <label class="contInputRadio__label" for="Usado">Articulo usado</label>
+                        </div> -->
                     </div>
                 
                     <div>
@@ -65,7 +77,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                                 <input class="placeholder placeholder_2 placeholder_5 borde_1" type="text" name="precioDolar" id="PrecioDolar" value="<?php echo $PrecioDolar;?>"/>
                             </div>
                         </div> 
-                        <small class="small_1">El sistema realiza automaticamente la conversión Bolivar / Dolar según BCV. <strong class="strong_1">( $ 1 = Bs. <?php echo number_format($Datos['dolarHoy'], 4, ",", ".");?>)</strong></small>
+                        <small class="small_1">El sistema realiza automaticamente la conversión Bolivar / Dolar según BCV. <strong class="strong_1">( $ 1 = Bs. <?php echo number_format($Datos['dolarHoy'], 2, ",", ".");?>)</strong></small>
                         <input class="Default_ocultar" id="CambioOficial" type="text" value="<?php echo $Datos['dolarHoy'];?>"/>
                         <br>
 
@@ -93,8 +105,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
     <!-- div alimentado desde Secciones_Ajax_V.php con la seccion que el usuario cargó en su cuenta  -->       
     <div id="Contenedor_80"></div> 
 
-    <script src="<?php echo RUTA_URL . '/public/javascript/E_Cuenta_editar_prod.js?v=' . rand();?>"></script> 
-    <script src="<?php echo RUTA_URL . '/public/javascript/A_Cuenta_editar_prod.js?v=' . rand();?>"></script> 
+    <script src="<?php echo RUTA_URL . '/public/javascript/E_Suscrip_editar_prod.js?v=' . rand();?>"></script> 
 
     <script> 
         //Da una vista previa de la imagen principal antes de guardarla en la BD

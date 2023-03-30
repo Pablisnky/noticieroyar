@@ -79,7 +79,7 @@
 			<!-- LOGIN -->
 			<?php
 			if(!empty($_SESSION['ID_Suscriptor'])){	?>
-				<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><img class="loginCarita" src="<?php echo RUTA_URL . '/public/iconos/login/outline_face_6_black_24dp.png'?>"/></a>				
+				<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><img class="loginCarita" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
 				<?php
 			}	?>
 		</header>
