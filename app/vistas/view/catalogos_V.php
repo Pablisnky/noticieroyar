@@ -5,6 +5,7 @@
     
     <div class="cont_catalogos">       
         <h1 class="h1_1">Catalogo <br><?php echo $Datos['pseudonimoSuscripto'];?></h1>  
+        <h3 class="h3_1 bandaAlerta">Periodo de prueba (simulación)</h3>
     </div>
     <form id="Formulario"> 
         <div class="contenedor_13 contenedor_13--marginTop" id="Contenedor_13Js"> 
@@ -20,6 +21,7 @@
                 $PrecioDolar = $row['precioDolar']; 
                 $Existencia = $row['cantidad']; 
                 $ImagenProducto = $row['nombre_img']; 
+                $Nuevo = $row['nuevo'] == 1 ? 'Nuevo' : 'Usado'; 
 
                 //Se da formato al precio, sin decimales y con separación de miles
                 settype($PrecioBolivar, "float");
@@ -32,8 +34,10 @@
                     <!-- IMAGEN -->
                     <!-- se colocan el caracter | para usarlo como separardor en Opciones_C/productoAmpliado debido a que el usuario puede usar comas o punto y comas en el texto de opciones o del producto.  -->
                     <?php 
-                    $Separador = '|';   ?> 
-                    <div class="contOpciones" onclick="mostrarDetalles('<?php echo $ContadorLabel.$Separador?>','<?php echo $Producto.$Separador?>','<?php echo $Opcion.$Separador?>','<?php echo $PrecioBolivar.$Separador?>','<?php echo $ImagenProducto.$Separador;?>','<?php echo $ID_Producto.$Separador?>','<?php echo $PrecioDolar.$Separador?>','<?php echo $Existencia.$Separador?>','<?php echo $ID_Suscriptor?>' )">
+                    $Separador = '|';   
+                    $Bandera = 'Desde_Catalogo';
+                    ?> 
+                    <div class="contOpciones" onclick="mostrarDetalles('<?php echo $ContadorLabel.$Separador?>','<?php echo $Producto.$Separador?>','<?php echo $Opcion.$Separador?>','<?php echo $PrecioBolivar.$Separador?>','<?php echo $ImagenProducto.$Separador;?>','<?php echo $ID_Producto.$Separador?>','<?php echo $PrecioDolar.$Separador?>','<?php echo $Existencia.$Separador?>','<?php echo $ID_Suscriptor.$Separador?>','<?php echo $Nuevo.$Separador?>','<?php echo $Bandera?>')">
                         <figure>
                             <img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/> 
                         </figure>
@@ -58,14 +62,14 @@
                                                         
                         <!-- BOTON AGREGAR -->
                         <?php 
-                        if($Existencia == 0){ ?><!--SINO HAY PRODUCTOS EN INVENTARIO SE DESABILITA-->
-                            <label class="label_4 label_4--innabilitado">Agregar</label> 
+                        // if($Existencia == 0){ ?><!--SINO HAY PRODUCTOS EN INVENTARIO SE DESABILITA-->
+                            <!-- <label class="label_4 label_4--innabilitado">Agregar</label>  -->
                             <?php
-                        }  
-                        else{ ?><!--SI HAY PRODUCTOS EN INVENTARIO SE HABILITA-->
-                            <label for="<?php echo 'ContadorLabel_' . $ContadorLabel;?>" class="label_4 borde_1 Label_3js" id="<?php echo 'Etiqueta_' . $ContadorLabel;?>">Agregar</label> 
+                        // }  
+                        // else{ ?><!--SI HAY PRODUCTOS EN INVENTARIO SE HABILITA-->
+                            <!-- <label for="<?php //echo 'ContadorLabel_' . $ContadorLabel;?>" class="label_4 borde_1 Label_3js" id="<?php //echo 'Etiqueta_' . $ContadorLabel;?>">Agregar</label>  -->
                             <?php
-                        }   ?>
+                        // }   ?>
                     </div> 
 
                     <div class="contenedor_14" id="<?php echo 'Cont_Leyenda_' . $ContadorLabel;?>">
@@ -122,11 +126,5 @@
 <div id="Mostrar_Orden"></div>
 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
-<script src="<?php echo RUTA_URL . '/public/javascript/E_Clasificados.js?v='. rand();?>"></script>
-<script src="<?php echo RUTA_URL . '/public/javascript/A_Clasificados.js?v='. rand();?>"></script>
-
-<script>
-function cerrarRegresar(){     
-        window.close()
-    }
-    </script>
+<script src="<?php echo RUTA_URL . '/public/javascript/E_Catalogos.js?v='. rand();?>"></script>
+<!-- <script src="<?php //echo RUTA_URL . '/public/javascript/A_Clasificados.js?v='. rand();?>"></script> -->

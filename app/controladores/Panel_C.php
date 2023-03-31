@@ -397,7 +397,7 @@
 				// exit;
 				
 				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-				$Nombre_imagenEfemeride = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenEfemeride);
+				$Nombre_imagenEfemeride = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenEfemeride);
 
 				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 				$Nombre_imagenEfemeride = mt_rand() . '_' . $Nombre_imagenEfemeride;
@@ -557,7 +557,7 @@
 					//exit;
 
 					//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-					$Nombre_imagenPrincipal = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenPrincipal);
+					$Nombre_imagenPrincipal = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenPrincipal);
 
 					// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 					$Nombre_imagenPrincipal = mt_rand() . '_' . $Nombre_imagenPrincipal;
@@ -657,7 +657,7 @@
 				// exit;
 				
 				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-				$Nombre_imagenAgenda = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenAgenda);
+				$Nombre_imagenAgenda = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenAgenda);
 
 				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 				$Nombre_imagenAgenda = mt_rand() . '_' . $Nombre_imagenAgenda;
@@ -763,7 +763,7 @@
 				// exit;
 								
 				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-				$Nombre_imagenPerfil = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenPerfil);
+				$Nombre_imagenPerfil = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenPerfil);
 
 				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 				$Nombre_imagenPerfil = mt_rand() . '_' . $Nombre_imagenPerfil;
@@ -1075,7 +1075,7 @@
 				// exit;
 				
 				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-				$Nombre_imagenPrincipal = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenPrincipal);
+				$Nombre_imagenPrincipal = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenPrincipal);
 
 				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 				$Nombre_imagenPrincipal = mt_rand() . '_' . $Nombre_imagenPrincipal;
@@ -1253,7 +1253,7 @@
 				// exit;
 
 				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-				$Nombre_imagenAgenda = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenAgenda);
+				$Nombre_imagenAgenda = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenAgenda);
 
 				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 				$Nombre_imagenAgenda = mt_rand() . '_' . $Nombre_imagenAgenda;
@@ -1350,7 +1350,7 @@
 				// exit;
 				
 				//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-				$Nombre_imagenPrincipal_Efemeride = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenPrincipal_Efemeride);
+				$Nombre_imagenPrincipal_Efemeride = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenPrincipal_Efemeride);
 
 				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 				$Nombre_imagenPrincipal_Efemeride = mt_rand() . '_' . $Nombre_imagenPrincipal_Efemeride;
@@ -1395,7 +1395,7 @@
 			// exit;
 			
 			//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-			$Nombre_imagenPerfil = preg_replace('([^A-Za-z0-9 .])', '', $Nombre_imagenPerfil);
+			$Nombre_imagenPerfil = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenPerfil);
 
 			// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 			$Nombre_imagenPerfil = mt_rand() . '_' . $Nombre_imagenPerfil;

@@ -14,14 +14,22 @@
     $MunicipioSuscriptor = $Datos['Suscriptor']['municipioSuscriptor']; 
     $PseudonimoSuscripto = $Datos['Suscriptor']['pseudonimoSuscripto']; 
     $Nuevo = $Datos['Nuevo'];
+    $Bandera = $Datos['Bandera'];
 ?>
     <!-- SE CARGA EL PRELOADER -->
     <!-- <section class="preloder_tapa--total">
         <div class='preloder preloaderCentrar'></div>
     </section> -->
     
-    <!-- ICONO REGRESAR detalle_cont--cerrar-->
-    <img class="cont_modal--cerrar  Default_pointer" style="width: 1em; position:fixed; z-index:10" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="cerrarRegresar()"/>
+    <!-- ICONO REGRESAR -->    
+    <?php
+    if($Bandera == 'Desde_Clasificados'){   ?>
+        <img class="cont_modal--cerrar  Default_pointer" style="width: 1em; position:fixed; z-index:10" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="cerrarVentana()"/>    <?php
+    }
+    else{   ?>
+        <img class="cont_modal--cerrar  Default_pointer" style="width: 1em; position:fixed; z-index:10" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"  onclick="history.go(-1); return false;"/>
+        <?php
+    }   ?>
     
     <section>
         <div class="contenedor_122"> 
@@ -80,7 +88,11 @@
                         <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/>
                         <label><?php echo $TelefonoSuscriptor?></label>
                     </div>
-                    <a class="cont_detalle_Producto--p" href="<?php echo RUTA_URL . '/Catalogos_C/index/' . $ID_Suscriptor . ',' . $PseudonimoSuscripto;?>">Ver catalogo de vendedor</a>
+                    <?php
+                    if($Bandera == 'Desde_Clasificados'){   ?>
+                        <a class="cont_detalle_Producto--p" href="<?php echo RUTA_URL . '/Catalogos_C/index/' . $ID_Suscriptor . ',' . $PseudonimoSuscripto;?>">Ver catalogo de vendedor</a>
+                        <?php
+                    }   ?>
                 </div>
 
                 <div class="contenedor_15 borde_1">
@@ -368,7 +380,7 @@
         window.close()
     }
 
-    function cerrarRegresar(){     
+    function cerrarVentana(){     
         window.close()
     }
 </script>

@@ -38,13 +38,14 @@
         public function InsertarNombreComercial($RecibNombreComercial){
             $stmt = $this->dbh->prepare(
                 "UPDATE suscriptores 
-                 SET pseudonimoSuscripto = :PSEUDONIMO
+                 SET pseudonimoSuscripto = :PSEUDONIMO, telefonoSuscriptor = :TELEFONO
                  WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
             );
 
             //Se vinculan los valores de las sentencias preparadas
             $stmt->bindParam(':ID_SUSCRIPTOR', $RecibNombreComercial['ID_Suscriptor']);
             $stmt->bindParam(':PSEUDONIMO', $RecibNombreComercial['nombreComercial']);
+            $stmt->bindParam(':TELEFONO', $RecibNombreComercial['telefono']);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             $stmt->execute();

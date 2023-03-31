@@ -1,6 +1,7 @@
 <section class="section_9" id="Section_3"> 
     <div class="contenedor_90">       
         <h1 class="h1_1">Clasificados</h1> 
+        <h3 class="h3_1 bandaAlerta">Periodo de prueba (simulación)</h3>
     </div>
     <form id="Formulario"> 
         <div class="contenedor_13" id="Contenedor_13Js"> 
@@ -29,15 +30,17 @@
                     <!-- IMAGEN -->
                     <!-- se colocan el caracter | para usarlo como separardor en Opciones_C/productoAmpliado debido a que el usuario puede usar comas o punto y comas en el texto de opciones o del producto.  -->
                     <?php 
-                    $Separador = '|';   ?> 
-                    <div class="contOpciones" onclick="mostrarDetalles('<?php echo $ContadorLabel.$Separador?>','<?php echo $Producto.$Separador?>','<?php echo $Opcion.$Separador?>','<?php echo $PrecioBolivar.$Separador?>','<?php echo $ImagenProducto.$Separador;?>','<?php echo $ID_Producto.$Separador?>','<?php echo $PrecioDolar.$Separador?>','<?php echo $Existencia.$Separador?>','<?php echo $ID_Suscriptor.$Separador?>','<?php echo $Nuevo?>' )">
+                    $Separador = '|';   
+                    $Bandera = 'Desde_Clasificados';
+                    ?> 
+                    <div class="contOpciones" onclick="mostrarDetalles('<?php echo $ContadorLabel.$Separador?>','<?php echo $Producto.$Separador?>','<?php echo $Opcion.$Separador?>','<?php echo $PrecioBolivar.$Separador?>','<?php echo $ImagenProducto.$Separador;?>','<?php echo $ID_Producto.$Separador?>','<?php echo $PrecioDolar.$Separador?>','<?php echo $Existencia.$Separador?>','<?php echo $ID_Suscriptor.$Separador?>','<?php echo $Nuevo.$Separador?>','<?php echo $Bandera?>')">
                         <figure>
                             <img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/> 
                         </figure>
                         <!-- <p class="contOpciones--nuevo"><?php //echo $Nuevo;?></p> -->
                     </div>
                                                         
-                    <div style="height: 115px;"> 
+                    <div class="cont_producto"> 
                         <div style="height: 75px;">
                             <!-- PRODUCTO -->
                             <label class="input_8 input_8D hyphen" id="<?php echo 'EtiquetaProducto_' . $ContadorLabel;?>"><?php echo $Producto;?></label>
@@ -47,13 +50,13 @@
                         </div>     
                             
                         <!-- PRECIO -->
-                        <!-- <div style="display: flex">
-                            <div style=" width: 75%"> -->
+                        <!-- <div style="display: flex"> -->
+                            <div class="cont_Precios">
                                 <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >Bs. <?php echo $PrecioBolivar;?></label>
 
                                 <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >$ <?php echo $PrecioDolar;?></label>
-                            <!-- </div>
-                            <div> -->
+                            </div>
+                           <!--  <div> -->
                                 <!-- ICONO GIRAR     cont_modal--cerrar-->                                    
                                 <!-- <img class=" Default_pointer" style="width: 2em; margin-top: 25%" id="" src="<?php //echo RUTA_URL . '/public/iconos/giro/outline_switch_right_black_24dp.png'?>"/>
                             </div> -->

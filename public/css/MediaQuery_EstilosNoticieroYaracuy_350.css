@@ -734,18 +734,8 @@
 	column-gap: initial;
 }
 .contOpciones--vendedor{
-	margin-top: -7px;
+	margin-top: 0px;
 }
-
-
-
-
-
-
-
-
-
-
 .cont_detalle_Producto--informacion{
 	width: 95%;
 	margin: 3% auto;
@@ -760,6 +750,7 @@
 	width: 35px;
 }
 .label_22{
+	margin-top: 8%;
 	width: 60%;
 }
 .contenedor_122--imagen{
@@ -773,6 +764,20 @@
 }
 .contenedor_125{
 	margin-top: 0%;
+}
+
+
+
+
+
+
+.contenedor_90{
+	display: block;
+}
+.h3_1{
+	margin-top: initial;
+	height: initial ;
+	line-height: initial;
 }
 
 }

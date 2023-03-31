@@ -415,7 +415,7 @@
                     // exit();
                     
                     //Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-                    $nombre_imgProducto = preg_replace('([^A-Za-z0-9 .])', '', $nombre_imgProducto);
+                    $nombre_imgProducto = preg_replace('([^A-Za-z0-9.])', '', $nombre_imgProducto);
 
                     // Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
                     $nombre_imgProducto = mt_rand() . '_' . $nombre_imgProducto;
@@ -521,7 +521,7 @@
 
                     
                 //Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-                $nombre_imgProductoActualizar = preg_replace('([^A-Za-z0-9 .])', '', $nombre_imgProductoActualizar);
+                $nombre_imgProductoActualizar = preg_replace('([^A-Za-z0-9.])', '', $nombre_imgProductoActualizar);
 
                 // Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
                 $nombre_imgProductoActualizar = mt_rand() . '_' . $nombre_imgProductoActualizar;
@@ -550,11 +550,12 @@
         //recibe el nombre comercial de un suscriptor que va a publicar un clasificado
         public function recibeNombreComercial(){
             //Se reciben el campo del formulario, se verifica que son enviados por POST y que no estan vacios
-            if($_SERVER['REQUEST_METHOD'] == 'POST'&& !empty($_POST['nombreComercial'])){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'&& !empty($_POST['nombreComercial']) && !empty($_POST['telefono'])){
 
                 $RecibNombreComercial = [
                     'ID_Suscriptor' => $_SESSION["ID_Suscriptor"], //sesin creada en Login_C
-                    'nombreComercial' =>  $_POST["nombreComercial"]
+                    'nombreComercial' =>  $_POST["nombreComercial"],
+                    'telefono' =>  $_POST["telefono"]
                 ];
                 
                 // echo '<pre>';
@@ -562,11 +563,8 @@
                 // echo '</pre>';
                 // exit;
                 
-                //Solicita datos del suscriptor a la clase Suscriptor_C 
-                // require(RUTA_APP . '/controladores/Suscriptor_C.php');
-                // $this->InformacionSuscriptor = new Suscriptor_C();
 
-                //Se inserta el nombre comercial del suscriptor
+                //Se inserta el nombre comercial y el telefono del suscriptor
                 $this->InformacionSuscriptor->InsertarNombreComercial($RecibNombreComercial);
             }
             else{

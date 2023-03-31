@@ -398,7 +398,7 @@ textarea{
 }
 .contenedor_90{
 	background-color: var(--OficialClaro);
-	display: flex; /*Organiza los elementos horizontalmente*/
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: fixed;
@@ -576,7 +576,7 @@ textarea{
 	width: 100%;
 	grid-column-start: 1;
 	grid-column-end: 3;
-	margin-top: -4px;
+	margin-top: -2px;
 }
 .contenedor--vendedor--p{
 	font-size: 0.8em;
@@ -2715,6 +2715,17 @@ ul .menuContenedor_3{
 .whatsapp{ 
 	display: none;
 } 
+.h3_1{
+	margin-top: 5px;
+	height: 10px ;
+	line-height: 3px;
+}
+.cont_producto{
+	height: 100px;
+}
+.cont_Precios{
+	margin-top:5px;
+}
 
 
 

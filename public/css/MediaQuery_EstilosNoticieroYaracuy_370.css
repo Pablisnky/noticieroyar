@@ -708,7 +708,7 @@
 		width: 100%;
 		grid-column-start: 1;
 		grid-column-end: 3;
-		margin-top: -5%;
+		margin-top: 10%;
 	}
 	.contenedor_122{
 		width: 100%;
@@ -721,5 +721,53 @@
 	.contOpciones--vendedor{
 		margin-top: -25px;
 		padding-right: 8px;
+	}
+
+
+
+
+
+
+	.cont_detalle_Producto--informacion{
+		width: 95%;
+		margin: 3% auto;
+		padding-left: 5%;
+	}
+	.contenedor_15{
+		width: 95%;
+		margin: 8% auto;
+		margin-bottom: -10%;
+	}
+	.icono--what{
+		width: 40px;
+	}
+	.label_22{
+		margin-top: 8%;
+		width: 50%;
+	}
+	.contenedor_122--imagen{
+		height: 50%;
+	}
+	.imagen_9{	
+		-ms-transform: translate(0%, 0%);
+		transform: translate(0%, -10%);
+		height: 45vh;
+		margin-bottom: -7%;
+	}
+	.contenedor_125{
+		margin-top: 0%;
+	}
+
+
+
+
+
+	.contenedor_90{
+		display: block;
+	}
+	.h3_1{
+		margin-top: initial;
+		height: initial ;
+		line-height: initial;
 	}
 }

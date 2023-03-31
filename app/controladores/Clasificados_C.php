@@ -64,6 +64,7 @@
             $Existencia = substr($DatosAgrupados[7], 1);
             $ID_Suscriptor = substr($DatosAgrupados[8], 1);
             $Nuevo = substr($DatosAgrupados[9], 1);
+            $Bandera = substr($DatosAgrupados[10], 1);
             
             //CONSULTA las imagenes del producto seleccionado
             $Imagenes = $this->ConsultaClasificados_M->consultarImagenesProducto($ID_Producto);
@@ -80,7 +81,8 @@
                 'ID_Producto' => $ID_Producto, 
                 'ID_EtiquetaAgregar' => $ID_EtiquetaAgregar, 
                 'Imagenes' => $Imagenes,
-                'Nuevo' => $Nuevo
+                'Nuevo' => $Nuevo,
+                'Bandera' => $Bandera
             ];      
 
             // echo "<pre>";

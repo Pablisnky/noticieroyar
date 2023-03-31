@@ -8,23 +8,24 @@
 
 		<!-- ETIQUETAS OPEN-GRAPH para ayudar a la red social de turno a identificar mejor qué hay en un recurso de nuestra web que alguien está compartiendo -->
 		<meta property="og:title" content="www.noticieroyaracuy.com"/>
-		<meta property="og:description" content="Noticias locales de Yaracuy"/>
-		<meta property="og:image:width" content="1200"/>
-		<meta property="og:image:height" content="630"/>
+		<meta property="og:description" content="Agenda de eventos"/>
 		<meta property="og:type" content="website"/>
 		<meta property="og:site_name" content="NoticieroYaracuy"/>
 		<meta property="fb:app_id" content="928977633900253"/>
-		<meta property="og:image:alt" content="Imagen descriptiva de la noticia"/>
+		<meta property="og:image:alt" content="Imagen descriptiva del evento"/>
 		<meta property="og:url" content="<?php echo RUTA_URL?>/Agenda_C/redes_sociales/<?php echo $Datos['agenda']['ID_Agenda'];?>"/>
-		<meta property="og:image" itemprop="image"  content="<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Datos['agenda']['nombre_imagenAgenda'];?>"/>
+		<meta property="og:image:secure_url" itemprop="image" content="<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Datos['agenda']['nombre_imagenAgenda'];?>"/>
+		<meta property="og:image:width" content="1200"/>
+		<meta property="og:image:height" content="630"/>
 		<meta property="og:locale:alternate" content="es_ES"/>
-		<meta property="og:image:width" content="300"/>
-		<meta property="og:image:height" content="300"/>
 
 		<!--ETIQUETAS META TWITTER --> 
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name='twitter:image' content='<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Datos['agenda']['nombre_imagenAgenda'];?>'>
 		        
+		<!-- WHATSAPP -->
+		<!-- Fotos mayores a 300 kb no seran mostradas en la miniatura al compartir la noticia -->
+		
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL;?>/public/css/estilosNoticieroYaracuy.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL;?>/public/css/MediaQuery_EstilosNoticieroYaracuy_350.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_370.css?v=<?php echo rand();?>"/>
