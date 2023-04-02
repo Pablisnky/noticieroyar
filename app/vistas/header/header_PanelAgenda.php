@@ -15,11 +15,11 @@
 		<meta property="og:site_name" content="NoticieroYaracuy"/>
 		<meta property="fb:app_id" content="928977633900253"/>
 		<meta property="og:image:alt" content="Imagen descriptiva de la noticia"/>
-		<meta property="og:image" content="<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Datos['agenda']['nombre_imagenAgenda'];?>"/>
+		<meta property="og:image" content="<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Datos['agenda'][0]['nombre_imagenAgenda'];?>"/>
 
 		<!--ETIQUETAS META TWITTER --> 
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name='twitter:image' content='<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Datos['agenda']['nombre_imagenAgenda'];?>'>
+		<meta name='twitter:image' content='<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Datos['agenda'][0]['nombre_imagenAgenda'];?>'>
 		        
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL;?>/public/css/estilosNoticieroYaracuy.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL;?>/public/css/MediaQuery_EstilosNoticieroYaracuy_350.css?v=<?php echo rand();?>"/>
@@ -30,6 +30,13 @@
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo'>        
     </head>
     <body>	
+		<header class="header" id="Header">
+			<!-- ICONO HAMBURGUESA"-->				
+			<img class="header--menu header--menu--panel" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>	
+			
+			<!-- MEMBRETE FIJO -->
+			<label class="header__titulo">Noticiero Yaracuy</label>	
+		</header>
 
 <!-- ******************************************************************************************* -->
 			<!-- No se cierrra la etiqueta <body> porque se cierra en el footer -->

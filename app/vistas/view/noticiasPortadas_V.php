@@ -1,7 +1,7 @@
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
-    <div style="margin-left: 20%;">
+    <div class="cont_panel--main">
         <fieldset class="fieldset_1" id="Not_Principales"> 
             <legend class="legend_1">Noticias en portada</legend>
              
@@ -9,18 +9,18 @@
             foreach($Datos['noticiasPortadas'] as $Not_Prin) : ?>
                 <div style=" display: flex; margin-bottom: 30px" id="<?php echo $Not_Prin['ID_Noticia'];?>">                
                     <!-- IMAGEN NOTICIA -->
-                    <div style="width: 30%; margin-right: 1.5%">      
+                    <div style = "width: 30%; margin-right: 1.5%">      
                         <figure>
                             <?php
                             foreach($Datos['imagenesNoticias'] as $Row)   : 
                                 if($Not_Prin['ID_Noticia'] == $Row['ID_Noticia']){  ?>
-                                <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
+                                    <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
                                     <?php
                                 }
                             endforeach; ?>
                         </figure>
                     </div>
-                    <div style="width: 100%">
+                    <div style = "width: 100%">
                         <!-- TITULO -->
                         <label class="cont_panel--label">Titulo</label>
                         <label class="cont_panel--titulo"><?php echo $Not_Prin['titulo'];?></label>
@@ -87,6 +87,7 @@
         </fieldset>
     </div>
 
+<script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_NoticiasPortadas.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_NoticiasPortadas.js?v=' . rand();?>"></script>
 

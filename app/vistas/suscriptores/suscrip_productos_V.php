@@ -6,6 +6,9 @@
 if(!empty($_SESSION["ID_Suscriptor"])){
     $ID_Suscriptor = $_SESSION["ID_Suscriptor"];  
     ?>
+    
+    <!-- ICONO AGREGAR -->
+    <a href="<?php echo RUTA_URL?>/CuentaComerciante_C/Publicar" rel="noopener noreferrer"><img class="cont_modal--agregar cont_modal--agegar--movil Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a> 
 
     <section class="cont_suscrip_productos">
         <h2 class="h2_9">Anuncios clasificados</h2>
@@ -27,32 +30,18 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                 $ID_Opcion = $arr["ID_Opcion"];
                 $FotoPrincipal = $arr['nombre_img'];
 
-                ?>
-
-                    <!-- ICONO AGREGAR -->
-                    <a href="<?php echo RUTA_URL . '/CuentaComerciante_C/Publicar/';?>" rel="noopener noreferrer"><img class="cont_modal--agregar Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a>
+                ?>              
                 <div class="contenedor_95 borde_1" id="<?php echo 'Cont_Producto_' . $Contador;?>">
                  
-                
                     <!-- IMAGEN PRINCIPAL -->
                     <div class="contenedor_9 contenedor_9--pointer">
-                        <?php
-                        if($FotoPrincipal == 'imagen.png'){ ?>
-                            <div class="contenedor_142" style="background-image: url('<?php echo RUTA_URL?>/public/images/imagen.png')">
-                                <input class="input_14 borde_1" type="text" value="<?php echo $Contador;?>"/>
-                            </div> 
-                            <?php
-                        }
-                        else{   ?>
-                            <div class="contenedor_142" style="background-image: url('<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $_SESSION['ID_Suscriptor'];?>/productos/<?php echo $FotoPrincipal;?>')">
-                                <input class="input_14 borde_1" type="text" value="<?php echo $Contador;?>"/>
-                            </div>
-                            <?php
-                        } ?>
+                        <div class="contenedor_142" style="background-image: url('<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $_SESSION['ID_Suscriptor'];?>/productos/<?php echo $FotoPrincipal;?>')">
+                        <input class="input_14 borde_1" type="text" value="<?php echo $Contador;?>"/>
+                        </div>
                     </div>
 
                     <!-- PRODUCTO -->
-                    <div>
+                    <div id="<?php echo 'ContenedorProducto_' . $Contador?>>
                         <label class="input_8 input_8D" id="<?php echo 'EtiquetaProducto_' . $Contador;?>"><?php echo $Producto;?></label>
 
                         <!-- OPCION -->                        
@@ -77,10 +66,10 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                         <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" > $ <?php echo $PrecioDolar;?></label>
 
                         <!-- ACTUALIZAR - ELIMINAR -->
-                        <div class="contenedor_96">                
+                        <div class="contenedor_96" id="<?php echo $ID_Producto?>">                
                             <a class="a_9" href="<?php echo RUTA_URL?>/CuentaComerciante_C/actualizarProducto/<?php echo $ID_Producto;?>,<?php echo $Opcion;?>">Actualizar</a>
                             
-                            <a class="a_9" href="<?php echo RUTA_URL . '/CuentaComerciante_C/eliminarProducto/' . $ID_Producto . ',' . $ID_Opcion?>">Eliminar</a>
+                            <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick =  "EliminarProducto('<?php echo $ID_Producto;?>','<?php echo $ID_Opcion?>')">Eliminar</label>
                         </div>
                     </div>
                 </div>
@@ -91,7 +80,8 @@ if(!empty($_SESSION["ID_Suscriptor"])){
     </section>
        
     <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v=' . rand();?>"></script>
-    <script src="<?php echo RUTA_URL . '/public/javascript/E_Cuenta_Producto.js?v=' . rand();?>"></script>
+    <script src="<?php echo RUTA_URL . '/public/javascript/E_suscrip_producto.js?v=' . rand();?>"></script>
+    <script src="<?php echo RUTA_URL . '/public/javascript/A_Suscip_producto.js?v=' . rand();?>"></script>
 
     <?php
 }

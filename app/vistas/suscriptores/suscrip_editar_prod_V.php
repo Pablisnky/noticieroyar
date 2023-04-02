@@ -96,7 +96,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                     <input class="Default_ocultar" type="text" name="id_opcion" value="<?php echo $ID_Opcion;?>">
                     <!-- <input class="Default_ocultar" type="text" name="id_imagen" value="<?php //echo $ID_ImagenPrincipal;?>"/> -->
 
-                    <input class="boton" type="submit" value="Guardar cambios"/>
+                    <input class="boton boton--largo" type="submit" value="Guardar cambios"/>
                 </div>  
             </fieldset> 
         </form>

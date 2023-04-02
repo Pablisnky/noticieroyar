@@ -17,7 +17,7 @@
                 $PrecioDolar = $row['precioDolar']; 
                 $Existencia = $row['cantidad']; 
                 $ImagenProducto = $row['nombre_img'];
-                $Nuevo = $row['nuevo'] == 1 ? 'Nuevo' : 'Usado';  
+                $Nuevo = $row['nuevo'] == 1 ? 'Nuevo' : 'Usado'; 
 
                 //Se da formato al precio, sin decimales y con separación de miles
                 settype($PrecioBolivar, "float");
@@ -25,19 +25,11 @@
                 $PrecioBolivar = number_format($PrecioBolivar, 2, ",", "."); 
                 $PrecioDolar = number_format($PrecioDolar, 2, ",", ".");   ?>  
                 
-                <div class="contenedor_95" id="<?php echo 'Cont_Producto_' . $ContadorLabel;?>">
-                    
+                <div class="contenedor_95" id="<?php echo 'Cont_Producto_' . $ContadorLabel;?>"> 
+
                     <!-- IMAGEN -->
-                    <!-- se colocan el caracter | para usarlo como separardor en Opciones_C/productoAmpliado debido a que el usuario puede usar comas o punto y comas en el texto de opciones o del producto.  -->
-                    <?php 
-                    $Separador = '|';   
-                    $Bandera = 'Desde_Clasificados';
-                    ?> 
-                    <div class="contOpciones" onclick="mostrarDetalles('<?php echo $ContadorLabel.$Separador?>','<?php echo $Producto.$Separador?>','<?php echo $Opcion.$Separador?>','<?php echo $PrecioBolivar.$Separador?>','<?php echo $ImagenProducto.$Separador;?>','<?php echo $ID_Producto.$Separador?>','<?php echo $PrecioDolar.$Separador?>','<?php echo $Existencia.$Separador?>','<?php echo $ID_Suscriptor.$Separador?>','<?php echo $Nuevo.$Separador?>','<?php echo $Bandera?>')">
-                        <figure>
-                            <img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/> 
-                        </figure>
-                        <!-- <p class="contOpciones--nuevo"><?php //echo $Nuevo;?></p> -->
+                    <div class="contOpciones">
+                        <a href="<?php echo RUTA_URL . '/Clasificados_C/productoAmpliado/' . $ID_Producto?>" rel="noopener noreferrer" target="_blank"><img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/></a>
                     </div>
                                                         
                     <div class="cont_producto"> 
@@ -70,8 +62,15 @@
                     <div class="contOpciones--vendedor">   
                         <?php
                         foreach($Datos['Suscriptor'] as $Key)  :
-                            if($ID_Suscriptor == $Key['ID_Suscriptor']){           ?>                  
-                                <p class="contenedor--vendedor--p">Vendedor: <?php echo $Key['pseudonimoSuscripto'];?></p>
+                            if($ID_Suscriptor == $Key['ID_Suscriptor']){           ?>          
+                                <div class="cont_vendedor--span">                        
+                                    <div class="cont_vendedor--span-2">              
+                                        <span class="span--vendedor--ubicacion"></span>
+                                        <img class="icono--ubicacion" src="<?php echo RUTA_URL . '/public/iconos/ubicacion/outline_place_black_24dp.png'?>"/><?php echo $Key['parroquiaSuscriptor']?> 
+                                    </div>
+                                    <span class="span--vendedor">Vendedor: <?php echo $Key['pseudonimoSuscripto'];?></span> 
+                                </div> 
+                                
                                 <?php
                             }   
                         endforeach; ?>

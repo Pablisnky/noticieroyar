@@ -1,7 +1,7 @@
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
-<div style="margin-left: 20%;">
+<div class="cont_panel--main">
     <fieldset class="fieldset_1" id="Rowcipales"> 
         <!-- ICONO AGREGAR -->
         <a href="<?php echo RUTA_URL?>/Panel_C/agregar_artista" rel="noopener noreferrer"><img class="cont_modal--agregar Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a> 
@@ -51,6 +51,7 @@
     </fieldset>
 </div>
 
+<script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_PanelArtista.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_PanelArtista.js?v=' . rand();?>"></script>
 

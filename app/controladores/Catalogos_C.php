@@ -2,6 +2,7 @@
     class Catalogos_C extends Controlador{
         private $ConsultaCatalagos_M;
         private $PrecioDolar;
+        private $InformacionSuscriptor;
 
         public function __construct(){
             $this->ConsultaCatalagos_M = $this->modelo("Catalogos_M");
@@ -40,55 +41,44 @@
             // echo "</pre>";
             // exit();
             
-            $this->vista("header/header_ProductoAmpliado"); 
+            $this->vista("header/header_Catalogo"); 
             $this->vista("view/catalogos_V", $Datos); 
         }  
-        
-        //Invocado desde E_Vitrinas.js por medio de mostrarDetalles()
-        // public function productoAmpliado($DatosAgrupados){
-        //     // echo $DatosAgrupados;
-        //     //$DatosAgrupados contiene una cadena con el ID_Tienda y el producto separados por coma, se convierte en array para separar los elementos
-        //     $DatosAgrupados = explode("|", $DatosAgrupados);
-        //     // echo "<pre>";
-        //     // print_r($DatosAgrupados);
-        //     // echo "</pre>";
-        //     // exit();
-            
-        //     $ID_EtiquetaAgregar = $DatosAgrupados[0];
-        //     $Producto = substr($DatosAgrupados[1], 1);
-        //     $Opcion = substr($DatosAgrupados[2], 1);
-        //     $PrecioBolivar = substr($DatosAgrupados[3], 1);
-        //     $Fotografia = substr($DatosAgrupados[4], 1);
-        //     $ID_Producto = substr($DatosAgrupados[5], 1);
-        //     $PrecioDolar = substr($DatosAgrupados[6], 1);
-        //     $Existencia = substr($DatosAgrupados[7], 1);
-        //     $ID_Suscriptor = substr($DatosAgrupados[8], 1);
-            
-        //     //CONSULTA las caracteristicas del producto seleccionado
-        //     $Caracteristicas = $this->ConsultaClasificados_M->consultarCaracterisicaProductoEsp($ID_Producto);
 
-        //     //CONSULTA las imagenes del producto seleccionado
-        //     $Imagenes = $this->ConsultaClasificados_M->consultarImagenesProducto($ID_Producto);
-
-        //     $Datos=[ 
-        //         'ID_Suscriptor' => $ID_Suscriptor,
-        //         'Producto' => $Producto,
-        //         'Opcion' => $Opcion,
-        //         'PrecioBolivar' => $PrecioBolivar,
-        //         'PrecioDolar' => $PrecioDolar,
-        //         'Existencia' => $Existencia,
-        //         'Fotografia_1' => $Fotografia,
-        //         'ID_Producto' => $ID_Producto, 
-        //         'ID_EtiquetaAgregar' => $ID_EtiquetaAgregar, 
-        //         'Imagenes' => $Imagenes
-        //     ];      
-
-        //     // echo "<pre>";
-        //     // print_r($Datos);
-        //     // echo "</pre>";
-        //     // exit();
+         //Invocado desde E_Clasificados.js por medio de mostrarDetalles()
+         public function productoAmpliado($ID_Producto){
+                      
+            //CONSULTA la informacion del producto seleccionado
+            $Producto = $this->ConsultaCatalagos_M->consultarCaracterisicaProductoEsp($ID_Producto);
+                        
+            //CONSULTA las imagenes del producto seleccionado
+            $Imagenes = $this->ConsultaCatalagos_M->consultarImagenesProducto($ID_Producto);
             
-        //     $this->vista("header/header_SoloEstilos", $Datos);
-        //     $this->vista("view/descr_Producto_V", $Datos);
-        // } 
+            //Solicita datos del suscriptor a la clase Suscriptor_C 
+            require(RUTA_APP . '/controladores/Suscriptor_C.php');
+            $this->InformacionSuscriptor = new Suscriptor_C();
+
+            //CONSULTA informacion del vendedor
+            $Vendedor =$this->InformacionSuscriptor->index($Producto['ID_Suscriptor']);
+           
+            $Datos=[ 
+                'Producto' => $Producto,
+                'Imagenes' => $Imagenes,
+                'nombreSuscriptor' => $Vendedor['nombreSuscriptor'],
+                'apellidoSuscriptor' => $Vendedor['apellidoSuscriptor'],
+                'municipioSuscriptor' => $Vendedor['municipioSuscriptor'],
+                'parroquiaSuscriptor' => $Vendedor['parroquiaSuscriptor'],
+                'telefonoSuscriptor' => $Vendedor['telefonoSuscriptor'], 
+                'pseudonimoSuscripto' => $Vendedor['pseudonimoSuscripto'], 
+                'Bandera' => 'Desde_Catalogo'
+            ];      
+
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";
+            // exit();
+            
+            $this->vista("header/header_ProductoAmpliado", $Datos);
+            $this->vista("view/descr_Producto_V", $Datos);
+        } 
     }

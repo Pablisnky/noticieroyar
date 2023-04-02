@@ -37,43 +37,8 @@
             // echo '</pre>';
             // exit();
 
-            $this->vista("header/header_SoloEstilos");
+            $this->vista("header/header_suscriptor");
             $this->vista('suscriptores/suscrip_Inicio_V', $Datos);
-        }
-
-        
-        // public function panel_suscriptor(){          
-        //     //se consultan la informacion del suscriptor
-        //     $Suscriptor = $this->InformacionSuscriptor->index($this->ID_Suscriptor);
-
-        //     $Datos = [                         
-        //         'nombre' => $Suscriptor['nombreSuscriptor'],
-        //         'apellido' => $Suscriptor['apellidoSuscriptor'],
-        //         'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
-        //         'telefono' => $Suscriptor['telefonoSuscriptor']
-        //     ];
-
-        //     // echo '<pre>';
-        //     // print_r($Datos);
-        //     // echo '</pre>';
-        //     // exit();
-
-        //     $this->vista("header/header_SoloEstilos");
-        //     $this->vista('suscriptores/panel_suscrip_V', $Datos);
-        // }
-
-        public function consultarComerciante($Correo){
-            $Comerciante = $this->ConsultaCuenta_M->consultarResponsableTienda($Correo);
-            
-            return $Comerciante;
-            // echo '<pre>';
-            // print_r($Comerciante);
-            // echo '</pre>';
-            // exit();
-        }
-
-        public function Despachador(){
-            $this->vista('view/cuenta_comerciante/cuenta_despachador_V');
         }
 
         //Muestra todos los productos en la vista clasificados del panel de suscriptores
@@ -100,7 +65,7 @@
             if($Productos == Array() && $Datos['suscriptor']['pseudonimoSuscripto'] == ''){
                 $Datos = 'SinDatosComerciales';
 
-                $this->vista('header/header_SoloEstilos');
+                $this->vista('header/header_suscriptor');
                 $this->vista('modal/modal_sinProductos_V', $Datos);
                 exit;
             }
@@ -115,7 +80,7 @@
                 // echo '</pre>';
                 // exit();
     
-                $this->vista('header/header_SoloEstilos');
+                $this->vista('header/header_suscriptor');
                 $this->vista('suscriptores/suscrip_productos_V', $Datos);
             }            
         }
@@ -219,7 +184,7 @@
             $this->vista('view/cuenta_comerciante/cuenta_editar_V', $Datos);
         }
 
-        // Carga la vista donde se carga un producto
+        // muestra la vista donde se carga un producto
         public function Publicar(){
 
             //Solicita el precio del dolar al controlador 
@@ -246,11 +211,11 @@
             $_SESSION['Publicar'] = $Publicar; 
             //Se crea esta sesion para impedir que se recargue la información enviada por el formulario mandandolo varias veces a la base de datos
 
-            $this->vista('header/header_SoloEstilos');
+            $this->vista('header/header_suscriptor');
             $this->vista('suscriptores/suscrip_publicar_V', $Datos);
         }
 
-        // muestra foermulario para actualizar un producto especifico
+        // muestra formulario para actualizar un producto especifico
         public function actualizarProducto($DatosAgrupados){
             //$DatosAgrupados contiene una cadena con el ID_Producto y la opcion separados por coma, se convierte en array para separar los elementos
             // echo $DatosAgrupados;
@@ -299,63 +264,6 @@
         //*****************************************************************************
         //*****************************************************************************
 
-        public function ConsultarOpciones($OpcionProd){
-            //CONSULTA las opciones de productos que existen en la BD segun la categoria seleccionada
-            $Consulta = $this->ConsultaCuenta_M->consultarOpcionesProductos($OpcionProd);
-            $Datos = $Consulta->fetchAll(PDO::FETCH_ASSOC);
-
-            $this->vista('header/Select_Ajax_V', $Datos);
-        }
-
-        //Llamado desde A_Cuenta_editar.js
-        public function Categorias(){
-            //CONSULTA las categorias que exiten en la BD
-            $Categorias = $this->ConsultaCuenta_M->consultarCatgorias();
-
-            //CONSULTA las categorias en las que una tienda se ha postulado
-            $CategoriasTienda = $this->ConsultaCuenta_M->consultarCategoriaTiendas($this->ID_Suscriptor );
-
-            $Datos = [
-                'categorias' => $Categorias,
-                'categoriasTienda' => $CategoriasTienda
-            ];
-
-            $this->vista('header/Categorias_Ajax_V', $Datos);
-        }
-
-        //Invocado desde A_Cuenta_editar_prod.js entrega las secciones activas de una tienda
-        public function Secciones($ID_Producto){
-            //CONSULTA las secciones que tiene una tienda llamada desde Funciones_Ajax.js
-            $Seccion = $this->ConsultaCuenta_M->consultarSeccionesTienda($this->ID_Suscriptor);
-            // $Seccion = $Consulta->fetchAll(PDO::FETCH_ASSOC);
-            // echo '<pre>';
-            // print_r($Seccion);
-            // echo '</pre>';
-            // exit();
-
-            //CONSULTA el ID_Sección al que pertenece un producto de una tienda especifica
-            $Consulta = $this->ConsultaCuenta_M->consultarSeccionActiva($ID_Producto);
-            $ID_Seccion = $Consulta->fetchAll(PDO::FETCH_ASSOC);
-            // echo '<pre>';
-            // print_r($ID_Seccion);
-            // echo '</pre>';
-            // exit();
-
-            //La consulta devuelve el ID_Seccion en una array, se convierte en una variable
-            $ID_Seccion = $ID_Seccion[0]['ID_Seccion'];
-
-            //CONSULTA la seccion correspondiente al ID_Seccion
-            $Consulta = $this->ConsultaCuenta_M->consultarSeccion($ID_Seccion);
-            $SeccionActiva = $Consulta->fetchAll(PDO::FETCH_ASSOC);
-
-            $Datos = [
-                'seccion' => $Seccion,
-                'seccionActiva' => $SeccionActiva
-            ];
-
-            $this->vista('header/Secciones_Ajax_V', $Datos);
-        }
-        
         //recibe el formulario para cargar un nuevo producto
         public function recibeProductoPublicar(){
             $Publicar = $_SESSION['Publicar'];  
@@ -576,7 +484,7 @@
             $this->Publicar();
         }
 
-        //Invocado desde suscrip_productos_V.php
+        //
         public function eliminarProducto($DatosAgrupados){
             //$DatosAgrupados contiene una cadena con el ID_Opcion, ID_Producto y la sección separados por coma, se convierte en array para separar los elementos
             // echo $DatosAgrupados;
@@ -658,40 +566,5 @@
 
             //Se redirecciona a la vista de configuración para dejar al usuario donde estaba
             $this->Editar();
-        }
-
-        //Invocado en cuenta_editar_V.php autoriza si la tienda se suspende o se publica en el catalogo de tiendas
-        // public function publicarTienda(){            
-        //     $Consulta = $this->ConsultaCuenta_M->consultaPermisoPublicar($this->ID_Suscriptor);
-        //     // echo '<pre>';
-        //     // print_r($Consulta);
-        //     // echo '</pre>';
-        //     if($Consulta[0]['publicar'] == 0){
-        //         echo 'Es necesario configurar la totalidad de la tienda';  
-        //     }
-        // }
-
-        // Invocado desde E_Cuenta_Producto.js
-        public function EstablecerImageSeccion($ID_Seccion){
-
-            $Token = false; // Identifica que se manda desde el controlador CuentaComerciante_C
-            
-            $Datos = [
-                'token' => $Token,
-                'id_seccion' => $ID_Seccion
-            ];
-
-            // echo '<pre>';
-            // print_r($Datos);
-            // echo '</pre>';
-            // exit;
-
-            $this->vista('header/header_Modal'); 
-            $this->vista('modal/modal_establecerImageSeccion_V', $Datos);
-        }
-
-        //Invocado desde .php actualiza la imagen de un producto
-        public function recibeImagenSeccion(){
-            echo 'BORRAR';
         }
     }

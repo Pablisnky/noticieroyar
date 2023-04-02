@@ -357,14 +357,6 @@
 	.cont_podcast{
 		width: 95%;
 		margin: auto;
-		padding-top: 10%;
-	}
-	.cont_podcast--titulo{
-		font-size: 1.3em;
-		text-align: center;
-		font-weight: bold;
-		margin: 0.5% auto 1.5% auto;
-		margin-bottom: -35px; /*este margen se usa para que la imagen se pegue arriba del div, el position relaive deja un espacio en blanco del alto de su height*/
 	}
 	.cont_portada{
 		display: block;
@@ -405,9 +397,6 @@
 		align-items: center;
 		width: 100%;
 		bottom: 15pt;
-	}
-	.cont_portada--tituloResumen{
-		height: 19vh;
 	}
 	.cont_portada--informacion{
 		padding-top: 1%;
@@ -577,13 +566,7 @@
 	}
 	.whatsapp{ 
 		display: block;
-	}
-
-
-
-
-
-	
+	}	
 .boton--alto{
 	line-height: 20px;
 }
@@ -609,27 +592,13 @@
 	.boton--carrito{
 		width: 130px;
 	}
-
-	
 	.h1_1{
 		font-weight: normal;
 		text-align: center;
 		font-size: 1.5em;
 	}
-	.contenedor_13{
-		display: block; 
-		width: 100%;
-		margin-top: 35%;
-	}
 	.contenedor_13--marginTop{
 		margin-top: 25%;
-	}
-	.contenedor_95{
-		margin: auto;
-		width: 100%;
-		/* max-height: 180px; */
-		column-gap: 1%; /*espacio entre columnas*/
-		margin-bottom: 10%;
 	}
 	.contenedor_95--margin{ 
 		margin-bottom: 15% !important;
@@ -697,37 +666,15 @@
 	.label_4{
 		top: 2%;
 	}
-	.contOpciones{
-		margin-bottom: 12%;
-	}
 	.contenedor_24{
 		margin-top: 10%;
 		width: 95%;
-	}
-	.contOpciones--vendedor{
-		width: 100%;
-		grid-column-start: 1;
-		grid-column-end: 3;
-		margin-top: 10%;
 	}
 	.contenedor_122{
 		width: 100%;
 		grid-template-columns: 100fr;
 		column-gap: initial;
 	}
-	.contenedor_90{
-		height: 50px!important;
-	}
-	.contOpciones--vendedor{
-		margin-top: -25px;
-		padding-right: 8px;
-	}
-
-
-
-
-
-
 	.cont_detalle_Producto--informacion{
 		width: 95%;
 		margin: 3% auto;
@@ -748,20 +695,6 @@
 	.contenedor_122--imagen{
 		height: 50%;
 	}
-	.imagen_9{	
-		-ms-transform: translate(0%, 0%);
-		transform: translate(0%, -10%);
-		height: 45vh;
-		margin-bottom: -7%;
-	}
-	.contenedor_125{
-		margin-top: 0%;
-	}
-
-
-
-
-
 	.contenedor_90{
 		display: block;
 	}
@@ -769,5 +702,145 @@
 		margin-top: initial;
 		height: initial ;
 		line-height: initial;
+	}.contenedor_90{
+		display: block;
 	}
+	.h3_1{
+		margin-top: initial;
+		height: initial ;
+		line-height: initial;
+	}
+	.cont_podcast{
+		min-width: 95%;
+		max-width: 95%;
+		margin: auto;
+		margin-bottom: 2%;
+		padding-top: 10%;
+	}
+	.cont_portada--imagen{
+		max-height: 45vh; 
+		/* margin-top: 10%; */
+		/*object-fit: contain; fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	}
+.contenedor_122{
+	width: 100%;
+	grid-template-columns: 100fr;
+	column-gap: initial;
+	margin-top: 15%;
+}
+.imagen_9{	
+	/*las dos primeras lineas pegan la imagen al borde*/
+	/* -ms-transform: translate(0%, 0%);
+	transform: translate(0%, -15%); */
+	height: 80vw;
+	margin-bottom: 1%;
+}
+.contenedor_125{
+	margin-top: 0%;
+}
+.contOpciones{
+	margin-bottom: 12%;
+}
+.contOpciones--vendedor{
+	margin-top: -25px;
+	padding-right: 8px;
+}
+.contenedor_13{
+	display: block; 
+	width: 98%;
+	margin-top: 35%;
+}
+.cont_producto{
+	height: 140px;
+}
+.header__titulo--detalleProducto{
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	z-index: 3;
+	font-size: 1.6em;
+	padding-left: 3%;
+}
+.header__subtitulo--detalleProducto{
+	position: fixed;
+	top: 3%;
+	left: 0%;
+	z-index: 2;
+	font-size: 1.3em;
+	padding-left: 2%;
+}
+.header__titulo--catalogo{
+	display: inline;
+	font-size: 1.5em;
+	padding-left: 9%;
+	font-family: Gruppo;
+}.header__subtitulo--catalogo{
+	display: none;
+}
+
+.cont_catalogos--membrete--2{
+	margin-top: 7%;
+}
+.h1_1--catalogo{
+	font-size: 1.2em;
+}
+.contenedor_90{
+	top: 40px;
+	height: 50px!important;
+	padding: 1%;
+}
+.cont_podcast--main{
+	padding-top: 15% !important;
+	margin-bottom: 20%;
+	height: 100%;
+	width: 100%;
+	margin-left: initial;
+}
+.cont_podcast{
+	min-width: 98%;
+	max-width: 98%;
+	margin: auto;
+	margin-bottom: 15%;
+	padding-top: 0%;
+}
+.cont_portada--imagen{
+	display: block;
+	max-height: 25vw;  
+}
+.cont_podcast--imagen{
+	height: 50vh;  
+	width: 100%;
+	margin: auto;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	border-radius: 15px;
+}
+.cont_podcast--titulo{
+	font-size: 1.3em;
+	text-align: center;
+	font-weight: bold;
+	margin: 0% auto 1% auto;
+}
+.cont_podcast--locutor{
+	font-size: 1em;
+	text-align: center;
+	font-weight: bold;
+}
+.cont_podcast--2{
+	padding-top: -25%;
+}
+.cont_podcast_individual{
+	display: block;
+	padding-top: 10%;
+}	
+.cont_portada--tituloResumen{
+	height: 19vh;
+	margin-top: 2%;
+}
+.contenedor_95{
+	margin: auto;
+	width: 100%;
+	max-height: 140px;
+	column-gap: 1%; /*espacio entre columnas*/
+	margin-bottom: 15%;
+}
 }

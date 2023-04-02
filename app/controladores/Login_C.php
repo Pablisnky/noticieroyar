@@ -211,7 +211,7 @@
                         // echo '</pre>';
                         // exit;
                         
-                        $this->vista("header/header_SoloEstilos");
+                        $this->vista("header/header_suscriptor");
                         $this->vista("suscriptores/panel_suscrip_V", $Datos);
                     }
                     else if($Bandera == 'SinBandera'){// entra al panel de suscriptor
@@ -228,7 +228,7 @@
                         // echo '</pre>';
                         // exit;
                     
-                        $this->vista("header/header_SoloEstilos");
+                        $this->vista("header/header_suscriptor");
                         $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
                     }
                 }
@@ -300,7 +300,7 @@
             // echo '</pre>';
             // exit;
 
-            $this->vista('header/header_SoloEstilos'); 
+            $this->vista('header/header_SinMembrete'); 
             $this->vista('modal/modal_recuperarCorreo_V', $Datos); 
         }
 
@@ -342,7 +342,7 @@
                     'bandera' => 'verificado'
                 ];
 
-                $this->vista("header/header_SoloEstilos", $Datos); 
+                $this->vista("header/header_SinMembrete", $Datos); 
                 $this->vista("modal/modal_recuperarCorreo_V", $Datos); 
             }
         }
@@ -383,7 +383,7 @@
                     // setcookie("id_usuario",'',time()-100);
                     // setcookie("clave",'',time()-100);
                     
-                    $this->vista('header/header_SoloEstilos'); 
+                    $this->vista('header/header_SinMembrete'); 
                     $this->vista('modal/modal_recuperarCorreo_V'); 
                 }
                 else{

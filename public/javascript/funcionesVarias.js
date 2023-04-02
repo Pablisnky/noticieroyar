@@ -11,22 +11,23 @@
     // }, false)
 
 //************************************************************************************************
-    //Muestra el menu principal al hacer click en menu amburguesa
+    //Muestra el menu principal al hacer click en menu hamburguesa
     function mostrarMenu(){  
-        // console.log("______Desde mostrarMenu()______")
+        console.log("______Desde mostrarMenu()______")
         let A = document.getElementById("MenuResponsive")
         let C = document.getElementById("Tapa_Logo")
 
         if(A.style.marginTop != "0%"){
             A.style.marginTop = "0%"
-            C.style.marginLeft = "60%"
+            // C.style.marginLeft = "60%"
             if(screen.width < 350){
-                C.style.marginLeft = "22%"
+                C.style.marginLeft = "20%"
             }
             else if(screen.width > 351 && screen.width < 800){
-                C.style.marginLeft = "33%"
+                C.style.marginLeft = "30%"
+                
             }
-            C.style.transitionDelay = "0.3s"
+            C.style.transitionDelay = "0.2s"
         }
     }
 

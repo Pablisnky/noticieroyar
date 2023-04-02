@@ -1,9 +1,7 @@
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
-   
-    <div class="cont_noticiasGenerales">
-        <!-- PAGINACION -->
-        <ul class="cont_noticiasGenerales--paginacion">
+    <!-- PAGINACION -->
+    <ul class="cont_noticiasGenerales--paginacion">
             <!-- BOTON RETROCEDER -->
             <!-- Si la página actual es mayor a uno, se muestra el botón para ir una página atrás -->
             <?php if ($Datos['pagina'] > 1) { ?>
@@ -27,6 +25,8 @@
                 </li>
             <?php } ?>
         </ul> 
+    <div class="cont_panel--main">
+       
 
         <fieldset class="fieldset_1">
             <legend class="legend_1">Noticias generales</legend>
@@ -85,15 +85,26 @@
                                         <?php
                                 }
                             endforeach; ?>
-                            
-                        <!-- COMPARTIR -->     
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Gen['ID_Noticia'];?>" target="_blank" rel="noopener noreferrer">Compartir</a>
-                        
-                        <!-- EDITAR -->
-                        <a style="margin-left: 10%" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
-                                                
-                        <!-- ELIMINAR -->
-                        <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Gen['ID_Noticia'];?>','<?php echo $Datos['imagenesNoticia'][0]['nombre_imagenNoticia'];?>')">Eliminar</label>
+
+                        <div>
+                            <div class=" detalle_cont--redesSociales--Panel">
+                                <!-- COMPARTIR FACEBOOK -->       
+                                <div class="detalle_cont--red">      
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Gen['ID_Noticia'];?>" target="_blank" rel="noopener noreferrer"><img style="height: 1.8em;" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
+                                </div> 
+                                
+                                <!-- COMPARTIR TWITTER -->
+                                <div class="detalle_cont--red">
+                                    <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Gen['ID_Noticia'];?>&text=<?php echo $Not_Prin['titulo'];?>" target="_blank"><img style="height: 2em;" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a>
+                                </div>  
+                            </div>
+                                                        
+                            <!-- EDITAR -->
+                            <a style="margin-left: 10%" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
+                                                    
+                            <!-- ELIMINAR -->
+                            <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Gen['ID_Noticia'];?>','<?php echo $Datos['imagenesNoticia'][0]['nombre_imagenNoticia'];?>')">Eliminar</label>
+                        </div>
                     </div>
                 </div>
                 <?php
@@ -101,6 +112,7 @@
         </fieldset>
     </div>
 
+<script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_NoticiasGenerales.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_NoticiasGenerales.js?v=' . rand();?>"></script>
 

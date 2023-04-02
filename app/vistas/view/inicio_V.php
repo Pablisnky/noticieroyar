@@ -9,9 +9,9 @@
             <div class="tarjeta" id="Tarjeta_<?php echo $Iterador?>">
                 <div class="borde_1" id="adelante_<?php echo $Iterador?>">
                     <!-- IMAGEN -->
-                    <div class="cont_portada--imagen Default_pointer">                        
+                    <!-- <div class="cont_portada--imagen Default_pointer">                         -->
                         <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
-                    </div>
+                    <!-- </div> -->
                     
                     <div class="cont_portada--tituloResumen">
                         <!-- TITULAR -->

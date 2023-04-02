@@ -70,7 +70,7 @@ if(!empty($_SESSION["Publicar"])){
                 <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
                 <div class="contBoton contBoton--marginTop">
                     <input class="Default_ocultar" type="text" name="id_suscriptor" value="<?php echo $ID_Suscriptor;?>"/>
-                    <input class="boton" type="submit" value="Agregar producto"/>
+                    <input class="boton boton--largo" type="submit" value="Agregar producto"/>
                 </div>  
             </fieldset>          
         </form>

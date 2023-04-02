@@ -1,45 +1,47 @@
 <?php    
-    // $Datos proviene de Opciones_C/productoAmpliado
-    $ID_Suscriptor = $Datos['ID_Suscriptor'];
-    $Producto = $Datos['Producto'];
-    $Opcion = $Datos['Opcion'];
-    $PrecioBolivar = $Datos['PrecioBolivar'];
-    $PrecioDolar = $Datos['PrecioDolar'];
-    $ID_Producto = $Datos['ID_Producto'];
-    $ID_LabelAgregar = $Datos['ID_EtiquetaAgregar'];
-    $Existencia = $Datos['Existencia']; 
-    $NombreSuscriptor = $Datos['Suscriptor']['nombreSuscriptor'];
-    $ApellidoSuscriptor = $Datos['Suscriptor']['apellidoSuscriptor'];
-    $TelefonoSuscriptor = $Datos['Suscriptor']['telefonoSuscriptor']; 
-    $MunicipioSuscriptor = $Datos['Suscriptor']['municipioSuscriptor']; 
-    $PseudonimoSuscripto = $Datos['Suscriptor']['pseudonimoSuscripto']; 
-    $Nuevo = $Datos['Nuevo'];
-    $Bandera = $Datos['Bandera'];
+    $ID_Suscriptor = $Datos['Producto']['ID_Suscriptor'];
+    $Producto = $Datos['Producto']['producto'];
+    $Opcion = $Datos['Producto']['opcion'];
+    $PrecioBolivar = $Datos['Producto']['precioBolivar'];
+    $PrecioDolar = $Datos['Producto']['precioDolar'];
+    $ID_Producto = $Datos['Producto']['ID_Producto'];
+    $Existencia = $Datos['Producto']['cantidad']; 
+    $NombreSuscriptor = $Datos['nombreSuscriptor'];
+    $ApellidoSuscriptor = $Datos['apellidoSuscriptor'];
+    $TelefonoSuscriptor = $Datos['telefonoSuscriptor']; 
+    $MunicipioSuscriptor = $Datos['municipioSuscriptor']; 
+    $ParroquiaSuscriptor = $Datos['parroquiaSuscriptor']; 
+    $PseudonimoSuscripto = $Datos['pseudonimoSuscripto']; 
+    $Nuevo = $Datos['Producto']['nuevo']; 
+    $Bandera = $Datos['Bandera']; 
 ?>
     <!-- SE CARGA EL PRELOADER -->
     <!-- <section class="preloder_tapa--total">
         <div class='preloder preloaderCentrar'></div>
     </section> -->
-    
+
     <!-- ICONO REGRESAR -->    
     <?php
     if($Bandera == 'Desde_Clasificados'){   ?>
         <img class="cont_modal--cerrar  Default_pointer" style="width: 1em; position:fixed; z-index:10" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="cerrarVentana()"/>    <?php
     }
     else{   ?>
-        <img class="cont_modal--cerrar  Default_pointer" style="width: 1em; position:fixed; z-index:10" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"  onclick="history.go(-1); return false;"/>
+        <img class="cont_modal--cerrar  Default_pointer" style="width: 1em; position:fixed; z-index:10" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="cerrarVentana()"/>
         <?php
     }   ?>
     
     <section>
+
+        <!-- MEMBRETE FIJO -->        
+        <a class="header__titulo--detalleProducto" href="<?php echo RUTA_URL . '/Inicio_C';?>">www.NoticieroYaracuy.com</a> 
+        <label class="header__subtitulo--detalleProducto">Clasificados</label>
+
+
         <div class="contenedor_122"> 
-            <!-- <br class="mostrar-movil"><br class="mostrar-movil"> -->
             <div class="contGridUna">
 
-                <!-- IMAGEN PRINCIPAL -->
-                <!-- <div class="contenedor_122--imagen" id="Contenedor_124">  -->
-                    <img class="imagen_9 imagen_10" id="ImagenTemporal" alt="Imagen no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['0']['nombre_img'];?>">           
-                <!-- </div> -->
+                <!-- IMAGEN -->
+                <img class="imagen_9 imagen_10" id="ImagenTemporal" alt="Imagen no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['nombre_img'];?>">          
                 
                  <!-- IMAGENES MINIATURAS onclick="verMiniatura('Imagen_<?php //echo $Contador ?>')"-->
                  <div class="contenedor_125">   
@@ -48,7 +50,7 @@
                     //     $Contador = 1;   
                         //$Datos proviene de Opciones_C/productoAmpliado                  
                         // foreach($Datos['Imagenes'] as $key) :   ?>
-                            <img class="imagen_11 borde_1 borde_2" id="Imagen_<?php echo $Contador ?>" alt="Fotografia no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['0']['nombre_img'];?>" />
+                            <img class="imagen_11 borde_1 borde_2" id="Imagen_<?php echo $Contador ?>" alt="Fotografia no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['nombre_img'];?>" />
                             <?php
                             // echo  $Contador;
                     //         $Contador ++;
@@ -56,7 +58,6 @@
                     // }
                     ?>  
                 </div>
-                <!-- <br class="mostrar-movil"> -->
 
                 <h1 class="h1_1 h1_1--margin font--bold"><?php echo $Producto?></h1>
                 <h3 class="h1_11 font--center"><?php echo $Opcion?></h3>
@@ -67,18 +68,15 @@
                         <small class="small_2">$ <?php echo $PrecioDolar?></small>
                     </label>
                 </div>    
-                <!-- <p class="contOpciones--nuevo"><?php //echo $Nuevo;?></p> -->
             </div>
-            <!-- <br class="mostrar-movil"> -->
 
             <div class="contGridUna">
-
                 <!-- INFORMACION DE CONTACTO DEL VENDEDOR -->
                 <div class="cont_detalle_Producto--informacion">
                     <p class="cont_detalle_Producto--p"><b>Ofertado por:</b> <?php echo $PseudonimoSuscripto?></p>
                     <div class="cont_detalle_Producto--suscriptor">
                         <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/ubicacion/outline_place_black_24dp.png'?>"/>
-                        <label><?php echo $MunicipioSuscriptor?></label>
+                        <label><?php echo $ParroquiaSuscriptor?> - <?php echo $MunicipioSuscriptor?></label>
                     </div>
                     <div class="cont_detalle_Producto--suscriptor">
                         <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_perm_identity_black_24dp.png'?>"/>
@@ -330,7 +328,7 @@
 
                     <!-- FACEBOOK -->
                     <div class="detalle_cont--red">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Clasificados_C/productoAmpliado/<?php echo $Datos['ID_Producto'];?>&text=<?php echo $Producto;?>" target="_blank"><img class="detalle_cont--redesSociales-facebook; icono--face" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Clasificados_C/productoAmpliado/<?php echo $ID_Producto;?>&text=<?php echo $Producto;?>" target="_blank"><img class="detalle_cont--redesSociales-facebook; icono--face" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
                     </div>        
 
                     <!-- WHATSAPP -->
@@ -338,7 +336,7 @@
                         <?php 
                             $Titulo = $Producto;         
                         ?>
-                        <a href="whatsapp://send?text=<?php echo $Titulo?>&nbsp;<?php echo RUTA_URL?>/Clasificados_C/productoAmpliado/<?php echo $Datos['ID_Producto'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp icono--what" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
+                        <a href="whatsapp://send?text=<?php echo $Titulo?>&nbsp;<?php echo RUTA_URL?>/Clasificados_C/productoAmpliado/<?php echo $ID_Producto;?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp icono--what" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
                     </div>            
                 </div> 
             </div>
@@ -357,8 +355,6 @@
         </div>
     </section>
     
-<script type="text/javascript" src="<?php echo RUTA_URL . '/public/javascript/E_descr_Producto.js';?>"></script>
-
 <script>
     //Aqui tambien se pudo usar una funcion IIEEF
     // window.onload = function (){
@@ -373,12 +369,12 @@
     //     }
     // }
 
-    function cerrarAgregar(){   
-        // activarBotonAgregar()Se encuentra en vitrina_V.php debido a que los manejadores de envto de opciones_V.php dependen de vitrina_V.php por ser una ventna abierta con ajax
-        window.opener.activarBotonAgregar('<?php echo $ID_LabelAgregar?>') 
-        // window.opener.location.reload();        
-        window.close()
-    }
+    // function cerrarAgregar(){   
+    //     // activarBotonAgregar()Se encuentra en vitrina_V.php debido a que los manejadores de envto de opciones_V.php dependen de vitrina_V.php por ser una ventna abierta con ajax
+    //     window.opener.activarBotonAgregar('<?php //echo $ID_LabelAgregar?>') 
+    //     // window.opener.location.reload();        
+    //     window.close()
+    // }
 
     function cerrarVentana(){     
         window.close()

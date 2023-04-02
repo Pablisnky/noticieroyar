@@ -7,9 +7,9 @@
             <div class="tarjeta" id="Tarjeta_<?php echo $Iterador?>">
                 <div class="adelante borde_1" id="adelante_<?php echo $Iterador?>">
                     <!-- IMAGEN -->
-                    <div class="cont_portada--imagen">                                                     
+                    <!-- <div class="cont_portada--imagen">                                                      -->
                         <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Datos['noticia'][0]['nombre_imagenNoticia'];?>"/></a>
-                    </div>
+                    <!-- </div> -->
 
                     <div class="cont_portada--tituloResumen">
                         <!-- TITULAR -->

@@ -1,11 +1,36 @@
 <section class="section_9" id="Section_3"> 
     
-    <!-- ICONO REGRESAR detalle_cont--cerrar-->
-    <img class="cont_modal--cerrar  Default_pointer" style="width: 1em; z-index:2; position:fixed" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="cerrarRegresar()"/>
+    <!-- ICONO REGRESAR -->
+    <!-- <img class="cont_modal--cerrar  Default_pointer" style="width: 1em; z-index:2; position:fixed" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="javascript: history.go(-1)"/> -->
     
-    <div class="cont_catalogos">       
-        <h1 class="h1_1">Catalogo <br><?php echo $Datos['pseudonimoSuscripto'];?></h1>  
-        <h3 class="h3_1 bandaAlerta">Periodo de prueba (simulación)</h3>
+    <div class="cont_catalogos">  
+        <div class="cont_catalogos--membrete">     
+            <a class="header__titulo--catalogo" href="<?php echo RUTA_URL . '/Inicio_C';?>">www.NoticieroYaracuy.com</a> 
+            <label class="header__subtitulo--catalogo">Clasificados</label>
+        </div> 
+        <div class="cont_catalogos--membrete--2">
+            <h1 class="h1_1 h1_1--catalogo">Catalogo <br><?php echo $Datos['pseudonimoSuscripto'];?></h1>  
+            <h3 class="h3_1 bandaAlerta">Periodo de prueba (simulación)</h3>
+        </div>
+                 
+        <!-- COMPARTIR REDES SOCIALES -->
+        <div class="cont_catalogos--redesSociales">
+
+            <!-- FACEBOOK -->
+            <div class="detalle_cont--red">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Catalogos_C/index/<?php echo $Datos['productos'][0]['ID_Suscriptor'];?>&text=<?php echo $Datos['pseudonimoSuscripto'];?>" target="_blank"><img class="detalle_cont--redesSociales-facebook; icono--face" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
+            </div>        
+            
+            <!-- TWITTER -->
+            <div class="detalle_cont--red">
+                <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Catalogos_C/index/<?php echo $Datos['productos'][0]['ID_Suscriptor'];?>&text=<?php echo $Datos['pseudonimoSuscripto'];?>" target="_blank"><img class="detalle_cont--redesSociales-twitter" alt="twitter" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a>
+            </div>          
+
+            <!-- WHATSAPP -->
+            <div class="whatsapp detalle_cont--red">
+                <a href="whatsapp://send?text=<?php echo $Datos['pseudonimoSuscripto']?>&nbsp;<?php echo RUTA_URL?>/Catalogos_C/index/<?php echo $Datos['productos'][0]['ID_Suscriptor'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp icono--what" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
+            </div>            
+        </div> 
     </div>
     <form id="Formulario"> 
         <div class="contenedor_13 contenedor_13--marginTop" id="Contenedor_13Js"> 
@@ -21,7 +46,8 @@
                 $PrecioDolar = $row['precioDolar']; 
                 $Existencia = $row['cantidad']; 
                 $ImagenProducto = $row['nombre_img']; 
-                $Nuevo = $row['nuevo'] == 1 ? 'Nuevo' : 'Usado'; 
+                $Nuevo = $row['nuevo'] == 1 ? 'Nuevo' : 'Usado';                 
+                $Bandera = 'Desde_Catalogo';
 
                 //Se da formato al precio, sin decimales y con separación de miles
                 settype($PrecioBolivar, "float");
@@ -30,17 +56,10 @@
                 $PrecioDolar = number_format($PrecioDolar, 2, ",", ".");   ?>  
                 
                 <div class="contenedor_95 contenedor_95--margin" id="<?php echo 'Cont_Producto_' . $ContadorLabel;?>">
-                    
+                
                     <!-- IMAGEN -->
-                    <!-- se colocan el caracter | para usarlo como separardor en Opciones_C/productoAmpliado debido a que el usuario puede usar comas o punto y comas en el texto de opciones o del producto.  -->
-                    <?php 
-                    $Separador = '|';   
-                    $Bandera = 'Desde_Catalogo';
-                    ?> 
-                    <div class="contOpciones" onclick="mostrarDetalles('<?php echo $ContadorLabel.$Separador?>','<?php echo $Producto.$Separador?>','<?php echo $Opcion.$Separador?>','<?php echo $PrecioBolivar.$Separador?>','<?php echo $ImagenProducto.$Separador;?>','<?php echo $ID_Producto.$Separador?>','<?php echo $PrecioDolar.$Separador?>','<?php echo $Existencia.$Separador?>','<?php echo $ID_Suscriptor.$Separador?>','<?php echo $Nuevo.$Separador?>','<?php echo $Bandera?>')">
-                        <figure>
-                            <img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/> 
-                        </figure>
+                    <div class="contOpciones">
+                            <a href="<?php echo RUTA_URL . '/Catalogos_C/productoAmpliado/' . $ID_Producto;?>" rel="noopener noreferrer" target="_blank"><img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/></a> 
                     </div>
                                 
                     <div> 
@@ -127,4 +146,3 @@
 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_Catalogos.js?v='. rand();?>"></script>
-<!-- <script src="<?php //echo RUTA_URL . '/public/javascript/A_Clasificados.js?v='. rand();?>"></script> -->

@@ -228,7 +228,7 @@
             // echo '</pre>';
             // exit;
             
-            $this->vista("header/header_SoloEstilos");
+            $this->vista("header/header_SinMembrete");
             $this->vista("view/detalleDenuncia_V", $Datos);
         }
         

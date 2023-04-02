@@ -274,7 +274,7 @@ textarea{
 .cont_suscrip_publicar{
 	width: 60%;
 	margin: auto;
-	padding-top: 5%; /*antes mrgin-top: 10%*/
+	padding-top: 5%;
 	min-height: 90%;
 	padding-bottom: 10%;
 }
@@ -331,7 +331,7 @@ textarea{
 	white-space: nowrap; /*mantiene el texto en una sola linea*/
 }
 .contenedor_13{
-	display: flex; /*Organiza los elementos horizontalmente*/
+	display: flex; 
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-content: flex-start; /*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
@@ -342,15 +342,6 @@ textarea{
 .cont_suscrip_productos-13{
 	width: 98%;
 	margin-top: 1%;
-}
-.contenedor_95{
-	display: grid;
-	grid-template-columns: 50fr 50fr;
-	column-gap: 5%; /*espacio entre columnas*/
-	width: 30%; 
-	max-height: 180px; 
-	margin-bottom: 3%; 
-	padding: 1%;
 }
 .contenedor_95--margin{ 
 	margin-bottom: 3% !important;
@@ -390,8 +381,7 @@ textarea{
 .cont_suscrip_productos{
 	width: 85%;
 	margin-left: 15%;
-	padding-top: 2%; /*antes mrgin-top: 10%*/
-	/* min-height: 90%; */
+	padding-top: 2%; 
 }
 .contenedor_108{
 	padding-bottom: 10%;
@@ -557,30 +547,8 @@ textarea{
 	grid-column-start: 1;
 	grid-column-end: 3;
 }
-.contOpciones{
-	margin-bottom: 1%;
-	height: 120px;
-}
 .contOpciones--pointer{
 	cursor: default;
-}
-.contOpciones__img{
-	object-fit: contain !important; /*esta propiedad necesita el ancho y alto de la imagen definidos*/
-	width: 190px;
-	max-height: 120px;
-	/* display: block;*/
-	/* margin-top: 0px;  */
-	
-}
-.contOpciones--vendedor{
-	width: 100%;
-	grid-column-start: 1;
-	grid-column-end: 3;
-	margin-top: -2px;
-}
-.contenedor--vendedor--p{
-	font-size: 0.8em;
-	text-align: right;
 }
 .contenedor_95{
 	display: grid;
@@ -752,20 +720,6 @@ textarea{
 .section_9{
 	width: 100%;
 }
-
-
-
-
-
-.contenedor_122{
-	margin: auto;
-	margin-top: 2%;
-	margin-bottom: 6%;
-	display: grid;
-	width: 90%;
-	grid-template-columns: 50fr 50fr;
-	column-gap: 1%;
-}
 .imagen_9{
 	width: 100%;
 	margin-top: 1%;
@@ -789,7 +743,6 @@ textarea{
 	width: 100%;
 }
 .contenedor_122--imagen{
-	background-color: blue;
 	/* height: 50%; */
 }
 .cont_detalle_Producto--informacion{
@@ -847,18 +800,11 @@ textarea{
 	width: 90%;
 	margin: 2% auto;
 }
-.contenedor_161--fijo{
-	/* margin-top: 30px; */
-}
 .p_19{
 	text-align: left;
 	display: inline-block !important;
 	font-size: 0.9em !important;
 	width: 90%;
-}
-.contenedor_163{
-	/* height: 140px; */
-	/* overflow-y: scroll; */
 }
 .contenedor_125{
 	display: flex;
@@ -869,7 +815,6 @@ textarea{
 .cont_precio{
 	width: 100%;
 	margin: 3% auto;
-	/* margin-bottom: 2%; */
 }
 .icono--face{
 	width: 20px;
@@ -878,18 +823,7 @@ textarea{
 	text-align: center;
 	font-size: 0.9em;
 }
-
-
-
-
-
-
-
-
-
-
-
-.label_3{/*quienesSomos - inicio*/
+.label_3{
 	text-align: center;
 	display: block;
 	width: 100%;
@@ -1270,6 +1204,7 @@ textarea{
 	border-radius: 50%;
 	width: 3em;	
 	color: black; 
+	z-index: 1;
  }
  .cont_modal--h1{
 	 color: white;
@@ -1405,7 +1340,7 @@ textarea{
 	font-size: 0.8em;
  }
  .cont_noticiasGenerales{
-	margin-left:20%; 
+	margin-left: 20%; 
 	margin-top: 0px !important;
 	padding-bottom:10%;  
 	padding-top:0px;
@@ -1725,42 +1660,6 @@ textarea{
 .cont_GaleriaArte--boton:hover{
 	cursor: pointer;
 }
-.cont_podcast{
-	min-width: 25%;
-	margin-bottom: 2%;
-}
-.cont_podcast_individual{
-	background-color: rgba(122, 106, 106, 0.5);
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-.cont_podcast_individual>div:first-child{/*ocupa toda la primera fila de la distribucion flex, el padre debe tener flex-wrap*/
-	flex: 0 1 100% !important; 
-	margin: 0% auto 2% auto;
-}
-.cont_podcast--audio{
-	width: 100%;
-}
-.cont_podcast--2{
-	margin-top: -5%
-}
-.cont_podcast--descripcion{
-	margin: auto;
-	margin-bottom: 5%;
-	padding: 0% 3%;
-	text-align: justify;
-}
-.cont_podcast--imagen{
-	height: 40vh;  
-	width: 100%;
-	margin: auto;
-	object-fit: fill; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
-	border-top-right-radius: 15px;
-	border-top-left-radius: 15px;
-}
 .cont_agenda--imagen{
 	height: 60vh;  
 	width: 95%;
@@ -1795,7 +1694,7 @@ textarea{
 	width: 95%;
 	margin: 1% auto;
 	text-align: center;
-}
+} 
 .cont_portada--tituloResumen{
 	height: 24vh;
 }
@@ -2304,12 +2203,6 @@ textarea{
 	width: 5%;
 	border: none;
 }
-.cont_panel--menu{
-	width: 20%;
-	position: fixed !important;
-	z-index: 2 !important;
-	padding-left: 1%;
-}
 .cont_panel--suscrip{
 	width: 15%;
 }
@@ -2720,12 +2613,210 @@ ul .menuContenedor_3{
 	height: 10px ;
 	line-height: 3px;
 }
-.cont_producto{
-	height: 100px;
-}
 .cont_Precios{
-	margin-top:5px;
+	margin-top: 5px;
 }
+.contenedor_122{
+	margin: auto;
+	margin-bottom: 6%;
+	display: grid;
+	width: 90%;
+	grid-template-columns: 50fr 50fr;
+	column-gap: 1%;
+}
+.contOpciones{
+	margin-top: 0%;
+	/* height: 100%; */
+	/* width: 100hw; */
+}
+.contOpciones__img{
+	object-fit: contain !important; /*esta propiedad necesita el ancho y alto de la imagen definidos*/
+	width: 190px;
+	max-height: 130px;
+	/* display: block;*/
+	/* margin-top: 0px;  */
+}
+.cont_producto{
+	height: 130px;
+}
+.contOpciones--vendedor{
+	width: 100%;
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+.header__titulo--detalleProducto{
+	background-color: white;
+	width: 100%;
+	font-size: 2em;
+	font-family: Gruppo;
+	padding-left: 5%;
+}
+.header__subtitulo--detalleProducto{
+	background-color: white;
+	width: 100%;
+	font-size: 1.2em;
+	font-family: Gruppo;
+	font-weight: bold;
+	padding-left: 0.5%;
+}
+.cont_catalogos--membrete{
+	position: absolute;
+	margin-left: 3%;
+}
+.header__titulo--catalogo{
+	display: inline;
+	font-size: 1.5em;
+	padding-left: 2%;
+	font-family: Gruppo;
+}.header__subtitulo--catalogo{
+	top: 10%;
+	display: inline;
+	font-size: 1.2em;
+	padding-left: 2%;
+	font-family: Gruppo;
+}
+.cont_podcast{
+	min-width: 30%;
+	max-width: 30%;
+	margin-bottom: 2%;
+}
+.cont_podcast--titulo{
+	text-align: center;
+	font-size: 1.4em;
+	/* padding: 2%; */
+}
+.cont_podcast--locutor{
+	text-align: center;
+	font-size: 1.1em;
+	padding: 1%;
+}
+.cont_podcast_individual{
+	background-color: rgba(187, 168, 168, 0.5);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.cont_podcast_individual>div:first-child{/*ocupa toda la primera fila de la distribucion flex, el padre debe tener flex-wrap*/
+	flex: 0 1 100% !important; 
+	margin: 0% auto 2% auto;
+}
+.cont_podcast--audio{
+	width: 100%;
+}
+.cont_podcast--2{
+	margin-top: -5%
+}
+.cont_podcast--descripcion{
+	margin: auto;
+	margin-bottom: 5%;
+	padding: 0% 3%;
+	text-align: justify;
+}
+.cont_podcast--imagen{
+	height: 50vh;  
+	width: 100%;
+	margin: auto;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+}
+.cont_vendedor--span{
+	display: flex; 
+	justify-content: space-between;
+	align-items: center
+}.cont_vendedor--span-2{
+	display: flex; 
+	justify-content: space-around;
+	align-items: center;
+	padding-left: 5%;
+}
+.span--vendedor{
+	font-size: 0.8em;
+}
+.span--vendedor--ubicacion{
+	display: inline-block;
+	font-size: 0.9em;
+	margin-left: -30%;
+}
+.icono--ubicacion{
+	width: 1.2em; 
+	margin-left: 5%; 
+	display: inline-block
+}
+.contenedor_95{
+	display: grid;
+	grid-template-columns: 50fr 50fr;
+	column-gap: 5%; /*espacio entre columnas*/
+	width: 30%; 
+	max-height: 180px; 
+	margin-bottom: 5%; 
+}
+.cont_suscriptor{
+	margin-top: 7%; 
+	margin-left: 20%;
+}
+.cont_podcast--main{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-left: 7%;
+	margin-top: 7%;
+	margin-bottom: 20%;
+	height: 100%;
+	width: 90%;
+}
+
+
+
+
+
+
+
+
+
+
+.cont_catalogos--redesSociales{
+	position: absolute;
+	top: 0%;
+	right: 3%;
+}
+.cont_panel--menu{
+	width: 20%;
+	position: fixed !important;
+	z-index: 2 !important;
+	padding-left: 1%;
+}
+.hr--panel{
+	margin: 2%;
+	width: 60%;
+}
+.header--menu--panel{
+	display: none;
+}
+.cont_panel--main{
+	margin-left: 20%;
+	margin-top: 5%;
+}
+.cont_noticiasGenerales--paginacion{
+	display: flex;
+	justify-content: center;
+	position: fixed;
+	width: 90%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

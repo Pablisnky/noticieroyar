@@ -172,7 +172,7 @@
             // echo "</pre>";          
             // exit();
             
-            $this->vista("header/header_SoloEstilos"); 
+            $this->vista("header/header_SinMembrete"); 
             $this->vista("view/ajax/ImagenSeleccionada_V", $Datos ); 
         }
 
@@ -211,7 +211,7 @@
             
             mail($email_to, $email_subject, $email_message, $headers); 
 
-            $this->vista("header/header_SoloEstilos"); 
+            $this->vista("header/header_SinMembrete"); 
             $this->vista("view/ajax/nuevoComentario_V", $Datos); 
         }
 
@@ -267,7 +267,7 @@
             // echo "</pre>";          
             // exit();
 
-            $this->vista("header/header_SoloEstilos");
+            $this->vista("header/header_SinMembrete");
             $this->vista("modal/modal_ResponderComentario",$Datos);
         }
          
@@ -319,7 +319,7 @@
             // echo "</pre>";          
             // exit();
 
-            $this->vista("header/header_SoloEstilos"); 
+            $this->vista("header/header_SinMembrete"); 
             $this->vista("view/archivo_V", $Datos); 
         }
     }

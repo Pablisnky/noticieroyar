@@ -7,9 +7,9 @@
 
         public function consultarArchivoPodCast(){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Podcast, titulo_podcast, nombre_audioPod, imagen_redesSociales
+                "SELECT ID_Podcast, titulo_podcast, locutor, nombre_audioPod, imagen_redesSociales
                  FROM podcast 
-                 ORDER BY fecha_archivoPod
+                 ORDER BY ID_Podcast
                  DESC"
             );
 
@@ -23,7 +23,7 @@
         
         public function consultarArchivoPodCastEspecifico($ID_Podcast){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Podcast, nombre_audioPod, imagen_redesSociales
+                "SELECT ID_Podcast, nombre_audioPod, imagen_redesSociales, titulo_podcast, locutor
                  FROM podcast 
                  WHERE ID_Podcast = $ID_Podcast
                  ORDER BY fecha_archivoPod
@@ -36,6 +36,5 @@
             else{
                 return false;
             }
-        }
-        
+        }        
     }

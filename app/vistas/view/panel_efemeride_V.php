@@ -1,7 +1,7 @@
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
-    <div style="margin-left: 20%;">
+    <div class="cont_panel--main">
         <fieldset class="fieldset_1" id="Rowcipales"> 
         <!-- ICONO AGREGAR -->
         <a href="<?php echo RUTA_URL?>/Panel_C/agregar_efemeride" rel="noopener noreferrer"><img class="cont_modal--agregar Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a> 
@@ -45,6 +45,8 @@
             endforeach  ?>     
         </fieldset>
     </div>
+    
+<script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
     
 <!-- FOOTER -->
 <?php //require(RUTA_APP . '/vistas/footer/footer.php');?>

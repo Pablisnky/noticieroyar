@@ -44,45 +44,27 @@
         }  
         
         //Invocado desde E_Clasificados.js por medio de mostrarDetalles()
-        public function productoAmpliado($DatosAgrupados){
-            // echo $DatosAgrupados;
-            
-            //$DatosAgrupados contiene una cadena con el ID_Tienda y el producto separados por coma, se convierte en array para separar los elementos
-            $DatosAgrupados = explode("|", $DatosAgrupados);
-            // echo "<pre>";
-            // print_r($DatosAgrupados);
-            // echo "</pre>";
-            // exit();
-            
-            $ID_EtiquetaAgregar = $DatosAgrupados[0];
-            $Producto = substr($DatosAgrupados[1], 1);
-            $Opcion = substr($DatosAgrupados[2], 1);
-            $PrecioBolivar = substr($DatosAgrupados[3], 1);
-            $Fotografia = substr($DatosAgrupados[4], 1);
-            $ID_Producto = substr($DatosAgrupados[5], 1);
-            $PrecioDolar = substr($DatosAgrupados[6], 1);
-            $Existencia = substr($DatosAgrupados[7], 1);
-            $ID_Suscriptor = substr($DatosAgrupados[8], 1);
-            $Nuevo = substr($DatosAgrupados[9], 1);
-            $Bandera = substr($DatosAgrupados[10], 1);
-            
+        public function productoAmpliado($ID_Producto){
+                      
+            //CONSULTA la informacion del producto seleccionado
+            $Producto = $this->ConsultaClasificados_M->consultarCaracterisicaProductoEsp($ID_Producto);
+                        
             //CONSULTA las imagenes del producto seleccionado
             $Imagenes = $this->ConsultaClasificados_M->consultarImagenesProducto($ID_Producto);
-
+            
+            //CONSULTA informacion del vendedor
+            $Vendedor =$this->InformacionSuscriptor->index($Producto['ID_Suscriptor']);
+           
             $Datos=[ 
-                'ID_Suscriptor' => $ID_Suscriptor,
-                'Suscriptor' => $this->InformacionSuscriptor->index($ID_Suscriptor),
                 'Producto' => $Producto,
-                'Opcion' => $Opcion,
-                'PrecioBolivar' => $PrecioBolivar,
-                'PrecioDolar' => $PrecioDolar,
-                'Existencia' => $Existencia,
-                'Fotografia_1' => $Fotografia,
-                'ID_Producto' => $ID_Producto, 
-                'ID_EtiquetaAgregar' => $ID_EtiquetaAgregar, 
                 'Imagenes' => $Imagenes,
-                'Nuevo' => $Nuevo,
-                'Bandera' => $Bandera
+                'nombreSuscriptor' => $Vendedor['nombreSuscriptor'],
+                'apellidoSuscriptor' => $Vendedor['apellidoSuscriptor'],
+                'municipioSuscriptor' => $Vendedor['municipioSuscriptor'],
+                'parroquiaSuscriptor' => $Vendedor['parroquiaSuscriptor'],
+                'telefonoSuscriptor' => $Vendedor['telefonoSuscriptor'], 
+                'pseudonimoSuscripto' => $Vendedor['pseudonimoSuscripto'], 
+                'Bandera' => 'Desde_Clasificados'
             ];      
 
             // echo "<pre>";
