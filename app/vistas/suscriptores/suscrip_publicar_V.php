@@ -34,11 +34,13 @@ if(!empty($_SESSION["Publicar"])){
 
                     <div>
                         <!-- PRODUCTO -->
-                        <textarea class="textarea_1 borde_1 borde_2" name="producto" id="ContenidoPro" placeholder="Producto" tabindex="1" onkeydown="blanquearInput('ContenidoPro')"></textarea>
+                        <label class="login_cont--label">Producto</label>
+                        <textarea class="textarea_1 borde_1 borde_2" name="producto" id="ContenidoPro"  tabindex="1" onkeydown="blanquearInput('ContenidoPro')"></textarea>
                         <input class="contador" type="text" id="ContadorPro" value="50" readonly/>
 
                         <!-- DESCRIPCION -->
-                        <textarea class="textarea_1 textarea_4 borde_1 borde_2" name="descripcion" id="ContenidoDes"  placeholder="Descripción" tabindex="2" onkeydown="blanquearInput('ContenidoDes')"></textarea>
+                        <label class="login_cont--label">Descripcion</label>
+                        <textarea class="textarea_1 textarea_4 borde_1 borde_2" name="descripcion" id="ContenidoDes" tabindex="2" onkeydown="blanquearInput('ContenidoDes')"></textarea>
                         <input class="contador" type="text" id="ContadorDes" value="100" readonly/>
 
                         <!-- PRECIO -->                    
@@ -58,7 +60,8 @@ if(!empty($_SESSION["Publicar"])){
                         
                         <!-- CANTIDAD EN EXISTENCIA -->
                         <div id="Contenedor_152">
-                            <input class="placeholder placeholder_2 placeholder_4 borde_1 borde_2" type="text" name="cantidad" id="Cantidad" placeholder="Unidades en existencia">
+                            <label class="login_cont--label">Existencia</label>
+                            <input class="placeholder placeholder_2 placeholder_4 borde_1 borde_2" type="text" name="cantidad" id="Cantidad">
                         </div>  
                         <br>
                         

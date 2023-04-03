@@ -3,12 +3,10 @@
 <div class="cont_panel--menu" id="MenuResponsive">
     <div class="cont_panel--div-1"> 
         <h1 class="cont_panel--h"><?php echo $Datos["nombre"] . " ". $Datos["apellido"]?></h1>
-        <h2 class="cont_panel--h"><?php echo $Datos["Pseudonimmo"]?></h2>
-        <!-- <h3 class="cont_panel--h"><?php //echo $Datos["telefono"]?></h2> -->
     </div>          
     
     <ul class="cont_panel--ul">
-        <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Suscriptor_C/dashboard">Inicio</a></li>
+        <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/CuentaComerciante_C/dashboard">Inicio</a></li>
         <li><a class="cont_panel--li" href="#">Comentarios</a></li>
         <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Denuncias</a></li>
         <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Noticias guardadas</a></li>

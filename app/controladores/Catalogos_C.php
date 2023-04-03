@@ -31,6 +31,7 @@
             // print_r($DolarHoy);
 
             $Datos=[
+                'ID_Suscriptor' => $ID_Suscriptor,
                 'productos' => $Productos, //ID_Producto, ID_Suscriptor, producto, nombre_img, opcion, precioBolivar, precioDolar, cantidad, disponible
                 'pseudonimoSuscripto' => $PseudonimoSuscripto,
                 'dolarHoy' =>  $this->PrecioDolar->index()
@@ -41,7 +42,7 @@
             // echo "</pre>";
             // exit();
             
-            $this->vista("header/header_Catalogo"); 
+            $this->vista("header/header_Catalogo", $Datos); 
             $this->vista("view/catalogos_V", $Datos); 
         }  
 

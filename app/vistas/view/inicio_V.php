@@ -7,11 +7,10 @@
     foreach($Datos['datosNoticia'] as $Key) :  ?>
         <div class="cont_portada--noticia">
             <div class="tarjeta" id="Tarjeta_<?php echo $Iterador?>">
-                <div class="borde_1" id="adelante_<?php echo $Iterador?>">
+                <div class="borde_1 borde_3" id="adelante_<?php echo $Iterador?>">
+
                     <!-- IMAGEN -->
-                    <!-- <div class="cont_portada--imagen Default_pointer">                         -->
-                        <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
-                    <!-- </div> -->
+                    <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
                     
                     <div class="cont_portada--tituloResumen">
                         <!-- TITULAR -->
@@ -109,14 +108,12 @@
         <!-- BOTONES DEL PANEL FRONTAL (solo en dispositivos moviles)-->	
         <div class="cont_portada--botones">
             <div>
-                <!-- <a class="boton boton--altoDosLinneas" href="<?php //echo RUTA_URL . '/Contraloria_C';?>">Contraloría social</a> -->
                 <img class="Default_pointer" style="text-align: center; display:block; margin: auto; font-size: 2em;" onclick="Llamar_NoticiaAnterior('<?php echo $Key['ID_Noticia'];?>')" src="<?php echo RUTA_URL . '/public/iconos/chevronIzquierdo/outline_arrow_back_ios_new_black_24dp.png'?>"/>
             </div>
             <div>
                 <label class="boton"><a class="Default_font--white" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
             </div>         
             <div>
-                <!-- <a class="boton boton--altoDosLinneas" href="<?php //echo RUTA_URL . '/GaleriaArte_C';?>">Galeria de arte regional</a> -->
                 <img class="Default_pointer" style="text-align: center; display:block; margin: auto; font-size: 2em;" onclick="Llamar_NoticiaPosterior('<?php echo $Datos['datosNoticia'][0]['ID_Noticia'];?>')"src="<?php echo RUTA_URL . '/public/iconos/chevronDerecha/outline_arrow_forward_ios_black_24dp.png'?>"/>
             </div>
         </div>         

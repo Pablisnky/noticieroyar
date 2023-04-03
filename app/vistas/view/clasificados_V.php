@@ -1,6 +1,7 @@
 <section class="section_9" id="Section_3"> 
     <div class="contenedor_90">       
         <h1 class="h1_1">Clasificados</h1> 
+        <br>
         <h3 class="h3_1 bandaAlerta">Periodo de prueba (simulación)</h3>
     </div>
     <form id="Formulario"> 

@@ -31,11 +31,11 @@
     }   ?>
     
     <section>
-
-        <!-- MEMBRETE FIJO -->        
-        <a class="header__titulo--detalleProducto" href="<?php echo RUTA_URL . '/Inicio_C';?>">www.NoticieroYaracuy.com</a> 
-        <label class="header__subtitulo--detalleProducto">Clasificados</label>
-
+        <!-- MEMBRETE FIJO -->  
+        <header>      
+            <a class="header__titulo--detalleProducto" href="<?php echo RUTA_URL . '/Inicio_C';?>">www.NoticieroYaracuy.com</a> 
+            <label class="header__subtitulo--detalleProducto">Clasificados</label>
+        </header>
 
         <div class="contenedor_122"> 
             <div class="contGridUna">

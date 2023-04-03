@@ -53,28 +53,26 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                         </div> -->
                     </div>
                 
-                    <div>
+                    <div class="cont_suscrip--editar">
                         <!-- PRODUCTO -->
-                        <label>Producto</label>
-                        <textarea class="textarea_1 borde_1" name="producto" id="ContenidoPro"><?php echo $Producto;?></textarea>
+                        <label class="default_bold">Producto</label>
+                        <textarea class="textarea_1 borde_1 borde_2" name="producto" id="ContenidoPro"><?php echo $Producto;?></textarea>
                         <input class="contador" type="text" id="ContadorPro" value="50"/>
 
                         <!-- DESCRIPCION -->
-                        <label>Descripcion</label>
-                        <textarea class="textarea_1 borde_1" name="descripcion" id="ContenidoDes"><?php echo $Opcion;?></textarea>
+                        <label class="default_bold">Descripcion</label>
+                        <textarea class="textarea_1 borde_1 borde_2" name="descripcion" id="ContenidoDes"><?php echo $Opcion;?></textarea>
                         <input class="contador" type="text" id="ContadorDes" value="500"/>
 
                         <!-- PRECIO -->
-                        <label>Precio de venta</label>            
-                        <br>
                         <div style="display: flex;">
                             <div>
-                                <label>Bs.</label><br>
-                                <input class="placeholder placeholder_2 placeholder_5 borde_1" type="text" name="precioBolivar" id="PrecioBolivar" value="<?php echo $PrecioBolivar;?>"/>
+                                <label class="default_bold">Bs.</label><br>
+                                <input class="placeholder placeholder_2 placeholder_5 borde_1 borde_2" type="text" name="precioBolivar" id="PrecioBolivar" value="<?php echo $PrecioBolivar;?>"/>
                             </div>
                             <div>
-                                <label>$</label><br>
-                                <input class="placeholder placeholder_2 placeholder_5 borde_1" type="text" name="precioDolar" id="PrecioDolar" value="<?php echo $PrecioDolar;?>"/>
+                                <label class="default_bold">$</label><br>
+                                <input class="placeholder placeholder_2 placeholder_5 borde_1 borde_2" type="text" name="precioDolar" id="PrecioDolar" value="<?php echo $PrecioDolar;?>"/>
                             </div>
                         </div> 
                         <small class="small_1">El sistema realiza automaticamente la conversión Bolivar / Dolar según BCV. <strong class="strong_1">( $ 1 = Bs. <?php echo number_format($Datos['dolarHoy'], 2, ",", ".");?>)</strong></small>
@@ -83,8 +81,8 @@ if(!empty($_SESSION["ID_Suscriptor"])){
 
                         <!-- CANTIDAD EN EXISTENCIA -->
                         <div id="Contenedor_152">
-                            <label>Unidades cargadas</label>                       
-                                <input class="placeholder placeholder_2 placeholder_4 borde_1" type="text" name="uni_existencia" id="Cantidad" value="<?php echo $Cantidad;?>">   
+                            <label class="default_bold">Unidades cargadas</label>                       
+                                <input class="placeholder placeholder_2 placeholder_4 borde_1 borde_2" type="text" name="uni_existencia" id="Cantidad" value="<?php echo $Cantidad;?>">   
                         </div>  
                     </div>  
                 </div>
@@ -105,6 +103,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
     <!-- div alimentado desde Secciones_Ajax_V.php con la seccion que el usuario cargó en su cuenta  -->       
     <div id="Contenedor_80"></div> 
 
+    <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v=' . rand();?>"></script>
     <script src="<?php echo RUTA_URL . '/public/javascript/E_Suscrip_editar_prod.js?v=' . rand();?>"></script> 
 
     <script> 

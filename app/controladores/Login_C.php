@@ -219,8 +219,8 @@
                         $Datos = [                            
                             'nombre' => $Nombre,
                             'apellido' => $Apellido,
-                            'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
-                            'telefono' => $Suscriptor[0]['telefonoSuscriptor']
+                            // 'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
+                            // 'telefono' => $Suscriptor[0]['telefonoSuscriptor']
                         ];
 
                         // echo '<pre>';

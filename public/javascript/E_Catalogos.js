@@ -1,4 +1,4 @@
-document.getElementById("Cerrar").addEventListener('click', cerrarRegresar, false)
+// document.getElementById("Cerrar").addEventListener('click', cerrarRegresar, false)
 
 //************************************************************************************************
   

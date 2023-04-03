@@ -36,8 +36,7 @@
 			<label class="header__titulo">Noticiero Yaracuy</label>
 
 			<!-- FECHA -->
-			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
-			
+			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>			
 		</header>
 		
 		<!-- MEMBRETE DESPLAZANTE -->

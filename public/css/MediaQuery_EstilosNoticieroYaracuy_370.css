@@ -7,9 +7,6 @@
 		overflow-y: hidden; 
 		overflow-x: hidden;
 	} 
-	.borde_1{
-		border-color: white;
-	}	
 	.p_1{
 	   text-align: justify;
 		font-size: 1.2em;
@@ -777,10 +774,6 @@
 }.header__subtitulo--catalogo{
 	display: none;
 }
-
-.cont_catalogos--membrete--2{
-	margin-top: 7%;
-}
 .h1_1--catalogo{
 	font-size: 1.2em;
 }
@@ -842,5 +835,162 @@
 	max-height: 140px;
 	column-gap: 1%; /*espacio entre columnas*/
 	margin-bottom: 15%;
+}
+/* *************************************************************************************************** */
+/* *************************************************************************************************** */
+/* *************************************************************************************************** */
+.cont_panel--menu{
+	background-color: rgba(0, 0, 0, 0.9);
+	/* margin-top: -120%; */
+	margin-top: -250%; /*oculta el menu responsive*/
+	position: absolute;
+	top: 0%;
+	width: 100%;
+	height: 100vh;
+	/* z-index: 1 !important; */
+	padding-left: 1%;
+	transition: 0.6s;
+}
+.cont_suscriptor{
+	margin-top: 20%; 
+	margin-left: 2.5%;
+	width: 95%;
+}
+.Panel_menu--iconoHamburguesa{
+	/* background-color: red;
+	display: block;
+	position: absolute;
+	top: 1%;
+	left: 3%;
+	width: 1.8em !important;
+	z-index: 2; */
+}
+.cont_panel--li{
+   color: white;
+}
+.cont_panel--h{
+   color: white;
+   font-size: 1em;
+   line-height: 30px;
+   padding-left: 5%;
+}
+.cont_suscrip_productos{
+	width: 100%;
+	margin: auto;
+	margin-left: 0%;
+	padding-top: 18%; 
+}
+.cont_suscrip_productos-13{
+	margin-top: 5%;
+}
+.cont_modal--agregar{
+   top: 1.5%;
+   right: 5%;
+   width: 2em;	
+}	
+.cont_modal--agegar--movil{
+	position: absolute;
+	top: 3%; 
+	z-index: 0;
+}
+.cont_suscrip_publicar{
+	width: 100%;
+	padding-top: 17%; 
+}
+.contenedor_47{
+	grid-template-columns: 100%;
+	column-gap: 0%;
+}
+.fieldset_1{
+	font-size: 1em;
+}
+.contenedor_119__img{
+	height: 170px;
+}
+.boton--largo{
+	text-align: center;
+	width: 60%;
+}
+.textarea_1{
+	width: 100%;
+}
+.h2_9{
+	width: 100%;
+	font-size: 1.3em;
+	text-align: left;
+	padding-left: 5%;
+}
+.cont_panel--main{
+	margin-left: 0%;
+	width: 100%;
+	margin-top: 20%;s
+}
+.cont_noticiasGenerales{
+   margin-left: 0%; 
+   width: 100%;
+}
+.borde_3{
+	border-color: white;
+}
+.tapa-logo{
+	display: block;
+	width: 80%; 
+	margin-left: 100%;/*oculta el menu responsive*/
+	position: fixed;
+	top: 90% !important;
+	transition: all 0.5s;
+}
+.cont_panel--li{
+	color: white;
+}
+.contenedor_96{
+	float: right;
+	margin-right: 10% ;
+	justify-content: space-between;
+}
+.contenedor_95--producto{
+	width: 98%;
+	margin: auto;
+	margin-bottom: 10% ;
+	max-height: 170px;
+}
+.cont_catalogos{
+	display: block;
+	width: 100%;
+	height: 80px!important;
+}
+.cont_catalogos--membrete--1{
+	margin: auto;
+	width: 100%;
+}
+.cont_catalogos--membrete--2{
+	width: 100%;
+	padding-bottom: 2%;
+}
+.cont_catalogos--membrete--3{
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding-right: 0%;
+}
+.header__titulo--catalogo{
+	display: block;
+	font-size: 1.5em;
+	padding-left: initial;
+	width: 100%;
+	text-align: center;
+}
+.cont_catalogos--redesSociales{	
+	top: 40% !important;
+	right: 2%;
+	width: 30%;
+}
+.catalogo-RS{
+	font-size: 1.2em !important;	
+}
+.contenedor_13--anuncio{
+	position: fixed;
+	top: 78px;
+	width: 100%;
 }
 }

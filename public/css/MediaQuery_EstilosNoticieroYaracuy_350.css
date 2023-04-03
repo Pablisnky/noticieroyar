@@ -783,22 +783,14 @@
 }
 .header__subtitulo--detalleProducto{
 	position: fixed;
-	top: 4%;
+	top: 3%;
 	left: 0%;
 	z-index: 2;
 	font-size: 1.3em;
-	padding-left: 2%;
+	padding: 2% 0% 1% 2%;
 }
-.header__titulo--catalogo{
-	display: inline;
-	font-size: 1.5em;
-	padding-left: 4%;
-	font-family: Gruppo;
-}.header__subtitulo--catalogo{
+.header__subtitulo--catalogo{
 	display: none;
-}
-.cont_catalogos--membrete--2{
-	margin-top: 7%;
 }
 .h1_1--catalogo{
 	font-size: 1.2em;
@@ -841,20 +833,9 @@
 	margin-right: 5px; 
 	display: inline
 }
-.contenedor_95{
-	margin: auto;
-	width: 100%;
-	margin-bottom: 15% ;
-	column-gap: 2%; /*espacio entre columnas*/
-}
-
-
-
-
-
-
-
-
+/* *************************************************************************************************** */
+/* *************************************************************************************************** */
+/* *************************************************************************************************** */
 .cont_panel--menu{
 	background-color: rgba(0, 0, 0, 0.9);
 	/* margin-top: -120%; */
@@ -894,7 +875,7 @@
 	width: 100%;
 	margin: auto;
 	margin-left: 0%;
-	padding-top: 23%; 
+	padding-top: 18%; 
 }
 .cont_suscrip_productos-13{
 	margin-top: 5%;
@@ -906,6 +887,7 @@
 }	
 .cont_modal--agegar--movil{
 	position: absolute;
+	top: 2.5%; 
 	z-index: 0;
 }
 .cont_suscrip_publicar{
@@ -944,11 +926,77 @@
    margin-left: 0%; 
    width: 100%;
 }
-/* .hr--panel{
-	margin: 2%;
-	width: 60%;
-} */
-/* .header--menu--panel{
-	display: none;
-} */
+.borde_3{
+	border-color: white;
+}
+.tapa-logo{
+	display: block;
+	width: 80%; 
+	margin-left: 100%;/*oculta el menu responsive*/
+	position: fixed;
+	top: 90% !important;
+	transition: all 0.5s;
+}
+.cont_panel--li{
+	color: white;
+}
+.contenedor_96{
+	float: right;
+	margin-right: 10% ;
+	justify-content: space-between;
+}
+.contenedor_95--producto{
+	width: 98%;
+	margin: auto;
+	margin-bottom: 7% ;
+}
+.contenedor_95{
+	margin: auto;
+	width: 100%;
+	max-height: 140px;
+	column-gap: 1%; 
+	margin-bottom: 15%;
+}	
+.cont_suscrip--editar{
+	margin-top: 5%;
+}
+.cont_catalogos{
+	display: block;
+	width: 100%;
+	height: 80px!important;
+}
+.cont_catalogos--membrete--1{
+	margin: auto;
+	width: 100%;
+}
+.cont_catalogos--membrete--2{
+	width: 100%;
+	padding-bottom: 2%;
+}
+.cont_catalogos--membrete--3{
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding-right: 0%;
+}
+.header__titulo--catalogo{
+	display: block;
+	font-size: 1.5em;
+	padding-left: initial;
+	width: 100%;
+	text-align: center;
+}
+.cont_catalogos--redesSociales{	
+	top: 40% !important;
+	right: 2%;
+	width: 30%;
+}
+.catalogo-RS{
+	font-size: 1.2em !important;	
+}
+.contenedor_13--anuncio{
+	position: fixed;
+	top: 78px;
+	width: 100%;
+}
 }

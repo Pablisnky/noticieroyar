@@ -1,37 +1,46 @@
+<!-- CARGA SDK FONTAWESONE PARA ICONOS DE REDES SOCIALES -->
+<script src="https://kit.fontawesome.com/2d6db4c67d.js" crossorigin="anonymous"></script>
+
 <section class="section_9" id="Section_3"> 
-    
-    <!-- ICONO REGRESAR -->
-    <!-- <img class="cont_modal--cerrar  Default_pointer" style="width: 1em; z-index:2; position:fixed" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="javascript: history.go(-1)"/> -->
-    
-    <div class="cont_catalogos">  
-        <div class="cont_catalogos--membrete">     
-            <a class="header__titulo--catalogo" href="<?php echo RUTA_URL . '/Inicio_C';?>">www.NoticieroYaracuy.com</a> 
-            <label class="header__subtitulo--catalogo">Clasificados</label>
-        </div> 
-        <div class="cont_catalogos--membrete--2">
-            <h1 class="h1_1 h1_1--catalogo">Catalogo <br><?php echo $Datos['pseudonimoSuscripto'];?></h1>  
-            <h3 class="h3_1 bandaAlerta">Periodo de prueba (simulación)</h3>
-        </div>
+       
+    <header>
+        <div class="cont_catalogos">  
+
+            <div class="cont_catalogos--membrete--1">     
+                <a class="header__titulo--catalogo" href="<?php echo RUTA_URL . '/Inicio_C';?>">www.NoticieroYaracuy.com</a> 
+                <br class="Default_quitarMovil">
+                <label class="header__subtitulo--catalogo">Clasificados</label>
+            </div> 
+
+            <div class="cont_catalogos--membrete--2">
+                <h1 class="h1_1 h1_1--catalogo"><b>Catalogo:</b> <br class="Default_quitarMovil"><?php echo $Datos['pseudonimoSuscripto'];?></h1> 
+            </div>
                  
-        <!-- COMPARTIR REDES SOCIALES -->
-        <div class="cont_catalogos--redesSociales">
+            <!-- COMPARTIR REDES SOCIALES Default_quitarMovil-->
+            <div class="cont_catalogos--membrete--3">
+                <!-- FACEBOOK -->
+                <div class="cont_catalogos--iconos">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Catalogos_C/index/<?php echo $Datos['ID_Suscriptor'];?>" target="_blank"><i class="fa-brands fa-facebook-f fa-sm catalogo-RS"></i></a>
+                </div>        
+                
+                <!-- TWITTER -->
+                <div class="cont_catalogos--iconos">
+                    <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Catalogos_C/index/<?php echo $Datos['ID_Suscriptor'];?>" target="_blank"><i class="fa-brands fa-twitter catalogo-RS"></i></a>
+                </div>          
 
-            <!-- FACEBOOK -->
-            <div class="detalle_cont--red">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Catalogos_C/index/<?php echo $Datos['productos'][0]['ID_Suscriptor'];?>&text=<?php echo $Datos['pseudonimoSuscripto'];?>" target="_blank"><img class="detalle_cont--redesSociales-facebook; icono--face" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
-            </div>        
-            
-            <!-- TWITTER -->
-            <div class="detalle_cont--red">
-                <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Catalogos_C/index/<?php echo $Datos['productos'][0]['ID_Suscriptor'];?>&text=<?php echo $Datos['pseudonimoSuscripto'];?>" target="_blank"><img class="detalle_cont--redesSociales-twitter" alt="twitter" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a>
-            </div>          
+                <!-- WHATSAPP -->
+                <div class="cont_catalogos--iconos">
+                    <a href="whatsapp://send?text=<?php echo 'Catalogo ' . $Datos['pseudonimoSuscripto']?>&nbsp;<?php echo RUTA_URL?>/Catalogos_C/index/<?php echo $Datos['ID_Suscriptor'];?>" data-action="share/whatsapp/share"><i class="fa-brands fa-whatsapp catalogo-RS"></i></a>
+                </div>    
+            </div>  
+        </div>
+    </header>
+    <!-- <div class=""> -->
+        <h3 class="contenedor_13--anuncio h3_1 bandaAlerta">Periodo de prueba (simulación)</h3>
+    <!-- </div> -->
 
-            <!-- WHATSAPP -->
-            <div class="whatsapp detalle_cont--red">
-                <a href="whatsapp://send?text=<?php echo $Datos['pseudonimoSuscripto']?>&nbsp;<?php echo RUTA_URL?>/Catalogos_C/index/<?php echo $Datos['productos'][0]['ID_Suscriptor'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp icono--what" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
-            </div>            
-        </div> 
-    </div>
+
+
     <form id="Formulario"> 
         <div class="contenedor_13 contenedor_13--marginTop" id="Contenedor_13Js"> 
             <?php   

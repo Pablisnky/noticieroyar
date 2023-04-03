@@ -31,7 +31,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                 $FotoPrincipal = $arr['nombre_img'];
 
                 ?>              
-                <div class="contenedor_95 borde_1" id="<?php echo 'Cont_Producto_' . $Contador;?>">
+                <div class="contenedor_95 contenedor_95--producto borde_1" id="<?php echo 'Cont_Producto_' . $Contador;?>">
                  
                     <!-- IMAGEN PRINCIPAL -->
                     <div class="contenedor_9 contenedor_9--pointer">
@@ -41,7 +41,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                     </div>
 
                     <!-- PRODUCTO -->
-                    <div id="<?php echo 'ContenedorProducto_' . $Contador?>>
+                    <div id="<?php echo 'ContenedorProducto_' . $Contador?>">
                         <label class="input_8 input_8D" id="<?php echo 'EtiquetaProducto_' . $Contador;?>"><?php echo $Producto;?></label>
 
                         <!-- OPCION -->                        
@@ -69,7 +69,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                         <div class="contenedor_96" id="<?php echo $ID_Producto?>">                
                             <a class="a_9" href="<?php echo RUTA_URL?>/CuentaComerciante_C/actualizarProducto/<?php echo $ID_Producto;?>,<?php echo $Opcion;?>">Actualizar</a>
                             
-                            <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick =  "EliminarProducto('<?php echo $ID_Producto;?>','<?php echo $ID_Opcion?>')">Eliminar</label>
+                            <label style="color: blue;" class="Default_pointer" onclick =  "EliminarProducto('<?php echo $ID_Producto;?>','<?php echo $ID_Opcion?>')">Eliminar</label>
                         </div>
                     </div>
                 </div>

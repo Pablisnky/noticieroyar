@@ -28,8 +28,8 @@
             $Datos = [                         
                 'nombre' => $Suscriptor['nombreSuscriptor'],
                 'apellido' => $Suscriptor['apellidoSuscriptor'],
-                'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
-                'telefono' => $Suscriptor['telefonoSuscriptor']
+                // 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
+                // 'telefono' => $Suscriptor['telefonoSuscriptor']
             ];
 
             // echo '<pre>';
