@@ -12,10 +12,6 @@
 	text-align: right;
 	padding-right: 5%;
 }
-.body_1{
-	overflow-y: hidden; 
-	overflow-x: hidden;
-}
 .br_1{
 	margin-bottom: 20%;
 }
@@ -1023,5 +1019,13 @@
 .cont_suscriptor--h1{
 	font-size: 1.2em;
 	margin-top: 2%;
+}
+.boton--corto{
+	/* font-size: 2em!important; */
+	width: 100px;
+}
+.body_1{
+	overflow-y: hidden; 
+	overflow-x: hidden;
 }
 }
