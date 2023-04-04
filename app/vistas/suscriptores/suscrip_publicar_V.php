@@ -17,7 +17,6 @@ if(!empty($_SESSION["Publicar"])){
     <div class="cont_suscrip_publicar">  
         <form action="<?php echo RUTA_URL; ?>/CuentaComerciante_C/recibeProductoPublicar" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarPublicacion()">
 
-            <a id="Ancla_01" class="ancla_1"></a>
             <fieldset class="fieldset_1 fieldset_3"> 
                 <legend class="legend_1">Cargar producto</legend>
                 <div class="contenedor_47">    
@@ -35,12 +34,14 @@ if(!empty($_SESSION["Publicar"])){
                     <div>
                         <!-- PRODUCTO -->
                         <label class="login_cont--label">Producto</label>
-                        <textarea class="textarea_1 borde_1 borde_2" name="producto" id="ContenidoPro"  tabindex="1" onkeydown="blanquearInput('ContenidoPro')"></textarea>
+                        <textarea class="textarea_1 borde_1 borde_2" name="producto" id="ContenidoPro"  tabindex="1" ></textarea>
+                        <!-- CONTADOR PRODUCTO -->
                         <input class="contador" type="text" id="ContadorPro" value="50" readonly/>
 
                         <!-- DESCRIPCION -->
                         <label class="login_cont--label">Descripcion</label>
-                        <textarea class="textarea_1 textarea_4 borde_1 borde_2" name="descripcion" id="ContenidoDes" tabindex="2" onkeydown="blanquearInput('ContenidoDes')"></textarea>
+                        <textarea class="textarea_1 textarea_4 borde_1 borde_2" name="descripcion" id="ContenidoDes" tabindex="2"></textarea>
+                        <!-- CONTADOR DESCRIPCION -->
                         <input class="contador" type="text" id="ContadorDes" value="100" readonly/>
 
                         <!-- PRECIO -->                    

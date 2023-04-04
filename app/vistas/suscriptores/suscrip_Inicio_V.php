@@ -1,16 +1,39 @@
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/suscriptores/panel_suscrip_V.php');?>
     
-<div class="cont_suscriptor"> 
-    <p>Aqui encontraras los registros de tu actividad dentro de la plataforma:</p>
-    <ul>
-        <li>Denuncias realizadas</li>
-        <li>Comentarios emitidos</li>
-        <li>Noticias guardadas</li>
-        <li>Contratar servicio de directorio y publicidad</li>
-    </ul>
-    <p>entre otras funcionalidades que iremos anexado progresivamente</p>
-</div>
 
+<div class="cont_suscriptor"> 
+    <a class="cont_suscriptor--item borde_1" href="#" rel="noopener noreferrer">
+        <div class="contenedor_27">
+            <h1 class="cont_suscriptor--h1">Problemas reportados</h1>
+            <label class="label_5">0</label>
+            <!-- <label class="label_3">Municipio San Felipe - Yaracuy</label> -->
+        </div>       
+    </a>
+
+    <a class="cont_suscriptor--item borde_1" href="#" rel="noopener noreferrer">
+        <div class="contenedor_27">
+            <h1 class="cont_suscriptor--h1">Comentarios realizados</h1>
+            <label class="label_5">0</label>
+            <!-- <label class="label_3">Municipio San Felipe - Yaracuy</label> -->
+        </div>       
+    </a>
+
+    <a class="cont_suscriptor--item borde_1" href="#">
+        <div class="contenedor_27">
+            <h1 class="cont_suscriptor--h1">Noticias guardadas</h1>
+            <label class="label_5">0</label>
+            <!-- <label class="label_3">Municipio San Felipe - Yaracuy</label> -->
+        </div>
+    </a>
+
+    <a class="cont_suscriptor--item borde_1" href="<?php echo RUTA_URL . '/CuentaComerciante_C/Productos'?>" rel="noopener noreferrer">
+        <div class="contenedor_27">
+            <h1 class="cont_suscriptor--h1">Clasificados publicados</h1>
+            <label class="label_5"><?php echo $Datos['clasificados']['cantidadAnncios'];?></label>
+            <!-- <label class="label_3">Municipio San Felipe - Yaracuy</label> -->
+        </div>
+    </a>
+</div>
 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v=' . rand();?>"></script>      

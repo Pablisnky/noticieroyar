@@ -12,9 +12,9 @@ document.getElementById("ContenidoPro").addEventListener('keydown', function(){c
 
 document.getElementById("ContenidoPro").addEventListener('keydown', function(){valida_LongitudDes(50,'ContenidoPro')}, false)
 
-document.getElementById("ContenidoDes").addEventListener('keydown', function(){contarCaracteres('ContadorDes','ContenidoDes', 500)}, false)
+document.getElementById("ContenidoDes").addEventListener('keydown', function(){contarCaracteres('ContadorDes','ContenidoDes', 100)}, false)
 
-document.getElementById("ContenidoDes").addEventListener('keydown', function(){valida_LongitudDes(500,'ContenidoDes')}, false)  
+document.getElementById("ContenidoDes").addEventListener('keydown', function(){valida_LongitudDes(100,'ContenidoDes')}, false)  
 
 document.getElementById("ContenidoDes").addEventListener('keydown', function(){autosize('ContenidoDes')}, false)
 // document.addEventListener("keydown", contarDes, false); 
@@ -36,10 +36,38 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
 // }, false);
 
 //************************************************************************************************
-    //Llamada desde cuenta_publicar_V.php
-    function mostrarSecciones(){
-        document.getElementById("Ejemplo_Secciones").style.display = "grid"
-    }   
+    //Muestra la cantidad de caracteres que quedan mientras se escribe
+    function contarCaracteres(ID_Contador, ID_Contenido, Max){
+        // console.log("______Desde contarCaracteres()______", ID_Contador + " / " + ID_Contenido + " / " + Max) 
+        var max = Max; 
+        var cadena = document.getElementById(ID_Contenido).value; 
+        var longitud = cadena.length; 
+
+        if(longitud <= max) { 
+            document.getElementById(ID_Contador).value = max-longitud; 
+        } else { 
+            document.getElementById(ID_Contador).value = cadena.subtring(0, max);
+        } 
+    } 
+
+//************************************************************************************************ 
+    //Impide que se sigan introduciendo caracteres al alcanzar el limite maximo en un elmento; invocado en quienesSomos_V.php - cuenta_publicar_V.php - registroCom_V.php - cuenta_editar_V.php
+    var contenidoControlado = "";    
+    function valida_LongitudDes(Max, ID_Contenido){
+        // console.log("______Desde valida_LongitudDes()______", Max + " / "+ ID_Contenido) 
+                
+        var num_caracteres_permitidos = Max;
+
+        //se averigua la cantidad de caracteres escritos 
+        num_caracteresEscritos = document.getElementById(ID_Contenido).value.length
+
+        if(num_caracteresEscritos > num_caracteres_permitidos){ 
+            document.getElementById(ID_Contenido).value = contenidoControlado; 
+        }
+        else{ 
+            contenidoControlado = document.getElementById(ID_Contenido).value; 
+        } 
+    } 
 
 //************************************************************************************************
     //Realia el cambio de moneda Dolar a Bolivar
@@ -103,6 +131,12 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
     //             document.getElementById("ContenidoDes").value = cadena.subtring(0, max);
     //         } 
     // } 
+  
+//************************************************************************************************
+    //Quita el color de fallo en un input y lo deja en su color original
+    function blanquearInput(id){        
+        document.getElementById(id).style.backgroundColor = "white"
+    }
 
 //************************************************************************************************ 
     //Elimina imagenes previsualizadas
@@ -152,8 +186,8 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
         document.getElementsByClassName("boton")[0].style.color = "var(--OficialOscuro)"
         document.getElementsByClassName("boton")[0].classList.add('borde_1')    
 
-        // //Patron de entrada solo acepta numeros
-        // let P_Numeros = /^[0-9,.]*$/
+        // //Patron de entrada solo acepta numeros y punto
+        let Pat_Numeros = /^[0-9.]*$/
 
         //Patron de entrada para archivos de carga permitidos
         var Ext_Permitidas = /^[.jpg|.jpeg|.png]*$/
@@ -195,7 +229,7 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
             document.getElementsByClassName("boton")[0].classList.remove('borde_1')
             return false;
         }
-        else if(PrecioBs == "" || PrecioBs.indexOf(" ") == 0 || PrecioBs.length > 20){
+        else if(Pat_Numeros.exec(PrecioBs) == false || PrecioBs == "" || PrecioBs.indexOf(" ") == 0 || PrecioBs.length > 20){
             alert ("Introduzca un Precio")
             document.getElementById("PrecioBs").value = ""
             document.getElementById("PrecioBs").focus()
@@ -208,7 +242,7 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
             document.getElementsByClassName("boton")[0].classList.remove('borde_1')
             return false;
         }
-        else if(PrecioDolar == "" || PrecioDolar.indexOf(" ") == 0 || PrecioDolar.length > 20){
+        else if(Pat_Numeros.exec(PrecioDolar) == false || PrecioDolar == "" || PrecioDolar.indexOf(" ") == 0 || PrecioDolar.length > 20){
             alert ("Introduzca un Precio")
             document.getElementById("PrecioDolar").value = ""
             document.getElementById("PrecioDolar").focus()
@@ -221,7 +255,7 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
             document.getElementsByClassName("boton")[0].classList.remove('borde_1')
             return false;
         }
-        else if(Cantidad == "" || Cantidad == 0 || Cantidad.indexOf(" ") == 0 || Cantidad.length > 3){
+        else if(Pat_Numeros.exec(Cantidad) == false || Cantidad == "" || Cantidad == 0 || Cantidad.indexOf(" ") == 0 || Cantidad.length > 3){
             alert ("Introduzca la cantidad de unidades disponibles")
             document.getElementById("Cantidad").value = ""
             document.getElementById("Cantidad").focus()

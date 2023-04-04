@@ -641,9 +641,27 @@
             }
             else{
                 return  'Existe un fallo';
-            }
+            }   
         }
+            
+            //CONSULTA anuncios clasificados de un suscripto
+            public function consultarAnunciosClasificados($ID_Suscriptor){
+                $stmt = $this->dbh->prepare(
+                    "SELECT COUNT(ID_Producto) AS cantidadAnncios
+                    FROM productos  
+                    WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
+                );
 
+                $stmt->bindValue(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_STR);
+                
+                if($stmt->execute()){
+                    return $stmt->fetch(PDO::FETCH_ASSOC);
+                }
+                else{
+                    return false;
+                }
+            }
+    
         
 
 

@@ -41,7 +41,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                                 <img class="contenedor_119__img" id="blah_2" alt="Fotografia de producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $_SESSION['ID_Suscriptor'];?>/productos/<?php echo $ImagenPrincipal;?>"/>
                             </figure>
                         </label>
-                        <input class="Default_ocultar" type="file" name="imagenPrinci_Editar" id="imgInp"/>
+                        <input class="Default_ocultar" type="file" accept="image/*" name="imagenPrinci_Editar" id="imgInp"/>
 
                         <!-- <div class="contInputRadio--carrito">
                             <input class="" type="radio" name="grupo" id="Nuevo" onclick="gestionarClickRadio(this)"/>
@@ -62,7 +62,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                         <!-- DESCRIPCION -->
                         <label class="default_bold">Descripcion</label>
                         <textarea class="textarea_1 borde_1 borde_2" name="descripcion" id="ContenidoDes"><?php echo $Opcion;?></textarea>
-                        <input class="contador" type="text" id="ContadorDes" value="500"/>
+                        <input class="contador" type="text" id="ContadorDes" value="100"/>
 
                         <!-- PRECIO -->
                         <div style="display: flex;">

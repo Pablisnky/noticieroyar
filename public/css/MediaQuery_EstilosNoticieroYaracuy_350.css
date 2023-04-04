@@ -999,4 +999,29 @@
 	top: 78px;
 	width: 100%;
 }
+.contador{
+	margin-left: 87% ;
+	width: 10%;
+}
+
+
+
+
+
+
+
+
+.cont_suscriptor{
+	width: 95%;
+	margin: auto;
+	margin-top: 25%; 
+}
+.cont_suscriptor--item{
+	min-height: 40vw;
+	margin-bottom: 10%;
+}
+.cont_suscriptor--h1{
+	font-size: 1.2em;
+	margin-top: 2%;
+}
 }

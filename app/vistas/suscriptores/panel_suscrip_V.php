@@ -9,7 +9,7 @@
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/CuentaComerciante_C/dashboard">Inicio</a></li>
         <li><a class="cont_panel--li" href="#">Comentarios</a></li>
         <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Denuncias</a></li>
-        <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Noticias guardadas</a></li>
+        <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Noticias</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/CuentaComerciante_C/Productos" rel="noopener noreferrer">Clasificados</a></li>
 
         <li><hr class="hr--panel"></li>

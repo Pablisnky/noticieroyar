@@ -20,17 +20,21 @@
             ocultarErrores();
         }
 
-        // invocado desde el metodo recibeRegistroEditado() en esta misma clase
+        // 
         public function index(){          
             //se consultan la informacion del suscriptor
             $Suscriptor = $this->InformacionSuscriptor->index($this->ID_Suscriptor);
+            
+            //se consultan los anuncios clasificados de un suscriptor
+            $Clasificados = $this->ConsultaCuenta_M->consultarAnunciosClasificados($this->ID_Suscriptor);
 
             $Datos = [                         
                 'nombre' => $Suscriptor['nombreSuscriptor'],
                 'apellido' => $Suscriptor['apellidoSuscriptor'],
-                // 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
+                'clasificados' => $Clasificados,
                 // 'telefono' => $Suscriptor['telefonoSuscriptor']
             ];
+
 
             // echo '<pre>';
             // print_r($Datos);

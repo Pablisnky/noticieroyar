@@ -59,12 +59,14 @@
                     ?>  
                 </div>
 
-                <h1 class="h1_1 h1_1--margin font--bold"><?php echo $Producto?></h1>
-                <h3 class="h1_11 font--center"><?php echo $Opcion?></h3>
+                <div class="cont_detalle_Producto--precio">
+                    <h1 class="h1_1 h1_1--margin font--bold"><?php echo $Producto?></h1>
+                    <h3 class="h1_11 font--center"><?php echo $Opcion?></h3>
+                </div>
 
                 <div class="cont_precio">
                     <label class="label_22 borde_1">Bs. <?php echo $PrecioBolivar?>
-                        <br>
+                        <!-- <br> -->
                         <small class="small_2">$ <?php echo $PrecioDolar?></small>
                     </label>
                 </div>    
