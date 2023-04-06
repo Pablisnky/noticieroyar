@@ -6,14 +6,14 @@
             <!-- Si la página actual es mayor a uno, se muestra el botón para ir una página atrás -->
             <?php if ($Datos['pagina'] > 1) { ?>
                 <li>
-                    <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] - 1;?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevronIzquierdo/outline_arrow_back_ios_new_black_24dp.png'?>"/></a>
+                    <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] - 1;?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_back_ios_new_black_24dp.png'?>"/></a>
                 </li>
             <?php } ?>
 
             <!-- Mostramos enlaces para ir a todas las páginas. -->
             <?php for ($i = 1; $i <= $Datos['paginas']; $i++) { ?>
                 <li class="<?php if ($i == $Datos['pagina']) echo "active";?>, cont_archivo--paginacion-numeros">
-                    <a class="" href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $i;?>"><?php echo $i;?></a>
+                    <a class="Default_pointer" href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $i;?>"><?php echo $i;?></a>
                 </li>
             <?php } ?>
 
@@ -21,7 +21,7 @@
             <!-- Si la página actual es menor al total de páginas, se muestra un botón para ir una página adelante -->
             <?php if ($Datos['pagina'] < $Datos['paginas']) { ?>
                 <li>
-                    <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] + 1 ?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevronDerecha/outline_arrow_forward_ios_black_24dp.png'?>"/></a>
+                    <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] + 1 ?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_black_24dp.png'?>"/></a>
                 </li>
             <?php } ?>
         </ul> 

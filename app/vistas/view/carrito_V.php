@@ -7,7 +7,7 @@
     
     <!-- ICONO REGRESAR -->
     <div class="cont_carrito--regresar">
-        <img class="icono--regresar Default_pointer" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/flechaIzquierda/outline_arrow_back_white_24dp.png'?>" onclick="ocultarPedido()"/>
+        <img class="icono--regresar Default_pointer" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/flecha/outline_arrow_back_white_24dp.png'?>" onclick="ocultarPedido()"/>
     </div>
 
     <!-- ORDEN DE COMPRA -->

@@ -682,9 +682,6 @@ textarea{
 .contGridUna{
 	width: 100%;
 }
-.contenedor_122--imagen{
-	/* height: 50%; */
-}
 .cont_detalle_Producto--informacion{
 	width: 50%;
 	margin: 3% auto;
@@ -1606,8 +1603,8 @@ textarea{
 	flex-wrap: wrap;
 	justify-content: space-around;
     width: 100%;
-	height: 100vh;
-	margin-top: 6%;
+	margin-top: 5%;
+	padding-bottom: 5%;
 }
 .cont_portada--noticia{
 	width: 30%;
@@ -1967,12 +1964,6 @@ textarea{
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
 }
-.loginCarita{
-	/* text-align: center; 
-	display:block; 
-	margin: auto; 
-	font-size: 2em; */
-}
 .login_cont{
 	width: 40%;
 	margin: auto;
@@ -2186,10 +2177,6 @@ textarea{
 	font-size: 0.8em;
 	font-weight: bold;
 }
-.comentario--informacion{
-	/* margin-top: -2%; */
-	
-}
 .Default_font--white{
 	color: white;
 }
@@ -2208,6 +2195,9 @@ textarea{
 }
 .Default_ocultar{
 	display: none; /*No ocupa el espacio en el documento html*/
+}
+.Default_Mostrar{
+	display: block; 
 }
 .Default_invisible{
 	visibility: hidden; /*ocupa el espacio en el documento html*/
@@ -2835,17 +2825,6 @@ ul .menuContenedor_3{
 	width: 75%;
 	margin: auto;
 }
-
-
-
-
-
-
-
-
-
-
-
 .cont_suscriptor{
 	display: flex;
 	flex-wrap: wrap;
@@ -2877,6 +2856,9 @@ ul .menuContenedor_3{
 	font-weight: bold;
 	font-family: 'Raleway', sans-serif;
 	cursor: pointer;
+}
+.cont_portada--flechas{
+	display: none;
 }
 
 

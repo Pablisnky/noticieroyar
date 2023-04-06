@@ -1,6 +1,6 @@
 <div style="display: flex;" id="Obra">	
 	<div style="background-color: black; width: 3%; height: 100vh; position: fixed">
-		<a style="" href="<?php echo RUTA_URL?>/GaleriaArte_C"><img style="background-color: black; display: block; margin-left: 25%; margin-top: 50%"  src="<?php echo RUTA_URL?>/public/iconos/flechaIzquierda/outline_arrow_back_white_24dp.png"/></a>
+		<a style="" href="<?php echo RUTA_URL?>/GaleriaArte_C"><img style="background-color: black; display: block; margin-left: 25%; margin-top: 50%"  src="<?php echo RUTA_URL?>/public/iconos/flecha/outline_arrow_back_white_24dp.png"/></a>
 		<p class="Default--textoVertical" style="padding-bottom: 25px; text-align: left; font-family: 'Moon Dance', cursive; font-size: 2em; color: white;" id="DescripcionArtista"><?php echo $Datos['datosArtistas']['nombreArtista'] . ' ' . $Datos['datosArtistas']['apellidoArtista'];?></p>
 	</div>
 	<div class="cont_obras" id="ContObras">
@@ -29,7 +29,7 @@
 <!-- DESCRIPCION DEL ARTISTA -->
 <div class="cont_descripcionArtista" id="VerArtista">
 	<div style="background-color: black; width: 5%; height: 100vh; position: fixed">
-		<img class="Default_pointer" style="color:white; font-size: 2em; margin-top: 2%" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/flechaIzquierda/outline_arrow_back_white_24dp.png'?>"/>
+		<img class="Default_pointer" style="color:white; font-size: 2em; margin-top: 2%" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/flecha/outline_arrow_back_white_24dp.png'?>"/>
 
 		<p class="Default--textoVertical" style="padding-bottom: 35px; text-align: left; font-family: 'Moon Dance', cursive; font-size: 2.2em; color: white;" id="DescripcionArtista"><?php echo $Datos['datosArtistas']['nombreArtista'] . ' ' . $Datos['datosArtistas']['apellidoArtista'];?></p>
 	</div>

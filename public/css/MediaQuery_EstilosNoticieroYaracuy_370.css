@@ -105,12 +105,6 @@
 	.cont_Galeria--img{
 		margin-top: 5%;
 	}
-	.cont_galeria_h1{
-	   background-color: white;
-		font-size: 1.5em;
-		width: 100%;
-		height: 5vh;
-	}
 	.h1--agenda{
 		font-size: 1.9em;
 		margin-top: 20%;
@@ -358,6 +352,7 @@
 	.cont_portada{
 		display: block;
 		margin-top: 13%;
+		height: 100vh;
 	}
 	.cont_portada--noticia{
 		width: 100%;
@@ -856,15 +851,6 @@
 	margin-left: 2.5%;
 	width: 95%;
 }
-.Panel_menu--iconoHamburguesa{
-	/* background-color: red;
-	display: block;
-	position: absolute;
-	top: 1%;
-	left: 3%;
-	width: 1.8em !important;
-	z-index: 2; */
-}
 .cont_panel--li{
    color: white;
 }
@@ -923,11 +909,11 @@
 .cont_panel--main{
 	margin-left: 0%;
 	width: 100%;
-	margin-top: 20%;s
+	margin-top: 20%;
 }
 .cont_noticiasGenerales{
-   margin-left: 0%; 
-   width: 100%;
+	margin-left: 0%;
+	width: 100%;
 }
 .borde_3{
 	border-color: white;
@@ -993,4 +979,78 @@
 	top: 78px;
 	width: 100%;
 }
+.cont_suscriptor{
+	width: 95%;
+	margin: auto;
+	margin-top: 25%; 
+}
+.cont_suscriptor--item{
+	min-height: 40vw;
+	margin-bottom: 10%;
+}
+.cont_suscriptor--h1{
+	font-size: 1.2em;
+	margin-top: 2%;
+}
+.boton--corto{	
+	width: 100px;
+	height: 20px;
+	line-height: 17px;
+}
+.boton_a{
+	font-size: 0.8em;
+}
+.body_1{
+	overflow-y: hidden; 
+	overflow-x: hidden;
+}
+.cont_portada--flechas{
+	position: relative;
+	margin-top: 6%;
+	float: right;
+	height: 14vh;
+	right: 1%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.cont_portada{
+	display: block;
+	margin-top: 15%;
+}
+.cont_portada--noticia{
+	width: 100%;
+	height: 100%;
+	margin-bottom: initial;
+}
+.cont_portada--titular{
+	width: 85%;
+	margin-left: 1%;
+	margin-top: 1%;
+}
+.cont_portada--texto{
+	width: 85%;
+	margin-left: 1%;
+}
+
+
+
+.cont_Galeria--item{	
+	margin: 0 0;
+	margin-bottom: 7%;
+ }
+ .cont_galeria{
+	padding-left: 0%; 
+ }
+ .cont_Galeria--img{
+	width: 100%;
+ }
+ .cont_galeria_h1{
+	background-color: white;
+	 font-size: 1.5em;
+	 width: 100%;
+	 height: 6vh;
+	 line-height: 7vh;
+	 top: 7%;
+ }
 }
