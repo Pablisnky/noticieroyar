@@ -1130,4 +1130,35 @@
 	 line-height: 7vh;
 	 top: 7%;
  }
+
+
+
+
+ 
+
+
+
+
+
+
+.cont_botones_destacados{
+	display: none;
+}
+.cont_header_membrete{
+	width: 100%;
+	margin-right: 0%;
+}
+.header__titulo{
+	font-size: 2.3em;
+	display: block;
+	margin-top: -4%;
+	margin-left: 20%;
+}
+.header__fecha{
+	font-size: 0.9em;
+	position: absolute;
+	bottom: 0pt;
+	left: 55%;
+}
+}
 }

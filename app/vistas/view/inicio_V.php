@@ -6,10 +6,11 @@
     $Iterador = 1;
     foreach($Datos['datosNoticia'] as $Key) :  ?>
         <div class="cont_portada--noticia"  id="Cont_Noticia_<?php echo $Iterador?>">
-            <div class="cont_noticia borde_1 borde_3" id="este_<?php echo $Iterador?>>
+            <div class="cont_noticia borde_1 borde_3" id="este_<?php echo $Iterador?>">
 
                 <!-- IMAGEN -->
-                <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/></a>
+                <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/'. $Key['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/>
+                </a>
                 
                  <!-- BOTONES DE FLECHAS -->
                  <div class="cont_portada--flechas">

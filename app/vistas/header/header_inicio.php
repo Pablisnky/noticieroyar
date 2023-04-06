@@ -38,12 +38,15 @@
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo|Moon+Dance'>
     </head>
 	<body class="body_1">				
-		<header class="header" id="Header">  
-			<div>							
-				<!-- ICONO HAMBURGUESA"-->				
+		<header class="header" id="Header">
+			
+			<!-- ICONO HAMBURGUESA"-->		
+			<div>									
 				<img class="header--menu" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>
+			</div>
 				
-				<!-- BARRA DE NAVEGACION -->
+			<!-- BARRA DE NAVEGACION -->
+			<div>
 				<nav class="header__menuResponsive" id="MenuResponsive">
 					<div class="header--nav">
 						<ul id="MenuContenedor">
@@ -79,19 +82,38 @@
 				</nav>
 			</div>
 
+			<!-- CLASIFICADOS Y EVENTOS -->
+			<div class="cont_botones_destacados">
+				<div>
+					<label class="boton boton--corto"><a class="Default_font--white boton_a" href="<?php echo RUTA_URL . '/Agenda_C';?>">Eventos</a></label> 
+				</div>        
+				<div>
+					<label class="boton boton--corto"><a class="Default_font--white boton_a"" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
+				</div>         
+				<div>
+					<label class="boton boton--corto"><a class="Default_font--white boton_a"" href="<?php echo RUTA_URL . '/Clasificados_C';?>">Clasificados</a></label> 
+				</div>          
+				<div>
+					<label class="boton boton--corto"><a class="Default_font--white boton_a"" href="<?php echo RUTA_URL . '/GaleriaArte_C';?>">Galeria de arte</a></label> 
+				</div>      
+			</div> 
+
 			<!-- MEMBRETE FIJO -->
-			<label class="header__titulo">Noticiero Yaracuy</label>
+			<div class="cont_header_membrete">
+				<label class="header__titulo">Noticiero Yaracuy</label>
+			</div>
 
-			<!-- FECHA -->
-			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
+			<!-- FECHA Y LOGIN-->
+			<div>
+				<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
 
-			<!-- LOGIN -->
-			<?php
-			if(!empty($_SESSION['ID_Suscriptor'])){	?>
-				<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><img src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
 				<?php
-			}	?>
-			
+				if(!empty($_SESSION['ID_Suscriptor'])){	?>
+					<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><img src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
+					<?php
+				}	?>
+			</div>
+			    
 			<!-- BOTON VIDEO PROMOCIONAL -->
 			<!-- <div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
 				<img style="width: 2.5em" id="CerrarVentana" src="<?php //echo RUTA_URL . '/public/iconos/video/outline_videocam_black_24dp.png'?>"/> 
