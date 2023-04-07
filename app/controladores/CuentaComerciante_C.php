@@ -89,105 +89,6 @@
             }            
         }
 
-        //Muestra el formulario de configuración
-        public function Editar(){
-            //CONSULTA los datos de la tienda
-            $DatosTienda = $this->ConsultaCuenta_M->consultarDatosTienda($this->ID_Suscriptor);
-
-            //CONSULTA los datos del responsable de la tienda
-            $DatosResposable = $this->ConsultaCuenta_M->consultarResponsableTienda($this->ID_Afiliado);
-            
-            //Se CONSULTAN el horario de lunes a viernes de la tienda
-            $Horario_LV = $this->ConsultaCuenta_M->consultarHorarioTienda_LV($this->ID_Suscriptor);
-
-            //Se CONSULTAN el horario del dia sábado de la tienda
-            $Horario_Sab = $this->ConsultaCuenta_M->consultarHorarioTienda_Sab($this->ID_Suscriptor);
-
-            //Se CONSULTAN el horario del dia domingo de la tienda
-            $Horario_Dom = $this->ConsultaCuenta_M->consultarHorarioTienda_Dom($this->ID_Suscriptor);
-            
-            //Se CONSULTAN el horario del dia de excepcion de la tienda
-            $Horario_Esp = $this->ConsultaCuenta_M->consultarHorarioTienda_Esp($this->ID_Suscriptor);
-
-            //CONSULTA los datos de cuentas bancarias de la tienda
-            $DatosBancos = $this->ConsultaCuenta_M->consultarBancosTienda($this->ID_Suscriptor);
-
-            //CONSULTA los datos de cuentas pagmovil de la tienda
-            $DatosPagoMovil = $this->ConsultaCuenta_M->consultarCuentasPagomovil($this->ID_Suscriptor);
-
-            //CONSULTA los datos de cuentas Reserve de la tienda
-            $DatosReserve = $this->ConsultaCuenta_M->consultarCuentasReserve($this->ID_Suscriptor);
-
-            //CONSULTA los datos de cuentas Paypal de la tienda
-            $DatosPaypal = $this->ConsultaCuenta_M->consultarCuentasPaypal($this->ID_Suscriptor);
-
-            //CONSULTA los datos de cuentas Zelle de la tienda
-            $DatosZelle = $this->ConsultaCuenta_M->consultarCuentasZelle($this->ID_Suscriptor);
-
-            //CONSULTA otros medios de pago
-            $OtrosPagos = $this->ConsultaCuenta_M->consultarOtrosMediosPago($this->ID_Suscriptor);
-
-            //CONSULTA las categorias en la que la tienda esta registrada
-            $Categoria = $this->ConsultaCuenta_M->consultarCategoriaTienda($this->ID_Suscriptor);
-
-            //CONSULTA las secciones de la tienda
-            $Secciones = $this->ConsultaCuenta_M->consultarSeccionesTienda($this->ID_Suscriptor);
-
-            //Se CONSULTAN el slogan de una tienda en particular
-            $Slogan = $this->ConsultaCuenta_M->consultarSloganTienda($this->ID_Suscriptor);
-
-            //Se CONSULTAN el link de acceso directo de una tienda en particular
-            $Link_Tien = $this->ConsultaCuenta_M->consultarLinkTienda($this->ID_Suscriptor);
-            
-            //Se verifica si existe el link de acceso directo y se crea en caso de no existir
-            if(empty($Link_Tien)): 
-                //Se crea el link de aceso';  
-                $LinkAcceso = RUTA_URL .'/' . $DatosTienda[0]['nombre_Tien'];
-
-                //Se guarda el link de acceso y la url real en la configuración de la tienda
-                //INSERT del link de acceso directo de una tienda en particular
-                $this->ConsultaCuenta_M->insertarLinkTienda($this->ID_Suscriptor, $LinkAcceso);
-
-                //Se CONSULTA el link de acceso directo creado para insertar en el array $Datos
-                $Link_Tien = $this->ConsultaCuenta_M->consultarLinkTienda($this->ID_Suscriptor);
-            endif;
-
-            $Datos = [
-                'datosTienda' => $DatosTienda, //nombre_Tien, estado_Tien, municipio_Tien, parroquia_Tien, direccion_Tien, slogan_Tien, fotografia_Tien, desactivar_Tien
-                'datosResposable' => $DatosResposable,
-                'horario_LV' => $Horario_LV,
-                'horario_Sab' => $Horario_Sab,
-                'horario_Dom' => $Horario_Dom,
-                'horario_Esp' => $Horario_Esp,
-                'datosBancos' => $DatosBancos,
-                'datosPagomovil' => $DatosPagoMovil,
-                'datosReserve' => $DatosReserve, //usuarioReserve, telefonoReserve
-                'datosPaypal' => $DatosPaypal, //correo_paypal
-                'datosZelle' => $DatosZelle,
-                'categoria' => $Categoria, // categoria
-                'secciones' => $Secciones,
-                'slogan' => $Slogan,
-                'link_Tien' => $Link_Tien, //link_acceso, url 
-                'otrosPagos' => $OtrosPagos
-            ];
-            
-            // echo '<pre>';
-            // print_r($Datos);
-            // echo '</pre>';
-            // exit();
-
-            //Se crea una sesión con el contenido de una seccion de la tienda, para verificar que el usuario ya tiene creada al menos una cuando vaya a cargar un producto
-            if(!empty($Datos['secciones'])){
-                foreach($Datos['secciones'] as $Key){
-                    $Seccion = $Key['seccion'];
-                }
-                $_SESSION['Seccion'] = $Seccion;
-            }
-
-            $this->vista('header/header_AfiCom', $Datos); 
-            $this->vista('view/cuenta_comerciante/cuenta_editar_V', $Datos);
-        }
-
         // muestra la vista donde se carga un producto
         public function Publicar(){
 
@@ -459,15 +360,24 @@
             $this->Productos();
         }
 
-        //recibe el nombre comercial de un suscriptor que va a publicar un clasificado
+        //recibe el nombre comercial, telefono y formas de pago de un suscriptor que va a publicar un clasificado
         public function recibeNombreComercial(){
             //Se reciben el campo del formulario, se verifica que son enviados por POST y que no estan vacios
-            if($_SERVER['REQUEST_METHOD'] == 'POST'&& !empty($_POST['nombreComercial']) && !empty($_POST['telefono'])){
-
+            if($_SERVER['REQUEST_METHOD'] == 'POST'&& !empty($_POST['nombreComercial']) && !empty($_POST['telefono']) && (!empty($_POST['transferencia']) || !empty($_POST['pago_movil']) || !empty($_POST['paypal']) || !empty($_POST['zelle']) || !empty($_POST['efectivo_Bs']) || !empty($_POST['efectivo_']) || !empty($_POST['acordado'])) && !empty($_POST['municipio']) && !empty($_POST['parroquia'])){
+                $ID_Comentario = !empty($DatosAgrupados[2]) ? $DatosAgrupados[2]: 'SinID_Comentario';
                 $RecibNombreComercial = [
                     'ID_Suscriptor' => $_SESSION["ID_Suscriptor"], //sesin creada en Login_C
                     'nombreComercial' =>  $_POST["nombreComercial"],
-                    'telefono' =>  $_POST["telefono"]
+                    'telefono' =>  $_POST["telefono"],
+                    'tranferencia' =>  !empty($_POST["tranferencia"]) ? $_POST["tranferencia"] : 'No_Transferencia',
+                    'pago_movil' =>  !empty($_POST["pago_movil"]) ? $_POST["pago_movil"] : 'No_pago_movil',
+                    'paypal' =>  !empty($_POST["paypal"]) ? $_POST["paypal"] : 'No_paypal',
+                    'zelle' =>  !empty($_POST["zelle"]) ? $_POST["zelle"] : 'No_zelle',
+                    'efectivo_Bs' =>  !empty($_POST["efectivo_Bs"]) ? $_POST["efectivo_Bs"] : 'No_efectivo_Bs',
+                    'efectivo_dol' =>  !empty($_POST["efectivo_dol"]) ? $_POST["efectivo_dol"] : 'No_efectivo_dol',
+                    'acordado' =>  !empty($_POST["acordado"]) ? $_POST["acordado"] : 'No_acordado',
+                    'municipio' =>  $_POST["municipio"],
+                    'parroquia' =>  $_POST["parroquia"]
                 ];
                 
                 // echo '<pre>';
@@ -475,8 +385,7 @@
                 // echo '</pre>';
                 // exit;
                 
-
-                //Se inserta el nombre comercial y el telefono del suscriptor
+                //Se insertan los datos del suscriptor em BD
                 $this->InformacionSuscriptor->InsertarNombreComercial($RecibNombreComercial);
             }
             else{
@@ -563,12 +472,102 @@
             $this->Editar();
         }
         
-        //Invocado desde cuenta_editar_V.php - A_Cuenta_editar.js
-        public function ActualizarSeccion($Seccion, $ID_Seccion){
-            //Se ACTUALIZA una seccion 
-            $this->ConsultaCuenta_M->ActualizarSeccion($Seccion, $ID_Seccion);
+        //Muestra el formulario de configuración
+        public function Editar(){
+            //CONSULTA los datos de la tienda
+            $DatosTienda = $this->ConsultaCuenta_M->consultarDatosTienda($this->ID_Suscriptor);
 
-            //Se redirecciona a la vista de configuración para dejar al usuario donde estaba
-            $this->Editar();
+            //CONSULTA los datos del responsable de la tienda
+            $DatosResposable = $this->ConsultaCuenta_M->consultarResponsableTienda($this->ID_Afiliado);
+            
+            //Se CONSULTAN el horario de lunes a viernes de la tienda
+            $Horario_LV = $this->ConsultaCuenta_M->consultarHorarioTienda_LV($this->ID_Suscriptor);
+
+            //Se CONSULTAN el horario del dia sábado de la tienda
+            $Horario_Sab = $this->ConsultaCuenta_M->consultarHorarioTienda_Sab($this->ID_Suscriptor);
+
+            //Se CONSULTAN el horario del dia domingo de la tienda
+            $Horario_Dom = $this->ConsultaCuenta_M->consultarHorarioTienda_Dom($this->ID_Suscriptor);
+            
+            //Se CONSULTAN el horario del dia de excepcion de la tienda
+            $Horario_Esp = $this->ConsultaCuenta_M->consultarHorarioTienda_Esp($this->ID_Suscriptor);
+
+            //CONSULTA los datos de cuentas bancarias de la tienda
+            $DatosBancos = $this->ConsultaCuenta_M->consultarBancosTienda($this->ID_Suscriptor);
+
+            //CONSULTA los datos de cuentas pagmovil de la tienda
+            $DatosPagoMovil = $this->ConsultaCuenta_M->consultarCuentasPagomovil($this->ID_Suscriptor);
+
+            //CONSULTA los datos de cuentas Reserve de la tienda
+            $DatosReserve = $this->ConsultaCuenta_M->consultarCuentasReserve($this->ID_Suscriptor);
+
+            //CONSULTA los datos de cuentas Paypal de la tienda
+            $DatosPaypal = $this->ConsultaCuenta_M->consultarCuentasPaypal($this->ID_Suscriptor);
+
+            //CONSULTA los datos de cuentas Zelle de la tienda
+            $DatosZelle = $this->ConsultaCuenta_M->consultarCuentasZelle($this->ID_Suscriptor);
+
+            //CONSULTA otros medios de pago
+            $OtrosPagos = $this->ConsultaCuenta_M->consultarOtrosMediosPago($this->ID_Suscriptor);
+
+            //CONSULTA las categorias en la que la tienda esta registrada
+            $Categoria = $this->ConsultaCuenta_M->consultarCategoriaTienda($this->ID_Suscriptor);
+
+            //CONSULTA las secciones de la tienda
+            $Secciones = $this->ConsultaCuenta_M->consultarSeccionesTienda($this->ID_Suscriptor);
+
+            //Se CONSULTAN el slogan de una tienda en particular
+            $Slogan = $this->ConsultaCuenta_M->consultarSloganTienda($this->ID_Suscriptor);
+
+            //Se CONSULTAN el link de acceso directo de una tienda en particular
+            $Link_Tien = $this->ConsultaCuenta_M->consultarLinkTienda($this->ID_Suscriptor);
+            
+            //Se verifica si existe el link de acceso directo y se crea en caso de no existir
+            if(empty($Link_Tien)): 
+                //Se crea el link de aceso';  
+                $LinkAcceso = RUTA_URL .'/' . $DatosTienda[0]['nombre_Tien'];
+
+                //Se guarda el link de acceso y la url real en la configuración de la tienda
+                //INSERT del link de acceso directo de una tienda en particular
+                $this->ConsultaCuenta_M->insertarLinkTienda($this->ID_Suscriptor, $LinkAcceso);
+
+                //Se CONSULTA el link de acceso directo creado para insertar en el array $Datos
+                $Link_Tien = $this->ConsultaCuenta_M->consultarLinkTienda($this->ID_Suscriptor);
+            endif;
+
+            $Datos = [
+                'datosTienda' => $DatosTienda, //nombre_Tien, estado_Tien, municipio_Tien, parroquia_Tien, direccion_Tien, slogan_Tien, fotografia_Tien, desactivar_Tien
+                'datosResposable' => $DatosResposable,
+                'horario_LV' => $Horario_LV,
+                'horario_Sab' => $Horario_Sab,
+                'horario_Dom' => $Horario_Dom,
+                'horario_Esp' => $Horario_Esp,
+                'datosBancos' => $DatosBancos,
+                'datosPagomovil' => $DatosPagoMovil,
+                'datosReserve' => $DatosReserve, //usuarioReserve, telefonoReserve
+                'datosPaypal' => $DatosPaypal, //correo_paypal
+                'datosZelle' => $DatosZelle,
+                'categoria' => $Categoria, // categoria
+                'secciones' => $Secciones,
+                'slogan' => $Slogan,
+                'link_Tien' => $Link_Tien, //link_acceso, url 
+                'otrosPagos' => $OtrosPagos
+            ];
+            
+            // echo '<pre>';
+            // print_r($Datos);
+            // echo '</pre>';
+            // exit();
+
+            //Se crea una sesión con el contenido de una seccion de la tienda, para verificar que el usuario ya tiene creada al menos una cuando vaya a cargar un producto
+            if(!empty($Datos['secciones'])){
+                foreach($Datos['secciones'] as $Key){
+                    $Seccion = $Key['seccion'];
+                }
+                $_SESSION['Seccion'] = $Seccion;
+            }
+
+            $this->vista('header/header_AfiCom', $Datos); 
+            $this->vista('view/cuenta_comerciante/cuenta_editar_V', $Datos);
         }
     }

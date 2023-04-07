@@ -1,29 +1,18 @@
 <!-- VENTANA MODAL AUTOMATICA INICIAL -->
 <?php //require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
 
-<div class="cont_portada" id="Contenedor_principal">
+<main class="cont_portada" id="Contenedor_principal">
     <?php
     $Iterador = 1;
     foreach($Datos['datosNoticia'] as $Key) :  ?>
-        <div class="cont_portada--noticia"  id="Cont_Noticia_<?php echo $Iterador?>">
-            <div class="cont_noticia borde_1 borde_3" id="este_<?php echo $Iterador?>">
+    
+        <section class="cont_portada--noticia section section-1" id="Cont_Noticia_<?php echo $Iterador?>">
+            <div class="cont_noticia borde_1 borde_3 section__content" data-content id="este_<?php echo $Iterador?>">
 
                 <!-- IMAGEN -->
-                <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/'. $Key['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/>
+                <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/'. $Key['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo section__img section__img--left" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/>
                 </a>
                 
-                 <!-- BOTONES DE FLECHAS -->
-                 <div class="cont_portada--flechas">
-                    <div>
-                        <img class="Default_pointer flecha_Arriba_JS" id="<?php echo $Iterador?>" style="text-align: center;  margin: auto; width: 2.1em;" src="<?php echo RUTA_URL . '/public/iconos/flecha/outline_arrow_circle_up_black_24dp.png'?>"/>
-
-                        <img class="Default_pointer Default_ocultar agotado_Arriba_JS" style="text-align: center; margin: auto; width: 2.1em;" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>
-                    </div>        
-                    <div>
-                        <img class="Default_pointer flecha_Abajo_JS" id="<?php echo $Iterador?>" style="text-align: center;  margin: auto;  width: 2.1em;" src="<?php echo RUTA_URL . '/public/iconos/flecha/outline_arrow_circle_down_black_24dp.png'?>"/>
-                    </div>   
-                </div>
-
                 <div class="cont_portada--tituloResumen">
                     <!-- TITULAR -->
                     <div class="cont_portada--titular"">                   
@@ -127,11 +116,12 @@
             <div>
                 <label class="boton boton--corto"><a class="Default_font--white boton_a"" href="<?php echo RUTA_URL . '/Clasificados_C';?>">Clasificados</a></label> 
             </div>        
-        </div>        
+        </div>
+    </section>        
         <?php
         $Iterador++;
     endforeach;     ?>
-</div>  
+</main>  
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_Inicio.js?v=' . rand();?>"></script>

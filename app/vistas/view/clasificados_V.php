@@ -1,9 +1,17 @@
-<section class="section_9" id="Section_3"> 
-    <div class="contenedor_90">       
-        <h1 class="h1_1">Clasificados</h1> 
-        <br>
-        <h3 class="h3_1 bandaAlerta">Periodo de prueba (simulación)</h3>
-    </div>
+    <section class="section_9" id="Section_3"> 
+        
+    <header>
+        <div class="cont_clasificados">       
+            <div class="cont_clasificados--item-1">
+                <h1 class="h1_1">Clasificados</h1> 
+            </div>
+            <div class="cont_clasificados--item-2">
+                <a class="boton boton--publicar" href="<?php echo RUTA_URL . '/Login_C/index/SinID_Noticia,SinBandera';?>" rel="noopener noreferrer">Publicar</a>
+            </div>
+        </div>
+    </header>
+        <h3 class="contenedor_13--clasificados h3_1 bandaAlerta">Periodo de prueba (simulación)</h3>
+    
     <form id="Formulario"> 
         <div class="contenedor_13" id="Contenedor_13Js"> 
             <?php   
@@ -84,6 +92,10 @@
     </form>
 </section>
 
+</body>
+
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_Clasificados.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/A_Clasificados.js?v='. rand();?>"></script>
+
+</html>

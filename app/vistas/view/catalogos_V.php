@@ -149,9 +149,10 @@
 
     <!-- Trae por medio de Ajax todo el pedido del usuario "La Orden de compra", la información es suministrada por carrito_V.php invocada por la función llamar_PedidoEnCarrito() en este mismo archivo-->
     <div id="Mostrar_Orden"></div>
-    
+
 </body>
-</html>
 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_Catalogos.js?v='. rand();?>"></script>
+    
+</html>

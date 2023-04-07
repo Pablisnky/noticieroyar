@@ -216,11 +216,15 @@
                     }
                     else if($Bandera == 'SinBandera'){// entra al panel de suscriptor
 
+                        //Se CONSULTA al controlador CuentaComerciante_C la cantidad de comentarios, nuncios clasificados, denuncias y noticias guardadas.
+                        require(RUTA_APP . "/controladores/CuentaComerciante_C.php");
+                        $DatosComerciante = new CuentaComerciante_C();
+                        $Comerciante = $DatosComerciante->index();
+
                         $Datos = [                            
                             'nombre' => $Nombre,
                             'apellido' => $Apellido,
-                            // 'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
-                            // 'telefono' => $Suscriptor[0]['telefonoSuscriptor']
+                            'comerciante' => $Comerciante
                         ];
 
                         // echo '<pre>';
@@ -261,11 +265,6 @@
                 $this->vista("header/header_noticia");
                 $this->vista("modal/modal_falloLogin_V", $Datos);                
             }
-            
-            //Se CONSULTA al controlador CuentaComerciante_C si el correo existe como comerciante.
-            // require(RUTA_APP . "/controladores/CuentaComerciante_C.php");
-            // $DatosComerciante = new CuentaComerciante_C();
-            // $Comerciante = $DatosComerciante->consultarComerciante($Correo);
         }
         
         public function RecuperarClave(){
