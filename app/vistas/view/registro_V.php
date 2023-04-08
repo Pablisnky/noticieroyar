@@ -45,6 +45,7 @@
                 <fieldset class="fieldset_1 fieldset_2">
                     <legend class="legend_1">Datos de accceso</legend>  
                     <div class="login_cont--form">
+                        
                         <!-- CLAVE -->
                         <label class="login_cont--label">Contraseña</label>
                         <input class="login_cont--input borde--input" type="password" name="clave" id="Clave"  onblur="llamar_verificaClave(this.value, 'AfiCom')"/>

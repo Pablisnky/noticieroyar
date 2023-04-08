@@ -7,7 +7,6 @@
         <div class="contenedor_27">
             <h1 class="cont_suscriptor--h1">Problemas reportados</h1>
             <label class="label_5">0</label>
-            <!-- <label class="label_3">Municipio San Felipe - Yaracuy</label> -->
         </div>       
     </a>
 
@@ -15,7 +14,6 @@
         <div class="contenedor_27">
             <h1 class="cont_suscriptor--h1">Comentarios realizados</h1>
             <label class="label_5">0</label>
-            <!-- <label class="label_3">Municipio San Felipe - Yaracuy</label> -->
         </div>       
     </a>
 
@@ -23,7 +21,6 @@
         <div class="contenedor_27">
             <h1 class="cont_suscriptor--h1">Noticias guardadas</h1>
             <label class="label_5">0</label>
-            <!-- <label class="label_3">Municipio San Felipe - Yaracuy</label> -->
         </div>
     </a>
 
@@ -31,7 +28,6 @@
         <div class="contenedor_27">
             <h1 class="cont_suscriptor--h1">Clasificados publicados</h1>
             <label class="label_5"><?php echo $Datos['clasificados']['cantidadAnncios'];?></label>
-            <!-- <label class="label_3">Municipio San Felipe - Yaracuy</label> -->
         </div>
     </a>
 </div>

@@ -30,7 +30,7 @@
 ?>
 
 <section class="detalle_cont--comentario">
-    <div class="login_cont" style="min-height: 70%; background-color:white;  border-radius: 15px">
+    <div class="login_cont cont_login">
         <form action="<?php echo RUTA_URL . '/Login_C/ValidarSesion';?>" method="POST" name="formLogin" onsubmit = "return validarLogin()">	
             <fieldset class="fieldset_1" >
                 <legend class="legend_1">Acceso a suscriptores</legend>

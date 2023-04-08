@@ -6,7 +6,7 @@
     $Iterador = 1;
     foreach($Datos['datosNoticia'] as $Key) :  ?>
     
-        <section class="cont_portada--noticia section section-1" id="Cont_Noticia_<?php echo $Iterador?>">
+        <section class="cont_portada--noticia section" id="Cont_Noticia_<?php echo $Iterador?>">
             <div class="cont_noticia borde_1 borde_3 section__content" data-content id="este_<?php echo $Iterador?>">
 
                 <!-- IMAGEN -->

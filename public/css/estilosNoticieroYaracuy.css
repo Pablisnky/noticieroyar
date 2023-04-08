@@ -67,7 +67,7 @@ textarea{
 	--footer: rgb(239, 245, 245);
 	--Enlaces: rgb(24, 24, 238);
 	--BandaAlerta: rgb(248, 246, 113);
-	--BordeClaro: rgba(51, 51, 51, 0.2);
+	--BordeClaro: rgba(51, 51, 51, 0.5);
 	--rellenoTablas: rgba(206, 224, 240, 0.4);
 	--TextoClaro: rgba(0, 0, 0, 0.6);
 }
@@ -1926,12 +1926,6 @@ textarea{
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
 }
-.login_cont{
-	width: 40%;
-	margin: auto;
-	margin-top: 5%;
-	padding-top: 2%; 
-}
 .login_cont--form{
 	padding-left: 5%;
 }
@@ -1942,10 +1936,6 @@ textarea{
 	line-height: 30px;
 	padding-left: 10px !important;
 }
-.login_cont--select{
-	height: 30px;
-	width: 47%;
-}
 .contBoton{
 	width: 40%;
 	margin: 8% auto 1% auto;
@@ -1955,11 +1945,6 @@ textarea{
 }
 .contBoton--marginTop{
 	margin: 1% auto;
-}
-.login_cont--recuperarClave{
-	width: 40%;
-	margin: 2% auto;
-	text-align: center;
 }
 .hr_3{ /*convierte una linea en grosor de menos de 1px*/
 	width: 40%;
@@ -2786,13 +2771,6 @@ ul .menuContenedor_3{
 	width: 70%;
 	margin-top: 7%; 
 	margin-left: 20%;
-	cursor: pointer;
-}
-.cont_suscriptor--item{
-	width: 45%;
-	min-height: 15vw;
-	margin-bottom: 5%;
-	cursor: pointer;
 }
 .cont_suscriptor--h1{
 	color: black;
@@ -2853,24 +2831,6 @@ ul .menuContenedor_3{
     flex-direction: initial;
     min-height: initial;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .cont_clasificados{
 background-color: var(--OficialClaro);
 display: flex;
@@ -2962,7 +2922,6 @@ height: 50px!important;
 	margin: auto;
 	margin-top: 10%;
 }
-
 .sectionModal--sinProducto{
 	position: absolute;
 	top: 0%;
@@ -2973,7 +2932,32 @@ height: 50px!important;
 	padding-left: 10px !important;
 	width: 90%;
 }
-
+.cont_suscriptor--item{
+	width: 45%;
+	min-height: 15vw;
+	margin-bottom: 5%;
+	cursor: pointer;
+}
+.login_cont--select{
+	height: 30px;
+	width: 90%;
+}
+.login_cont{
+	width: 40%;
+	margin: auto;
+	margin-top: 5%;
+	padding-top: 2%; 
+	min-height: 70%;  
+	border-radius: 15px
+}
+.cont_login{
+	width: 30%;
+}
+.login_cont--recuperarClave{
+	width: 50%;
+	margin: 2% auto;
+	text-align: center;
+}
 
 
 
