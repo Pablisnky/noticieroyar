@@ -21,6 +21,9 @@
 			
 			<!-- MEMBRETE FIJO -->
 			<label class="header__titulo">Noticiero Yaracuy</label>	
+			<!-- <figure>
+				<img class="tapa-logo--mapa" src="<?php echo RUTA_URL . '/public/images/Mapa-Venezuela-yaracuy.png'?>"/>
+			</figure> -->
 		</header>
 		
    <!-- No se cierrra la etiqueta <body> porque se cierra es el footer -->

@@ -212,8 +212,9 @@ textarea{
 	margin-top: 5%;
 }
 .cont_Artista{
+	/* background-color: yellow;
 	margin-top: 2%;
-	width: 100%; 
+	width: 100%;  */
 }
 .cont_Artista--botones{
 	display: flex; 
@@ -242,7 +243,7 @@ textarea{
 	min-height: 100vh;
 }
 .cont_Contraloria--texto{
-	padding: 2%;
+	padding-bottom: 2%;
 }
 .cont_Contraloria--p{
 	width: 70%;
@@ -1200,7 +1201,7 @@ textarea{
     min-width: 25%;
 }
  .cont_noticias_atras--coleccion{
-	 background-color: rgb(0, 0, 0);
+	 /* background-color: rgb(0, 0, 0);
 	 position: absolute;
 	 bottom: 0pt;
 	 width: 100%;
@@ -1208,16 +1209,16 @@ textarea{
 	 text-align: center;
 	 border-bottom-left-radius: 15px;
 	 border-bottom-right-radius: 15px;
-	 padding-top: 1%;
+	 padding-top: 1%; */
  }
  .cont_noticias_atras--membrete{	
-	color: white;
+	/* color: white;
 	 line-height: 17px;
 	 text-align: left;
-	 padding-left: 7%;
+	 padding-left: 7%; */
  }
  .cont_noticias_giro--atras{
-	 color: white;
+	 /* color: white;
 	 background-color: rgba(0, 0, 0, 0.8);
 	 border-radius: 50%;
 	 padding: 1%;
@@ -1226,16 +1227,10 @@ textarea{
 	 bottom: 0pt;
 	 display: block;
 	 z-index: 1;
-	 font-size: 1.3em !important;
+	 font-size: 1.3em !important; */
  }
  .cont_noticia--h2{
 	font-size: 0.8em;
- }
- .cont_noticiasGenerales{
-	margin-left: 20%; 
-	margin-top: 0px !important;
-	padding-bottom:10%;  
-	padding-top:0px;
  }
  .cont_panel{
 	 display: flex;
@@ -2958,6 +2953,80 @@ height: 50px!important;
 	margin: 2% auto;
 	text-align: center;
 }
+.cont_radio-sliderVertical{
+	display: none;
+}
+.cont_noticias{
+	margin-top: 5%;
+}
+.tapa-logo--mapa{
+	position: relative; 
+	bottom: 20% !important; 
+	left: 5%; 
+	width: 400px; 
+}
+.fullscreem--inicio--h1{
+	color:white;
+	font-size: 1.3em;
+}
+.fullscreem--inicio--h3{
+	color:white;
+	font-size: 1em;
+}
+.fullscreem--inicio{
+	display: flex;
+	width: 90%;
+	margin: auto;
+}
+.fullscreem--inicio--texto{
+	width: 35%; 
+	text-align: center;
+	margin-top: 5%;
+	padding-top: 5%
+}
+.fullscreem--inicio--mapa{
+	width: 65%; 
+	text-align: center;
+	margin-top: 5%;
+}
+.cont_panel--actualizar{
+	margin-left: 20%; 
+	padding-top: 20px;
+}
+.cont_panel--actualizar--contenido{
+	display: flex;
+}
+.cont_panel--actualizar--media{
+	width: 30%
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.tapa-logo--p{
+	color:white; 
+	margin-top: -2%;
+	width: 100%; 
+	margin-left: 18%;
+}
+
+
+
+
+
+
+
 
 
 

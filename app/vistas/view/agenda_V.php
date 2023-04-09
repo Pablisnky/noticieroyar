@@ -7,7 +7,7 @@
 		foreach($Datos['agenda'] as $Key) :  ?>
 			<div class="cont_Galeria--item" >
 				<figure id="">
-					<img class="cont_Galeria--img lazyload" id="Imagen_<?php echo $Key['ID_Agenda']?>" data-src="<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Key['nombre_imagenAgenda'];?>" loading="lazy" width="320" height="10" /> 
+					<img class="cont_Galeria--img lazyload" id="Imagen_<?php echo $Key['ID_Agenda']?>" data-src="<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Key['nombre_imagenAgenda'];?>" loading="lazy" width="320" height="10"/> 
 				</figure>
 			</div>
 

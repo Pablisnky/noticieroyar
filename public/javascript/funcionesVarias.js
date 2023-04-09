@@ -5,27 +5,29 @@
 
 //************************************************************************************************
     //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
-    // window.addEventListener("click", function(e){   
-    //     var click = e.target
-    //     console.log("Se hizo click en: ", click)
-    // }, false)
+    window.addEventListener("click", function(e){   
+        var click = e.target
+        console.log("Se hizo click en: ", click)
+    }, false)
 
 //************************************************************************************************
     //Muestra el menu principal al hacer click en menu hamburguesa
     function mostrarMenu(){  
-        console.log("______Desde mostrarMenu()______")
+        // console.log("______Desde mostrarMenu()______")
         let A = document.getElementById("MenuResponsive")
         let C = document.getElementById("Tapa_Logo")
 
         if(A.style.marginTop != "0%"){
             A.style.marginTop = "0%"
-            // C.style.marginLeft = "60%"
             if(screen.width < 350){
                 C.style.marginLeft = "20%"
             }
             else if(screen.width > 351 && screen.width < 800){
                 C.style.marginLeft = "30%"
                 
+            }
+            else{
+                C.style.marginLeft = "60%"
             }
             C.style.transitionDelay = "0.2s"
         }
@@ -40,15 +42,20 @@
         window.addEventListener("click", function(e){
             //obtiendo informacion del DOM del elemento donde se hizo click 
             var click = e.target
-            // console.log(click)
-            AltoVitrina = document.body.scrollHeight
-            if(div.style.marginTop == "0%"){
-                div.style.marginTop = "-250%"
-                C.style.marginLeft = "100%"
-                C.style.transitionDelay = "0s"
-                
-                //Se detiene la propagación de los eventos en caso de hacer click en un elemento que contenga algun evento
-                e.stopPropagation();
+            console.log(click)
+            if(e.target.id != 'Abrir'){
+                AltoVitrina = document.body.scrollHeight
+                if(div.style.marginTop == "0%"){
+                    div.style.marginTop = "-250%"
+                    C.style.marginLeft = "100%"
+                    C.style.transitionDelay = "0s"
+                    
+                    //Se detiene la propagación de los eventos en caso de hacer click en un elemento que contenga algun evento
+                    e.stopPropagation();
+                }
+            }
+            else{
+                document.getElementById("Miimagen").classList.add("fullscreem--inicio")
             }
         }, true)
     }

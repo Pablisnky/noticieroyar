@@ -512,19 +512,6 @@
 	width: 95%;	
 	margin: auto;
 }
-.publicidad_cont--interno{
-	background-color: initial; 
-	width: 90%; 
-	height: 95vh; 
-	margin: auto;
-	margin-top: 25%;
-}
-.publicidad_cont--imagen{
-	width: 95%;
-	height: 80%;
-	margin: auto;
-	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
-}
 .publicidad_cont--cerrar{
    top: 3%;
    left: 85%;
@@ -856,20 +843,8 @@
 	width: 100%;
 	margin-top: 20%;
 }
-.cont_noticiasGenerales{
-   margin-left: 0%; 
-   width: 100%;
-}
 .borde_3{
 	border-color: white;
-}
-.tapa-logo{
-	display: block;
-	width: 80%; 
-	margin-left: 100%;/*oculta el menu responsive*/
-	position: fixed;
-	top: 90% !important;
-	transition: all 0.5s;
 }
 .cont_panel--li{
 	color: white;
@@ -1085,4 +1060,96 @@
 	top: 4.5%; 
 	z-index: 0;
 }
+.cont_radio-sliderVertical{
+	background-color: rgba(0, 0, 0, 0.6);
+	display: flex;
+	height: 2.5vh;
+}
+.publicidad_cont--interno{
+	background-color: initial; 
+	width: 100%; 
+	height: 95vh; 
+	margin: auto;
+	margin-top: 10%;
+}
+.publicidad_cont--imagen{
+	width: 100%;
+	height: 80%;
+	margin: auto;
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.tapa-logo{
+	display: block;
+	width: 80%; 
+	margin-left: 100%;/*oculta el menu responsive*/
+	position: fixed;
+	top: 90% !important;
+	transition: all 0.5s;
+}
+.tapa-logo--mapa{
+	position: absolute; 
+	bottom: inherit; 
+	top: -350% !important;
+	left: 44%; 
+	width: 150px; 
+}
+.fullscreem--inicio{
+	display: block;
+	width: 100%;
+}
+.fullscreem--inicio--texto{
+	width: 95%; 
+	margin: auto;
+	margin-top: 5%;
+	padding-top: initial
+}
+.fullscreem--inicio--mapa{
+	width: 95%; 
+	text-align: center;
+	margin-top: -1%;
+	margin: auto;
+}
+.cont_noticias{
+	margin-top: 20%;
+}
+
+
+
+
+
+
+
+.cont_panel--actualizar{
+	width: 100%;
+	margin-left: 0%; 
+	padding-top: 20px;
+}
+.cont_panel--actualizar--contenido{
+	display:block;
+}
+.cont_panel--actualizar--media{
+	width: 60%;
+	height: ;
+	margin:auto;
+}
+.cont_panel--imagen{
+   width: 100%; 
+   height: 35vw;
+   margin: auto;
+   object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.cont_panel__agenda--imagen{
+	width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -10,18 +10,7 @@
             //La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
             ocultarErrores();
         }
-        
-        // public function index(){                            
-        //     $this->vista("header/header_noticia"); 
-        //     $this->vista("view/Noticias_V");   
-        // }
-
-        // public function NoticiaPrincipal($ID_Noticia){  
-
-        //     $this->vista("header/header_noticia"); 
-        //     $this->vista("view/Noticia_V");   
-        // }
-        
+                
         // muestra las noticias generales
         public function NoticiasGenerales(){  
             //Se CONSULTA las seccion
@@ -90,24 +79,10 @@
         }
 
         // muestra la noticia completamente
-        public function detalleNoticia($DatosAgrupados){
-            //$DatosAgrupados contiene una cadena separados por coma, se convierte en array para separar los elementos
-
-            // echo $DatosAgrupados . '<br>';
-            $DatosAgrupados = explode(',', $DatosAgrupados);
-
-            $ID_Noticia = $DatosAgrupados[0];
-            $Bandera = $DatosAgrupados[1];
-            // echo $ID_Noticia . '<br>';
-            // echo $Bandera . '<br>';
-            // exit();
+        public function detalleNoticia( $ID_Noticia){
             
             //Se CONSULTA los detalle de la noticia que se solicito
             $DetalleNoticia = $this->ConsultaNoticia_M->consultarNoticiaDetalle($ID_Noticia);
-            // echo "<pre>";
-            // print_r($DetalleNoticia);
-            // echo "</pre>";          
-            // // exit();
 
             //Se consulta las imagenes de la noticia
             $ImagenesNoticia = $this->ConsultaNoticia_M->consultarImagenesNoticia($ID_Noticia);
@@ -144,7 +119,6 @@
                 'comentarios' =>  $Comentario, //ID_Comentario, ID_Suscriptor, comentario, fechaComentario, horaComentario, nombreSuscriptor, apellidoSuscriptor
                 'respuestas' => $Respuesta,
                 'cantidadComentario' => $CantidadComentario,//ID_Noticia, COUNT(ID_Comentario) AS cantidadComentario
-                'bandera' => $Bandera,//ConAnuncio
                 'nombre' => $Nombre,// sesion creadas en Login_C
                 'apellido' => $Apellido// sesion creadas en Login_C
             ];

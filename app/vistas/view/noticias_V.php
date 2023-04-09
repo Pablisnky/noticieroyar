@@ -1,6 +1,6 @@
 <!-- Muestra todas las noticias por cada sección, inicialmente solo muestra las 15 mas reciente, y permite ir al archivo de cada sección -->
 
-<div class="cont_noticia" id="Cont_Noticia">
+<div class="cont_noticias" id="Cont_Noticia">
     <?php
     foreach($Datos['secciones'] as $Row) :?>
         <h1 class="cont_noticia--tituloSeccion"><?php echo $Row['seccion'];?></h1>  
@@ -14,7 +14,7 @@
                         <div class="cont_portada--noticia contenedor_tarjeta">
                             <div class="tarjeta tarjeta--noticias_V" id="Tarjeta_<?php echo $Iterador?>">
                                 <div class="cont_noticia--sencilla Default_pointer adelante   adelante_atras--noticias_V">
-                                    <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key_2['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="cont_noticia-imagen" alt="Fotografia" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key_2['nombre_imagenNoticia'];?>"/></a>
+                                    <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key_2['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="cont_noticia-imagen" alt="Fotografia" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key_2['nombre_imagenNoticia'];?>"/></a>
 
                                     <div class="cont_noticia--titular">
                                         <p class="cont_noticias--titulo"><?php echo $Key_2['titulo'];?></p>
@@ -81,6 +81,7 @@
                 
                 endforeach; 
             endforeach; ?>      
+
             <div class="cont_noticias--libreria">        
                 <?php        
                 foreach($Datos['cantidadSeccion'] as $Key) : 
@@ -100,3 +101,4 @@
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_Noticia.js?v=' . rand();?>"></script>
+<script src="<?php echo RUTA_URL;?>/public/javascript/FullScreem.js?v=<?php echo rand();?>"></script> 

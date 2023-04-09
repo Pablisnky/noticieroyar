@@ -5,196 +5,196 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
-    <!-- MENU LATERAL -->
-    <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
+<!-- MENU LATERAL -->
+<?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
     
-    <!--PANEL NOTICIAS PRINCIPALES --> 
-        <div style="margin-left: 20%; padding-top: 20px;" >        
-            <!-- NOTICIA -->
-            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiActualizada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit = "return validarActualizarNoticia()">
-                <a id="marcador_01" class="ancla"></a>
-                <fieldset class="fieldset_1" id="Portada"> 
-                <legend class="legend_1">Actualizar Noticia</legend>
-                    <div style="display: flex;">
-                        <div style="width: 30%">                       
+<!--PANEL NOTICIAS PRINCIPALES --> 
+<div class="cont_panel--actualizar">        
+    <!-- NOTICIA -->
+    <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiActualizada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit = "return validarActualizarNoticia()">
+        <a id="marcador_01" class="ancla"></a>
+        <fieldset class="fieldset_1" id="Portada"> 
+        <legend class="legend_1">Actualizar Noticia</legend>
+            <div class="cont_panel--actualizar--contenido">
+                <div class="cont_panel--actualizar--media">                       
 
-                            <!-- IMAGEN PRINCIPAL-->
-                            <div>
-                                <label class="cont_panel--label">Imagen principal</label>
-                                <div class="cont_edit">
-                                    <!-- ICONO EDITAR -->
-                                    <label class="Default_pointer" for="imgInp"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
-                                </div> 
-                                <figure>
-                                    <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImagenPrincipal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Datos['noticiaActualizar']['nombre_imagenNoticia'];?>"/> 
-                                </figure>                                
-                                <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
-                            </div>
-
-                            <!-- ANUNCIO PUBLICITARIO --> 
-                            <div style="margin-top: 30px">
-                                <label class="cont_panel--label">Anuncio publicitario</label>
-                                <div id="Contenedor_Anuncio">
-                                            <?php
-                                    if(empty($Datos['anuncio']['ID_Anuncio'])){ //carga imagen por defecto  ?>
-                                        <div class="cont_edit">
-                                            <!-- ICONO EDITAR -->
-                                            <label class="Default_pointer" id="Anuncio"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
-                                            <!-- <label class="Default_pointer"><span class="material-icons-outlined cont_edit--label" id="Anuncio">edit</span> </label> -->
-                                        </div>   
-                                        <!-- IMAGEN ANUNCIO PUBLICITARIO-->
-                                        <figure>
-                                            <img class="cont_panel--imagen" name="imagenAnunio" alt="Fotografia Principal" id="ImgAnuncio" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
-                                        </figure>
-                                        
-                                        <input class="Default_ocultar" type="text" name="id_anuncio" id="ID_Anuncio" value="no existe"/>
-                                        <input class="Default_ocultar" type="text" value="SiActualizar" name="actualizar" id="Actualiza"/>
-                                        <?php
-                                    }
-                                    else{   ?>
-                                        <div class="cont_edit">
-                                            <!-- ICONO EDITAR -->
-                                            <label class="Default_pointer" id="Anuncio"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
-                                            <!-- <label class="Default_pointer" id="Anuncio"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
-                                        </div>   
-                                        <figure>
-                                            <img class="cont_panel--imagen" alt="Fotografia Anuncio" id="ImgAnuncio" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Datos['anuncio']['nombre_imagenPublicidad'];?>"/> 
-                                        </figure>      
-                                        <input class="Default_ocultar" type="text" name="id_anuncio" id="ID_Anuncio" value="<?php echo $Datos['anuncio']['ID_Anuncio'];?>"/>
-                                        <input class="Default_ocultar" type="text" value="SiActualizar" name="actualizar" id="Actualiza"/>
-                                        <?php
-                                    }   ?> 
-                                </div> 
-                            </div>
-
-                            <!-- VIDEO -->
-                            <div style="margin-top: 30px">  
-                                    <label class="cont_panel--label">Video</label>   
-                                        <?php
-                                    if(empty($Datos['video']['ID_Noticia'])){//carga camara por defecto  ?> 
-                                        <div class="cont_edit">
-                                            <label class="Default_pointer" for="imgVideo"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
-                                            <!-- <label class="Default_pointer" for="imgVideo"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
-                                        </div> 
-                                        <figure id="FigureVideo">
-                                            <img class="cont_panel--video" alt="Icono video" id="ImagenCamara" src="<?php echo RUTA_URL?>/public/video/video.png"/>
-                                        </figure> 
-                                        
-                                        <video class="cont_panel--imagen cont_panel--viedo" id="video-tag">
-                                            <source id = "video-source"/>
-                                        </video>
-
-                                        <div style="display:flex; justify-content: space-around">
-                                            <button style="padding:0% 3%" class="Default_ocultar" id="Reproducir" onclick="reproducir()">Reproducir</button>
-                                            <button style="padding:0% 3%" class="Default_ocultar" id="Pausar" onclick="pausar()">Pausar</button>
-                                        </div>
-
-                                        <input class="Default_ocultar" type="file" accept="video/*" name="video" id="imgVideo"/>
-                                        <?php
-                                    }
-                                    else{  //si existe un video y se va a actualizar ?> 
-                                        <div>
-                                            <div class="cont_edit">
-                                                <label class="Default_pointer" for="imgVideo"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
-                                                <!-- <label class="Default_pointer" for="imgVideo"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
-                                            </div> 
-                                            <video class="cont_panel--imagen" id="video-tag" controls src="<?php echo RUTA_URL?>/public/video/<?php echo $Datos['video']['nombreVideo'];?>">
-                                                <source id = "video-source"/>
-                                            </video>
-
-                                            <div style="display:flex; justify-content: space-around">
-                                                <button style="padding:0% 3%" class="Default_ocultar" id="Reproducir" onclick="reproducir()">Reproducir</button>
-                                                <button style="padding:0% 3%" class="Default_ocultar" id="Pausar" onclick="pausar()">Pausar</button>
-                                            </div>
-                                            <input class="Default_ocultar" type="file" accept="video/*" name="video" id="imgVideo"/>
-                                        </div>
-                                        <input class="Default_ocultar" type="text" value="<?php echo $Datos['video']['ID_Video'];?>" name="id_video"/>
-                                        <?php
-                                    }   ?> 
-                            </div>
-                        </div>
-
-                        <div style="width: 100%; padding-left: 1%">
-
-                            <!-- TITULO  -->
-                            <label class="cont_panel--label">TItulo</label>
-                            <textarea class="textarea--panel" name="titulo"><?php echo $Datos['noticiaActualizar']['titulo'];?></textarea>
-                            
-                            <!-- RESUMEN -->
-                            <label class="cont_panel--label">Resumen</label>
-                            <textarea class="textarea--panel" name="subtitulo"><?php echo $Datos['noticiaActualizar']['subtitulo'];?></textarea> 
-                        
-                            <!-- CONTENIDO -->
-                            <label class="cont_panel--label">Contenido</label>
-                            <textarea class="cont_panel--textarea Default--textarea--scrol" name="contenido" id="Contenido"><?php echo $Datos['noticiaActualizar']['contenido'];?></textarea> 
-
-                            <!-- SECCION -->
-                            <label class="cont_panel--label">Sección</label>
-                            <input class="cont_panel--titulo" type="text" name="seccion" value="<?php echo $Datos['noticiaActualizar']['seccion'];?>" id="SeccionPublicar"/>
-                                                            
-                            <!-- FECHA -->
-                            <label class="cont_panel--label">Fecha</label>                            
-                            <input class="cont_panel--titulo" type="text" name="fecha" id="datepicker" value="<?php echo $Datos['noticiaActualizar']['fechaPublicacion'];?>">
-                            
-                            <!-- FUENTE -->
-                            <label class="cont_panel--label">Fuente</label>
-                            <select class="cont_panel--titulo" name="fuente" id="Fuente" onchange="especificarFuente()">
-                                <option><?php echo $Datos['noticiaActualizar']['fuente'];?></option>
-                                <?php
-                                foreach($Datos['fuentes'] as $Key)   :   ?>
-                                    <option><?php echo $Key['fuente']?></option>
-                                    <?php
-                                endforeach;     ?>
-                                <option value="Otra">Otra</option>
-                            </select>
-                            <div id="InsertarFuente"></div>
-                        </div>                     
-                    </div>                        
-                </fieldset>                
-
-                <!-- IMAGENES SECUNDARIAS -->
-                <a id="marcador_02" class="ancla"></a>
-                <fieldset class="fieldset_1">   
-                    <!-- AGREGAR MAS IMAGENES SECUNDARIAS -->
-                    <label class="actualizar_cont--label Default_pointer" for="imgSec"><img class=" actualizar_cont--span" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></label>
-                    <input class="Default_ocultar" type="file" name="imagenesSecundarias[]" multiple="multiple" id="imgSec" onchange="muestraImgSecundarias()"/>
-
-                    <br><br> 
-                    <legend class="legend_1">Imagenes secundarias</legend> 
-                    
-                    <!-- EDITAR IMAGEN SECUNDARIA-->
-                    <div class="cont_panel--imagenSec">
-                        <?php
-                        foreach($Datos['imagenesNoticiaActualizar'] as $Row) : ?>                   
-                            <div style="margin: 1%;" id=PadreImagenes">
-                                <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
-                                <div class="cont_edit--dosBotones" id="Cont_Botones--<?php echo $Row['ID_Imagen'];?>">
-                                    <div>
-                                        <img class="Default_pointer" style="width: 2em" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="EliminarImagenSecundaria('<?php echo $Row['ID_Imagen'];?>','Cont_Botones--<?php echo $Row['ID_Imagen'];?>')"/>
-                                    </div>
-                                </div> 
-                                <figure id="<?php echo $Row['ID_Imagen'];?>"> 
-                                    <img class="actualizar_cont--imagen" alt="Fotografia Principal" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
-                                </figure>
-                            </div>
-                            <?php
-                        endforeach;  ?>
+                    <!-- IMAGEN PRINCIPAL-->
+                    <div>
+                        <label class="cont_panel--label">Imagen principal</label>
+                        <div class="cont_edit">
+                            <!-- ICONO EDITAR -->
+                            <label class="Default_pointer" for="imgInp"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                        </div> 
+                        <figure>
+                            <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImagenPrincipal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Datos['noticiaActualizar']['nombre_imagenNoticia'];?>"/> 
+                        </figure>                                
+                        <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
                     </div>
 
-                    <!-- muestra las imagenes secundarias -->
-                    <div style="display:flex" id="muestrasImgSec_2"></div> 
-                </fieldset> 
-                        
-                <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
-                <div class="cont_panel--guardar"> 
-                    <input class="Default_ocultar" type="text" name="ID_Noticia" value="<?php echo $Datos['noticiaActualizar']['ID_Noticia'];?>"/> 
-                    <input class="Default_ocultar" type="text" name="id_fotoPrincipal" value="<?php echo $Datos['noticiaActualizar']['ID_Imagen'];?>" />
-                    <input class="Default_ocultar" type="text" name="ID_Anuncio" value="<?php echo $Datos['anuncio']['ID_Anuncio'];?>" />
+                    <!-- ANUNCIO PUBLICITARIO --> 
+                    <div style="margin-top: 30px">
+                        <label class="cont_panel--label">Anuncio publicitario</label>
+                        <div id="Contenedor_Anuncio">
+                                    <?php
+                            if(empty($Datos['anuncio']['ID_Anuncio'])){ //carga imagen por defecto  ?>
+                                <div class="cont_edit">
+                                    <!-- ICONO EDITAR -->
+                                    <label class="Default_pointer" id="Anuncio"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                                    <!-- <label class="Default_pointer"><span class="material-icons-outlined cont_edit--label" id="Anuncio">edit</span> </label> -->
+                                </div>   
+                                <!-- IMAGEN ANUNCIO PUBLICITARIO-->
+                                <figure>
+                                    <img class="cont_panel--imagen" name="imagenAnunio" alt="Fotografia Principal" id="ImgAnuncio" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                                </figure>
+                                
+                                <input class="Default_ocultar" type="text" name="id_anuncio" id="ID_Anuncio" value="no existe"/>
+                                <input class="Default_ocultar" type="text" value="SiActualizar" name="actualizar" id="Actualiza"/>
+                                <?php
+                            }
+                            else{   ?>
+                                <div class="cont_edit">
+                                    <!-- ICONO EDITAR -->
+                                    <label class="Default_pointer" id="Anuncio"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                                    <!-- <label class="Default_pointer" id="Anuncio"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
+                                </div>   
+                                <figure>
+                                    <img class="cont_panel--imagen" alt="Fotografia Anuncio" id="ImgAnuncio" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Datos['anuncio']['nombre_imagenPublicidad'];?>"/> 
+                                </figure>      
+                                <input class="Default_ocultar" type="text" name="id_anuncio" id="ID_Anuncio" value="<?php echo $Datos['anuncio']['ID_Anuncio'];?>"/>
+                                <input class="Default_ocultar" type="text" value="SiActualizar" name="actualizar" id="Actualiza"/>
+                                <?php
+                            }   ?> 
+                        </div> 
+                    </div>
 
-                    <input class="boton" type="submit" value="Actualizar noticia"/>  
+                    <!-- VIDEO -->
+                    <div style="margin-top: 30px">  
+                            <label class="cont_panel--label">Video</label>   
+                                <?php
+                            if(empty($Datos['video']['ID_Noticia'])){//carga camara por defecto  ?> 
+                                <div class="cont_edit">
+                                    <label class="Default_pointer" for="imgVideo"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                                    <!-- <label class="Default_pointer" for="imgVideo"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
+                                </div> 
+                                <figure id="FigureVideo">
+                                    <img class="cont_panel--video" alt="Icono video" id="ImagenCamara" src="<?php echo RUTA_URL?>/public/video/video.png"/>
+                                </figure> 
+                                
+                                <video class="cont_panel--imagen cont_panel--viedo" id="video-tag">
+                                    <source id = "video-source"/>
+                                </video>
+
+                                <div style="display:flex; justify-content: space-around">
+                                    <button style="padding:0% 3%" class="Default_ocultar" id="Reproducir" onclick="reproducir()">Reproducir</button>
+                                    <button style="padding:0% 3%" class="Default_ocultar" id="Pausar" onclick="pausar()">Pausar</button>
+                                </div>
+
+                                <input class="Default_ocultar" type="file" accept="video/*" name="video" id="imgVideo"/>
+                                <?php
+                            }
+                            else{  //si existe un video y se va a actualizar ?> 
+                                <div>
+                                    <div class="cont_edit">
+                                        <label class="Default_pointer" for="imgVideo"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
+                                        <!-- <label class="Default_pointer" for="imgVideo"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
+                                    </div> 
+                                    <video class="cont_panel--imagen" id="video-tag" controls src="<?php echo RUTA_URL?>/public/video/<?php echo $Datos['video']['nombreVideo'];?>">
+                                        <source id = "video-source"/>
+                                    </video>
+
+                                    <div style="display:flex; justify-content: space-around">
+                                        <button style="padding:0% 3%" class="Default_ocultar" id="Reproducir" onclick="reproducir()">Reproducir</button>
+                                        <button style="padding:0% 3%" class="Default_ocultar" id="Pausar" onclick="pausar()">Pausar</button>
+                                    </div>
+                                    <input class="Default_ocultar" type="file" accept="video/*" name="video" id="imgVideo"/>
+                                </div>
+                                <input class="Default_ocultar" type="text" value="<?php echo $Datos['video']['ID_Video'];?>" name="id_video"/>
+                                <?php
+                            }   ?> 
+                    </div>
                 </div>
-            </form>
+
+                <div style="width: 100%; padding-left: 1%">
+
+                    <!-- TITULO  -->
+                    <label class="cont_panel--label">TItulo</label>
+                    <textarea class="textarea--panel" name="titulo"><?php echo $Datos['noticiaActualizar']['titulo'];?></textarea>
+                    
+                    <!-- RESUMEN -->
+                    <label class="cont_panel--label">Resumen</label>
+                    <textarea class="textarea--panel" name="subtitulo"><?php echo $Datos['noticiaActualizar']['subtitulo'];?></textarea> 
+                
+                    <!-- CONTENIDO -->
+                    <label class="cont_panel--label">Contenido</label>
+                    <textarea class="cont_panel--textarea Default--textarea--scrol" name="contenido" id="Contenido"><?php echo $Datos['noticiaActualizar']['contenido'];?></textarea> 
+
+                    <!-- SECCION -->
+                    <label class="cont_panel--label">Sección</label>
+                    <input class="cont_panel--titulo" type="text" name="seccion" value="<?php echo $Datos['noticiaActualizar']['seccion'];?>" id="SeccionPublicar"/>
+                                                    
+                    <!-- FECHA -->
+                    <label class="cont_panel--label">Fecha</label>                            
+                    <input class="cont_panel--titulo" type="text" name="fecha" id="datepicker" value="<?php echo $Datos['noticiaActualizar']['fechaPublicacion'];?>">
+                    
+                    <!-- FUENTE -->
+                    <label class="cont_panel--label">Fuente</label>
+                    <select class="cont_panel--titulo" name="fuente" id="Fuente" onchange="especificarFuente()">
+                        <option><?php echo $Datos['noticiaActualizar']['fuente'];?></option>
+                        <?php
+                        foreach($Datos['fuentes'] as $Key)   :   ?>
+                            <option><?php echo $Key['fuente']?></option>
+                            <?php
+                        endforeach;     ?>
+                        <option value="Otra">Otra</option>
+                    </select>
+                    <div id="InsertarFuente"></div>
+                </div>                     
+            </div>                        
+        </fieldset>                
+
+        <!-- IMAGENES SECUNDARIAS -->
+        <a id="marcador_02" class="ancla"></a>
+        <fieldset class="fieldset_1">   
+            <!-- AGREGAR MAS IMAGENES SECUNDARIAS -->
+            <label class="actualizar_cont--label Default_pointer" for="imgSec"><img class=" actualizar_cont--span" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></label>
+            <input class="Default_ocultar" type="file" name="imagenesSecundarias[]" multiple="multiple" id="imgSec" onchange="muestraImgSecundarias()"/>
+
+            <br><br> 
+            <legend class="legend_1">Imagenes secundarias</legend> 
+            
+            <!-- EDITAR IMAGEN SECUNDARIA-->
+            <div class="cont_panel--imagenSec">
+                <?php
+                foreach($Datos['imagenesNoticiaActualizar'] as $Row) : ?>                   
+                    <div style="margin: 1%;" id=PadreImagenes">
+                        <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
+                        <div class="cont_edit--dosBotones" id="Cont_Botones--<?php echo $Row['ID_Imagen'];?>">
+                            <div>
+                                <img class="Default_pointer" style="width: 2em" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="EliminarImagenSecundaria('<?php echo $Row['ID_Imagen'];?>','Cont_Botones--<?php echo $Row['ID_Imagen'];?>')"/>
+                            </div>
+                        </div> 
+                        <figure id="<?php echo $Row['ID_Imagen'];?>"> 
+                            <img class="actualizar_cont--imagen" alt="Fotografia Principal" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Row['nombre_imagenNoticia'];?>"/> 
+                        </figure>
+                    </div>
+                    <?php
+                endforeach;  ?>
+            </div>
+
+            <!-- muestra las imagenes secundarias -->
+            <div style="display:flex" id="muestrasImgSec_2"></div> 
+        </fieldset> 
+                
+        <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
+        <div class="cont_panel--guardar"> 
+            <input class="Default_ocultar" type="text" name="ID_Noticia" value="<?php echo $Datos['noticiaActualizar']['ID_Noticia'];?>"/> 
+            <input class="Default_ocultar" type="text" name="id_fotoPrincipal" value="<?php echo $Datos['noticiaActualizar']['ID_Imagen'];?>" />
+            <input class="Default_ocultar" type="text" name="ID_Anuncio" value="<?php echo $Datos['anuncio']['ID_Anuncio'];?>" />
+
+            <input class="boton" type="submit" value="Actualizar noticia"/>  
         </div>
+    </form>
+</div>
 
 <!--div alimentado desde modal_seccionesDisponibles_V.php que muestra las secciones -->    
 <div id="Contenedor_90"></div>

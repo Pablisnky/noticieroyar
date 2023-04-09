@@ -1,5 +1,3 @@
-<!-- CDN libreria JQuery, necesaria para la previsualización de la imagen--> 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 
 <!-- CDN CALENDARIO -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -10,12 +8,14 @@
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
-<div style="margin-left: 20%;">
-    <fieldset class="fieldset_1" id="Portada"> 
-        <legend class="legend_1">Agregar Publicidad</legend>
-            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibePublicidadAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
-                <label class="cont_panel--label">Imagen principal</label>
-                <div style="display: flex; margin-bottom: 30px">
+<!--PANEL NOTICIAS PRINCIPALES --> 
+<div class="cont_panel--actualizar">
+    <form action="<?php echo RUTA_URL; ?>/Panel_C/recibePublicidadAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <a id="marcador_01" class="ancla"></a>
+        <fieldset class="fieldset_1" id="Portada"> 
+            <legend class="legend_1">Agregar Publicidad</legend>
+                <div class="cont_panel--actualizar--contenido">
+                    <label class="cont_panel--label">Imagen principal</label>
 
                     <!-- IMAGEN PRINCIPALANUNCIO PUBLICITARIO -->
                     <div style=" width: 30%">    
@@ -35,22 +35,19 @@
                         <!-- FECHA CADUCACION -->
                         <label class="cont_panel--label">Fecha caducación</label>
                         <input class="cont_panel--select" type="text" name="fecha" id="datepicker">
-                    </div>                     
-                </div>
+                    </div>  
                 
                 <div> 
                     <input class="boton" type="submit" id="Boton_Agregar" value="Agregar anuncio"/>  
-                </div>            
-            </form>
-    </fieldset>
+                </div>                    
+                </div>   
+    </fieldset>        
+    </form>
 </div>
 
-<!--div alimentado desde modal_seccionesDisponibles_V.php que muestra las secciones -->    
-<!-- <div id="Contenedor_80"></div> -->
-
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
-<script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php echo rand();?>"></script> 
-<script src="<?php echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script> 
+<!-- <script src="<?php //echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php //echo rand();?>"></script>  -->
+<!-- <script src="<?php //echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script>  -->
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcion_Calendario.js?v=<?php echo rand();?>"></script>
 
 <script>       
@@ -134,4 +131,4 @@
 </script>
 
 <!-- FOOTER -->
-<?php require(RUTA_APP . '/vistas/footer/footer.php');?>
+<?php //require(RUTA_APP . '/vistas/footer/footer.php');?>

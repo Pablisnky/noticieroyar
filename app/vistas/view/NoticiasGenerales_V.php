@@ -25,8 +25,7 @@
                 </li>
             <?php } ?>
         </ul> 
-    <div class="cont_panel--main">
-       
+    <div class="cont_panel--main">     
 
         <fieldset class="fieldset_1">
             <legend class="legend_1">Noticias generales</legend>

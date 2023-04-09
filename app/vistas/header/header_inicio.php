@@ -134,6 +134,49 @@
 		<!-- MEMBRETE DESPLAZANTE -->
 		<div class="tapa-logo" id="Tapa_Logo">
 			<label class="tapa-logo--font">Noticiero Yaracuy</label>
+			
+			<figure class="tapa-logo--mapa Default_pointer">
+				<img id="Abrir" src="<?php echo RUTA_URL . '/public/images/Mapa-Venezuela-yaracuy.png'?>"/>
+			</figure>
+			<p class="tapa-logo--p">Poema Yaracuy</p>
+		</div>
+		
+		<!-- FULLSCREEM -->
+		<div class="Default_ocultar" id="Miimagen">	
+			<!-- ICONO CERRAR -->
+			<a href="<?php echo RUTA_URL ;?>/Inicio_C"><img class="cont_modal--cerrar Default_pointer" style="width: 1em;" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/></a>
+
+			<div class="fullscreem--inicio--texto">
+				<h1 class="fullscreem--inicio--h1">Poema Yaracuy</h3>
+				<h3 class="fullscreem--inicio--h3">Poeta yaracuyano Jose Parra</h1>
+				<h2 style="color:white">I</h2>
+				<p style="color:white">Esta es mi tierra. Yaracuy la nombran.<br>
+				Yaracuy es río y es la hazaña<br>
+				Y el nombre de su selva<br>
+				Y su montaña preso en las aguas<br>
+				Que su plano alfombran.</p>
+
+				<h2 style="color:white">II</h2>
+				<p style="color:white">Su luz, su magia, su verdor asombran<br>
+				Y a orillas de las espumas que la bañan<br>
+				De su seno de miel surge la caña<br>
+				Para endulzar los labios que la nombran.</p>
+
+				<h2 style="color:white">III</h2>
+				<p style="color:white">Es tierra oscura… mas si en paz florece<br>
+				Y en el vaivén del corazón nos crece<br>
+				El cobre de su glóbulo aborigen.</p>
+
+				<h2 style="color:white">IV</h2>
+				<p style="color:white">Vemos entonces sus azules sendas<br>
+				Y hasta oímos la voz de sus leyendas<br>
+				Llenándonos la noche del origen.</p>
+			</div>
+			<div class="fullscreem--inicio--mapa">
+				<figure>
+					<img src="<?php echo RUTA_URL . '/public/images/Mapa-Venezuela-yaracuy.png'?>"/>
+				</figure>
+			</div>
 		</div>
 		
 		<noscript>
