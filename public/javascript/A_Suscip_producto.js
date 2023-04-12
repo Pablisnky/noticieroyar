@@ -34,7 +34,7 @@ function conexionAJAX(){
     function Llamar_EliminarProducto(ID_Producto, ID_Opcion){
         console.log("______Desde Llamar_EliminarProducto()______", ID_Producto + '-' + ID_Opcion)
 
-        var url = "../CuentaComerciante_C/eliminarProducto/" + ID_Producto + '-' + ID_Opcion
+        var url = "../Clasificados_C/eliminarProducto/" + ID_Producto + '-' + ID_Opcion
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_EliminarProducto
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")

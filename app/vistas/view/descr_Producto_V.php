@@ -166,45 +166,38 @@
                     <div class="contenedor_163">
                         <h3 class="h3_4 h3_4--fijo">Metodos de pago aceptados</h3>    
                         <?php
+
                         // TRANSFERENCIA BANCARIAS
-                        // $VerificarTransferencia = 1; //Se declara para que este definida.
-                        // foreach($Datos['tiendas_transferencias'] as $row) :
-                        //     $ID_TiendaConTransferencia = $row['ID_Tienda'];
-                        //     if($ID_TiendaConTransferencia == $ID_Tienda){   
-                        //         $VerificarTransferencia = 'Transferencia_' . $ID_Tienda;   ?>     
-                                <div class="contenedor_161 contenedor_161--fijo">
-                                    <p class="p_19">Tranferencia bancaria</p>
-                                    <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
-                                </div> 
-                                <?php
-                            // }
-                        // endforeach;
-                        // if($VerificarTransferencia != 'Transferencia_' . $ID_Tienda){?>     
-                            <!-- <div class="contenedor_161 contenedor_161--fijo">
-                                <p class="p_19">Tranferencia bancaria</p><i class="fas fa-minus"></i>
-                            </div>  -->
+                        if($Datos['formasPago']['transferencia'] == 1){     ?>     
+                            <div class="contenedor_161 contenedor_161--fijo">
+                                <p class="p_19">Tranferencia bancaria</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
+                            </div> 
                             <?php
-                        // }
+                        }
+                        else{   ?>     
+                            <div class="contenedor_161 contenedor_161--fijo">
+                                <p class="p_19">Tranferencia bancaria</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
+                            </div> 
+                            <?php
+                        }
 
                         // PAGO MOVIL
-                        // $VerificarPagoMovil = 1;//Se declara para que este definida.
-                        // foreach($Datos['tiendas_pagomovil'] as $row) :
-                        //     $ID_TiendaConPagoMovil = $row['ID_Tienda'];
-                        //     if($ID_TiendaConPagoMovil == $ID_Tienda){ 
-                        //         $VerificarPagoMovil = 'PagoMovil_' . $ID_Tienda;  ?>
-                                <div class="contenedor_161">
-                                    <p class="p_19">Pago movil</p>
-                                    <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
-                                </div>
-                                <?php
-                        //     }
-                        // endforeach;
-                        // if($VerificarPagoMovil != 'PagoMovil_' . $ID_Tienda){?>     
-                            <!-- <div class="contenedor_161">
-                                <p class="p_19">Pago movil</p><i class="fas fa-minus"></i>
-                            </div>  -->
+                        if($Datos['formasPago']['pago_movil'] == 1){  ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">Pago movil</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
+                            </div>
                             <?php
-                        // } 
+                        }
+                        else{?>     
+                            <div class="contenedor_161">
+                                <p class="p_19">Pago movil</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
+                            </div> 
+                            <?php
+                        } 
                         
                         // RESERVE 
                         // $VerificarReserve = 1;//Se declara para que este definida.
@@ -212,116 +205,116 @@
                         //     $ID_TiendaConReserve = $row['ID_Tienda'];
                         //     if($ID_TiendaConReserve == $ID_Tienda){  
                         //         $VerificarReserve = 'Reserve_' . $ID_Tienda; ?>
-                                <div class="contenedor_161">
+                                <!-- <div class="contenedor_161">
                                     <p class="p_19">Reserve</p>
                                     <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
-                                </div>  
+                                </div>   -->
                                 <?php
                         //     }
                         // endforeach;
                         // if($VerificarReserve != 'Reserve_' . $ID_Tienda){  ?>
                             <!-- <div class="contenedor_161">
-                                <p class="p_19">Reserve</p><i class="fas fa-minus"></i>
+                                <p class="p_19">Reserve</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
                             </div>  -->
                             <?php 
                         // }
                         
                         // PAYPAL 
-                        // $VerificarPaypal = 1;//Se declara para que este definida.
-                        // foreach($Datos['tiendas_paypal'] as $row) :
-                        //     $ID_TiendaConPaypal = $row['ID_Tienda'];
-                        //     if($ID_TiendaConPaypal == $ID_Tienda){  
-                        //         $VerificarPaypal = 'Paypal_' . $ID_Tienda; ?>
-                                <div class="contenedor_161">
-                                    <p class="p_19">Paypal</p>
-                                    <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
-                                </div>  
-                                <?php
-                            // }
-                        // endforeach;
-                        // if($VerificarPaypal != 'Paypal_' . $ID_Tienda){  ?>
-                            <!-- <div class="contenedor_161">
-                                <p class="p_19">Paypal</p><i class="fas fa-minus"></i>
-                            </div>   -->
+                        if($Datos['formasPago']['paypal'] == 1){   ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">Paypal</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
+                            </div>  
                             <?php
-                        // }
+                        }
+                        else{  ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">Paypal</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
+                            </div>  
+                            <?php
+                        }
                         
                         // ZELLE 
-                        // $VerificarZelle = 1;//Se declara para que este definida.
-                        // foreach($Datos['tiendas_zelle'] as $row) :
-                        //     $ID_TiendaConZelle = $row['ID_Tienda'];
-                        //     if($ID_TiendaConZelle == $ID_Tienda){  
-                        //         $VerificarZelle = 'Zelle_' . $ID_Tienda; ?>
-                                <div class="contenedor_161">
-                                    <p class="p_19">Zelle</p>
-                                    <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
-                                </div>  
+                        if($Datos['formasPago']['zelle'] == 1){   ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">Zelle</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
+                            </div>  
                                 <?php
-                        //     }
-                        // endforeach;
-                        // if($VerificarZelle != 'Zelle_' . $ID_Tienda){  ?>
-                            <!-- <div class="contenedor_161">
-                                <p class="p_19">Zelle</p><i class="fas fa-minus"></i>
-                            </div>   -->
+                        }
+                        else{  ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">Zelle</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
+                            </div>  
                             <?php
-                        // }
-                            
-                        // EFECTIVO BOLIVAR
-                        // foreach($Datos['tiendasOtrosPagos'] as $row) :
-                        //     $ID_TiendaConPagoBolivar = $row['ID_Tienda'];
-                        //     $PagoBolivar = $row['efectivoBolivar'];
-                        //     if($ID_TiendaConPagoBolivar ==  $ID_Tienda && $PagoBolivar == 1){  
-                        //         $VerificaPagoBolivar = true ?>
-                                <div class="contenedor_161">
-                                    <p class="p_19">En destino (efectivo Bs.)</p>
-                                    <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
-                                </div>
+                        }
+
+                        // CRIPTOMONEDA
+                        if($Datos['formasPago']['criptomoneda'] == 1){  ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">Criptomoneda</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
+                            </div>
                                 <?php
-                            // }
-                            // else if($ID_TiendaConPagoBolivar == $ID_Tienda && $PagoBolivar == 0){  ?>
-                                <!-- <div class="contenedor_161">
-                                    <p class="p_19">En destino (efectivo Bs.)</p><i class="fas fa-minus"></i>
-                                </div> --> 
-                                <?php 
-                            // }
-                        // endforeach;     
+                        }
+                        else{  ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">Criptomoneda</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
+                            </div> 
+                            <?php 
+                        }    
                                 
+                        // EFECTIVO BOLIVAR
+                        if($Datos['formasPago']['efectivo_Bs'] == 1){  ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">En destino (efectivo Bs.)</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
+                            </div>
+                                <?php
+                        }
+                        else{  ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">En destino (efectivo Bs.)</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
+                            </div> 
+                            <?php 
+                        }    
+
                         // EFECTIVO DOLAR
-                        // foreach($Datos['tiendasOtrosPagos'] as $row) :
-                        //     $ID_TiendaConPagoDolar = $row['ID_Tienda'];
-                        //     $PagoDolar = $row['efectivoDolar'];
-                        //     if($ID_TiendaConPagoDolar == $ID_Tienda && $PagoDolar == 1){  ?>
-                                <div class="contenedor_161">
-                                    <p class="p_19">En destino (efectivo $)</p>
-                                    <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
-                                </div>
+                        if($Datos['formasPago']['efectivo_Dol'] == 1){  ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">En destino (efectivo $)</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
+                            </div>
+                            <?php
+                        }
+                        else{  ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">En destino (efectivo $)</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
+                            </div>  
                                 <?php
-                            // }
-                            // else if($ID_TiendaConPagoDolar == $ID_Tienda && $PagoDolar == 0){  ?>
-                                <!-- <div class="contenedor_161">
-                                    <p class="p_19">En destino (efectivo $)</p><i class="fas fa-minus"></i>
-                                </div>   -->
-                                <?php
-                        //     }
-                        // endforeach; 
+                        }
                                 
                         // ACORDADO EN TIENDA
-                        // foreach($Datos['tiendasOtrosPagos'] as $row_2) :
-                        //     $ID_TiendaConPagoAcordado = $row_2['ID_Tienda'];
-                        //     $PagoAcordado = $row_2['acordado'];
-                        //     if($ID_TiendaConPagoAcordado == $ID_Tienda && $PagoAcordado == 1){   ?>
-                                <!-- <div class="contenedor_161">
-                                    <p class="p_19">Acordado con tienda</p><i class="fas fa-check"></i>
-                                </div> -->
+                        if($Datos['formasPago']['acordado'] == 1){   ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">Acordado con vendedor</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
+                            </div>
                                 <?php
-                            // }
-                            // else if($ID_TiendaConPagoAcordado == $ID_Tienda && $PagoAcordado == 0){  ?>
-                                <!-- <div class="contenedor_161">
-                                    <p class="p_19">Acordado con tienda</p><i class="fas fa-minus"></i>
-                                </div>   -->
+                        }
+                        else{  ?>
+                            <div class="contenedor_161">
+                                <p class="p_19">Acordado con vendedor</p>
+                                <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
+                            </div>  
                                 <?php
-                        //     }
-                        // endforeach; ?>
+                            } ?>
                     </div>
                 </div>
                                 

@@ -6,7 +6,7 @@
 if(!empty($_SESSION["ID_Suscriptor"])){
     $ID_Suscriptor = $_SESSION["ID_Suscriptor"];
 
-    //$Datos viene del metodo CuentaComerciante_C/actualizarProducto
+    //$Datos viene del metodo
     foreach($Datos['especificaciones'] as $arr) :
         $ID_Producto = $arr['ID_Producto'];
         $ID_Opcion = $arr['ID_Opcion'];
@@ -27,7 +27,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
     <div class="cont_suscrip_publicar">    
-        <form action="<?php echo RUTA_URL; ?>/CuentaComerciante_C/recibeAtualizarProducto" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit = "return validarActualizacion()">
+        <form action="<?php echo RUTA_URL; ?>/Clasificados_C/recibeAtualizarProducto" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit = "return validarActualizacion()">
 
             <a id="Ancla_01" class="ancla_1"></a>
             <fieldset class="fieldset_1 fieldset_3">

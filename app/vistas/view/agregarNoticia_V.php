@@ -7,14 +7,15 @@
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
-<div style="margin-left: 20%; margin-bottom: 50px">
-    <fieldset class="fieldset_1" id="Portada"> 
-        <legend class="legend_1">Agregar Noticia</legend>
-        <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" id="Agregar" onsubmit="return validarAgregarNoticia()">
-            <div style="display: flex;">
-                <div style=" width: 30%">    
+<div class="cont_panel--actualizar">
+    <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" id="Agregar" onsubmit="return validarAgregarNoticia()">
+        <a id="marcador_01" class="ancla"></a>
+        <fieldset class="fieldset_1" id="Portada"> 
+            <legend class="legend_1">Agregar Noticia</legend>
+            <div class="cont_panel--actualizar--contenido">
+                <div class="cont_panel--actualizar--media">    
 
-                    <!-- IMAGEN PRINCIPAL imagenAnunio-->
+                    <!-- IMAGEN PRINCIPAL -->
                     <div>
                         <label class="cont_panel--label">Imagen principal</label>
                         <label class="Default_pointer" for="imgInp">    
@@ -37,29 +38,30 @@
                     </div>
 
                     <!-- VIDEO -->
-                    <div style="margin-top: 30px">  
+                    <div style="margin-top: 30px; margin-bottom: 30px;">  
                         <label class="cont_panel--label">Video</label>    
                         <label class="cont_panel--label Default_pointer" for="imgVideo">
                             <figure id="FigureVideo">
                                 <img class="cont_panel--video" alt="Icono video" id="ImagenCamara" src="<?php echo RUTA_URL?>/public/video/video.png"/>
                             </figure> 
                         </label>
-
-                        <video class="cont_panel--imagen"  id="video-tag" >
-                            <source id = "video-source"/>
-                        </video>
-                        <div style="display:flex; justify-content: space-around">
-                            <button style="padding:0% 3%" class="Default_ocultar" id="Reproducir" onclick="reproducir()">Reproducir</button>
-                            <button style="padding:0% 3%" class="Default_ocultar" id="Pausar" onclick="pausar()">Pausar</button>
+                        <div id="Cont_FigureVideo" style="display: none;">
+                            <video class="cont_panel--imagen" id="video-tag" >
+                                <source id = "video-source"/>
+                            </video>
+                            <div style="display:flex; justify-content: space-around">
+                                <button style="padding:0% 3%" class="Default_ocultar" id="Reproducir" onclick="reproducir()">Reproducir</button>
+                                <button style="padding:0% 3%" class="Default_ocultar" id="Pausar" onclick="pausar()">Pausar</button>
+                            </div>
+                            <input class="Default_ocultar" type="file" accept="video/*" name="video" id="imgVideo"/>
                         </div>
-                        <input class="Default_ocultar" type="file" accept="video/*" name="video" id="imgVideo"/>
                     </div>
                 </div>
                 
                 <div style="width: 100%; padding-left: 1%" id="AgregarNoticia">
                     <!-- TITULO -->
                     <label class="cont_panel--label">TItulo</label>
-                    <textarea class="textarea--panel textarea--titulo" name="titulo" id="Titulo"></textarea> 
+                    <textarea class="textarea--panel" name="titulo" id="Titulo"></textarea> 
                     <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="90" readonly/>
 
                     <!-- RESUMEN -->
@@ -74,15 +76,15 @@
                     
                     <!-- SECCION -->
                     <label class="cont_panel--label">Sección</label>
-                    <input class="cont_panel--select" type="text" name="seccion" id="SeccionPublicar"/>
+                    <input class="cont_panel--titulo" type="text" name="seccion" id="SeccionPublicar"/>
                     
                     <!-- FECHA -->
                     <label class="cont_panel--label">Fecha</label>
-                    <input class="cont_panel--select" type="text" name="fecha" id="datepicker">
+                    <input class="cont_panel--titulo" type="text" name="fecha" id="datepicker">
                     
                     <!-- FUENTE -->
                     <label class="cont_panel--label">Fuente</label>
-                    <select class="cont_panel--select" name="fuente" id="Fuente" onchange="especificarFuente()">
+                    <select class="cont_panel--titulo" name="fuente" id="Fuente" onchange="especificarFuente()">
                         <option>Lisbella Paez CNP 13.162</option>
                         <?php
                         foreach($Datos['fuentes'] as $Key)   :   ?>
@@ -94,21 +96,20 @@
                     <div id="InsertarFuente"></div>
                     
                     <!-- IMAGENES SECUNDARIAS -->     
-                    <label class="cont_panel--label" style="display: block" for="ImgInp_2">Imagenes secundarias</label>
-                    <input class="" type="file" name="imagenesSec[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
+                    <label class="cont_panel--label Default_pointer" style="display: block; color: blue; font-weight: lighter;" for="ImgInp_2">Imagenes secundarias</label>
+                    <input class=" Default_ocultar" type="file" name="imagenesSec[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
                             
                     <!-- muestra las imagenes secundarias -->
                     <div class="cont_panel--imagenSec" id="muestrasImg_2"></div>                    
                 </div>                     
             </div>
-                   
-        </form>
-    </fieldset>
-
-    <!-- BOTON DE ENVIO -->
-    <div class="cont_panel--guardar"> 
-        <input class="boton" type="submit" form="Agregar" id="Boton_Agregar" value="Agregar noticia"/>  
-    </div>     
+            <br style="margin-bottom: 15%">
+            <!-- BOTON DE ENVIO -->
+            <div class="cont_panel--guardar"> 
+                <input class="boton" type="submit" form="Agregar" id="Boton_Agregar" value="Agregar noticia"/>  
+            </div> 
+        </fieldset> 
+    </form>   
 </div>
 
 <!--div alimentado desde modal_seccionesDisponibles_V.php que muestra las secciones -->    
@@ -161,6 +162,7 @@
     function readVideo(event) {
 
         document.getElementById("FigureVideo").style.display = "none"
+        document.getElementById("Cont_FigureVideo").style.display = "block"
         document.getElementById("Reproducir").style.display = "inline"
         document.getElementById("Pausar").style.display = "inline"
         

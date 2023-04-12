@@ -206,25 +206,26 @@
                             'telefono' => $Suscriptor[0]['telefonoSuscriptor']
                         ];
 
-                        // echo '<pre>';
-                        // print_r($Datos);
-                        // echo '</pre>';
-                        // exit;
+                        echo '<pre>';
+                        print_r($Datos);
+                        echo '</pre>';
+                        exit;
                         
                         $this->vista("header/header_suscriptor");
                         $this->vista("suscriptores/panel_suscrip_V", $Datos);
                     }
                     else if($Bandera == 'SinBandera'){// entra al panel de suscriptor
-
-                        //Se CONSULTA al controlador CuentaComerciante_C la cantidad de comentarios, nuncios clasificados, denuncias y noticias guardadas.
-                        require(RUTA_APP . "/controladores/CuentaComerciante_C.php");
-                        $DatosComerciante = new CuentaComerciante_C();
-                        $Comerciante = $DatosComerciante->index();
-
-                        $Datos = [                            
+                        
+                        //Se CONSULTA al controlador Clasificado_C la cantidad de anuncios clasificados que tiene el suscriptor.
+                        require_once(RUTA_APP . "/controladores/Clasificados_C.php");
+                        $DatosComerciante = new Clasificados_C();
+                        $Comerciante = $DatosComerciante->clasificadoSuscriptor($ID_Suscriptor);
+                        
+                        $Datos = [                
+                            'ID_Suscriptor' => $ID_Suscriptor,            
                             'nombre' => $Nombre,
                             'apellido' => $Apellido,
-                            'comerciante' => $Comerciante
+                            'clasificados' => $Comerciante
                         ];
 
                         // echo '<pre>';
@@ -397,11 +398,6 @@
                 echo "<a href='javascript: history.go(-1)'>Regresar</a>";
             }
         }
-
-        // public function loginIncorrecto(){
-        //     $this->vista("header/header_noticia");
-        //     $this->vista("modal/modal_falloLogin_V");
-        // }
         
         //Invocado desde login_V.php
         public function suscripcion($ID_Noticia){
@@ -488,29 +484,5 @@
 
             $this->vista("header/header_noticia");
             $this->vista("view/login_V", $Datos);
-        }
-
-        //carga la vista panel_suscriptor porque el usuario inicio sesion, se llega aqui por medio de la carita del header
-        public function accesoSuscriptor(){
-            if($_SESSION["ID_Suscriptor"]){
-
-                //Se consultan datos del suscriptor
-                $Suscriptor = $this->ConsultaLogin_M->DatosSuscriptor($_SESSION["ID_Suscriptor"]);
-              
-                $Datos = [
-                    'nombre' => $Suscriptor[0]['nombreSuscriptor'],
-                    'apellido' => $Suscriptor[0]['apellidoSuscriptor'],
-                    'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
-                    'telefono' => $Suscriptor[0]['telefonoSuscriptor']
-                ];
-
-                // echo "<pre>";
-                // print_r($Datos);
-                // echo "</pre>";
-                // exit;
-
-                $this->vista("header/header_suscriptor");
-                $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
-            }
         }
     }

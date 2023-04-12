@@ -1062,6 +1062,8 @@
   }
   .cont_clasificados{
 	justify-content: space-around;
+	top: 45px;
+	padding-top: 3%;
 }
 .cont_clasificados--item-1{
 	width: 20%;
@@ -1140,14 +1142,6 @@
 	margin-top: -1%;
 	margin: auto;
 }
-
-
-
-
-
-
-
-
 .cont_panel--actualizar{
 	width: 100%;
 	margin-left: 0%; 
@@ -1169,5 +1163,64 @@
 }
 .cont_panel__agenda--imagen{
 	width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.cont_agenda--titulo{
+	font-size: 1.4em;
+}
+.cont_agenda--imagen{
+	width: 100%;
+}
+.cont_noticias{
+	margin-top: 20%;
+}
+.cont_panel--actualizar{
+	width: 100%;
+	margin-left: 0%; 
+	padding-top: 20px;
+}
+.cont_panel--actualizar--contenido{
+	display: block;
+}
+.cont_panel--actualizar--media{
+	width: 60%;
+	margin: auto;
+}
+.cont_panel--imagen{
+   height: 45vw;
+}
+.cont_panel__agenda--imagen{
+	width: 50%;
+}
+.cont_panel--video{
+   width: 80%; 
+   height: 40vw;
+}
+.cont_panel--imagen--catalogo{
+   width: 50%; 
+   height: 45vw;
+   margin: auto;
+   object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.detalle_cont--redesSociales--Panel{
+   display: flex;
+   width: 80%;
+   margin-bottom: 5%;
+   justify-content: space-between;
+}
+.detalle_cont--redesSociales-Whatsapp{
+	width: 70%;
+	margin-left: 25%;
 }
 }

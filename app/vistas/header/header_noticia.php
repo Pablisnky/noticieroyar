@@ -76,10 +76,10 @@
 			<!-- FECHA -->
 			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
 			
-			<!-- LOGIN -->
+			<!-- CARITA -->
 			<?php
 			if(!empty($_SESSION['ID_Suscriptor'])){	?>
-				<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><img class="loginCarita" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
+				<a href="<?php echo RUTA_URL . '/Suscriptores_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>"><img class="loginCarita" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
 				<?php
 			}	?>
 		</header>
@@ -91,7 +91,6 @@
 			<figure class="tapa-logo--mapa Default_pointer">
 				<img id="Abrir" src="<?php echo RUTA_URL . '/public/images/Mapa-Venezuela-yaracuy.png'?>"/>
 			</figure>
-			<!-- <p class="tapa-logo--p">Poema Yaracuy</p> -->
 		</div>
 		
 		<!-- FULLSCREEM -->

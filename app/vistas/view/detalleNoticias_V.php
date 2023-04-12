@@ -50,7 +50,7 @@
 
                 <!-- FACEBOOK -->
                 <div class="detalle_cont--red">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>" target="_blank"><img class="detalle_cont--redesSociales-facebook" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Datos['detalleNoticia'][0]['ID_Noticia'];?>" target="_blank"><img class="detalle_cont--redesSociales-facebook" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
                 </div>
 
                 <!-- TWITTER -->
@@ -205,6 +205,9 @@
             <div class="publicidad_cont--interno">
                 <img class="publicidad_cont--imagen" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Datos['publicidad'][0]['nombre_imagenPublicidad'] ;?>"/>
             </div>
+
+            <!-- ENLACE A PRODUCTO O CATALOGO -->
+            <!-- <a class="publicidad_cont--enlace" href="<?php echo RUTA_URL?>/Clasificados_C/productoAmpliado/99' " rel="noopener noreferrer" target="_blank">Visitanos</a> -->
         </div>
         <?php
     } 

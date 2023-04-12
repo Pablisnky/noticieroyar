@@ -15,7 +15,7 @@ if(!empty($_SESSION["Publicar"])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <div class="cont_suscrip_publicar">  
-        <form action="<?php echo RUTA_URL; ?>/CuentaComerciante_C/recibeProductoPublicar" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarPublicacion()">
+        <form action="<?php echo RUTA_URL; ?>/Clasificados_C/recibeProductoPublicar" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarPublicacion()">
 
             <fieldset class="fieldset_1 fieldset_3"> 
                 <legend class="legend_1">Cargar producto</legend>

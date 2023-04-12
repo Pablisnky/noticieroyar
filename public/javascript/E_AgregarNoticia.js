@@ -169,7 +169,7 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
 
 //************************************************************************************************  
     function blaquearInput(ID_Contenido){
-        console.log("______Desde blaquearInput()______") 
+        // console.log("______Desde blaquearInput()______") 
         document.getElementById(ID_Contenido).value = ""
     }
     

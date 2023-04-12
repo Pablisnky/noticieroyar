@@ -72,6 +72,11 @@
                                 <div class="detalle_cont--red">
                                     <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>&text=<?php echo $Not_Prin['titulo'];?>" target="_blank"><img style="height: 2em;" src="<?php echo RUTA_URL?>/public/images/twitter.png"/></a>
                                 </div>  
+
+                                <!-- WHATSAPP -->
+                                <div class="whatsapp detalle_cont--red">
+                                    <a href="whatsapp://send?text=<?php echo $Not_Prin['titulo']?>&nbsp;<?php echo RUTA_URL?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>" data-action="share/whatsapp/share"><img class="detalle_cont--redesSociales-Whatsapp" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/></a>
+                                </div>            
                             </div>
 
                             <!-- EDITAR -->

@@ -52,6 +52,14 @@
 
                 //usar en local          ruta de la carpeta donde se guardarán las imagen de perfil del artista
                 // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/agenda/';             
+            } 
+            else if($Bandera == 'imagenCatalogo'){ //viene de Suscriptor_C/actualizaNombreComercial
+                
+                //Usar en remoto         ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                $patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/';
+
+                //usar en local          ruta de la carpeta donde se guardarán las imagen de perfil del artista
+                // $patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/';             
             }
             else if($Bandera = ''){//viene de                 
                 //Usar en remoto         ruta de la carpeta donde se guardarán las imagen de perfil del artista

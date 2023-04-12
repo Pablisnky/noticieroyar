@@ -1,4 +1,4 @@
-<!-- Cargada desde CuentaComerciante_C/Productos -->
+<!-- Cargada desde Clasificados_C/Productos -->
 
 <section class="sectionModal sectionModal--sinProducto">
 
@@ -10,7 +10,7 @@
         <div class="contenedor_24 contenedor_24--widt">
             <h1 class="h1_1 h1_1--fontZise bandaAlerta">Añada sus datos comerciales.</h1>
             <br>
-            <form action="../CuentaComerciante_C/recibeNombreComercial" method="POST"  autocomplete="off" onsubmit="return validarNombreCOmercial()">
+            <form action="../Suscriptor_C/recibeNombreComercial" method="POST"  autocomplete="off" onsubmit="return validarNombreCOmercial()">
 
                 <label class="login_cont--label default_bold">Nombre comercial</label>
                 <input class="login_cont--input borde--input" type="text" name="nombreComercial"/>
@@ -84,7 +84,7 @@
         <!-- <div class="contenedor_24 contenedor_24--widt">
             <h1 class="h1_1 h1_1--fontZise bandaAlerta">Aun no tienes cargado ningun producto.</h1>
             <br>
-            <a class="boton boton--largo" style="margin: auto;" href="<?php echo RUTA_URL . '/CuentaComerciante_C/Publicar/';?>">Cargar producto</a>
+            <a class="boton boton--largo" style="margin: auto;" href="<?php //echo RUTA_URL . '/Clasificados_C/Publicar/';?>">Cargar producto</a>
         </div> -->
         <?php
     // }   ?>

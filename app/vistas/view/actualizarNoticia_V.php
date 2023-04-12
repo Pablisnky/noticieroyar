@@ -1,4 +1,3 @@
-<!-- CDN libreria JQuery, necesaria para la previsualización de la imagen--> 
 <!-- CDN CALENDARIO -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
@@ -7,14 +6,12 @@
 
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
-    
-<!--PANEL NOTICIAS PRINCIPALES --> 
-<div class="cont_panel--actualizar">        
-    <!-- NOTICIA -->
-    <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiActualizada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit = "return validarActualizarNoticia()">
+
+<div class="cont_panel--actualizar">   
+    <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiActualizada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarActualizarNoticia()">
         <a id="marcador_01" class="ancla"></a>
         <fieldset class="fieldset_1" id="Portada"> 
-        <legend class="legend_1">Actualizar Noticia</legend>
+            <legend class="legend_1">Actualizar Noticia</legend>
             <div class="cont_panel--actualizar--contenido">
                 <div class="cont_panel--actualizar--media">                       
 
@@ -115,7 +112,6 @@
                 </div>
 
                 <div style="width: 100%; padding-left: 1%">
-
                     <!-- TITULO  -->
                     <label class="cont_panel--label">TItulo</label>
                     <textarea class="textarea--panel" name="titulo"><?php echo $Datos['noticiaActualizar']['titulo'];?></textarea>

@@ -103,13 +103,13 @@
 				<label class="header__titulo">Noticiero Yaracuy</label>
 			</div>
 
-			<!-- FECHA Y LOGIN-->
+			<!-- FECHA Y CARITA -->
 			<div>
 				<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
 
 				<?php
 				if(!empty($_SESSION['ID_Suscriptor'])){	?>
-					<a href="<?php echo RUTA_URL . '/Login_C/accesoSuscriptor';?>"><img src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
+					<a href="<?php echo RUTA_URL . '/Suscriptor_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>"><img src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
 					<?php
 				}	?>
 			</div>
@@ -130,7 +130,7 @@
 				</div>
 			</div>   -->
 		</header>
-		
+				
 		<!-- MEMBRETE DESPLAZANTE -->
 		<div class="tapa-logo" id="Tapa_Logo">
 			<label class="tapa-logo--font">Noticiero Yaracuy</label>
@@ -138,7 +138,6 @@
 			<figure class="tapa-logo--mapa Default_pointer">
 				<img id="Abrir" src="<?php echo RUTA_URL . '/public/images/Mapa-Venezuela-yaracuy.png'?>"/>
 			</figure>
-			<p class="tapa-logo--p">Poema Yaracuy</p>
 		</div>
 		
 		<!-- FULLSCREEM -->
@@ -146,6 +145,9 @@
 			<!-- ICONO CERRAR -->
 			<a href="<?php echo RUTA_URL ;?>/Inicio_C"><img class="cont_modal--cerrar Default_pointer" style="width: 1em;" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/></a>
 
+			<!-- AUDIO -->
+			<!-- <audio autoplay src="<?php //echo RUTA_URL . '/public/audio/TeofiloDominguez-Esterlina.mp3';?>" loop></audio> -->
+			
 			<div class="fullscreem--inicio--texto">
 				<h1 class="fullscreem--inicio--h1">Poema Yaracuy</h3>
 				<h3 class="fullscreem--inicio--h3">Poeta yaracuyano Jose Parra</h1>

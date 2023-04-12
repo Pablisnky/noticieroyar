@@ -41,8 +41,5 @@
 
             $this->vista("header/header_agenda", $Datos); 
             $this->vista("view/agenda_RedesSociales_V", $Datos); 
-            
-			// header("Location:" . RUTA_URL . "/Agenda_C");
-
         }
     }

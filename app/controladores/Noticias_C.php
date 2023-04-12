@@ -90,7 +90,7 @@
             //Se consulta el video de la noticia
             $VideoNoticia = $this->ConsultaNoticia_M->consultarVideoNoticia($ID_Noticia);
 
-			//CONSULTA si existe algun anuncio sociado a la noticia seleccionada
+			//CONSULTA si existe algun anuncio asociado a la noticia seleccionada y si tiene catalogo
             $Publicidad = $this->ConsultaNoticia_M->consultarAnuncioNoticiaPortada($ID_Noticia);
             
 			//CONSULTA los suscriptres que han realizado comentarios y el comentario
