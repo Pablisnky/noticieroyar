@@ -148,3 +148,10 @@ sections.forEach((section, index) => {
 
   observer.observe(section);
 });
+
+//saber posicion del scrool vertical
+window.onscroll = function() {
+    var y = window.scrollY;
+    document.getElementById('y').innerText = y;
+    console.log(y);
+  };

@@ -1173,9 +1173,6 @@
 .boton--publicar{
 	width: 100%;
 }
-.contenedor_24--widt{
-	width: 98%!important;
-}
 .contInputRadio--SinProductos-float-L{
 	float: initial;
 }
@@ -1187,11 +1184,6 @@
 }
 .select_2--SinProductos{
 	width: 90%;
-}
-.cont_modal--agegar--movil{
-	position: absolute;
-	top: 3%; 
-	z-index: 0;
 }
 .publicidad_cont--interno{
 	background-color: initial; 
@@ -1259,17 +1251,6 @@
 .cont_panel__agenda--imagen{
 	width: 50%;
 }
-
-
-
-
-
-
-
-
-
-
-
 .cont_agenda--titulo{
 	font-size: 1.4em;
 }
@@ -1316,5 +1297,28 @@
 .detalle_cont--redesSociales-Whatsapp{
 	width: 70%;
 	margin-left: 25%;
+}
+
+
+
+
+
+
+
+
+
+
+
+.modal_falloLogin{
+	width: 90%;
+}
+.contenedor_24--widt{
+	width: 98%!important;
+	margin-top: 20%;
+}
+.cont_modal--agegar--movil{
+	position: absolute;
+	top: 7%; 
+	z-index: 0;
 }
 }

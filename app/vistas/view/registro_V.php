@@ -21,7 +21,7 @@
                         
                         <!-- MUNICIPIO AFILIADO -->                
                         <label class="login_cont--label">Municipio</label>
-                        <select class="login_cont--select borde--input" name="municipio" id="Municipio">
+                        <select class="login_cont--select borde--input" name="municipio" id="Municipio"  onchange="SeleccionarParroquia(this.form)">
                             <option></option>
                             <option vlaue="Aristides Bastidas">Aristides Bastidas</option>
                             <option vlaue="Bolivar">Bolivar</option>
@@ -38,6 +38,12 @@
                             <option vlaue="Urachiche">Urachiche</option>
                             <option vlaue="Veroes">Veroes</option>
                         </select>               
+                        
+                        <label class="login_cont--label">Parroquia</label>
+                        <select class="login_cont--select borde--input" name="parroquia" id="Parroquia">
+                                <option>Seleccione parroquia</option>
+                        </select>   
+
                         <div class="contenedor_43" id="Mostrar_verificarNombreTienda"></div>
                     </div>
                 </fieldset>      
@@ -70,3 +76,4 @@
                     
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js';?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_Registro.js';?>"></script>
+<script src="<?php echo RUTA_URL . '/public/javascript/parroquias.js?v=' . rand();?>"></script> 

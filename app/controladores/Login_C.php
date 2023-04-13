@@ -432,7 +432,8 @@
                         'nombre' => ucwords($_POST['nombre']),    
                         'apellido' => ucwords($_POST['apellido']),                      
                         'correo' => mb_strtolower($_POST['correo']),                       
-                        'municipio' => mb_strtolower($_POST['municipio']),
+                        'municipio' => mb_strtolower($_POST['municipio']),                
+                        'parroquia' => mb_strtolower($_POST['parroquia']),
                         'clave' => $_POST['clave'],
                         'repiteClave' => $_POST['confirmarClave']
                 ];

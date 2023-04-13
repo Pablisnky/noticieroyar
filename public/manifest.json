@@ -5,30 +5,30 @@
   "background_color": "#F4FCFB",
   "display": "standalone",
   "description": "Bienvenido a NoticieroYaracuy",
-  "orientation": "portrait"
-  // "icons": [{
-  //   "src": "/images/logo_48.png",
-  //   "sizes": "48x48",
-  //   "type": "image/png"
-  // }, {
-  //   "src": "/images/logo_72.png",
-  //   "sizes": "72x72",
-  //   "type": "image/png"
-  // }, {
-  //   "src": "/images/logo_96.png",
-  //   "sizes": "96x96",
-  //   "type": "image/png"
-  // }, {
-  //   "src": "/images/logo_144.png",
-  //   "sizes": "144x144",
-  //   "type": "image/png"
-  // }, {
-  //   "src": "/images/logo_168.png",
-  //   "sizes": "168x168",
-  //   "type": "image/png"
-  // }, {
-  //   "src": "/images/logo_192.png",
-  //   "sizes": "192x192",
-  //   "type": "image/png"
-  // }]
+  "orientation": "portrait",
+  "icons": [{
+    "src": "/images/logo_48.jpg",
+    "sizes": "48x48",
+    "type": "image/jpg"
+  }, {
+    "src": "/images/logo_72.jpg",
+    "sizes": "72x72",
+    "type": "image/jpg"
+  }, {
+    "src": "/images/logo_96.jpg",
+    "sizes": "96x96",
+    "type": "image/jpg"
+  }, {
+    "src": "/images/logo_144.jpg",
+    "sizes": "144x144",
+    "type": "image/jpg"
+  }, {
+    "src": "/images/logo_168.jpg",
+    "sizes": "168x168",
+    "type": "image/jpg"
+  }, {
+    "src": "/images/logo_192.jpg",
+    "sizes": "192x192",
+    "type": "image/jpg"
+  }]
 }

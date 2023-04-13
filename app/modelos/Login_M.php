@@ -108,8 +108,8 @@
         // iNSERTA datos del suscriptor
         public function InsertarSuscriptor($RecibeDatos){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO suscriptores(NombreSuscriptor, ApellidoSuscriptor, correoSuscriptor, municipioSuscriptor) 
-                VALUES (:NOMBRE, :APELLIDO, :CORREO, :MUNICIPIO)"
+                "INSERT INTO suscriptores(NombreSuscriptor, ApellidoSuscriptor, correoSuscriptor, municipioSuscriptor, parroquiaSuscriptor) 
+                VALUES (:NOMBRE, :APELLIDO, :CORREO, :MUNICIPIO, :PARROQUIA)"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
@@ -117,6 +117,7 @@
             $stmt->bindParam(':APELLIDO', $RecibeDatos['apellido'], PDO::PARAM_STR);
             $stmt->bindParam(':CORREO', $RecibeDatos['correo'], PDO::PARAM_STR);
             $stmt->bindParam(':MUNICIPIO', $RecibeDatos['municipio'], PDO::PARAM_STR);
+            $stmt->bindParam(':PARROQUIA', $RecibeDatos['parroquia'], PDO::PARAM_STR);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){

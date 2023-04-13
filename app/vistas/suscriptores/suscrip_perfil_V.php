@@ -24,29 +24,27 @@
                 <div class="contenedor_43" id="Mostrar_verificaCorreo"></div>
 
                 <label class="login_cont--label">Municipio</label>
-                <select class="login_cont--select borde--input" name="municipio" id="Municipio_Com" onchange="SeleccionarParroquia(this.form)">
-                    <?php
-                    if(!empty($Key['municipioSuscriptor'])){ ?>
-                        <option><?php echo $Key['municipioSuscriptor'];?></option>
-                        <?php
-                    } 
-                    else{   ?>
-                    <option>Seleccione municipio</option>
-                        <?php
-                    }  ?>
+                <select class="login_cont--select borde--input" name="municipio" id="Municipio" onchange="SeleccionarParroquia(this.form)">
+                    <option><?php echo $Key['municipioSuscriptor'];?></option>
+                    <option vlaue="Aristides Bastidas">Aristides Bastidas</option>
+                    <option vlaue="Bolivar">Bolivar</option>
+                    <option vlaue="Bruzual">Bruzual</option>
+                    <option vlaue="Cocorote">Cocorote</option>
+                    <option vlaue="Independencia">Independencia</option>
+                    <option vlaue="Jose Antonio Paez">Jose Antonio Paez</option>
+                    <option vlaue="La Trinidad">La Trinidad</option>
+                    <option vlaue="Manuel Monge">Manuel Monge</option>
+                    <option vlaue="Nirgua">Nirgua</option>
+                    <option vlaue="Peña">Peña</option>
+                    <option vlaue="San Felipe">San Felipe</option>
+                    <option vlaue="Sucre">Sucre</option>
+                    <option vlaue="Urachiche">Urachiche</option>
+                    <option vlaue="Veroes">Veroes</option>
                 </select>
 
                 <label class="login_cont--label">Parroquia</label>
-                <select class="login_cont--select borde--input" name="parroquia" id="Parroquia_Com">
-                    <?php 
-                    if(!empty($Key['parroquiaSuscriptor'])){ ?>
-                        <option><?php echo $Key['parroquiaSuscriptor'];?></option>
-                        <?php
-                    } 
-                    else{   ?>
-                        <option>Seleccione parroquia</option>
-                        <?php
-                    }  ?>
+                <select class="login_cont--select borde--input" name="parroquia" id="Parroquia">
+                    <option><?php echo $Key['parroquiaSuscriptor'];?></option>
                 </select>                
             </fieldset>
 

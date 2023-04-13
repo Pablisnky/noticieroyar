@@ -1916,9 +1916,6 @@ textarea{
 .login_cont--form{
 	padding-left: 5%;
 }
-.login_cont--label{
-	display: block;
-}
 .login_cont--input{
 	line-height: 30px;
 	padding-left: 10px !important;
@@ -2998,21 +2995,6 @@ height: 50px!important;
 	width: 100%; 
 	margin-left: 18%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .cont_agenda--titulo{
 	font-size: 1.3em;
 	width:100%; 
@@ -3049,6 +3031,19 @@ height: 50px!important;
 
 
 
+
+
+
+
+.contenedor_166{
+	margin-bottom: 5%;
+	padding-left: 2%;
+}
+
+.login_cont--label{
+	display: block;
+	margin-top: 5%;
+}
 
 
 

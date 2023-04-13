@@ -126,7 +126,10 @@
 
             //Si no hay productos cargados y no hay datos comerciales, se muestra el modal de sin productos
             if($Productos == Array() && $Datos['suscriptor']['pseudonimoSuscripto'] == ''){
-                $Datos = 'SinDatosComerciales';
+                $Datos = [
+                   'SinDatosComerciales'  => 'SinDatosComerciales',
+                   'ID_Suscriptor' => $ID_Suscriptor
+                ];
 
                 $this->vista('header/header_suscriptor');
                 $this->vista('modal/modal_sinProductos_V', $Datos);
@@ -190,7 +193,7 @@
                     'PrecioBs' => $_POST["precioBolivar"],
                     'PrecioDolar' => $_POST["precioDolar"],
                     'Cantidad' => empty($_POST['uni_existencia']) ? 0 : $_POST['uni_existencia'],
-                    // 'ID_Suscriptor' => $_POST["id_suscriptor"] 
+                    'ID_Suscriptor' => $_POST["id_suscriptor"] 
                 ];
                 // echo '<pre>';
                 // print_r($RecibeProducto);
@@ -244,7 +247,7 @@
             $this->ConsultaClasificados_M->actualizarOpcion($RecibeProducto);
             $this->ConsultaClasificados_M->actualizarProducto($RecibeProducto);
 
-            $this->Productos();
+            $this->Productos($RecibeProducto['ID_Suscriptor']);
         }
 
         // muestra formulario para actualizar un producto especifico
@@ -310,7 +313,7 @@
                         'ID_Suscriptor' => $_POST["id_suscriptor"] 
                     ];
                     // echo '<pre>';
-                    // print_r($RecibeProducto);
+                    // print_r($RecibeProducto);   
                     // echo '</pre>';
                     // exit;
                 }
@@ -382,7 +385,7 @@
 
                             $this->Comprimir->index($Bandera, $nombre_imgProducto, $tipo_imgProducto, $tamanio_imgProducto, $Temporal_imgProducto);
                             
-                            $this->Productos();
+                            $this->Productos($RecibeProducto["ID_Suscriptor"]);
                         }
                         else{
                             //si no cumple con el formato
@@ -403,8 +406,8 @@
                     exit();
                 }
             }
-            else{
-                $this->Productos();
+            else{ 
+                $this->Productos($RecibeProducto["ID_Suscriptor"]);
             } 
         }
 
