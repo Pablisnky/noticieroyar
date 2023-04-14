@@ -98,10 +98,33 @@
         
         //SELECT de la IMAGEN PRINCIPAL de un producto determinado
         public function consultarImagenPrincipal($ID_Producto){
-            $stmt = $this->dbh->prepare("SELECT ID_Imagen, nombre_img FROM imagenes WHERE ID_Producto = :ID_PRODUCTO AND fotoPrincipal = :PRINCIPAL");
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Imagen, nombre_img 
+                FROM imagenes 
+                WHERE ID_Producto = :ID_PRODUCTO AND fotoPrincipal = :PRINCIPAL"
+            );
 
             $stmt->bindValue(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
             $stmt->bindValue(':PRINCIPAL', 1, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return  'Existe un fallo';
+            }
+        }
+
+        //SELECT de la IMAGEN PRINCIPAL de un producto determinado
+        public function consultarImagenSecundaria($ID_Producto){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Imagen, nombre_img 
+                FROM imagenes 
+                WHERE ID_Producto = :ID_PRODUCTO AND fotoPrincipal = :SECUNDARIA"
+            );
+
+            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
+            $stmt->bindValue(':SECUNDARIA', 0, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -145,6 +168,23 @@
             }
         }
         
+        //SELECT de todas las imagenes de un producto
+        public function consultarImageneEspecificaEliminar($ID_Imagen){
+            $stmt = $this->dbh->prepare(
+                "SELECT nombre_img 
+                FROM imagenes 
+                WHERE ID_Imagen = :ID_IMAGEN");
+
+            $stmt->bindParam(':ID_IMAGEN', $ID_Imagen, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
         // ************************************************************************************
         // *********************************   INSERT   ***************************************
         // ************************************************************************************
@@ -166,7 +206,24 @@
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             $stmt->execute();
         } 
+        
+         //INSERT de la imagen secundarias de un producto
+         public function insertaImagenSecundariaProducto($ID_Producto, $nombre_imgProducto, $tipo_imgProducto, $tamanio_imgProducto){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO imagenes(ID_Producto, nombre_img, tipoArchivo, tamanoArchivo, fotoPrincipal, fecha, hora) 
+                VALUES(:ID_PRODUCTO, :NOMBRE_IMG, :TIPO_ARCHIVO, :TAMANIO_ARCHIVO, :PRINCIPAL, CURDATE(), CURTIME())"
+            );
 
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto);
+            $stmt->bindParam(':NOMBRE_IMG', $nombre_imgProducto);
+            $stmt->bindParam(':TIPO_ARCHIVO', $tipo_imgProducto);
+            $stmt->bindParam(':TAMANIO_ARCHIVO', $tamanio_imgProducto);
+            $stmt->bindValue(':PRINCIPAL', 0);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            $stmt->execute();
+        } 
         public function insertarDT_ProOpc( $ID_Producto, $ID_Opcion){
             $stmt = $this->dbh->prepare("INSERT INTO productos_opciones(ID_Producto, ID_Opcion) VALUES(:ID_PRODUCTO, :ID_OPCION)");
 
@@ -340,6 +397,17 @@
             );
 
             $stmt->bindValue(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
+            $stmt->execute();          
+        }
+        
+        //DELETE de imagen secundaria especifica de un producto
+        public function eliminarImagenSecundariaNoticia($ID_Imagen){
+            $stmt = $this->dbh->prepare(
+                "DELETE FROM imagenes 
+                WHERE ID_Imagen = :ID_IMAGEN"
+            );
+
+            $stmt->bindParam(':ID_IMAGEN', $ID_Imagen, PDO::PARAM_INT);
             $stmt->execute();          
         }
     }

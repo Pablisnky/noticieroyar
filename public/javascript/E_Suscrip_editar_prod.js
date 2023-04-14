@@ -112,7 +112,7 @@ document.getElementById("PrecioDolar").addEventListener('focus', function(){Rein
  }
 
  //generamos dinámicamente variables globales para contener la opción pulsada en cada uno de los grupos
- console.log("Cantidad elementos en el formulario = ",document.forms.length)
+//  console.log("Cantidad elementos en el formulario = ",document.forms.length)
  for(f= 0; f<document.forms.length; f++){
      for(i = 0; i< document.forms[f].elements.length; i++){
          var elementoExistente = document.forms[f].elements[i];
@@ -162,7 +162,36 @@ document.getElementById("PrecioDolar").addEventListener('focus', function(){Rein
      }
  }
 
- //************************************************************************************************
+//************************************************************************************************
+// elimina una imagen secundaria
+function EliminarImagenSecundaria(ID_Imagen, Botones){
+    // console.log("______Desde EliminarImagenSecundaria()______", ID_Imagen)
+    let ConfirmaEliminar = confirm("Desea eliminar la noticia");
+    
+    //Se confirma si se desea eliminar la noticia
+    if(ConfirmaEliminar == true){                        
+        // Quita la imagen de la pantalla
+        //Se detecta  el contenedor que contiene la imagen a eliminar
+        let DivEliminar_1 = document.getElementById(ID_Imagen)
+        let DivEliminar_2 = document.getElementById(Botones)//Este contenedor por tener la propiedad position convalor relative no es eliminado del DivElimina_1 a pesar de que se encuentra dentro de el en el archivo HTML
+        // console.log(DivEliminar)
+
+        //Se detecta el elemento padre que contiene el elemento a eliminar
+        let Padre_1 = DivEliminar_1.parentElement
+        let Padre_2 = DivEliminar_2.parentElement
+        // console.log(Padre)
+
+        //Se elimina el elemento
+        Padre_1.removeChild(DivEliminar_1)
+        Padre_2.removeChild(DivEliminar_2)
+        
+        Llamar_EliminarImagenSecundaria(ID_Imagen)
+    } 
+    else{
+        return
+    }
+}
+
 //************************************************************************************************
     //Valida el formulario de cargar producto
     function validarActualizacion(){

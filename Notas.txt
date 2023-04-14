@@ -40,3 +40,5 @@ Resoluciones
 }  */
 
 extension=gd esta extencion en php.ini se activo para que pudiera funcionar las funciones imagecreatefromjpeg()
+
+los archivos "Clasificados.php" "Comprimir_imagen.php" "Panel_C.php" tiene la opcion de subir a servidor remoto y servidor local, esta debe ser cambiada segun la condicion

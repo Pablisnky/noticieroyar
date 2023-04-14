@@ -7,12 +7,13 @@ if(!empty($_SESSION["ID_Suscriptor"])){
     $ID_Suscriptor = $_SESSION["ID_Suscriptor"];  
     ?>
     
-    <!-- ICONO AGREGAR -->
-    <a href="<?php echo RUTA_URL?>/Clasificados_C/Publicar" rel="noopener noreferrer"><img class="cont_modal--agregar cont_modal--agegar--movil Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a> 
-
     <section class="cont_suscrip_productos">
-        <h2 class="h2_9">Anuncios clasificados</h2>
-
+        <div class="cont_suscrip_productos--membrete">
+            <h2 class="h2_9">Anuncios clasificados</h2>
+            
+            <!-- ICONO AGREGAR -->
+            <a href="<?php echo RUTA_URL?>/Clasificados_C/Publicar/<?php echo $ID_Suscriptor;?>" rel="noopener noreferrer"><img class="cont_suscrip_productos--membrete--icono  Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a> 
+        </div>
         <div class="contenedor_13 cont_suscrip_productos-13"> 
             <?php 
             $Contador = 1; 
@@ -69,7 +70,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                         <div class="contenedor_96" id="<?php echo $ID_Producto?>">                
                             <a class="a_9" href="<?php echo RUTA_URL?>/Clasificados_C/actualizarProducto/<?php echo $ID_Producto;?>,<?php echo $Opcion;?>">Actualizar</a>
                             
-                            <label style="color: blue;" class="Default_pointer" onclick =  "EliminarProducto('<?php echo $ID_Producto;?>','<?php echo $ID_Opcion?>')">Eliminar</label>
+                            <label style="color: blue;" class="Default_pointer" onclick = "EliminarProducto('<?php echo $ID_Producto;?>','<?php echo $ID_Opcion?>')">Eliminar</label>
                         </div>
                     </div>
                 </div>

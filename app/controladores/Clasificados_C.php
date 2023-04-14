@@ -147,21 +147,22 @@
         }
         
         // muestra la vista donde se carga un producto
-        public function Publicar(){
+        public function Publicar($ID_Suscriptor){
 
             //Solicita el precio del dolar al controlador 
             require(RUTA_APP . '/controladores/Divisas_C.php');
             $this->PrecioDolar = new Divisas_C();
             
             //se consultan la informacion del suscriptor
-            $Suscriptor = $this->InformacionSuscriptor->index($this->ID_Suscriptor);
+            $Suscriptor = $this->InformacionSuscriptor->index($ID_Suscriptor);
     
             $Datos = [
                 'dolarHoy' => $this->PrecioDolar->index(),
                 'nombre' => $Suscriptor['nombreSuscriptor'],
                 'apellido' => $Suscriptor['apellidoSuscriptor'],
                 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
-                'telefono' => $Suscriptor['telefonoSuscriptor']
+                'telefono' => $Suscriptor['telefonoSuscriptor'],
+                'ID_Suscriptor' => $ID_Suscriptor
             ];
                 
                 // echo "<pre>";
@@ -175,122 +176,6 @@
 
             $this->vista('header/header_suscriptor');
             $this->vista('suscriptores/suscrip_publicar_V', $Datos);
-        }
-        
-        //Invocado desde cuenta_editar_prod_V.php actualiza la información de un producto
-        public function recibeAtualizarProducto(){
-            //Se reciben todos los campos del formulario, se verifica que son enviados por POST y que no estan vacios
-            if($_SERVER['REQUEST_METHOD'] == 'POST'&& !empty($_POST['producto']) && !empty($_POST['descripcion']) && !empty($_POST['precioBolivar']) && (!empty($_POST['precioDolar']) || $_POST['precioDolar'] == 0)){
-            // {&& !empty($_POST['fecha_dotacion']) && !empty($_POST['incremento']) && !empty($_POST['fecha_reposicion'])
-
-                //Recibe datos del producto a actualizar
-                $RecibeProducto = [
-                    'ID_Producto' => $_POST['id_producto'],
-                    'ID_Opcion' => $_POST['id_opcion'],
-                    'Producto' => $_POST['producto'],
-                    'Descripcion' => $_POST['descripcion'],
-                    // 'Descripcion' => preg_replace('[\n|\r|\n\r|\]','',$_POST, "descripcion", ), //evita los saltos de lineas realizados por el usuario al separar parrafos
-                    'PrecioBs' => $_POST["precioBolivar"],
-                    'PrecioDolar' => $_POST["precioDolar"],
-                    'Cantidad' => empty($_POST['uni_existencia']) ? 0 : $_POST['uni_existencia'],
-                    'ID_Suscriptor' => $_POST["id_suscriptor"] 
-                ];
-                // echo '<pre>';
-                // print_r($RecibeProducto);
-                // echo '</pre>';
-                // exit;
-            }
-            else{
-                echo 'Llene todos los campos obligatorios' . '<br>';
-                echo '<a href="javascript: history.go(-1)">Regresar</a>';
-                exit();
-            }
-
-            //IMAGEN PRINCIPAL
-            // ********************************************************
-            // Si se selecionó alguna nueva imagen
-            if($_FILES['imagenPrinci_Editar']["name"] != ''){
-                $nombre_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['name'];
-                $tipo_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['type'];
-                $tamanio_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['size'];
-                $Temporal_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['tmp_name'];
-
-                // echo "Nombre de la imagen = " . $nombre_imgProducto . "<br>";
-                // echo "Tipo de archivo = " . $tipo .  "<br>";
-                // echo "Tamaño = " . $tamanio . "<br>";
-                // //se muestra el directorio temporal donde se guarda el archivo
-                // echo $_FILES['imagen']['tmp_name'];
-                // exit;
-
-                    
-                //Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
-                $nombre_imgProductoActualizar = preg_replace('([^A-Za-z0-9.])', '', $nombre_imgProductoActualizar);
-
-                // Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
-                $nombre_imgProductoActualizar = mt_rand() . '_' . $nombre_imgProductoActualizar;
-
-                // ACTUALIZA IMAGEN PRINCIPAL DE NOTICIA EN SERVIDOR
-                // se comprime y se inserta el archivo en el directorio de servidor 
-                $Bandera = 'imagenProducto';
-                require(RUTA_APP . '/helpers/Comprimir_Imagen.php');
-                $this->Comprimir = new Comprimir_Imagen();
-
-                $this->Comprimir->index($Bandera, $nombre_imgProductoActualizar, $tipo_imgProductoActualizar, $tamanio_imgProductoActualizar, $Temporal_imgProductoActualizar);
-
-                //Se ACTUALIZA la fotografia principal del producto
-                $this->ConsultaClasificados_M->actualizarImagenPrincipalProducto($RecibeProducto['ID_Producto'], $nombre_imgProductoActualizar, $tipo_imgProductoActualizar, $tamanio_imgProductoActualizar);
-            }
-        
-            // ********************************************************
-            //Estas sentencias de actualización deben realizarce por medio de transsacciones
-
-            $this->ConsultaClasificados_M->actualizarOpcion($RecibeProducto);
-            $this->ConsultaClasificados_M->actualizarProducto($RecibeProducto);
-
-            $this->Productos($RecibeProducto['ID_Suscriptor']);
-        }
-
-        // muestra formulario para actualizar un producto especifico
-        public function actualizarProducto($DatosAgrupados){
-            //$DatosAgrupados contiene una cadena con el ID_Producto y la opcion separados por coma, se convierte en array para separar los elementos
-            // echo $DatosAgrupados;
-            // exit;
-
-            $DatosAgrupados = explode(",", $DatosAgrupados);
-            
-            $ID_Producto = $DatosAgrupados[0];
-            // $Opcion = $DatosAgrupados[1];
-
-            //CONSULTA las especiicaciones de un producto determinado
-            $Especificaciones = $this->ConsultaClasificados_M->consultarDescripcionProducto($ID_Producto);
-
-            //CONSULTAN la imagen principal del producto
-            $ImagenPrin = $this->ConsultaClasificados_M->consultarImagenPrincipal($ID_Producto);
-                        
-            //Solicita el precio del dolar al controlador 
-            require(RUTA_APP . '/controladores/Divisas_C.php');
-            $this->PrecioDolar = new Divisas_C();
-            
-            //se consultan la informacion del suscriptor
-            $Suscriptor = $this->InformacionSuscriptor->index($this->ID_Suscriptor);
-
-            $Datos = [
-                'especificaciones' => $Especificaciones, //ID_Producto, ID_Opcion, producto, opcion, precioBolivar, precioDolar, cantidad, disponible
-                'imagenPrin' => $ImagenPrin, //ID_Imagen, nombre_img
-                'dolarHoy' => $this->PrecioDolar->index(),
-                'nombre' => $Suscriptor['nombreSuscriptor'],
-                'apellido' => $Suscriptor['apellidoSuscriptor'],
-                'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
-                'telefono' => $Suscriptor['telefonoSuscriptor']
-            ];
-
-            // echo '<pre>';
-            // print_r($Datos);
-            // echo '</pre>';
-            // exit();
-
-            $this->vista('header/header_suscriptor'); 
-            $this->vista('suscriptores/suscrip_editar_prod_V', $Datos);
         }
         
         //recibe el formulario para cargar un nuevo producto
@@ -335,7 +220,7 @@
                 //Se INSERTA la dependenciatransitiva entre producto, opciones
                 $this->ConsultaClasificados_M->insertarDT_ProOpc($ID_Producto, $ID_Opcion);
 
-                //IMAGEN PRINCIPAL
+                //IMAGEN PRINCIPAL PRODUCTO
                 //********************************************************
                 //Si se selecionó alguna imagen entra
                 if($_FILES['imagenProducto']["name"] != ''){
@@ -405,18 +290,194 @@
                     echo "<a href='javascript: history.go(-1)'>Regresar</a>";
                     exit();
                 }
+                
+                //INSERTAR IMAGENES SECUNDARIAS PRODUCTO
+                if($_FILES['imagenSecundariiaProducto']['name'][0] != ''){
+                    $Cantidad = count($_FILES['imagenSecundariiaProducto']['name']);
+                    for($i = 0; $i < $Cantidad; $i++){
+                        //nombre original del fichero en la máquina cliente.
+                        $Nombre_imagenSecundaria = $_FILES['imagenSecundariiaProducto']['name'][$i];
+                        $Ruta_Temporal_imagenSecundaria = $_FILES['imagenSecundariiaProducto']['tmp_name'][$i];
+                        $tipo_imagenSecundaria = $_FILES['imagenSecundariiaProducto']['type'][$i];
+                        $tamanio_imagenSecundaria = $_FILES['imagenSecundariiaProducto']['size'][$i];
+						// echo "Nombre_imagen : " . $Nombre_imagenSecundaria . '<br>';
+						// echo "Tipo_imagen : " .  $Ruta_Temporal_imagenSecundaria . '<br>';
+						// echo "Tamanio_imagen : " .  $tipo_imagenSecundaria . '<br>';
+						// echo "Tamanio_imagen : " .  $tamanio_imagenSecundaria . '<br>';
+						// echo '<br>';
+						// exit;
+						
+						//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+						$Nombre_imagenSecundaria = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenSecundaria);
+
+						// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+						$Nombre_imagenSecundaria = mt_rand() . '_' . $Nombre_imagenSecundaria;
+
+						// INSSERTA IMAGEN SECUNDARIA DE PRODUCTO EN SERVIDOR
+						// se comprime y se inserta el archivo en el directorio de servidor 
+						$Bandera = 'imagenSecundariiaProducto';
+						$this->Comprimir->index($Bandera, $Nombre_imagenSecundaria, $tipo_imagenSecundaria,$tamanio_imagenSecundaria, $Ruta_Temporal_imagenSecundaria);	
+						
+                        //Se INSERTAN las fotografias secundarias del producto en BD
+						$this->ConsultaClasificados_M->insertaImagenSecundariaProducto($ID_Producto, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria);
+                    }
+                }
             }
             else{ 
                 $this->Productos($RecibeProducto["ID_Suscriptor"]);
             } 
         }
+        
+        // muestra formulario para actualizar un producto especifico
+        public function actualizarProducto($ID_Producto){
+            
+            //CONSULTA las especiicaciones de un producto determinado
+            $Especificaciones = $this->ConsultaClasificados_M->consultarDescripcionProducto($ID_Producto);
 
+            //CONSULTAN la imagen principal del producto
+            $ImagenPrin = $this->ConsultaClasificados_M->consultarImagenPrincipal($ID_Producto);
+            
+            //CONSULTAN las imagenes secundarias del producto
+            $ImagenSec = $this->ConsultaClasificados_M->consultarImagenSecundaria($ID_Producto);
+                        
+            //Solicita el precio del dolar al controlador 
+            require(RUTA_APP . '/controladores/Divisas_C.php');
+            $this->PrecioDolar = new Divisas_C();
+            
+            //se consultan la informacion del suscriptor
+            $Suscriptor = $this->InformacionSuscriptor->index($_SESSION['ID_Suscriptor']);
+
+            $Datos = [
+                'ID_Suscriptor' => $_SESSION['ID_Suscriptor'],
+                'especificaciones' => $Especificaciones, //ID_Producto, ID_Opcion, producto, opcion, precioBolivar, precioDolar, cantidad, disponible
+                'imagenPrin' => $ImagenPrin, //ID_Imagen, nombre_img
+                'imagenSec' => $ImagenSec,
+                'dolarHoy' => $this->PrecioDolar->index(),
+                'nombre' => $Suscriptor['nombreSuscriptor'],
+                'apellido' => $Suscriptor['apellidoSuscriptor'],
+                'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
+                'telefono' => $Suscriptor['telefonoSuscriptor']
+            ];
+
+            // echo '<pre>';
+            // print_r($Datos);
+            // echo '</pre>';
+            // exit();
+
+            $this->vista('header/header_suscriptor'); 
+            $this->vista('suscriptores/suscrip_editar_prod_V', $Datos);
+        }     
+
+        //Invocado desde cuenta_editar_prod_V.php actualiza la información de un producto
+        public function recibeAtualizarProducto(){
+            //Se reciben todos los campos del formulario, se verifica que son enviados por POST y que no estan vacios
+            if($_SERVER['REQUEST_METHOD'] == 'POST'&& !empty($_POST['producto']) && !empty($_POST['descripcion']) && !empty($_POST['precioBolivar']) && (!empty($_POST['precioDolar']) || $_POST['precioDolar'] == 0)){
+            // {&& !empty($_POST['fecha_dotacion']) && !empty($_POST['incremento']) && !empty($_POST['fecha_reposicion'])
+
+                //Recibe datos del producto a actualizar
+                $RecibeProducto = [
+                    'ID_Producto' => $_POST['id_producto'],
+                    'ID_Opcion' => $_POST['id_opcion'],
+                    'Producto' => $_POST['producto'],
+                    'Descripcion' => $_POST['descripcion'],
+                    // 'Descripcion' => preg_replace('[\n|\r|\n\r|\]','',$_POST, "descripcion", ), //evita los saltos de lineas realizados por el usuario al separar parrafos
+                    'PrecioBs' => $_POST["precioBolivar"],
+                    'PrecioDolar' => $_POST["precioDolar"],
+                    'Cantidad' => empty($_POST['uni_existencia']) ? 0 : $_POST['uni_existencia'],
+                    'ID_Suscriptor' => $_POST["id_suscriptor"] 
+                ];
+                // echo '<pre>';
+                // print_r($RecibeProducto);
+                // echo '</pre>';
+                // exit;
+            }
+            else{
+                echo 'Llene todos los campos obligatorios' . '<br>';
+                echo '<a href="javascript: history.go(-1)">Regresar</a>';
+                exit();
+            }
+
+            require(RUTA_APP . '/helpers/Comprimir_Imagen.php');
+            $this->Comprimir = new Comprimir_Imagen();
+            //IMAGEN PRINCIPAL
+            // ********************************************************
+            // Si se selecionó alguna nueva imagen
+            if($_FILES['imagenPrinci_Editar']["name"] != ''){
+                $nombre_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['name'];
+                $tipo_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['type'];
+                $tamanio_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['size'];
+                $Temporal_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['tmp_name'];
+
+                // echo "Nombre de la imagen = " . $nombre_imgProducto . "<br>";
+                // echo "Tipo de archivo = " . $tipo .  "<br>";
+                // echo "Tamaño = " . $tamanio . "<br>";
+                // //se muestra el directorio temporal donde se guarda el archivo
+                // echo $_FILES['imagen']['tmp_name'];
+                // exit;
+                    
+                //Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+                $nombre_imgProductoActualizar = preg_replace('([^A-Za-z0-9.])', '', $nombre_imgProductoActualizar);
+
+                // Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+                $nombre_imgProductoActualizar = mt_rand() . '_' . $nombre_imgProductoActualizar;
+
+                // ACTUALIZA IMAGEN PRINCIPAL DE NOTICIA EN SERVIDOR
+                // se comprime y se inserta el archivo en el directorio de servidor 
+                $Bandera = 'imagenProducto';
+
+                $this->Comprimir->index($Bandera, $nombre_imgProductoActualizar, $tipo_imgProductoActualizar, $tamanio_imgProductoActualizar, $Temporal_imgProductoActualizar);
+
+                //Se ACTUALIZA la fotografia principal del producto
+                $this->ConsultaClasificados_M->actualizarImagenPrincipalProducto($RecibeProducto['ID_Producto'], $nombre_imgProductoActualizar, $tipo_imgProductoActualizar, $tamanio_imgProductoActualizar);
+            }
+            
+            //ACTUALIZAR IMAGENES SECUNDARIAS PRODUCTO
+            if($_FILES['imagenSecundariiaProd']['name'][0] != ''){
+                $Cantidad = count($_FILES['imagenSecundariiaProd']['name']);
+                for($i = 0; $i < $Cantidad; $i++){
+                    //nombre original del fichero en la máquina cliente.
+                    $Nombre_imagenSecundaria = $_FILES['imagenSecundariiaProd']['name'][$i];
+                    $Ruta_Temporal_imagenSecundaria = $_FILES['imagenSecundariiaProd']['tmp_name'][$i];
+                    $tipo_imagenSecundaria = $_FILES['imagenSecundariiaProd']['type'][$i];
+                    $tamanio_imagenSecundaria = $_FILES['imagenSecundariiaProd']['size'][$i];
+                    // echo "Nombre_imagen : " . $Nombre_imagenSecundaria . '<br>';
+                    // echo "Tipo_imagen : " .  $Ruta_Temporal_imagenSecundaria . '<br>';
+                    // echo "Tamanio_imagen : " .  $tipo_imagenSecundaria . '<br>';
+                    // echo "Tamanio_imagen : " .  $tamanio_imagenSecundaria . '<br>';
+                    // echo '<br>';
+                    // exit;
+                    
+                    //Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+                    $Nombre_imagenSecundaria = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenSecundaria);
+
+                    // Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+                    $Nombre_imagenSecundaria = mt_rand() . '_' . $Nombre_imagenSecundaria;
+
+                    // ACTUALIZA IMAGEN SECUNDARIA DE PRODUCTO EN SERVIDOR
+                    // se comprime y se inserta el archivo en el directorio de servidor 
+                    $Bandera = 'imagenSecundariiaProd';
+                    $this->Comprimir->index($Bandera, $Nombre_imagenSecundaria, $tipo_imagenSecundaria,$tamanio_imagenSecundaria, $Ruta_Temporal_imagenSecundaria);	
+                    
+                    //Se INSERTAN las fotografias secundarias del producto en BD
+                    $this->ConsultaClasificados_M->insertaImagenSecundariaProducto($RecibeProducto['ID_Producto'], $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria);
+                }
+            }
+        
+            // ********************************************************
+            //Estas sentencias de actualización deben realizarce por medio de transsacciones
+
+            $this->ConsultaClasificados_M->actualizarOpcion($RecibeProducto);
+            $this->ConsultaClasificados_M->actualizarProducto($RecibeProducto);
+
+            $this->Productos($RecibeProducto['ID_Suscriptor']);
+        }
+   
         public function eliminarProducto($DatosAgrupados){
             //$DatosAgrupados contiene una cadena con el ID_Opcion, ID_Producto y la sección separados por coma, se convierte en array para separar los elementos
             // echo $DatosAgrupados;
             // exit();
 
-            $DatosAgrupados = explode(',', $DatosAgrupados);
+            $DatosAgrupados = explode('-', $DatosAgrupados);
 
             $ID_Producto = $DatosAgrupados[0];
             $ID_Opcion = $DatosAgrupados[1];
@@ -426,19 +487,14 @@
             // *************************************************************************************
             // *************************************************************************************
 
-            //Se consulta el nombre de la imagen principal
+            //Se consulta el nombre de las imagenes del producto
             $ImagenesEliminar = $this->ConsultaClasificados_M->consultarImagenesEliminar($ID_Producto);
             // echo '<pre>';
             // print_r($ImagenesEliminar);
             // echo '</pre>';
             // exit;
-
-            $this->ConsultaClasificados_M->eliminarProductoOpcion($ID_Producto);
-            $this->ConsultaClasificados_M->eliminarImagenPrincipal($ID_Producto);
-            $this->ConsultaClasificados_M->eliminarProducto($ID_Producto);
-            $this->ConsultaClasificados_M->eliminarOpcion($ID_Opcion);
             
-            //Se eliminan los archivo de la carpeta public/images/clasificados/productos
+            //Se eliminan los archivo del servidor, ubicados en la carpeta public/images/clasificados/productos
             foreach($ImagenesEliminar as $KeyImagenes)  :
                 $NombreImagenEliminar = $KeyImagenes['nombre_img'];
 
@@ -448,10 +504,37 @@
                 //usar en local
                 // unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/noticieroyaracuy/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/' . $NombreImagenEliminar);
             endforeach;
+            
+            $this->ConsultaClasificados_M->eliminarProductoOpcion($ID_Producto);
+            $this->ConsultaClasificados_M->eliminarImagenPrincipal($ID_Producto);
+            $this->ConsultaClasificados_M->eliminarProducto($ID_Producto);
+            $this->ConsultaClasificados_M->eliminarOpcion($ID_Opcion);
               
             // *************************************************************************************
             // *************************************************************************************
 
             $this->Productos();
         }
+        
+		//Eliminar imagen secundaria de producto
+		public function eliminar_imagenSecundariaProducto($ID_Imagen){
+            
+            //Se consulta el nombre de la imagen del producto
+            $NombreImagenEliminar = $this->ConsultaClasificados_M->consultarImageneEspecificaEliminar($ID_Imagen);
+            // echo '<pre>';
+            // print_r($NombreImagenEliminar¨);
+            // echo '</pre>';
+            // exit;		
+
+            //Usar en remoto
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/' . $NombreImagenEliminar['nombre_img']);
+                
+            //usar en local
+            // unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/noticieroyaracuy/public/images/clasificados/'. $_SESSION['ID_Suscriptor'] . '/productos/' . $NombreImagenEliminar['nombre_img']);
+            
+			$this->ConsultaClasificados_M->eliminarImagenSecundariaNoticia($ID_Imagen);	
+
+			// header("Location:" . RUTA_URL . "/Panel_C/");
+			// die();
+		}
     }

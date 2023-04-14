@@ -300,10 +300,6 @@ textarea{
 	letter-spacing: 1px;
 	white-space: nowrap; /*mantiene el texto en una sola linea*/
 }
-.cont_suscrip_productos-13{
-	width: 98%;
-	margin-top: 1%;
-}
 .contenedor_95--margin{ 
 	margin-bottom: 3% !important;
 }
@@ -350,12 +346,6 @@ textarea{
 .contenedor_91{
 	display: block;
 	height: 35px !important;
-}
-.h2_9{
-	width: 100%;
-	font-size: 1.7em;
-	text-align: center;
-	font-weight: normal ;
 }
 .input_4{
 	width: 50%;
@@ -1298,10 +1288,6 @@ textarea{
  .cont_panel--viedo{
 	display: none;
  }
- .cont_panel--imagenSec{	
-	display: flex;
-	flex-wrap: wrap;
- }
  .cont_panel--video{
 	width: 70%; 
 	height: 10vw;
@@ -1926,9 +1912,6 @@ textarea{
 	display: flex;
 	flex-wrap: wrap; 
 	justify-content: center;
-}
-.contBoton--marginTop{
-	margin: 1% auto;
 }
 .hr_3{ /*convierte una linea en grosor de menos de 1px*/
 	width: 40%;
@@ -2749,14 +2732,6 @@ ul .menuContenedor_3{
 	width: 75%;
 	margin: auto;
 }
-.cont_suscriptor{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	width: 70%;
-	margin-top: 3%; 
-	margin-left: 20%;
-}
 .cont_suscriptor--h1{
 	color: black;
 	font-family: Gruppo;
@@ -3028,41 +3003,62 @@ height: 50px!important;
 .detalle_cont--redesSociales-facebook{
 	width: 55%;
 }
-
-
-
-
-
-
-
 .contenedor_166{
 	margin-bottom: 5%;
 	padding-left: 2%;
 }
-
 .login_cont--label{
 	display: block;
 	margin-top: 5%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.cont_suscrip_productos--membrete{
+	display: flex; 
+	margin-top: 3%;
+}
+.h2_9{
+	width: 95%;
+	font-size: 1.7em;
+	text-align: center;
+	font-weight: normal ;
+}
+.cont_suscrip_productos--membrete--icono{
+	width: 2.5em;
+}
+.cont_panel--imagenSec{	
+	width: 90%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+.cont_panel--imagenSec > img{	
+   margin-bottom: 2%;
+}
+.cont_panel--flex{
+	display: flex; 
+	margin-bottom: 30px
+}
+.cont_panel--flex-left{
+	width: 30%; 
+	margin-right: 1.5%
+}
+.cont_panel--flex-right{
+	width: 70%; 
+}
+.cont_suscrip_productos-13{
+	width: 98%;
+	margin-top: 1% !important;
+}
+.contBoton--marginTop{
+	margin: 4% auto;
+}
+.cont_suscriptor{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 70%;
+	margin-top: 5%; 
+	margin-left: 20%;
+}
 
 
 

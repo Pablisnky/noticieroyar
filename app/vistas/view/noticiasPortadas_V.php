@@ -7,9 +7,9 @@
              
             <?php
             foreach($Datos['noticiasPortadas'] as $Not_Prin) : ?>
-                <div style=" display: flex; margin-bottom: 30px" id="<?php echo $Not_Prin['ID_Noticia'];?>">                
+                <div class="cont_panel--flex" id="<?php echo $Not_Prin['ID_Noticia'];?>">                
                     <!-- IMAGEN NOTICIA -->
-                    <div style = "width: 30%; margin-right: 1.5%">      
+                    <div class="cont_panel--flex-left">      
                         <figure>
                             <?php
                             foreach($Datos['imagenesNoticias'] as $Row)   : 
@@ -20,7 +20,7 @@
                             endforeach; ?>
                         </figure>
                     </div>
-                    <div style = "width: 100%">
+                    <div  class="cont_panel--flex-right">
                         <!-- TITULO -->
                         <label class="cont_panel--label">Titulo</label>
                         <label class="cont_panel--titulo"><?php echo $Not_Prin['titulo'];?></label>
@@ -62,7 +62,7 @@
                             endforeach; ?>
                         
                         <div>
-                            <div class=" detalle_cont--redesSociales--Panel">
+                            <div class="detalle_cont--redesSociales--Panel">
                                 <!-- COMPARTIR FACEBOOK -->       
                                 <div class="detalle_cont--red">      
                                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>" target="_blank" rel="noopener noreferrer"><img style="height: 1.8em;" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>

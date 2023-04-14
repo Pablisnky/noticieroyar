@@ -97,13 +97,14 @@
                     
                     <!-- IMAGENES SECUNDARIAS -->     
                     <label class="cont_panel--label Default_pointer" style="display: block; color: blue; font-weight: lighter;" for="ImgInp_2">Imagenes secundarias</label>
-                    <input class=" Default_ocultar" type="file" name="imagenesSec[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
+                    <input class=" Default_ocultar" type="file" name="imagenesSecUndariaNoticia[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
                             
                     <!-- muestra las imagenes secundarias -->
                     <div class="cont_panel--imagenSec" id="muestrasImg_2"></div>                    
                 </div>                     
             </div>
             <br style="margin-bottom: 15%">
+
             <!-- BOTON DE ENVIO -->
             <div class="cont_panel--guardar"> 
                 <input class="boton" type="submit" form="Agregar" id="Boton_Agregar" value="Agregar noticia"/>  
@@ -201,23 +202,23 @@
             var archivos = document.getElementById("ImgInp_2").files;
             
             var CantidadImagenes = archivos.length
-            console.log("Cantidad Imagenes recibidas= ", CantidadImagenes)
         
             if(CantidadImagenes < 11){
                 SeleccionImagenes.push(CantidadImagenes) 
-                console.log("Imagenes recibidas= ",SeleccionImagenes)
+
                 // Suma la cantidad de imagenes que se han insertado  
                 TotalSeleccionImagenes = SeleccionImagenes.reduce((a, b) => a + b)
                 console.log("Suma de Imagenes = ",TotalSeleccionImagenes)
                 
                 if(TotalSeleccionImagenes < 11){
                     for(i = 0; i < CantidadImagenes; i++){
-                        console.log(i)
                         var imgTagCreada = document.createElement("img");
                         var spanTagCreada = document.createElement("span")
 
                         imgTagCreada.width = 150;
                         imgTagCreada.height = 150;
+                        imgTagCreada.display = "inline-block"
+                        imgTagCreada.margin = 50
                         ImagenD = imgTagCreada.id = "Imagen_" + i;
                         // imgTagCreada.marginBottom = 250
                         imgTagCreada.src = URL.createObjectURL(archivos[i]);

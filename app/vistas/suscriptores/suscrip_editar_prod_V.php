@@ -84,6 +84,37 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                             <label class="default_bold">Unidades cargadas</label>                       
                                 <input class="placeholder placeholder_2 placeholder_4 borde_1 borde_2" type="text" name="uni_existencia" id="Cantidad" value="<?php echo $Cantidad;?>">   
                         </div>  
+                        
+                        <!-- IMAGENES SECUNDARIAS -->
+                        <div>
+                            <label class="Default_pointer" style="display: block; color: blue; font-weight: lighter;" for="ImgInp_3">Añadir imagenes secundarias</label>
+                            <small class="small_1">Añada hasta 5 fotografias no mayor a 4 Mb / CU</small>
+
+                            <input class="Default_ocultar" type="file" name="imagenSecundariiaProd[]" multiple="multiple" id="ImgInp_3" onchange="VariasImg()"/>  
+                        </div>  
+
+                        <?php
+                        foreach($Datos['imagenSec'] as $Row) : ?>                   
+                            <div style="margin: 1%;" id=PadreImagenes">
+
+                                <!-- ICONO ELIMINAR IMAGEN -->
+                                <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
+                                <div class="cont_edit--dosBotones" id="Cont_Botones--<?php echo $Row['ID_Imagen'];?>">
+                                    <div>
+                                        <img class="Default_pointer" style="width: 2em" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="EliminarImagenSecundaria('<?php echo $Row['ID_Imagen'];?>','Cont_Botones--<?php echo $Row['ID_Imagen'];?>')"/>
+                                    </div>
+                                </div>
+
+                                <!-- IMAGEN SECUNDARIAS -->
+                                <figure id="<?php echo $Row['ID_Imagen'];?>"> 
+                                    <img class="actualizar_cont--imagen" alt="Fotografia Producto" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $_SESSION['ID_Suscriptor'];?>/productos/<?php echo $Row['nombre_img'];?>"/> 
+                                </figure>
+                            </div>
+                            <?php
+                        endforeach;  ?>
+
+                        <!-- Muestra imagenes secundrias añadidas -->
+                        <div id="muestrasImg_3"></div>
                     </div>  
                 </div>
 
@@ -100,11 +131,9 @@ if(!empty($_SESSION["ID_Suscriptor"])){
         </form>
     </div>
     
-    <!-- div alimentado desde Secciones_Ajax_V.php con la seccion que el usuario cargó en su cuenta  -->       
-    <div id="Contenedor_80"></div> 
-
     <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v=' . rand();?>"></script>
     <script src="<?php echo RUTA_URL . '/public/javascript/E_Suscrip_editar_prod.js?v=' . rand();?>"></script> 
+    <script src="<?php echo RUTA_URL . '/public/javascript/A_Suscrip_editar_prod.js?v=' . rand();?>"></script> 
 
     <script> 
         //Da una vista previa de la imagen principal antes de guardarla en la BD
@@ -124,27 +153,27 @@ if(!empty($_SESSION["ID_Suscriptor"])){
         });
         
         //Da una vista previa de las imagenes secundarias seleccionadas
-        function muestraImg(){
-            var contenedor = document.getElementById("muestrasImg");
-            var archivos = document.getElementById("ImgInp_2").files;
-            for(i = 0; i < archivos.length; i++){
-                imgTag = document.createElement("img");
-                imgTag.height = 100;//ESTAS LINEAS NO SON "NECESARIAS"
-                imgTag.width = 200; //ÚNICAMENTE HACEN QUE LAS IMÁGENES SE VEAN
-                // imgTag.class = "imagen_6";
-                imgTag.id = i;      // ORDENADAS CON UN TAMAÑO ESTÁNDAR
-                imgTag.src = URL.createObjectURL(archivos[i]);
-                contenedor.appendChild(imgTag);
-            }
-        }
+        // function muestraImg(){
+        //     var contenedor = document.getElementById("muestrasImg");
+        //     var archivos = document.getElementById("ImgInp_2").files;
+        //     for(i = 0; i < archivos.length; i++){
+        //         imgTag = document.createElement("img");
+        //         imgTag.height = 100;//ESTAS LINEAS NO SON "NECESARIAS"
+        //         imgTag.width = 200; //ÚNICAMENTE HACEN QUE LAS IMÁGENES SE VEAN
+        //         // imgTag.class = "imagen_6";
+        //         imgTag.id = i;      // ORDENADAS CON UN TAMAÑO ESTÁNDAR
+        //         imgTag.src = URL.createObjectURL(archivos[i]);
+        //         contenedor.appendChild(imgTag);
+        //     }
+        // }
 
         //Array que contiene la cantidad de imagenes insertadas, sus elementos sumados no pueden exceder de 5
         SeleccionImagenes = [];
-        function CantidadImg(){
+        function VariasImg(){
             // console.log("______Desde CantidadImg()______")
 
-            var contenedorPadre = document.getElementById("muestrasImg_2");
-            var archivos = document.getElementById("ImgInp_2").files;
+            var contenedorPadre = document.getElementById("muestrasImg_3");
+            var archivos = document.getElementById("ImgInp_3").files;
             
             var CantidadImagenes = archivos.length
             console.log("Cantidad Imagenes recibidas= ", CantidadImagenes)

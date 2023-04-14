@@ -544,7 +544,7 @@
 					}
 				}
 				
-				// INSERTAR IMAGEN PRINCIPAL
+				// INSERTAR IMAGEN PRINCIPAL NOTICIA
 				//Si existe imagenPrincipal y tiene un tamaño correcto se procede a recibirla y guardar en BD
 				if($_FILES['imagenPrincipal']["name"] != ""){
 					$Nombre_imagenPrincipal = $_FILES['imagenPrincipal']['name'];
@@ -571,32 +571,35 @@
 					$this->Comprimir->index($Bandera, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal,$Tamanio_imagenPrincipal, $Temporal_imagenPrincipal);	
 				}
 
-				//INSERTAR IMAGENES SECUNDARIAS
-                if($_FILES['imagenesSec']['name'][0] != ''){
-                    $Cantidad = count($_FILES['imagenesSec']['name']);
+				//INSERTAR IMAGENES SECUNDARIAS NOTICIA
+                if($_FILES['imagenesSecUndariaNoticia']['name'][0] != ''){
+                    $Cantidad = count($_FILES['imagenesSecUndariaNoticia']['name']);
                     for($i = 0; $i < $Cantidad; $i++){
                         //nombre original del fichero en la máquina cliente.
-                        $Nombre_imagenSecundaria = $_FILES['imagenesSec']['name'][$i];
-                        $Ruta_Temporal_imagenSecundaria = $_FILES['imagenesSec']['tmp_name'][$i];
-                        $tipo_imagenSecundaria = $_FILES['imagenesSec']['type'][$i];
-                        $tamanio_imagenSecundaria = $_FILES['imagenesSec']['size'][$i];
+                        $Nombre_imagenSecundaria = $_FILES['imagenesSecUndariaNoticia']['name'][$i];
+                        $Ruta_Temporal_imagenSecundaria = $_FILES['imagenesSecUndariaNoticia']['tmp_name'][$i];
+                        $tipo_imagenSecundaria = $_FILES['imagenesSecUndariaNoticia']['type'][$i];
+                        $tamanio_imagenSecundaria = $_FILES['imagenesSecUndariaNoticia']['size'][$i];
 						// echo "Nombre_imagen : " . $Nombre_imagenSecundaria . '<br>';
 						// echo "Tipo_imagen : " .  $Ruta_Temporal_imagenSecundaria . '<br>';
 						// echo "Tamanio_imagen : " .  $tipo_imagenSecundaria . '<br>';
 						// echo "Tamanio_imagen : " .  $tamanio_imagenSecundaria . '<br>';
+						// echo '<br>';
 						// exit;
 						
-                        //Usar en remoto
-                        $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/';
+						//Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
+						$Nombre_imagenSecundaria = preg_replace('([^A-Za-z0-9.])', '', $Nombre_imagenSecundaria);
 
-                        //usar en local
-                        // $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/';
+						// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
+						$Nombre_imagenSecundaria = mt_rand() . '_' . $Nombre_imagenSecundaria;
 
-                        //Subimos el fichero al servidor
-                        move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSec']['name'][$i]);
-
+						// INSSERTA IMAGEN SECUNDARIA DE NOTICIA EN SERVIDOR
+						// se comprime y se inserta el archivo en el directorio de servidor 
+						$Bandera = 'imagenesSecUndariaNoticia';
+						$this->Comprimir->index($Bandera, $Nombre_imagenSecundaria, $tipo_imagenSecundaria,$tamanio_imagenSecundaria, $Ruta_Temporal_imagenSecundaria);	
+						
                         //Se INSERTAN las fotografias secundarias de la noticia
-                        $this->Panel_M->insertarFotografiasSecun($ID_Noticia, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria);
+						$this->Panel_M->insertarFotografiasSecun($ID_Noticia, $Nombre_imagenSecundaria, $tipo_imagenSecundaria, $tamanio_imagenSecundaria);
                     }
                 }
 

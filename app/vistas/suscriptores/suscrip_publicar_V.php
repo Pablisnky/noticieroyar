@@ -57,17 +57,23 @@ if(!empty($_SESSION["Publicar"])){
                         </div>
                         <small class="small_1">El sistema realiza automaticamente la conversión Bolivar / Dolar según BCV. <strong class="strong_1">( $ 1 = Bs. <?php echo $PrecioDolar;?>)</strong></small>
                         <input class="Default_ocultar" id="CambioOficial" type="text" value="<?php echo $Datos['dolarHoy'];?>"/> 
-                        <br><br>
                         
                         <!-- CANTIDAD EN EXISTENCIA -->
                         <div id="Contenedor_152">
                             <label class="login_cont--label">Existencia</label>
                             <input class="placeholder placeholder_2 placeholder_4 borde_1 borde_2" type="text" name="cantidad" id="Cantidad">
                         </div>  
-                        <br>
                         
-                        <!-- Recibe Ajax desde SeccionesDisponibles_Ajax.php -->
-                        <div id="Contenedor_80"></div>
+                        <!-- IMAGENES SECUNDARIAS -->
+                        <div>
+                            <label class="Default_pointer" style="display: block; color: blue; font-weight: lighter;" for="ImgInp_2">Añadir imagenes secundarias</label>
+                            <small class="small_1">Añada hasta 5 fotografias no mayor a 4 Mb / CU</small>
+
+                            <input class="Default_ocultar" type="file" name="imagenSecundariiaProducto[]" multiple="multiple" id="ImgInp_2" onchange="muestraImg()"/>  
+                        </div>     
+                        
+                        <!-- muestra las imagenes secundarias -->
+                        <div class="cont_panel--imagenSec" id="muestrasImg_2"></div>  
                     </div>         
                 </div>       
 
@@ -103,11 +109,12 @@ if(!empty($_SESSION["Publicar"])){
             readImage(this);
         });
 
+        // ******************************************************************************************
+        //Da una vista previa de las imagenes secndarias agregadas
         //Array contiene cantidad de imagenes insertadas, sus elementos sumados no pueden exceder de 5
         SeleccionImagenes = [];
         function muestraImg(){
-            // Muestra grupo de imagenes
-            console.log("______Desde muestraImg()______")
+            // console.log("______Desde muestraImg()______")
 
             var contenedorPadre = document.getElementById("muestrasImg_2");
             var archivos = document.getElementById("ImgInp_2").files;
@@ -128,13 +135,13 @@ if(!empty($_SESSION["Publicar"])){
                         var imgTagCreada = document.createElement("img");
                         var spanTagCreada = document.createElement("span")
 
-                        imgTagCreada.width = 290;
-                        imgTagCreada.height = 290;
+                        imgTagCreada.width = 150;
+                        imgTagCreada.height = 150;
                         ImagenD = imgTagCreada.id = "Imagen_" + i;
-                        // imgTagCreada.marginBottom = 250
+                        imgTagCreada.marginBottom = 50
                         imgTagCreada.src = URL.createObjectURL(archivos[i]);
 
-                        spanTagCreada.innerHTML = "Eliminar"
+                        // spanTagCreada.innerHTML = "Eliminar"
                         spanTagCreada.id = "Etiqueta_" + i
                         spanTagCreada.style.color = "rgb(24, 24, 238)"
                         spanTagCreada.style.cursor = "pointer"

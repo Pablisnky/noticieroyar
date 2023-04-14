@@ -201,10 +201,6 @@
 	font-weight: lighter ;
 	text-align: justify;
 }
-.cont_portada--tituloResumen{
-	height: 19vh;
-	margin-top: -5%;
-}
 .cont_portada--informacion{
 	padding-top: 1%;
 	margin-bottom: 0vh;
@@ -246,14 +242,6 @@
 }
 .cont_portada_informacion--fecha{
 	display: inline; 
-}
-.cont_portada--botones{
-	position: fixed;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	width: 100%;
-	bottom: 5pt;
 }
 .cont_portada--hr{
 	width: 40%;
@@ -801,9 +789,6 @@
 	margin-left: 0%;
 	padding-top: 18%; 
 }
-.cont_suscrip_productos-13{
-	margin-top: 5%;
-}
 .cont_modal--agregar{
    top: 1.5%;
    right: 5%;
@@ -829,12 +814,6 @@
 }
 .textarea_1{
 	width: 100%;
-}
-.h2_9{
-	width: 100%;
-	font-size: 1.3em;
-	text-align: left;
-	padding-left: 5%;
 }
 .cont_panel--main{
 	margin-left: 0%;
@@ -979,49 +958,6 @@
 	width: 95%;
 	margin: auto;
 }
-  /* ************************************************************************************* */
-  /* ***************** MOSTRAR SCROLL A 100VH EN PPAGINA DE INICIO *********************** */
-  /* ************************************************************************************* */
-.section {
-	color: black;
-	position: relative;
-	scroll-snap-align: center;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-  }  
-  
-  @media (min-height: 30em) {
-	main {
-	  scroll-snap-type: y mandatory;
-	  height: 100vh;
-	  overflow-y: scroll;
-	}
-  }
-  
-  @media (min-height: 30em) {
-	.section {
-	  height: 100vh;
-	}
-  }
-	
-  @media (min-height: 30em) {
-	.section__content > * {
-		opacity: 0; 
-		transform: translate3d(0, 4rem, 0);
-	 	transition: opacity 300ms var(--delay),
-		transform 300ms cubic-bezier(linear) var(--delay);/*0.13, 0.07, 0.26, 0.99*/
-	}
-  }
-  .is-visible .section__content > * {
-	opacity: 1;
-	transform: translate3d(0, 1rem, 0);
-  }
-  .is-visible .section__img {
-	opacity: 1;
-  }
-  /* ************************************************************************************* */
-  /* ************************************************************************************* */
 .cont_clasificados{
 	justify-content: space-around;
 }
@@ -1181,4 +1117,95 @@
 	top: 5%; 
 	z-index: 0;
 }
+.h2_9{
+	width: 90%;
+	font-size: 1.3em;
+	text-align: left;
+	padding-left: 5%;
+	display: inline;
+}
+.cont_suscrip_productos--membrete--icono{
+	width: 1.5em;
+}
+.cont_portada--botones{
+	position: fixed;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	bottom: 5pt;
+}
+.cont_portada--tituloResumen{
+	height: 19vh;
+	/* margin-top: 0%; */
+}
+.cont_panel--imagenSec{	
+	width: 100%;
+   	display: block;
+}
+.cont_panel--imagenSec > img{	
+   width: 90%;
+   height: 45vh;
+   margin: auto;
+   margin-bottom: 5%;
+}
+.cont_panel--flex{
+	display: block; 
+	width: 100%;
+	margin-bottom: 20%;
+}
+.cont_panel--flex-left{
+	width: 60%; 
+	margin: auto;
+	margin-bottom: 5%;
+}
+.cont_suscrip_productos-13{
+	margin-top: 5%!important;
+}
+
+
+
+
+
+
+
+
+
+  /* ************************************************************************************* */
+  /* ***************** MOSTRAR SCROLL A 100VH EN PPAGINA DE INICIO *********************** */
+  /* ************************************************************************************* */
+  .section {
+	color: black;
+	position: relative;
+	scroll-snap-align: center;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+  }  
+  
+main{
+	scroll-snap-type: y mandatory;
+	height: 100vh;
+	overflow-y: scroll;
+}
+  
+.section {
+	height: 100vh;
+}
+.section > div {
+	opacity: 1; 
+	transform: translate3d(0, 0rem, 0);
+	 transition: opacity 300ms var(--delay),
+	 	transform 300ms cubic-bezier() var(--delay); /*0.13, 0.07, 0.26, 0.99*/
+}
+  .is-visible .section_content {
+	opacity: 1;
+	/* transform: translate3d(0, 1rem, 0); */
+  }
+  .is-visible .section__img {
+	opacity: 1;
+  }
+  /* ************************************************************************************* */
+  /* ************************************************************************************* */
+
 }

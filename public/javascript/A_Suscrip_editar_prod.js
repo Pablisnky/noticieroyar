@@ -30,17 +30,17 @@ function conexionAJAX(){
     } 
 
 // *************************************************************************************************
-    //Esta funcion no retorna nada al documento donde se llama, solo ejecuta la accion de eliminar el producto del servidor
-    function Llamar_EliminarProducto(ID_Producto, ID_Opcion){
-        console.log("______Desde Llamar_EliminarProducto()______", ID_Producto + '-' + ID_Opcion)
-
-        var url = "../../Clasificados_C/eliminarProducto/" + ID_Producto + '-' + ID_Opcion
+    //Esta funcion no retorna nada al documento donde se llama, solo ejecuta la accion de eliminar la imagen secundaria del servidor
+    function Llamar_EliminarImagenSecundaria(ID_Imagen){
+        console.log("______Desde Llamar_EliminarImagenSecundaria()______", ID_Imagen)
+        
+        var url = "../../CLasificados_C/eliminar_imagenSecundariaProducto/" + ID_Imagen
         http_request.open('GET', url, true)  
-        peticion.onreadystatechange = respuesta_EliminarProducto
+        peticion.onreadystatechange = respuesta_imagenSecundariaNoticia
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
         peticion.send("null")
     }                                                                        
-    function respuesta_EliminarProducto(){
+    function respuesta_imagenSecundariaNoticia(){
         if(peticion.readyState == 4){
             if(peticion.status == 200){ 
                 //No recibe ninguna respuesta del servidor para insertar en el documento, la accion solo es necesaria en el servidor

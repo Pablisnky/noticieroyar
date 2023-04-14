@@ -5,7 +5,7 @@
         private $Suscriptor;
 
         public function __construct(){
-            session_start();
+            // session_start();
             
             // $this->ID_Suscriptor = $_SESSION["ID_Suscriptor"];
 
