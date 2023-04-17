@@ -537,9 +537,6 @@ textarea{
 	color: var(--TextoClaro);
 	margin-top: 1%;
 }
-.small_1{
-	font-size: 0.9em;
-}
 .small_1A{
 	text-align: center;
 }
@@ -946,13 +943,6 @@ textarea{
 	 height: 100%;
 	 object-fit: contain; 
  }
- .imagen_11{
-	 width: 60px;
-	 height: 60px;
-	 margin: auto;
-	 cursor: pointer;
-	 object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
- } 
  .cont_ObraDetalle--leyenda{
 	 position: absolute;
 	 bottom: 6%;
@@ -2705,12 +2695,6 @@ ul .menuContenedor_3{
 	height: 57vh;
 	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
-.contenedor_125{
-	display: flex;
-	text-align: center;
-	width: 100%;
-	margin-top: 0.5%;
-}
 .label_22{
 	background-color:  var(--BandaAlerta);
 	color: var(--OficialOscuro);
@@ -3058,6 +3042,97 @@ height: 50px!important;
 	width: 70%;
 	margin-top: 5%; 
 	margin-left: 20%;
+}
+.cont_suscrip_ImgSec{
+	display:flex; 
+	flex-wrap: wrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.contenedor_125{
+	display: flex;
+	justify-content: center;
+	width: 50%;
+	margin: auto;
+	margin-top: 0.5%;
+}
+.imagen--miniaturas{
+	width: 50px;
+	height: 50px;
+	margin: auto 2%;
+	cursor: pointer;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+} 
+.section_5{
+	min-height: 100%;
+}
+.contenedor_42{
+	width: 80%;
+	margin: auto;
+	margin-top: 6%;
+	min-height: 75%;
+}
+.h2_11{
+	background-color: var(--BandaAlerta);
+	text-align: center;
+	width: 60%;
+	margin: auto;
+	border-radius: 10px;
+	padding: 0.5%;
+	margin-top: 1%;
+	font-size: 1.2em;
+	padding: 1% 3%;
+	font-weight: lighter;
+}
+.contenedor_84{
+	display: grid;
+	grid-template-columns: 22% 22% 22% 22%;
+	grid-template-rows: min-content !important;
+	column-gap: 3%;/*espacio entre columnas*/
+	justify-content: center;/*centra horizontalmente*/
+	margin: 2% auto;
+	padding: 0.5% 0% 2.5% 0%;
+}
+.p_3{
+	margin: 0% auto;
+	text-align: center;
+	font-size: 1.6em;
+}
+.small_2{
+	font-size: 0.7em;
+}
+.p_11{	
+	color: rgb(51, 51, 51);
+	font-size: 1.5em;
+	text-align: center;
+	/* margin-top: 2%; */
+	/* padding-bottom: 5%; */
+}
+.cont_Afiliado{
+	background-color: var(--BandaAlerta); 
+	margin-top: 3%;
+	min-height: 8vh;
+}
+.li_3{
+	list-style: inside;
+	width: 100%;
+	margin: auto;
+	line-height: 1.5em;
+	padding-bottom: 1%;
+}
+.ul_1{
+	min-height: 52vh;
 }
 
 

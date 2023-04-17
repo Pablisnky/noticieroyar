@@ -62,61 +62,61 @@ if(document.getElementById("Label_1")){
 
 // *****************************************************************************************************
 //seleccionar si el despacho sera enviado o recogido en tienda por medio de delegación de eventos en div Mostrar_Orden ubicado en vitrina_V.php
-document.getElementById('Mostrar_Orden').addEventListener('click', function(event){ 
-    if((event.target.id == "Domicilio_No") || (event.target.id == "Domicilio_Si")){  
-        // console.log("______Desde forma_Entrega______")
-        // console.log(TotalDisplayCarrito)
-        let porNombre = document.getElementsByName("entrega")
-        //Se recorren todos los valores del radio button para encontrar el seleccionado
-        for(var i=0; i<porNombre.length; i++){
-            if(porNombre[i].checked){
-                E = porNombre[i].value;
-                // console.log(E)
-            }
-        }
+// document.getElementById('Mostrar_Orden').addEventListener('click', function(event){ 
+//     if((event.target.id == "Domicilio_No") || (event.target.id == "Domicilio_Si")){  
+//         // console.log("______Desde forma_Entrega______")
+//         // console.log(TotalDisplayCarrito)
+//         let porNombre = document.getElementsByName("entrega")
+//         //Se recorren todos los valores del radio button para encontrar el seleccionado
+//         for(var i=0; i<porNombre.length; i++){
+//             if(porNombre[i].checked){
+//                 E = porNombre[i].value;
+//                 // console.log(E)
+//             }
+//         }
 
-        //Se obtiene el valor del domicilio, tarado a un 1,3 dolares (esto se esta haciendo dss veces en este archivo, corregir)
-        envio = document.getElementById("PrecioEnvio").value
+//         //Se obtiene el valor del domicilio, tarado a un 1,3 dolares (esto se esta haciendo dss veces en este archivo, corregir)
+//         envio = document.getElementById("PrecioEnvio").value
 
-        //Se muestra la condicion de despacho
-        if(E == "Domicilio_No"){
-            document.getElementById("Despacho_2").value = 0
+//         //Se muestra la condicion de despacho
+//         if(E == "Domicilio_No"){
+//             document.getElementById("Despacho_2").value = 0
             
-            //Se cambia el monto total del pedido incluyendo comision y envio
-            MontoTotal = Number(TotalDisplayCarrito)
+//             //Se cambia el monto total del pedido incluyendo comision y envio
+//             MontoTotal = Number(TotalDisplayCarrito)
 
-            //Se calcula el monto en Dolares
-            MontoTotalDolares = MontoTotal / Local_ValorDolarHoy
-            MontoTotalDolares = MontoTotalDolares.toFixed(2)
+//             //Se calcula el monto en Dolares
+//             MontoTotalDolares = MontoTotal / Local_ValorDolarHoy
+//             MontoTotalDolares = MontoTotalDolares.toFixed(2)
 
-            //Se muestra el monto de total de la compra incluyendo envio en Bolivares
-            document.getElementById("MontoTotal").value = SeparadorMiles(MontoTotal)
+//             //Se muestra el monto de total de la compra incluyendo envio en Bolivares
+//             document.getElementById("MontoTotal").value = SeparadorMiles(MontoTotal)
             
-            //Se muestra el monto de total de la compra incluyendo envio en Dolares, con dos decimales
-            document.getElementById("MontoTotalDolares").value = SeparadorMiles(MontoTotalDolares)
-        }
-        else{//Entra en ele ELSE en caso de pagar por despacho
-            envio = Number.parseFloat(envio).toFixed(2);
-            // console.log(envio)
-            document.getElementById("Despacho_2").value = SeparadorMiles(envio)
+//             //Se muestra el monto de total de la compra incluyendo envio en Dolares, con dos decimales
+//             document.getElementById("MontoTotalDolares").value = SeparadorMiles(MontoTotalDolares)
+//         }
+//         else{//Entra en ele ELSE en caso de pagar por despacho
+//             envio = Number.parseFloat(envio).toFixed(2);
+//             // console.log(envio)
+//             document.getElementById("Despacho_2").value = SeparadorMiles(envio)
 
-            //Se cambia el monto total del pedido incluyendo comision y envio
-            MontoTotal = Number(TotalDisplayCarrito) + Number(envio)
-            MontoTotal = MontoTotal.toFixed(2)
-            // console.log("MontoTotal", MontoTotal)
+//             //Se cambia el monto total del pedido incluyendo comision y envio
+//             MontoTotal = Number(TotalDisplayCarrito) + Number(envio)
+//             MontoTotal = MontoTotal.toFixed(2)
+//             // console.log("MontoTotal", MontoTotal)
             
-            //Se calcula el monto en Dolares
-            MontoTotalDolares = MontoTotal / Local_ValorDolarHoy
-            MontoTotalDolares = MontoTotalDolares.toFixed(2)
+//             //Se calcula el monto en Dolares
+//             MontoTotalDolares = MontoTotal / Local_ValorDolarHoy
+//             MontoTotalDolares = MontoTotalDolares.toFixed(2)
 
-            //Se muestra el monto de total de la compra incluyendo comision y envio
-            document.getElementById("MontoTotal").value = SeparadorMiles(MontoTotal)
+//             //Se muestra el monto de total de la compra incluyendo comision y envio
+//             document.getElementById("MontoTotal").value = SeparadorMiles(MontoTotal)
 
-            //Se muestra el monto de total de la compra incluyendo envio en Dolares, con dos decimales
-            document.getElementById("MontoTotalDolares").value = SeparadorMiles(MontoTotalDolares)
-        }
-    }
-}, false);  
+//             //Se muestra el monto de total de la compra incluyendo envio en Dolares, con dos decimales
+//             document.getElementById("MontoTotalDolares").value = SeparadorMiles(MontoTotalDolares)
+//         }
+//     }
+// }, false);  
 
 //************************************************************************************************
     //invocada desde carrito_V.php 

@@ -1,4 +1,4 @@
-<!-- Cargada desde Clasificados_C/Productos -->
+<!-- Cargada desde Panel_Clasificados_C/Productos -->
 
 <section class="sectionModal sectionModal--sinProducto">
 

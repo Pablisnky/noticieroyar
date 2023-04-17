@@ -10,7 +10,7 @@
             </div>
         </div>
     </header>
-        <h3 class="contenedor_13--clasificados h3_1 bandaAlerta">Periodo de prueba (simulación)</h3>
+        <!-- <h3 class="contenedor_13--clasificados h3_1 bandaAlerta">Periodo de prueba (simulación)</h3> -->
     
     <form id="Formulario"> 
         <div class="contenedor_13" id="Contenedor_13Js"> 

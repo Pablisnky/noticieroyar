@@ -12,7 +12,7 @@
                  INNER JOIN imagenes ON productos.ID_Producto=imagenes.ID_Producto
                  INNER JOIN productos_opciones ON productos.ID_Producto=productos_opciones.ID_Producto
                  INNER JOIN opciones ON productos_opciones.ID_Opcion=opciones.ID_Opcion
-                 WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
+                 WHERE ID_Suscriptor = :ID_SUSCRIPTOR AND fotoPrincipal = 1"
             );
 
             $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
@@ -57,6 +57,24 @@
 
             if($stmt->execute()){
                 return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return "No se pudo";
+            }
+        }
+
+        //SELECT de las imagenes secundarias de un producto especifico
+        public function consultarImagenesSecundariasProducto($ID_Producto){
+            $stmt = $this->dbh->prepare(
+                "SELECT nombre_img 
+                FROM imagenes 
+                WHERE ID_Producto = :ID_PRODUCTO AND fotoPrincipal = 0"
+            );
+
+            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             else{
                 return "No se pudo";

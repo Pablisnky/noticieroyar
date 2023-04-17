@@ -32,9 +32,9 @@ function conexionAJAX(){
 // *************************************************************************************************
     //Esta funcion no retorna nada al documento donde se llama, solo ejecuta la accion de eliminar la imagen secundaria del servidor
     function Llamar_EliminarImagenSecundaria(ID_Imagen){
-        console.log("______Desde Llamar_EliminarImagenSecundaria()______", ID_Imagen)
+        // console.log("______Desde Llamar_EliminarImagenSecundaria()______", ID_Imagen)
         
-        var url = "../../CLasificados_C/eliminar_imagenSecundariaProducto/" + ID_Imagen
+        var url = "../../Panel_Clasificados_C/eliminar_imagenSecundariaProducto/" + ID_Imagen
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_imagenSecundariaNoticia
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")

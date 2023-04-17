@@ -11,7 +11,7 @@
         <li><a class="cont_panel--li" href="#">Comentarios</a></li>
         <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Denuncias</a></li>
         <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Noticias</a></li>
-        <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Clasificados_C/Productos/<?php echo 
+        <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Panel_Clasificados_C/Productos/<?php echo 
             $Datos["ID_Suscriptor"]?>" rel="noopener noreferrer">Clasificados</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Suscriptor_C/perfil_dashboard/<?php echo $Datos["ID_Suscriptor"];?>" rel="noopener noreferrer">Perfil</a></li>
 

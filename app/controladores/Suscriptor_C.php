@@ -5,7 +5,7 @@
         private $Suscriptor;
 
         public function __construct(){
-            // session_start();
+            session_start();
             
             // $this->ID_Suscriptor = $_SESSION["ID_Suscriptor"];
 
@@ -59,8 +59,8 @@
             $Suscriptor = $this->ConsultaSuscriptor_M->consultarSuscriptor($ID_Suscriptor);
             
             //Se CONSULTA al controlador Clasificado_C la cantidad de nuncios clasificados que tiene el suscriptor.
-            require(RUTA_APP . "/controladores/Clasificados_C.php");
-            $DatosComerciante = new Clasificados_C();
+            require(RUTA_APP . "/controladores/Panel_Clasificados_C.php");
+            $DatosComerciante = new Panel_Clasificados_C();
             $Comerciante = $DatosComerciante->clasificadoSuscriptor($ID_Suscriptor);
 
             $Datos = [
@@ -151,7 +151,18 @@
                     // Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
                     $nombre_imgCatalogo = mt_rand() . '_' . $nombre_imgCatalogo;
 
-                    // ACTUALIZA IMAGEN PRINCIPAL DE NOTICIA EN SERVIDOR
+                    //Se crea el directorio donde ira la imagen del catalogo
+                    // Usar en remoto
+                    $CarpetaCatalogo = $_SERVER['DOCUMENT_ROOT'] . '/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/';
+
+                    // Usar en local
+                    // $CarpetaCatalogo = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/clasificados/' . $_SESSION['ID_Suscriptor'] . '/';
+                    
+                    if(!file_exists($CarpetaCatalogo)){
+                        mkdir($CarpetaCatalogo, 0777, true);
+                    }  
+
+                    // ACTUALIZA IMAGEN DE CATALOGO
                     // se comprime y se inserta el archivo en el directorio de servidor 
                     $Bandera = 'imagenCatalogo';
                     require(RUTA_APP . '/helpers/Comprimir_Imagen.php');

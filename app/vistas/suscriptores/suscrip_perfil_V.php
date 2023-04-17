@@ -80,7 +80,7 @@
                 </div>               
 
                 <label class="login_cont--label">Telefono</label>
-                <input class="login_cont--input borde--input" type="text" name="telefono" id=""  value="<?php echo $Key['telefonoSuscriptor'];?>" autocomplete="off" placeholder="00000000000"/>
+                <input class="login_cont--input borde--input" type="text" name="telefono" id=""  value="<?php echo $Key['telefonoSuscriptor'];?>" autocomplete="off"/>
 
                 <label class="login_cont--label">Pseudonimo</label>
                 <input class="login_cont--input borde--input" type="text" name="pseudonimo" id="" value="<?php echo $Key['pseudonimoSuscripto'];?>" autocomplete="off"/>

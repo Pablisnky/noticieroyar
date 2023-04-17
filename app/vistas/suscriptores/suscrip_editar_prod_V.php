@@ -27,7 +27,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
     <div class="cont_suscrip_publicar">    
-        <form action="<?php echo RUTA_URL; ?>/Clasificados_C/recibeAtualizarProducto" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit = "return validarActualizacion()">
+        <form action="<?php echo RUTA_URL; ?>/Panel_Clasificados_C/recibeAtualizarProducto" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit = "return validarActualizacion()">
 
             <a id="Ancla_01" class="ancla_1"></a>
             <fieldset class="fieldset_1 fieldset_3">
@@ -90,28 +90,29 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                             <label class="Default_pointer" style="display: block; color: blue; font-weight: lighter;" for="ImgInp_3">Añadir imagenes secundarias</label>
                             <small class="small_1">Añada hasta 5 fotografias no mayor a 4 Mb / CU</small>
 
-                            <input class="Default_ocultar" type="file" name="imagenSecundariiaProd[]" multiple="multiple" id="ImgInp_3" onchange="VariasImg()"/>  
+                            <input class="Default_ocultar" type="file" name="imagenSecundariiaProdActualizar[]" multiple="multiple" id="ImgInp_3" onchange="VariasImg()"/>  
                         </div>  
 
-                        <?php
-                        foreach($Datos['imagenSec'] as $Row) : ?>                   
-                            <div style="margin: 1%;" id=PadreImagenes">
-
-                                <!-- ICONO ELIMINAR IMAGEN -->
-                                <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
-                                <div class="cont_edit--dosBotones" id="Cont_Botones--<?php echo $Row['ID_Imagen'];?>">
-                                    <div>
-                                        <img class="Default_pointer" style="width: 2em" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="EliminarImagenSecundaria('<?php echo $Row['ID_Imagen'];?>','Cont_Botones--<?php echo $Row['ID_Imagen'];?>')"/>
-                                    </div>
-                                </div>
-
-                                <!-- IMAGEN SECUNDARIAS -->
-                                <figure id="<?php echo $Row['ID_Imagen'];?>"> 
-                                    <img class="actualizar_cont--imagen" alt="Fotografia Producto" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $_SESSION['ID_Suscriptor'];?>/productos/<?php echo $Row['nombre_img'];?>"/> 
-                                </figure>
-                            </div>
+                        <div class="cont_suscrip_ImgSec">
                             <?php
-                        endforeach;  ?>
+                            foreach($Datos['imagenSec'] as $Row) : ?>                   
+                                <div style="margin: 1%;" id=PadreImagenes">
+                                        <!-- ICONO ELIMINAR IMAGEN -->
+                                        <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
+                                        <div class="cont_edit--dosBotones" id="Cont_Botones--<?php echo $Row['ID_Imagen'];?>">
+                                            <!-- <div> -->
+                                                <img class="Default_pointer" style="width: 2em" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="EliminarImagenSecundaria('<?php echo $Row['ID_Imagen'];?>','Cont_Botones--<?php echo $Row['ID_Imagen'];?>')"/>
+                                            <!-- </div> -->
+                                        </div>
+
+                                        <!-- IMAGEN SECUNDARIAS -->
+                                        <figure id="<?php echo $Row['ID_Imagen'];?>"> 
+                                            <img class="actualizar_cont--imagen" alt="Fotografia Producto" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $_SESSION['ID_Suscriptor'];?>/productos/<?php echo $Row['nombre_img'];?>"/> 
+                                        </figure>
+                                    </div>
+                                <?php
+                            endforeach;  ?>
+                        </div>
 
                         <!-- Muestra imagenes secundrias añadidas -->
                         <div id="muestrasImg_3"></div>

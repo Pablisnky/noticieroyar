@@ -34,7 +34,7 @@ function conexionAJAX(){
     function Llamar_EliminarProducto(ID_Producto, ID_Opcion){
         console.log("______Desde Llamar_EliminarProducto()______", ID_Producto + '-' + ID_Opcion)
 
-        var url = "../../Clasificados_C/eliminarProducto/" + ID_Producto + '-' + ID_Opcion
+        var url = "../../Panel_Clasificados_C/eliminarProducto/" + ID_Producto + '-' + ID_Opcion
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_EliminarProducto
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
@@ -44,6 +44,8 @@ function conexionAJAX(){
         if(peticion.readyState == 4){
             if(peticion.status == 200){ 
                 //No recibe ninguna respuesta del servidor para insertar en el documento, la accion solo es necesaria en el servidor
+                
+                // document.getElementById('Borrar').innerHTML = peticion.responseText 
             } 
             else{
                 alert('Problemas con la petición.')

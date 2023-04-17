@@ -12,7 +12,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
             <h2 class="h2_9">Anuncios clasificados</h2>
             
             <!-- ICONO AGREGAR -->
-            <a href="<?php echo RUTA_URL?>/Clasificados_C/Publicar/<?php echo $ID_Suscriptor;?>" rel="noopener noreferrer"><img class="cont_suscrip_productos--membrete--icono  Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a> 
+            <a href="<?php echo RUTA_URL?>/Panel_Clasificados_C/Publicar/<?php echo $ID_Suscriptor;?>" rel="noopener noreferrer"><img class="cont_suscrip_productos--membrete--icono  Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a> 
         </div>
         <div class="contenedor_13 cont_suscrip_productos-13"> 
             <?php 
@@ -68,7 +68,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
 
                         <!-- ACTUALIZAR - ELIMINAR -->
                         <div class="contenedor_96" id="<?php echo $ID_Producto?>">                
-                            <a class="a_9" href="<?php echo RUTA_URL?>/Clasificados_C/actualizarProducto/<?php echo $ID_Producto;?>,<?php echo $Opcion;?>">Actualizar</a>
+                            <a class="a_9" href="<?php echo RUTA_URL?>/Panel_Clasificados_C/actualizarProducto/<?php echo $ID_Producto;?>,<?php echo $Opcion;?>">Actualizar</a>
                             
                             <label style="color: blue;" class="Default_pointer" onclick = "EliminarProducto('<?php echo $ID_Producto;?>','<?php echo $ID_Opcion?>')">Eliminar</label>
                         </div>
@@ -78,6 +78,9 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                 $Contador ++;   
             endforeach;     ?>  
         </div>
+
+        <!-- Muestra respuesta de servidor al eliminar un producto, (es solo para debuggear) -->
+        <!-- <div id="Borrar"></div> -->
     </section>
        
     <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v=' . rand();?>"></script>

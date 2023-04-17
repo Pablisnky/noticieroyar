@@ -1064,12 +1064,13 @@
 				}
 			}
 
-			// IMAGEN PRINCIPAL, Si se cambio se procede a actualizarla
+			// ACTUALIZA IMAGEN PRINCIPAL NOTICIA, Si se cambio se procede a actualizarla
 			if($_FILES['imagenPrincipal']["name"] != ""){			
 				$ID_imagen = $_POST['id_fotoPrincipal'];	
 				$Nombre_imagenPrincipal = $_FILES['imagenPrincipal']['name'];
 				$Tipo_imagenPrincipal = $_FILES['imagenPrincipal']['type'];
 				$Tamanio_imagenPrincipal = $_FILES['imagenPrincipal']['size'];
+				$Temporal_imagenPrincipal = $_FILES['imagenPrincipal']['tmp_name'];
 
 				// echo "ID_Imagen: " .$ID_imagen. '<br>';
 				// echo "Nombre_imagen: " . $Nombre_imagenPrincipal . '<br>';
@@ -1082,16 +1083,12 @@
 
 				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 				$Nombre_imagenPrincipal = mt_rand() . '_' . $Nombre_imagenPrincipal;
+								
+				// ACTTUALIZA IMAGEN PRINCIPAL DE NOTICIA EN SERVIDOR
+				// se comprime y se inserta el archivo en el directorio de servidor 
+				$Bandera = 'ActualizaImagenPrincipalNoticia';
+				$this->Comprimir->index($Bandera, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal,$Tamanio_imagenPrincipal, $Temporal_imagenPrincipal);	
 				
-				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/';
-				
-				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/';
-				
-				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
-				move_uploaded_file($_FILES['imagenPrincipal']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal);
-
 				//Se ACTUALIZA la imagen principal de la noticia
 				$this->Panel_M->ActualizarImagenNoticia($ID_imagen, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
 			}

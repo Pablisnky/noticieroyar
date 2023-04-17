@@ -197,28 +197,11 @@
                     else if($Bandera == 'denuncia'){// si va a realizar una denuncia
                         header('Location:'. RUTA_URL . '/Contraloria_C/denuncias'); 
                     }
-                    else if($Bandera == 'panelSuscriptor'){// si va a inciar sesion
-                    // else{//carga el panel de suscriptores  NoAplica
-                        $Datos = [                            
-                            'nombre' => $Nombre,
-                            'apellido' => $Apellido,
-                            'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
-                            'telefono' => $Suscriptor[0]['telefonoSuscriptor']
-                        ];
-
-                        echo '<pre>';
-                        print_r($Datos);
-                        echo '</pre>';
-                        exit;
-                        
-                        $this->vista("header/header_suscriptor");
-                        $this->vista("suscriptores/panel_suscrip_V", $Datos);
-                    }
                     else if($Bandera == 'SinBandera'){// entra al panel de suscriptor
                         
                         //Se CONSULTA al controlador Clasificado_C la cantidad de anuncios clasificados que tiene el suscriptor.
-                        require_once(RUTA_APP . "/controladores/Clasificados_C.php");
-                        $DatosComerciante = new Clasificados_C();
+                        require_once(RUTA_APP . "/controladores/Panel_Clasificados_C.php");
+                        $DatosComerciante = new Panel_Clasificados_C();
                         $Comerciante = $DatosComerciante->clasificadoSuscriptor($ID_Suscriptor);
                         
                         $Datos = [                
@@ -472,11 +455,11 @@
             mail($email_to, $email_subject, $email_message, $headers); 
 
             //carga la vista login_V que contiene el formulario login
-            $Datos=[
-                'id_noticia' => 'SinID_Denuncia',
-                'id_comentario' => 'SinID_Comentario',
-                'bandera' => 'SinBandera'
-            ];
+            // $Datos=[
+            //     'id_noticia' => 'SinID_Denuncia',
+            //     'id_comentario' => 'SinID_Comentario',
+            //     'bandera' => 'SinBandera'
+            // ];
 
             // echo "<pre>";
             // print_r($Datos);
@@ -484,6 +467,6 @@
             // exit();
 
             $this->vista("header/header_noticia");
-            $this->vista("view/login_V", $Datos);
+            $this->vista("modal/modal_bienvenida_V");
         }
     }

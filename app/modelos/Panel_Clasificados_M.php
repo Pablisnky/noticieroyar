@@ -1,5 +1,5 @@
 <?php
-    class Clasificados_M extends ConexionClasificados_BD{
+    class Panel_Clasificados_M extends ConexionClasificados_BD{
 
         public function __construct(){    
             parent::__construct();       
@@ -391,16 +391,6 @@
             $stmt->execute();          
         } 
 
-        //DELETE de productos de una tienda
-        public function eliminarProductoSeccion($ID_Producto){
-            $stmt = $this->dbh->prepare(
-                "DELETE FROM secciones_productos 
-                WHERE ID_Producto = :ID_PRODUCTO"
-            );
-
-            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
-            $stmt->execute();          
-        }
 
         //DELETE de productos de una tienda
         public function eliminarProducto($ID_Producto){
@@ -422,6 +412,17 @@
         
         //DELETE de imagen secundaria especifica de un producto
         public function eliminarImagenSecundariaNoticia($ID_Imagen){
+            $stmt = $this->dbh->prepare(
+                "DELETE FROM imagenes 
+                WHERE ID_Imagen = :ID_IMAGEN"
+            );
+
+            $stmt->bindParam(':ID_IMAGEN', $ID_Imagen, PDO::PARAM_INT);
+            $stmt->execute();          
+        }
+        
+        //DELETE de todas las imagenes de un producto
+        public function eliminarImagenesProducto($ID_Imagen){
             $stmt = $this->dbh->prepare(
                 "DELETE FROM imagenes 
                 WHERE ID_Imagen = :ID_IMAGEN"

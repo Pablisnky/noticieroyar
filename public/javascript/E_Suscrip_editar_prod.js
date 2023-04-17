@@ -165,7 +165,7 @@ document.getElementById("PrecioDolar").addEventListener('focus', function(){Rein
 //************************************************************************************************
 // elimina una imagen secundaria
 function EliminarImagenSecundaria(ID_Imagen, Botones){
-    // console.log("______Desde EliminarImagenSecundaria()______", ID_Imagen)
+    console.log("______Desde EliminarImagenSecundaria()______", ID_Imagen)
     let ConfirmaEliminar = confirm("Desea eliminar la noticia");
     
     //Se confirma si se desea eliminar la noticia

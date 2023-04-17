@@ -19,7 +19,7 @@
             $ID_Suscriptor = $DatosAgrupados[0];
             $PseudonimoSuscripto = $DatosAgrupados[1];
 
-            //COnsulta todos los productos publicados en clasificados            
+            //Consulta todos los productos publicados en clasificados de un suscriptor especifico          
             $Productos = $this->ConsultaCatalagos_M->consultarProductos($ID_Suscriptor); 
 
             //Solicita el precio del dolar a la clase Divisas_C 
@@ -55,22 +55,30 @@
             //CONSULTA las imagenes del producto seleccionado
             $Imagenes = $this->ConsultaCatalagos_M->consultarImagenesProducto($ID_Producto);
             
+            //CONSULTA las imagenenes secundarias del producto seleccionado
+            $ImagenesSec = $this->ConsultaCatalagos_M->consultarImagenesSecundariasProducto($ID_Producto);
+
             //Solicita datos del suscriptor a la clase Suscriptor_C 
             require(RUTA_APP . '/controladores/Suscriptor_C.php');
             $this->InformacionSuscriptor = new Suscriptor_C();
 
             //CONSULTA informacion del vendedor
             $Vendedor =$this->InformacionSuscriptor->index($Producto['ID_Suscriptor']);
+            
+            //CONSULTA formas de pago
+            $FormasPago = $this->InformacionSuscriptor->consultarFormasPago($Producto['ID_Suscriptor']);
            
             $Datos=[ 
                 'Producto' => $Producto,
                 'Imagenes' => $Imagenes,
+                'ImagenesSec' => $ImagenesSec,
                 'nombreSuscriptor' => $Vendedor['nombreSuscriptor'],
                 'apellidoSuscriptor' => $Vendedor['apellidoSuscriptor'],
                 'municipioSuscriptor' => $Vendedor['municipioSuscriptor'],
                 'parroquiaSuscriptor' => $Vendedor['parroquiaSuscriptor'],
                 'telefonoSuscriptor' => $Vendedor['telefonoSuscriptor'], 
                 'pseudonimoSuscripto' => $Vendedor['pseudonimoSuscripto'], 
+                'formasPago' => $FormasPago,
                 'Bandera' => 'Desde_Catalogo'
             ];      
 

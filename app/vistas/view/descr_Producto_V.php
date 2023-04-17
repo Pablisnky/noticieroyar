@@ -40,23 +40,17 @@
         <div class="contenedor_122"> 
             <div class="contGridUna">
 
-                <!-- IMAGEN -->
-                <img class="imagen_9 imagen_10" id="ImagenTemporal" alt="Imagen no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['nombre_img'];?>">          
-                
-                 <!-- IMAGENES MINIATURAS onclick="verMiniatura('Imagen_<?php //echo $Contador ?>')"-->
-                 <div class="contenedor_125">   
-                    <?php                
-                    // if($Datos['Imagenes'] != Array()){      
-                    //     $Contador = 1;   
-                        //$Datos proviene de Opciones_C/productoAmpliado                  
-                        // foreach($Datos['Imagenes'] as $key) :   ?>
-                            <img class="imagen_11 borde_1 borde_2" id="Imagen_<?php echo $Contador ?>" alt="Fotografia no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['nombre_img'];?>" />
-                            <?php
-                            // echo  $Contador;
-                    //         $Contador ++;
-                    //     endforeach;
-                    // }
-                    ?>  
+                <!-- IMAGEN PRINCIPAL-->
+                <img class="imagen_9 imagen_10" id="ImagenTemporal" alt="Imagen no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['nombre_img'];?>"> 
+
+                <!-- IMAGENES MINIATURAS -->                           
+                <div class="contenedor_125">
+                    <?php
+                    foreach($Datos['ImagenesSec'] as $Row) : ?> 
+                        <img class="imagen--miniaturas borde_1 borde_2" id="Imagen_<?php echo $Contador ?>" alt="Fotografia no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Row['nombre_img'];?>" onclick="verMiniatura('Imagen_<?php //echo $Contador ?>')"/>
+                        <?php
+                    endforeach;
+                    ?>
                 </div>
 
                 <div class="cont_detalle_Producto--precio">
