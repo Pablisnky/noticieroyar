@@ -40,14 +40,16 @@
         <div class="contenedor_122"> 
             <div class="contGridUna">
 
-                <!-- IMAGEN PRINCIPAL-->
-                <img class="imagen_9 imagen_10" id="ImagenTemporal" alt="Imagen no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['nombre_img'];?>"> 
+                <!-- IMAGEN PRINCIPAL--> 
+                <div class="Imagen_Principal" id="Imagen_Principal">
+                    <img class="imagen_9" alt="Imagen no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['nombre_img'];?>"> 
+                </div>
 
                 <!-- IMAGENES MINIATURAS -->                           
                 <div class="contenedor_125">
                     <?php
                     foreach($Datos['ImagenesSec'] as $Row) : ?> 
-                        <img class="imagen--miniaturas borde_1 borde_2" id="Imagen_<?php echo $Contador ?>" alt="Fotografia no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Row['nombre_img'];?>" onclick="verMiniatura('Imagen_<?php //echo $Contador ?>')"/>
+                        <img class="imagen--miniaturas borde_1 borde_2" id="Imagen_<?php echo $Contador ?>" alt="Fotografia no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Row['nombre_img'];?>" onclick="Llamar_VerMiniatura('<?php echo $Row['ID_Imagen'] ?>')"/>
                         <?php
                     endforeach;
                     ?>
@@ -59,15 +61,14 @@
                 </div>
 
                 <div class="cont_precio">
-                    <label class="label_22 borde_1">Bs. <?php echo $PrecioBolivar?>
-                        <!-- <br> -->
-                        <small class="small_2">$ <?php echo $PrecioDolar?></small>
+                    <label class="label_22 borde_1">$ <?php echo $PrecioDolar?>
+                        <small class="small_2">Bs. <?php echo $PrecioBolivar?></small>
                     </label>
                 </div>    
             </div>
 
+            <!-- INFORMACION DE CONTACTO DEL VENDEDOR -->
             <div class="contGridUna">
-                <!-- INFORMACION DE CONTACTO DEL VENDEDOR -->
                 <div class="cont_detalle_Producto--informacion">
                     <p class="cont_detalle_Producto--p"><b>Ofertado por:</b> <?php echo $PseudonimoSuscripto?></p>
                     <div class="cont_detalle_Producto--suscriptor">
@@ -90,66 +91,10 @@
                 </div>
 
                 <div class="contenedor_15 borde_1">
-                    <!-- REPUTACION -->
-                    <div class="contenedor_17">                        
-                        <div>
-                            <h3 class="h3_4">Reputación <span class="span_1">(Ultimos 3 meses)</span> </h3>
-                        </div>
-                        <div style="width: 50%; margin: 2% auto;">
-                            <p class="p_2 p_18">Clientes satisfechos</p>
-                                <?php
-                                // if($Datos['tiendas_despachos'] == Array()){?>
-                                    <label>Aún no califica</label>    <?php
-                                // }
-                                // else if(($Datos['tiendas_satisfaccion'][0]['ID_Tienda'] != $ID_Tienda)){    ?>
-                                    <!-- <label>Aún no califica</label> -->   <?php 
-                                // }
-                                // else{
-                                    // foreach($Datos['tiendas_satisfaccion'] as $Row) :
-                                        // $ID_TiendaSatisfaccion = $Row['ID_Tienda'];
-                                        // $PorcentajeSatisfaccion = $Row['Satisfaccion'];
-                                        // if($ID_TiendaSatisfaccion == $ID_Tienda){ ?>              
-                                            <!-- <label><?php //echo $PorcentajeSatisfaccion?> %</label> -->
-                                            <?php
-                                //         }
-                                //     endforeach; 
-                                // }   ?>
-                        </div>
-                        <div style="width:50%; margin: 2% auto;">
-                            <p class="p_2 p_18">Pedidos entregados</p>
-                            <?php 
-                                // if($Datos['tiendas_despachos'] == Array()){?>
-                                    <label>0</label>    
-                                    <?php
-                                // }
-                                // else if($Datos['tiendas_satisfaccion'][0]['ID_Tienda'] != $ID_Tienda){?>
-                                    <!-- <label>0</label>     -->
-                                     <?php
-                                // }
-                                // else{
-                                //     foreach($Datos['tiendas_despachos'] as $row) :
-                                //         $ID_TiendaConDespachos = $row['ID_Tienda'];
-                                //         $CantidadDespachos = $row['Despachos'];
-                                //         if($ID_TiendaConDespachos == $ID_Tienda){   ?>                            
-                                            <!-- <label><?php //echo $CantidadDespachos?></label> -->
-                                            <?php
-                                //         }
-                                //     endforeach;
-                                // }  ?>
-                        </div>
-                    </div>
         
                     <!-- FORMAS DE ENVIO Y ENTREGA-->
-                    <div class="contenedor_17">
-                        <h3 class="h3_4">Formas de envio y entrega</h3>    
-                        <!-- <div class="contenedor_161">
-                            <p class="p_19">Compra en línea, recoje en tienda</p>
-                            <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
-                        </div>      -->
-                        <!-- <div class="contenedor_161">
-                            <p class="p_19">Despacho a domicilio</p>
-                            <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
-                        </div>  -->
+                    <div class="">
+                        <h3 class="h3_4">Formas de envio y entrega</h3>  
                         <div class="contenedor_161">
                             <p class="p_19">Acordado con vendedor</p>
                             <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/check/outline_done_black_24dp.png'?>"/>
@@ -157,8 +102,8 @@
                     </div>
 
                     <!-- METODOS DE PAGO -->
-                    <div class="contenedor_163">
-                        <h3 class="h3_4 h3_4--fijo">Metodos de pago aceptados</h3>    
+                    <div class="">
+                        <h3 class="h3_4">Metodos de pago aceptados</h3>    
                         <?php
 
                         // TRANSFERENCIA BANCARIAS
@@ -332,17 +277,10 @@
         </div>
     </section>
 
-    <!-- IMAGEN AMPLIADA -->
-    <section class="Default_ocultar" >
-        <div class="contenedor_122"> 
-            <div class="contenedor_123">
-                <div class="contenedor_124" id="Contenedor_124"> 
-                    <!-- $Datos proviene de Opciones_C/imagenAmpliado -->
-                    <img class="imagen_9 imagen_10" id="ImagenTemporal" alt="Fotografia no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['0']['nombre_img'] ;?>"> 
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- CINTILLO  -->
+    <p class="contenedor_34--p" id="Contenedor_34--p">Cambio oficial BCV: 1 $ = <?php echo number_format($Datos['dolarHoy'], 2, ",", ".");?> Bs.</p>
+    
+<script src="<?php echo RUTA_URL.'/public/javascript/A_descr_Producto.js?v=' . rand();?>"></script>
     
 <script>
     //Aqui tambien se pudo usar una funcion IIEEF

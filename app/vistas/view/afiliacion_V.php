@@ -14,8 +14,11 @@
                     <li class="li_3">Link de acceso directo a catalogo.</li>
                     <li class="li_3">Catalogo de productos para compatir en redes sociales.</li>
                 </ul>   
-                <div class="cont_Afiliado borde_1" style="display:flex; align-items:center; justify-content: center;">
-                    <p class="p_11">3% precio producto</p>
+                <div class="cont_Afiliado borde_1">
+                    <p class="p_10">Tarifa</p>
+                    <div style="width: 100%; text-align: center;">
+                        <span class="p_11">3% precio producto</span>
+                    </div>
                 </div>
             </div>
             <div class="contenedor_94">
@@ -27,8 +30,12 @@
                     <li class="li_3">Enlace a catálogo de clasificados o a algún sitio de web de interés del cliente.</li>
                 </ul>   
                 <div class="cont_Afiliado borde_1">
-                    <p class="p_11"><?php echo $Datos['anuncio_7_Dol'];?> $</p>
-                    <p class="p_3"><small class="small_1 small_2"><?php echo $Datos['anuncio_7_Bs'];?> Bs.</small></p>
+                    <p class="p_10">Tarifa</p>
+                    <div style="width: 100%; text-align: center;">
+                        <span class="p_11"><?php echo $Datos['anuncio_7_Dol'];?> $</span>
+                        <span class="p_11"> &nbsp;-&nbsp; </span>
+                        <span class="p_11"><?php echo $Datos['anuncio_7_Bs'];?> Bs.</span>
+                    </div>
                 </div>
             </div>
             <div class="contenedor_94">
@@ -39,9 +46,13 @@
                     <li class="li_3">Mostrado sin limite de tiempo y cerrado manualmente por el usuario.</li>
                     <li class="li_3">Enlace a catálogo de clasificados o a algún sitio de web de interés del cliente.</li>
                 </ul>
-                <div class="cont_Afiliado borde_1">
-                    <p class="p_11"><?php echo $Datos['anuncio_15_Dol'];?> $</p>
-                    <p class="p_3"><small class="small_1 small_2"><?php echo $Datos['anuncio_15_Bs'];?> Bs.</small></p>
+                <div class="cont_Afiliado borde_1">                    
+                    <p class="p_10">Tarifa</p>
+                    <div style="width: 100%; text-align: center;">
+                        <span class="p_11"><?php echo $Datos['anuncio_15_Dol'];?> $</span>
+                        <span class="p_11"> &nbsp;-&nbsp; </span>
+                        <span class="p_11"><?php echo $Datos['anuncio_15_Bs'];?> Bs.</span>
+                    </div>
                 </div>
             </div>        
             <div class="contenedor_94">
@@ -52,9 +63,13 @@
                     <li class="li_3">Mostrado sin limite de tiempo y cerrado manualmente por el usuario.</li>
                     <li class="li_3">Enlace a catálogo de clasificados o a algún sitio de web de interés del cliente.</li>
                 </ul>
-                <div class="cont_Afiliado borde_1">
-                    <p class="p_11"><?php echo $Datos['anuncio_30_Dol'];?> $</p>
-                    <p class="p_3"><small class="small_1 small_2"><?php echo $Datos['anuncio_30_Bs'];?> Bs.</small></p>
+                <div class="cont_Afiliado borde_1">   
+                    <p class="p_10">Tarifa</p>
+                    <div style="width: 100%; text-align: center;">
+                        <span class="p_11"><?php echo $Datos['anuncio_30_Dol'];?> $</span>
+                        <span class="p_11"> &nbsp;-&nbsp; </span>
+                        <span class="p_11"><?php echo $Datos['anuncio_30_Bs'];?> Bs.</span>
+                    </div>
                 </div>
             </div>
         </div>

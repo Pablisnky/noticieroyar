@@ -7,9 +7,6 @@
 		overflow-y: hidden; 
 		overflow-x: hidden;
 	} 
-	.borde_1{
-		border-color: white;
-	}
     .contenedor_tarjeta{
         min-width: 65%;
     }
@@ -312,7 +309,6 @@
 	}
 	.detalle_cont--redesSociales{
 		width: 70%;
-		/* height: 20vh; */
 	}
 	.detalle_cont--redesSociales-facebook{
 		width: 45%;
@@ -367,7 +363,6 @@
 		/* object-fit: cover;  */
 	}
 	.cont_noticia--titular{
-		/* background-color: red; */
 		height: 40vw;
 		width: 100%;
 		overflow-y: hidden;
@@ -577,24 +572,18 @@
 	.boton--carrito{
 		width: 130px;
 	}
-	.h1_1{
-		font-weight: normal;
-		text-align: center;
-		font-size: 1.5em;
-	}
 	.contenedor_13--marginTop{
 		margin-top: 25%;
 	}
 	.contenedor_95{
-		/* grid-template-columns: 100%; */
 		margin: auto;
 		width: 100%!important;
-		/* max-height: 180px; */
+		max-height: 180px;
 		margin-bottom: 15%;
 		padding: 1%;
 	}
 	.contenedor_95--margin{ 
-		margin-bottom: 15% !important;
+		margin-bottom: 5% !important;
 	}
 	.contenedor_61{
 		z-index: 1;
@@ -665,7 +654,6 @@
 		height: 50px!important;
 	}
 	.contOpciones--vendedor{
-		margin-top: -5px;
 		padding-right: 8px;
 	}
 	.cont_detalle_Producto--informacion{
@@ -714,8 +702,9 @@
 	height: 130px;
 }
 .cont_Precios{
-	margin-top:13px;
-}.contenedor_90{
+	margin-top: 13px;
+}
+.contenedor_90{
 	display: block;
 }
 .h3_1{
@@ -791,7 +780,7 @@
 	margin-top: 35%;
 }
 .cont_producto{
-	height: 140px;
+	height: 160px;
 }
 .header__titulo--detalleProducto{
 	position: fixed;
@@ -871,7 +860,7 @@
 .contenedor_95{
 	margin: auto;
 	width: 100%;
-	max-height: 140px;
+	max-height: 180px;
 	column-gap: 1%; /*espacio entre columnas*/
 	margin-bottom: 15%;
 }
@@ -975,7 +964,7 @@
 .cont_catalogos{
 	display: block;
 	width: 100%;
-	height: 80px!important;
+	height: 100px!important;
 }
 .cont_catalogos--membrete--1{
 	margin: auto;
@@ -986,10 +975,11 @@
 	padding-bottom: 2%;
 }
 .cont_catalogos--membrete--3{
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
-	width: 100%;
-	padding-right: 0%;
+	width: 70%;
+	margin: auto;
+	padding-left: 15%;
 }
 .header__titulo--catalogo{
 	display: block;
@@ -1002,9 +992,6 @@
 	top: 40% !important;
 	right: 2%;
 	width: 30%;
-}
-.catalogo-RS{
-	font-size: 1.2em !important;	
 }
 .catalogo-RS{
 	font-size: 1.5em !important;	
@@ -1271,14 +1258,6 @@
 	height: 19vh;
 	/* margin-top: -5%; */
 }
-.cont_portada--botones{
-	position: fixed;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	width: 100%;
-	bottom: 5pt;
-}
 .cont_panel--imagenSec{	
 	width: 100%;
    	display: block;
@@ -1311,10 +1290,6 @@
 	display:block; 
 	margin: auto;
 }
-
-
-
-
 .contenedor_42{
 	width: 95%;
 	margin-top: 18%;
@@ -1327,7 +1302,7 @@
 .contenedor_84{
 	grid-template-columns: 100%;
 	column-gap: 1%;/*espacio entre columnas*/
-	margin: 2% auto;
+	margin: 10% auto;
 	padding: 0.5% 3% 2.5% 3%;
 }
 .ul_1{
@@ -1340,7 +1315,120 @@
 .li_3{
 	font-size: 1.2em;
 }
+.cont_clasificados--item-2{
+	display: none;
+}
+.cont_portada--botones{
+	background-color: white;
+	position: fixed;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 5vh;
+	bottom: 0pt;
+}
+.cont_clasificados{
+	height:50px!important;
+}
+.cont_clasificados--item-1{
+	width: 100%;
+	margin-left: 0%;
+	padding-bottom: 0%;
+}
+.contenedor_13{
+	display: block; 
+	width: 98%;
+	margin-top: 25%;
+}
+.contenedor_4{
+	width: 100%;
+	padding-top: 15%;
+}
+.contenedor_6{
+	width: 45%;
+	height: 140px;
+}
+.cont_catalogosCateg{
+	margin-top: 30%;
+}
+.cont_catalogos--producto{
+	height: 90px;
+}
+.cont_clasificados--item-4{
+	width: 100%;
+	margin-left: 0%;
+}
+.cont_catalogosCateg--item{
+	width: 100%;
+	min-height: 60vh;
+}
+.cont_catalogosCateg_img{	
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	min-height: fit-content;
+	/* max-height: 50vh; */
+	width: 100%;
+}
+.cont_catalogosCateg_titulo{	
+	font-size: 1.2em;
+	font-weight: bold;
+	display: block;
+	text-align: center;
+}
+.cont_catalogosCateg_tienda{	
+	font-size: 1.8em;
+	text-align: center;
+	display: block;
+}
+.contenedor_106{
+	position: relative;
+	bottom: 15px;
+	right: 5%;
+}
+.p_19{
+	font-size: 1.1em !important;
+}
+.h1_11{
+	font-size: 1.2em;
+}
+.h1_1{
+	font-weight: normal;
+	text-align: center;
+	font-size: 2em;
+}
+.h3_4{
+	font-size: 0.9em;
+}
+.WHhatsApp-catalogo{
+	font-size: 1.8em !important;
+}
 
+
+
+
+
+
+
+
+.cont_portada--botones{
+	position: fixed;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 3vh;
+	bottom: 18pt; 
+}
+.cont_boton--categoria{
+	background-color: white;
+	position: fixed;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 6vh;
+	bottom: 0pt; 
+}
 
 
 

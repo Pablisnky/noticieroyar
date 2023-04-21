@@ -6,6 +6,10 @@
 
         public function __construct(){
             $this->ConsultaCatalagos_M = $this->modelo("Catalogos_M");
+            
+            //Solicita el precio del dolar a la clase Divisas_C 
+            require(RUTA_APP . '/controladores/Divisas_C.php');
+            $this->PrecioDolar = new Divisas_C();
 
             //La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
             ocultarErrores();
@@ -22,19 +26,16 @@
             //Consulta todos los productos publicados en clasificados de un suscriptor especifico          
             $Productos = $this->ConsultaCatalagos_M->consultarProductos($ID_Suscriptor); 
 
-            //Solicita el precio del dolar a la clase Divisas_C 
-            require(RUTA_APP . '/controladores/Divisas_C.php');
-            $this->PrecioDolar = new Divisas_C();
-
-            // $DolarHoy = $this->PrecioDolar->index();
-            // echo gettype($DolarHoy);
-            // print_r($DolarHoy);
+            //Solicita nformacion del suscriptor de la clase Sucriptor_C
+            require(RUTA_APP . '/controladores/Suscriptor_C.php');
+            $ImgCatalogo = new Suscriptor_C();
 
             $Datos=[
+                'dolarHoy' => $this->PrecioDolar->Dolar,
                 'ID_Suscriptor' => $ID_Suscriptor,
                 'productos' => $Productos, //ID_Producto, ID_Suscriptor, producto, nombre_img, opcion, precioBolivar, precioDolar, cantidad, disponible
                 'pseudonimoSuscripto' => $PseudonimoSuscripto,
-                'dolarHoy' =>  $this->PrecioDolar->index()
+                'imgCatalogo' => $ImgCatalogo->index($ID_Suscriptor)
             ];
             
             // echo "<pre>";
@@ -69,6 +70,7 @@
             $FormasPago = $this->InformacionSuscriptor->consultarFormasPago($Producto['ID_Suscriptor']);
            
             $Datos=[ 
+                'dolarHoy' => $this->PrecioDolar->Dolar,
                 'Producto' => $Producto,
                 'Imagenes' => $Imagenes,
                 'ImagenesSec' => $ImagenesSec,

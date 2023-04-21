@@ -8,7 +8,7 @@ if(!empty($_SESSION["Publicar"])){
     $ID_Suscriptor = $_SESSION["ID_Suscriptor"];
 
     //Se da formato al precio, sin decimales y con separación de miles
-    $PrecioDolar = number_format($Datos['dolarHoy'], 4, ",", "."); 
+    $PrecioDolar = number_format($Datos['dolarHoy'], 2, ",", "."); 
       ?>       
         
     <!-- SDN libreria JQuery, necesaria para la previsualización de la imagen del producto--> 
@@ -29,6 +29,13 @@ if(!empty($_SESSION["Publicar"])){
                             </figure>
                         </label>
                         <input class="Default_ocultar" type="file" name="imagenProducto" id="imgInp"/>
+                        
+                        <!-- NUEVO O USADO -->
+                        <input type="radio" id="Nuevo" name="grupo" value="Nuevo" onclick="gestionarClickRadio(this);"> 
+                        <label for="Nuevo">Nuevo</label>
+                        <br> <br>
+                        <input type="radio" id="Usado" name="grupo" value="Usado" onclick="gestionarClickRadio(this);">
+                        <label for="Usado">Usado</label>
                     </div>        
 
                     <div>
@@ -41,6 +48,7 @@ if(!empty($_SESSION["Publicar"])){
                         <!-- DESCRIPCION -->
                         <label class="login_cont--label">Descripcion</label>
                         <textarea class="textarea_1 textarea_4 borde_1 borde_2" name="descripcion" id="ContenidoDes" tabindex="2"></textarea>
+
                         <!-- CONTADOR DESCRIPCION -->
                         <input class="contador" type="text" id="ContadorDes" value="100" readonly/>
 
@@ -59,13 +67,13 @@ if(!empty($_SESSION["Publicar"])){
                         <input class="Default_ocultar" id="CambioOficial" type="text" value="<?php echo $Datos['dolarHoy'];?>"/> 
                         
                         <!-- CANTIDAD EN EXISTENCIA -->
-                        <div id="Contenedor_152">
+                        <div class="Default_ocultar" id="Contenedor_152">
                             <label class="login_cont--label">Existencia</label>
                             <input class="placeholder placeholder_2 placeholder_4 borde_1 borde_2" type="text" name="cantidad" id="Cantidad">
                         </div>  
                         
                         <!-- IMAGENES SECUNDARIAS -->
-                        <div>
+                        <div class="cont_suscrip_publicar--imgSec">
                             <label class="Default_pointer" style="display: block; color: blue; font-weight: lighter;" for="ImgInp_2">Añadir imagenes secundarias</label>
                             <small class="small_1">Añada hasta 5 fotografias no mayor a 4 Mb / CU</small>
 
@@ -166,6 +174,74 @@ if(!empty($_SESSION["Publicar"])){
             }
             else{
                 alert("Máximo 5 imagenes permitidas")
+            }
+        }
+
+        // ***********************************************************************************
+        //Para distinguir la opción actualmente pulsada en cada grupo
+        var pref_opcActual = "opcActual_";
+
+        //Verifica si una variable definida dinámicamente existe o no
+        function varExiste(sNombre){
+            return (eval("typeof(" + sNombre + ");") != "undefined");
+        }
+
+        //Asigna un valor a una variable creada dinámicamente a partir de su nombre
+        function asignaVar(sNombre, valor){
+            eval(sNombre + " = " + valor + ";");
+        }
+
+        //generamos dinámicamente variables globales para contener la opción pulsada en cada uno de los grupos
+        console.log("Cantidad elementos en el formulario = ",document.forms.length)
+        for(f= 0; f<document.forms.length; f++){
+            for(i = 0; i< document.forms[f].elements.length; i++){
+                var elementoExistente = document.forms[f].elements[i];
+                console.log("elementos form existente", elementoExistente)
+                var exprCrearVariable = "";
+
+                if(elementoExistente.type == "radio"){
+                    //Si la variable no existe la definimos siempre, pero sólo la redefinimos en caso de que el elemento actual del grupo esté asignado
+                    if(!varExiste(pref_opcActual + elementoExistente.name)){
+                        exprCrearVariable = "var " + pref_opcActual + elementoExistente.name + " = ";
+                        console.log("En el IF", exprCrearVariable)
+                    }
+                    else{
+                        exprCrearVariable = pref_opcActual + elementoExistente.name + " = ";
+                        console.log("En el ELSE", exprCrearVariable)
+                    }
+                    
+                    //El valor será nulo o una referencia al radio actual en función de si está seleccionado o no
+                    if(elementoExistente.checked)
+                        exprCrearVariable += "document.getElementById(‘" + elementoExistente.id + "‘)";
+                    else
+                        exprCrearVariable += "null";
+
+                    //Definimos la variable y asignamos el valor sólo si no existe o si el radio actual está marcado 
+                    if(!varExiste(pref_opcActual + elementoExistente.name) || elementoExistente.checked)
+                        eval(exprCrearVariable);
+                }
+            }
+        }
+
+        function gestionarClickRadio(opcPulsada){
+            console.log("____Desde gestionarClickRadio()____",opcPulsada)
+            //El nombre de la variable que contiene el nombre del grupo actual
+            var svarOpcAct = pref_opcActual + opcPulsada.name;
+            var opcActual = null;
+            
+            //recupero dinámicamente una referencia al último radio pulsado de este grupo
+            opcActual = eval(svarOpcAct);  
+
+            if(opcActual == opcPulsada){
+                //deselecciono
+                opcPulsada.checked = false; 
+                
+                //y quito referencia (es como si nunca se hubiera pulsado)
+                asignaVar(svarOpcAct, "null");  
+            }
+            else{
+                //Anoto la última opción pulsada de este grupo
+                asignaVar(svarOpcAct, "document.getElementById('" + opcPulsada.id + "')");  
             }
         }
     </script>

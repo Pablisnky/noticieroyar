@@ -98,4 +98,22 @@
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             $stmt->execute();
         }
+        
+        //SELECT tiendas en una misma categria
+        public function consultarTiendasCategorias($NombreCategoria){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Suscriptor, pseudonimoSuscripto, categoria, nombreImgCatalogo 
+                FROM suscriptores 
+                WHERE categoria = :CAEGORIA"
+            );
+
+            $stmt->bindParam(':CAEGORIA', $NombreCategoria, PDO::PARAM_STR);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return "No se pudo";
+            }
+        }
     }

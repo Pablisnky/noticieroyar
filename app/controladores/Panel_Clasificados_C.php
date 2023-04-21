@@ -53,7 +53,7 @@
                 'telefono' => $Suscriptor['telefonoSuscriptor']
             ];
             
-            // echo "<pre>";
+            // echo "<pre>";re
             // print_r($Datos);
             // echo "</pre>";
             // exit();
@@ -93,7 +93,7 @@
             $Suscriptor = $this->InformacionSuscriptor->index($ID_Suscriptor);
     
             $Datos = [
-                'dolarHoy' => $this->PrecioDolar->index(),
+                'dolarHoy' => $this->PrecioDolar->Dolar,
                 'nombre' => $Suscriptor['nombreSuscriptor'],
                 'apellido' => $Suscriptor['apellidoSuscriptor'],
                 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
@@ -101,13 +101,12 @@
                 'ID_Suscriptor' => $ID_Suscriptor
             ];
                 
-                // echo "<pre>";
-                // print_r($Datos);
-                // echo "</pre>";
-                // exit();
-
-            $Publicar = 1906;  
-            $_SESSION['Publicar'] = $Publicar; 
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";
+            // exit();
+ 
+            $_SESSION['Publicar'] = 1906; 
             //Se crea esta sesion para impedir que se recargue la información enviada por el formulario mandandolo varias veces a la base de datos
 
             $this->vista('header/header_suscriptor');
@@ -116,15 +115,15 @@
         
         //recibe el formulario para cargar un nuevo producto
         public function recibeProductoPublicar(){
-            $Publicar = $_SESSION['Publicar'];  
-            if($Publicar == 1906){// Anteriormente en el metodo "Publicar" se generó la variable $_SESSION["Publicar"] con un valor de 1906; con esto se evita que no se pueda recarga esta página.
-                unset($_SESSION['Publicar']);//se borra la sesión verifica. 
+            if($_SESSION['Publicar'] == 1906){// Anteriormente en el metodo "Publicar" se generó la variable $_SESSION["Publicar"] con un valor de 1906; con esto se evita que no se pueda recarga esta página.
+                unset($_SESSION['Publicar']);//se borra la sesión. 
 
                 //Se reciben todos los campos del formulario, desde cuenta_publicar_V.php se verifica que son enviados por POST y que no estan vacios
                 //SECCION DATOS DEL PRODUCTO
                 if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['producto']) && !empty($_POST['descripcion']) && !empty($_POST['precioBs']) && (!empty($_POST['precioDolar']) || $_POST['precioDolar'] == 0)){
                     $RecibeProducto = [
                         //Recibe datos del producto que se va a cargar al sistema
+                        'condicion' => !empty($_POST['grupo']) ? $_POST['grupo'] : 'NoAsignado',
                         'Producto' => $_POST['producto'],
                         'Descripcion' => $_POST['descripcion'],
                         // 'Descripcion' => preg_replace('[\n|\r|\n\r|\]','',$_POST, "descripcion", ), //evita los saltos de lineas realizados por el usuario al separar parrafos
@@ -260,7 +259,7 @@
                 }
             }
             else{ 
-                $this->Productos($RecibeProducto["ID_Suscriptor"]);
+                $this->Productos($_POST["id_suscriptor"]);
             } 
         }
         
@@ -279,7 +278,14 @@
             //Solicita el precio del dolar al controlador 
             require(RUTA_APP . '/controladores/Divisas_C.php');
             $this->PrecioDolar = new Divisas_C();
-            
+            // VERIFICAR QUE SE TRAE LOS DATOS DE ACCESO A LA BD
+            // echo '<pre>';
+            // print_r($this->PrecioDolar);
+            // echo '</pre>';
+
+            // Se consulta el precio del dolar
+            $PrecioDolarHoy = $this->PrecioDolar->Dolar;
+
             //se consultan la informacion del suscriptor
             $Suscriptor = $this->InformacionSuscriptor->index($_SESSION['ID_Suscriptor']);
 
@@ -288,7 +294,7 @@
                 'especificaciones' => $Especificaciones, //ID_Producto, ID_Opcion, producto, opcion, precioBolivar, precioDolar, cantidad, disponible
                 'imagenPrin' => $ImagenPrin, //ID_Imagen, nombre_img
                 'imagenSec' => $ImagenSec,
-                'dolarHoy' => $this->PrecioDolar->index(),
+                'dolarHoy' => $PrecioDolarHoy,
                 'nombre' => $Suscriptor['nombreSuscriptor'],
                 'apellido' => $Suscriptor['apellidoSuscriptor'],
                 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
@@ -311,6 +317,7 @@
 
                 //Recibe datos del producto a actualizar
                 $RecibeProducto = [
+                    'condicion' => !empty($_POST['grupo']) ? $_POST['grupo'] : 'NoAsignado',
                     'ID_Producto' => $_POST['id_producto'],
                     'ID_Opcion' => $_POST['id_opcion'],
                     'Producto' => $_POST['producto'],

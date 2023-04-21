@@ -7,13 +7,8 @@
         public function __construct(){
             session_start();
             
-            // $this->ID_Suscriptor = $_SESSION["ID_Suscriptor"];
-
             $this->ConsultaSuscriptor_M = $this->modelo("Suscriptor_M");
             
-            // require(RUTA_APP . "/controladores/Clasificados_C.php");
-            // $DatosComerciante = new Clasificados_C();
-
             //La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
             ocultarErrores();
         }
@@ -24,7 +19,7 @@
             $this->Suscriptor = $this->ConsultaSuscriptor_M->consultarSuscriptor($ID_Suscriptor);
 
             // echo "<pre>";
-            // print_r($Suscriptor);
+            // print_r($this->Suscriptor);
             // echo "</pre>";
             // exit();
 
@@ -196,5 +191,24 @@
             // exit();
 
             return $MetodoPago;
+        }
+        
+        // muestra las tiendas de una categoria especifica
+        public function categoria($NombreCategoria){
+            
+            //Se CONSULTA tiendas en una misma categria
+             $TiendasCategorias = $this->ConsultaSuscriptor_M->consultarTiendasCategorias($NombreCategoria);
+           
+            $Datos = [
+                'tiendasCategorias' => $TiendasCategorias, //
+            ];
+
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+            
+            $this->vista("header/header_noticia"); 
+            $this->vista("view/CatalogosCategoria_V", $Datos ); 
         }
     }

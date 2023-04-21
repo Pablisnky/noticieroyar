@@ -159,6 +159,17 @@ textarea{
 	text-align: center;
 	border-radius: 10px;
 }
+/* .boton{
+	background-color: var(--OficialOscuro);
+	width: 190px;
+	height: 30px;
+	line-height: 30px;
+	color: white;
+	display: block;
+	border: none;
+	text-align: center;
+	border-radius: 10px;
+} */
 .boton:hover{
 	background-color: var(--OficialClaro);
 	cursor: pointer;
@@ -540,6 +551,12 @@ textarea{
 .small_1A{
 	text-align: center;
 }
+.small_3{
+	padding-left: 2%;
+	font-size: 0.9em;
+	color: var(--TextoClaro);
+	
+}
 .small_4{
 	font-size: 0.7em;
 	color: white !important;
@@ -672,13 +689,13 @@ textarea{
 	z-index: 2; /*verificar - se colocó para ver si todo el div se pone por arriba de los elementos hijos y no se ve el efecto click sobre estos en responsive; esto en realidad se soluciona con teoria de niveles de apilamiento, como se hizo con los div que contienen las categorias en inicio_V.php que al hacer click sobre los que no tienen tiendas no llevan a la categoria en cuestión*/
 }
 .contenedor_17{
-	display: flex;
+	/* display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	margin: 0% auto ;
+	margin: 0% auto ; */
 }
 .contenedor_17>div:first-child{/*ocupa toda la primera fila de la distribucion flex, el padre debe tener flex-wrap; los valores representtan los atibutos 'flex-grow' 'flex-shrink' y 'flex-basis' */
-	flex: 0 1 100% !important;
+	/* flex: 0 1 100% !important; */
 }
 .h3_4{
 	background-color: var(--OficialClaro);
@@ -1539,6 +1556,9 @@ textarea{
 	padding-bottom: 5%;
 }
 .cont_portada--botones{
+	display: none;
+}
+.cont_boton--categoria{
 	display: none;
 }
 .cont_portada--titular{
@@ -2431,11 +2451,6 @@ ul .menuContenedor_3{
 	grid-template-columns: 50fr 50fr;
 	column-gap: 1%;
 }
-.contOpciones{
-	margin-top: 0%;
-	/* height: 100%; */
-	/* width: 100hw; */
-}
 .contOpciones__img{
 	object-fit: contain !important; /*esta propiedad necesita el ancho y alto de la imagen definidos*/
 	width: 190px;
@@ -2619,6 +2634,9 @@ ul .menuContenedor_3{
 	height: 70px!important;
 	z-index: 1;
 }
+.cont_catalogos--producto{
+	height: 75px;
+}
 .cont_catalogos--membrete--1{
 	margin-left: 3%;
 	width: 33%;
@@ -2689,12 +2707,6 @@ ul .menuContenedor_3{
 	cursor: pointer;
 	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 } 
-.imagen_9{
-	width: 100%;
-	margin-top: 1%;
-	height: 57vh;
-	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
-}
 .label_22{
 	background-color:  var(--BandaAlerta);
 	color: var(--OficialOscuro);
@@ -2774,25 +2786,6 @@ ul .menuContenedor_3{
     display: initial;
     flex-direction: initial;
     min-height: initial;
-  }
-.cont_clasificados{
-background-color: var(--OficialClaro);
-display: flex;
-justify-content: space-between;
-align-items: center;
-position: fixed;
-top: 50px;
-left: 0px;
-width: 100%;
-height: 50px!important;
-}
-.cont_clasificados--item-1{
-	width: 20%;
-	margin-left: 45%;
-}
-.cont_clasificados--item-2{
-	width: 20%;
-	margin-left: 30%;
 }
 .select_2{
 	font-size: 1.1em;
@@ -2853,9 +2846,6 @@ height: 50px!important;
 	position: fixed;
 	top: 85px;
 	width: 100%;
-}
-.boton--publicar{
-	width: 80%;
 }
 .contenedor_13{
 	display: flex; 
@@ -3047,19 +3037,6 @@ height: 50px!important;
 	display:flex; 
 	flex-wrap: wrap;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 .contenedor_125{
 	display: flex;
 	justify-content: center;
@@ -3112,6 +3089,13 @@ height: 50px!important;
 .small_2{
 	font-size: 0.7em;
 }
+.p_10{	
+	color: rgb(51, 51, 51);
+	font-size: 1.2em;
+	text-align: center;
+	/* margin-top: 2%; */
+	/* padding-bottom: 5%; */
+}
 .p_11{	
 	color: rgb(51, 51, 51);
 	font-size: 1.5em;
@@ -3134,11 +3118,159 @@ height: 50px!important;
 .ul_1{
 	min-height: 52vh;
 }
+.cont_suscrip_publicar--imgSec{
+	margin-top: 10%;
+}
+.boton--publicar{
+	width: 110px;
+}
+.contenedor_4{
+	display: flex; /*Organiza los elementos horizontalmente*/
+	justify-content: center; /*Alinea segun el eje horizontal*/
+	flex-wrap: wrap;
+	width: 90%;
+	margin: auto;
+	padding-top: 5%;
+}
+.contenedor_6{
+	width: 15%;
+	margin: 2%;
+	height: 150px;
+	border-radius: 15px;
+}
+.contenedor_6:hover{
+	background-color: var(--OficialClaro);
+	cursor: pointer;
+}
+.icono_2{
+	font-size: 65px;
+	display: block;
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+.h2_1{
+	font-weight: normal;
+	text-align: center;
+	padding: 4%;
+	min-height: 4em; /*para garantizar que cubra dos lineas y los iconos se alineen a partir de alli */
+	cursor: pointer;
+}
+.cont_catalogosCateg{
+	width: 90%;
+	margin: auto;
+	margin-top: 10%;
+	display: flex;
+	flex-wrap: wrap;
+}
+.imagen_9{
+	width: 100%;
+	margin-top: 1%;
+	height: 57vh;
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.cont_catalogosCateg--item{
+	width: 30%;
+	min-height: 60vh;
+}
+.cont_catalogosCateg_img{		
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	min-height: 50vh;
+	max-height: 50vh;
+	width: 100%;
+}
+.cont_catalogosCateg_titulo{	
+	font-size: 1.2em;
+	font-weight: bold;
+	display: block;
+	text-align: center;
+}
+.cont_catalogosCateg_tienda{	
+	font-size: 2.2em;
+	text-align: center;
+	display: block;
+}
+.cont_clasificados{
+	background-color: var(--OficialClaro);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 50px;
+	left: 0px;
+	width: 100%;
+	height: 50px!important;
+	
+}
+.cont_clasificados--item-1{
+	width: 20%;
+	margin-left: 40%;
+}
+.cont_clasificados--item-2{
+	justify-content: space-around;
+	display: flex;
+	width: 18%;
+	margin-right: 2%;
+}
+.cont_clasificados--item-3{
+	margin-left: 3%;
+}
+.cont_clasificados--item-4{
+	width: 20%;
+	margin-left: 15%;
+}
+.span_21{
+	border-radius: 30px;
+	width: 23px;
+	position: relative;
+	text-align: center;
+	top: 5%;
+	left: 85%;
+	display: block;
+}
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+.contenedor_34--p{/*inicio*/
+	background-color: var(--BandaAlerta);
+	font-weight: bold;
+	position: fixed;
+	bottom: 0pt;
+	width: 100%;
+	text-align: center;
+	line-height: 25px;
+}
+.contenedor_58{
+	margin-top: -10%;
+}
+.contOpciones{
+	/* background-color: red; */
+	margin-top: 0%;
+	display: flex;
+	/* height: 100%; */
+	/* width: 100hw; */
+}
+.contOpciones--textoVertical{
+	background-color:  var(--BandaAlerta);
+	writing-mode: vertical-rl; 
+	transform: rotate(180deg); 
+	font-size: 0.9em; 
+	display: block;
+	padding: 1%;
+	padding-top: 7%!important;
+	z-index: -1; /*la propiedad transform: rotate(180deg) hace que se suporponga por sobre el header*/
+}
 
 
 

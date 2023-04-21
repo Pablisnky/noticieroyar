@@ -4,11 +4,11 @@
 
         public function __construct(){
             // $this->ConsultaMenu_M = $this->modelo("Menu_M");
-            //Solicita el precio del dolar a la clase Divisas_C 
-            require(RUTA_APP . '/controladores/Divisas_C.php');
-            $PrecioDolar = new Divisas_C();
+            //Solicita el precio del dolar SEGUN TASA bcv a la clase Divisas_C 
+            // require(RUTA_APP . '/controladores/Divisas_C.php');
+            // $PrecioDolar = new Divisas_C();
             
-            $this->PrecioDolar = $PrecioDolar->index();
+            // $this->PrecioDolar = $PrecioDolar->index();
 
             // echo 'Perfecto, tasa de dolar actualizada' . '<br>';
             // echo "<a href='javascript: history.go(-1)'>Regresar</a>";
@@ -24,7 +24,7 @@
         }
 
         public function afiliacion(){
-
+            // PRECIO EN DOLARES DE LA PUBLICIDAD
             $Anuncios_7_Dol = 5;
             $Anuncios_15_Dol = 8;
             $Anuncios_30_Dol = 10;

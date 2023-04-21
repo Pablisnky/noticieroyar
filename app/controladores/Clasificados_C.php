@@ -3,8 +3,6 @@
         private $ConsultaClasificados_M;
         private $PrecioDolar;
         private $InformacionSuscriptor;
-        // private $ID_Suscriptor;
-        private $Comprimir;
 
         public function __construct(){
             // session_start();
@@ -14,6 +12,10 @@
             //Solicita datos del suscriptor a la clase Suscriptor_C 
             require_once(RUTA_APP . '/controladores/Suscriptor_C.php');
             $this->InformacionSuscriptor = new Suscriptor_C();
+            
+            //Solicita el precio del dolar a la clase Divisas_C 
+            include_once(RUTA_APP . '/controladores/Divisas_C.php');
+            $this->PrecioDolar = new Divisas_C();
 
             //La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
             ocultarErrores();
@@ -23,18 +25,10 @@
         public function index(){  
             //Consulta todos los productos publicados en clasificados            
             $Productos = $this->ConsultaClasificados_M->consultarProductos(); 
-
-            //Solicita el precio del dolar a la clase Divisas_C 
-            require(RUTA_APP . '/controladores/Divisas_C.php');
-            $this->PrecioDolar = new Divisas_C();
             
-            // $DolarHoy = $this->PrecioDolar->index();
-            // echo gettype($DolarHoy);
-            // print_r($DolarHoy);
-
             $Datos=[
+                'dolarHoy' => $this->PrecioDolar->Dolar,
                 'productos' => $Productos, //ID_Producto, ID_Suscriptor, producto, nombre_img, opcion, precioBolivar, precioDolar, cantidad, disponible
-                'dolarHoy' =>  $this->PrecioDolar->index(),
                 'Suscriptor' => $this->InformacionSuscriptor->suscriptores()
             ];
             
@@ -66,6 +60,7 @@
             $FormasPago = $this->InformacionSuscriptor->consultarFormasPago($Producto['ID_Suscriptor']);
            
             $Datos=[ 
+                'dolarHoy' => $this->PrecioDolar->Dolar,
                 'Producto' => $Producto,
                 'Imagenes' => $Imagenes,
                 'ImagenesSec' => $ImagenesSec,
@@ -87,4 +82,22 @@
             $this->vista("header/header_ProductoAmpliado", $Datos);
             $this->vista("view/descr_Producto_V", $Datos);
         } 
+        
+        // muestra la imagen seleccionada en la miniatura de un producto
+        public function muestraImagenSeleccionada($ID_ImagenMiniatura){
+            //Se CONSULTA la imagen que se solicito en detalle
+             $DetalleImagen = $this->ConsultaClasificados_M->consultarDetalleImagen($ID_ImagenMiniatura);
+           
+            $Datos = [
+                'ImagenSeleccionada' => $DetalleImagen, //
+            ];
+
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+            
+            $this->vista("header/header_SinMembrete"); 
+            $this->vista("view/ajax/ImagenSeleccionadaProducto_V", $Datos ); 
+        }
     }

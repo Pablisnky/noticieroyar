@@ -79,11 +79,43 @@
                         }   ?>
                 </div>               
 
+                <!-- TELEFONO -->
                 <label class="login_cont--label">Telefono</label>
                 <input class="login_cont--input borde--input" type="text" name="telefono" id=""  value="<?php echo $Key['telefonoSuscriptor'];?>" autocomplete="off"/>
 
+                <!-- PSEUDONIMO -->
                 <label class="login_cont--label">Pseudonimo</label>
                 <input class="login_cont--input borde--input" type="text" name="pseudonimo" id="" value="<?php echo $Key['pseudonimoSuscripto'];?>" autocomplete="off"/>
+
+                <!-- CATEGORIA -->        
+                <label class="login_cont--label">Categoria</label>
+                <select class="login_cont--select borde--input" name="categoria" id="Categoria">
+                    <option><?php echo $Key['categoria'];?></option>
+                    <option vlaue="ComidaRapida">Comida Rapida</option>
+                    <option vlaue="MaterialMedicoQuirurgico">Material médico quirúrgico</option>
+                    <option vlaue="Minimarket">Minimarket</option>
+                    <option vlaue="Bodega">Bodega</option>
+                    <option vlaue="Panaderia">Panadería</option>
+                    <option vlaue="Ferreteria">Ferretería</option>
+                    <option vlaue="Arte">Arte</option>
+                    <option vlaue="Ropa">Ropa</option>
+                    <option vlaue="Zapateria">Zapatería</option>
+                    <option vlaue="JoyasRelojeria">Joyas y relojería</option>
+                    <option vlaue="Mascotas">Mascotas</option>
+                    <option vlaue="RepuestoAutomotriz">Repuesto automotriz</option>
+                    <option vlaue="Farmacia">Farmacia</option>
+                    <option vlaue="Licoreria">Licorería</option>
+                    <option vlaue="Deportes">Deportes</option>
+                    <option vlaue="Floristeria">Floristería</option>
+                    <option vlaue="Construccion">Construcción</option>
+                    <option vlaue="Telefonos">Telefonos</option>
+                    <option vlaue="Papeleria">Papelería y Librería</option>
+                    <option vlaue="Merceria">Mercería</option>
+                    <option vlaue="Frutas">Frutas, verduras y hortalizas</option>
+                    <option vlaue="Caramelos">Caramelos</option>
+                    <option vlaue="Cosmeticos">Cosmeticos</option>
+                    <option vlaue="Juguetes">Juguetes</option>
+                </select>
             </fieldset>
 
             <!-- FORMAS DE PAGO-->

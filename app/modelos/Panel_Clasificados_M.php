@@ -293,13 +293,14 @@
         //INSERT de un producto
         public function insertarProducto($RecibeProducto){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO productos(ID_Suscriptor, producto) 
-                 VALUES (:ID_SUSCRIPTOR, :PRODUCTO)
+                "INSERT INTO productos(ID_Suscriptor, producto, nuevo) 
+                 VALUES (:ID_SUSCRIPTOR, :PRODUCTO, :NUEVO)
             ");
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':PRODUCTO', $RecibeProducto['Producto']);
             $stmt->bindParam(':ID_SUSCRIPTOR', $RecibeProducto['ID_Suscriptor']);
+            $stmt->bindParam(':NUEVO', $RecibeProducto['condicion']);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -319,12 +320,13 @@
         public function actualizarProducto($RecibeProducto){
             $stmt = $this->dbh->prepare(
                 "UPDATE productos 
-                SET producto = :PRODUCTO
+                SET producto = :PRODUCTO, nuevo = :NUEVO
                 WHERE ID_Producto = :ID_PRODUCTO");
 
             //Se vinculan los valores de las sentencias preparadas
-            $stmt->bindValue(':ID_PRODUCTO', $RecibeProducto['ID_Producto']);
-            $stmt->bindValue(':PRODUCTO', $RecibeProducto['Producto']);
+            $stmt->bindParam(':ID_PRODUCTO', $RecibeProducto['ID_Producto']);
+            $stmt->bindParam(':PRODUCTO', $RecibeProducto['Producto']); 
+            $stmt->bindParam(':NUEVO', $RecibeProducto['condicion']);
 
             //Se ejecuta la actualización de los datos en la tabla
             $stmt->execute();

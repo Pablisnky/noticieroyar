@@ -80,7 +80,7 @@
 			<!-- CARITA -->
 			<?php
 			if(!empty($_SESSION['ID_Suscriptor'])){	?>
-				<a href="<?php echo RUTA_URL . '/Suscriptores_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>"><img class="loginCarita" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
+				<a href="<?php echo RUTA_URL . '/Suscriptor_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>"><img class="loginCarita" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
 				<?php
 			}	?>
 		</header>

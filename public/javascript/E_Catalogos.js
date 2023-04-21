@@ -2,6 +2,6 @@
 
 //************************************************************************************************
   
-    function cerrarRegresar(){     
+    function cerrarVentana(){     
         window.close()
     }

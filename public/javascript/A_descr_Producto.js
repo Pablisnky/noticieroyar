@@ -30,20 +30,20 @@ function conexionAJAX(){
     } 
 
 // *************************************************************************************************
-    //
-    function Llamar_NoticiaAnterior(ID_Noticia){
-        // console.log("______Desde Llamar_NoticiaAnterior()______", ID_Noticia)
-        
-        var url = "Inicio_C/NoticiaAnterior/" + ID_Noticia
+    //Muestra cada obra individualmente en un slider
+    function Llamar_detalleObra(ID_Obra, ID_Artista, Recorrido){
+        // console.log("______Desde Llamar_detalleObra()______", ID_Obra + "/" + ID_Artista + "/" + Recorrido)
+
+        var url = "../../GaleriaArte_C/diapositivaObra/" + ID_Obra  + "/" + ID_Artista + "/" + Recorrido
         http_request.open('GET', url, true)  
-        peticion.onreadystatechange = respuesta_NoticiaAnterior
+        peticion.onreadystatechange = respuesta_detalleObra
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
         peticion.send("null")
     }                                                                        
-    function respuesta_NoticiaAnterior(){
+    function respuesta_detalleObra(){
         if(peticion.readyState == 4){
             if(peticion.status == 200){  
-                document.getElementById('Cont_Portada').innerHTML = peticion.responseText 
+                document.getElementById('Cont_PinturaDetalle').innerHTML = peticion.responseText 
             } 
             else{
                 alert('Problemas con la petición.')
@@ -55,20 +55,20 @@ function conexionAJAX(){
     }
 
 // *************************************************************************************************
-    //
-    function Llamar_NoticiaPosterior(ID_Noticia){
-        // console.log("______Desde Llamar_NoticiaPosterior()______", ID_Noticia)
-        
-        var url = "Inicio_C/NoticiaPosterior/" + ID_Noticia
+    //Muestra las miniaturas como imagen principal
+    function Llamar_VerMiniatura(ID_ImagenMiniatura){
+        console.log("______Desde Llamar_VerMiniatura()______", ID_ImagenMiniatura)
+
+        var url = "../../Clasificados_C/muestraImagenSeleccionada/" + ID_ImagenMiniatura
         http_request.open('GET', url, true)  
-        peticion.onreadystatechange = respuesta_NoticiaPosterior
+        peticion.onreadystatechange = respuesta_VerMiniatura
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
         peticion.send("null")
     }                                                                        
-    function respuesta_NoticiaPosterior(){
+    function respuesta_VerMiniatura(){
         if(peticion.readyState == 4){
             if(peticion.status == 200){  
-                document.getElementById('Cont_Portada').innerHTML = peticion.responseText 
+                document.getElementById('Imagen_Principal').innerHTML = peticion.responseText 
             } 
             else{
                 alert('Problemas con la petición.')

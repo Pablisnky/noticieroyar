@@ -692,11 +692,6 @@
 	margin-top: -25px;
 	padding-right: 8px;
 }
-.contenedor_13{
-	display: block; 
-	width: 98%;
-	margin-top: 35%;
-}
 .cont_producto{
 	height: 140px;
 }
@@ -1175,15 +1170,6 @@
 }
 .cont_portada--tituloResumen{
 	height: 19vh;
-	/* margin-top: -5%; */
-}
-.cont_portada--botones{
-	position: fixed;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	width: 100%;
-	bottom: 5pt;
 }
 .cont_panel--imagenSec{	
 	width: 100%;
@@ -1217,8 +1203,6 @@
 	display:block; 
 	margin: auto;
 }
-
-
 .contenedor_42{
 	width: 95%;
 	margin-top: 18%;
@@ -1231,7 +1215,7 @@
 .contenedor_84{
 	grid-template-columns: 100%;
 	column-gap: 1%;/*espacio entre columnas*/
-	margin: 2% auto;
+	margin: 10% auto;
 	padding: 0.5% 3% 2.5% 3%;
 }
 .ul_1{
@@ -1244,8 +1228,108 @@
 .li_3{
 	font-size: 1.2em;
 }
+.cont_clasificados--item-2{
+	display: none;
+}
+.cont_portada--botones{
+	background-color: white;
+	position: fixed;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 5vh;
+	bottom: 0pt;
+}
+.cont_clasificados{
+	justify-content: space-around;
+	height: 35px!important;
+}
+.cont_clasificados--item-1{
+	width: 100%;
+	margin-left: 0%;
+	padding-bottom: 0%;
+}
+.contenedor_13{
+	display: block; 
+	width: 98%;
+	margin-top: 25%;
+}
+.contenedor_4{
+	width: 100%;
+	padding-top: 15%;
+}
+.contenedor_6{
+	width: 45%;
+	height: 140px;
+}
+.cont_clasificados--item-4{
+	width: 100%;
+	margin-left: 0%;
+}
+.cont_catalogosCateg{
+	width: 98%;
+	margin: auto;
+	margin-top: 35%;
+	display: block;
+}
+.cont_catalogosCateg--item{
+	width: 100%;
+	min-height: 60vh;
+}
+.cont_catalogosCateg_img{	
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	min-height: fit-content;
+	/* max-height: 50vh; */
+	width: 100%;
+}
+.cont_catalogosCateg_titulo{	
+	font-size: 1.2em;
+	font-weight: bold;
+	display: block;
+	text-align: center;
+}
+.cont_catalogosCateg_tienda{	
+	font-size: 1.8em;
+	text-align: center;
+	display: block;
+}
+.contenedor_106{
+	position: relative;
+	bottom: 15px;
+	right: 5%;
+}
 
 
+
+
+
+
+
+
+
+
+
+
+.cont_portada--botones{
+	position: fixed;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 3vh;
+	bottom: 18pt;
+}
+.cont_boton--categoria{
+	background-color: white;
+	position: fixed;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 6vh;
+	bottom: 0pt; 
+}
 
 
 

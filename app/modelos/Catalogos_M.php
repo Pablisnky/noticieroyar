@@ -66,7 +66,7 @@
         //SELECT de las imagenes secundarias de un producto especifico
         public function consultarImagenesSecundariasProducto($ID_Producto){
             $stmt = $this->dbh->prepare(
-                "SELECT nombre_img 
+                "SELECT ID_Imagen, nombre_img
                 FROM imagenes 
                 WHERE ID_Producto = :ID_PRODUCTO AND fotoPrincipal = 0"
             );

@@ -1,4 +1,4 @@
-<!-- CARGA SDK FONTAWESONE PARA ICONOS DE REDES SOCIALES -->
+<!-- CARGA SDK FONTAWESONE PARA ICONOS DE REDES SOCIALES se uso esta libreria porque los iconos no tienen fondo-->
 <script src="https://kit.fontawesome.com/2d6db4c67d.js" crossorigin="anonymous"></script>
 
 <body>		
@@ -14,7 +14,7 @@
                 </div> 
 
                 <div class="cont_catalogos--membrete--2">
-                    <h1 class="h1_1 h1_1--catalogo"><b>Catalogo:</b> <br class="Default_quitarMovil"><?php echo $Datos['pseudonimoSuscripto'];?></h1> 
+                    <h1 class="h1_1 h1_1--catalogo"><?php echo $Datos['pseudonimoSuscripto'];?></h1> 
                 </div>
                     
                 <!-- COMPARTIR REDES SOCIALES Default_quitarMovil-->
@@ -30,9 +30,14 @@
                     </div>          
 
                     <!-- WHATSAPP -->
-                    <div class="cont_catalogos--iconos">
-                        <a href="whatsapp://send?text=<?php echo 'Catalogo ' . $Datos['pseudonimoSuscripto']?>&nbsp;<?php echo RUTA_URL?>/Catalogos_C/index/<?php echo $Datos['ID_Suscriptor'];?>" data-action="share/whatsapp/share"><i class="fa-brands fa-whatsapp catalogo-RS"></i></a>
+                    <div class="whatsapp cont_catalogos--iconos">
+                        <a href="whatsapp://send?text=<?php echo 'Catalogo ' . $Datos['pseudonimoSuscripto']?>&nbsp;<?php echo RUTA_URL?>/Catalogos_C/index/<?php echo $Datos['ID_Suscriptor'];?>" data-action="share/whatsapp/share"><i class="fa-brands fa-whatsapp catalogo-RS WHhatsApp-catalogo"></i></a>
                     </div>    
+
+                    <!-- ICONO CERRAR  -->   
+                    <div>
+                        <img class="cont_modal--cerrar  Default_pointer" style="width: 0.8em;" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="cerrarVentana()"/>
+                    </div> 
                 </div>  
             </div>
         </header>
@@ -65,11 +70,20 @@
                     
                         <!-- IMAGEN -->
                         <div class="contOpciones">
-                                <a href="<?php echo RUTA_URL . '/Catalogos_C/productoAmpliado/' . $ID_Producto;?>" rel="noopener noreferrer" target="_blank"><img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/></a> 
+                            <?php
+                            if($row['nuevo'] == 'Nuevo'){   ?>                        
+                                <label class="contOpciones--textoVertical">Articulo <?php echo $row['nuevo']?></label>
+                                <?php
+                            }
+                            else if($row['nuevo'] == 'Usado'){  ?>
+                                <label class="contOpciones--textoVertical">Articulo <?php echo $row['nuevo']?></label>
+                                <?php
+                            }  ?>
+                            <a href="<?php echo RUTA_URL . '/Catalogos_C/productoAmpliado/' . $ID_Producto;?>" rel="noopener noreferrer" target="_blank"><img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/></a> 
                         </div>
                                     
                         <div> 
-                            <div style="height: 75px;">
+                            <div class="cont_catalogos--producto">
                                 <!-- PRODUCTO -->
                                 <label class="input_8 input_8D hyphen" id="<?php echo 'EtiquetaProducto_' . $ContadorLabel;?>"><?php echo $Producto;?></label>
 
@@ -133,23 +147,9 @@
             </div>
         </form>
     </section>
-
-    <!-- Se muestra el boton de carrito de compras en el bottom del viewport, aparece por medio de agregarProducto() en E_Clasificados.js-->
-    <div class="contenedor_61" id="Contenedor_61">
-        <div class="contenedor_21" id="Mostrar_Carrito" onclick="llamar_PedidoEnCarrito('<?php echo $ID_Suscriptor;?>','<?php echo $Datos['dolarHoy'];?>')">
-            <div class="contenedor_31">
-                <small class="small_1 small_4" id="Small_4--JS">Ver <br class="br_3"> carrito</small>
-                <img class="Default_pointer" style="color:white; width: 2em; margin-top: 2%" src="<?php echo RUTA_URL . '/public/iconos/carritoCompras/outline_shopping_cart_white_24dp.png'?>"/>
-                
-                <!-- input que va cargando el monto total de la compra  -->
-                <input type="text" class="input_5" id="Input_5" readonly/>
-            </div>
-        </div>
-    </div>
-
-    <!-- Trae por medio de Ajax todo el pedido del usuario "La Orden de compra", la información es suministrada por carrito_V.php invocada por la función llamar_PedidoEnCarrito() en este mismo archivo-->
-    <div id="Mostrar_Orden"></div>
-
+    
+    <!-- CINTILLO  -->
+    <p class="contenedor_34--p" id="Contenedor_34--p">Cambio oficial BCV: 1 $ = <?php echo number_format($Datos['dolarHoy'], 2, ",", ".");?> Bs.</p>
 </body>
 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>

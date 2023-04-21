@@ -87,7 +87,7 @@
 				</nav>
 			</div>
 
-			<!-- CLASIFICADOS Y EVENTOS -->
+			<!-- BOTONES DE CLASIFICADOS Y EVENTOS -->
 			<div class="cont_botones_destacados">
 				<div>
 					<label class="boton boton--corto"><a class="Default_font--white boton_a" href="<?php echo RUTA_URL . '/Agenda_C';?>">Eventos</a></label> 

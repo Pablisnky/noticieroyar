@@ -10,7 +10,7 @@ if($Datos == ''){ ?>
             <p class="sectionModal__div__p">Indiquenos el correo afiliado, <br> enviaremos un código de recuperación</p>
             <br>
             <form action="<?php echo RUTA_URL . '/Login_C/RecuperarClave';?>" method="POST" autocomplete="off">
-                <input class="input_13 input_13--centro borde_1"  type="text" name="correo" id="Input_13_JS">
+                <input class="login_cont--input borde--input" type="text" name="correo" id="Input_13_JS">
                 <div class="contBoton">
                     <input class="boton" type="submit" value="Enviar">
                 </div>
@@ -27,9 +27,9 @@ else if($Datos['bandera'] == 'aleatorioinsertado'){    ?>
             <p class='sectionModal__div__p'>Se ha enviado un código al correo suministrado.</p> 
             <br>
             <form action="<?php echo RUTA_URL . '/Login_C/recibeCodigoRecuperacion';?>" method="POST">
-                <input class="input_13 input_13--sinFormato" type= "text" readonly value="<?php echo $Datos['correo'];?>" name="correo">
+                <input  class="login_cont--input borde--input" type= "text" readonly value="<?php echo $Datos['correo'];?>" name="correo">
                 <br>
-                <input class="input_13 input_13--centro borde_1" type="text" name="ingresarCodigo" placeholder="Ingresar Código"> 
+                <input  class="login_cont--input borde--input" type="text" name="ingresarCodigo" placeholder="Ingresar Código"> 
                 <div class="contBoton">
                     <input class="boton" type="submit" value="enviar">
                 </div>
@@ -46,8 +46,8 @@ else if($Datos['bandera'] == 'nuevoIntento'){    ?>
             <p class='sectionModal__div__p'>El código insertado es invalido.</p> 
             <br>
             <form action="<?php echo RUTA_URL . '/Login_C/recibeCodigoRecuperacion';?>" method="POST">
-                <input class="input_13 input_13--sinFormato" type= "text" readonly value="<?php echo $Datos['correo'];?>" name="correo">
-                <input class="input_13 input_13--centro borde_1" type="text" name="ingresarCodigo" placeholder="Ingresar Código Nuevamente"> 
+                <input  class="login_cont--input borde--input" type= "text" readonly value="<?php echo $Datos['correo'];?>" name="correo">
+                <input  class="login_cont--input borde--input" type="text" name="ingresarCodigo" placeholder="Ingresar Código Nuevamente"> 
                 <div class="contBoton">
                     <input class="boton" type="submit" value="enviar">
                 </div>
@@ -64,9 +64,9 @@ else if($Datos['bandera'] == 'verificado'){   ?>
             <!-- <P><small class="small_1 font--center">Debe contener seis digitos</small></p> -->
             <br>
             <form action="<?php echo RUTA_URL . '/Login_C/recibeCambioClave';?>" method="POST">
-                <input class="input_13" type="password" name="clave" placeholder="Nuevo código" id="Clave">
+                <input  class="login_cont--input borde--input" type="password" name="clave" placeholder="Nuevo código" id="Clave">
                 <br><br>
-                <input class="input_13" type="password" name="repiteClave" placeholder="Repetir código">
+                <input  class="login_cont--input borde--input" type="password" name="repiteClave" placeholder="Repetir código">
                 <input type="text" value="<?php echo $Datos['correo'];?>" name="correo"  style="display:none"> 
                 <div class="contBoton">
                     <input class="boton"  type="submit" value="enviar" name="enviar_2">
@@ -81,7 +81,7 @@ else{   ?>
             <p class='sectionModal__div__p'>Contraseña cambiada exitosamente</p>
             <br>
             <div class="contBoton">
-                <a class='boton' href='<?php echo RUTA_URL . '/Login_C/index/NoAplica,panelSuscriptor';?>'>Inicie sesión</a>
+                <a class='boton' href='<?php echo RUTA_URL . '/Login_C/index/NoAplica,SinBandera';?>'>Inicie sesión</a>
             </div>
         </div>         
     </section>  <?php    

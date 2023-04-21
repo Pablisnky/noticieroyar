@@ -60,9 +60,11 @@
             $stmt = $this->dbh->prepare(
                 "SELECT codigoAleatorio
                 FROM codigorecuperacion    
-                WHERE correo = :CORREO" );
+                WHERE correo = :CORREO AND codigoAleatorio = :CODIGO" 
+            );
 
             $stmt->bindParam(':CORREO', $Correo, PDO::PARAM_INT);
+            $stmt->bindParam(':CODIGO', $CodigoUsuario, PDO::PARAM_INT);
             
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -43,14 +43,13 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                         </label>
                         <input class="Default_ocultar" type="file" accept="image/*" name="imagenPrinci_Editar" id="imgInp"/>
 
-                        <!-- <div class="contInputRadio--carrito">
-                            <input class="" type="radio" name="grupo" id="Nuevo" onclick="gestionarClickRadio(this)"/>
-                            <label class="contInputRadio__label" for="Nuevo">Articulo nuevo</label>
-                        </div>
-                        <div class="contInputRadio--carrito">
-                            <input class="" type="radio" name="grupo" id="Usado" onclick="gestionarClickRadio(this)"/>
-                            <label class="contInputRadio__label" for="Usado">Articulo usado</label>
-                        </div> -->
+                        
+                        <!-- NUEVO O USADO -->
+                        <input type="radio" id="Nuevo" name="grupo" value="Nuevo" onclick="gestionarClickRadio(this);"> 
+                        <label for="Nuevo">Nuevo</label>
+                        <br> <br>
+                        <input type="radio" id="Usado" name="grupo" value="Usado" onclick="gestionarClickRadio(this);">
+                        <label for="Usado">Usado</label>
                     </div>
                 
                     <div class="cont_suscrip--editar">
@@ -77,16 +76,15 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                         </div> 
                         <small class="small_1">El sistema realiza automaticamente la conversión Bolivar / Dolar según BCV. <strong class="strong_1">( $ 1 = Bs. <?php echo number_format($Datos['dolarHoy'], 2, ",", ".");?>)</strong></small>
                         <input class="Default_ocultar" id="CambioOficial" type="text" value="<?php echo $Datos['dolarHoy'];?>"/>
-                        <br>
 
                         <!-- CANTIDAD EN EXISTENCIA -->
-                        <div id="Contenedor_152">
+                        <div class="Default_ocultar" id="Contenedor_152">
                             <label class="default_bold">Unidades cargadas</label>                       
                                 <input class="placeholder placeholder_2 placeholder_4 borde_1 borde_2" type="text" name="uni_existencia" id="Cantidad" value="<?php echo $Cantidad;?>">   
                         </div>  
                         
                         <!-- IMAGENES SECUNDARIAS -->
-                        <div>
+                        <div class="cont_suscrip_publicar--imgSec">
                             <label class="Default_pointer" style="display: block; color: blue; font-weight: lighter;" for="ImgInp_3">Añadir imagenes secundarias</label>
                             <small class="small_1">Añada hasta 5 fotografias no mayor a 4 Mb / CU</small>
 

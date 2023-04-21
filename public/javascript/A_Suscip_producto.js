@@ -45,7 +45,6 @@ function conexionAJAX(){
             if(peticion.status == 200){ 
                 //No recibe ninguna respuesta del servidor para insertar en el documento, la accion solo es necesaria en el servidor
                 
-                // document.getElementById('Borrar').innerHTML = peticion.responseText 
             } 
             else{
                 alert('Problemas con la petición.')

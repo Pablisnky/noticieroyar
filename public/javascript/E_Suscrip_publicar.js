@@ -179,7 +179,6 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
         let Descripcion = document.getElementById('ContenidoDes').value 
         let PrecioBs = document.getElementById('PrecioBs').value 
         let PrecioDolar = document.getElementById('PrecioDolar').value 
-        let Cantidad = document.getElementById('Cantidad').value 
         document.getElementsByClassName("boton")[0].value = "Guardando ..."
         document.getElementsByClassName("boton")[0].disabled = true
         document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialClaro)"
@@ -255,19 +254,6 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
             document.getElementsByClassName("boton")[0].classList.remove('borde_1')
             return false;
         }
-        else if(Pat_Numeros.exec(Cantidad) == false || Cantidad == "" || Cantidad == 0 || Cantidad.indexOf(" ") == 0 || Cantidad.length > 3){
-            alert ("Introduzca la cantidad de unidades disponibles")
-            document.getElementById("Cantidad").value = ""
-            document.getElementById("Cantidad").focus()
-            document.getElementById("Cantidad").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Agregar producto"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].style.cursor = "pointer"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        }    
         //Si se superan todas las validaciones la función devuelve verdadero
         return true
     }

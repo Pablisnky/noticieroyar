@@ -1,6 +1,5 @@
-<?php 
-    // declare(strict_types = 1);
-
+<?php
+// declare(strict_types = 1);
     class Login_C extends Controlador{
         private $ConsultaLogin_M;
         
@@ -26,7 +25,6 @@
             // echo "Bandera =" .  $Bandera ."<br>";
             // echo "ID_Comentario =" .  $ID_Comentario ."<br>";
             // exit;
-
 
             // unset($_COOKIE ["id_usuario"]);
             // unset($_COOKIE ["clave"]);
@@ -253,7 +251,7 @@
         
         public function RecuperarClave(){
             $Correo = $_POST['correo'];
-            //echo 'Correo= ' . $Correo . '<br>';
+            // echo 'Correo= ' . $Correo . '<br>';
         
             //Se genera un numero aleatorio que será el código de recuperación de contraseña
             //alimentamos el generador de aleatorios
@@ -270,8 +268,31 @@
             $email_message = 'Código de recuperación de contraseña: ' . $Aleatorio;
             $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
             // $headers .= '\r\n X-Mailer: PHP/' . phpversion();
-        
-            @mail($email_to, $email_subject, $email_message, $headers);
+                //  echo $email_to . '<br>';
+                //  echo $email_subject . '<br>';
+                //  echo $email_message . '<br>';
+                //  echo $headers . '<br>'; 
+            mail($email_to, $email_subject, $email_message, $headers);
+                
+            // try{    
+            //     if(mail($email_to, $email_subject, $email_message, $headers)){
+            //       throw new Exception("Configuration file not found.");
+            //       echo 'Correo enviado' . '<br>';
+            //     }
+                
+            // } 
+            // catch (Exception $e) {                
+            //     echo $e->getMessage();  
+            //     echo "Error en el envío" . '<br>';              
+            //     die();                
+            // }
+                
+            // if (mail($email_to, $email_subject, $email_message, $headers)){
+            //      echo 'Correo enviado' . '<br>';
+            // }
+            // else{
+            //     echo "Error en el envío" . '<br>';
+            // }
             
             $Datos = [
                 'correo' => $Correo,
@@ -299,15 +320,15 @@
             
             //Se comprueba el código enviado por el usuario con el código que hay en la BD
             $VerificaCodigo = $this->ConsultaLogin_M->consultarCodigoAleatorio($Correo, $CodigoUsuario);
-
-            if($VerificaCodigo == 0){//Si el codigo que envia el usuario es diferente al del sistema             
+           
+            if($VerificaCodigo == Array() ){//Si el codigo que envia el usuario es diferente al del sistema             
                 
                 $Datos = [
                     'correo' => $Correo,
                     'bandera' => 'nuevoIntento'
                 ];
 
-                $this->vista("header/header_Modal"); 
+                $this->vista("header/header_SinMembrete"); 
                 $this->vista("modal/modal_recuperarCorreo_V", $Datos);
 
                 // echo "<p class='Inicio_16'>Código invalido</p>";
@@ -411,14 +432,14 @@
                 // ];
                 //Recibe datos de la persona responsable
                 $RecibeDatos = [
-                        'id_noticia' => $_POST['id_noticia'],
-                        'nombre' => ucwords($_POST['nombre']),    
-                        'apellido' => ucwords($_POST['apellido']),                      
-                        'correo' => mb_strtolower($_POST['correo']),                       
-                        'municipio' => mb_strtolower($_POST['municipio']),                
-                        'parroquia' => mb_strtolower($_POST['parroquia']),
-                        'clave' => $_POST['clave'],
-                        'repiteClave' => $_POST['confirmarClave']
+                    'id_noticia' => $_POST['id_noticia'],
+                    'nombre' => ucwords($_POST['nombre']),    
+                    'apellido' => ucwords($_POST['apellido']),                      
+                    'correo' => mb_strtolower($_POST['correo']),                       
+                    'municipio' => mb_strtolower($_POST['municipio']),                
+                    'parroquia' => mb_strtolower($_POST['parroquia']),
+                    'clave' => $_POST['clave'],
+                    'repiteClave' => $_POST['confirmarClave']
                 ];
                 
                 // echo "<pre>";
@@ -447,19 +468,12 @@
             // exit();
 
             //Se envia al correo  la notificación de nuevo cliente registrado
-            $email_subject = 'Suscripción de usuario'; 
+            $email_subject = 'Suscripción de nuevo usuario'; 
             $email_to = $CorreoAdmin['correoAdmin']; 
             $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
             $email_message = $RecibeDatos['nombre'] . ' ' . $RecibeDatos['apellido'] . ' se ha registrado en la plataforma';
 
             mail($email_to, $email_subject, $email_message, $headers); 
-
-            //carga la vista login_V que contiene el formulario login
-            // $Datos=[
-            //     'id_noticia' => 'SinID_Denuncia',
-            //     'id_comentario' => 'SinID_Comentario',
-            //     'bandera' => 'SinBandera'
-            // ];
 
             // echo "<pre>";
             // print_r($Datos);

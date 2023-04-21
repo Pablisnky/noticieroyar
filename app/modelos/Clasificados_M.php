@@ -61,7 +61,7 @@
         //SELECT de las imagenes secundarias de un producto especifico
         public function consultarImagenesSecundariasProducto($ID_Producto){
             $stmt = $this->dbh->prepare(
-                "SELECT nombre_img 
+                "SELECT ID_Imagen, nombre_img 
                 FROM imagenes 
                 WHERE ID_Producto = :ID_PRODUCTO AND fotoPrincipal = 0"
             );
@@ -205,6 +205,26 @@
             }
         }
         
+        //Se CONSULTA la imagen que se solicito en detalles
+        public function consultarDetalleImagen($ID_ImagenMiniatura){
+            $stmt = $this->dbh->prepare(
+                "SELECT imagenes.ID_Producto, nombre_img, ID_Suscriptor
+                 FROM imagenes 
+                 INNER JOIN productos ON imagenes.ID_Producto=productos.ID_Producto
+                 WHERE imagenes.ID_Imagen = :ID_IMAGEN"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_IMAGEN', $ID_ImagenMiniatura, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+                
         // ************************************************************************************
         // *********************************   INSERT   ***************************************
         // ************************************************************************************

@@ -8,23 +8,11 @@
     
         <section class="cont_portada--noticia section" id="Cont_Noticia_<?php echo $Iterador?>">
             <div class="cont_noticia borde_1 borde_3 section__content" data-content id="este_<?php echo $Iterador?>">
+            
                 <!-- IMAGEN -->
                 <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/'. $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo section__img section__img--left" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/>
                 </a>
-                
-                        <!-- RADIO BOTOM -->
-                        <!-- <div class="cont_radio-sliderVertical">  -->
-                            <?php
-                            // foreach($Datos['datosNoticia'] as $Row) :  ?>       
-                                <!-- <input class="cont_radio--input Default_pointer" type="radio" name="noticias" id="<?php echo $Iterador?>" onscroll = "marcharRadioButon()" -->
-                                <?php //if($Row['ID_Noticia'] == $Key['ID_NoticiaInicial']){?>
-                                     <!-- checked  -->
-                                     <?php //} ?>
-                                     <!-- /> -->
-                                <?php
-                            // endforeach; ?>
-                        <!-- </div> -->
-                
+                                
                 <div class="cont_portada--tituloResumen">
                     <!-- TITULAR -->
                     <div class="cont_portada--titular"">              
@@ -114,22 +102,22 @@
                     <br>
                     <small class="cont_portada_informacion--span"><?php echo $Key['fechaPublicacion'];?></small>
                 </div> 
-            </div>
-        </div>     
+            </div> 
 
-        <!-- BOTONES DEL PANEL FRONTAL (solo en dispositivos moviles)-->	
-        <div class="cont_portada--botones">
-            <div>
-                <label class="boton boton--corto"><a class="Default_font--white boton_a" href="<?php echo RUTA_URL . '/Agenda_C';?>">Eventos</a></label> 
-            </div>        
-            <div>
-                <label class="boton boton--corto"><a class="Default_font--white boton_a"" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
-            </div>         
-            <div>
-                <label class="boton boton--corto"><a class="Default_font--white boton_a"" href="<?php echo RUTA_URL . '/Clasificados_C';?>">Clasificados</a></label> 
-            </div>        
-        </div>
-    </section>        
+            <!-- BOTONES DEL PANEL FRONTAL (solo en dispositivos moviles)-->	
+            <div class="cont_boton--categoria">
+                <div>
+                    <label class="boton boton--corto"><a class="Default_font--white boton_a" href="<?php echo RUTA_URL . '/Agenda_C';?>">Eventos</a></label> 
+                </div>        
+                <div>
+                    <label class="boton boton--corto"><a class="Default_font--white boton_a"" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 
+                </div>         
+                <div>
+                    <label class="boton boton--corto"><a class="Default_font--white boton_a"" href="<?php echo RUTA_URL . '/Clasificados_C';?>">Clasificados</a></label> 
+                </div>        
+            </div>
+
+        </section>        
         <?php
         $Iterador++;
     endforeach;     ?>

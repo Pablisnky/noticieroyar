@@ -1,6 +1,6 @@
 <div style="display: flex;" id="Obra">	
 	<div style="background-color: black; width: 3%; height: 100vh; position: fixed">
-		<a style="" href="<?php echo RUTA_URL?>/GaleriaArte_C"><img style="background-color: black; display: block; margin-left: 25%; margin-top: 50%"  src="<?php echo RUTA_URL?>/public/iconos/flecha/outline_arrow_back_white_24dp.png"/></a>
+		<a style="" href="<?php echo RUTA_URL?>/GaleriaArte_C"><img style="background-color: black; display: block; margin-left: 25%; margin-top: 50%" src="<?php echo RUTA_URL?>/public/iconos/flecha/outline_arrow_back_white_24dp.png"/></a>
 		<p class="Default--textoVertical" style="padding-bottom: 25px; text-align: left; font-family: 'Moon Dance', cursive; font-size: 2em; color: white;" id="DescripcionArtista"><?php echo $Datos['datosArtistas']['nombreArtista'] . ' ' . $Datos['datosArtistas']['apellidoArtista'];?></p>
 	</div>
 	<div class="cont_obras" id="ContObras">
