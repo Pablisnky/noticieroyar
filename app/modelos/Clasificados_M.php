@@ -40,8 +40,8 @@
             }
         }
         
-        //SELECT de las imagenes de un producto especifico
-        public function consultarImagenesProducto($ID_Producto){
+        //SELECT de la imagen principal de un producto especifico
+        public function consultarImagenPrincipalProducto($ID_Producto){
             $stmt = $this->dbh->prepare(
                 "SELECT nombre_img 
                 FROM imagenes 
@@ -59,11 +59,29 @@
         }
 
         //SELECT de las imagenes secundarias de un producto especifico
-        public function consultarImagenesSecundariasProducto($ID_Producto){
+        // public function consultarImagenesSecundariasProducto($ID_Producto){
+        //     $stmt = $this->dbh->prepare(
+        //         "SELECT ID_Imagen, nombre_img 
+        //         FROM imagenes 
+        //         WHERE ID_Producto = :ID_PRODUCTO AND fotoPrincipal = 0"
+        //     );
+
+        //     $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
+
+        //     if($stmt->execute()){
+        //         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //     }
+        //     else{
+        //         return "No se pudo";
+        //     }
+        // }
+
+        //SELECT de todas las imagenes de un producto especifico
+        public function consultarImagenesProducto($ID_Producto){
             $stmt = $this->dbh->prepare(
                 "SELECT ID_Imagen, nombre_img 
                 FROM imagenes 
-                WHERE ID_Producto = :ID_PRODUCTO AND fotoPrincipal = 0"
+                WHERE ID_Producto = :ID_PRODUCTO"
             );
 
             $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
@@ -205,7 +223,7 @@
             }
         }
         
-        //Se CONSULTA la imagen que se solicito en detalles
+        //Se CONSULTA la imagen que se solicito en miniaturas
         public function consultarDetalleImagen($ID_ImagenMiniatura){
             $stmt = $this->dbh->prepare(
                 "SELECT imagenes.ID_Producto, nombre_img, ID_Suscriptor
@@ -218,7 +236,7 @@
             $stmt->bindParam(':ID_IMAGEN', $ID_ImagenMiniatura, PDO::PARAM_INT);
 
             if($stmt->execute()){
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $stmt->fetch(PDO::FETCH_ASSOC);
             }
             else{
                 return false;

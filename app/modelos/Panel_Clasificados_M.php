@@ -157,7 +157,7 @@
         //SELECT de un producto especificao de una tienda determinada
         public function consultarDescripcionProducto($ID_Producto){
             $stmt = $this->dbh->prepare(
-                "SELECT productos.ID_Producto, opciones.ID_Opcion, producto, opcion, precioBolivar, precioDolar, cantidad
+                "SELECT productos.ID_Producto, opciones.ID_Opcion, producto, opcion, precioBolivar, precioDolar, cantidad, nuevo
                 FROM productos 
                 INNER JOIN productos_opciones ON productos.ID_Producto=productos_opciones.ID_Producto 
                 INNER JOIN opciones ON productos_opciones.ID_Opcion=opciones.ID_Opcion 
@@ -197,6 +197,39 @@
 
             $stmt->bindParam(':ID_IMAGEN', $ID_Imagen, PDO::PARAM_INT);
 
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        //SELECT de todas las secciones de un suscriptor
+        public function consultarSeccionesSuscriptor($ID_Suscriptor){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Seccion, seccion
+                FROM secciones 
+                WHERE ID_Suscriptor = :ID_SUSCRIPTOR");
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_STR);
+            
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }  
+        
+        // SELECT de seccion donde se encuentra un producto
+        public function consultarSeccion($ID_Producto){
+            $stmt = $this->dbh->prepare(
+                "SELECT  seccion
+                FROM secciones 
+                INNER JOIN secciones_productos ON secciones.ID_Seccion=secciones_productos.ID_Seccion
+                WHERE ID_Producto = :ID_PRODUCTO");
+            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_STR);
+            
             if($stmt->execute()){
                 return $stmt->fetch(PDO::FETCH_ASSOC);
             }
@@ -311,6 +344,26 @@
                 return false;
             }
         }
+         
+        //INSERT de las secciones de un catalogo especifico
+        public function insertaSeccion($ID_Suscriptor, $Seccion){
+            //Debido a que $Seccion es un array con todas las secciones, deben introducirse una a una mediante un ciclo    
+            foreach($Seccion as $key)   :
+                // echo $key . "<br>";
+                // echo $ID_Tienda . "<br>";
+                $stmt = $this->dbh->prepare(
+                    "INSERT INTO secciones(ID_Suscriptor, seccion) 
+                     VALUES(:ID_SUSCRIPTOR, :SECCION)"
+                );
+
+                //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+                $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor);
+                $stmt->bindParam(':SECCION', $key);
+
+                //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+                $stmt->execute();
+            endforeach;
+        }
         
         // ************************************************************************************
         // *********************************   UPDATE   ***************************************
@@ -377,6 +430,48 @@
                 return false;
             }
         }
+             
+        //UPDATE de una seccion especifica del catalogo
+        public function ActualizarSeccion($ID_Seccion, $Seccion){
+            $stmt = $this->dbh->prepare(
+                "UPDATE secciones 
+                SET seccion = :SECCION 
+                WHERE ID_Seccion = :ID_SECCION "
+            );
+
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_SECCION', $ID_Seccion);
+            $stmt->bindParam(':SECCION', $Seccion );
+
+            // Se ejecuta la actualización de los datos en la tabla
+            if($stmt->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        //UPDAYE de DT entre la seccion y el producto        
+        public function actualizarDT_SecPro($RecibeProducto){
+            $stmt = $this->dbh->prepare(
+                "UPDATE secciones_productos  
+                SET ID_Seccion = :ID_SECCION 
+                WHERE ID_Producto = :ID_PRODUCTO "
+            );
+
+            // Se vinculan los valores de las sentencias preparadas
+            $stmt->bindParam(':ID_SECCION', $RecibeProducto['ID_Seccion']);
+            $stmt->bindParam(':ID_PRODUCTO', $RecibeProducto['ID_Producto']);
+
+            // Se ejecuta la actualización de los datos en la tabla
+            if($stmt->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
         
         // ************************************************************************************
         // *********************************   DELETE   ***************************************
@@ -392,7 +487,6 @@
             $stmt->bindParam(':ID_OPCION', $ID_Opcion, PDO::PARAM_INT);
             $stmt->execute();          
         } 
-
 
         //DELETE de productos de una tienda
         public function eliminarProducto($ID_Producto){
@@ -431,6 +525,17 @@
             );
 
             $stmt->bindParam(':ID_IMAGEN', $ID_Imagen, PDO::PARAM_INT);
+            $stmt->execute();          
+        }
+        
+        //DELETE de todas las secciones de un catalogo especifico
+        public function eliminarTodasSecciones($ID_Suscriptor){
+            $stmt = $this->dbh->prepare(
+                "DELETE FROM secciones 
+                WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
+            );
+
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
             $stmt->execute();          
         }
     }

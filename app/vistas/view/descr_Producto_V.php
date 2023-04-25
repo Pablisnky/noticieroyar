@@ -15,11 +15,6 @@
     $Nuevo = $Datos['Producto']['nuevo']; 
     $Bandera = $Datos['Bandera']; 
 ?>
-    <!-- SE CARGA EL PRELOADER -->
-    <!-- <section class="preloder_tapa--total">
-        <div class='preloder preloaderCentrar'></div>
-    </section> -->
-
     <!-- ICONO REGRESAR -->    
     <?php
     if($Bandera == 'Desde_Clasificados'){   ?>
@@ -40,9 +35,21 @@
         <div class="contenedor_122"> 
             <div class="contGridUna">
 
-                <!-- IMAGEN PRINCIPAL--> 
-                <div class="Imagen_Principal" id="Imagen_Principal">
-                    <img class="imagen_9" alt="Imagen no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['nombre_img'];?>"> 
+               
+                <div id="Imagen_Principal"> 
+                        <!-- TEXTO VERTICAL -->
+                        <?php
+                        if($Nuevo == 'Nuevo'){   ?>                        
+                            <label class="contOpciones--text">Articulo <?php echo $Nuevo?></label>
+                            <?php
+                        }
+                        else if($Nuevo == 'Usado'){  ?>
+                            <label class="contOpciones--text">Articulo <?php echo $Nuevo?></label>
+                            <?php
+                        }  ?>
+
+                    <!-- IMAGEN PRINCIPAL--> 
+                    <img class="imagen_9" alt="Imagen no disponible" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $Datos['Imagenes']['nombre_img'];?>"/> 
                 </div>
 
                 <!-- IMAGENES MINIATURAS -->                           
@@ -283,26 +290,6 @@
 <script src="<?php echo RUTA_URL.'/public/javascript/A_descr_Producto.js?v=' . rand();?>"></script>
     
 <script>
-    //Aqui tambien se pudo usar una funcion IIEEF
-    // window.onload = function (){
-    //     if(document.readyState == "complete"){
-    //         document.querySelector(".preloder_tapa--total").style.display = "none"
-    //     }
-    //     if(AlContenedor === "undefined"){
-    //         console.log("AlContenedor", AlContenedor)
-    //     }
-    //     else{
-    //         console.log("AlContenedor no definido aún")
-    //     }
-    // }
-
-    // function cerrarAgregar(){   
-    //     // activarBotonAgregar()Se encuentra en vitrina_V.php debido a que los manejadores de envto de opciones_V.php dependen de vitrina_V.php por ser una ventna abierta con ajax
-    //     window.opener.activarBotonAgregar('<?php //echo $ID_LabelAgregar?>') 
-    //     // window.opener.location.reload();        
-    //     window.close()
-    // }
-
     function cerrarVentana(){     
         window.close()
     }

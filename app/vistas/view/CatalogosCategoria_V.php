@@ -18,7 +18,17 @@
 
                 <!-- IMAGEN -->
                 <div class="">
-                    <a href="<?php echo RUTA_URL . '/Catalogos_C/index/' . $row['ID_Suscriptor'] . ',' , $row['pseudonimoSuscripto']?>" rel="noopener noreferrer" target="_blank"><img class="cont_catalogosCateg_img" alt="Portada de catalogo" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $row['ID_Suscriptor'];?>/<?php echo $row['nombreImgCatalogo'];?>"/></a>
+                    <?php
+                    if($row['nombreImgCatalogo'] == ''){   ?>
+                        <figure>  
+                            <a href="<?php echo RUTA_URL . '/Catalogos_C/index/' . $row['ID_Suscriptor'] . ',' , $row['pseudonimoSuscripto']?>" rel="noopener noreferrer" target="_blank"><img class="cont_catalogosCateg_imgDefault" id="blah" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/tienda.png"/></a>
+                        </figure>
+                        <?php
+                    }
+                    else{   ?>
+                        <a href="<?php echo RUTA_URL . '/Catalogos_C/index/' . $row['ID_Suscriptor'] . ',' , $row['pseudonimoSuscripto']?>" rel="noopener noreferrer" target="_blank"><img class="cont_catalogosCateg_img" alt="Portada de catalogo" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $row['ID_Suscriptor'];?>/<?php echo $row['nombreImgCatalogo'];?>"/></a>
+                        <?php
+                    }   ?>
                 </div>     
               
                 <!-- VEDEDOR -->

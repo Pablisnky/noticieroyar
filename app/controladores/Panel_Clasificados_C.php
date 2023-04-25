@@ -10,10 +10,6 @@
 
             $this->ConsultaClasificados_M = $this->modelo("Panel_Clasificados_M");
 
-            //Solicita datos del suscriptor a la clase Suscriptor_C 
-            require_once(RUTA_APP . '/controladores/Suscriptor_C.php');
-            $this->InformacionSuscriptor = new Suscriptor_C();
-
             //La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
             ocultarErrores();
         }
@@ -32,6 +28,20 @@
             return $ClasificadosSuscriptor;
         }
         
+        //CONSULTA las secciones que tiene el catalogo de un suscriptor
+        public function SeccionesSuscriptor($ID_Suscriptor){
+            
+            //se consultan los anuncios clasificados de un suscriptor
+            $ClasificadosSuscriptor = $this->ConsultaClasificados_M->consultarSeccionesSuscriptor($ID_Suscriptor);
+            
+            // echo "<pre>";
+            // print_r($ClasificadosSuscriptor);
+            // echo "</pre>";
+            // exit();
+
+            return $ClasificadosSuscriptor;
+        }
+
         //Muestra todos los productos en la vista clasificados del panel de suscriptores
         public function Productos($ID_Suscriptor){
             // echo 'ID_Suscriptor= ' . $ID_Suscriptor . '<br>';
@@ -41,19 +51,19 @@
             $Productos = $this->ConsultaClasificados_M->consultarTodosProductosSuscriptor($ID_Suscriptor);
 
             //se consultan la informacion del suscriptor
-            $Suscriptor = $this->InformacionSuscriptor->index($ID_Suscriptor);
+            // $Suscriptor = $this->InformacionSuscriptor->index($ID_Suscriptor);
 
             $Datos = [
                 'productos' => $Productos, //ID_Producto, producto, ID_Opcion, opcion, precioBolivar, prcioDolar, cantidad, disponible, nombre_img
-                'suscriptor' => $this->InformacionSuscriptor->index($ID_Suscriptor),
-                'ID_Suscriptor' => $Suscriptor['ID_Suscriptor'],
-                'nombre' => $Suscriptor['nombreSuscriptor'],
-                'apellido' => $Suscriptor['apellidoSuscriptor'],
-                'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
-                'telefono' => $Suscriptor['telefonoSuscriptor']
+                'suscriptor' => $_SESSION["ID_Suscriptor"],
+                // 'ID_Suscriptor' => $Suscriptor['ID_Suscriptor'],
+                // 'nombre' => $Suscriptor['nombreSuscriptor'],
+                // 'apellido' => $Suscriptor['apellidoSuscriptor'],
+                // 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
+                // 'telefono' => $Suscriptor['telefonoSuscriptor']
             ];
             
-            // echo "<pre>";re
+            // echo "<pre>";
             // print_r($Datos);
             // echo "</pre>";
             // exit();
@@ -90,14 +100,14 @@
             $this->PrecioDolar = new Divisas_C();
             
             //se consultan la informacion del suscriptor
-            $Suscriptor = $this->InformacionSuscriptor->index($ID_Suscriptor);
+            // $Suscriptor = $this->InformacionSuscriptor->index($ID_Suscriptor);
     
             $Datos = [
                 'dolarHoy' => $this->PrecioDolar->Dolar,
-                'nombre' => $Suscriptor['nombreSuscriptor'],
-                'apellido' => $Suscriptor['apellidoSuscriptor'],
-                'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
-                'telefono' => $Suscriptor['telefonoSuscriptor'],
+                // 'nombre' => $Suscriptor['nombreSuscriptor'],
+                // 'apellido' => $Suscriptor['apellidoSuscriptor'],
+                // 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
+                // 'telefono' => $Suscriptor['telefonoSuscriptor'],
                 'ID_Suscriptor' => $ID_Suscriptor
             ];
                 
@@ -263,54 +273,7 @@
             } 
         }
         
-        // muestra formulario para actualizar un producto especifico
-        public function actualizarProducto($ID_Producto){
-            
-            //CONSULTA las especiicaciones de un producto determinado
-            $Especificaciones = $this->ConsultaClasificados_M->consultarDescripcionProducto($ID_Producto);
-
-            //CONSULTAN la imagen principal del producto
-            $ImagenPrin = $this->ConsultaClasificados_M->consultarImagenPrincipal($ID_Producto);
-            
-            //CONSULTAN las imagenes secundarias del producto
-            $ImagenSec = $this->ConsultaClasificados_M->consultarImagenSecundaria($ID_Producto);
-                        
-            //Solicita el precio del dolar al controlador 
-            require(RUTA_APP . '/controladores/Divisas_C.php');
-            $this->PrecioDolar = new Divisas_C();
-            // VERIFICAR QUE SE TRAE LOS DATOS DE ACCESO A LA BD
-            // echo '<pre>';
-            // print_r($this->PrecioDolar);
-            // echo '</pre>';
-
-            // Se consulta el precio del dolar
-            $PrecioDolarHoy = $this->PrecioDolar->Dolar;
-
-            //se consultan la informacion del suscriptor
-            $Suscriptor = $this->InformacionSuscriptor->index($_SESSION['ID_Suscriptor']);
-
-            $Datos = [
-                'ID_Suscriptor' => $_SESSION['ID_Suscriptor'],
-                'especificaciones' => $Especificaciones, //ID_Producto, ID_Opcion, producto, opcion, precioBolivar, precioDolar, cantidad, disponible
-                'imagenPrin' => $ImagenPrin, //ID_Imagen, nombre_img
-                'imagenSec' => $ImagenSec,
-                'dolarHoy' => $PrecioDolarHoy,
-                'nombre' => $Suscriptor['nombreSuscriptor'],
-                'apellido' => $Suscriptor['apellidoSuscriptor'],
-                'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
-                'telefono' => $Suscriptor['telefonoSuscriptor']
-            ];
-
-            // echo '<pre>';
-            // print_r($Datos);
-            // echo '</pre>';
-            // exit();
-
-            $this->vista('header/header_suscriptor'); 
-            $this->vista('suscriptores/suscrip_editar_prod_V', $Datos);
-        }     
-
-        //Invocado desde cuenta_editar_prod_V.php actualiza la información de un producto
+        //recibe formulario que actualiza la información de un producto
         public function recibeAtualizarProducto(){
             //Se reciben todos los campos del formulario, se verifica que son enviados por POST y que no estan vacios
             if($_SERVER['REQUEST_METHOD'] == 'POST'&& !empty($_POST['producto']) && !empty($_POST['descripcion']) && !empty($_POST['precioBolivar']) && (!empty($_POST['precioDolar']) || $_POST['precioDolar'] == 0)){
@@ -326,7 +289,8 @@
                     'PrecioBs' => $_POST["precioBolivar"],
                     'PrecioDolar' => $_POST["precioDolar"],
                     'Cantidad' => empty($_POST['uni_existencia']) ? 0 : $_POST['uni_existencia'],
-                    'ID_Suscriptor' => $_POST["id_suscriptor"] 
+                    'ID_Suscriptor' => $_POST["id_suscriptor"],
+                    'ID_Seccion' => $_POST["id_seccion"] 
                 ];
                 // echo '<pre>';
                 // print_r($RecibeProducto);
@@ -345,7 +309,7 @@
             //IMAGEN PRINCIPAL
             // ********************************************************
             // Si se selecionó alguna nueva imagen
-            if($_FILES['imagenPrinci_Editar']["name"] != ''){
+            if(!empty($_FILES['imagenPrinci_Editar']["name"]) != ''){
                 $nombre_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['name'];
                 $tipo_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['type'];
                 $tamanio_imgProductoActualizar = $_FILES['imagenPrinci_Editar']['size'];
@@ -367,7 +331,6 @@
                 // ACTUALIZA IMAGEN PRINCIPAL DE NOTICIA EN SERVIDOR
                 // se comprime y se inserta el archivo en el directorio de servidor 
                 $Bandera = 'imagenProducto';
-
                 $this->Comprimir->index($Bandera, $nombre_imgProductoActualizar, $tipo_imgProductoActualizar, $tamanio_imgProductoActualizar, $Temporal_imgProductoActualizar);
 
                 //Se ACTUALIZA la fotografia principal del producto
@@ -411,9 +374,103 @@
 
             $this->ConsultaClasificados_M->actualizarOpcion($RecibeProducto);
             $this->ConsultaClasificados_M->actualizarProducto($RecibeProducto);
+            
+            //ACTUALIZA la dependencia transitiva entre el producto y la seccions a la que pertenece
+            $this->ConsultaClasificados_M->actualizarDT_SecPro($RecibeProducto);
 
             $this->Productos($RecibeProducto['ID_Suscriptor']);
         }
+        
+        // actualiza el nombre de una seccion
+        public function insertarSecciones($ID_Suscriptor, $Seccion){
+            // echo $ID_Suscriptor . '<br>';
+            // echo '<pre>';
+            // print_r($Seccion);
+            // echo '</pre>';
+            // exit();
+
+            $this->ConsultaClasificados_M->insertaSeccion($ID_Suscriptor, $Seccion);
+        }
+
+        //***************************************************************************************
+        // UPDATE
+        // **************************************************************************************
+        // muestra formulario para actualizar un producto especifico
+        public function actualizarProducto($ID_Producto){
+            
+            //CONSULTA las especiicaciones de un producto determinado
+            $Especificaciones = $this->ConsultaClasificados_M->consultarDescripcionProducto($ID_Producto);
+
+            //CONSULTAN la imagen principal del producto
+            $ImagenPrin = $this->ConsultaClasificados_M->consultarImagenPrincipal($ID_Producto);
+            
+            //CONSULTAN las imagenes secundarias del producto
+            $ImagenSec = $this->ConsultaClasificados_M->consultarImagenSecundaria($ID_Producto);
+            
+            //CONSULTAN la seccion donde esta un producto
+            $Seccion = $this->ConsultaClasificados_M->consultarSeccion($ID_Producto);
+
+            //CONSULTA todas las secciones de un suscriptor
+            $Secciones = $this->ConsultaClasificados_M->consultarSeccionesSuscriptor($_SESSION["ID_Suscriptor"]);
+                        
+            //Solicita el precio del dolar al controlador 
+            require(RUTA_APP . '/controladores/Divisas_C.php');
+            $this->PrecioDolar = new Divisas_C();
+            // VERIFICAR QUE SE TRAE LOS DATOS DE ACCESO A LA BD
+            // echo '<pre>';
+            // print_r($this->PrecioDolar);
+            // echo '</pre>';
+
+            // Se consulta el precio del dolar
+            $PrecioDolarHoy = $this->PrecioDolar->Dolar;
+
+            //se consultan la informacion del suscriptor
+            // $Suscriptor = $this->InformacionSuscriptor->index($_SESSION['ID_Suscriptor']);
+
+            $Datos = [
+                'ID_Suscriptor' => $_SESSION['ID_Suscriptor'],
+                'especificaciones' => $Especificaciones, //ID_Producto, ID_Opcion, producto, opcion, precioBolivar, precioDolar, cantidad, disponible
+                'imagenPrin' => $ImagenPrin, //ID_Imagen, nombre_img
+                'imagenSec' => $ImagenSec,
+                'dolarHoy' => $PrecioDolarHoy,
+                'seccion' => $Seccion,
+                'secciones' => $Secciones,      
+                // 'nombre' => $Suscriptor['nombreSuscriptor'],
+                // 'apellido' => $Suscriptor['apellidoSuscriptor'],
+                // 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
+                // 'telefono' => $Suscriptor['telefonoSuscriptor']
+            ];
+
+            // echo '<pre>';
+            // print_r($Datos);
+            // echo '</pre>';
+            // exit();
+
+            $this->vista('header/header_suscriptor'); 
+            $this->vista('suscriptores/suscrip_editar_prod_V', $Datos);
+        }     
+        
+        // actualiza en nombre de una seccion
+        public function actualizarSeccion($DatosAgrupados){
+            //$DatosAgrupados contiene una cadena con el ID_Seccion y la sección separados por coma, se convierte en array para separar los elementos
+            // echo $DatosAgrupados;
+            // exit();
+
+            $DatosAgrupados = explode(',', $DatosAgrupados);
+
+            $Seccion = $DatosAgrupados[0];
+            $ID_Seccion = $DatosAgrupados[1];
+            
+            // echo $ID_Seccion;
+            // echo $Seccion;
+            // exit;
+
+            $this->ConsultaClasificados_M->actualizarSeccion($ID_Seccion, $Seccion);
+        }
+
+        //***************************************************************************************
+        // DELETE
+        // **************************************************************************************
    
         public function eliminarProducto($DatosAgrupados){
             //$DatosAgrupados contiene una cadena con el ID_Opcion, ID_Producto y la sección separados por coma, se convierte en array para separar los elementos
@@ -457,7 +514,7 @@
             // *************************************************************************************
             // *************************************************************************************
 
-            $this->Productos();
+            $this->Productos($_SESSION['ID_Suscriptor']);
         }
         
 		//Eliminar imagen secundaria especifica de un producto
@@ -481,4 +538,10 @@
 			// header("Location:" . RUTA_URL . "/Panel_C/");
 			// die();
 		}
+        
+        //Elimina todas las secciones de un catalogo especifico
+        public function eliminarSecciones($ID_Suscriptor){
+
+            $this->ConsultaClasificados_M->eliminarTodasSecciones($ID_Suscriptor);
+        }
     }

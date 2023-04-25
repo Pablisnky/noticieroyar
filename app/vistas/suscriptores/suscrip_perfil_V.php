@@ -25,21 +25,21 @@
 
                 <label class="login_cont--label">Municipio</label>
                 <select class="login_cont--select borde--input" name="municipio" id="Municipio" onchange="SeleccionarParroquia(this.form)">
-                    <option><?php echo $Key['municipioSuscriptor'];?></option>
-                    <option vlaue="Aristides Bastidas">Aristides Bastidas</option>
-                    <option vlaue="Bolivar">Bolivar</option>
-                    <option vlaue="Bruzual">Bruzual</option>
-                    <option vlaue="Cocorote">Cocorote</option>
-                    <option vlaue="Independencia">Independencia</option>
-                    <option vlaue="Jose Antonio Paez">Jose Antonio Paez</option>
-                    <option vlaue="La Trinidad">La Trinidad</option>
-                    <option vlaue="Manuel Monge">Manuel Monge</option>
-                    <option vlaue="Nirgua">Nirgua</option>
-                    <option vlaue="Peña">Peña</option>
-                    <option vlaue="San Felipe">San Felipe</option>
-                    <option vlaue="Sucre">Sucre</option>
-                    <option vlaue="Urachiche">Urachiche</option>
-                    <option vlaue="Veroes">Veroes</option>
+                    <option hidden><?php echo $Key['municipioSuscriptor'];?></option>
+                    <option value="Aristides Bastidas">Aristides Bastidas</option>
+                    <option value="Bolivar">Bolivar</option>
+                    <option value="Bruzual">Bruzual</option>
+                    <option value="Cocorote">Cocorote</option>
+                    <option value="Independencia">Independencia</option>
+                    <option value="Jose Antonio Paez">Jose Antonio Paez</option>
+                    <option value="La Trinidad">La Trinidad</option>
+                    <option value="Manuel Monge">Manuel Monge</option>
+                    <option value="Nirgua">Nirgua</option>
+                    <option value="Peña">Peña</option>
+                    <option value="San Felipe">San Felipe</option>
+                    <option value="Sucre">Sucre</option>
+                    <option value="Urachiche">Urachiche</option>
+                    <option value="Veroes">Veroes</option>
                 </select>
 
                 <label class="login_cont--label">Parroquia</label>
@@ -90,32 +90,78 @@
                 <!-- CATEGORIA -->        
                 <label class="login_cont--label">Categoria</label>
                 <select class="login_cont--select borde--input" name="categoria" id="Categoria">
-                    <option><?php echo $Key['categoria'];?></option>
-                    <option vlaue="ComidaRapida">Comida Rapida</option>
-                    <option vlaue="MaterialMedicoQuirurgico">Material médico quirúrgico</option>
-                    <option vlaue="Minimarket">Minimarket</option>
-                    <option vlaue="Bodega">Bodega</option>
-                    <option vlaue="Panaderia">Panadería</option>
-                    <option vlaue="Ferreteria">Ferretería</option>
-                    <option vlaue="Arte">Arte</option>
-                    <option vlaue="Ropa">Ropa</option>
-                    <option vlaue="Zapateria">Zapatería</option>
-                    <option vlaue="JoyasRelojeria">Joyas y relojería</option>
-                    <option vlaue="Mascotas">Mascotas</option>
-                    <option vlaue="RepuestoAutomotriz">Repuesto automotriz</option>
-                    <option vlaue="Farmacia">Farmacia</option>
-                    <option vlaue="Licoreria">Licorería</option>
-                    <option vlaue="Deportes">Deportes</option>
-                    <option vlaue="Floristeria">Floristería</option>
-                    <option vlaue="Construccion">Construcción</option>
-                    <option vlaue="Telefonos">Telefonos</option>
-                    <option vlaue="Papeleria">Papelería y Librería</option>
-                    <option vlaue="Merceria">Mercería</option>
-                    <option vlaue="Frutas">Frutas, verduras y hortalizas</option>
-                    <option vlaue="Caramelos">Caramelos</option>
-                    <option vlaue="Cosmeticos">Cosmeticos</option>
-                    <option vlaue="Juguetes">Juguetes</option>
+                    <option hidden><?php echo $Key['categoria'];?></option>
+                    <option value="ComidaRapida">Comida Rapida</option>
+                    <option value="MaterialMedicoQuirurgico">Material médico quirúrgico</option>
+                    <option value="Minimarket">Minimarket</option>
+                    <option value="Bodega">Bodega</option>
+                    <option value="Panaderia">Panadería</option>
+                    <option value ="Ferreteria">Ferretería</option>
+                    <option value="Arte">Arte</option>
+                    <option value="Ropa">Ropa</option>
+                    <option value="Zapateria">Zapatería</option>
+                    <option value="JoyasRelojeria">Joyas y relojería</option>
+                    <option value="Mascotas">Mascotas</option>
+                    <option value="RepuestoAutomotriz">Repuesto automotriz</option>
+                    <option value="Farmacia">Farmacia</option>
+                    <option value="Licoreria">Licorería</option>
+                    <option value="Deportes">Deportes</option>
+                    <option value="Floristeria">Floristería</option>
+                    <option value="Construccion">Construcción</option>
+                    <option value="Telefonos">Telefonos</option>
+                    <option value="Papeleria">Papelería y Librería</option>
+                    <option value="Merceria">Mercería</option>
+                    <option value="Frutas">Frutas, verduras y hortalizas</option>
+                    <option value="Caramelos">Caramelos</option>
+                    <option value="Cosmeticos">Cosmeticos</option>
+                    <option value="Juguetes">Juguetes</option>
                 </select>
+            </fieldset>
+            
+            <!-- SECCIONES -->
+            <fieldset class="fieldset_1 fieldset_2">
+                <legend class="legend_1">Secciones</legend>
+                <div class="" id="Contenedor_79">
+                    <p class="p_12">Organiza tú catalogo de productos por secciones, añade tantas como consideres necesario.<span class="span_13" id="Span_1"> Ver sugerencias:</span></p>
+                    <br>
+                    
+                    <!-- div a clonar sin eventos y oculto mediante z-index = -1 -->
+                    <div class="Default_ocultar" id="Contenedor_80A">
+                        <div class="contenedor_80C" id="Contenedor_80C">
+                            <input class="login_cont--label borde--input input_12" type="text"/>
+                            <div class="contenedor__80div">
+                                <img class="Default_pointer span_10 span_14_js span_10--seccion" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png';?>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <?php   
+                    //Entra en el IF cuando no hay secciones creadas
+                    if($Datos['secciones'] == Array ( )){  ?>
+                        <div class="contenedor_80C" id="Contenedor_80">
+                            <input class="login_cont--input borde--input input_12 seccionesJS" type="text" name="seccion[]" id="Seccion" placeholder="Indica una sección"/>
+                            <div class="contenedor__80div">
+                                <img class="Default_pointer span_10 span_14_js span_10--seccion" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png';?>"/>
+                            </div>
+                        </div>
+                        <?php
+                    }   
+                    else{  //Entra en el ELSE cuando hay secciones creadas  
+                        $Contador = 1;
+                        foreach($Datos['secciones'] as $Row) :   ?>                           
+                            <div class="contenedor_80C" id="Contenedor_80">
+                                <input class="login_cont--input borde--input input_12 seccionesJS" type="text" name="seccion[]" id="Seccion_<?php echo $Contador;?>" value="<?php echo $Row['seccion'];?>" onblur="Llamar_ActualizarSeccion(this.value,'<?php echo $Row['ID_Seccion'];?>')"/>
+                                <div class="contenedor__80div">
+                                    <img class="Default_pointer span_10 span_14_js span_10--seccion" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png';?>"/>
+                                </div>
+                            </div>
+                            <?php
+                            $Contador++;
+                        endforeach;   
+                    }   ?>
+                </div>
+                <!--div alimentado via Ajax por medio de la funcion Llamar_EliminarSeccion() solo para verificar respuesta de servidor-->
+                <!-- <did id="ReadOnly"></did> -->
+                <label class="boton" name="enviarSeeciones" id="Label_5">Añadir sección</label>
             </fieldset>
 
             <!-- FORMAS DE PAGO-->
@@ -158,7 +204,6 @@
             break;
         endforeach; ?>
 
-        <!-- <br style="margin-bottom: 15%"> -->
         <!-- BOTON DE ENVIO -->
         <div class="cont_panel--guardar--catalogo"> 
             <input class="boton" type="submit" value="Guardar"/>  
@@ -167,9 +212,8 @@
     <br><br>
 </div>
 
-<!-- <script src="<?php //echo RUTA_URL . '/public/javascript/E_Cuenta_editar.js?v=' . rand();?>"></script>  -->
-<!-- <script src="<?php //echo RUTA_URL . '/public/javascript/A_Cuenta_editar.js?v=' . rand();?>"></script>  -->
-<!-- <script src="<?php //echo RUTA_URL . '/public/javascript/Municipios.js?v=' . rand();?>"></script>  -->
+<script src="<?php echo RUTA_URL . '/public/javascript/E_suscrip_perfil.js?v=' . rand();?>"></script> 
+<script src="<?php echo RUTA_URL . '/public/javascript/A_suscrip_perfil.js?v=' . rand();?>"></script> 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/parroquias.js?v=' . rand();?>"></script> 
 

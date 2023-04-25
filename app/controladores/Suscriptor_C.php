@@ -3,11 +3,17 @@
         private $ConsultaSuscriptor_M;
         private $ID_Suscriptor;
         private $Suscriptor;
+        private $Instancia_Panel_C;
 
         public function __construct(){
-            session_start();
+            // En las otras paginas donde se requiera la sesion ID_Suscriptor no se utiliza sseion_star debido a que este archivo es requerido en todas ellas
+            // session_start();
             
             $this->ConsultaSuscriptor_M = $this->modelo("Suscriptor_M");
+            
+            //Se CONSULTA al controlador Panel_Clasificado_C las secciones existenete en BD
+            require_once(RUTA_APP . "/controladores/Panel_Clasificados_C.php");
+            $this->Instancia_Panel_C = new Panel_Clasificados_C();
             
             //La función ocultarErrores() se encuantra en la carpeta helpers, es accecible debido a que en iniciador.php se realizó el require respectivo
             ocultarErrores();
@@ -26,19 +32,29 @@
             return $this->Suscriptor;
         } 
         
-        public function perfil_dashboard($ID_Suscriptor){       
+        // Carga la vista de perfil del suscriptor
+        public function perfil_suscriptor($ID_Suscriptor){       
             
+            // CONSULTA toda la información de perfil del suscriptor
             $this->Suscriptor = $this->ConsultaSuscriptor_M->consultarSuscriptor($ID_Suscriptor);
            
+            //Se CONSULTA al controlador Clasificado_C la cantidad de nuncios clasificados que tiene el suscriptor.
+            // require(RUTA_APP . "/controladores/Panel_Clasificados_C.php");
+            // $DatosCome = new Panel_Clasificados_C();
+            // CONSULTA las secciones que tiene el catalogo de un suscriptor 
+            $Secciones = $this->Instancia_Panel_C->SeccionesSuscriptor($ID_Suscriptor);
+            
+
             $Datos = [       
-                'suscriptor' => $this->Suscriptor,                     
+                'suscriptor' => $this->Suscriptor,         
+                'secciones' => $Secciones,                        
                 'ID_Suscriptor' => $this->Suscriptor['ID_Suscriptor'],
                 'nombre' => $this->Suscriptor['nombreSuscriptor'],
                 'apellido' => $this->Suscriptor['apellidoSuscriptor'],
                 'Pseudonimmo' => $this->Suscriptor['pseudonimoSuscripto'],
                 'telefono' => $this->Suscriptor['telefonoSuscriptor'],
             ];
-
+            
 			// echo '<pre>';
 			// print_r($Datos);
 			// echo '</pre>';
@@ -54,9 +70,9 @@
             $Suscriptor = $this->ConsultaSuscriptor_M->consultarSuscriptor($ID_Suscriptor);
             
             //Se CONSULTA al controlador Clasificado_C la cantidad de nuncios clasificados que tiene el suscriptor.
-            require(RUTA_APP . "/controladores/Panel_Clasificados_C.php");
-            $DatosComerciante = new Panel_Clasificados_C();
-            $Comerciante = $DatosComerciante->clasificadoSuscriptor($ID_Suscriptor);
+            // require(RUTA_APP . "/controladores/Panel_Clasificados_C.php");
+            // $DatosComerciante = new Panel_Clasificados_C();
+            $Comerciante = $this->Instancia_Panel_C->clasificadoSuscriptor($ID_Suscriptor);
 
             $Datos = [
                 'ID_Suscriptor' => $Suscriptor['ID_Suscriptor'],
@@ -88,11 +104,6 @@
 
             return $Suscriptor;
         } 
-
-        public function InsertarNombreComercial($RecibNombreComercial){
-            
-            $this->ConsultaSuscriptor_M->insertarNombreComercial($RecibNombreComercial);
-        }
                 
         //recibe el nombre comercial, telefono y formas de pago de un suscriptor que va a publicar un clasificado
         public function actualizaNombreComercial(){
@@ -115,6 +126,7 @@
                     'efectivo_Bs' =>  empty($_POST["bolivar"]) ? 0 : 1,
                     'efectivo_dol' =>  empty($_POST["dolar"]) ? 0 : 1,
                     'acordado' =>  empty($_POST["acordado"]) ? 0 : 1,
+                    'categoria' => $_POST["categoria"]
                 ];
                 
                 // echo '<pre>';
@@ -125,7 +137,50 @@
                 //Se actualizan datos del suscriptor
                 $this->ConsultaSuscriptor_M->actualizarDatosSuscriptor($RecibeDatosSuscriptor);
                 
-                //IMAGEN CATALOGO
+                //RECIBE SECCIONES
+                // ********************************************************
+                //Recibe las secciones por nombre (son las nuevas creadas)
+                if($_POST['seccion'][0] != ''){
+                    foreach($_POST['seccion'] as $Seccion){
+                        $Seccion = $_POST['seccion'];
+                    }
+                        
+                        //El array trae elemenos duplicados, se eliminan los duplicado
+                        $SeccionesRecibidas = array_unique($Seccion);
+
+                    // echo 'Secciones recibidas';
+                    // echo '<pre>';
+                    // print_r($SeccionesRecibidas);
+                    // echo '</pre>';
+
+                    // $SecccionesExistentes = $this->Instancia_Panel_C->SeccionesSuscriptor($_SESSION["ID_Suscriptor"]);
+
+                    // echo 'Secciones existentes';
+                    // echo '<pre>';
+                    // print_r($SecccionesExistentes);
+                    // echo '</pre>';
+                    // exit;
+                
+                    // $Secciones = array_diff($SeccionesRecibidas, $SecccionesExistentes);
+                    // echo 'Secciones a insertar';
+                    // echo '<pre>';
+                    // print_r($Secciones);
+                    // echo '</pre>';
+                    // exit();
+                    
+                    //Se INSERTAN nuevamnete todas las secciones del catalogo, previamente se borrar las existentes
+                    $this->Instancia_Panel_C->eliminarSecciones($_SESSION["ID_Suscriptor"]);
+                    $this->Instancia_Panel_C->insertarSecciones($_SESSION["ID_Suscriptor"], $SeccionesRecibidas);
+                }
+                else{
+                    echo 'Ingrese al menos una sección';
+                    echo '<br>';
+                    echo "<a href='javascript:history.back()'>Regresar</a>";
+                    exit();
+                }
+                                    
+                //RECIBE IMAGEN CATALOGO
+                // ********************************************************
                 // Si se selecionó alguna nueva imagen
                 if($_FILES['imagenCatalogo']["name"] != ''){
                     $nombre_imgCatalogo = $_FILES['imagenCatalogo']['name'];
@@ -178,7 +233,7 @@
                 exit();
             }
             
-            $this->perfil_dashboard($_SESSION["ID_Suscriptor"]);
+            $this->perfil_suscriptor($_SESSION["ID_Suscriptor"]);
         }
 
         public function consultarFormasPago($ID_Suscriptor){            

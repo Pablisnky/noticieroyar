@@ -28,7 +28,7 @@
 
 //************************************************************************************************
     function CerrarModal(id){
-        console.log("______Desde CerrarModal()______", id)
+        // console.log("______Desde CerrarModal()______", id)
         document.getElementById(id).style.display = "none"
     }
 
@@ -100,21 +100,11 @@
         document.getElementById("Mostrar_Promocion").classList.add("BotonPromocion--mostrar")
     }
 
-//************************************************************************************************
-    function VerMiniatura(Nombre_imgColeccion){
-        console.log(Nombre_imgColeccion)
-   }
-   
+//************************************************************************************************   
    window.pausar = function(){
         document.getElementById("VideoPromocion").pause();
         document.getElementById("Miimagen").style.display = "none"
     };
-
-//************************************************************************************************
-    function marcharRadioButon(){
-        alert("HOLA")
-    }
-
 
 //************************************************************************************************
 // Realiza el scroll a pantalla completa
@@ -145,9 +135,6 @@ sections.forEach((section, index) => {
 
   sectionChildren.forEach((el, index) => {
     // el.style.setProperty("--delay", `${index * 250}ms`);
-    
-    console.log("🚀 ~ file: E_Inicio.js:149 ~ sectionChildren.forEach ~ el:", el)
-
   });
 
   observer.observe(section);
@@ -160,11 +147,11 @@ sections.forEach((section, index) => {
 
 
 //saber posicion del scrool vertical
-window.onscroll = function() {
-    var y = window.scrollY;
-    document.getElementById('y').innerText = y;
-    console.log(y);
-  };
+// window.onscroll = function() {
+//     var y = window.scrollY;
+//     document.getElementById('y').innerText = y;
+//     console.log(y);
+//   };
 
 
 //Se detecta si se sube o se baja en la busqueda de noticia (Se usa cuando existian las flechas, tenia la ventaja de que era noticia a noticia)

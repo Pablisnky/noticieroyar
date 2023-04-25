@@ -15,6 +15,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
         $PrecioBolivar = $arr['precioBolivar'];
         $PrecioDolar = $arr['precioDolar'];
         $Cantidad = $arr['cantidad'];
+        $Nuevo = $arr['nuevo'];
     endforeach;  
 
     foreach($Datos['imagenPrin'] as $arr) :
@@ -32,10 +33,11 @@ if(!empty($_SESSION["ID_Suscriptor"])){
             <a id="Ancla_01" class="ancla_1"></a>
             <fieldset class="fieldset_1 fieldset_3">
                 <legend class="legend_1">Actualizar datos de producto</legend>
-                <div class="contenedor_47" id="Contenedor_47">
                 
+                <div class="contenedor_47" id="Contenedor_47">      
+                    <?php //echo $ID_Producto?>           
                     <!-- IMAGEN PRINCIPAL -->
-                    <div class="contenedor_129">                    
+                    <div class="contenedor_129">                   
                         <label class="Default_pointer" for="imgInp"> 
                             <figure>  
                                 <img class="contenedor_119__img" id="blah_2" alt="Fotografia de producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $_SESSION['ID_Suscriptor'];?>/productos/<?php echo $ImagenPrincipal;?>"/>
@@ -43,15 +45,15 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                         </label>
                         <input class="Default_ocultar" type="file" accept="image/*" name="imagenPrinci_Editar" id="imgInp"/>
 
-                        
                         <!-- NUEVO O USADO -->
-                        <input type="radio" id="Nuevo" name="grupo" value="Nuevo" onclick="gestionarClickRadio(this);"> 
-                        <label for="Nuevo">Nuevo</label>
-                        <br> <br>
-                        <input type="radio" id="Usado" name="grupo" value="Usado" onclick="gestionarClickRadio(this);">
-                        <label for="Usado">Usado</label>
-                    </div>
-                
+                        <div class="cont_radioButon">
+                            <input class="cont_radioButon--input" type="radio" id="Nuevo" name="grupo" value="Nuevo" onclick="gestionarClickRadio(this);"> 
+                            <label class="contInputRadio__label" for="Nuevo">Nuevo</label>
+                            <br> <br>
+                            <input class="cont_radioButon--input" type="radio" id="Usado" name="grupo" value="Usado" onclick="gestionarClickRadio(this);">
+                            <label class="contInputRadio__label" for="Usado">Usado</label>
+                        </div>
+                    </div>               
                     <div class="cont_suscrip--editar">
                         <!-- PRODUCTO -->
                         <label class="default_bold">Producto</label>
@@ -62,6 +64,17 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                         <label class="default_bold">Descripcion</label>
                         <textarea class="textarea_1 borde_1 borde_2" name="descripcion" id="ContenidoDes"><?php echo $Opcion;?></textarea>
                         <input class="contador" type="text" id="ContadorDes" value="100"/>
+
+                        <!-- SECCION -->        
+                        <label class="default_bold">Sección</label>
+                        <select class="login_cont--select borde--input" name="id_seccion" id="Seccion">
+                            <option hidden><?php echo $Datos['seccion']['seccion'];?></option>
+                            <?php
+                            foreach($Datos['secciones'] as $Row_3)   :   ?>
+                                <option value="<?php echo $Row_3['ID_Seccion'];?>"><?php echo $Row_3['seccion'];?></option>
+                                <?php
+                            endforeach; ?>
+                        </select>
 
                         <!-- PRECIO -->
                         <div style="display: flex;">
@@ -93,19 +106,19 @@ if(!empty($_SESSION["ID_Suscriptor"])){
 
                         <div class="cont_suscrip_ImgSec">
                             <?php
-                            foreach($Datos['imagenSec'] as $Row) : ?>                   
+                            foreach($Datos['imagenSec'] as $Row_2) : ?>                   
                                 <div style="margin: 1%;" id=PadreImagenes">
                                         <!-- ICONO ELIMINAR IMAGEN -->
                                         <input class="Default_ocultar" type="file" name="img_sSecundaria"  id="imgInp_3"/>
-                                        <div class="cont_edit--dosBotones" id="Cont_Botones--<?php echo $Row['ID_Imagen'];?>">
+                                        <div class="cont_edit--dosBotones" id="Cont_Botones--<?php echo $Row_2['ID_Imagen'];?>">
                                             <!-- <div> -->
-                                                <img class="Default_pointer" style="width: 2em" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="EliminarImagenSecundaria('<?php echo $Row['ID_Imagen'];?>','Cont_Botones--<?php echo $Row['ID_Imagen'];?>')"/>
+                                                <img class="Default_pointer" style="width: 2em" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="EliminarImagenSecundaria('<?php echo $Row['ID_Imagen'];?>','Cont_Botones--<?php echo $Row_2['ID_Imagen'];?>')"/>
                                             <!-- </div> -->
                                         </div>
 
                                         <!-- IMAGEN SECUNDARIAS -->
-                                        <figure id="<?php echo $Row['ID_Imagen'];?>"> 
-                                            <img class="actualizar_cont--imagen" alt="Fotografia Producto" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $_SESSION['ID_Suscriptor'];?>/productos/<?php echo $Row['nombre_img'];?>"/> 
+                                        <figure id="<?php echo $Row_2['ID_Imagen'];?>"> 
+                                            <img class="actualizar_cont--imagen" alt="Fotografia Producto" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $_SESSION['ID_Suscriptor'];?>/productos/<?php echo $Row_2['nombre_img'];?>"/> 
                                         </figure>
                                     </div>
                                 <?php

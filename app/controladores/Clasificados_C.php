@@ -2,7 +2,7 @@
     class Clasificados_C extends Controlador{
         private $ConsultaClasificados_M;
         private $PrecioDolar;
-        private $InformacionSuscriptor;
+        private $Instancia_Suscriptor_C;
 
         public function __construct(){
             // session_start();
@@ -11,7 +11,7 @@
 
             //Solicita datos del suscriptor a la clase Suscriptor_C 
             require_once(RUTA_APP . '/controladores/Suscriptor_C.php');
-            $this->InformacionSuscriptor = new Suscriptor_C();
+            $this->Instancia_Suscriptor_C = new Suscriptor_C();
             
             //Solicita el precio del dolar a la clase Divisas_C 
             include_once(RUTA_APP . '/controladores/Divisas_C.php');
@@ -29,7 +29,7 @@
             $Datos=[
                 'dolarHoy' => $this->PrecioDolar->Dolar,
                 'productos' => $Productos, //ID_Producto, ID_Suscriptor, producto, nombre_img, opcion, precioBolivar, precioDolar, cantidad, disponible
-                'Suscriptor' => $this->InformacionSuscriptor->suscriptores()
+                'Suscriptor' => $this->Instancia_Suscriptor_C->suscriptores()
             ];
             
             // echo "<pre>";
@@ -48,16 +48,16 @@
             $Producto = $this->ConsultaClasificados_M->consultarCaracterisicaProductoEsp($ID_Producto);
                         
             //CONSULTA la imagenen principal del producto seleccionado
-            $Imagenes = $this->ConsultaClasificados_M->consultarImagenesProducto($ID_Producto);
+            $Imagenes = $this->ConsultaClasificados_M->consultarImagenPrincipalProducto($ID_Producto);
             
-            //CONSULTA las imagenenes secundarias del producto seleccionado
-            $ImagenesSec = $this->ConsultaClasificados_M->consultarImagenesSecundariasProducto($ID_Producto);
+            //CONSULTA todas las imagenenes del producto seleccionado
+            $ImagenesSec = $this->ConsultaClasificados_M->consultarImagenesProducto($ID_Producto);
             
             //CONSULTA informacion del vendedor
-            $Vendedor = $this->InformacionSuscriptor->index($Producto['ID_Suscriptor']);
+            $Vendedor = $this->Instancia_Suscriptor_C->index($Producto['ID_Suscriptor']);
             
             //CONSULTA formas de pago
-            $FormasPago = $this->InformacionSuscriptor->consultarFormasPago($Producto['ID_Suscriptor']);
+            $FormasPago = $this->Instancia_Suscriptor_C->consultarFormasPago($Producto['ID_Suscriptor']);
            
             $Datos=[ 
                 'dolarHoy' => $this->PrecioDolar->Dolar,
@@ -97,7 +97,7 @@
             // echo "</pre>";          
             // exit();
             
-            $this->vista("header/header_SinMembrete"); 
+            // No hace falta cargar estilos porque es una carga via Ajax
             $this->vista("view/ajax/ImagenSeleccionadaProducto_V", $Datos ); 
         }
     }

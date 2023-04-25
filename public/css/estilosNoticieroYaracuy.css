@@ -222,11 +222,6 @@ textarea{
 .cont_Artista--main{
 	margin-top: 5%;
 }
-.cont_Artista{
-	/* background-color: yellow;
-	margin-top: 2%;
-	width: 100%;  */
-}
 .cont_Artista--botones{
 	display: flex; 
 	flex-wrap: wrap; 
@@ -672,9 +667,6 @@ textarea{
 	margin: 3% auto;
 	padding-left: 5%;
 }
-.cont_detalle_Producto--p{
-	line-height: 30px;
-}
 .cont_detalle_Producto--suscriptor{
 	display: flex;
 	align-items: center;
@@ -688,15 +680,9 @@ textarea{
 	text-align: center;
 	z-index: 2; /*verificar - se colocó para ver si todo el div se pone por arriba de los elementos hijos y no se ve el efecto click sobre estos en responsive; esto en realidad se soluciona con teoria de niveles de apilamiento, como se hizo con los div que contienen las categorias en inicio_V.php que al hacer click sobre los que no tienen tiendas no llevan a la categoria en cuestión*/
 }
-.contenedor_17{
-	/* display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin: 0% auto ; */
-}
-.contenedor_17>div:first-child{/*ocupa toda la primera fila de la distribucion flex, el padre debe tener flex-wrap; los valores representtan los atibutos 'flex-grow' 'flex-shrink' y 'flex-basis' */
+/*.contenedor_17>div:first-child{ocupa toda la primera fila de la distribucion flex, el padre debe tener flex-wrap; los valores representtan los atibutos 'flex-grow' 'flex-shrink' y 'flex-basis' */
 	/* flex: 0 1 100% !important; */
-}
+/* } */
 .h3_4{
 	background-color: var(--OficialClaro);
 	padding: 0.5% 0%;
@@ -1196,36 +1182,7 @@ textarea{
  .contenedor_tarjeta{
     perspective: 600px;
     min-width: 25%;
-}
- .cont_noticias_atras--coleccion{
-	 /* background-color: rgb(0, 0, 0);
-	 position: absolute;
-	 bottom: 0pt;
-	 width: 100%;
-	 height: 25px;
-	 text-align: center;
-	 border-bottom-left-radius: 15px;
-	 border-bottom-right-radius: 15px;
-	 padding-top: 1%; */
- }
- .cont_noticias_atras--membrete{	
-	/* color: white;
-	 line-height: 17px;
-	 text-align: left;
-	 padding-left: 7%; */
- }
- .cont_noticias_giro--atras{
-	 /* color: white;
-	 background-color: rgba(0, 0, 0, 0.8);
-	 border-radius: 50%;
-	 padding: 1%;
-	 position: absolute;
-	 right: 5%;
-	 bottom: 0pt;
-	 display: block;
-	 z-index: 1;
-	 font-size: 1.3em !important; */
- }
+} 
  .cont_noticia--h2{
 	font-size: 0.8em;
  }
@@ -2044,9 +2001,6 @@ textarea{
 .cont_panel--suscrip{
 	width: 15%;
 }
-.cont_panel--div-1{
-	/* margin: 10% auto; */
-}
 .cont_panel--textarea{
 	margin: auto;
 	margin-top: 1%;
@@ -2846,15 +2800,7 @@ ul .menuContenedor_3{
 	position: fixed;
 	top: 85px;
 	width: 100%;
-}
-.contenedor_13{
-	display: flex; 
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-content: flex-start; /*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
-	width: 95%;
-	margin: auto;
-	margin-top: 10%;
+	
 }
 .sectionModal--sinProducto{
 	position: absolute;
@@ -3185,11 +3131,6 @@ ul .menuContenedor_3{
 	display: block;
 	text-align: center;
 }
-.cont_catalogosCateg_tienda{	
-	font-size: 2.2em;
-	text-align: center;
-	display: block;
-}
 .cont_clasificados{
 	background-color: var(--OficialClaro);
 	display: flex;
@@ -3199,8 +3140,7 @@ ul .menuContenedor_3{
 	top: 50px;
 	left: 0px;
 	width: 100%;
-	height: 50px!important;
-	
+	height: 50px!important;	
 }
 .cont_clasificados--item-1{
 	width: 20%;
@@ -3228,21 +3168,7 @@ ul .menuContenedor_3{
 	left: 85%;
 	display: block;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.contenedor_34--p{/*inicio*/
+.contenedor_34--p{
 	background-color: var(--BandaAlerta);
 	font-weight: bold;
 	position: fixed;
@@ -3255,14 +3181,11 @@ ul .menuContenedor_3{
 	margin-top: -10%;
 }
 .contOpciones{
-	/* background-color: red; */
 	margin-top: 0%;
 	display: flex;
-	/* height: 100%; */
-	/* width: 100hw; */
 }
 .contOpciones--textoVertical{
-	background-color:  var(--BandaAlerta);
+	background-color: var(--BandaAlerta);
 	writing-mode: vertical-rl; 
 	transform: rotate(180deg); 
 	font-size: 0.9em; 
@@ -3271,6 +3194,171 @@ ul .menuContenedor_3{
 	padding-top: 7%!important;
 	z-index: -1; /*la propiedad transform: rotate(180deg) hace que se suporponga por sobre el header*/
 }
+.contOpciones--text{
+	background-color: var(--BandaAlerta);
+	display: inline-block;
+	width: 60%;
+	margin-left: 20%;
+	text-align: center;
+}
+.cont_catalogosCateg_imgDefault{
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	/* min-height: 40vh;
+	max-height: 40vh; */
+	width: 40%;
+	margin: auto;
+}
+.cont_catalogosCateg_tienda{	
+	font-size: 1.6em;
+	text-align: center;
+	display: block;
+	margin-top: 2%;
+}
+.cont_radioButon{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: auto;
+	margin-top: 3%;
+	width: 80%;
+}
+.cont_radioButon--input{
+	margin-right: -10%;
+}
+.contenedor_80C{
+	display: flex; 
+	margin-bottom: 5%;
+	width: 100% !important;
+}
+.input_12{
+	width: 90% !important;
+}
+.span_10{
+	width: 10%;
+	font-size: 1.2em;
+	color: rgba(0, 0, 0, 0.6);
+	display: inline-block;
+	/* margin-left: auto; */
+	text-align: center;
+}
+.contenedor__80div{
+	width:10% !important;
+}
+.span_10:hover{
+	cursor: pointer;
+}
+.span_10--seccion{
+	text-align: center;
+	width: 100%;
+}
+.contador_2{
+	width: 9% !important;
+	margin-left: 93% !important;
+	color: rgba(51, 51, 51, 0.6);
+	border: none;
+	font-size: 0.8em;
+	text-align: right;
+	margin-bottom: 1%;
+}
+.contador_2--seccion{
+	position: relative;
+	top: 5%;
+	left: 0%;
+	display: block;
+	width: 100% !important;
+	text-align: center;
+	margin-left: 0% !important;
+}
+.cont_catalogos--p:hover{
+	cursor: pointer;
+	background-color: rgba(51, 51, 51, 0.2);
+	line-height: 30px;
+	height: 30px;
+}
+.chevron{
+	position: absolute;
+	right: 4%;
+}
+  .cont_catalogos--p{
+	  line-height: 30px;
+	  height: 30px;
+  }
+  .header__titulo--catalogo{
+	  display: block;
+	  font-size: 2.5vw;
+	  padding-left: 0%;
+	  width: 90%;
+	  text-align: center;
+  }
+  .hr_3a{
+	  margin: 3% 0% 20% 0%;
+  } 
+  .cont_detalle_Producto--p{
+	  line-height: 30px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  
+.cont_catalogos--secciones{
+	background-color: var(--OficialClaro);
+	transition: all .4s;
+	width: 20%;	
+	position: sticky;
+	top: 80px;
+	opacity: 0;
+	padding: 2%;
+	padding-left: 5%;
+	margin-left: 80%;
+	z-index: -1;
+	overflow-y: scroll;
+}  
+  .ocultar{
+	opacity: 1;
+	top: 70px;
+	z-index: 1;
+  }
+  .cont_detalle_Producto---catalogo{
+	margin-left: -5%;
+	padding-left: 0%;
+	width: 100%;
+  }
+  .contenedor_13{
+	  display: flex; 
+	  flex-wrap: wrap;
+	  justify-content: space-between;
+	  align-content: flex-start; /*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
+	  width: 95%;
+	  margin: auto;
+	  margin-top: 20vh;
+  }
+  .cont_catalogos--productos{
+	display: flex; 
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: flex-start; /*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
+	width: 95%;
+	margin: auto;
+	margin-top: -40vh;
+  }
+  .cont_respuestaAjax--catalogos{
+	display: flex; 
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: flex-start; /*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
+	  /* margin-top: 3%; */
+	  width: 98%;
+	  margin-bottom: 10%;
+  }
 
 
 
@@ -3316,9 +3404,6 @@ ul .menuContenedor_3{
 }
 .simplescrollup__button--show {
     transform: translateX(0);
-}
-.simplescrollup__button--hide {
-    /* transform: translateX(100px); */
 }
 
 /****************************************************/

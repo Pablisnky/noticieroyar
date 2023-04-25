@@ -1,7 +1,7 @@
 <section class="section_5">
     <div class="contenedor_42">
         <h1 class="h1_1">Tarifas por anuncios y publicidad.</h1>
-        <h2 class="h2_11 h2_14">15 dias gratis <br class="br_2"> al registrar tu catalogo</h2>
+        <h2 class="h2_11 h2_14">15 dias gratis al registrarte</h2>
         <div class='contenedor_84 borde_1'>
             <div class="">
                 <P class="p_3">Clasificados <small class="small_1 small_2">(30 dias)</small></P>

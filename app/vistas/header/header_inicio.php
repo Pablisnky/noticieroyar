@@ -12,7 +12,7 @@
 
 		<!-- ********************************************************************************************* -->
 		
-        <title><?php echo NOMBRESITIO;?></title>
+        <title>NoticieroYaracuy</title>
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 		<meta name="description" content="Noticias de Yaracuy"/>
@@ -32,6 +32,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_800.css?v=<?php echo rand();?>"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/EstilosGiroTarjeta.css?v=<?php echo rand();?>"/>
 				
+		<!-- MANIFEST PWA -->
 		<link rel="manifest" href="<?php echo RUTA_URL;?>/public/manifest.json"/>
 		
 		<!-- CDN FUENTES DE GOOGLE-->

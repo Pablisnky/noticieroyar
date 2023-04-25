@@ -26,6 +26,9 @@
             //Consulta todos los productos publicados en clasificados de un suscriptor especifico          
             $Productos = $this->ConsultaCatalagos_M->consultarProductos($ID_Suscriptor); 
 
+            //Consulta las secciones de un catalogo especifico        
+            $Secciones = $this->ConsultaCatalagos_M->consultarSecciones($ID_Suscriptor); 
+
             //Solicita nformacion del suscriptor de la clase Sucriptor_C
             require(RUTA_APP . '/controladores/Suscriptor_C.php');
             $ImgCatalogo = new Suscriptor_C();
@@ -35,7 +38,8 @@
                 'ID_Suscriptor' => $ID_Suscriptor,
                 'productos' => $Productos, //ID_Producto, ID_Suscriptor, producto, nombre_img, opcion, precioBolivar, precioDolar, cantidad, disponible
                 'pseudonimoSuscripto' => $PseudonimoSuscripto,
-                'imgCatalogo' => $ImgCatalogo->index($ID_Suscriptor)
+                'imgCatalogo' => $ImgCatalogo->index($ID_Suscriptor),
+                'secciones' => $Secciones
             ];
             
             // echo "<pre>";
@@ -56,8 +60,8 @@
             //CONSULTA las imagenes del producto seleccionado
             $Imagenes = $this->ConsultaCatalagos_M->consultarImagenesProducto($ID_Producto);
             
-            //CONSULTA las imagenenes secundarias del producto seleccionado
-            $ImagenesSec = $this->ConsultaCatalagos_M->consultarImagenesSecundariasProducto($ID_Producto);
+            //CONSULTA todas las imagenenes del producto seleccionado
+            $ImagenesSec = $this->ConsultaCatalagos_M->consultarTodasImagenesProducto($ID_Producto);
 
             //Solicita datos del suscriptor a la clase Suscriptor_C 
             require(RUTA_APP . '/controladores/Suscriptor_C.php');
@@ -91,5 +95,40 @@
             
             $this->vista("header/header_ProductoAmpliado", $Datos);
             $this->vista("view/descr_Producto_V", $Datos);
+        } 
+
+        // muestra la seccion solicitada en el catalogo, este metodo es una respuesta Ajax
+        public function Secciones($DatosAgrupados){
+            //$DatosAgrupados contiene una cadena con el ID_Suscriptor y el pseudonimo del suscriptoor, separados por coma, se convierte en array para separar los elementos
+
+            $DatosAgrupados = explode(",", $DatosAgrupados);
+            
+            $ID_Suscriptor = $DatosAgrupados[0];
+            $ID_Seccion = $DatosAgrupados[1];
+
+            // echo $ID_Suscriptor . '<br>'; 
+            // echo $ID_Seccion . '<br>'; 
+            // exit;
+           
+            if(is_numeric($ID_Seccion)){          
+                //Consulta los productos  de una seccion especifica          
+                $ProductosSeccion = $this->ConsultaCatalagos_M->consultarProductosSeccion($ID_Suscriptor, $ID_Seccion); 
+            }
+            else{         
+                //Consulta los productos  de todo el catalogo          
+                $ProductosSeccion = $this->ConsultaCatalagos_M->consultarProductosTodos($ID_Suscriptor); 
+            }
+           
+            $Datos=[ 
+                'dolarHoy' => $this->PrecioDolar->Dolar,
+                'productos' => $ProductosSeccion,
+            ];      
+
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";
+            // exit();
+            
+            $this->vista("view/ajax/A_productoPorSeccion_V", $Datos); 
         } 
     }

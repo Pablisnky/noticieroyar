@@ -146,7 +146,7 @@
             // echo "</pre>";          
             // exit();
             
-            $this->vista("header/header_SinMembrete"); 
+            // $this->vista("header/header_SinMembrete"); 
             $this->vista("view/ajax/ImagenSeleccionada_V", $Datos ); 
         }
 

@@ -17,7 +17,7 @@
                     <h1 class="h1_1 h1_1--catalogo"><?php echo $Datos['pseudonimoSuscripto'];?></h1> 
                 </div>
                     
-                <!-- COMPARTIR REDES SOCIALES Default_quitarMovil-->
+                <!-- COMPARTIR REDES SOCIALES -->
                 <div class="cont_catalogos--membrete--3">
                     <!-- FACEBOOK -->
                     <div class="cont_catalogos--iconos">
@@ -33,6 +33,11 @@
                     <div class="whatsapp cont_catalogos--iconos">
                         <a href="whatsapp://send?text=<?php echo 'Catalogo ' . $Datos['pseudonimoSuscripto']?>&nbsp;<?php echo RUTA_URL?>/Catalogos_C/index/<?php echo $Datos['ID_Suscriptor'];?>" data-action="share/whatsapp/share"><i class="fa-brands fa-whatsapp catalogo-RS WHhatsApp-catalogo"></i></a>
                     </div>    
+                    
+                    <!-- SECCIONES -->
+                    <div class="cont_catalogos--iconos chevron"> 
+                        <img class="Default_pointer" style="width: 1.5em" id="Secciones" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_black_24dp.png'?>"/>
+                    </div>  
 
                     <!-- ICONO CERRAR  -->   
                     <div>
@@ -41,111 +46,98 @@
                 </div>  
             </div>
         </header>
+
+        <!-- MUESTRA MENU SECCIONES --> 
+        <div class="cont_catalogos--secciones" id="Con_Secciones">
+            <?php
+            foreach($Datos['secciones'] as $Key) :    ?>
+            <p class="cont_catalogos--p" onclick="Llamar_seccion('<?php echo $Datos['ID_Suscriptor']?>','<?php echo $Key['ID_Seccion']?>')"><?php echo $Key['seccion']?></p>
+                <?php
+            endforeach; ?>
+            <?php $Pseudonimo = str_replace(" ", "_", $Datos['pseudonimoSuscripto']); ?>
+            <p class="cont_catalogos--p" onclick="Llamar_Todasseccion('<?php echo $Datos['ID_Suscriptor']?>','<?php echo $Pseudonimo; ?>')">Todos</p>
+            <hr class="hr_3 hr_3a">
+            
+            <!-- INFORMACION DE CONTACTO DEL VENDEDOR -->
+            <div class="cont_detalle_Producto--informacion cont_detalle_Producto---catalogo">
+                <div class="cont_detalle_Producto--suscriptor">
+                    <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/tienda/outline_storefront_black_24dp.png'?>"/>
+                    <label class="cont_detalle_Producto--p"><?php echo $Pseudonimo?></label>
+                </div>
+                <div class="cont_detalle_Producto--suscriptor">
+                    <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/ubicacion/outline_place_black_24dp.png'?>"/>
+                    <label class="cont_detalle_Producto--p"><?php echo $Datos['imgCatalogo']['municipioSuscriptor']?> - <?php echo  $Datos['imgCatalogo']['parroquiaSuscriptor']?></label>
+                </div>
+                <div class="cont_detalle_Producto--suscriptor">
+                    <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_perm_identity_black_24dp.png'?>"/>
+                    <label class="cont_detalle_Producto--p"><?php echo $Datos['imgCatalogo']['nombreSuscriptor']?> <?php echo $Datos['imgCatalogo']['apellidoSuscriptor']?></label>
+                </div>
+                <div class="cont_detalle_Producto--suscriptor">
+                    <img class="" style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/>
+                    <label class="cont_detalle_Producto--p"><?php echo $Datos['imgCatalogo']['telefonoSuscriptor']?></label>
+                </div>
+            </div>
+        </div>
         <!-- <h3 class="contenedor_13--anuncio h3_1 bandaAlerta">Periodo de prueba (simulación)</h3> -->
 
-        <form id="Formulario"> 
-            <div class="contenedor_13 contenedor_13--marginTop" id="Contenedor_13Js"> 
-                <?php   
-                $ContadorLabel = 1;
-                foreach($Datos['productos'] as $row) :
-                    $ID_Producto = $row['ID_Producto'];
-                    $ID_Opcion =  $row['ID_Opcion'];
-                    $ID_Suscriptor = $row['ID_Suscriptor'];
-                    $Producto = $row['producto']; 
-                    $Opcion = $row['opcion'];                       
-                    $PrecioBolivar = $row['precioBolivar'];         
-                    $PrecioDolar = $row['precioDolar']; 
-                    $Existencia = $row['cantidad']; 
-                    $ImagenProducto = $row['nombre_img']; 
-                    $Nuevo = $row['nuevo'] == 1 ? 'Nuevo' : 'Usado';                 
-                    $Bandera = 'Desde_Catalogo';
+        <!-- PRODUCTOS -->
+        <div class="cont_catalogos--productos" id="Contenedor_13Js"> 
+            <?php   
+            $ContadorLabel = 1;
+            foreach($Datos['productos'] as $row) :
+                $ID_Producto = $row['ID_Producto'];
+                $ID_Opcion =  $row['ID_Opcion'];
+                $ID_Suscriptor = $row['ID_Suscriptor'];
+                $Producto = $row['producto']; 
+                $Opcion = $row['opcion'];                       
+                $PrecioBolivar = $row['precioBolivar'];         
+                $PrecioDolar = $row['precioDolar']; 
+                $Existencia = $row['cantidad']; 
+                $ImagenProducto = $row['nombre_img']; 
+                $Nuevo = $row['nuevo'] == 1 ? 'Nuevo' : 'Usado';                 
+                $Bandera = 'Desde_Catalogo';
 
-                    //Se da formato al precio, sin decimales y con separación de miles
-                    settype($PrecioBolivar, "float");
-                    settype($PrecioDolar, "float");
-                    $PrecioBolivar = number_format($PrecioBolivar, 2, ",", "."); 
-                    $PrecioDolar = number_format($PrecioDolar, 2, ",", ".");   ?>  
-                    
-                    <div class="contenedor_95 contenedor_95--margin" id="<?php echo 'Cont_Producto_' . $ContadorLabel;?>">
-                    
-                        <!-- IMAGEN -->
-                        <div class="contOpciones">
+                //Se da formato al precio, sin decimales y con separación de miles
+                settype($PrecioBolivar, "float");
+                settype($PrecioDolar, "float");
+                $PrecioBolivar = number_format($PrecioBolivar, 2, ",", "."); 
+                $PrecioDolar = number_format($PrecioDolar, 2, ",", ".");   ?>  
+                
+                <div class="contenedor_95 contenedor_95--margin" id="<?php echo 'Cont_Producto_' . $ContadorLabel;?>">
+                
+                    <!-- IMAGEN -->
+                    <div class="contOpciones">
+                        <?php
+                        if($row['nuevo'] == 'Nuevo'){   ?>                        
+                            <label class="contOpciones--textoVertical">Articulo <?php echo $row['nuevo']?></label>
                             <?php
-                            if($row['nuevo'] == 'Nuevo'){   ?>                        
-                                <label class="contOpciones--textoVertical">Articulo <?php echo $row['nuevo']?></label>
-                                <?php
-                            }
-                            else if($row['nuevo'] == 'Usado'){  ?>
-                                <label class="contOpciones--textoVertical">Articulo <?php echo $row['nuevo']?></label>
-                                <?php
-                            }  ?>
-                            <a href="<?php echo RUTA_URL . '/Catalogos_C/productoAmpliado/' . $ID_Producto;?>" rel="noopener noreferrer" target="_blank"><img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/></a> 
-                        </div>
-                                    
-                        <div> 
-                            <div class="cont_catalogos--producto">
-                                <!-- PRODUCTO -->
-                                <label class="input_8 input_8D hyphen" id="<?php echo 'EtiquetaProducto_' . $ContadorLabel;?>"><?php echo $Producto;?></label>
-
-                                <!-- OPCION -->
-                                <label class="input_8 input_8C hyphen" id="<?php echo 'EtiquetaOpcion_' . $ContadorLabel;?>"><?php echo $Opcion;?></label>
-                            </div>     
-                            
-                            <!-- PRECIO -->
-                            <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >Bs. <?php echo $PrecioBolivar;?></label>
-
-                            <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >$ <?php echo $PrecioDolar;?></label>
-                        
-                            <!-- Este input es el que se envia al archivo JS por medio de la función agregarProducto(), en el valor se colocan el caracter _ para usarlo como separardor en JS-->
-                            <input class="Default_ocultar" type="radio" name="opcion" id="<?php echo 'ContadorLabel_' . $ContadorLabel;?>" value="<?php echo $ID_Opcion . ',' . '_' . $Producto . ',' . '_' . $Opcion . ',' . '_' . $PrecioBolivar;?>" onclick="agregarProducto(this.form , '<?php echo 'Etiqueta_' . $ContadorLabel;?>','<?php echo 'Cont_Leyenda_' . $ContadorLabel;?>','<?php echo 'Cantidad_' . $ContadorLabel;?>','<?php echo 'Producto_' . $ContadorLabel;?>','<?php echo 'Opcion_' . $ContadorLabel;?>','<?php echo 'Precio_' . $ContadorLabel;?>','<?php echo 'Total_' . $ContadorLabel;?>','<?php echo 'Leyenda_' . $ContadorLabel;?>','<?php echo 'Cont_Producto_' . $ContadorLabel;?>','<?php echo 'Item_'. $ContadorLabel;?>','<?php echo $Existencia;?>','<?php echo 'ID_BotonMas_'. $ContadorLabel;?>','<?php echo 'ID_BloquearMas_'. $ContadorLabel;?>')"/>
-                                                            
-                            <!-- BOTON AGREGAR -->
-                            <?php 
-                            // if($Existencia == 0){ ?><!--SINO HAY PRODUCTOS EN INVENTARIO SE DESABILITA-->
-                                <!-- <label class="label_4 label_4--innabilitado">Agregar</label>  -->
-                                <?php
-                            // }  
-                            // else{ ?><!--SI HAY PRODUCTOS EN INVENTARIO SE HABILITA-->
-                                <!-- <label for="<?php //echo 'ContadorLabel_' . $ContadorLabel;?>" class="label_4 borde_1 Label_3js" id="<?php //echo 'Etiqueta_' . $ContadorLabel;?>">Agregar</label>  -->
-                                <?php
-                            // }   ?>
-                        </div> 
-
-                        <div class="contenedor_14" id="<?php echo 'Cont_Leyenda_' . $ContadorLabel;?>">
-                        
-                            <!-- LEYENDA -->
-                            <div class="contenedor_19">
-                                <!-- cantidad alimentado desde E_Clasificados.js agregarProducto()-->
-                                <input type="text" class="input_1e Default_ocultar" id="<?php echo 'Cantidad_' . $ContadorLabel;?>"/>
-                                <!-- producto - alimentado desde E_Clasificados.js agregarProducto() -->
-                                <input type="text" class="input_1a Default_ocultar" name="Desc_Producto" id="<?php echo 'Producto_' . $ContadorLabel;?>"/>
-                                <!-- opcion alimentado desde E_Clasificados.js agregarProducto()-->
-                                <input type="text" class="input_1c Default_ocultar" name="" id="<?php echo 'Opcion_' . $ContadorLabel;?>"/>
-                                <!-- Precio - alimentado desde E_Clasificados.js agregarProducto() -->
-                                <input type="text" class="input_1d Default_ocultar" id="<?php echo 'Precio_' . $ContadorLabel;?>"/>
-                                <!-- Total - alimentado desde E_Clasificados.js agregarProducto()-->
-                                <input type="text" class="input_1f Default_ocultar" id="<?php echo 'Total_' . $ContadorLabel;?>"/>
-
-                                <!-- LEYENDA - alimentado desde E_Clasificados.js agregarProducto() -->
-                                <input class="input_2a" type="text" name="leyenda" id="<?php echo 'Leyenda_'. $ContadorLabel;?>" readonly/>
-                            </div> 
-
-                            <!-- BOTON MAS Y MENOS -->
-                            <div class="contenedor_16">
-                                <label class="menos MenosJS" id="<?php echo 'ID_BotonMenos_'. $ContadorLabel;?>">-</label>
-                                <input class="input_2" type="text" id="<?php echo 'Item_'. $ContadorLabel;?>" value = "1"/>
-                                <label class="mas MasJS" id="<?php echo 'ID_BotonMas_'. $ContadorLabel;?>">+</label>
-
-                                <i class="fas fa-ban icono_7" id="<?php echo 'ID_BloquearMas_'. $ContadorLabel;?>" onclick="BotonBloqueado()"></i>
-                                <input class="Default_ocultar BloquearMasJS"  type="text" value="<?php echo $Existencia?>"/>
-                            </div> 
-                        </div>
+                        }
+                        else if($row['nuevo'] == 'Usado'){  ?>
+                            <label class="contOpciones--textoVertical">Articulo <?php echo $row['nuevo']?></label>
+                            <?php
+                        }  ?>
+                        <a href="<?php echo RUTA_URL . '/Catalogos_C/productoAmpliado/' . $ID_Producto;?>" rel="noopener noreferrer" target="_blank"><img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/></a> 
                     </div>
-                    <?php   
-                    $ContadorLabel++;
-                endforeach;   ?>                    
-            </div>
-        </form>
+                                
+                    <div> 
+                        <div class="cont_catalogos--producto">
+                            <!-- PRODUCTO -->
+                            <label class="input_8 input_8D hyphen" id="<?php echo 'EtiquetaProducto_' . $ContadorLabel;?>"><?php echo $Producto;?></label>
+
+                            <!-- OPCION -->
+                            <label class="input_8 input_8C hyphen" id="<?php echo 'EtiquetaOpcion_' . $ContadorLabel;?>"><?php echo $Opcion;?></label>
+                        </div>     
+                        
+                        <!-- PRECIO -->
+                        <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >Bs. <?php echo $PrecioBolivar;?></label>
+
+                        <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >$ <?php echo $PrecioDolar;?></label>
+                    </div> 
+                </div>
+                <?php   
+                $ContadorLabel++;
+            endforeach;   ?>                    
+        </div>
     </section>
     
     <!-- CINTILLO  -->
@@ -154,5 +146,7 @@
 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_Catalogos.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL . '/public/javascript/A_Catalogos.js?v='. rand();?>"></script>
     
+</body>
 </html>

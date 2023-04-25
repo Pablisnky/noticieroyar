@@ -1,3 +1,5 @@
+document.getElementById("Refrescar").addEventListener('click', refrecarPagina, false)
+
 //Declarar el array que contiene los ID_Opcion que se añaden al carrito
 //Verificar para que sirve, creo que solo es util en la función decremento
 PedidoCarrito = []
@@ -117,6 +119,11 @@ if(document.getElementById("Label_1")){
 //         }
 //     }
 // }, false);  
+
+//************************************************************************************************
+    function refrecarPagina(){
+        location.reload()
+    }
 
 //************************************************************************************************
     //invocada desde carrito_V.php 

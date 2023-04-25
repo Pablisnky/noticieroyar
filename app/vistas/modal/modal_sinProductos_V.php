@@ -6,7 +6,7 @@
         <br>
 
         <div class="contBoton">
-            <a class="boton" href="<?php echo RUTA_URL . '/Suscriptor_C/perfil_dashboard/' . $Datos['ID_Suscriptor']?>">Completar perfil</a>
+            <a class="boton" href="<?php echo RUTA_URL . '/Suscriptor_C/perfil_suscriptor/' . $Datos['ID_Suscriptor']?>">Completar perfil</a>
         </div>
     </div>
 </section>

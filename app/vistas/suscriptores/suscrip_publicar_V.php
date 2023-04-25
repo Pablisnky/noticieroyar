@@ -31,11 +31,13 @@ if(!empty($_SESSION["Publicar"])){
                         <input class="Default_ocultar" type="file" name="imagenProducto" id="imgInp"/>
                         
                         <!-- NUEVO O USADO -->
-                        <input type="radio" id="Nuevo" name="grupo" value="Nuevo" onclick="gestionarClickRadio(this);"> 
-                        <label for="Nuevo">Nuevo</label>
-                        <br> <br>
-                        <input type="radio" id="Usado" name="grupo" value="Usado" onclick="gestionarClickRadio(this);">
-                        <label for="Usado">Usado</label>
+                        <div class="cont_radioButon">
+                            <input class="cont_radioButon--input" type="radio" id="Nuevo" name="grupo" value="Nuevo" onclick="gestionarClickRadio(this)"> 
+                            <label class="contInputRadio__label" for="Nuevo">Nuevo</label>
+                            <br> <br>
+                            <input class="cont_radioButon--input" type="radio" id="Usado" name="grupo" value="Usado" onclick="gestionarClickRadio(this)">
+                            <label class="contInputRadio__label" for="Usado">Usado</label>
+                        </div>
                     </div>        
 
                     <div>
@@ -178,6 +180,7 @@ if(!empty($_SESSION["Publicar"])){
         }
 
         // ***********************************************************************************
+        // GESTION DE RADIO BUTTOMS
         //Para distinguir la opción actualmente pulsada en cada grupo
         var pref_opcActual = "opcActual_";
 

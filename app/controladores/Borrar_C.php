@@ -12,7 +12,7 @@
         
 		// Se usa solo para cargar el metodo que se desea probar
 		public function index(){			
-			header('location:' . RUTA_URL . '/Borrar_C');
+			header('location:' . RUTA_URL . '/Borrar_C/actualizarSecciones');
 		}
 
 		// Metodo para filtrar y sabear datos introducidos por los usuarios en formularios
@@ -201,15 +201,21 @@
 			}
 		}
 
-		public function cargar_formulario(){
-			
-			$this->vista("header/header_SoloEstilos"); 
-			$this->vista("view/borrar_V");
+		public function actualizarSecciones(){
+			// se consultan los ID_Productos			
+			$ID_Productos = $this->Borrar_M->ConsultarID_Producto();	
+			echo '<pre>';
+			print_r($ID_Productos);
+			echo '</pre>';
+
+			//SE borrar todas las DT entre ID_Productos y ID_Secciones
+			// $this->Borrar_M->eliminar_DT($ID_Productos);
+			$this->insertar_DT($ID_Productos);
 		}
 
-		public function actualizar(){
-			   
-            $this->Borrar_M->actualizarProductos(); 
+		public function insertar_DT($ID_Productos){
+			
+			$this->Borrar_M->InsertaDT($ID_Productos);
 		}
 	}
 ?>

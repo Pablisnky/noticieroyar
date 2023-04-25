@@ -55,7 +55,7 @@
         public function actualizarDatosSuscriptor($RecibeDatosSuscriptor){
             $stmt = $this->dbh->prepare(
                 "UPDATE suscriptores 
-                 SET nombreSuscriptor = :NOMBRE, apellidoSuscriptor = :APELLIDO, correoSuscriptor = :CORREO, pseudonimoSuscripto = :PSEUDONIMO, municipioSuscriptor = :MUNICIPIO, parroquiaSuscriptor = :PARROQUIA, telefonoSuscriptor = :TELEFONO, transferencia = :TRANSFERENCIA, pago_movil = :PAGO_MOVIL, paypal = :PAYPAL, zelle = :ZELLE, criptomoneda = :CRIPTOMONEDA, efectivo_Bs = :EFECTIVO_BS, efectivo_Dol = :EFECTIVO_DOL, acordado = :ACORDADO
+                 SET nombreSuscriptor = :NOMBRE, apellidoSuscriptor = :APELLIDO, correoSuscriptor = :CORREO, pseudonimoSuscripto = :PSEUDONIMO, municipioSuscriptor = :MUNICIPIO, parroquiaSuscriptor = :PARROQUIA, telefonoSuscriptor = :TELEFONO, transferencia = :TRANSFERENCIA, pago_movil = :PAGO_MOVIL, paypal = :PAYPAL, zelle = :ZELLE, criptomoneda = :CRIPTOMONEDA, efectivo_Bs = :EFECTIVO_BS, efectivo_Dol = :EFECTIVO_DOL, acordado = :ACORDADO, categoria = :CATEGORIA
                  WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
             );
 
@@ -76,6 +76,7 @@
             $stmt->bindParam(':EFECTIVO_BS', $RecibeDatosSuscriptor['efectivo_Bs']);
             $stmt->bindParam(':EFECTIVO_DOL', $RecibeDatosSuscriptor['efectivo_dol']);
             $stmt->bindParam(':ACORDADO', $RecibeDatosSuscriptor['acordado']);
+            $stmt->bindParam(':CATEGORIA', $RecibeDatosSuscriptor['categoria']);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             $stmt->execute();
