@@ -13,6 +13,7 @@
                     <label class="header__subtitulo--catalogo">Clasificados</label>
                 </div> 
 
+                <!-- PSEUDONIMO -->
                 <div class="cont_catalogos--membrete--2">
                     <h1 class="h1_1 h1_1--catalogo"><?php echo $Datos['pseudonimoSuscripto'];?></h1> 
                 </div>
@@ -27,21 +28,30 @@
                     <!-- TWITTER -->
                     <div class="cont_catalogos--iconos">
                         <a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/Catalogos_C/index/<?php echo $Datos['ID_Suscriptor'];?>" target="_blank"><i class="fa-brands fa-twitter catalogo-RS"></i></a>
-                    </div>          
-
+                    </div>     
+                    
+                    <!-- E-MAIL -->
+                    <div class="cont_catalogos--iconos">
+                        <a href="#" target="_blank"><i class="fa-regular fa-envelope catalogo-RS"></i></a>
+                    </div>      
+                    
                     <!-- WHATSAPP -->
                     <div class="whatsapp cont_catalogos--iconos">
                         <a href="whatsapp://send?text=<?php echo 'Catalogo ' . $Datos['pseudonimoSuscripto']?>&nbsp;<?php echo RUTA_URL?>/Catalogos_C/index/<?php echo $Datos['ID_Suscriptor'];?>" data-action="share/whatsapp/share"><i class="fa-brands fa-whatsapp catalogo-RS WHhatsApp-catalogo"></i></a>
                     </div>    
+                    <div>
+                        <p style="text-align: center; font-size: 0.7em">Compartir</p>
+                    </div>
+                </div>
                     
-                    <!-- SECCIONES -->
-                    <div class="cont_catalogos--iconos chevron"> 
-                        <img class="Default_pointer" style="width: 1.5em" id="Secciones" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_black_24dp.png'?>"/>
+                <!-- SECCIONES ICONO CERRAR-->
+                <div class="cont_catalogos--membrete--4">
+                    <div class=""> 
+                        <img class="Default_pointer" style="width: 2em" id="Secciones" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_black_24dp.png'?>"/>
                     </div>  
 
-                    <!-- ICONO CERRAR  -->   
                     <div>
-                        <img class="cont_modal--cerrar  Default_pointer" style="width: 0.8em;" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="cerrarVentana()"/>
+                        <img class="Default_pointer" style="width: 1.8em;" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="cerrarVentana()"/>
                     </div> 
                 </div>  
             </div>

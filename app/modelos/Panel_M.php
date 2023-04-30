@@ -166,7 +166,17 @@
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
+               
+        // SELECT de los videos cargados para mostrar en YaracuyEnVideo
+        public function consultaYaracuyEnVdeo(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_YaracuyEnVideo, nombreVideo, decripcionVideo
+                FROM yaracuyenvideos
+                ORDER BY ID_YaracuyEnVideo
+                DESC"
+            );
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
         // SELECT de todos los anuncios publicitarios incluyendo caducados
         public function consultarAnuncioTodos(){
             $stmt = $this->dbh->query(
@@ -622,8 +632,8 @@
                 FROM artistas"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC); 
-
         }
+        
 
 // // ********************************************************************************************************
 // // INSERT 
@@ -708,6 +718,29 @@
             $stmt->bindParam(':TAMANIO_VIDEO', $Tamanio_video,PDO::PARAM_STR);
             $stmt->bindParam(':TIPO_VIDEO',  $Tipo_video, PDO::PARAM_STR);
             $stmt->bindValue(':YOUTUBE', 0);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }
+        
+        
+        // INSERT de video de noticia 
+        public function InsertarVideoYaracuyEnVideo($Nombre_video, $Tamanio_video, $Tipo_video, $Descripcion_video){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO yaracuyenvideos(nombreVideo, tamanioVideo, tipoVideo, decripcionVideo) 
+                VALUES (:NOMBRE_VIDEO, :TAMANIO_VIDEO, :TIPO_VIDEO, :DESCRIPCION)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':NOMBRE_VIDEO', $Nombre_video, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_VIDEO', $Tamanio_video,PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_VIDEO',  $Tipo_video, PDO::PARAM_STR);
+            $stmt->bindParam(':DESCRIPCION',  $Descripcion_video, PDO::PARAM_STR);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){

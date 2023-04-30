@@ -5,7 +5,7 @@
             parent::__construct();       
         }
         
-		//Muestra el select con las secciones
+		//Muestra el select 
 		public function ConsultarArtistas(){
             $stmt = $this->dbh->query(
                 "SELECT ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
@@ -14,7 +14,7 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);			
 		}
         
-		//Muestra el select con las secciones
+		//Muestra el select 
 		public function ConsultarArtista($ID_Artista){
             $stmt = $this->dbh->prepare(
                 "SELECT ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista

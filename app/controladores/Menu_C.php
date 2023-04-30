@@ -5,10 +5,10 @@
         public function __construct(){
             // $this->ConsultaMenu_M = $this->modelo("Menu_M");
             //Solicita el precio del dolar SEGUN TASA bcv a la clase Divisas_C 
-            // require(RUTA_APP . '/controladores/Divisas_C.php');
-            // $PrecioDolar = new Divisas_C();
+            require(RUTA_APP . '/controladores/Divisas_C.php');
+            $InstanciaDivisas_C = new Divisas_C();
             
-            // $this->PrecioDolar = $PrecioDolar->index();
+            $this->PrecioDolar = $InstanciaDivisas_C->Dolar;
 
             // echo 'Perfecto, tasa de dolar actualizada' . '<br>';
             // echo "<a href='javascript: history.go(-1)'>Regresar</a>";

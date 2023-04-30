@@ -66,6 +66,8 @@
                                 <!-- COMPARTIR FACEBOOK -->       
                                 <div class="detalle_cont--red">      
                                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>" target="_blank" rel="noopener noreferrer"><img style="height: 1.8em;" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
+                                    <span>P</span>
+                                    <span>L</span>
                                 </div> 
                                 
                                 <!-- COMPARTIR TWITTER -->

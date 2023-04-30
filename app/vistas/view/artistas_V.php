@@ -1,26 +1,22 @@
 <div style="display: flex;" id="Obra">	
-	<div style="background-color: black; width: 3%; height: 100vh; position: fixed">
-		<a style="" href="<?php echo RUTA_URL?>/GaleriaArte_C"><img style="background-color: black; display: block; margin-left: 25%; margin-top: 50%" src="<?php echo RUTA_URL?>/public/iconos/flecha/outline_arrow_back_white_24dp.png"/></a>
-		<p class="Default--textoVertical" style="padding-bottom: 25px; text-align: left; font-family: 'Moon Dance', cursive; font-size: 2em; color: white;" id="DescripcionArtista"><?php echo $Datos['datosArtistas']['nombreArtista'] . ' ' . $Datos['datosArtistas']['apellidoArtista'];?></p>
+	<div class="cont_artista--vertical">
+		<a class="cont_artista--icono" href="<?php echo RUTA_URL?>/GaleriaArte_C"><img src="<?php echo RUTA_URL?>/public/iconos/flecha/outline_arrow_back_white_24dp.png"/></a>
+		<p class="cont_artista--textoVertical Default--textoVertical" id="DescripcionArtista"><?php echo $Datos['datosArtistas']['nombreArtista'] . ' ' . $Datos['datosArtistas']['apellidoArtista'];?></p>
 	</div>
+
+	<!-- OBRAS CON LAZYLOAD -->
 	<div class="cont_obras" id="ContObras">
 		<div class="cont_galeria cont_galeria--obras" id="Cont_obras--mosaico">
 			<?php 
 			foreach($Datos['obraArtista'] as $Row) :
-				// foreach($Datos['datosArtistas'] as $Key) : 
-					// echo $Row['ID_Artista'];
-					// echo '<br>';
-					// echo $Datos['datosArtistas']['ID_Artista'];
-					// exit;
-					if($Row['ID_Artista'] == $Datos['datosArtistas']['ID_Artista']){	?>
-						<div class="cont_Galeria--item efectoZoom">
-							<figure>
-								<img class="cont_Galeria--img lazyload borde_1 imagen_2--JS efectoBrillo efectoZoom--imagen" name="imagenNoticia" alt="Fotografia Obra" data-src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Row['ID_Artista'];?>_<?php echo $Datos['datosArtistas']['nombreArtista'];?>_<?php echo $Datos['datosArtistas']['apellidoArtista'];?>/<?php echo $Row['imagenObra']?>" id="<?php echo $Row['ID_Obra']?>" loading="lazy" width="320" height="10"/>
-							</figure>
-						</div> 
-						<?php 
-					}
-				// endforeach;
+				if($Row['ID_Artista'] == $Datos['datosArtistas']['ID_Artista']){	?>
+					<div class="cont_Galeria--item efectoZoom">
+						<figure>
+							<img class="cont_Galeria--img lazyload borde_1 imagen_2--JS efectoBrillo efectoZoom--imagen" name="imagenNoticia" alt="Fotografia Obra" data-src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Row['ID_Artista'];?>_<?php echo $Datos['datosArtistas']['nombreArtista'];?>_<?php echo $Datos['datosArtistas']['apellidoArtista'];?>/<?php echo $Row['imagenObra']?>" id="<?php echo $Row['ID_Obra']?>" loading="lazy" width="320" height="10"/>
+						</figure>
+					</div> 
+					<?php 
+				}
 			endforeach; ?>
 		</div>
 	</div>

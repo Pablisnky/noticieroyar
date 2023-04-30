@@ -368,4 +368,14 @@
                 return false;
             }
         }
+        
+        // CONSULTA los videos de la serie YaracuyEnVideo
+        public function consultarYaracuyEnVideo(){
+            $stmt = $this->dbh->query(
+                "SELECT ID_YaracuyEnVideo, nombreVideo
+                FROM yaracuyenvideos"
+            );
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+        }
     }

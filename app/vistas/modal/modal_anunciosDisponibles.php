@@ -5,8 +5,9 @@
         <h1 class="h1--secciones">Seleccione un anuncio publicitario</h1>  
         
         <!-- ICONO CERRAR -->        
-        <img class=" cont_modal--cerrar  Default_pointer" style="width: 1em;" id="CerrarVentana" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="CerrarModalAnuncios()"/>
+        <img class="cont_modal--cerrar Default_pointer" style="width: 1em;" id="CerrarVentana" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>" onclick="CerrarModalAnuncios()"/>
       </div>
+
       <form>
         <div class="contenedor_89">
             <?php      
@@ -14,8 +15,7 @@
             foreach($Datos['anuncios'] as $Row)  :
                     ?>
                 <div class="contInputRadio efectoZoom" id="Contenedor_Radio">
-                    <input class="Default_ocultar" type="radio" name="anuncio" id="<?php echo 'ContadorAnuncio_' . $ContadorAnuncio;?>" value="<?php echo $Row['ID_Anuncio']?>"  
-                              onclick="transferirAnuncio(this.form, document.getElementById('ImgAnuncio').src='<?php echo RUTA_URL;?>/public/images/publicidad/<?php echo $Row['nombre_imagenPublicidad'];?>')"/>
+                    <input class="Default_ocultar" type="radio" name="anuncio" id="<?php echo 'ContadorAnuncio_' . $ContadorAnuncio;?>" value="<?php echo $Row['ID_Anuncio']?>" onclick="transferirAnuncio(this.form, document.getElementById('ImgAnuncio').src='<?php echo RUTA_URL;?>/public/images/publicidad/<?php echo $Row['nombre_imagenPublicidad'];?>')"/>
                     
                     <label class="Default_pointer" for="<?php echo 'ContadorAnuncio_'.$ContadorAnuncio;?>">
                         <figure> 

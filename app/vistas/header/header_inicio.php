@@ -66,7 +66,7 @@
 
 							<li><a class="header__li--Enlaces" href="https://yaracultura.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog Yaracultura</a></li>
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Contraloria_C';?>" rel="noopener noreferrer">Contraloría social</a></li>
-                			<li class="Default_quitarMovil"><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/GaleriaArte_C';?>">Galeria de arte regional</a></li>
+                			<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/GaleriaArte_C';?>">Galeria de arte regional</a></li>
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/PodCast_C';?>" rel="noopener noreferrer">PodCast</a></li>
 							<li class=""><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Login_C/index/SinID_Noticia,SinBandera';?>" rel="noopener noreferrer">Iniciar sesión</a></li>
 
@@ -121,20 +121,7 @@
 			</div>
 			    
 			<!-- BOTON VIDEO PROMOCIONAL -->
-			<!-- <div class="con_portada--titulo Default_pointer" id="Mostrar_Promocion">
-				<img style="width: 2.5em" id="CerrarVentana" src="<?php //echo RUTA_URL . '/public/iconos/video/outline_videocam_black_24dp.png'?>"/> 
-				<label class="Default_pointer" >Turismo<br class="Default_quitarEscritorio"> en Yaracuy </label>
-			</div> -->
-			<!-- VIDEO PROMOCIONAL -->	
-			<!-- <div class="con_portada--promocion" id="Miimagen">
-				<div id="Promocion">
-					<!-- ICONO CERRAR VIDEO -->
-					<!-- <img class=" publicidad_cont--cerrar Default_pointer" style="width: 1em;" id="Cerrar--modal" onclick="pausar()" src="<?php //echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>
-					<div>
-						<video class="con_portada--video" id="VideoPromocion" src="<?php //echo RUTA_URL?>/public/video/TurismoYaracuy.mp4" controls loop ></video> 
-					</div>
-				</div>
-			</div>   -->
+			<a class="con_portada--titulo Default_pointer" href="<?php echo RUTA_URL . '/YaracuyEnVideo_C';?>" rel="noopener noreferrer"><img style="width: 2em;" src="<?php echo RUTA_URL . '/public/iconos/video/outline_videocam_white_24dp.png'?>"/>Yaracuy<br> en video</a>
 		</header>
 				
 		<!-- MEMBRETE DESPLAZANTE -->

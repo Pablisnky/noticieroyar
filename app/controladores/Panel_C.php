@@ -37,6 +37,11 @@
 			//suma la cantidad de visitas a una noticia
 			$Visitas = $this->Panel_M->consultaVisitasNoticia();
 
+			// captura la IP del equipo
+			// $ip_add = $_SERVER['REMOTE_ADDR'];
+			// echo "The user's IP address is - ".$ip_add;
+			
+			// exit;
 			$Datos = [
 				'noticiasPortadas' => $NoticiasPortadas, //ID_Noticia, titulo, imagenNoticia 
 				'imagenesNoticias' => $ImagenesNoticiasPortadas, //ID_Noticia, nombre_imagenNoticia
@@ -153,7 +158,26 @@
 			$this->vista('header/header_PanelAgenda', $Datos);
 			$this->vista('view/panel_agenda_V', $Datos);
 		}
+				
+		//Muestra videos cargados en yaracuyEnVdeo
+		public function yaracuyEnVdeo(){ 
+			//CONSULTA las videos cargados en la seccion Yaracuy en Video
+			$Agenda = $this->Panel_M->consultaYaracuyEnVdeo();
+
+			$Datos = [
+				'yaracuyEnVdeo' => $Agenda // ID_YaracuyEnVideo, nombreVideo 
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit;
 		
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos', $Datos);
+			$this->vista('view/panel_yaracuyEnVdeo_V', $Datos);
+		}
+
 		//Muestra todos los anuncios de publicidad, incluyendo los caducados
 		public function publicidad(){ 
 			//CONSULTA los anuncios de publicidad
@@ -300,6 +324,14 @@
 			$this->vista('view/agregarAgenda_V');
 		}
 		
+		// muestra formulario para agregar un video de yaracuyEnVideo
+		public function agregaYaracuyEnVideo(){
+
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_SoloEstilos');
+			$this->vista('view/agregarYaracuyEnVideo_V');
+		}
+
 		// muestra formulario para agregar un obituario
 		public function agregar_obituario(){
 
@@ -804,6 +836,36 @@
 			die();
 		}
 		
+		// recibe el formulario que agrega un video de yaracuyEnVideo
+		public function recibeYaracuyEnVideo(){
+			// INSERTAR VIDEO
+			if($_FILES['video']['name'][0] != ''){ 
+				$Descripcion_video = $_POST['descripcion'];
+				$Nombre_video = $_FILES['video']['name'];
+				$Tipo_video = $_FILES['video']['type'];
+				$Tamanio_video = $_FILES['video']['size'];
+				// echo "Nombre_video : " . $Nombre_video . '<br>';
+				// echo "Tipo_video : " .  $Tipo_video . '<br>';
+				// echo "Tamanio_video : " .  $Tamanio_video . '<br>';
+				// exit;
+
+				//Se INSERTA el video de la noticia
+				$this->Panel_M->InsertarVideoYaracuyEnVideo($Nombre_video, $Tamanio_video, $Tipo_video, $Descripcion_video);
+				
+				//Usar en remoto
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/video/YaracuyEnVideo/';
+				
+				// usar en local
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/YaracuyEnVideo/';
+				
+				//Se mueve el archivo desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
+				move_uploaded_file($_FILES['video']['tmp_name'], $Directorio . $Nombre_video);
+			}
+
+			header("Location:" . RUTA_URL . "/Panel_C/yaracuyEnVdeo");
+			die();
+		}
+
 		// Muestra formulario con la noticia a actualizar
 		public function actualizar_noticia($ID_Noticia){
 			//CONSULTA la noticia a actualizar

@@ -41,7 +41,7 @@
                                 </div>   
                                 <!-- IMAGEN ANUNCIO PUBLICITARIO-->
                                 <figure>
-                                    <img class="cont_panel--imagen" name="imagenAnunio" alt="Fotografia Principal" id="ImgAnuncio" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                                    <img class="imagen_Default" name="imagenAnunio" alt="Fotografia Principal" id="ImgAnuncio" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
                                 </figure>
                                 
                                 <input class="Default_ocultar" type="text" name="id_anuncio" id="ID_Anuncio" value="no existe"/>
@@ -74,7 +74,7 @@
                                     <!-- <label class="Default_pointer" for="imgVideo"><span class="material-icons-outlined cont_edit--label">edit</span></label> -->
                                 </div> 
                                 <figure id="FigureVideo">
-                                    <img class="cont_panel--video" alt="Icono video" id="ImagenCamara" src="<?php echo RUTA_URL?>/public/video/video.png"/>
+                                    <img class="imagen_Default--video" alt="Icono video" id="ImagenCamara" src="<?php echo RUTA_URL?>/public/video/video.png"/>
                                 </figure> 
                                 
                                 <video class="cont_panel--imagen cont_panel--viedo" id="video-tag">

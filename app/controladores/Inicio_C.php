@@ -8,6 +8,7 @@
         private $CantidadComentario;
         private $NoticiasSinComentarios;
         private $NoticiasSinVideo;
+        private $YaracuyEnVideo;
 
         public function __construct(){
             session_start();
@@ -37,6 +38,9 @@
 
 			//CONSULTA si existe algun anuncio asociado a cada noticia del dia
             $this->Anuncios = $this->ConsultaInicio_M->consultarAnuncioNoticiaPortada();
+            
+			//CONSULTA los videos de la serie YaracuyEnVideo
+            $this->YaracuyEnVideo = $this->ConsultaInicio_M->consultarYaracuyEnVideo();
         }
         
         public function index(){  
@@ -52,7 +56,6 @@
                 die(); 
             }         
             else{
-
                 $Datos = [
                     'datosNoticia' => $this->NoticiasPortadas, //ID_Noticia, titulo, subtitulo,    noticiaPrincipal, portada, nombre_imagenNoticia, fecha, fuente
                     'ID_NoticiaInicial' =>  $this->NoticiasPortadas[0]['ID_Noticia'],
@@ -61,7 +64,8 @@
                     'videos' => $this->Video, //ID_Noticia, cantidadVideocomentarioColeccion
                     'cantidadComentario' => $this->CantidadComentario,
                     'noticiasSinComentarios' => $this->NoticiasSinComentarios,
-                    'noticiasSinVideo' => $this->NoticiasSinVideo
+                    'noticiasSinVideo' => $this->NoticiasSinVideo,
+                    'yaracuyEnVideos' => $this->YaracuyEnVideo
                 ];
                 
                 // echo "<pre>";
@@ -69,7 +73,7 @@
                 // echo "</pre>";          
                 // exit();
                 
-                $this->vista("header/header_inicio"); 
+                $this->vista("header/header_inicio", $Datos); 
                 $this->vista("view/inicio_V", $Datos); 
             }  
         }

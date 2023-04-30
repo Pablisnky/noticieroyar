@@ -1,4 +1,4 @@
-// document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
+document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
 
 // document.getElementById("CerrarVentana").addEventListener('click', function(){CerrarModal('VentanaModal')}, false)
 //************************************************************************************************
@@ -16,7 +16,7 @@
 
 //************************************************************************************************ 
     function MostrarPromocion(){
-        document.getElementById("Miimagen").style.display = "block" 
+        document.getElementById("MiVideo").style.display = "block" 
         document.getElementById("Promocion").style.display = "block" 
         // window.location.reload();
     }
@@ -103,7 +103,7 @@
 //************************************************************************************************   
    window.pausar = function(){
         document.getElementById("VideoPromocion").pause();
-        document.getElementById("Miimagen").style.display = "none"
+        document.getElementById("MiVideo").style.display = "none"
     };
 
 //************************************************************************************************

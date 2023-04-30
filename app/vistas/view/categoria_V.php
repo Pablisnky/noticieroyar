@@ -70,7 +70,7 @@
     
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/ComidaRapida';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>COMIDA RAPIDA Y RESTAURANTS</h2>
+            <h2 class='h2_1'>COMIDA RAPIDA</h2>
             <i class="fas fa-drumstick-bite icono_2"></i>            
             <div class="contenedor_106">
                 <span class="span_21 borde_1 comida_js">
@@ -198,7 +198,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/MaterialMedicoQuirurgico';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>MATERIAL MÉDICO QUIRURGICO</h2>
+            <h2 class='h2_1'>MATERIAL MÉDICO</h2>
             <i class="fas fa-hospital icono_2"></i>              
             <div class="contenedor_106">
                 <span class="span_21 borde_1 materialQuirurgco_js">
@@ -294,7 +294,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Frutas';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>FRUTAS, VERDURAS Y HORTALIZAS</h2>
+            <h2 class='h2_1'>FRUTAS Y VERDURAS</h2>
             <i class="fas fa-carrot icono_2"></i>    
             <div class="contenedor_106">
                 <span class="span_21 borde_1 frutas_js">

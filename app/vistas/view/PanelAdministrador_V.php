@@ -5,6 +5,7 @@
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/agregar_noticia">Agregar noticia</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/portadas" rel="noopener noreferrer">Noticias en portada</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/Not_Generales" rel="noopener noreferrer">Noticias generales</a></li>
+        <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/yaracuyEnVdeo">Yaracuy en video</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/efemerides">Efemerides</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/agenda">Agenda</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/obituario">Obituario</a></li>

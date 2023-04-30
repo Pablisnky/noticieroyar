@@ -62,14 +62,6 @@
 		font-size: 1.4em;
 		font-weight: bold;
 	}
-	.con_portada--titulo{
-		position: fixed;
-		top: 8%;
-		left: 2%;
-		z-index: 2;
-		padding: 1% 3%;
-		width: 50%;
-	}
 	.con_portada--video{
 		position: relative; 
 		left: initial; 
@@ -87,13 +79,6 @@
 	   display: block;
 	   margin-top: 15%;
 	   margin-bottom: 4%;
-	}
-	.cont_galeria{
-	   column-count: 1 !important;
-	   width: 95%;
-	   margin: auto;
-	   margin-top: 5%;
-	   padding-top: 10%;
 	}
 	.cont_Galeria--item{
 	   margin-bottom: 10%;
@@ -414,10 +399,6 @@
 	.Default_quitarMovil{/*no se muestra en version movil*/
 		display: none;
 	}
-	.Default--textoVertical{	
-	   writing-mode: initial;
-	   transform: initial;
-	}
 	/* Las proximas lineas permiten colocar tres puntos al final luego de 3 lineas de parrafo  */
 	.Default_puntosSuspensivos{	 
 		display: -webkit-box;
@@ -474,7 +455,7 @@
 		font-size: 0.8em;
 	}
 	.publicidad_cont--cerrar{
-	   top: 5%;
+	   top: 2%;
 	   left: 85%;
 	   font-size: 2em !important;	
 	   z-index: 10; 
@@ -708,12 +689,7 @@
 	font-size: 1.3em;
 	padding-left: 2%;
 }
-.header__titulo--catalogo{
-	display: inline;
-	font-size: 1.5em;
-	padding-left: 9%;
-	font-family: Gruppo;
-}.header__subtitulo--catalogo{
+.header__subtitulo--catalogo{
 	display: none;
 }
 .h1_1--catalogo{
@@ -871,31 +847,21 @@
 	margin-bottom: 10% ;
 	max-height: 170px;
 }
-.cont_catalogos{
-	display: block;
-	width: 100%;
-	height: 80px!important;
+.cont_catalogos--productos{
+	margin-top: -85vh;
+	padding-top: 3vh;
 }
-.cont_catalogos--membrete--1{
-	margin: auto;
+.cont_catalogos{	
 	width: 100%;
+	height: 11.3vh!important; /*este valor he querido valjarlo a 13 vh pero luego queda un espacion al desplegar el menu secciones*/
+	grid-template-rows: 0fr;
 }
-.cont_catalogos--membrete--2{
-	width: 100%;
-	padding-bottom: 2%;
-}
-.cont_catalogos--membrete--3{
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	padding-right: 0%;
-}
-.header__titulo--catalogo{
-	display: block;
-	font-size: 1.5em;
-	padding-left: initial;
-	width: 100%;
-	text-align: center;
+.cont_respuestaAjax--catalogos{
+	/* background-color: red;
+	display: block; 
+	margin-top: 3%;
+	width: 98%;
+	margin-bottom: 10%; */
 }
 .cont_catalogos--redesSociales{	
 	top: 40% !important;
@@ -955,9 +921,13 @@
 	margin-bottom: 7%;
  }
  .cont_galeria{
-	padding-left: 0%; 
+	column-count: 2 !important;
+	width: 95%;
+ 	margin: auto; 
+	margin-top: 10%; 
+ 	padding-left: 0%;
  }
- .cont_Galeria--img{
+  .cont_Galeria--img{
 	width: 100%;
  }
  .cont_galeria_h1{
@@ -1246,14 +1216,6 @@
 	margin-top: 25%;
 	margin-bottom: 50%;
 }
-.contenedor_4{
-	width: 100%;
-	padding-top: 15%;
-}
-.contenedor_6{
-	width: 45%;
-	height: 140px;
-}
 .cont_clasificados--item-4{
 	width: 100%;
 	margin-left: 0%;
@@ -1279,11 +1241,6 @@
 	font-weight: bold;
 	display: block;
 	text-align: center;
-}
-.contenedor_106{
-	position: relative;
-	bottom: 15px;
-	right: 5%;
 }
 .cont_portada--botones{
 	position: fixed;
@@ -1341,11 +1298,6 @@
 	position: absolute;
 	right: 4%;
 }
-.cont_catalogos--secciones{
-	width: 100%;	
-	margin-left: 0%;
-	padding-left: 5%;
-}  
 .ocultar{
 	opacity: 1;
 	top: 90px;
@@ -1362,11 +1314,10 @@
 	height: 40px;
 }
 .header__titulo--catalogo{
-	display: block;
-	font-size: 7vw;
+	/* font-size: 7vw;
 	padding-left: 0%;
-	width: 90%;
-	text-align: center;
+	width: 100%;
+	text-align: center; */
 }
 .hr_3a{
 	margin: 3% 0% 20% 0%;
@@ -1379,22 +1330,12 @@
 .cont_detalle_Producto--p{
 	font-size: 5vw;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 .cont_catalogos--secciones{
 	width: 100%;	
 	margin-left: 0%;
 	padding-left: 5%;
+	height: 85vh;
+	margin-top: 9.5vh!important;
 } 
 .contenedor_13--marginTop{
 	margin-top: -80vh;
@@ -1407,6 +1348,209 @@
 	left: 0%;
 	bottom: 15vh;
 }
+.cont_catalogos--membrete--1{
+	margin: auto;
+	width: 100%;
+	grid-column-start: 1;
+	grid-column-end: 6; 
+}
+.cont_catalogos--membrete--2{
+	width: 100%;
+	grid-column-start: 1;
+	grid-column-end: 6; 
+}
+.cont_catalogos--membrete--4{
+	grid-column-start: 3;
+	grid-column-end: 6; 
+	width: 70%;
+	margin-left: 25%;
+	justify-content: space-around;
+}
+.cont_catalogos--iconos{
+	margin-bottom: -1%;
+}
+.header__titulo--catalogo{
+	font-size: 7vw;
+	padding-left: 0%;
+	width: 100%;
+	text-align: center;
+}
+.contenedor_4{
+	width: 100%;
+	padding-top: 20%;
+	justify-content: space-around;
+}
+.contenedor_6{
+	width: 13.5vh;
+	height: 23vw;
+	margin: 0.5%;
+}
+.h2_1{
+	max-width: 100%;
+	font-size: 3.5vw;
+	font-weight: normal;
+	text-align: center;
+	padding: 4%;
+	min-height: 11vw; /*para garantizar que cubra dos lineas y los iconos se alineen a partir de alli */
+	cursor: pointer;
+}
+.icono_2{
+	font-size: 10vw;
+}
+.contenedor_106{
+	position: relative;
+	bottom: 15px;
+	right: 5%;
+}
+.span_21{
+	border-radius: 30px;
+	width: 20px;
+	position: relative;
+	text-align: center;
+	top: -0.4vh;
+	left: 80%;
+	display: block;
+	font-size: 4vw;
+}
+.cont_catalogos--membrete--3{
+	width: 100%;
+	height: 25px;
+	grid-column-start: 1;
+	grid-column-end: 3; 
+}
+.con_portada--titulo{
+	font-size: 3.7vw;
+	position: fixed;
+	top: 9%;
+	left: 1%;
+	z-index: 2;
+	padding: 1% 2%;
+	width: 36%;
+}
+.con_portada--label{
+	font-size: 4vw;
+}
+.cont_yaracuyVideo--titulo{
+	font-size: 4.5vw;
+	width: 90%;
+	margin-top: 20%;
+}
+.chevronLeft{
+	background-color: rgba(29, 25, 25, 0.8);
+	position: absolute;
+	border-radius: 50%;
+	padding: 1%;
+	width: 10vw;
+	left: 1vw;
+}
+.chevronRight{
+	background-color: rgba(29, 25, 25, 0.8);
+	position: absolute;
+	border-radius: 50%;
+	padding: 1%;
+	width: 10vw;
+	right: 1vw;
+}
+.cont_yaracuyVideo--video{
+	justify-content: center;
+	align-items: center;
+}
+.con_portada--video{
+	margin: auto;
+	margin-top: 10%;
+	left: 0%; 
+	width: 100vw; 
+	height:max-content;
+}
+.cont_agregarYaracuyVideo--main{
+	margin-left: 0%; 
+	margin-top: 15%
+}
+.cont_agregarYaracuyVideo{
+	display: block; 
+	/* margin-top: 10%; */
+}
+.img--video{
+	height: 20vh;
+	margin: auto;
+}
+.cont_panel--agregaYaracuyEnVideo{
+	display: block; 
+	margin-bottom: 5%;
+}
+.cont_panel--viedo{
+	height: 20vh;
+}
+.cont_panel--agregaYaracuyEnVideo--enviar{
+	margin-top: 40%;
+}
+.cont_artista--informacion{
+	width: 45vw;
+	margin-bottom: 30%;
+}
+.cont_Artista--img{
+	height: 45vw;
+	margin: auto;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.cont_Artista--botones{
+	width: 100%;
+	margin-top: 10%;
+}
+.cont_Contraloria--texto{
+   margin: 20% auto 5% auto;
+   padding: 0% 4%;
+}
+.p_1{
+   /* text-align: justify; */
+   font-size: 8vw;
+   line-height: 25px;
+}
+.cont_artista--vertical{
+	width: 100%; 
+	height: min-content; 
+	top: 0%;
+}
+.cont_artista--textoVertical{
+	padding-bottom: 5px; 
+	text-align: center; 
+	font-family: 'Moon Dance', cursive; 
+	font-size: 10vw; 
+	color: white;
+	width: 85%;
+	margin-left: 3%;
+}
+.cont_yaracuyVideo--cerrar{
+	width: 2em;
+}
+.cont_yaracuyVideo--membrete{
+	margin-top: 0.5%;
+	margin-left: 5%;
+}
+.cont_yaracuyVideo--redesSociales{
+	width: 50%; 
+	margin-left: 25%;
+}
+.cont_artista--icono{
+	background-color: black; 
+	display: inline-block; 
+	margin-left: 0%; 
+	margin-top: 0%
+}
+.cont_artista--textoVertical {
+	display: inline-block;
+}
+.Default--textoVertical{	
+	writing-mode:initial; 
+	transform: rotate(0deg); 
+ }
+ .cont_galeria--obras{
+	padding-top: 5%;
+ }
+
+
+
+
 
 
 
