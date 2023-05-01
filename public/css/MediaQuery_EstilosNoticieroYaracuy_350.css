@@ -1437,15 +1437,13 @@
 }
 .cont_Artista--botones{
 	width: 100%;
-	margin-top: 10%;
+	margin-top: 5%;
 }
 .cont_Contraloria--texto{
    margin: 20% auto 5% auto;
-   padding: 0% 4%;
 }
 .p_1{
-   /* text-align: justify; */
-   font-size: 8vw;
+   font-size: 10vw;
    line-height: 25px;
 }
 .cont_artista--vertical{

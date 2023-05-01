@@ -40,7 +40,9 @@
 	
 
 	<div style="background-color: black" id="Miimagen">
-		<div class="cont_ObraDetalle" id="Cont_PinturaDetalle">
+	
+		<!-- LADO FRONTAL DE TARJETA -->
+		<div class="cont_ObraDetalle adelante" id="Cont_PinturaDetalle">
 			<?php
 				if($Datos['detalleObra']['disponible']){	
 					$imagenObra = $Datos['detalleObra']['imagenObra'];
@@ -65,13 +67,17 @@
 			
 			<img class="Default_pointer cont_ObraDetalle--iconoRight" onclick="Llamar_detalleObra('<?php echo $Datos['detalleObra']['ID_Obra'];?>','<?php echo $Datos['detalleObra']['ID_Artista'];?>','Avanzar')" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_white_24dp.png'?>"/>
 
-			<!-- IMAGEN OBRA -->
 			<div class="cont_ObraDetalle--img" id="Imagen_Detalle">	
-				<!-- <div> -->
-					<img class="imagen_3" src="<?php echo RUTA_URL . "/public/images/galeria/" . $Datos['detalleObra']['ID_Artista'];?>_<?php echo $Datos['detalleObra']['nombreArtista'];?>_<?php echo $Datos['detalleObra']['apellidoArtista'] . "/" . $Datos['detalleObra']['imagenObra'];?>"/>
-				<!-- </div> -->
+				<!-- IMAGEN OBRA -->
+				<img class="imagen_3" src="<?php echo RUTA_URL . "/public/images/galeria/" . $Datos['detalleObra']['ID_Artista'];?>_<?php echo $Datos['detalleObra']['nombreArtista'];?>_<?php echo $Datos['detalleObra']['apellidoArtista'] . "/" . $Datos['detalleObra']['imagenObra'];?>"/>
+			
+				<!-- BOTON DE GIRO-->
+				<img class="Default_pointer" style="background-color: rgba(255, 255, 255, 0.5); text-align: center; display: block; margin-left: 45%; width: 10%; border-radius: 50%" onclick="AtrasTarjeta('Cont_PinturaDetalle')" src="<?php echo RUTA_URL . '/public/iconos/giro/outline_switch_right_black_24dp.png'?>"/>
 			</div>
+		</div>
 
+		<!-- LADO POSTERIOR DE TARJETA -->
+		<div class="atras">
 			<!-- LEYENDA -->
 			<div class="cont_ObraDetalle--leyenda">
 				<h1 class="cont_ObraDetalle--h1"><?php echo $Datos['detalleObra']['nombreObra'];?></h1>
@@ -83,16 +89,18 @@
 				<!-- BOTON DISPONIBLE - VENDIDO -->
 				<label class="cont_ObraDetalle--p1 disponible--true">disponible</label>
 				 
+				<!-- BOTON DE GIRO-->
+				<img class="Default_pointer" style="background-color: rgba(255, 255, 255, 0.5); text-align: center; display: block; margin-left: 45%; width: 10%; border-radius: 50%" onclick="FrenteTarjeta('Cont_PinturaDetalle')" src="<?php echo RUTA_URL . '/public/iconos/giro/outline_switch_right_black_24dp.png'?>"/>
 			</div>
-		</div>		
+		</div>
 	</div>
 </div>
 
 <!-- CARRITO DE COMPRA ALIMENTADO POR A_carrito_V.php-->
 <div class="cont_carrito" id="Modal_carrito"></div>
 	
+<script src="<?php echo RUTA_URL;?>/public/javascript/E_DetalleObra.js?v=<?php echo rand();?>"></script> 
 <script src="<?php echo RUTA_URL;?>/public/javascript/A_DetallesObra.js?v=<?php echo rand();?>"></script> 
-<!--<script src="<?php echo RUTA_URL;?>/public/javascript/E_Carrito.js?v=<?php echo rand();?>"></script> --> 
 <script src="<?php echo RUTA_URL;?>/public/javascript/FullScreem.js?v=<?php echo rand();?>"></script> 
 
 </body>

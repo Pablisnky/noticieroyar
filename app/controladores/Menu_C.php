@@ -61,8 +61,8 @@
         }
         
         public function nuestroADN(){
-            $this->vista("header/header");
-            $this->vista("view/quienesSomos_V");
+            $this->vista("header/header_noticia");
+            $this->vista("view/nuestroADN_V");
         }
                 
         public function recibeContactenos(){         

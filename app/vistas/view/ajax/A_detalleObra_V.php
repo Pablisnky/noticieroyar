@@ -49,9 +49,12 @@
 
 	<!-- IMAGEN OBRA -->
 <div class="cont_ObraDetalle--img">
-	<div style="height: 98%;" id="Imagen_Detalle">
+	<!-- <div style="height: 98%;" id="Imagen_Detalle"> -->
 		<img class="imagen_3" src="<?php echo RUTA_URL. "/public/images/galeria/" . $Datos['artista']['ID_Artista'];?>_<?php echo $Datos['artista']['nombreArtista'];?>_<?php echo $Datos['artista']['apellidoArtista'] . "/" . $Datos['diapositivaObra']['imagenObra'];?>"/>
-	</div>
+	<!-- </div> -->
+	
+		<!-- BOTON DE GIRO-->
+		<img class="Default_pointer" style="background-color: rgba(255, 255, 255, 0.5); text-align: center; display: block; margin-left: 45%; width: 10%; border-radius: 50%" onclick="GirarObra()" src="<?php echo RUTA_URL . '/public/iconos/giro/outline_switch_right_black_24dp.png'?>"/>
 </div>
 
 <!-- LEYENDA -->

@@ -107,7 +107,7 @@
             <!-- BOTONES DEL PANEL FRONTAL (solo en dispositivos moviles)-->	
             <div class="cont_boton--categoria">
                 <div>
-                    <label class="boton boton--corto"><a class="Default_font--white boton_a" href="<?php echo RUTA_URL . '/Agenda_C';?>">Eventos</a></label> 
+                    <label class="boton boton--corto"><a class="Default_font--white boton_a" href="<?php echo RUTA_URL . '/GaleriaArte_C';?>">Galería</a></label> 
                 </div>        
                 <div>
                     <label class="boton boton--corto"><a class="Default_font--white boton_a"" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>">Mas noticias</a></label> 

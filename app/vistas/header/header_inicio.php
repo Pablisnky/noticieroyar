@@ -52,10 +52,6 @@
 					<div class="header--nav">
 						<ul id="MenuContenedor">
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Noticias_C/NoticiasGenerales';?>" rel="noopener noreferrer">Noticias</a></li>
-								<!-- <ul class="menuContenedor_3" id="MenuContenedor_3">
-									<li><a class="header__li--Enlaces enlace_JS"  href="<?php //echo RUTA_URL . '/Noticias_C/NoticiasGenerales#Marcado_1';?>" rel="noopener noreferrer">Cultura</a></li>
-									<li><a class="header__li--Enlaces">Politica</a></li>
-								</ul> -->
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Efemeride_C';?>" rel="noopener noreferrer">Efemérides</a></li>
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Agenda_C';?>" rel="noopener noreferrer">Agenda de eventos</a></li>
 							<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Clasificados_C';?>" rel="noopener noreferrer">Clasificados</a></li> 
@@ -107,6 +103,11 @@
 			<!-- MEMBRETE FIJO -->
 			<div class="cont_header_membrete">
 				<label class="header__titulo">Noticiero Yaracuy</label>
+			</div>
+
+			<!-- NUESTRO ADN -->
+			<div class="">
+				<label class="boton boton--corto"><a class="Default_font--white boton_a" href="<?php echo RUTA_URL . '/Menu_C/nuestroADN';?>">Nuestro ADN</a></label> 
 			</div>
 
 			<!-- FECHA Y CARITA -->

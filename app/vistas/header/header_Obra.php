@@ -21,14 +21,14 @@
 		<meta property="fb:app_id" content="928977633900253"/>
 		<meta property="og:image:alt" content="Imagen descriptiva del catalogo"/>
 		<meta property="og:url" content="<?php echo RUTA_URL?>/GaleriaArte_C/detalleObra/<?php echo $Datos['detalleObra']['ID_Obra'];?>"/>
-		<meta property="og:image:secure_url" itemprop="image" content="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Datos['detalleObra']['ID_Artista'];?>_<?php echo $Datos['detalleObra']['nombreArtista'];?>_<?php echo $Datos['detalleObra']['apellidoArtista'];?>/<?php echo $Datos['detalleObra']['ID_Obra']?>"/>
+		<meta property="og:image:secure_url" itemprop="image" content="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Datos['detalleObra']['ID_Artista'];?>_<?php echo $Datos['detalleObra']['nombreArtista'];?>_<?php echo $Datos['detalleObra']['apellidoArtista'];?>/<?php echo $Datos['detalleObra']['imagenObra']?>"/>
 		<meta property="og:image:width" content="1200"/>
 		<meta property="og:image:height" content="630"/>
 		<meta property="og:locale:alternate" content="es_ES"/>
 		
 		<!--ETIQUETAS META TWITTER --> 
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name='twitter:image' content='<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Datos['detalleObra']['ID_Artista'];?>_<?php echo $Datos['detalleObra']['nombreArtista'];?>_<?php echo $Datos['detalleObra']['apellidoArtista'];?>/<?php echo $Datos['detalleObra']['ID_Obra']?>'>
+		<meta name='twitter:image' content='<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Datos['detalleObra']['ID_Artista'];?>_<?php echo $Datos['detalleObra']['nombreArtista'];?>_<?php echo $Datos['detalleObra']['apellidoArtista'];?>/<?php echo $Datos['detalleObra']['imagenObra']?>'>
 		        
 		<!-- WHATSAPP -->
 		<!-- Fotos mayores a 300 kb no seran mostradas en la miniatura al compartir la noticia -->
