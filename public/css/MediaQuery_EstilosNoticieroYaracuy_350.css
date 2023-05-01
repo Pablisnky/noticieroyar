@@ -133,7 +133,7 @@
 	column-count: 2 !important;
 	width: 95%;
 	margin: auto;
-	margin-top: 3%;
+	margin-top: 18%;
 	padding-top: initial;
 	padding-left: 0%;
  }
@@ -414,7 +414,7 @@
 	width: 1.8em !important;
 }
 .header__titulo{
-	font-size: 2.1em;
+	font-size: 10vw;
 	position: absolute;
 	top: 0%;
 	left: 9%;
@@ -1398,7 +1398,6 @@
 	align-items: center;
 }
 .con_portada--video{
-	/* position: absolute;  */
 	margin: auto;
 	margin-top: 10%;
 	left: 0%; 
@@ -1463,25 +1462,10 @@
 	width: 70%;
 	margin-left: 7%;
 }
-.cont_yaracuyVideo--membrete{
-	margin-top: 0.5%;
-	margin-left: 5%;
-}
 .cont_yaracuyVideo--redesSociales{
 	width: 50%; 
 	margin-left: 25%;
 }
-
-
-
-
-
-
-
-
-
-
-
 .cont_galeria--obras{
 	padding-top: 10%;
  }
@@ -1493,12 +1477,148 @@
 }
 .cont_artista--textoVertical {
 	display: inline-block;
+	font-size: 9vw; 
 }
 .Default--textoVertical{	
-	writing-mode:initial; 
+	writing-mode: initial; 
 	transform: rotate(0deg); 
  }
  
+
+
+
+
+
+
+
+
+
+ 
+.cont_yaracuyVideo--small{
+	display: none;
+}
+.cont_artista--margin{
+	margin-top: -1%!important;
+}
+.cont_artista--redesSociales{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 40%;
+	margin: auto;
+	height: 40px;
+	grid-column-start: 4;
+	grid-column-end: 5; 
+	margin-left: 29%;
+	margin-top: 3%;
+}
+.cont_artista--redesSociales > div:last-child{/*ocupa toda la ultima fila de la distribucion flex, el padre debe tener flex-wrap; los valores representtan los atibutos 'flex-grow' 'flex-shrink' y 'flex-basis' */
+	flex: 0 1 100% !important;
+}
+
+.cont_ObraDetalle{
+	padding-top: 5.5vh;
+	width: 100%;
+	height: 100vh;
+ }
+.cont_ObraDetalle--leyenda{
+	background-color: black;
+	position: initial;
+	padding: 0.5% 1%;
+	border-radius: 0px;
+}
+.cont_ObraDetalle--iconoLeft{
+	border-radius: 50%;
+	padding: 1%;
+	width: 2.5em;
+	top: 40% !important;
+	left: 2%;
+}
+.cont_ObraDetalle--iconoRight{
+	border-radius: 50%;
+	padding: 1%;
+	width: 2.5em;
+	top: 40% !important;
+	left: 86%;
+}
+.cont_ObraDetalle--h1{
+	font-size: 8vw !important;
+	line-height: 40px;
+	font-family: 'Moon Dance', cursive;
+	font-weight: lighter;
+	padding-left: 3%;
+}
+.cont_ObraDetalle--p1{
+	color: white;
+	font-size: 4vw;
+	padding-left: 3%;
+}
+.cont_ObraDetalle--label{
+   right: 5%;
+   top: 0%;
+   width: 30%;
+}
+.cont_ObraDetalle--img{
+	width: 96%; 
+	height: min-content;
+	margin: auto;
+	padding-top: 0%;
+}
+.cont_ObraDetalle--cerrar{
+	width: 30px; 
+	height: 30px;
+}		
+.cont_ObraDetalle--fullscreem{
+	width: 23px; 
+	height: 23px;
+}
+.imagen_3{
+	width: 100%;
+	object-fit: contain; 
+}
+.cont_obra--redesSociales{
+	position: absolute;
+	top: 0vh !important;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: auto;
+	width: 60%;
+	height: 30px;
+	margin-top: 0%;
+	margin-left: 5%;
+}
+.cont_descripcionArtista{
+   position: absolute;
+   top: 0vh;
+   left: 0vh;
+   width: 100%;
+   height: max-content;
+   margin-left: -100%;
+   transition: 0.5s;
+}
+.cont_descripcionArtista--titulo{
+	width: 100%; 
+	height: 7vh; 
+}
+.cont_descripcionArtista--img{
+   width: 90%;
+   height: min-content;
+   margin: auto;
+   object-fit: contain;
+}
+.cont_descripcionArtista--descripcion{
+	text-align: justify;
+	width: 100%; 
+	padding: 4%;
+	padding-bottom: 100%;
+}
+
+
 
   /* ************************************************************************************* */
   /* ***************** MOSTRAR SCROLL A 100VH EN PPAGINA DE INICIO *********************** */

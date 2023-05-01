@@ -3,11 +3,6 @@
 	*{
 		user-select: none;
 	}
-	.p_1{
-	   text-align: justify;
-		font-size: 1.2em;
-		line-height: 30px;
-	}
 	.cont_Contraloria{
 		margin: 25% auto 1% auto;
 	}
@@ -924,7 +919,7 @@
 	column-count: 2 !important;
 	width: 95%;
  	margin: auto; 
-	margin-top: 10%; 
+	margin-top: 27%; 
  	padding-left: 0%;
  }
   .cont_Galeria--img{
@@ -1430,6 +1425,10 @@
 .con_portada--label{
 	font-size: 4vw;
 }
+.cont_yaracuyVideo--video{
+	justify-content: center;
+	align-items: center;
+}
 .cont_yaracuyVideo--titulo{
 	font-size: 4.5vw;
 	width: 90%;
@@ -1442,6 +1441,7 @@
 	padding: 1%;
 	width: 10vw;
 	left: 1vw;
+	z-index: 50
 }
 .chevronRight{
 	background-color: rgba(29, 25, 25, 0.8);
@@ -1450,10 +1450,6 @@
 	padding: 1%;
 	width: 10vw;
 	right: 1vw;
-}
-.cont_yaracuyVideo--video{
-	justify-content: center;
-	align-items: center;
 }
 .con_portada--video{
 	margin: auto;
@@ -1501,11 +1497,6 @@
    margin: 20% auto 5% auto;
    padding: 0% 4%;
 }
-.p_1{
-   /* text-align: justify; */
-   font-size: 8vw;
-   line-height: 25px;
-}
 .cont_artista--vertical{
 	width: 100%; 
 	height: min-content; 
@@ -1522,10 +1513,6 @@
 }
 .cont_yaracuyVideo--cerrar{
 	width: 2em;
-}
-.cont_yaracuyVideo--membrete{
-	margin-top: 0.5%;
-	margin-left: 5%;
 }
 .cont_yaracuyVideo--redesSociales{
 	width: 50%; 
@@ -1546,6 +1533,15 @@
  }
  .cont_galeria--obras{
 	padding-top: 5%;
+ }
+ .cont_yaracuyVideo--membrete{
+	 /* background-color: red; */
+	 margin-top: 3%;
+	 padding-right: 15%;
+ }
+ .p_1{
+	font-size: 9.5vw;
+	line-height: 25px;
  }
 
 

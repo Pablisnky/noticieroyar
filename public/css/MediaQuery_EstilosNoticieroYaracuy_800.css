@@ -1502,6 +1502,7 @@
 	padding: 1%;
 	width: 10vw;
 	left: 1vw;
+	z-index: 50
 }
 .chevronRight{
 	background-color: rgba(29, 25, 25, 0.8);
@@ -1558,7 +1559,7 @@
    	column-count: 2 !important;
    	width: 95%;
 	margin: auto; 
-   	margin-top: 10%; 
+	margin-top: 27%;  
 	padding-left: 0%;
 }
 .cont_artista--vertical{
@@ -1601,6 +1602,10 @@
  }
  .cont_galeria--obras{
 	padding-top: 5%;
+ }
+ .p_1{
+	font-size: 9.5vw;
+	line-height: 25px;
  }
 
 

@@ -9,7 +9,10 @@
         <a href="<?php echo RUTA_URL ;?>/Inicio_C"><img class="header--menu header--menu--panel cont_yaracuyVideo--cerrar" id="Cerrar--modal" onclick="pausar()" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_white_24dp.png'?>"/></a>
 
         <!-- MEMBRETE FIJO -->
-        <label class="header__titulo cont_yaracuyVideo--membrete">NoticieroYaracuy</label>	
+        <div class="cont_yaracuyVideo--membrete">
+            <label class="header__titulo">NoticieroYaracuy</label>
+            <small class="cont_yaracuyVideo--small">YaracuyEnVideo</small>
+        </div>	
     </header>
     
     <div id="Slider_Videos">

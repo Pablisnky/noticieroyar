@@ -40,7 +40,7 @@
             // echo '</pre>';
             // exit;
             
-            $this->vista("header/header_SinMembrete");
+            $this->vista("header/header_Artista", $Datos);
             $this->vista("view/artistas_V", $Datos);
         }        
 
@@ -62,7 +62,7 @@
             // echo '</pre>';
             // exit;
 
-            $this->vista("header/header_SinMembrete");
+            $this->vista("header/header_Obra", $Datos);
             $this->vista("view/detalleObra_V", $Datos);
         }
         

@@ -917,10 +917,14 @@ textarea{
 	height: 100vh;
  }
  .cont_ObraDetalle--label{
-	 position: fixed;
-	 right: 8%;
-	 top: 4%;
-	 cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	right: 3%;
+	top: 2%;
+	cursor: pointer;
+	width: 10%;
  }
  .cont_ObraDetalle--img{
 	 width: 70%; 
@@ -928,19 +932,6 @@ textarea{
 	 margin-left: 5%;
 	 padding-top: 1%;
  }
-.cont_ObraDetalle--cerrar{
-	color: white;
-	position: fixed;
-	right: 2%;
-	top: 2.3%;
-	font-size: 2em;
-	width: 50px;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	border-radius: 50%;
-	z-index: 2;
-}
  .imagen_3{
 	 width: 100%;
 	 height: 100%;
@@ -963,17 +954,23 @@ textarea{
 	 font-size: 1em;
  }
  .cont_ObraDetalle--iconoLeft{
-	 color: rgba(255, 255, 255, 0.7);
-	 width: 2.5em;
-	 position: fixed;
-	 z-index: 1;
-	 top: 50% !important;
-	 left: 3%;
-	 cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.3);
+	color: rgba(255, 255, 255, 0.7);
+	width: 2.5em;
+	border-radius: 50%;
+	padding: 0.4%;
+	position: fixed;
+	z-index: 1;
+	top: 50% !important;
+	left: 3%;
+	cursor: pointer;
  }
  .cont_ObraDetalle--iconoRight{
+	background-color: rgba(255, 255, 255, 0.3);
 	 color: rgba(255, 255, 255, 0.7);
 	 width: 2.5em;
+	 border-radius: 50%;
+	 padding: 0.4%;
 	 position: fixed;
 	 z-index: 1;
 	 top: 50% !important;
@@ -990,10 +987,10 @@ textarea{
 	 bottom: 10pt;
  }
  .disponible{
-	 color: white;
+	 /* color: white;
 	 position: absolute;
 	 top: 2%;
-	 left: 2%;
+	 left: 2%; */
  }
  .disponible--true{
 	 cursor: pointer;
@@ -3422,9 +3419,6 @@ ul .menuContenedor_3{
 .cont_panel--agregaYaracuyEnVideo--enviar{
 	margin-top: 10%;
 }
-.cont_yaracuyVideo--membrete{
-	color: white;
-}
 .cont_yaracuyVideo--redesSociales{
 	display: flex;
 	flex-wrap: wrap;
@@ -3441,21 +3435,80 @@ ul .menuContenedor_3{
 .cont_yaracuyVideo--redesSociales > div:last-child{/*ocupa toda la ultima fila de la distribucion flex, el padre debe tener flex-wrap; los valores representtan los atibutos 'flex-grow' 'flex-shrink' y 'flex-basis' */
 	flex: 0 1 100% !important;
 }
-
-
-
-
-
-
-
-
 .cont_artista--icono{
 	background-color: black; 
 	display: block; 
 	margin-left: 25%; 
 	margin-top: 50%
 }
+.cont_artista--redesSociales{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin: auto;
+	height: 150px;
+	/* grid-column-start: 4; */
+	/* grid-column-end: 5;  */
+	/* margin-left: 35%; */
+	margin-top: 100%;
+}
+.cont_obra--redesSociales{
+	position: absolute;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	margin: auto;
+	height: 150px;
+	margin-top: 5%;
+}
 
+
+
+
+
+
+
+
+
+
+.cont_yaracuyVideo--membrete{
+	color: white;
+	text-align: right;
+	width: 90%;
+}
+.cont_yaracuyVideo--small{
+	color: rgba(255, 165, 0, 0.7);
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'Moon Dance', cursive;
+	display: block;
+	padding-right: 0.3%;
+}
+.cont_ObraDetalle--cerrar{
+	width: 40px; 
+	height: 40px;
+}	
+.cont_ObraDetalle--fullscreem{
+	text-align: center; 
+	display: inline; 
+	margin: auto; 
+	width: 1.8em;
+}
+.cont_descripcionArtista--titulo{
+	background-color: black; 
+	width: 5%; 
+	height: 100vh; 
+	position: fixed
+}
+.cont_descripcionArtista--descripcion{
+	width: 50%; 
+	padding:2%;
+}
 
 
 
