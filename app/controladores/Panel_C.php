@@ -258,7 +258,7 @@
 			$Artistas = $this->Panel_M->consultaArtistasPanel();
 
 			$Datos = [
-				'artistas' => $Artistas //ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
+				'artistas' => $Artistas //ID_Suscriptor, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
 			];
 
 			// echo '<pre>';
@@ -803,24 +803,24 @@
 				// Se coloca nuumero randon al principio del nombrde de la imagen para evitar que existan imagenes duplicadas
 				$Nombre_imagenPerfil = mt_rand() . '_' . $Nombre_imagenPerfil;
 
-				//Se INSERTA el perfil del artista y se devuelve el ID_Artista
-				$ID_Artista = $this->Panel_M->InsertarArtista($NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil);				
+				//Se INSERTA el perfil del artista y se devuelve el ID_Suscriptor
+				$ID_Suscriptor = $this->Panel_M->InsertarArtista($NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil);				
 
 				// remoto      Se crea el directorio donde iran las obras del artista
-                $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista;
+                $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista;
 
 				// local     Se crea el directorio donde iran las obras del artista
-                // $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista;
+                // $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista;
 
                 if(!file_exists($CarpetaArtista)){
                     mkdir($CarpetaArtista, 0777, true);
                 }
 				
 				// remoto
-                $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista.  '/perfil';
+                $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista.  '/perfil';
 
 				// local        Se crea el directorio donde iran las fotos de perfil del artista
-                // $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil';
+                // $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil';
 
 				if(!file_exists($CarpetaPerfilArtista)){
                     mkdir($CarpetaPerfilArtista, 0777, true);
@@ -829,7 +829,7 @@
 				// INSSERTA IMAGEN DE PERFIL EN SERVIDOR
 				// se comprime y se inserta el archivo en el directorio de servidor 
 				$Bandera = 'ImagenPerfilArtista';
-				$this->Comprimir->index($Bandera, $Nombre_imagenPerfil, $Tipo_imagenPerfil,$Tamanio_imagenPerfil, $Temporal_imagenPerfil, $ID_Artista, $NombreArtista, $ApellidoArtista);
+				$this->Comprimir->index($Bandera, $Nombre_imagenPerfil, $Tipo_imagenPerfil,$Tamanio_imagenPerfil, $Temporal_imagenPerfil, $ID_Suscriptor, $NombreArtista, $ApellidoArtista);
 			}	
 
 			header("Location:" . RUTA_URL . "/Panel_C/galeria");
@@ -967,16 +967,16 @@
 		}
 
 		// Muestra formulario con el artista a actualizar
-		public function actualizar_artista($ID_Artista){
+		public function actualizar_artista($ID_Suscriptor){
 			
 			//CONSULTA datos del artista a actualizar
-			$ArtistaActualizar = $this->Panel_M->consultarArtistaActualizar($ID_Artista);
+			$ArtistaActualizar = $this->Panel_M->consultarArtistaActualizar($ID_Suscriptor);
 			
 			//CONSULTA las obras del artista a actualizar
-			$ObrasArtista = $this->Panel_M->consultarObrasArtistaActualizar($ID_Artista);
+			$ObrasArtista = $this->Panel_M->consultarObrasArtistaActualizar($ID_Suscriptor);
 
 			$Datos = [
-				'artistaActualizar' => $ArtistaActualizar, //ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
+				'artistaActualizar' => $ArtistaActualizar, //ID_Suscriptor, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
 				'ObrasArtista' => $ObrasArtista //nombreObra, imagenObra
 			];
 
@@ -1436,7 +1436,7 @@
 
 		// recibe formulario que actualiza el perfil de un artista y sus obras
 		public function recibeArtistaActualizado(){
-			$ID_Artista = $_POST['id_artista'];
+			$ID_Suscriptor = $_POST['id_artista'];
 			$NombreArtista = $_POST['nombreArtista'];
 			$ApellidoArtista = $_POST['apellidoArtista'];
 			$CategoriaArtista = $_POST['categoriaArtista']; 	
@@ -1446,7 +1446,7 @@
 			$Tamanio_imagenPerfil = $_FILES['imagenPerfil']['size'];
 			$Tipo_imagenPerfil = $_FILES['imagenPerfil']['type'];
 
-			// echo "ID_Artista: " . $ID_Artista . '<br>';
+			// echo "ID_Suscriptor: " . $ID_Suscriptor . '<br>';
 			// echo "NombreArtista: " . $NombreArtista . '<br>';
 			// echo "ApellidoArtista: " . $ApellidoArtista . '<br>';
 			// echo "CategoriaArtista : " . $CategoriaArtista . '<br>';
@@ -1463,10 +1463,10 @@
 			$Nombre_imagenPerfil = mt_rand() . '_' . $Nombre_imagenPerfil;
 				
 			//Se ACTUALIZA el perfil del artista seleccionado
-			$this->Panel_M->ActualizarArtista($ID_Artista, $NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil);
+			$this->Panel_M->ActualizarArtista($ID_Suscriptor, $NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil);
 			
 			//Usar en remoto
-			$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
+			$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
 			
 			// usar en local
 			// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
@@ -1490,7 +1490,7 @@
 					// exit;
 					
 					//Usar en remoto
-					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/';
+					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/';
 
 					//usar en local
 					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
@@ -1499,7 +1499,7 @@
 					move_uploaded_file($Ruta_Temporal_imageneObra, $directorio_3.$_FILES['imagenesObras']['name'][$i]);
 
 					//Se INSERTAN nuevas obras
-					$this->Panel_M->insertarObra($ID_Artista, $Nombre_imageneObra, $tamanio_imageneObra, $tipo_imageneObra);
+					$this->Panel_M->insertarObra($ID_Suscriptor, $Nombre_imageneObra, $tamanio_imageneObra, $tipo_imageneObra);
 				}
 			}
 
@@ -1618,9 +1618,9 @@
 		}
 		
 		//Eliminar artista
-		public function eliminar_Artista($ID_Artista){
+		public function eliminar_Artista($ID_Suscriptor){
 
-			$this->Panel_M->eliminarArtista($ID_Artista);			
+			$this->Panel_M->eliminarArtista($ID_Suscriptor);			
 
 			header("Location:" . RUTA_URL . "/Panel_C/galeria");
 			die();

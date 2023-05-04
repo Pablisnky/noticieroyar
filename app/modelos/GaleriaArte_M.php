@@ -5,25 +5,26 @@
             parent::__construct();       
         }
         
-		//Muestra el select 
+		//SELECT de todos los artistas de la galeria 
 		public function ConsultarArtistas(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
-                FROM artistas"
+                "SELECT ID_SUscriptor, nombreSuscriptor, apellidoSuscriptor, municipioSuscriptor, nombre_imagenPortafolio
+                FROM suscriptores
+                WHERE nombre_imagenPortafolio != ' ' "
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);			
 		}
         
 		//Muestra el select 
-		public function ConsultarArtista($ID_Artista){
+		public function ConsultarArtista($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
-                FROM artistas
-                WHERE artistas.ID_Artista = :ID_ARTISTA"
+                "SELECT ID_Suscriptor, nombreSuscriptor, apellidoSuscriptor, municipioSuscriptor, nombre_imagenPortafolio
+                FROM suscriptores
+                WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
             );
             
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -33,16 +34,15 @@
             }			
 		}
 
-        public function ConsultarObraArtista($ID_Artista){
+        public function ConsultarObraArtista($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Obra, obra.ID_Artista, nombreObra, imagenObra
+                "SELECT ID_Obra, ID_Suscriptor, nombreObra, imagenObra
                  FROM obra
-                 INNER JOIN artistas ON obra.ID_Artista=artistas.ID_Artista
-                 WHERE artistas.ID_Artista = :ID_ARTISTA"
+                 WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -54,9 +54,9 @@
 
         public function consultarObra($ID_Obra){
             $stmt = $this->dbh->prepare(
-                "SELECT artistas.ID_Artista, ID_Obra, nombreObra, disponible, imagenObra, tecnicaObra, medidaObra, precioObra, nombreArtista, apellidoArtista, precioObra
+                "SELECT suscriptores.ID_Suscriptor, ID_Obra, nombreObra, disponible, imagenObra, tecnicaObra, medidaObra, nombreSuscriptor, apellidoSuscriptor, precioDolarObra
                  FROM obra
-                 INNER JOIN artistas ON obra.ID_Artista=artistas.ID_Artista 
+                 INNER JOIN suscriptores ON obra.ID_Suscriptor=suscriptores.ID_Suscriptor
                  WHERE ID_Obra = :ID_OBRA"
             );
 
@@ -71,11 +71,11 @@
             }
         }   
         
-        public function consultarObraAnterior($ID_Obra, $ID_Artista){
+        public function consultarObraAnterior($ID_Obra, $ID_Suscriptor){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Obra, nombreObra, medidaObra, tecnicaObra, imagenObra, disponible, precioObra
+                "SELECT ID_Obra, nombreObra, medidaObra, tecnicaObra, imagenObra, disponible, precioDolarObra
                 FROM obra 
-                WHERE ID_Obra < :ID_OBRA AND ID_Artista = :ID_ARTISTA
+                WHERE ID_Obra < :ID_OBRA AND ID_Suscriptor = :ID_SUSCRIPTOR
                 ORDER BY ID_Obra 
                 DESC 
                 LIMIT 1"
@@ -83,7 +83,7 @@
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':ID_OBRA', $ID_Obra, PDO::PARAM_INT);
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -93,18 +93,18 @@
             }
         }
 
-        public function consultarObraPosterior($ID_Obra, $ID_Artista){
+        public function consultarObraPosterior($ID_Obra, $ID_Suscriptor){
             $stmt = $this->dbh->prepare(
                 "SELECT ID_Obra, nombreObra, medidaObra, tecnicaObra, imagenObra, disponible, precioObra 
                 FROM obra 
-                WHERE ID_Obra > :ID_OBRA AND ID_Artista = :ID_ARTISTA
+                WHERE ID_Obra > :ID_OBRA AND ID_Suscriptor = :ID_SUSCRIPTOR
                 ORDER BY ID_Obra 
                 LIMIT 1"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':ID_OBRA', $ID_Obra, PDO::PARAM_INT);
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -114,19 +114,18 @@
             }
         }
 
-        public function consultarUltimoID_Obra($ID_Artista){
+        public function consultarUltimoID_Obra($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
                 "SELECT ID_Obra, imagenObra, disponible 
                 FROM obra
-                INNER JOIN artistas ON obra.ID_Artista=artistas.ID_Artista
-                WHERE artistas.ID_Artista = :ID_ARTISTA
+                WHERE ID_Suscriptor = :ID_SUSCRIPTOR
                 ORDER BY ID_Obra 
                 DESC 
                 LIMIT 1"
             );            
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -136,18 +135,17 @@
             }
         }
 
-        public function consultarprimerID_Obra($ID_Artista){
+        public function consultarprimerID_Obra($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
                 "SELECT ID_Obra, imagenObra, disponible
                 FROM obra 
-                INNER JOIN artistas ON obra.ID_Artista=artistas.ID_Artista
-                WHERE artistas.ID_Artista = :ID_ARTISTA
+                WHERE ID_Suscriptor = :ID_SUSCRIPTOR
                 ORDER BY ID_Obra 
                 LIMIT 1"
             );      
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetch(PDO::FETCH_ASSOC);

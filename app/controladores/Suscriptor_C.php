@@ -1,7 +1,6 @@
 <?php
     class Suscriptor_C extends Controlador{
         private $ConsultaSuscriptor_M;
-        private $ID_Suscriptor;
         private $Suscriptor;
         private $Instancia_Panel_C;
 
@@ -38,9 +37,6 @@
             // CONSULTA toda la información de perfil del suscriptor
             $this->Suscriptor = $this->ConsultaSuscriptor_M->consultarSuscriptor($ID_Suscriptor);
            
-            //Se CONSULTA al controlador Clasificado_C la cantidad de nuncios clasificados que tiene el suscriptor.
-            // require(RUTA_APP . "/controladores/Panel_Clasificados_C.php");
-            // $DatosCome = new Panel_Clasificados_C();
             // CONSULTA las secciones que tiene el catalogo de un suscriptor 
             $Secciones = $this->Instancia_Panel_C->SeccionesSuscriptor($ID_Suscriptor);
             
@@ -64,15 +60,16 @@
             $this->vista("suscriptores/suscrip_perfil_V", $Datos);
         } 
         
-        //carga la vista panel_suscriptor porque el usuario ya inicio sesion, se llega aqui por medio de la carita del header
+        //carga el dashboard de suscriptores
         public function accesoSuscriptor($ID_Suscriptor){
             //Se consultan datos del suscriptor
             $Suscriptor = $this->ConsultaSuscriptor_M->consultarSuscriptor($ID_Suscriptor);
             
-            //Se CONSULTA al controlador Clasificado_C la cantidad de nuncios clasificados que tiene el suscriptor.
-            // require(RUTA_APP . "/controladores/Panel_Clasificados_C.php");
-            // $DatosComerciante = new Panel_Clasificados_C();
+            //Se CONSULTA al controlador Panel_Clasificado_C la cantidad de nuncios clasificados que tiene el suscriptor.
             $Comerciante = $this->Instancia_Panel_C->clasificadoSuscriptor($ID_Suscriptor);
+
+            //CONSULTA cuantas obras tiene publicada un suscriptor
+            $Obras = $this->ConsultaSuscriptor_M->consultarObras($ID_Suscriptor);
 
             $Datos = [
                 'ID_Suscriptor' => $Suscriptor['ID_Suscriptor'],
@@ -80,7 +77,8 @@
                 'apellido' => $Suscriptor['apellidoSuscriptor'],
                 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
                 'telefono' => $Suscriptor['telefonoSuscriptor'],
-                'clasificados' => $Comerciante
+                'clasificados' => $Comerciante,
+                'obras' => $Obras
             ];
 
             // echo "<pre>";

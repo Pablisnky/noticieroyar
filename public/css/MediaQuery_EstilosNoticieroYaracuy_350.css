@@ -1,5 +1,5 @@
 @media screen and (max-width: 350px){/*aplicará en cualquier medio con dimensiones menores a lo indicado*/
-		/* DECLARACION DE VARIABLES */
+	
 :root{
 	--FondoDivModal--claro: rgba(0, 0, 0, 0.8);
 }
@@ -198,9 +198,6 @@
 }
 .cont_portada_giro{
 	bottom: 50pt;
-}
-.cont_portada_giro--atras{
-	bottom: 1pt;
 }
 .cont_portada_atras--coleccion{
 	text-align: center;
@@ -877,10 +874,12 @@
 	width: 100%;
  }
  .cont_galeria_h1{
-	background-color: white;
-	 font-size: 1.5em;
-	 width: 100%;
-	 height: 5vh;
+	background-color: white!important;
+	top: 7%;
+	font-size: 1.5em;
+	width: 100%;
+	padding-top: 4%;
+	height: 8vh;
  }
 .cont_botones_destacados{
 	display: none;
@@ -1399,10 +1398,10 @@
 }
 .con_portada--video{
 	margin: auto;
-	margin-top: 10%;
+	margin-top: 5%;
 	left: 0%; 
 	width: 100vw; 
-	height:max-content;
+	height: 57vh;
 }
 .cont_agregarYaracuyVideo--main{
 	margin-left: 0%; 
@@ -1440,10 +1439,11 @@
 	margin-top: 5%;
 }
 .cont_Contraloria--texto{
-   margin: 20% auto 5% auto;
+   	margin: 20% auto 5% auto;
+	width: 98%;
 }
-.p_1{
-   font-size: 10vw;
+.h_1{
+   font-size: 11vw;
    line-height: 25px;
 }
 .cont_artista--vertical{
@@ -1480,18 +1480,7 @@
 .Default--textoVertical{	
 	writing-mode: initial; 
 	transform: rotate(0deg); 
- }
- 
-
-
-
-
-
-
-
-
-
- 
+ } 
 .cont_yaracuyVideo--small{
 	display: none;
 }
@@ -1515,31 +1504,64 @@
 .cont_artista--redesSociales > div:last-child{/*ocupa toda la ultima fila de la distribucion flex, el padre debe tener flex-wrap; los valores representtan los atibutos 'flex-grow' 'flex-shrink' y 'flex-basis' */
 	flex: 0 1 100% !important;
 }
-
 .cont_ObraDetalle{
+	display: flex;
+	flex-direction: column;
 	padding-top: 5.5vh;
 	width: 100%;
-	height: 100vh;
+	max-height: 82vh;
+ }
+ .cont_ObraDetalle--img{
+	 width: 96%; 
+	 max-height: 77vh;
+	 min-height: 77vh;
+	 margin: auto;
+	 padding-top: 0%;
+ }
+ .cont_ObraDetalle--atras{
+	display: flex;
+	flex-direction: column;
+	/* text-align: center; */
+	 /* bottom: initial;  */
+	 width:100%; 
+	 height: 100vh;
+	 padding-top: 15%;
+	 z-index: 5;
  }
 .cont_ObraDetalle--leyenda{
-	background-color: black;
 	position: initial;
 	padding: 0.5% 1%;
 	border-radius: 0px;
+	height: 85vh;
 }
 .cont_ObraDetalle--iconoLeft{
 	border-radius: 50%;
 	padding: 1%;
-	width: 2.5em;
-	top: 40% !important;
-	left: 2%;
+	width: 1.8em;
+	position: initial;
+	
 }
 .cont_ObraDetalle--iconoRight{
 	border-radius: 50%;
 	padding: 1%;
-	width: 2.5em;
-	top: 40% !important;
-	left: 86%;
+	width: 1.8em;
+	position: initial;
+}
+.cont_ObraDetalle--iconos{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+	margin: auto;
+	margin-top: 3%;
+}
+.cont_ObraDetalle--giro{
+	background-color: rgba(255, 255, 255, 0.5); 
+	border-radius: 50%;
+	padding: 1%; 
+	width: 1.8em; 
+	display: block; 
+	margin: auto;
 }
 .cont_ObraDetalle--h1{
 	font-size: 8vw !important;
@@ -1557,12 +1579,6 @@
    right: 5%;
    top: 0%;
    width: 30%;
-}
-.cont_ObraDetalle--img{
-	width: 96%; 
-	height: min-content;
-	margin: auto;
-	padding-top: 0%;
 }
 .cont_ObraDetalle--cerrar{
 	width: 30px; 
@@ -1615,6 +1631,50 @@
 	padding: 4%;
 	padding-bottom: 100%;
 }
+.boton--marg{
+	margin: auto;
+	margin-top: 5vh;
+	margin-bottom: 32vh;
+}
+.cont_galeria--agenda{
+	column-count: 1 !important;
+	margin-top: 25%;
+ }
+
+
+
+
+ 
+
+
+
+.cont_galeria--menuSecundario{
+	width: 90%;
+	margin-top: -20%;
+	margin-left: -13%;
+}
+.cont_Artista--main{
+	margin-top: 18%;
+}
+.cont_galeria--texto{
+	width: max-content;
+}
+.small_3{
+	font-family: 'Montserrat', sans-serif;;
+	padding-right: 1%;
+	font-size: 4.2vw;
+	font-weight: bold;
+	margin-top: 1%;
+}
+.cont_galeria--icono{
+	width: 8vw;
+}
+
+
+
+
+
+
 
 
 
@@ -1628,14 +1688,12 @@
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-  }  
-  
+  }    
 main{
 	scroll-snap-type: y mandatory;
 	height: 100vh;
 	overflow-y: scroll;
-}
-  
+}  
 .section {
 	height: 100vh;
 }
@@ -1652,7 +1710,4 @@ main{
   .is-visible .section__img {
 	opacity: 1;
   }
-  /* ************************************************************************************* */
-  /* ************************************************************************************* */
-
 }

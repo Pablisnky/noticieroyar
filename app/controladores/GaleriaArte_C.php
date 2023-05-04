@@ -6,12 +6,13 @@
             $this->ConsultaGaleriaArte_M = $this->modelo("GaleriaArte_M");
         }
 
+        // Muestra todos los artistas con obras publicadas
         public function index(){            
             //Se CONSULTA los artistas en BD
             $Artistas = $this->ConsultaGaleriaArte_M->ConsultarArtistas();
             
             $Datos = [
-                'datosArtistas' => $Artistas, //ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
+                'datosArtistas' => $Artistas, //ID_Suscriptor, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
             ];
 
             // echo '<pre>';
@@ -23,16 +24,16 @@
             $this->vista("view/galeriaArte_V", $Datos);
         }
 
-        public function artistas($ID_Artista){
+        public function artistas($ID_Suscriptor){
             //Se CONSULTA un artista especifico
-            $Artistas = $this->ConsultaGaleriaArte_M->ConsultarArtista($ID_Artista);
+            $Artistas = $this->ConsultaGaleriaArte_M->ConsultarArtista($ID_Suscriptor);
 
             //Se CONSULTA las obras de un artista especifico
-            $ObraArtista = $this->ConsultaGaleriaArte_M->ConsultarObraArtista($ID_Artista);
+            $ObraArtista = $this->ConsultaGaleriaArte_M->ConsultarObraArtista($ID_Suscriptor);
             
             $Datos = [
-                'datosArtistas' => $Artistas, //ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
-                'obraArtista' => $ObraArtista //ID_Obra, ID_Artista, nombreObra, imagenObra
+                'datosArtistas' => $Artistas, 
+                'obraArtista' => $ObraArtista 
             ];
             
             // echo '<pre>';
@@ -53,8 +54,8 @@
             $MiniaturaObra = $this->ConsultaGaleriaArte_M->consultarMiniaturaObra($ID_Obra);
 
             $Datos = [
-                'detalleObra' => $Detalle_Obra, //ID_Artista, ID_Obra, nombreObra, disponible, imagenObra, tecnicaObra, medidaObra, precioObra, nombreArtista, apellidoArtista, precioObra
-                'obraMiniatura' => $MiniaturaObra //ID_ImagenMiniatura, nombre_ImagenMiniatura 
+                'detalleObra' => $Detalle_Obra,
+                'obraMiniatura' => $MiniaturaObra
             ];
 
             // echo '<pre>';
@@ -66,18 +67,18 @@
             $this->vista("view/detalleObra_V", $Datos);
         }
         
-        public function diapositivaObra($ID_Obra, $ID_Artista, $Recorrido){
+        public function diapositivaObra($ID_Obra, $ID_Suscriptor, $Recorrido){
             if($Recorrido == 'Retroceder'){
                 // Se consulta el nombre de la imagen anterior que se va amostrar en detalle
-                $DiapositivaObra = $this->ConsultaGaleriaArte_M->consultarObraAnterior($ID_Obra, $ID_Artista);
+                $DiapositivaObra = $this->ConsultaGaleriaArte_M->consultarObraAnterior($ID_Obra, $ID_Suscriptor);
             }
             else if($Recorrido == 'Avanzar'){
                 // Se consulta el nombre de la imagen posterior que se va amostrar en detalle
-                $DiapositivaObra = $this->ConsultaGaleriaArte_M->consultarObraPosterior($ID_Obra, $ID_Artista);
+                $DiapositivaObra = $this->ConsultaGaleriaArte_M->consultarObraPosterior($ID_Obra, $ID_Suscriptor);
             }
             
             //Se CONSULTA un artista especifico
-            $Artistas = $this->ConsultaGaleriaArte_M->ConsultarArtista($ID_Artista);
+            $Artistas = $this->ConsultaGaleriaArte_M->ConsultarArtista($ID_Suscriptor);
 
             // Se consultan las vistas miniaturas de la diapositiva,
             if(!empty($DiapositivaObra['ID_Obra'])){
@@ -88,8 +89,8 @@
             }
 
             $Datos = [
-                'diapositivaObra' => $DiapositivaObra, //ID_Obra, nombreObra, medidaObra, tecnicaObra, imagenObra, disponible, precioObra
-                'imagenMiniatura' => $MiniaturaObra, // ID_Obra, ID_ImagenMiniatura, nombre_ImagenMiniatura 
+                'diapositivaObra' => $DiapositivaObra,
+                'imagenMiniatura' => $MiniaturaObra, 
                 'artista' => $Artistas
             ];				
                 
@@ -105,16 +106,16 @@
             }
             else{ //Cuando el slider llega a un extremo
                 //Se consulta cual es el ultimo ID_Obra de la tabla "obra" de un artista especifico
-                $UltimoID_Obra = $this->ConsultaGaleriaArte_M->consultarUltimoID_Obra($ID_Artista);
+                $UltimoID_Obra = $this->ConsultaGaleriaArte_M->consultarUltimoID_Obra($ID_Suscriptor);
 
                 //Se consulta cual es el primer ID_Obra de la tabla "obra" de un artista especifico
-                $PrimerID_Obra = $this->ConsultaGaleriaArte_M->consultarprimerID_Obra($ID_Artista);
+                $PrimerID_Obra = $this->ConsultaGaleriaArte_M->consultarprimerID_Obra($ID_Suscriptor);
 
                 // Se consulta el nombre de la imagen que se va amostrar en detalle
                 $DiapositivaObra = $this->ConsultaGaleriaArte_M->consultarObra($ID_Obra);
                             
                 $Datos = [
-                    'diapositivaObra' => $DiapositivaObra, //ID_Artista, ID_Obra, nombreObra, disponible, imagenObra, tecnicaObra, medidaObra, precioObra, nombreArtista, apellidoArtista, precioObra
+                    'diapositivaObra' => $DiapositivaObra, 
                     'primerID_Obra' =>  $PrimerID_Obra, 
                     'ultimoID_Obra' => $UltimoID_Obra
                 ];
@@ -131,9 +132,9 @@
                     $MiniaturaObra = $this->ConsultaGaleriaArte_M->consultarMiniaturaObra($PrimerID_Obra['ID_Obra']);
 
                     $Datos = [
-                        'diapositivaObra' => $DiapositivaObra, //ID_Obra, nombreObra, nombre_ImgObra, disponible
-                        'imagenMiniatura' => $MiniaturaObra, // ID_Obra, ID_ImagenMiniatura, nombre_ImagenMiniatura 
-                        'primerID_Obra' => $PrimerID_Obra, //ID_Obra, nombre_ImgObra, disponible	
+                        'diapositivaObra' => $DiapositivaObra,
+                        'imagenMiniatura' => $MiniaturaObra, 
+                        'primerID_Obra' => $PrimerID_Obra, 	
                         'artista' => $Artistas,
                     ];
                 

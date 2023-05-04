@@ -1,8 +1,22 @@
 <?php
-    class Borrar_M extends ConexionClasificados_BD{
+    class Borrar_M extends Conexion_BD{
 
         public function __construct(){    
             parent::__construct();       
+        }
+        
+        public function seleccionarArtistas(){
+            $stmt = $this->dbh->prepare(
+                "SELECT *
+                 FROM artistas"
+            );
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
         }
 
         public function ConsultarAgenda(){
@@ -84,6 +98,25 @@
                     VALUES (:ID_PRODUCTO)"
                 );
                 $stmt->bindParam(':ID_PRODUCTO', $Row['ID_Producto']);
+                
+                //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+                $stmt->execute();
+            endforeach;
+            echo 'EXITO';
+        }
+        
+        //INSERT de artistas
+        public function InsertaArtista($Artistas){
+            foreach($Artistas as $Row)   :
+                $stmt = $this->dbh->prepare(
+                    "INSERT INTO suscriptores (nombreSuscriptor, apellidoSuscriptor, municipioSuscriptor, nombre_imagenPortafolio) 
+                    VALUES (:NOMBRE_ARTISTA, :APELLIDO_ARTISTA, :MUNICIPIO_ARTISTA, :IMAGEN_ARTISTA)"
+                );
+
+                $stmt->bindParam(':NOMBRE_ARTISTA', $Row['nombreArtista']);
+                $stmt->bindParam(':APELLIDO_ARTISTA', $Row['apellidoArtista']);
+                $stmt->bindParam(':MUNICIPIO_ARTISTA', $Row['municipioArtista']);
+                $stmt->bindParam(':IMAGEN_ARTISTA', $Row['imagenArtista']);
                 
                 //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
                 $stmt->execute();

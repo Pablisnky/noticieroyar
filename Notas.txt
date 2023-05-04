@@ -4,7 +4,7 @@ ll@ll.ll                 llll (relojes)
 yury@gmail.com           yyyy
 qq@qq.qq                 qqqq
 kk@kk.kk                 kkkk
-
+patricia@gmail.com       patricia
 *******************************************************************************
 En local y en remoto
     Cambiar en Configurar.php; 
@@ -45,5 +45,6 @@ los archivos
     "Comprimir_imagen.php" 
     "Panel_C.php" 
     "Panel_Clasificados_C.php
+    "Panel_Artista_C.php"
     "Suscriptor_C.php"
 tiene la opcion de subir a servidor remoto y servidor local, esta debe ser cambiada segun la condicion

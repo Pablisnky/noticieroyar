@@ -31,10 +31,10 @@ function conexionAJAX(){
 
 // *************************************************************************************************
     //Muestra cada obra individualmente en un slider
-    function Llamar_detalleObra(ID_Obra, ID_Artista, Recorrido){
-        // console.log("______Desde Llamar_detalleObra()______", ID_Obra + "/" + ID_Artista + "/" + Recorrido)
+    function Llamar_detalleObra(ID_Obra, ID_Suscriptor, Recorrido){
+        // console.log("______Desde Llamar_detalleObra()______", ID_Obra + "/" + ID_Suscriptor + "/" + Recorrido)
 
-        var url = "../../GaleriaArte_C/diapositivaObra/" + ID_Obra  + "/" + ID_Artista + "/" + Recorrido
+        var url = "../../GaleriaArte_C/diapositivaObra/" + ID_Obra  + "/" + ID_Suscriptor + "/" + Recorrido
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_detalleObra
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
@@ -43,7 +43,7 @@ function conexionAJAX(){
     function respuesta_detalleObra(){
         if(peticion.readyState == 4){
             if(peticion.status == 200){  
-                document.getElementById('Cont_PinturaDetalle').innerHTML = peticion.responseText 
+                document.getElementById('Miimagen').innerHTML = peticion.responseText 
             } 
             else{
                 alert('Problemas con la petición.')
@@ -55,55 +55,3 @@ function conexionAJAX(){
     }
 
 // *************************************************************************************************
-    //Muestra las miniaturas como imagen principal
-    function Llamar_VerMiniatura(ID_ImagenMiniatura){
-        // console.log("______Desde Llamar_VerMiniatura()______", ID_ImagenMiniatura)
-
-        var url = "../../DetallePintura_C/VerMiniatura/" + ID_ImagenMiniatura
-        http_request.open('GET', url, true)  
-        peticion.onreadystatechange = respuesta_VerMiniatura
-        peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
-        peticion.send("null")
-    }                                                                        
-    function respuesta_VerMiniatura(){
-        if(peticion.readyState == 4){
-            if(peticion.status == 200){  
-                document.getElementById('Imagen_Detalle').innerHTML = peticion.responseText 
-            } 
-            else{
-                alert('Problemas con la petición.')
-            }
-        }
-        else{ //en caso contrario, mostramos un gif simulando una precarga
-            // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
-        }
-    }
-
-// *************************************************************************************************
-// Invocada desde detalleObra_V.php - detalleObra_V.php
-    function Llamar_carrito(ID_Artista, nombreArtista, apellidoArtista, imagenObra, nombreObra, TecnicaObra, MedidaObra){
-        // localStorage.setItem('ContenidoCarrito', 1);
-        // console.log("______Desde Llamar_carrito()______", ID_Artista + "/" + nombreArtista + "/" + apellidoArtista + "/" + imagenObra + "/" + nombreObra + "/" + TecnicaObra + "/" + MedidaObra)
-        
-        var url = "../../Carrito_C/carrito_obras/" + ID_Artista + "/" + nombreArtista + "/" + apellidoArtista + "/" + imagenObra  + "/" + nombreObra  + "/" + TecnicaObra  + "/" + MedidaObra;
-        http_request.open('GET', url, true)  
-        peticion.onreadystatechange = respuesta_carrito
-        peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
-        peticion.send("null")        
-    }                                                                        
-    function respuesta_carrito(){
-        if(peticion.readyState == 4){
-            if(peticion.status == 200){  
-
-                document.getElementById('Modal_carrito').style.display = "block"
-                document.getElementById('Modal_carrito').innerHTML = peticion.responseText 
-
-            } 
-            else{
-                alert('Problemas con la petición.')
-            }
-        }
-        else{ //en caso contrario, mostramos un gif simulando una precarga
-            // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
-        }
-    }

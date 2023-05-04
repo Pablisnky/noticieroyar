@@ -12,7 +12,7 @@
         
 		// Se usa solo para cargar el metodo que se desea probar
 		public function index(){			
-			header('location:' . RUTA_URL . '/Borrar_C/actualizarSecciones');
+			header('location:' . RUTA_URL . '/Borrar_C/insertarArtistas');
 		}
 
 		// Metodo para filtrar y sabear datos introducidos por los usuarios en formularios
@@ -216,6 +216,15 @@
 		public function insertar_DT($ID_Productos){
 			
 			$this->Borrar_M->InsertaDT($ID_Productos);
+		}
+		
+		//INSERTA artista en la tabla suscriptores, ya estaban en la tabla artistas pero deben ser cambiados a la tabla suscriptores
+		public function insertarArtistas(){
+			
+			$Artistas = $this->Borrar_M->seleccionarArtistas();
+			echo '<pre>';
+			print_r($Artistas);
+			echo '</pre>';
 		}
 	}
 ?>

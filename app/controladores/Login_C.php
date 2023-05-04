@@ -197,16 +197,22 @@
                     }
                     else if($Bandera == 'SinBandera'){// entra al panel de suscriptor
                         
-                        //Se CONSULTA al controlador Clasificado_C la cantidad de anuncios clasificados que tiene el suscriptor.
+                        //Se CONSULTA al controlador Panel_Clasificados_C la cantidad de anuncios clasificados que tiene el suscriptor.
                         require_once(RUTA_APP . "/controladores/Panel_Clasificados_C.php");
                         $DatosComerciante = new Panel_Clasificados_C();
                         $Comerciante = $DatosComerciante->clasificadoSuscriptor($ID_Suscriptor);
+                        
+                        //Se CONSULTA al controlador Panel_Artista_C la cantidad de obras que tiene el suscriptor.
+                        require_once(RUTA_APP . "/controladores/Panel_Artista_C.php");
+                        $Obras = new Panel_Artista_C();
+                        $Cant_Obras = $Obras->cantidadObras($ID_Suscriptor);
                         
                         $Datos = [                
                             'ID_Suscriptor' => $ID_Suscriptor,            
                             'nombre' => $Nombre,
                             'apellido' => $Apellido,
-                            'clasificados' => $Comerciante
+                            'clasificados' => $Comerciante,
+                            'obras' => $Cant_Obras
                         ];
 
                         // echo '<pre>';

@@ -2,7 +2,7 @@
 	<div>
 		<h1 class="cont_galeria_h1 Default--textoVertical">Agenda de eventos</h1>
 	</div>
-	<div class="cont_galeria" id="PantallaCompleta">
+	<div class="cont_galeria cont_galeria--agenda" id="PantallaCompleta">
 		<?php
 		foreach($Datos['agenda'] as $Key) :  ?>
 			<div class="cont_Galeria--item" >

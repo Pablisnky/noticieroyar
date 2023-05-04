@@ -15,7 +15,7 @@
                     <div style=" width: 30%">    
                         <label class="Default_pointer" for="imgArt">    
                             <figure>
-                                <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImgArtista" src="<?php echo RUTA_URL . '/public/images/galeria/' . $Datos['artistaActualizar'][0]['ID_Artista'] . '_' . $Datos['artistaActualizar'][0]['nombreArtista'] . '_' . $Datos['artistaActualizar'][0]['apellidoArtista'] . '/perfil/'. $Datos['artistaActualizar'][0]['imagenArtista'];?>"/>
+                                <img class="cont_panel--imagen" alt="Fotografia Principal" id="ImgArtista" src="<?php echo RUTA_URL . '/public/images/galeria/' . $Datos['artistaActualizar'][0]['ID_Suscriptor'] . '_' . $Datos['artistaActualizar'][0]['nombreArtista'] . '_' . $Datos['artistaActualizar'][0]['apellidoArtista'] . '/perfil/'. $Datos['artistaActualizar'][0]['imagenArtista'];?>"/>
                             </figure>
                         </label>
                         <input class="Default_ocultar" type="file" name="imagenPerfil" id="imgArt"/>
@@ -62,7 +62,7 @@
                                         <label class="Default_pointer" for="imgInp_3"><img class="Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/edit/outline_edit_black_24dp.png';?>"/></label>
                                     </div> 
                                     <figure> 
-                                        <img class="actualizar_cont--imagen" alt="Fotografia Principal" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Datos['artistaActualizar'][0]['ID_Artista'];?>_<?php echo $Datos['artistaActualizar'][0]['nombreArtista'];?>_<?php echo $Datos['artistaActualizar'][0]['apellidoArtista'];?>/<?php echo $Row['imagenObra'];?>"/> 
+                                        <img class="actualizar_cont--imagen" alt="Fotografia Principal" id="ImagenSecundaria" src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Datos['artistaActualizar'][0]['ID_Suscriptor'];?>_<?php echo $Datos['artistaActualizar'][0]['nombreArtista'];?>_<?php echo $Datos['artistaActualizar'][0]['apellidoArtista'];?>/<?php echo $Row['imagenObra'];?>"/> 
                                     </figure>
                                 </div>
                                 <?php
@@ -70,7 +70,7 @@
                         </div>
                     <!-- </div> -->
                 <div> 
-                    <input class="Default_ocultar" type="text" name="id_artista" value="<?php echo $Datos['artistaActualizar'][0]['ID_Artista'];?>"/> 
+                    <input class="Default_ocultar" type="text" name="id_artista" value="<?php echo $Datos['artistaActualizar'][0]['ID_Suscriptor'];?>"/> 
                     <input class="boton" type="submit" id="Boton_Agregar" value="Actualizar artista"/>  
                 </div>            
             </form>

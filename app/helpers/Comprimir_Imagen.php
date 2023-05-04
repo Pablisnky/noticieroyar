@@ -1,18 +1,21 @@
 <?php
     //Clase para comprimir imagenes	
     class Comprimir_Imagen{
-        // private $ID_Artista;
+        // private $ID_Suscriptor;
         // private $NombreArtista;
         // private $ApellidoArtista;
 
-        public function index($Bandera, $Nombre_Imagen, $Tipo_Imagen, $Tamanio_Imagen, $Temporal_Imagen, $ID_Artista = null, $NombreArtista = null, $ApellidoArtista = null){
+        public function index($Bandera, $Nombre_Imagen, $Tipo_Imagen, $Tamanio_Imagen, $Temporal_Imagen, $ID_Suscriptor = null, $NombreArtista = null, $ApellidoArtista = null){
             // echo 'Bandera: ' . $Bandera . '<br>';
             // echo 'Nombre_Imagen: ' .  $Nombre_Imagen . '<br>';
             // echo 'Tipo_Imagen: ' .  $Tipo_Imagen . '<br>';
             // echo 'Tamanio_Imagen: ' .  $Tamanio_Imagen . '<br>';
             // echo 'Temporal_Imagen: ' .  $Temporal_Imagen . '<br>';
+            // echo 'ID_Suscriptor: ' .  $ID_Suscriptor . '<br>';
+            // echo 'NombreArtista: ' .  $NombreArtista . '<br>';
+            // echo 'ApellidoArtista: ' .  $ApellidoArtista . '<br>';
             // echo '<br>';
-            
+            // exit;
 
             if($Bandera == 'ImagenPublicidad'){ //viene de Panel_C/recibePublicidadAgregada
                 
@@ -25,10 +28,10 @@
             else if($Bandera == 'ImagenPerfilArtista'){ //viene de Panel_C/recibeArtistaAgregado
                 
                 // Usar en remoto
-                $Patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/'. $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista. '/perfil/';
+                $Patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/'. $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista. '/perfil/';
 
                 // usar en local
-                // $Patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Artista . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
+                // $Patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
             }
             else if($Bandera == 'ImagenPrincipalNoticia'){ //viene de Panel_C/recibeNotiAgregada
                 
@@ -92,6 +95,20 @@
                 //usar en local         
                 // $Patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/';
             }
+            else if($Bandera == 'imagenPortafolio'){
+                //Usar en remoto        
+                $Patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
+
+                //usar en local         
+                // $Patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
+            } 
+            else if($Bandera == 'imagenObra'){
+                //Usar en remoto        
+                $Patch = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/';
+
+                //usar en local         
+                // $Patch = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/';
+            } 
             if(isset($Nombre_Imagen)){
                                 
                 //Parámetros optimización, resolución máxima permitida

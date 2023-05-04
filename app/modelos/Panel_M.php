@@ -416,15 +416,15 @@
         }
 
         //SELECT de los artistas de la galeria de arte
-        public function consultarArtistaActualizar($ID_Artista){
+        public function consultarArtistaActualizar($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
-                "SELECT ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
+                "SELECT ID_Suscriptor, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
                 FROM artistas  
-                WHERE ID_Artista = :ID_ARTISTA"
+                WHERE ID_Suscriptor = :ID_ARTISTA"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista , PDO::PARAM_INT);
+            $stmt->bindParam(':ID_ARTISTA', $ID_Suscriptor , PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -436,15 +436,15 @@
         }
 
         //SELECT de obras de un artista especifico
-        public function consultarObrasArtistaActualizar($ID_Artista){
+        public function consultarObrasArtistaActualizar($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
                 "SELECT nombreObra, imagenObra
                 FROM obra 
-                WHERE ID_Artista = :ID_ARTISTA"
+                WHERE ID_Suscriptor = :ID_ARTISTA"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_ARTISTA', $ID_Suscriptor, PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -628,7 +628,7 @@
         // CONSULTA los artistas registrados en la galeria
         public function consultaArtistasPanel(){
             $stmt = $this->dbh->query(
-                "SELECT ID_Artista, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
+                "SELECT ID_Suscriptor, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
                 FROM artistas"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC); 
@@ -1072,14 +1072,14 @@
         }
 
         //INSERT de obras
-        public function insertarObra($ID_Artista, $Nombre_imageneObra, $Tamanio_imageneObra, $Tipo_imageneObra){
+        public function insertarObra($ID_Suscriptor, $Nombre_imageneObra, $Tamanio_imageneObra, $Tipo_imageneObra){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO obra (ID_Artista, imagenObra, tamanioObra, tipoObra) 
+                "INSERT INTO obra (ID_Suscriptor, imagenObra, tamanioObra, tipoObra) 
                 VALUES (:ID_ARTISTA, :IMAGEN_OBRA, :TAMANIO_OBRA, :TIPO_OBRA)"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista, PDO::PARAM_STR);
+            $stmt->bindParam(':ID_ARTISTA', $ID_Suscriptor, PDO::PARAM_STR);
             $stmt->bindParam(':IMAGEN_OBRA', $Nombre_imageneObra, PDO::PARAM_STR);
             $stmt->bindParam(':TAMANIO_OBRA', $Tamanio_imageneObra, PDO::PARAM_STR);
             $stmt->bindParam(':TIPO_OBRA', $Tipo_imageneObra, PDO::PARAM_STR);
@@ -1441,11 +1441,11 @@
         }
         
         // UPDATE de perfil de artista
-        public function ActualizarArtista($ID_Artista, $NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil){           
+        public function ActualizarArtista($ID_Suscriptor, $NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil){           
             $stmt = $this->dbh->prepare(
                 "UPDATE artistas  
                 SET nombreArtista = :NOMBRE_ARTISTA, apellidoArtista = :APELLIDO_ARTISTA, catgeoriaArtista = :CATEGORIA_ARTISTA, municipioArtista = :MUNICIPIO_ARTISTA, imagenArtista = :IMAGEN_ARTISTA, tamanioArtista = :TAMAO_ARTISTA, tipoArtista = :TIPO_ARTISTA
-                WHERE ID_Artista = :ID_ARTISTA"
+                WHERE ID_Suscriptor = :ID_ARTISTA"
             );
 
             // Se vinculan los valores de las sentencias preparadas
@@ -1456,7 +1456,7 @@
             $stmt->bindParam(':IMAGEN_ARTISTA', $Nombre_imagenPerfil, PDO::PARAM_STR);
             $stmt->bindParam(':TAMAO_ARTISTA', $Tamanio_imagenPerfil, PDO::PARAM_STR);
             $stmt->bindParam(':TIPO_ARTISTA', $Tipo_imagenPerfil, PDO::PARAM_STR);
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_ARTISTA', $ID_Suscriptor, PDO::PARAM_INT);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -1573,13 +1573,13 @@
             $stmt->execute(); 
         }
         
-        public function eliminarArtista($ID_Artista){
+        public function eliminarArtista($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
                 "DELETE FROM artistas  
-                WHERE ID_Artista = :ID_ARTISTA"
+                WHERE ID_Suscriptor = :ID_ARTISTA"
             );
         
-            $stmt->bindParam(':ID_ARTISTA', $ID_Artista , PDO::PARAM_INT);
+            $stmt->bindParam(':ID_ARTISTA', $ID_Suscriptor , PDO::PARAM_INT);
             $stmt->execute(); 
         }
 

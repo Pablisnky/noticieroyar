@@ -31,10 +31,10 @@ function conexionAJAX(){
 
 // *************************************************************************************************
     //Esta funcion no retorna nada al documento de donde se llama, solo ejecuta la accion de eliminar el artista del servidor, es invocada desde E_PanelArtista.js
-    function Llamar_EliminarArtista(ID_Artista){
-        // console.log("______Desde Llamar_EliminarArtista()______", ID_Artista)
+    function Llamar_EliminarArtista(ID_Suscriptor){
+        // console.log("______Desde Llamar_EliminarArtista()______", ID_Suscriptor)
         
-        var url = "../Panel_C/eliminar_Artista/" + ID_Artista
+        var url = "../Panel_C/eliminar_Artista/" + ID_Suscriptor
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_EliminarArtista
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")

@@ -9,10 +9,10 @@
         </div>       
     </a>
 
-    <a class="cont_suscriptor--item borde_1" href="#" rel="noopener noreferrer">
+    <a class="cont_suscriptor--item borde_1" href="<?php echo RUTA_URL . '/Panel_Artista_C/index/' . $Datos['ID_Suscriptor']?>" rel="noopener noreferrer">
         <div class="contenedor_27">
-            <h1 class="cont_suscriptor--h1">Comentarios realizados</h1>
-            <label class="label_5">0</label>
+            <h1 class="cont_suscriptor--h1">Obras publicadas</h1>
+            <label class="label_5"><?php echo $Datos['obras']['cantidadObras'];?></label>
         </div>       
     </a>
 

@@ -22,12 +22,6 @@
 		margin: 0.5% auto 1.5% auto;
 		margin-bottom: -35px; /*este margen se usa para que la imagen se pegue arriba del div, el position relaive deja un espacio en blanco del alto de su height*/
 	}
-	.con_portada--video{
-		position: relative; 
-		left: initial; 
-		width: 100%; 
-		height: 100vh;
-	}
 	.cont_portada_atras--titulo{
 		font-size: 1.7em;
 	}
@@ -136,6 +130,15 @@
 	.cont_Contraloria--texto{
 		margin: 20% auto;
 		padding: 0% 4%;
+		width: 98%;
+	}
+	.h_1{
+	   font-size: 11vw;
+	   line-height: 25px;
+	}
+	.small_3{
+		padding-right: 3%;
+		font-size: 8vw;
 	}
 	.cont_Contraloria--botones{
 		width: 100%; 
@@ -404,9 +407,6 @@
 	}
 	.cont_portada_giro{
 		bottom: 40pt;
-	}
-	.cont_portada_giro--atras{
-		bottom: 1pt;
 	}
 	.cont_radio{
 		display: flex; 
@@ -1478,12 +1478,13 @@
 	justify-content: center;
 	align-items: center;
 }
-.con_portada--video{
+.con_portada--video{	
+	position: relative; 
 	margin: auto;
 	margin-top: 10%;
 	left: 0%; 
 	width: 100vw; 
-	height:max-content;
+	height: 63vh;
 }
 .cont_yaracuyVideo--titulo{
 	font-size: 4.5vw;
@@ -1594,7 +1595,7 @@
  .cont_galeria--obras{
 	padding-top: 5%;
  }
- .p_1{
+ .h_1{
 	font-size: 10vw;
 	line-height: 25px;
  }
@@ -1658,9 +1659,18 @@
 	 margin-left: 5%;
  }
  .cont_ObraDetalle{
+	display: flex;
+	flex-direction: column;
 	padding-top: 5.5vh;
 	width: 100%;
-	height: 100vh;
+	height: 93vh;
+ }
+ .cont_ObraDetalle--img{
+	margin: 98%;
+	max-height: 77vh;
+	min-height: 77vh;
+	margin: auto;
+	padding-top: 0%;
  }
  .cont_ObraDetalle--leyenda{
 	 background-color: black;
@@ -1668,19 +1678,25 @@
 	 padding: 0.5% 1%;
 	 border-radius: 0px;
  }
+ .cont_ObraDetalle--giro{
+	 background-color: rgba(255, 255, 255, 0.5); 
+	 border-radius: 50%;
+	 padding: 1%; 
+	 width: 2em; 
+	 display: block; 
+	 margin: auto;
+ }
  .cont_ObraDetalle--iconoLeft{
 	 border-radius: 50%;
 	 padding: 1%;
-	 width: 2.5em;
-	 top: 40% !important;
-	 left: 2%;
+	 width: 2em;
+	 position: initial;
  }
  .cont_ObraDetalle--iconoRight{
 	 border-radius: 50%;
 	 padding: 1%;
-	 width: 2.5em;
-	 top: 40% !important;
-	 left: 86%;
+	 width: 2em;
+	 position: initial;
  }
  .cont_ObraDetalle--h1{
 	 font-size: 8vw !important;
@@ -1699,12 +1715,6 @@
 	top: 0%;
 	width: 30%;
  }
- .cont_ObraDetalle--img{
-	 width: 96%; 
-	 height: min-content;
-	 margin: auto;
-	 padding-top: 0%;
- }
  .cont_ObraDetalle--cerrar{
 	 width: 30px; 
 	 height: 30px;
@@ -1717,7 +1727,31 @@
 	 width: 100%;
 	 object-fit: contain; 
  }
-
+ .cont_ObraDetalle--iconos{
+	 display: flex;
+	 justify-content: space-between;
+	 align-items: center;
+	 width: 90%;
+	 margin: auto;
+ }
+ .cont_ObraDetalle--atras{
+	display: flex;
+	flex-direction: column;
+	/* text-align: center; */
+	 /* bottom: initial;  */
+	 width:100%; 
+	 height: 100vh;
+	 padding-top: 15%;
+	 z-index: 5;
+ }
+ .boton--marg{
+	 margin: auto;
+	 margin-top: 5vh;
+	 margin-bottom: 47vh;
+ }
+ .cont_galeria--agenda{
+	column-count: 1 !important;
+ }
 
 
 

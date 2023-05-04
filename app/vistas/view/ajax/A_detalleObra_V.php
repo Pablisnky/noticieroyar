@@ -32,7 +32,7 @@
 			$Nombre_Obra = $Datos['diapositivaObra']['nombreObra'];
 			$Tecnica_Obra = $Datos['diapositivaObra']['tecnicaObra'];
 			$Medida_Obra = $Datos['diapositivaObra']['medidaObra'];	?>
-			<!-- <label class="disponible disponible--true" onclick="Llamar_carrito('<?php echo $Datos['artista']['ID_Artista'];?>','<?php echo $Datos['artista']['nombreArtista'];?>','<?php echo $Datos['artista']['apellidoArtista'];?>','<?php echo $NombreImgObra?>','<?php echo $Nombre_Obra?>','<?php echo $Tecnica_Obra?>','<?php echo $Medida_Obra?>')">disponible</label> -->
+			<!-- <label class="disponible disponible--true" onclick="Llamar_carrito('<?php echo $Datos['artista']['ID_Suscriptor'];?>','<?php echo $Datos['artista']['nombreSuscriptor'];?>','<?php echo $Datos['artista']['apellidoSuscriptor'];?>','<?php echo $NombreImgObra?>','<?php echo $Nombre_Obra?>','<?php echo $Tecnica_Obra?>','<?php echo $Medida_Obra?>')">disponible</label> -->
 			<?php
 		}
 		else{	?>
@@ -41,29 +41,48 @@
 		}	
 	}
 ?>
+<div class="carta-box"> 
+	<div class="carta" id="Carta">
+		<!-- LADO FRONTAL DE TARJETA -->
+		<div class="cont_ObraDetalle cara" id="Cont_PinturaDetalle">
 
-<!-- FLECHAS DE AVANCE Y RETROCESO -->
-<img class="Default_pointer cont_ObraDetalle--iconoLeft" onclick="Llamar_detalleObra('<?php echo $ID_MostrarObra;?>','<?php echo $Datos['artista']['ID_Artista'];?>','Retroceder')" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_back_ios_white_24dp.png'?>"/>
+			<!-- IMAGEN OBRA -->
+			<div class="cont_ObraDetalle--img" id="Imagen_Detalle">
+				<img class="imagen_3" src="<?php echo RUTA_URL. "/public/images/galeria/" . $Datos['artista']['ID_Suscriptor'];?>_<?php echo $Datos['artista']['nombreSuscriptor'];?>_<?php echo $Datos['artista']['apellidoSuscriptor'] . "/" . $Datos['diapositivaObra']['imagenObra'];?>"/>
+			</div>
+			<div class="cont_ObraDetalle--iconos">
+			
+				<!-- FLECHA DE RETROCESO -->
+				<img class="Default_pointer cont_ObraDetalle--iconoLeft" onclick="Llamar_detalleObra('<?php echo $ID_MostrarObra;?>','<?php echo $Datos['artista']['ID_Suscriptor'];?>','Retroceder')" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_back_ios_white_24dp.png'?>"/>
 
-<img class="Default_pointer cont_ObraDetalle--iconoRight" onclick="Llamar_detalleObra('<?php echo $ID_MostrarObra;?>','<?php echo $Datos['artista']['ID_Artista'];?>','Avanzar')" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_white_24dp.png'?>"/>
+				<!-- BOTON DE GIRO-->
+				<img class="cont_ObraDetalle--giro Default_pointer Default_quitarEscritorio" onclick="AtrasTarjeta('Cont_PinturaDetalle')" src="<?php echo RUTA_URL . '/public/iconos/giro/outline_switch_right_black_24dp.png'?>"/>
 
-	<!-- IMAGEN OBRA -->
-<div class="cont_ObraDetalle--img">
-	<!-- <div style="height: 98%;" id="Imagen_Detalle"> -->
-		<img class="imagen_3" src="<?php echo RUTA_URL. "/public/images/galeria/" . $Datos['artista']['ID_Artista'];?>_<?php echo $Datos['artista']['nombreArtista'];?>_<?php echo $Datos['artista']['apellidoArtista'] . "/" . $Datos['diapositivaObra']['imagenObra'];?>"/>
-	<!-- </div> -->
-	
-		<!-- BOTON DE GIRO-->
-		<img class="Default_pointer" style="background-color: rgba(255, 255, 255, 0.5); text-align: center; display: block; margin-left: 45%; width: 10%; border-radius: 50%" onclick="GirarObra()" src="<?php echo RUTA_URL . '/public/iconos/giro/outline_switch_right_black_24dp.png'?>"/>
+				<!-- FLECHA DE AVANCE -->
+				<img class="Default_pointer cont_ObraDetalle--iconoRight" onclick="Llamar_detalleObra('<?php echo $ID_MostrarObra;?>','<?php echo $Datos['artista']['ID_Suscriptor'];?>','Avanzar')" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_white_24dp.png'?>"/>
+			</div>
+		</div>
+
+		<!-- LADO POSTERIOR DE TARJETA -->
+		<div class="cont_ObraDetalle--atras cara detras">
+					<div>		
+			<!-- <label class="cont_ObraDetalle--p1 disponible--true">disponible</label> -->
+			<h1 class="cont_ObraDetalle--h1"><?php echo 'El Cuervo azul';?></h1>
+			<p class="cont_ObraDetalle--p1"><b>Autor: </b> Patricia Proaño</p>
+			<p class="cont_ObraDetalle--p1"><b>Año: </b> 2022</p>
+			<p class="cont_ObraDetalle--p1"><b>Dimensiones: </b><?php echo '234 x 56 cm';?></p> 
+			<p class="cont_ObraDetalle--p1"><b>Tecnica: </b> <?php echo 'Oleo frio'?></p> 
+			<p class="cont_ObraDetalle--p1"><b>Colección: </b><?php echo 'Unica';?></p> 
+			<p class="cont_ObraDetalle--p1"><b>Descripción: </b><?php echo 'No disponible';?></p> 
+			<p class="cont_ObraDetalle--p1"><b>Precio: </b><?php echo '260 $';?></p> 
+			<label class="boton boton--marg">Comprar</label> 
+			</div>
+<div>
+		
+			<!-- BOTON DE GIRO-->
+			<img class="cont_ObraDetalle--giro Default_pointer Default_quitarEscritorio" onclick="FrenteTarjeta('Cont_PinturaDetalle')" src="<?php echo RUTA_URL . '/public/iconos/giro/outline_switch_right_black_24dp.png'?>"/>
+				</div>
+
+		</div>
+	</div>
 </div>
-
-<!-- LEYENDA -->
-<div class="cont_ObraDetalle--leyenda">
-	<h1 class="cont_ObraDetalle--h1"><?php echo $Datos['diapositivaObra']['nombreObra'];?></h1>
-	<p class="cont_ObraDetalle--p1"><?php echo $Datos['diapositivaObra']['medidaObra'];?></p> 
-	<p class="cont_ObraDetalle--p1"><?php echo $Datos['diapositivaObra']['tecnicaObra'];?></p> 
-	<p class="cont_ObraDetalle--p1"><?php echo $Datos['diapositivaObra']['precioObra'];?></p> 
-	<!-- <label class="Default_pointer" onclick="Llamar_carrito('<?php echo $Datos['artista']['ID_Artista']?>','<?php //echo $Datos['artista']['nombreArtista'];?>','<?php //echo $Datos['artista']['apellidoArtista'];?>','<?php //echo $NombreImgObra?>','<?php //echo $Nombre_Obra?>','<?php //echo $Tecnica_Obra?>','<?php //echo $Medida_Obra?>')"><img style="background-color: black; padding-left: 3%;" src="<?php //echo RUTA_URL?>/public/iconos/carritoCompras/outline_shopping_cart_white_24dp.png"/></label> -->
-</div>
-
-<script src="<?php echo RUTA_URL;?>/public/javascript/A_DetallesObra.js?v=<?php echo rand();?>"></script> 

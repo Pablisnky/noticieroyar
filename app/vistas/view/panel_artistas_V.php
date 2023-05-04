@@ -12,11 +12,11 @@
         <?php
         $Iterador = 0;
         foreach($Datos['artistas'] as $Row) : ?>
-            <div style="display: flex; margin-bottom: 5%;" id="<?php echo $Row['ID_Artista'];?>">                
+            <div style="display: flex; margin-bottom: 5%;" id="<?php echo $Row['ID_Suscriptor'];?>">                
                 <!-- IMAGEN ARTISTA -->
                 <div class="cont_panel__agenda--imagen">       
                     <figure>
-                        <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL . '/public/images/galeria/' . $Datos['artistas'][$Iterador]['ID_Artista'] . '_' . $Datos['artistas'][$Iterador]['nombreArtista'] . '_' . $Datos['artistas'][$Iterador]['apellidoArtista']. '/perfil/' . $Row['imagenArtista'];?>"/> 
+                        <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL . '/public/images/galeria/' . $Datos['artistas'][$Iterador]['ID_Suscriptor'] . '_' . $Datos['artistas'][$Iterador]['nombreArtista'] . '_' . $Datos['artistas'][$Iterador]['apellidoArtista']. '/perfil/' . $Row['imagenArtista'];?>"/> 
                     </figure>
                 </div>
                 <div>                            
@@ -35,13 +35,13 @@
 
                     <div style="width: 100%;">
                         <!-- ACTUALIZAR ARTISTA -->
-                        <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_artista/<?php echo $Row['ID_Artista'];?>" rel="noopener noreferrer">Actualizar</a>
+                        <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_artista/<?php echo $Row['ID_Suscriptor'];?>" rel="noopener noreferrer">Actualizar</a>
 
                         <!-- AGREGAR OBRA -->
-                        <!-- <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_artista/<?php echo $Row['ID_Artista'];?>" rel="noopener noreferrer">Agregar obra</a> -->
+                        <!-- <a href="<?php echo RUTA_URL?>/Panel_C/actualizar_artista/<?php echo $Row['ID_Suscriptor'];?>" rel="noopener noreferrer">Agregar obra</a> -->
                         
                         <!-- ELIMINAR ARTISTA -->
-                        <label class="Default_pointer" style="color: blue; margin-left: 50px" onclick="EliminarArtista('<?php echo $Row['ID_Artista'];?>')">Eliminar</label>
+                        <label class="Default_pointer" style="color: blue; margin-left: 50px" onclick="EliminarArtista('<?php echo $Row['ID_Suscriptor'];?>')">Eliminar</label>
                     </div>
                 </div> 
             </div>

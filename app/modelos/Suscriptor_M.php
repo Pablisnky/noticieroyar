@@ -82,7 +82,7 @@
             $stmt->execute();
         }
         
-        //UPDATE de imagen de catalogo
+        //UPDATE de imagen de catalogo comercial
         public function actualizarImagenCatalogo($RecibeDatosSuscriptor, $nombre_imgCatalogo, $tipo_imgCatalogo, $tamanio_imgCatalogo){
             $stmt = $this->dbh->prepare(
                 "UPDATE suscriptores 
@@ -112,6 +112,24 @@
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return "No se pudo";
+            }
+        }
+
+        //SELECT de las obras publicada por un suscriptor
+        public function consultarObras($ID_Suscriptor){
+            $stmt = $this->dbh->prepare(
+                "SELECT COUNT(ID_Suscriptor) AS 'Cantidad_Obras' 
+                FROM obra 
+                WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
+            );
+
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
             }
             else{
                 return "No se pudo";

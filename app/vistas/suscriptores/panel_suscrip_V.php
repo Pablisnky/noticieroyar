@@ -8,7 +8,8 @@
     <ul class="cont_panel--ul">
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Suscriptor_C/accesoSuscriptor/<?php echo 
             $_SESSION['ID_Suscriptor']?>">Inicio</a></li>
-        <li><a class="cont_panel--li" href="#">Comentarios</a></li>
+        <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Panel_Artista_C/index/<?php echo 
+            $_SESSION['ID_Suscriptor']?>" rel="noopener noreferrer">Obras de arte</a></li>
         <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Denuncias</a></li>
         <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Noticias</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Panel_Clasificados_C/Productos/<?php echo 

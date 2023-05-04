@@ -392,9 +392,6 @@
             $this->ConsultaClasificados_M->insertaSeccion($ID_Suscriptor, $Seccion);
         }
 
-        //***************************************************************************************
-        // UPDATE
-        // **************************************************************************************
         // muestra formulario para actualizar un producto especifico
         public function actualizarProducto($ID_Producto){
             
@@ -467,10 +464,6 @@
 
             $this->ConsultaClasificados_M->actualizarSeccion($ID_Seccion, $Seccion);
         }
-
-        //***************************************************************************************
-        // DELETE
-        // **************************************************************************************
    
         public function eliminarProducto($DatosAgrupados){
             //$DatosAgrupados contiene una cadena con el ID_Opcion, ID_Producto y la sección separados por coma, se convierte en array para separar los elementos
