@@ -128,3 +128,6 @@
 <script src="<?php echo RUTA_URL.'/public/javascript/A_Inicio.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/convoca_SW.js';?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/FullScreem.js?v=<?php echo rand();?>"></script> 
+
+</body>
+</html>

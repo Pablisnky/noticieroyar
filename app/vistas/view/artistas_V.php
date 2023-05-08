@@ -1,10 +1,19 @@
 <!-- CARGA SDK FONTAWESONE PARA ICONOS DE REDES SOCIALES se uso esta libreria porque los iconos no tienen fondo-->
 <script src="https://kit.fontawesome.com/2d6db4c67d.js" crossorigin="anonymous"></script>
 
-<div style="display: flex;" id="Obra">	
+<div style="display: flex; min-height: 100vh;" id="Obra">	
+	
+	<!-- TEXTO VERTICAL -->
 	<div class="cont_artista--vertical">
+
+		<!-- FLECHA REGRESAR -->
 		<a class="cont_artista--icono" href="<?php echo RUTA_URL?>/GaleriaArte_C"><img src="<?php echo RUTA_URL?>/public/iconos/flecha/outline_arrow_back_white_24dp.png"/></a>
+
+		<!-- NOMBRE ARTISTA -->
 		<p class="cont_artista--textoVertical Default--textoVertical" id="DescripcionArtista"><?php echo $Datos['datosArtistas']['nombreSuscriptor'] . ' ' . $Datos['datosArtistas']['apellidoSuscriptor'];?></p>
+
+		<!-- UBICACION ARTISTA -->
+		<p class="cont_artista--textoVertical--2 Default--textoVertical"><?php echo $Datos['datosArtistas']['estadoSuscriptor'] . ' - ' . $Datos['datosArtistas']['paisSuscriptor'];?></p>
 		
 		<!-- COMPARTIR REDES SOCIALES -->
 		<div class="cont_artista--redesSociales cont_artista--margin">

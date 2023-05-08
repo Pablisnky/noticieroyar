@@ -179,10 +179,12 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
         let Descripcion = document.getElementById('ContenidoDes').value 
         let PrecioBs = document.getElementById('PrecioBs').value 
         let PrecioDolar = document.getElementById('PrecioDolar').value 
+
         document.getElementsByClassName("boton")[0].value = "Guardando ..."
         document.getElementsByClassName("boton")[0].disabled = true
         document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialClaro)"
         document.getElementsByClassName("boton")[0].style.color = "var(--OficialOscuro)"
+        document.getElementsByClassName("boton")[0].style.cursor = "wait"
         document.getElementsByClassName("boton")[0].classList.add('borde_1')    
 
         // //Patron de entrada solo acepta numeros y punto

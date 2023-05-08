@@ -138,9 +138,10 @@
                             <label class="input_8 input_8C hyphen" id="<?php echo 'EtiquetaOpcion_' . $ContadorLabel;?>"><?php echo $Opcion;?></label>
                         </div>     
                         
-                        <!-- PRECIO -->
+                        <!-- PRECIO EN Bs-->
                         <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >Bs. <?php echo $PrecioBolivar;?></label>
 
+                        <!-- PRECIO EN $-->
                         <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >$ <?php echo $PrecioDolar;?></label>
                     </div> 
                 </div>

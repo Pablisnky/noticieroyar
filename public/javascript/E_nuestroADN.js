@@ -1,13 +1,13 @@
 statu = false
-function hola(){
-    // console.log("_____ Desde hola() _____ ")
+function mostrarMision(){
+    console.log("_____ Desde mostrarMision() _____ ")
     if(statu == false){
-        document.getElementById("MenuSecundario").classList.add("cambiar");
+        document.getElementById("Texto_1").classList.add("mostrarMision");
         document.getElementById("IconoExpandir").classList.add("rotar");
         statu = true
     }
     else{
-        document.getElementById("MenuSecundario").classList.remove("cambiar");
+        document.getElementById("Texto_1").classList.remove("mostrarMision");
         document.getElementById("IconoExpandir").classList.remove("rotar");
         statu = false
     }

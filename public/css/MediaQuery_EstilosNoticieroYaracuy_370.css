@@ -3,6 +3,10 @@
 	*{
 		user-select: none;
 	}
+	.body_1{
+		overflow-y: hidden; 
+		overflow-x: hidden;
+	} 
 	.cont_Contraloria{
 		margin: 25% auto 1% auto;
 	}
@@ -73,9 +77,6 @@
 	}
 	.cont_Galeria--item{
 	   margin-bottom: 10%;
-	}
-	.cont_Galeria--img{
-		margin-top: 5%;
 	}
 	.h1--agenda{
 		font-size: 1.9em;
@@ -468,23 +469,15 @@
 		-webkit-box-orient: vertical;
 		text-overflow: ellipsis;
 	}
-	.tapa-logo{
-		display: block;
-		width: 80%; 
-		margin-left: 100%;/*oculta el menu responsive*/
-		position: fixed;
-		top: 85% !important;
-		transition: all 0.5s;
-	}
 	.tapa-logo--font{
 		font-size: 2em;
 	}
 	.whatsapp{ 
 		display: block;
 	}	
-.boton--alto{
-	line-height: 20px;
-}
+	.boton--alto{
+		line-height: 20px;
+	}
 	.th_1{
 		width: 12%;
 	}
@@ -732,7 +725,7 @@
 }	
 .contenedor_95{
 	margin: auto;
-	width: 100%;
+	width: 98%;
 	max-height: 140px;
 	column-gap: 1%; /*espacio entre columnas*/
 	margin-bottom: 15%;
@@ -815,9 +808,10 @@
 .tapa-logo{
 	display: block;
 	width: 80%; 
+	height: 25vh;
 	margin-left: 100%;/*oculta el menu responsive*/
 	position: fixed;
-	top: 90% !important;
+	top: 67% !important;
 	transition: all 0.5s;
 }
 .cont_panel--li{
@@ -831,7 +825,7 @@
 .contenedor_95--producto{
 	width: 98%;
 	margin: auto;
-	margin-bottom: 10% ;
+	margin-bottom: 10%;
 	max-height: 170px;
 }
 .cont_catalogos--productos{
@@ -908,7 +902,9 @@
  	padding-left: 0%;
  }
   .cont_Galeria--img{
+	margin-top: 5%;
 	width: 100%;
+	height: 100%;
  }
  .cont_galeria_h1{
 	background-color: white;
@@ -1293,12 +1289,6 @@
 	line-height: 40px;
 	height: 40px;
 }
-.header__titulo--catalogo{
-	/* font-size: 7vw;
-	padding-left: 0%;
-	width: 100%;
-	text-align: center; */
-}
 .hr_3a{
 	margin: 3% 0% 20% 0%;
 } 
@@ -1314,6 +1304,7 @@
 	width: 100%;	
 	margin-left: 0%;
 	padding-left: 5%;
+	padding-top: 5%;
 	height: 85vh;
 	margin-top: 9.5vh!important;
 } 
@@ -1467,7 +1458,7 @@
 }
 .cont_artista--informacion{
 	width: 45vw;
-	margin-bottom: 30%;
+	margin-bottom: 10%;
 }
 .cont_Artista--img{
 	height: 45vw;
@@ -1476,7 +1467,7 @@
 }
 .cont_Artista--botones{
 	width: 100%;
-	margin-top: 5%;
+	/* margin-top: 0%; */
 }
 .cont_Contraloria--texto{
    margin: 20% auto 3% auto;
@@ -1527,10 +1518,6 @@
 	font-size: 11vw;
 	line-height: 25px;
  }
- .small_3{
-	 padding-right: 3%;
-	 font-size: 8vw;
- }
  .cont_artista--margin{
 	 margin-top: -1%!important;
  }
@@ -1572,7 +1559,7 @@
 	 text-align: justify;
 	 width: 100%; 
 	 padding: 4%;
-	 padding-bottom: 100%;
+	 /* padding-bottom: 100%; */
  }
  .cont_obra--redesSociales{
 	 position: absolute;
@@ -1593,15 +1580,13 @@
 	flex-direction: column;
 	padding-top: 5.5vh;
 	width: 100%;
-	height: 93vh;
+	height: 85vh;
  }
  .cont_ObraDetalle--atras{
 	display: flex;
 	flex-direction: column;
-	 width:100%; 
-	 height: 100vh;
-	 padding-top: 15%;
-	 z-index: 5;
+	width:100%; 
+	z-index: 5;
  }
  .cont_ObraDetalle--img{
 	 width: 98%; 
@@ -1638,10 +1623,10 @@
  }
  .cont_ObraDetalle--h1{
 	 font-size: 8vw !important;
-	 line-height: 40px;
 	 font-family: 'Moon Dance', cursive;
 	 font-weight: lighter;
 	 padding-left: 3%;
+	 margin-bottom: 7%;
  }
  .cont_ObraDetalle--p1{
 	 color: white;
@@ -1675,12 +1660,112 @@
  .boton--marg{
 	 margin: auto;
 	 margin-top: 5vh;
-	 margin-bottom: 47vh;
+	 margin-bottom: 23vh;
  }
 
  .cont_galeria--agenda{
 	column-count: 1 !important;
  }
+ .cont_ObraDetalle--atras-1{
+	line-height: 30px; 
+	padding-top: 10vh;
+	padding-left: 5%;
+	min-height: 74vh;
+ }
+ .cont_Artista--leyenda_1{
+	 font-size: 7.5vw;
+ }
+ .cont_Artista--leyenda_2{
+	 font-size: 3.5vw;
+ }
+ .cont_galeria--menuSecundario{
+	width: 90%;
+	margin-top: -25%;
+	margin-left: -13%;
+}
+.cont_Artista--main{
+	margin-top: 15%;
+}
+.cont_galeria--texto{
+	width: max-content;
+	margin-bottom: 0%;
+	padding-bottom: 0%;
+}
+.small_3{
+	font-family: 'Montserrat', sans-serif;;
+	padding-right: 1%;
+	font-size: 4.2vw;
+	font-weight: bold;
+	margin-top: 1%;
+}
+.cont_galeria--icono{
+	width: 8vw;
+}
+.p_1{
+	font-size: 2.6vh;
+	padding: 5%;
+}
+.h1_1--fontZise{
+	font-size: 1.1em;
+}
+.imagen--portafolio{
+	width: 50vw;
+	height: 50vh; 
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.cont_adn{
+	display: block;
+	width: 98%;
+	margin: auto;
+	margin-top: 0%;
+	padding-top: 0%;
+}
+.cont_adn--div{
+	width: 100%;
+	margin-top: 0%;
+	padding-bottom: 5%;
+}
+.header--scroll-snap{
+	scroll-snap-type: proximity; 
+	overflow-y: scroll; 
+	height: 50vh;
+	margin-bottom: 10px;
+}
+.tapa-logo--ADN{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 10px;
+	margin-left: 0%;
+	margin-right: 15%;
+	float: right;
+}
+.expandir-iconos{
+  display: block;
+  margin-left: -50px;
+}
+.header__li--Enlaces{
+	font-size: 5vw !important;
+	line-height: 40px;
+	height: 55px;
+}
+.cont_adn_imagen--perfil{
+	width: 50%;
+	margin: auto;
+}
+.cont_adn--perfiles{
+	margin-top: 2%; 
+	height: max-content; 
+	float: none;
+	clear: left; 
+	width: 100%; 
+	display: block;
+}
+.cont_adn--div--item{
+	width: 100%;
+	margin: auto;
+	margin-bottom: 10%;
+}
 
 
 

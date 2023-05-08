@@ -50,9 +50,19 @@ if(!empty($_SESSION["Publicar"])){
                         <!-- DESCRIPCION -->
                         <label class="login_cont--label">Descripcion</label>
                         <textarea class="textarea_1 textarea_4 borde_1 borde_2" name="descripcion" id="ContenidoDes" tabindex="2"></textarea>
-
                         <!-- CONTADOR DESCRIPCION -->
                         <input class="contador" type="text" id="ContadorDes" value="100" readonly/>
+
+                        <!-- SECCION -->        
+                        <label class="default_bold">Sección</label>
+                        <select class="login_cont--select borde--input" name="id_seccion" id="Seccion">
+                            <option></option>
+                            <?php
+                            foreach($Datos['secciones'] as $Row_3)   :   ?>
+                                <option value="<?php echo $Row_3['ID_Seccion'];?>"><?php echo $Row_3['seccion'];?></option>
+                                <?php
+                            endforeach; ?>
+                        </select>
 
                         <!-- PRECIO -->                    
                         <div style="display: flex; justify-content: space-around;">

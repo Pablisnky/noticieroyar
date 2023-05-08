@@ -37,7 +37,7 @@
 
     public function consultarObrasArtista($ID_Suscriptor){
         $stmt = $this->dbh->prepare(
-            "SELECT ID_Obra, nombreObra, imagenObra, precioDolarObra, precioBsObra
+            "SELECT ID_Obra, nombreObra, imagenObra, precioDolarObra, precioBsObra, tecnicaObra, coleccionObra
             FROM obra
             WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
         );
@@ -49,20 +49,36 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
-    
-        //SELECT de un producto especificao de una tienda determinada
-        public function consultarDescripcionObra($ID_Obra){
-            $stmt = $this->dbh->prepare(
-                "SELECT ID_Obra, nombreObra, descripcionObra, imagenObra, tecnicaObra, medidaObra, coleccionObra, anioObra, precioBsObra, precioDolarObra
-                FROM obra 
-                WHERE ID_Obra = :ID_OBRA"
-            );
 
-            $stmt->bindParam(':ID_OBRA', $ID_Obra, PDO::PARAM_INT);
+    public function consultarArtista($ID_Obra){
+        $stmt = $this->dbh->prepare(
+            "SELECT imagenObra, nombreSuscriptor, apellidoSuscriptor
+            FROM obra
+            INNER JOIN suscriptores ON obra.ID_Suscriptor=suscriptores.ID_Suscriptor
+            WHERE ID_Obra = :ID_OBRA"
+        );
 
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+        $stmt->bindParam(':ID_OBRA', $ID_Obra, PDO::PARAM_INT);
+
+        if($stmt->execute()){
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         }
+    }
+    
+    //SELECT de un producto especificao de una tienda determinada
+    public function consultarDescripcionObra($ID_Obra){
+        $stmt = $this->dbh->prepare(
+            "SELECT ID_Obra, nombreObra, descripcionObra, imagenObra, tecnicaObra, medidaObra, coleccionObra, anioObra, precioBsObra, precioDolarObra
+            FROM obra 
+            WHERE ID_Obra = :ID_OBRA"
+        );
+
+        $stmt->bindParam(':ID_OBRA', $ID_Obra, PDO::PARAM_INT);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function actualizarImagenPortafolio($ID_Suscriptor, $nombre_Portafolio, $tipo_Portafolio, $tamanio_Portafolio, $Telefono){            
         $stmt = $this->dbh->prepare(
@@ -185,5 +201,16 @@
         else{
             return false;
         }
+    }
+
+    public function ObraEliminar($ID_Obra){
+        $stmt = $this->dbh->prepare(
+            "DELETE FROM obra  
+            WHERE ID_Obra = :ID_OBRA"
+        );
+    
+        $stmt->bindParam(':ID_OBRA', $ID_Obra , PDO::PARAM_INT);
+        $stmt->execute(); 
+
     }
 }

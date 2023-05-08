@@ -34,8 +34,8 @@ if(!empty($_SESSION["ID_Suscriptor"])){
             <fieldset class="fieldset_1 fieldset_3">
                 <legend class="legend_1">Actualizar datos de producto</legend>
                 
-                <div class="contenedor_47" id="Contenedor_47">      
-                    <?php //echo $ID_Producto?>           
+                <div class="contenedor_47" id="Contenedor_47">     
+
                     <!-- IMAGEN PRINCIPAL -->
                     <div class="contenedor_129">                   
                         <label class="Default_pointer" for="imgInp"> 
@@ -55,6 +55,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                         </div>
                     </div>               
                     <div class="cont_suscrip--editar">
+                        
                         <!-- PRODUCTO -->
                         <label class="default_bold">Producto</label>
                         <textarea class="textarea_1 borde_1 borde_2" name="producto" id="ContenidoPro"><?php echo $Producto;?></textarea>
@@ -137,7 +138,7 @@ if(!empty($_SESSION["ID_Suscriptor"])){
                     <input class="Default_ocultar" type="text" name="id_opcion" value="<?php echo $ID_Opcion;?>">
                     <!-- <input class="Default_ocultar" type="text" name="id_imagen" value="<?php //echo $ID_ImagenPrincipal;?>"/> -->
 
-                    <input class="boton boton--largo" type="submit" value="Guardar cambios"/>
+                    <input class="boton boton--largo" type="submit" value="Actualizar cambios"/>
                 </div>  
             </fieldset> 
         </form>

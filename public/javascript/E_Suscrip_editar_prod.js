@@ -195,17 +195,18 @@ function EliminarImagenSecundaria(ID_Imagen, Botones){
     //Valida el formulario de cargar producto
     function validarActualizacion(){
         // let ImagenPrin = document.getElementById('imgInp').value 
-        let ImagenPrin = document.getElementById('imgInp').file.name;
-        console.log("🚀 ~ file: E_Suscrip_editar_prod.js:170 ~ validarActualizacion ~ ImagenPrin:", ImagenPrin)
+        // let ImagenPrin = document.getElementById('imgInp').file.name;
         let Producto = document.getElementById('ContenidoPro').value
         let Descripcion = document.getElementById('ContenidoDes').value 
         let PrecioBs = document.getElementById('PrecioBolivar').value 
         let PrecioDolar = document.getElementById('PrecioDolar').value 
-        let Cantidad = document.getElementById('Cantidad').value 
-        document.getElementsByClassName("boton")[0].value = "Guardando ..."
+        // let Cantidad = document.getElementById('Cantidad').value 
+
+        document.getElementsByClassName("boton")[0].value = "Actualizando ..."
         document.getElementsByClassName("boton")[0].disabled = true
         document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialClaro)"
         document.getElementsByClassName("boton")[0].style.color = "var(--OficialOscuro)"
+        document.getElementsByClassName("boton")[0].style.cursor = "wait"
         document.getElementsByClassName("boton")[0].classList.add('borde_1')    
 
         // //Patron de entrada solo acepta numeros y punto
@@ -214,23 +215,23 @@ function EliminarImagenSecundaria(ID_Imagen, Botones){
         //Patron de entrada para archivos de carga permitidos
         var Ext_Permitidas = /^[.jpg|.jpeg|.png]*$/
                 
-        if(Ext_Permitidas.exec(ImagenPrin) == false || ImagenPrin.size > 40000){
-            alert("Introduzca una imagen con extención .jpeg .jpg .png menor a 2 Mb")
-            document.getElementById("imgInp").value = "";
-            document.getElementsByClassName("boton")[0].value = "Agregar producto"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].style.cursor = "pointer"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        }        
-        else if(Producto == "" || Producto.indexOf(" ") == 0 || Producto.length > 55){
+        // if(Ext_Permitidas.exec(ImagenPrin) == false || ImagenPrin.size > 40000){
+        //     alert("Introduzca una imagen con extención .jpeg .jpg .png menor a 2 Mb")
+        //     document.getElementById("imgInp").value = "";
+        //     document.getElementsByClassName("boton")[0].value = "Actualizar cambios"
+        //     document.getElementsByClassName("boton")[0].disabled = false
+        //     document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
+        //     document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
+        //     document.getElementsByClassName("boton")[0].style.cursor = "pointer"
+        //     document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+        //     return false;
+        // }        
+        if(Producto == "" || Producto.indexOf(" ") == 0 || Producto.length > 55){
             alert ("Necesita introducir un nombre Producto")
             document.getElementById("ContenidoPro").value = "";
             document.getElementById("ContenidoPro").focus()
             document.getElementById("ContenidoPro").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Agregar producto"
+            document.getElementsByClassName("boton")[0].value = "Actualizar cambios"
             document.getElementsByClassName("boton")[0].disabled = false
             document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
             document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
@@ -243,7 +244,7 @@ function EliminarImagenSecundaria(ID_Imagen, Botones){
             document.getElementById("ContenidoDes").value = ""
             document.getElementById("ContenidoDes").focus()
             document.getElementById("ContenidoDes").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Agregar producto"
+            document.getElementsByClassName("boton")[0].value = "Actualizar cambios"
             document.getElementsByClassName("boton")[0].disabled = false
             document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
             document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
@@ -256,7 +257,7 @@ function EliminarImagenSecundaria(ID_Imagen, Botones){
         //     document.getElementById("PrecioBs").value = ""
         //     document.getElementById("PrecioBs").focus()
         //     document.getElementById("PrecioBs").style.backgroundColor = "var(--Fallos)"
-        //     document.getElementsByClassName("boton")[0].value = "Agregar producto"
+        //     document.getElementsByClassName("boton")[0].value = "Actualizar cambios"
         //     document.getElementsByClassName("boton")[0].disabled = false
         //     document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
         //     document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
@@ -269,7 +270,7 @@ function EliminarImagenSecundaria(ID_Imagen, Botones){
         //     document.getElementById("PrecioDolar").value = ""
         //     document.getElementById("PrecioDolar").focus()
         //     document.getElementById("PrecioDolar").style.backgroundColor = "var(--Fallos)"
-        //     document.getElementsByClassName("boton")[0].value = "Agregar producto"
+        //     document.getElementsByClassName("boton")[0].value = "Actualizar cambios"
         //     document.getElementsByClassName("boton")[0].disabled = false
         //     document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
         //     document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
@@ -277,19 +278,19 @@ function EliminarImagenSecundaria(ID_Imagen, Botones){
         //     document.getElementsByClassName("boton")[0].classList.remove('borde_1')
         //     return false;
         // }
-        else if(Cantidad == "" || Cantidad == 0 || Cantidad.indexOf(" ") == 0 || Cantidad.length > 3){
-            alert ("Introduzca la cantidad de unidades disponibles")
-            document.getElementById("Cantidad").value = ""
-            document.getElementById("Cantidad").focus()
-            document.getElementById("Cantidad").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Agregar producto"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].style.cursor = "pointer"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
-            return false;
-        }    
+        // else if(Cantidad == "" || Cantidad == 0 || Cantidad.indexOf(" ") == 0 || Cantidad.length > 3){
+        //     alert ("Introduzca la cantidad de unidades disponibles")
+        //     document.getElementById("Cantidad").value = ""
+        //     document.getElementById("Cantidad").focus()
+        //     document.getElementById("Cantidad").style.backgroundColor = "var(--Fallos)"
+        //     document.getElementsByClassName("boton")[0].value = "Actualizar cambios"
+        //     document.getElementsByClassName("boton")[0].disabled = false
+        //     document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
+        //     document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
+        //     document.getElementsByClassName("boton")[0].style.cursor = "pointer"
+        //     document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+        //     return false;
+        // }    
         //Si se superan todas las validaciones la función devuelve verdadero
         return true
     }

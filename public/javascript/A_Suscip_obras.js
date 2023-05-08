@@ -30,23 +30,22 @@ function conexionAJAX(){
     } 
 
 // *************************************************************************************************
-    //Muestra cada obra individualmente en un slider
-    function Llamar_YaracuyVideo(ID_Video, Recorrido){
-        // console.log("______Desde Llamar_YaracuyVideo()______", ID_Video + "/" + Recorrido)
+    //Esta funcion no retorna nada al documento donde se llama, solo ejecuta la accion de eliminar laobra del servidor
+    function Llamar_EliminarObra(ID_Obra){
+        // console.log("______Desde Llamar_EliminarObra()______", ID_Obra )
 
-        // local
-        // var url = "http://localhost/proyectos/noticieroyaracuy/YaracuyEnVideo_C/recorridoVideos/" + ID_Video  + "," + Recorrido
-        // remoto
-        var url = "https://www.noticieroyaracuy.com/YaracuyEnVideo_C/recorridoVideos/" + ID_Video  + "," + Recorrido
+        var url = "../../Panel_Artista_C/eliminarObra/" + ID_Obra 
         http_request.open('GET', url, true)  
-        peticion.onreadystatechange = respuesta_detalleObra
+        peticion.onreadystatechange = respuesta_EliminarObra
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
         peticion.send("null")
     }                                                                        
-    function respuesta_detalleObra(){
+    function respuesta_EliminarObra(){
         if(peticion.readyState == 4){
-            if(peticion.status == 200){  
-                document.getElementById('Slider_Videos').innerHTML = peticion.responseText 
+            if(peticion.status == 200){ 
+                //No recibe ninguna respuesta del servidor para insertar en el documento, la accion solo es necesaria para eliminar un archivo del servidor
+                // document.getElementById('ReadOnly').innerHTML = peticion.responseText  
+                
             } 
             else{
                 alert('Problemas con la petición.')

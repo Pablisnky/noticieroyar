@@ -23,12 +23,12 @@ if(!empty($_SESSION["CargarObras"])){
                 
                     <!-- IMAGEN OBRA -->
                     <div class="contenedor_129">
-                        <label class="Default_pointer" for="imgInp"> 
+                        <label class="Default_pointer" for="imgObra"> 
                             <figure>  
                                 <img class="contenedor_119__img" id="blah" alt="Fotografia de la obra" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
                             </figure>
                         </label>
-                        <input class="Default_ocultar" type="file" name="imagenObra" id="imgInp"/>
+                        <input class="Default_ocultar" type="file" name="imagenObra" id="imgObra"/>
                     </div>        
 
                     <div>
@@ -111,7 +111,7 @@ if(!empty($_SESSION["CargarObras"])){
             }
         }
 
-        $("#imgInp").change(function(){
+        $("#imgObra").change(function(){
             // Código a ejecutar cuando se detecta un cambio de imagen individual
             readImage(this);
         });

@@ -68,23 +68,12 @@
 	 width: 8%;
 	 margin-bottom: 4%;
  }
- .cont_Contraloria--p{
-	 width: 100%;
-	 margin-top: 2%;
-	 padding: 1%;
- }
  .cont_Contraloria--botones{
 	 width: 100%; 
 	 margin: auto;
  }
  .cont_Contraloria--grafico{
-	/* background-color: blue; */
 	margin: 10% auto;
-	 /* display: grid;
-	 grid-template-columns: 30fr 70fr;
-	 margin: auto;
-	 margin-top: 3%;
-	 width: 90%; */
  }
  .cont_denuncia{
 	margin: 25% auto;
@@ -294,10 +283,12 @@
 	font-size: 0.8em;
 }
 .h1--principal{
+	background-color: yellow;
 	font-size: 1.6em;
 	text-align: center;
 	margin-top: 22%;
 	margin-bottom: 3%;
+	
 }
 .h2--efemerides{
 	font-size: 1em;
@@ -475,14 +466,6 @@
 .obituario_cont--imagen{
 	margin:auto;
 	width: 50%;
-}
-.tapa-logo{
-	display: block;
-	width: 80%; 
-	margin-left: 100%;/*oculta el menu responsive*/
-	position: fixed;
-	top: 85% !important;
-	transition: all 0.5s;
 }
 .tapa-logo--font{
 	font-size: 2em;
@@ -767,18 +750,17 @@
 	margin-right: 10% ;
 	justify-content: space-between;
 }
-.contenedor_95--producto{
-	width: 98%;
-	margin: auto;
-	margin-bottom: 7% ;
-}
 .contenedor_95{
 	margin: auto;
-	width: 100%;
+	width: 98%;
 	max-height: 140px;
 	column-gap: 1%; 
-	margin-bottom: 15%;
+	margin-bottom: 18%;
 }	
+.contenedor_95--producto{
+	margin: auto;
+	margin-bottom: 15% ;
+}
 .cont_suscrip--editar{
 	margin-top: 5%;
 }
@@ -854,6 +836,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	
 }
 .cont_portada{
 	display: block;
@@ -872,6 +855,7 @@
  }
  .cont_Galeria--img{
 	width: 100%;
+	height: 100%;
  }
  .cont_galeria_h1{
 	background-color: white!important;
@@ -929,9 +913,10 @@
 .tapa-logo{
 	display: block;
 	width: 80%; 
+	height: 30vh;
 	margin-left: 100%;/*oculta el menu responsive*/
 	position: fixed;
-	top: 90% !important;
+	top: 65% !important;
 	transition: all 0.5s;
 }
 .tapa-logo--mapa{
@@ -1280,7 +1265,7 @@
 	width: 100%;
 	position: absolute;
 	left: 0%;
-	bottom: 1vh;
+	bottom: 9vh;
 }
 .cont_catalogos--productos{
 	margin-top: -85vh;
@@ -1294,6 +1279,7 @@
 	width: 100%;	
 	margin-left: 0%;
 	padding-left: 5%;
+	padding-top: 5%;
 	height: 85vh;
 	margin-top: 15vh!important;
 } 
@@ -1427,7 +1413,7 @@
 }
 .cont_artista--informacion{
 	width: 45vw;
-	margin-bottom: 30%;
+	margin-bottom: 10%;
 }
 .cont_Artista--img{
 	height: 45vw;
@@ -1436,7 +1422,6 @@
 }
 .cont_Artista--botones{
 	width: 100%;
-	margin-top: 5%;
 }
 .cont_Contraloria--texto{
    	margin: 20% auto 5% auto;
@@ -1459,6 +1444,15 @@
 	color: white;
 	width: 70%;
 	margin-left: 7%;
+}
+.cont_artista--textoVertical--2{
+	padding-bottom: 12px; 
+	text-align: center; 
+	font-family:'Montserrat', sans-serif;
+	font-size: 4vw; 
+	color: white;
+	width: 100%;
+	margin-top: -5vw;
 }
 .cont_yaracuyVideo--redesSociales{
 	width: 50%; 
@@ -1507,26 +1501,31 @@
 .cont_ObraDetalle{
 	display: flex;
 	flex-direction: column;
-	padding-top: 5.5vh;
+	margin-top: 5vh;
 	width: 100%;
-	max-height: 82vh;
+	height: 85vh;
  }
  .cont_ObraDetalle--img{
 	 width: 96%; 
-	 max-height: 77vh;
-	 min-height: 77vh;
+	 max-height: 75vh;
+	 min-height: 74vh;
 	 margin: auto;
 	 padding-top: 0%;
+	 /*estas dos ultimas lineas hacen crecer el contenido del contenedor lo mas que pueda aun si su contenido no lo llena completamente, con esto se garantiza que el footer se manntendra abajo*/
+	 flex-grow: 1;
+	 flex-shrink: 1;
  }
  .cont_ObraDetalle--atras{
 	display: flex;
 	flex-direction: column;
-	/* text-align: center; */
-	 /* bottom: initial;  */
-	 width:100%; 
-	 height: 100vh;
-	 padding-top: 15%;
-	 z-index: 5;
+	width:100%; 
+	z-index: 5;
+ }
+ .cont_ObraDetalle--atras-1{
+	line-height: 30px; 
+	padding-top: 10vh;
+	padding-left: 5%;
+	min-height: 74vh;
  }
 .cont_ObraDetalle--leyenda{
 	position: initial;
@@ -1539,7 +1538,6 @@
 	padding: 1%;
 	width: 1.8em;
 	position: initial;
-	
 }
 .cont_ObraDetalle--iconoRight{
 	border-radius: 50%;
@@ -1553,7 +1551,7 @@
 	align-items: center;
 	width: 90%;
 	margin: auto;
-	margin-top: 3%;
+	/* margin-top: 3%; */
 }
 .cont_ObraDetalle--giro{
 	background-color: rgba(255, 255, 255, 0.5); 
@@ -1564,11 +1562,11 @@
 	margin: auto;
 }
 .cont_ObraDetalle--h1{
-	font-size: 8vw !important;
-	line-height: 40px;
+	font-size: 10vw !important;
 	font-family: 'Moon Dance', cursive;
 	font-weight: lighter;
 	padding-left: 3%;
+	margin-bottom: 7%;
 }
 .cont_ObraDetalle--p1{
 	color: white;
@@ -1605,6 +1603,7 @@
 	height: 30px;
 	margin-top: 0%;
 	margin-left: 5%;
+
 }
 .cont_descripcionArtista{
    position: absolute;
@@ -1629,38 +1628,30 @@
 	text-align: justify;
 	width: 100%; 
 	padding: 4%;
-	padding-bottom: 100%;
 }
 .boton--marg{
 	margin: auto;
 	margin-top: 5vh;
-	margin-bottom: 32vh;
+	margin-bottom: 10vh;
 }
 .cont_galeria--agenda{
 	column-count: 1 !important;
 	margin-top: 25%;
  }
-
-
-
-
- 
-
-
-
 .cont_galeria--menuSecundario{
 	width: 90%;
 	margin-top: -20%;
 	margin-left: -13%;
 }
 .cont_Artista--main{
-	margin-top: 18%;
+	margin-top: 15%;
 }
 .cont_galeria--texto{
 	width: max-content;
+	margin-bottom: 0%;
 }
 .small_3{
-	font-family: 'Montserrat', sans-serif;;
+	font-family:'Montserrat', sans-serif;
 	padding-right: 1%;
 	font-size: 4.2vw;
 	font-weight: bold;
@@ -1669,12 +1660,100 @@
 .cont_galeria--icono{
 	width: 8vw;
 }
+.p_1{
+	font-size: 3.2vh;
+	padding: 5%;
+}
+.h1_1--fontZise{
+	font-size: 1.1em;
+}
+.imagen--portafolio{
+	width: 50vw;
+	height: 50vh; 
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.cont_Artista--leyenda_1{
+	font-size: 8vw;
+}
+.cont_Artista--leyenda_2{
+	font-size: 4vw;
+}
+.cont_adn--div{
+	margin-top: 0%;
+	padding-bottom: 5%;
+	width: 100%;
+}
+.cont_adn{
+	display: block;
+	width: 98%;
+	margin: auto;
+	margin-top: 0%;
+	padding-top: 0%;
+}
+.header--scroll-snap{
+	scroll-snap-type: proximity; 
+	overflow-y: scroll; 
+	height: 50vh;
+	margin-bottom: 10px;
+}
+.tapa-logo--ADN{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 10px;
+	margin-left: 10%;
+	float: right;
+}
+.expandir-iconos{
+  display: block;
+  margin-left: -50px;
+}
+.header__li--Enlaces{
+	font-size: 5vw !important;
+	line-height: 40px;
+	height: 55px;
+}
+.cont_adn_imagen--perfil{
+	width: 50%;
+	margin: auto;
+}
+.cont_adn--perfiles{
+	margin-top: 2%; 
+	height: max-content; 
+	float: none;
+	clear: left; 
+	width: 100%; 
+	display: block;
+}
+.cont_adn--div--item{
+	width: 100%;
+	margin: auto;
+	margin-bottom: 15%;
+
+}
 
 
 
 
 
+.cont_adn--texto{
+	background-color: white;
+	position: absolute;
+	top: -220%;
+	opacity: 0;
 
+}
+.cont_adn--titulo-ADN{
+	display: flex; 
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20%;
+}
+.cont_adn--titulo{
+	font-size: 7.5vw;
+	text-align: center;
+}
 
 
 

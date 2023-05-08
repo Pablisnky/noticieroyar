@@ -1579,7 +1579,7 @@
                 WHERE ID_Suscriptor = :ID_ARTISTA"
             );
         
-            $stmt->bindParam(':ID_ARTISTA', $ID_Suscriptor , PDO::PARAM_INT);
+            $stmt->bindParam(':ID_ARTISTA', $ID_Suscriptor, PDO::PARAM_INT);
             $stmt->execute(); 
         }
 

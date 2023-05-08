@@ -1,14 +1,30 @@
 <style>    
-    #ConoDesplegar:hover #MenuSecundario { margin-top: 25vh; opacity: 1;}
+    #ConoDesplegar:hover #MenuSecundario { 
+        margin-top: 27vh; 
+        opacity: 1;        
+    }
+    #ConoDesplegar:hover #IconoExpandir{
+	    transform: rotate(180deg); /*gira el texto para que se lea de abajo hacia arriba*/
+	    transition: all 0.4s;
+    }
+    .cambiar{
+        margin-top: -60%!important
+    }
+    .rotar{        
+        transform: rotate(0deg)!important;
+	    transition: all 0.4s;
+    }
 </style>
+
 <div class="cont_Artista--main">
     <div class="cont_galeria--texto" id="ConoDesplegar">
         <div>
             <h1 class="h_1">Galeria de arte</h1>
             <small class="small_3">& marketplace</small>
         </div>
-        <div class="cont_galeria--icono"> 
-            <img class="Default_pointer" style="width: 2em; margin-left: 20%" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_black_24dp.png'?>"/>
+        <!-- ICONO EXPANDIR MENU -->
+        <div class="cont_galeria--icono" > 
+            <img class="Default_pointer" style="width: 2em; margin-left: 20%" id="IconoExpandir" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_black_24dp.png'?>" onclick="hola()"/>
         </div>
    
         <!-- MUESTRA MENU SECUNDARIO --> 
@@ -37,19 +53,18 @@
     <div class="cont_Artista--botones">
         <?php
         foreach($Datos['datosArtistas'] as $Row)   :   ?>
-            <a href="<?php echo RUTA_URL . '/GaleriaArte_C/artistas/' . $Row['ID_SUscriptor'];?>">
-                <div class="cont_artista--informacion">
+            <div class="cont_artista--informacion">
+                <a href="<?php echo RUTA_URL . '/GaleriaArte_C/artistas/' . $Row['ID_SUscriptor'];?>">
                     <figure>
                         <img class="cont_Artista--img borde_1" name="imagenNoticia" alt="Fotografia Artista" src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Row['ID_SUscriptor'];?>_<?php echo $Row['nombreSuscriptor'];?>_<?php echo $Row['apellidoSuscriptor'];?>/perfil/<?php echo $Row['nombre_imagenPortafolio']?>"/>
                     </figure>
-                    <div>
-                        <p class="cont_Artista--leyenda_1 Default_font--black"><?php echo $Row['nombreSuscriptor'] . ' ' . $Row['apellidoSuscriptor']?></p>
-                        <!-- <p class="Default_font--black"><?php //echo $Row['catgeoriaArtista']?></p> -->
-                        <p class="Default_font--black"><?php echo $Row['municipioSuscriptor']?></p>
-                        <!-- <p class="Default_font--black"><?php echo $Row['estadoSuscriptor']?></p> -->
-                    </div>
+                </a>
+                <div>
+                    <p class="cont_Artista--leyenda_1 Default_font--black"><?php echo $Row['nombreSuscriptor'] . ' ' . $Row['apellidoSuscriptor']?></p>
+                    <!-- <p class="Default_font--black"><?php echo 'Artista plastico'?></p> -->
+                    <p class="cont_Artista--leyenda_2"><?php echo $Row['estadoSuscriptor']?> - <?php echo $Row['paisSuscriptor']?></p>
                 </div>
-            </a>
+            </div>            
             <?php
         endforeach; ?>
     </div> 

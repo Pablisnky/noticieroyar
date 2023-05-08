@@ -1,4 +1,3 @@
-
 document.getElementById("DescripcionArtista").addEventListener('mouseover', mostrarDescripcionArtista, false)
 document.getElementById("Cerrar").addEventListener('click', ocultarDescripcionArtista, false)
 

@@ -84,7 +84,7 @@
                 WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
             );
 
-            $stmt->bindValue(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_STR);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_STR);
             
             if($stmt->execute()){
                 return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -105,8 +105,8 @@
                 WHERE ID_Suscriptor = :ID_SUSCRIPTOR AND fotoPrincipal = :FOTOPRINCIPAL 
                 ORDER BY productos.producto, opciones.opcion");
 
-            $stmt->bindValue(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
-            $stmt->bindValue(':FOTOPRINCIPAL', 1, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_INT);
+            $stmt->bindValue(':FOTOPRINCIPAL', 1);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -124,7 +124,7 @@
                 WHERE ID_Producto = :ID_PRODUCTO AND fotoPrincipal = :PRINCIPAL"
             );
 
-            $stmt->bindValue(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
             $stmt->bindValue(':PRINCIPAL', 1, PDO::PARAM_INT);
 
             if($stmt->execute()){
@@ -250,10 +250,10 @@
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
-            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto);
-            $stmt->bindParam(':NOMBRE_IMG', $nombre_imgProducto);
-            $stmt->bindParam(':TIPO_ARCHIVO', $tipo_imgProducto);
-            $stmt->bindParam(':TAMANIO_ARCHIVO', $tamanio_imgProducto);
+            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
+            $stmt->bindParam(':NOMBRE_IMG', $nombre_imgProducto, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_ARCHIVO', $tipo_imgProducto, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_ARCHIVO', $tamanio_imgProducto, PDO::PARAM_STR);
             $stmt->bindValue(':PRINCIPAL', 1);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
@@ -277,6 +277,7 @@
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             $stmt->execute();
         } 
+
         public function insertarDT_ProOpc( $ID_Producto, $ID_Opcion){
             $stmt = $this->dbh->prepare("INSERT INTO productos_opciones(ID_Producto, ID_Opcion) VALUES(:ID_PRODUCTO, :ID_OPCION)");
 
@@ -287,6 +288,22 @@
             // insertar una fila
             $id_producto = $ID_Producto;
             $opcion = $ID_Opcion;
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        
+        public function insertarDT_ProSec( $ID_Producto, $RecibeProducto){
+            $stmt = $this->dbh->prepare("INSERT INTO secciones_productos(ID_Producto, ID_Seccion) VALUES(:ID_PRODUCTO, :ID_SECCION)");
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_SECCION', $RecibeProducto['id_seccion'], PDO::PARAM_INT);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -394,11 +411,11 @@
             );
 
             // Se vinculan los valores de las sentencias preparadas
-            $stmt->bindValue(':OPCION', $RecibeProducto['Descripcion']);
-            $stmt->bindValue(':PRECIOBOLIVAR', $RecibeProducto['PrecioBs']);
-            $stmt->bindValue(':PRECIODOLAR', $RecibeProducto['PrecioDolar']);
-            $stmt->bindValue(':CANTIDAD', $RecibeProducto['Cantidad']);
-            $stmt->bindValue(':ID_OPCION', $RecibeProducto['ID_Opcion']);
+            $stmt->bindParam(':OPCION', $RecibeProducto['Descripcion']);
+            $stmt->bindParam(':PRECIOBOLIVAR', $RecibeProducto['PrecioBs']);
+            $stmt->bindParam(':PRECIODOLAR', $RecibeProducto['PrecioDolar']);
+            $stmt->bindParam(':CANTIDAD', $RecibeProducto['Cantidad']);
+            $stmt->bindParam(':ID_OPCION', $RecibeProducto['ID_Opcion']);
 
             // Se ejecuta la actualización de los datos en la tabla
             $stmt->execute();
@@ -416,8 +433,8 @@
             );
 
             // Se vinculan los valores de las sentencias preparadas
-            $stmt->bindValue(':FOT_PRODUCTO', $nombre_imgProducto);
-            $stmt->bindValue(':ID_PRODUCTO', $ID_Producto); 
+            $stmt->bindParam(':FOT_PRODUCTO', $nombre_imgProducto);
+            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto); 
             $stmt->bindParam(':TIPO_ARCHIVO', $tipo); 
             $stmt->bindParam(':TAMANIO_ARCHIVO', $tamanio); 
             $stmt->bindValue(':FOTOPRINCIPAL', 1);
@@ -491,7 +508,7 @@
         //DELETE de productos de una tienda
         public function eliminarProducto($ID_Producto){
             $stmt = $this->dbh->prepare("DELETE FROM productos WHERE ID_Producto = :ID_PRODUCTO");
-            $stmt->bindValue(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
             $stmt->execute();          
         }
 
@@ -502,7 +519,7 @@
                 WHERE ID_Producto = :ID_PRODUCTO"
             );
 
-            $stmt->bindValue(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
+            $stmt->bindParam(':ID_PRODUCTO', $ID_Producto, PDO::PARAM_INT);
             $stmt->execute();          
         }
         

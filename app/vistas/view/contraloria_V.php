@@ -1,8 +1,6 @@
 <div class="cont_Contraloria">
     <div class="cont_Contraloria--texto">
-        <!-- <div class="cont_Contraloria--p"> -->
-            <p class="p_1">La participación ciudadana en el control y evaluación sobre la gestión publica, <br class="Default_quitarMovil"> es necesaria para prevenir la corrupcion, el fraude y la ineficiencia, <br class="Default_quitarMovil">tres fenomenos nocivos que destruyen sociedades.</p>
-        <!-- </div> -->
+        <p class="p_1">La participación ciudadana en el control y evaluación sobre la gestión publica, es necesaria para prevenir la corrupcion, el fraude y la ineficiencia, tres fenomenos nocivos que destruyen sociedades.</p>
     </div>
     <div class="cont_Contraloria--botones">
             <a class="a_3 a_3--small" href="<?php echo RUTA_URL . '/Contraloria_C/VerificaLogin';?>">Reportar</a>

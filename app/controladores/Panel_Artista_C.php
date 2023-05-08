@@ -21,7 +21,7 @@
             //consulta la cantidad de obras publicadas por un artista
 			$CantidadObras = $this->Panel_Artista_M->consultarObras($ID_Suscriptor);
  
-            //consulta los obras publicadas por un artista
+            //consulta la imagen del portafolio de un artista
             $ImagenPortafolio = $this->Panel_Artista_M->consultarImagenPortafolio($ID_Suscriptor);
 
             // Consulta detalles de obras publicadas por un arista
@@ -218,8 +218,7 @@
                     // echo 'Nombre de la imagen = ' . $nombre_imagenObra . '<br>';
                     // echo 'Tipo de archivo = ' .$tipo_imagenObra .  '<br>';
                     // echo 'Tamaño = ' . $tamanio_imagenObra . '<br>';
-                    //se muestra el directorio temporal donde se guarda el archivo
-                    // echo $_FILES['imagen']['tmp_name'];
+                    // echo 'Archivo temporal = ' . $Temporal_imagenObra . '<br>';
                     // exit();
                     
                     //Quitar de la cadena del nombre de la imagen todo lo que no sean números, letras o puntos
@@ -262,7 +261,7 @@
                 }
             }
             else{                 
-                header('location:' . RUTA_URL . '/CerrarSesion');
+                header('location:' . RUTA_URL . '/CerrarSesion_C');
             } 
         }
 
@@ -452,5 +451,23 @@
             else{                 
                 header('location:' . RUTA_URL . '/CerrarSesion');
             } 
+        }
+        
+        //Elimina una obra especifica
+        public function eliminarObra($ID_Obra){
+
+            //Se consulta el nombre y apellido del artista y el nombre de la obra necesarios para la ruta en el seridor
+            $Suscriptor = $this->Panel_Artista_M->consultarArtista($ID_Obra);
+            
+            //Usar en remoto
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/'. $_SESSION['ID_Suscriptor'] . '_' . ['ID_Suscriptor'] . '_' . $Suscriptor['nombreSuscriptor'] . '_' . $Suscriptor['apellidoSuscriptor'] . '/' . $Suscriptor['imagenObra'] );
+                
+            //usar en local
+            // unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/noticieroyaracuy/public/images/galeria/'. $_SESSION['ID_Suscriptor'] . '_' . $Suscriptor['nombreSuscriptor'] . '_' . $Suscriptor['apellidoSuscriptor'] . '/' . $Suscriptor['imagenObra'] );
+            
+            //Se elimina la obra de la BD
+            $this->Panel_Artista_M->ObraEliminar($ID_Obra);
+
+            $this->index($_SESSION['ID_Suscriptor']);
         }
     }

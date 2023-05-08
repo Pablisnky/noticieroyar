@@ -34,6 +34,6 @@
 		<!-- CDN FUENTES DE GOOGLE-->
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo'>        
     </head>
-    <body onload="speakArticle()">		
+    <body>		
 		
    <!-- No se cierrra la etiqueta <body> porque se cierra es el footer -->

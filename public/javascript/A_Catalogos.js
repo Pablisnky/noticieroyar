@@ -34,7 +34,7 @@ function conexionAJAX(){
 
 //************************************************************************************************
 function Llamar_seccion(ID_Suscriptor,ID_Seccion){
-    console.log("_____ Desde Llamar_seccion() _____ ", ID_Suscriptor + ',' + ID_Seccion)
+    // console.log("_____ Desde Llamar_seccion() _____ ", ID_Suscriptor + ',' + ID_Seccion)
     var url = "../../Catalogos_C/Secciones/" + ID_Suscriptor + ',' + ID_Seccion
     http_request.open('GET', url, true)  
     peticion.onreadystatechange = respuesta_secciones

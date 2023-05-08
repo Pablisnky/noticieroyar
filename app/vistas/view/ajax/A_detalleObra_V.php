@@ -3,30 +3,34 @@
 	if(!empty($Datos['ultimoID_Obra']['ID_Obra'])){//cuando llega a la primera obra y muestra nuevamente la ultima	
 		$ID_MostrarObra = $Datos['ultimoID_Obra']['ID_Obra'];	
 		$NombreImgObra = $Datos['ultimoID_Obra']['imagenObra'];
+
 		if($Datos['ultimoID_Obra']['disponible']){	?>
 			<!-- <label class="disponible disponible--true" onclick="Llamar_carrito()">disponible</label> -->
 			<?php
 		}
-		else{	?>
-			<!-- <label class="disponible">vendido</label> -->
+		else{	
+			?>
+			<!-- <label class="disponible"></label> -->
 			<?php
 		}	
 	}
 	else if(!empty($Datos['primerID_Obra']['ID_Obra'])){//cuando llega a la ultima cuobraadro y muestra nuevamente el primero		
 		$ID_MostrarObra = $Datos['primerID_Obra']['ID_Obra'];	
 		$NombreImgObra = $Datos['primerID_Obra']['imagenObra'];
+
 		if($Datos['primerID_Obra']['disponible']){	?>
 			<!-- <label class="disponible disponible--true" onclick="Llamar_carrito()">disponible</label> -->
 			<?php
 		}
 		else{	?>
-			<!-- <label class="disponible">vendido</label> -->
+			<!-- <label class="disponible" ></label> -->
 			<?php
 		}	
 	}
 	else{//Cuando se encuantra entre los cuadros intermedios (Entre el primero y el ultimo)
 		$ID_MostrarObra = $Datos['diapositivaObra']['ID_Obra'];
 		$NombreImgObra= $Datos['diapositivaObra']['imagenObra'];
+		
 		if($Datos['diapositivaObra']['disponible'] == 1){	
 			$NombreImgObra = $Datos['diapositivaObra']['imagenObra'];
 			$Nombre_Obra = $Datos['diapositivaObra']['nombreObra'];
@@ -36,7 +40,7 @@
 			<?php
 		}
 		else{	?>
-			<!-- <label class="disponible">vendido</label> -->
+			<!-- <label class="disponible"></label> -->
 			<?php
 		}	
 	}
@@ -65,24 +69,23 @@
 
 		<!-- LADO POSTERIOR DE TARJETA -->
 		<div class="cont_ObraDetalle--atras cara detras">
-					<div>		
-			<!-- <label class="cont_ObraDetalle--p1 disponible--true">disponible</label> -->
-			<h1 class="cont_ObraDetalle--h1"><?php echo 'El Cuervo azul';?></h1>
-			<p class="cont_ObraDetalle--p1"><b>Autor: </b> Patricia Proaño</p>
-			<p class="cont_ObraDetalle--p1"><b>Año: </b> 2022</p>
-			<p class="cont_ObraDetalle--p1"><b>Dimensiones: </b><?php echo '234 x 56 cm';?></p> 
-			<p class="cont_ObraDetalle--p1"><b>Tecnica: </b> <?php echo 'Oleo frio'?></p> 
-			<p class="cont_ObraDetalle--p1"><b>Colección: </b><?php echo 'Unica';?></p> 
-			<p class="cont_ObraDetalle--p1"><b>Descripción: </b><?php echo 'No disponible';?></p> 
-			<p class="cont_ObraDetalle--p1"><b>Precio: </b><?php echo '260 $';?></p> 
-			<label class="boton boton--marg">Comprar</label> 
+			<div class="cont_ObraDetalle--atras-1">		
+				<h1 class="cont_ObraDetalle--h1"><?php echo $Datos['diapositivaObra']['nombreObra'];?></h1>
+				<p class="cont_ObraDetalle--p1"><b>Autor: &nbsp;</b> <?php echo $Datos['artista']['nombreSuscriptor'];?> <?php echo $Datos['artista']['apellidoSuscriptor'];?></p>
+				<p class="cont_ObraDetalle--p1"><b>Año: &nbsp;</b> <?php echo $Datos['diapositivaObra']['anioObra'];?></p>
+				<p class="cont_ObraDetalle--p1"><b>Dimensiones: &nbsp;</b> <?php echo $Datos['diapositivaObra']['medidaObra'];?></p> 
+				<p class="cont_ObraDetalle--p1"><b>Tecnica: &nbsp;</b> <?php echo $Datos['diapositivaObra']['tecnicaObra'];?></p> 
+				<p class="cont_ObraDetalle--p1"><b>Colección: &nbsp;</b> <?php echo $Datos['diapositivaObra']['coleccionObra'];?></p> 
+				<p class="cont_ObraDetalle--p1"><b>Descripción: &nbsp;</b> <?php echo $Datos['diapositivaObra']['descripcionObra'];?></p> 
+				<p class="cont_ObraDetalle--p1"><b>Precio: &nbsp;</b> <?php echo $Datos['diapositivaObra']['precioDolarObra'];?></p> 
+				<p class="cont_ObraDetalle--p1"><b>Factura: &nbsp;</b> Si</p> 
+				<label class="boton boton--marg">Comprar</label> 
 			</div>
-<div>
-		
-			<!-- BOTON DE GIRO-->
-			<img class="cont_ObraDetalle--giro Default_pointer Default_quitarEscritorio" onclick="FrenteTarjeta('Cont_PinturaDetalle')" src="<?php echo RUTA_URL . '/public/iconos/giro/outline_switch_right_black_24dp.png'?>"/>
-				</div>
 
+			<!-- BOTON DE GIRO-->
+			<div>		
+				<img class="cont_ObraDetalle--giro Default_pointer Default_quitarEscritorio" onclick="FrenteTarjeta('Cont_PinturaDetalle')" src="<?php echo RUTA_URL . '/public/iconos/giro/outline_switch_right_black_24dp.png'?>"/>
+			</div>
 		</div>
 	</div>
 </div>

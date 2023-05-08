@@ -12,6 +12,7 @@ h1, h2, h3, h4, h5, p, legend{
 }
 select{
 	background-color: white;
+	
 }
 img{
 	display: block;
@@ -199,7 +200,6 @@ textarea{
 .h1--secciones{
 	font-size: 1.6em;
 	text-align: center;
-	/* margin-top: 5%; */
 }
 .bandaAlerta{
 	background-color: var(--BandaAlerta);
@@ -232,24 +232,22 @@ textarea{
 }
 .cont_Artista--leyenda_1{
 	font-family: 'Moon Dance', cursive;
-	font-size: 1.5em;
+	font-size: 2vw;
+}
+.cont_Artista--leyenda_2{
+	font-size: 1vw;
 }
 .cont_obras{	
 	background-color: #000000;
 	width: 100%;
-	height: 100vh;
+	min-height: max-content;
 }
 .cont_Contraloria{
 	margin: 8% auto 1% auto;
 	min-height: 100vh;
 }
 .cont_Contraloria--texto{
-	width: 20%;
-	margin: auto;
-	padding-bottom: 2%;
-}
-.cont_Contraloria--p{
-	width: 70%;
+	width: 60%;
 	margin: auto;
 }
 .cont_Contraloria--botones{
@@ -258,7 +256,7 @@ textarea{
 	justify-content: space-between;
 	width: 30%; 
 	margin: auto;
-	margin-top: 8%;
+	margin-top: 5%;
 }
 .cont_contraloriaDenuncias{
 	display: flex;/*para centrar verticalmente el div hijo*/
@@ -303,9 +301,6 @@ textarea{
 	letter-spacing: 1px;
 	white-space: nowrap; /*mantiene el texto en una sola linea*/
 }
-.contenedor_95--margin{ 
-	margin-bottom: 3% !important;
-}
 .contenedor_9{
 	background-size: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 	background-repeat: no-repeat;
@@ -316,6 +311,9 @@ textarea{
 	margin: auto;
 	margin-bottom: 5%;
 	cursor: pointer;
+}
+.contenedor_95--margin{ 
+	margin-bottom: 3% !important;
 }
 .contenedor_9--pointer{
 	cursor: default;
@@ -398,7 +396,7 @@ textarea{
 	text-overflow: ellipsis;
 }
 .contenedor_96{
-	display: flex; /*Organiza los elementos horizontalmente*/
+	display: flex;
 	width: 100%;
 	/* margin: 1% auto; */
 	justify-content: space-around;
@@ -500,7 +498,7 @@ textarea{
 	line-height: 25px;
 }
 .h1_1--fontZise{
-	font-size: 1.3em;
+	font-size: 1.2em;
 }
 .contenedor_61{
 	background-color: var(--OficialOscuro);
@@ -547,7 +545,7 @@ textarea{
 	text-align: right;
 	padding-right: 3%;
 	font-family: 'Moon Dance', cursive;
-	font-size: 1,5vw;
+	font-size: 1.3vw;
 	display: block;
 	color: black;
 }
@@ -1003,7 +1001,7 @@ textarea{
 	margin-top: 5%;
  }
  .cont_galeria{
-	column-count: 3 !important;
+	column-count: 4 !important;
 	column-fill: balance;
 	width: 100%;
 	padding-left: 5%; 
@@ -1023,14 +1021,16 @@ textarea{
 	 float: left;
  }
  .cont_Galeria--item{
+	background-color: black;
 	 display: inline-block;
 	 margin: 0 5px 40px;
-	 padding: 0.5%;
+	 /* padding: 0%; */
 	 cursor: pointer;
  }
  .cont_Galeria--img{
-	 width: 90%;
-	 height: 90%;
+	background-color: black;
+	width: 95%;
+	height: 95%;
  }
  .cont_modal{
 	 background-color: rgba(0, 0, 0, 0.9);
@@ -2045,6 +2045,9 @@ textarea{
    writing-mode: vertical-rl; /*coloca el texto verticalmente*/
    transform: rotate(180deg); /*gira el texto para que se lea de abajo hacia arriba*/
 }
+.Default--final{
+	margin-bottom: 5%;
+}
 .fieldset_1{
 	width: 95%;
 	margin: auto;
@@ -2104,10 +2107,18 @@ textarea{
 	display: block;
 	margin-left: 10%;
 }
+.header--scroll-snap{
+	scroll-snap-type: proximity; 
+	overflow-y: hidden; 
+	height: 90vh
+}
 .header--nav{
 	margin-left: 10%; 
-	margin-top: 5%; 
+	margin-top: 3%; 
 	width: 30%;
+	height: 100vh;
+	overflow-y: hidden;
+	scroll-snap-align: center;
 }
 .header__menuResponsive{
 	background-color: rgba(0, 0, 0, 0.9);
@@ -2123,12 +2134,9 @@ textarea{
 }
 .header__li--Enlaces{
 	color: white;
-	/* text-align: center; */
 	font-size: 1.3em !important;
 	line-height: 40px;
 	height: 55px;
-	/*padding-top: 5%; */
-	/* width: 100%; */
 	/*flex-grow: 1;distribuye proporcionalmente los elementos internos en el eje horizontal, es necesario que el elemento padre tenga la propiedad display con el valor flex*/
 }
 .legend_1{
@@ -2192,9 +2200,10 @@ textarea{
 .tapa-logo{
 	display: block;
 	width: 80%; 
+	height: 85vh;
 	margin-left: 100%;
 	position: fixed;
-	top: 10% !important;
+	top: 7%;
 	transition: all 0.4s;
 	z-index: 1;
 }
@@ -2462,9 +2471,9 @@ ul .menuContenedor_3{
 .contenedor_95{
 	display: grid;
 	grid-template-columns: 50fr 50fr;
-	column-gap: 5%; /*espacio entre columnas*/
+	column-gap: 5%; 
 	width: 30%; 
-	max-height: 180px; 
+	/* max-height: 180px;  */
 	margin-bottom: 5%; 
 }
 .cont_podcast--main{
@@ -2787,7 +2796,7 @@ ul .menuContenedor_3{
 }
 .tapa-logo--mapa{
 	position: relative; 
-	bottom: 20% !important; 
+	bottom: 50% !important; 
 	left: 5%; 
 	width: 400px; 
 }
@@ -3248,13 +3257,12 @@ ul .menuContenedor_3{
 	transition: all .4s;
 	width: 20%;	
 	position: sticky;
-	top: 80px;
 	opacity: 0;
 	padding: 2%;
-	padding-left: 5%;
+	padding-left: 1%;
 	margin-left: 80%;
 	z-index: -1;
-	overflow-y: scroll;
+	overflow-y: auto;
 }  
   .ocultar{
 	opacity: 1;
@@ -3282,7 +3290,7 @@ ul .menuContenedor_3{
 	align-content: flex-start; /*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
 	width: 95%;
 	margin: auto;
-	margin-top: -50vh;
+	margin-top: -45vh;
   }
   .cont_respuestaAjax--catalogos{
 	display: flex; 
@@ -3389,7 +3397,7 @@ ul .menuContenedor_3{
 }
 .cont_artista--vertical{
 	background-color: black; 
-	width: 3%; 
+	width: 4%; 
 	height: 100vh; 
 	position: fixed
 }
@@ -3456,7 +3464,8 @@ ul .menuContenedor_3{
 }
 .imagen--portafolio{
 	width: 30vw;
-	height: 30vh;
+	height: 30vh; 
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
 .cont_yaracuyVideo--membrete{
 	color: white;
@@ -3484,7 +3493,7 @@ ul .menuContenedor_3{
 .cont_descripcionArtista--titulo{
 	background-color: black; 
 	width: 5%; 
-	height: 100vh; 
+	height: max-content; 
 	position: fixed
 }
 .cont_descripcionArtista--descripcion{
@@ -3498,14 +3507,13 @@ ul .menuContenedor_3{
 	align-items: center;
 	width: max-content;
 	margin: auto;
-	margin-bottom: 2%;
+	margin-bottom: 1%;
 	padding-left: 3%;
 	padding-bottom: 2%;
 	height: 12vh;
 }
 .cont_galeria--menuSecundario{
 	background-color: white;
-	/* background-color: red; */
 	margin: auto;
 	position: absolute;
 	transition: all .5s; /*tiempo que tarda en aplicarse desde que se manda a llamar*/
@@ -3518,17 +3526,84 @@ ul .menuContenedor_3{
 .cont_adn{
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 	width: 90%;
 	margin: auto;
+	/* margin-top: 0%; */
+	/* padding-top: 5%; */
+	height: 100vh;
 }
 .cont_adn--div{
-	background-color: yellow;
-	width: 30%;
+	width: 100%;
+	margin-top: 2%;
+	padding-bottom: 15%;
+	/* float: left; */
+}
+.cont_adn--div--item{
+	width: 90%;
+	margin: 0% 2%;
+}
+.cont_adn--iconos{
+	display: flex;
+	align-items: center;
+	margin-bottom: 1%;
 }
 .cont_galeria--icono{
 	width: 5vw;
 }
+.p_1{
+	font-family:'Montserrat', sans-serif;
+	font-size: 3vh ;
+	line-height: 30px;
+	padding: 1%;
+	text-align: justify;
+}
+.tapa-logo--ADN{
+	display: flex;
+	align-items: center;
+	padding: 0px 10px;
+	width: max-content;
+}
+.tapa-logo--ADN--font{
+	margin-left: 10px;
+	color: white!important;
+}
+.tapa-logo--2{
+	position: absolute; 
+	bottom: 0pt
+}
+.expandir-iconos{
+	display: none;
+}
+.cont_adn-informacion{
+	padding-left: 5%;
+}
+.cont_adn--cargo{
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5%;
+}
+.cont_adn_imagen--perfil{
+	width: 50%;
+	margin: auto;
+}
+.cont_adn--perfiles{
+	margin-top: 2%; 
+	height: max-content; 
+	float: right; 
+	width: 70%; 
+	display: flex;
+}
+.cont_adn--titulo-ADN{
+	display: flex; 
+	justify-content: center;
+	align-items: center;
+	margin-top: 5%;
+}
+.cont_adn--titulo{
+	font-size: 2em;
+	text-align: center;
+}
+
 
 
 

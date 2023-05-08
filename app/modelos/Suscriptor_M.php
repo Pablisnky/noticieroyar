@@ -121,7 +121,7 @@
         //SELECT de las obras publicada por un suscriptor
         public function consultarObras($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
-                "SELECT COUNT(ID_Suscriptor) AS 'Cantidad_Obras' 
+                "SELECT COUNT(ID_Suscriptor) AS 'cantidadObras' 
                 FROM obra 
                 WHERE ID_Suscriptor = :ID_SUSCRIPTOR"
             );

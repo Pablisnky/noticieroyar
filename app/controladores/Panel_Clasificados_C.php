@@ -99,16 +99,13 @@
             require(RUTA_APP . '/controladores/Divisas_C.php');
             $this->PrecioDolar = new Divisas_C();
             
-            //se consultan la informacion del suscriptor
-            // $Suscriptor = $this->InformacionSuscriptor->index($ID_Suscriptor);
+            //se consultan las secciones del catalogo del suscriptor
+            $Secciones = $this->ConsultaClasificados_M->consultarSeccionesSuscriptor($ID_Suscriptor);
     
             $Datos = [
                 'dolarHoy' => $this->PrecioDolar->Dolar,
-                // 'nombre' => $Suscriptor['nombreSuscriptor'],
-                // 'apellido' => $Suscriptor['apellidoSuscriptor'],
-                // 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
-                // 'telefono' => $Suscriptor['telefonoSuscriptor'],
-                'ID_Suscriptor' => $ID_Suscriptor
+                'ID_Suscriptor' => $ID_Suscriptor,
+                'secciones' => $Secciones
             ];
                 
             // echo "<pre>";
@@ -130,12 +127,13 @@
 
                 //Se reciben todos los campos del formulario, desde cuenta_publicar_V.php se verifica que son enviados por POST y que no estan vacios
                 //SECCION DATOS DEL PRODUCTO
-                if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['producto']) && !empty($_POST['descripcion']) && !empty($_POST['precioBs']) && (!empty($_POST['precioDolar']) || $_POST['precioDolar'] == 0)){
+                if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['producto']) && !empty($_POST['descripcion']) && !empty($_POST['id_seccion'])  && !empty($_POST['precioBs']) && (!empty($_POST['precioDolar']) || $_POST['precioDolar'] == 0)){ 
                     $RecibeProducto = [
                         //Recibe datos del producto que se va a cargar al sistema
                         'condicion' => !empty($_POST['grupo']) ? $_POST['grupo'] : 'NoAsignado',
                         'Producto' => $_POST['producto'],
                         'Descripcion' => $_POST['descripcion'],
+                        'id_seccion' => $_POST['id_seccion'],
                         // 'Descripcion' => preg_replace('[\n|\r|\n\r|\]','',$_POST, "descripcion", ), //evita los saltos de lineas realizados por el usuario al separar parrafos
                         'PrecioBs' => $_POST["precioBs"],
                         'PrecioDolar' => $_POST["precioDolar"],
@@ -162,8 +160,11 @@
                 //Se INSERTA en BD la opcion y precio del productoy se retorna el ID recien insertado
                 $ID_Opcion = $this->ConsultaClasificados_M->insertarOpcionesProducto($RecibeProducto);
                 
-                //Se INSERTA en BD la dependenciatransitiva entre producto, opciones
+                //Se INSERTA en BD la dependencia transitiva entre producto y opciones
                 $this->ConsultaClasificados_M->insertarDT_ProOpc($ID_Producto, $ID_Opcion);
+                
+                //Se INSERTA en BD la dependencia transitiva entre producto yseccion
+                $this->ConsultaClasificados_M->insertarDT_ProSec($ID_Producto, $RecibeProducto);
 
                 //IMAGEN PRINCIPAL PRODUCTO
                 //********************************************************

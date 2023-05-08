@@ -43,9 +43,7 @@
         <div class="detalle_cont--informacion">        
 
             <!-- TITULO -->
-            <article><!-- articulo para leer automaticamente con la API Web Speech API-->
-                <h1 class="detalle_cont--titulo"><?php echo $Datos['detalleNoticia'][0]['titulo']?></h1> 
-            </article>
+            <h1 class="detalle_cont--titulo"><?php echo $Datos['detalleNoticia'][0]['titulo']?></h1> 
 
             <!-- RESUMEN -->
             <div class="detalle_cont--resumen">
@@ -227,22 +225,6 @@
 <script src="<?php echo RUTA_URL.'/public/javascript/E_DetalleNoticia.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_DetalleNoticia.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
-
-<script>
-    var container = document.getElementsByTagName("article")[0];
-    var contentToSpeak = container.innerText
-
-    function speak(text, language) {
-            var s = new SpeechSynthesisUtterance(text);
-            s.lang = language;	speechSynthesis.speak(s);
-    }
-            
-    function speakArticle() {
-        var container = document.getElementsByTagName("article")[0];
-        var contentToSpeak = container.innerText;
-        speak(contentToSpeak, 'es-es');
-    }
-</script>
 
 </body>
 </html>

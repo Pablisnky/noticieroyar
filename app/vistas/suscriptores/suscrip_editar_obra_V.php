@@ -20,12 +20,12 @@
                 
                     <!-- IMAGEN OBRA -->
                     <div class="contenedor_129">
-                        <label class="Default_pointer" for="imgInp"> 
+                        <label class="Default_pointer" for="imgObra"> 
                             <figure>  
                                 <img class="contenedor_119__img" id="blah" alt="Fotografia de la obra" src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $_SESSION['ID_Suscriptor'];?>_<?php echo $Datos['suscriptor']['nombreSuscriptor'];?>_<?php echo $Datos['suscriptor']['apellidoSuscriptor'];?>/<?php echo $Datos['especificaciones'][0]['imagenObra'];?>"/>
                             </figure>
                         </label>
-                        <input class="Default_ocultar" type="file" name="imagenObra" id="imgInp"/>
+                        <input class="Default_ocultar" type="file" name="imagenObra" id="imgObra"/>
                     </div>        
 
                     <div>
@@ -95,7 +95,7 @@
     </div>        
 
     <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v=' . rand();?>"></script>
-    <script src="<?php echo RUTA_URL . '/public/javascript/E_Suscrip_agregarObra.js?v=' . rand();?>"></script> 
+    <script src="<?php echo RUTA_URL . '/public/javascript/E_Suscrip_editarObra.js?v=' . rand();?>"></script> 
 
     <script> 
         //Da una vista previa de la imagen principal antes de guardarla en la BD
@@ -109,7 +109,7 @@
             }
         }
 
-        $("#imgInp").change(function(){
+        $("#imgObra").change(function(){
             // Código a ejecutar cuando se detecta un cambio de imagen individual
             readImage(this);
         });

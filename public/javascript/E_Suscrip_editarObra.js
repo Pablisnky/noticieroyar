@@ -132,7 +132,7 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
 //************************************************************************************************
     //Valida el formulario de cargar producto
     function validarObra(){
-        let ImagenObra = document.getElementById('imgObra').value 
+        // let ImagenObra = document.getElementById('imgObra').value 
         let NombreObra = document.getElementById('NombreObra').value
         let PrecioDolar = document.getElementById('PrecioDolar').value 
         let Anio = document.getElementById('Anio').value 
@@ -143,7 +143,7 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
         //Patron de entrada para archivos de carga permitidos
         var Ext_Permitidas = /^[.jpg|.jpeg|.png]*$/
 
-        document.getElementsByClassName("boton")[0].value = "Guardando ..."
+        document.getElementsByClassName("boton")[0].value = "Actualizando ..."
         document.getElementsByClassName("boton")[0].disabled = true
         document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialClaro)"
         document.getElementsByClassName("boton")[0].style.color = "var(--OficialOscuro)"
@@ -154,7 +154,7 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
         if(Ext_Permitidas.exec(ImagenObra) == false || ImagenObra.size > 3000000){
             alert("Introduzca una imagen con extención .jpeg .jpg .png menor a 2 Mb")
             document.getElementById("imgObra").value = "";
-            document.getElementsByClassName("boton")[0].value = "Agregar obra"
+            document.getElementsByClassName("boton")[0].value = "Actualizar obra"
             document.getElementsByClassName("boton")[0].disabled = false
             document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
             document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
@@ -167,7 +167,7 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
             document.getElementById("NombreObra").value = "";
             document.getElementById("NombreObra").focus()
             document.getElementById("NombreObra").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Agregar obra"
+            document.getElementsByClassName("boton")[0].value = "Actualizar obra"
             document.getElementsByClassName("boton")[0].disabled = false
             document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
             document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
@@ -180,7 +180,7 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
             document.getElementById("PrecioDolar").value = ""
             document.getElementById("PrecioDolar").focus()
             document.getElementById("PrecioDolar").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Agregar obra"
+            document.getElementsByClassName("boton")[0].value = "Actualizar obra"
             document.getElementsByClassName("boton")[0].disabled = false
             document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
             document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
@@ -193,7 +193,7 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
             document.getElementById("Anio").value = ""
             document.getElementById("Anio").focus()
             document.getElementById("Anio").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Agregar obra"
+            document.getElementsByClassName("boton")[0].value = "Actualizar obra"
             document.getElementsByClassName("boton")[0].disabled = false
             document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
             document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"

@@ -25,7 +25,7 @@
 		<!-- <link rel="shortcut icon" type="image/png" href="<?php //echo RUTA_URL;?>/public/images/logo.png"/-->
 		
 		<!-- CDN FUENTES DE GOOGLE-->
-        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo'>
+        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo'/>
     </head>
     <body>				
 		<header class="header" id="Header">

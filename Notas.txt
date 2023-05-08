@@ -47,4 +47,5 @@ los archivos
     "Panel_Clasificados_C.php
     "Panel_Artista_C.php"
     "Suscriptor_C.php"
+    "A_YaracuyEnViedo.js"
 tiene la opcion de subir a servidor remoto y servidor local, esta debe ser cambiada segun la condicion
