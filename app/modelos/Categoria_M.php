@@ -18,10 +18,10 @@
         }
 
         //SELECT de las ciudades con tiendas
-        public function consultarCiudadesTiendas(){                                
-            $stmt = $this->dbh->query("SELECT DISTINCT parroquia_Tien, estado_Tien FROM tiendas WHERE parroquia_Tien != '' ");
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
+        // public function consultarCiudadesTiendas(){                                
+        //     $stmt = $this->dbh->query("SELECT DISTINCT parroquia_Tien, estado_Tien FROM tiendas WHERE parroquia_Tien != '' ");
+        //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // }
         
         //SELECT de tiendas que pueden ser publicadas poeque estan activas
         public function consultarCantidadTiendas(){                                

@@ -10,7 +10,20 @@
             <div class="cont_noticia borde_1 borde_3 section__content" data-content id="este_<?php echo $Iterador?>">
             
                 <!-- IMAGEN -->
-                <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/'. $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank"><img class="imagen--portada efectoBrillo section__img section__img--left" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/>
+                <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/'. $Key['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank">
+                    <div style="display: flex;">
+                        <div style="flex-grow: 1;flex-shrink: 1;">
+                            <img class="imagen--portada efectoBrillo section__img" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/>
+                        </div>
+                        <?php
+                        if($Key['municipio'] != ''){    ?>
+                        <div  class="cont_portada--municipio">
+                            <p class="cont_portada--municipio--p"><?php echo $Key['municipio'];?> </p>
+                            <p class="cont_portada--abreviatura">Mcpio</p>
+                        </div>
+                            <?php
+                        } ?>
+                    </div> 
                 </a>
                                 
                 <div class="cont_portada--tituloResumen">

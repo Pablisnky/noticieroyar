@@ -88,3 +88,39 @@ function respuesta_secciones(){
         // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
     }
 }
+
+//****************************************************************************************************
+//Muestra la orden de compra
+function llamar_PedidoEnCarrito(ID_Suscriptor, ValorDolar){
+    // console.log("______Desde llamar_PedidoEnCarrito()______",ID_Suscriptor + "/" + ValorDolar)
+
+    var url="../../Carrito_C/index/" + ID_Suscriptor
+    http_request.open('GET', url, true);    
+    peticion.onreadystatechange = respuesta_PedidoEnCarrito;
+    peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+    peticion.send("null");
+    
+    localStorage.setItem('ValorDolarHoy', ValorDolar)         
+    Local_ValorDolarHoy = localStorage.getItem('ValorDolarHoy')
+}                                                           
+function respuesta_PedidoEnCarrito(){
+    if(peticion.readyState == 4){
+        if(peticion.status == 200){            
+            document.getElementById("Mostrar_Orden").style.display="block"
+            //Coloca el cursor en el top de la pagina
+            window.scroll(0,0)            
+
+            document.getElementById('Mostrar_Orden').innerHTML=peticion.responseText
+    
+            PedidoEnCarrito(Local_ValorDolarHoy)           
+        } 
+        else{
+            alert('Hubo problemas con la petición en llamar_PedidoEnCarrito()')
+        }
+    }
+    else{ //en caso contrario, mostramos un gif simulando una precarga
+        // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+    }    
+}
+
+//****************************************************************************************************

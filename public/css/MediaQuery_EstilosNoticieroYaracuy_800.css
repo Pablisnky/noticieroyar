@@ -323,8 +323,8 @@
 		overflow-y: hidden;
 	}
 	.cont_noticia--sencilla{
-	   min-width: 95%;
-	   margin: 1%;
+	   min-width: 60%;
+	   margin: 2%;
 	}
 	.cont_noticia--tituloSeccion{
 	   font-size: 1.5em;
@@ -709,7 +709,7 @@
 	/* -ms-transform: translate(0%, 0%);
 	transform: translate(0%, -15%); */
 	height: fit-content;
-	max-height: 40vh;
+	max-height: 90vh;
 	margin-bottom: 1%;
 }
 .contenedor_125{
@@ -1802,7 +1802,8 @@
 .header--scroll-snap{
 	scroll-snap-type: proximity; 
 	overflow-y: scroll; 
-	height: 50vh;
+	width: 65%;
+	height: 60vh;
 	margin-bottom: 10px;
 }
 .tapa-logo--ADN{
@@ -1828,8 +1829,7 @@
 	margin: auto;
 }
 .cont_adn_imagen--perfil{
-	width: 50%;
-	margin: auto;
+	height: 35vh;
 }
 .cont_adn--perfiles{
 	margin-top: 2%; 
@@ -1844,6 +1844,47 @@
 	margin: auto;
 	margin-bottom: 10%;
 }
+.cont_portada--municipio{
+	width: 30px;
+	height: 48vh;/*la misma altura de la imagen de portada*/
+}
+.cont_artista--textoVertical--2{
+	padding-bottom: 5px; 
+	text-align: center; 
+	font-family:'Montserrat', sans-serif;
+	font-size: 4vw; 
+	color: white;
+	width: 100%;
+	margin-top: -2vw;
+}
+.cont_portada--municipio--p{
+	font-size: 5.5vw;
+	text-align: center;
+	padding: 2%!important;
+	height: 50vh;/*la misma altura de la imagen de portada*/
+}
+.cont_portada--abreviatura{
+	writing-mode: vertical-rl; 
+	transform: rotate(180deg); 
+	color: white; 
+	font-size: 4vw
+}
+.cont_yaracuyVideo--small{
+	font-size: 5.5vw;
+	margin-top: -7%;
+	margin-right: -13%;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* ************************************************************************************* */
 /* ***************** MOSTRAR SCROLL A 100VH EN PPAGINA DE INICIO *********************** */
 /* ************************************************************************************* */

@@ -39,16 +39,15 @@
            
             // CONSULTA las secciones que tiene el catalogo de un suscriptor 
             $Secciones = $this->Instancia_Panel_C->SeccionesSuscriptor($ID_Suscriptor);
-            
 
             $Datos = [       
                 'suscriptor' => $this->Suscriptor,         
                 'secciones' => $Secciones,                        
-                'ID_Suscriptor' => $this->Suscriptor['ID_Suscriptor'],
-                'nombre' => $this->Suscriptor['nombreSuscriptor'],
-                'apellido' => $this->Suscriptor['apellidoSuscriptor'],
-                'Pseudonimmo' => $this->Suscriptor['pseudonimoSuscripto'],
-                'telefono' => $this->Suscriptor['telefonoSuscriptor'],
+                'ID_Suscriptor' => $this->Suscriptor[0]['ID_Suscriptor'],
+                'nombre' => $this->Suscriptor[0]['nombreSuscriptor'],
+                'apellido' => $this->Suscriptor[0]['apellidoSuscriptor'],
+                'Pseudonimmo' => $this->Suscriptor[0]['pseudonimoSuscripto'],
+                'telefono' => $this->Suscriptor[0]['telefonoSuscriptor'],
             ];
             
 			// echo '<pre>';
@@ -72,11 +71,11 @@
             $Obras = $this->ConsultaSuscriptor_M->consultarObras($ID_Suscriptor);
 
             $Datos = [
-                'ID_Suscriptor' => $Suscriptor['ID_Suscriptor'],
-                'nombre' => $Suscriptor['nombreSuscriptor'],
-                'apellido' => $Suscriptor['apellidoSuscriptor'],
-                'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
-                'telefono' => $Suscriptor['telefonoSuscriptor'],
+                'ID_Suscriptor' => $Suscriptor[0]['ID_Suscriptor'],
+                'nombre' => $Suscriptor[0]['nombreSuscriptor'],
+                'apellido' => $Suscriptor[0]['apellidoSuscriptor'],
+                'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
+                'telefono' => $Suscriptor[0]['telefonoSuscriptor'],
                 'clasificados' => $Comerciante,
                 'obras' => $Obras
             ];

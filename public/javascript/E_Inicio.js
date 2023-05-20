@@ -1,4 +1,4 @@
-document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
+// document.getElementById("Mostrar_Promocion").addEventListener('click', MostrarPromocion, false)
 
 // document.getElementById("CerrarVentana").addEventListener('click', function(){CerrarModal('VentanaModal')}, false)
 //************************************************************************************************

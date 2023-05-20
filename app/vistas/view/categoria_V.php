@@ -6,7 +6,7 @@
     
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Arte';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>ARTE Y LITERATURA</h2>
+            <h2 class='h2_1'>ARTE LITERATURA</h2>
             <i class="fas fa-pen-nib icono_2"></i>      
             <div class="contenedor_106">
                 <span class="span_21 borde_1 arte_js">
@@ -230,7 +230,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Caramelos';?>" rel="noopener noreferrer">    
         <div>
-            <h2 class='h2_1'>CHOCOLATES Y CARAMELOS</h2>
+            <h2 class='h2_1'>CHOCOLATES CARAMELOS</h2>
             <i class="fas fa-candy-cane icono_2"></i>         
             <div class="contenedor_106">
                 <span class="span_21 borde_1 caramelos_js">
@@ -262,7 +262,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Merceria';?>" rel="noopener noreferrer">    
         <div>
-            <h2 class='h2_1'>MERCERÍA Y TALABARTERÍA</h2>
+            <h2 class='h2_1'>MERCERÍA TALABARTERÍA</h2>
             <i class="fas fa-hat-cowboy-side icono_2"></i>      
             <div class="contenedor_106">
                 <span class="span_21 borde_1 merceria_js">
@@ -294,7 +294,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Frutas';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>FRUTAS Y VERDURAS</h2>
+            <h2 class='h2_1'>FRUTAS VERDURAS</h2>
             <i class="fas fa-carrot icono_2"></i>    
             <div class="contenedor_106">
                 <span class="span_21 borde_1 frutas_js">
@@ -356,15 +356,15 @@
         </div>
     </a>
 
-    <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Ropa';?>" rel="noopener noreferrer">
+    <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Zapateria';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>ROPA Y ZAPATO</h2>
+            <h2 class='h2_1'>ROPA ZAPATO</h2>
             <i class="fas fa-tshirt icono_2"></i>    
             <div class="contenedor_106">
                 <span class="span_21 borde_1 ropa_js">
                     <?php
                         foreach($Datos['cantidadTiendasCategoria'] as $arr) :
-                            if($arr['categoria'] == 'Ropa'){  
+                            if($arr['categoria'] == 'Zapateria'){  
                                 $CantidadRopa = $arr['cantidad']; 
                                 echo $CantidadRopa; ?>
                                 <style>
@@ -390,7 +390,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Farmacia';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>FARMACIA Y SALUD</h2>
+            <h2 class='h2_1'>FARMACIA SALUD</h2>
             <i class="fas fa-medkit icono_2"></i>    
             <div class="contenedor_106">
                 <span class="span_21 borde_1 farmacia_js">
@@ -422,7 +422,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Ferreteria';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>FERRETRÍA Y HOGAR</h2>
+            <h2 class='h2_1'>FERRETRÍA HOGAR</h2>
             <i class="fas fa-screwdriver icono_2"></i>    
             <div class="contenedor_106">
                 <span class="span_21 borde_1 ferreteria_js">
@@ -454,7 +454,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Panaderia';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>PANADERÍA Y PASTELERÍA</h2>
+            <h2 class='h2_1'>PANADERÍA PASTELERÍA</h2>
             <i class="fas fa-birthday-cake icono_2"></i>    
             <div class="contenedor_106">
                 <span class="span_21 borde_1 panaderia_js">
@@ -518,7 +518,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/JoyasRelojeria';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>JOYAS Y RELOJERÍA</h2>
+            <h2 class='h2_1'>JOYAS RELOJERÍA</h2>
             <i class="fas fa-gem icono_2"></i>    
             <div class="contenedor_106">
                 <span class="span_21 borde_1 joyas_js">
@@ -582,7 +582,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Floristeria';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>FLORISTERÍA Y DECORACIÓN</h2>
+            <h2 class='h2_1'>FLORISTERÍA DECORACIÓN</h2>
             <i class="fas fa-leaf icono_2"></i>    
             <div class="contenedor_106">
                 <span class="span_21 borde_1 floristeria_js">
@@ -646,7 +646,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Telefonos';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>TELEFONOS Y COMPUTADORAS</h2>
+            <h2 class='h2_1'>TELEFONOS COMPUTADORAS</h2>
             <i class="fas fa-mobile-alt icono_2"></i>    
             <div class="contenedor_106">
                 <span class="span_21 borde_1 telefono_js">
@@ -678,7 +678,7 @@
 
     <a class="contenedor_6 borde_1 Default_font--black" href="<?php echo RUTA_URL . '/Suscriptor_C/categoria/Papeleria';?>" rel="noopener noreferrer">
         <div>
-            <h2 class='h2_1'>PAPELERÍA Y OFICINA</h2>
+            <h2 class='h2_1'>PAPELERÍA OFICINA</h2>
             <i class="fas fa-paperclip icono_2"></i>    
             <div class="contenedor_106">
                 <span class="span_21 borde_1 papeleria_js">

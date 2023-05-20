@@ -8,7 +8,7 @@
         public function consultarTodosSuscriptor(){
             $stmt = $this->dbh->prepare(
                 "SELECT * 
-                FROM suscriptores "
+                FROM suscriptores"
             );
             
             if($stmt->execute()){
@@ -27,7 +27,7 @@
             $stmt->bindValue(':ID_SUSCRIPTOR', $ID_Suscriptor, PDO::PARAM_STR);
             
             if($stmt->execute()){
-                return $stmt->fetch(PDO::FETCH_ASSOC);
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             else{
                 return false;

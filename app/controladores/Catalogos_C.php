@@ -2,11 +2,15 @@
     class Catalogos_C extends Controlador{
         private $ConsultaCatalagos_M;
         private $PrecioDolar;
-        private $InformacionSuscriptor;
+        private $Instancia_Suscriptor_C;
 
         public function __construct(){
             $this->ConsultaCatalagos_M = $this->modelo("Catalogos_M");
             
+            //Solicita datos del suscriptor a la clase Suscriptor_C 
+            require_once(RUTA_APP . '/controladores/Suscriptor_C.php');
+            $this->Instancia_Suscriptor_C = new Suscriptor_C();
+
             //Solicita el precio del dolar a la clase Divisas_C 
             require(RUTA_APP . '/controladores/Divisas_C.php');
             $this->PrecioDolar = new Divisas_C();
@@ -29,16 +33,12 @@
             //Consulta las secciones de un catalogo especifico        
             $Secciones = $this->ConsultaCatalagos_M->consultarSecciones($ID_Suscriptor); 
 
-            //Solicita nformacion del suscriptor de la clase Sucriptor_C
-            require(RUTA_APP . '/controladores/Suscriptor_C.php');
-            $ImgCatalogo = new Suscriptor_C();
-
             $Datos=[
                 'dolarHoy' => $this->PrecioDolar->Dolar,
                 'ID_Suscriptor' => $ID_Suscriptor,
-                'productos' => $Productos, //ID_Producto, ID_Suscriptor, producto, nombre_img, opcion, precioBolivar, precioDolar, cantidad, disponible
+                'productos' => $Productos,
                 'pseudonimoSuscripto' => $PseudonimoSuscripto,
-                'imgCatalogo' => $ImgCatalogo->index($ID_Suscriptor),
+                'Suscriptor' => $this->Instancia_Suscriptor_C->index($ID_Suscriptor),
                 'secciones' => $Secciones
             ];
             
@@ -64,26 +64,26 @@
             $ImagenesSec = $this->ConsultaCatalagos_M->consultarTodasImagenesProducto($ID_Producto);
 
             //Solicita datos del suscriptor a la clase Suscriptor_C 
-            require(RUTA_APP . '/controladores/Suscriptor_C.php');
-            $this->InformacionSuscriptor = new Suscriptor_C();
+            // require(RUTA_APP . '/controladores/Suscriptor_C.php');
+            // $this->Instancia_Suscriptor_C = new Suscriptor_C();
 
             //CONSULTA informacion del vendedor
-            $Vendedor =$this->InformacionSuscriptor->index($Producto['ID_Suscriptor']);
+            $Vendedor =$this->Instancia_Suscriptor_C->index($Producto['ID_Suscriptor']);
             
             //CONSULTA formas de pago
-            $FormasPago = $this->InformacionSuscriptor->consultarFormasPago($Producto['ID_Suscriptor']);
+            $FormasPago = $this->Instancia_Suscriptor_C->consultarFormasPago($Producto['ID_Suscriptor']);
            
             $Datos=[ 
                 'dolarHoy' => $this->PrecioDolar->Dolar,
                 'Producto' => $Producto,
                 'Imagenes' => $Imagenes,
                 'ImagenesSec' => $ImagenesSec,
-                'nombreSuscriptor' => $Vendedor['nombreSuscriptor'],
-                'apellidoSuscriptor' => $Vendedor['apellidoSuscriptor'],
-                'municipioSuscriptor' => $Vendedor['municipioSuscriptor'],
-                'parroquiaSuscriptor' => $Vendedor['parroquiaSuscriptor'],
-                'telefonoSuscriptor' => $Vendedor['telefonoSuscriptor'], 
-                'pseudonimoSuscripto' => $Vendedor['pseudonimoSuscripto'], 
+                'nombreSuscriptor' => $Vendedor[0]['nombreSuscriptor'],
+                'apellidoSuscriptor' => $Vendedor[0]['apellidoSuscriptor'],
+                'municipioSuscriptor' => $Vendedor[0]['municipioSuscriptor'],
+                'parroquiaSuscriptor' => $Vendedor[0]['parroquiaSuscriptor'],
+                'telefonoSuscriptor' => $Vendedor[0]['telefonoSuscriptor'], 
+                'pseudonimoSuscripto' => $Vendedor[0]['pseudonimoSuscripto'], 
                 'formasPago' => $FormasPago,
                 'Bandera' => 'Desde_Catalogo'
             ];      
@@ -109,6 +109,9 @@
             // echo $ID_Suscriptor . '<br>'; 
             // echo $ID_Seccion . '<br>'; 
             // exit;
+            
+            //Consulta las secciones de un catalogo especifico        
+            $Secciones = $this->ConsultaCatalagos_M->consultarSecciones($ID_Suscriptor); 
            
             if(is_numeric($ID_Seccion)){          
                 //Consulta los productos  de una seccion especifica          
@@ -121,7 +124,9 @@
            
             $Datos=[ 
                 'dolarHoy' => $this->PrecioDolar->Dolar,
+                'Suscriptor' => $this->Instancia_Suscriptor_C->index($ID_Suscriptor),
                 'productos' => $ProductosSeccion,
+                'secciones' => $Secciones
             ];      
 
             // echo "<pre>";
@@ -129,6 +134,7 @@
             // echo "</pre>";
             // exit();
             
-            $this->vista("view/ajax/A_productoPorSeccion_V", $Datos); 
+            $this->vista("header/header_Catalogo", $Datos); 
+            $this->vista("view/seccion_V", $Datos); 
         } 
     }

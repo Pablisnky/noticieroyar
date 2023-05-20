@@ -50,17 +50,10 @@
             //CONSULTA todos los productos de un suscriptor  
             $Productos = $this->ConsultaClasificados_M->consultarTodosProductosSuscriptor($ID_Suscriptor);
 
-            //se consultan la informacion del suscriptor
-            // $Suscriptor = $this->InformacionSuscriptor->index($ID_Suscriptor);
-
             $Datos = [
-                'productos' => $Productos, //ID_Producto, producto, ID_Opcion, opcion, precioBolivar, prcioDolar, cantidad, disponible, nombre_img
+                'productos' => $Productos,
                 'suscriptor' => $_SESSION["ID_Suscriptor"],
-                // 'ID_Suscriptor' => $Suscriptor['ID_Suscriptor'],
-                // 'nombre' => $Suscriptor['nombreSuscriptor'],
-                // 'apellido' => $Suscriptor['apellidoSuscriptor'],
-                // 'Pseudonimmo' => $Suscriptor['pseudonimoSuscripto'],
-                // 'telefono' => $Suscriptor['telefonoSuscriptor']
+                'pseudonimmo' => $_SESSION["PseudonimoSuscriptor"]
             ];
             
             // echo "<pre>";
@@ -69,7 +62,7 @@
             // exit();
 
             //Si no hay productos cargados y no hay datos comerciales, se muestra el modal de sin productos
-            if($Productos == Array() && $Datos['suscriptor']['pseudonimoSuscripto'] == ''){
+            if($Datos['productos'] == Array() && $Datos['pseudonimmo'] == ''){
                 $Datos = [
                    'SinDatosComerciales'  => 'SinDatosComerciales',
                    'ID_Suscriptor' => $ID_Suscriptor
@@ -414,6 +407,7 @@
             //Solicita el precio del dolar al controlador 
             require(RUTA_APP . '/controladores/Divisas_C.php');
             $this->PrecioDolar = new Divisas_C();
+            
             // VERIFICAR QUE SE TRAE LOS DATOS DE ACCESO A LA BD
             // echo '<pre>';
             // print_r($this->PrecioDolar);

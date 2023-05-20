@@ -20,7 +20,8 @@
                 <a class="boton boton--publicar" href="<?php echo RUTA_URL . '/Login_C/index/SinID_Noticia,SinBandera';?>" rel="noopener noreferrer">Publicar</a>
             </div>
         </div>
-    </header>    
+    </header>   
+
     <div class="contenedor_13 contenedor_13--marginTOp" id="Contenedor_13Js"> 
         <?php   
         $ContadorLabel = 1;
@@ -46,7 +47,9 @@
 
                 <!-- IMAGEN -->
                 <div class="contOpciones">
-                    <?php
+
+                    <?php                    
+                    // PRODUCTO NUEVO O USADO
                     if($row['nuevo'] == 'Nuevo'){   ?>                        
                         <label class="contOpciones--textoVertical">Articulo <?php echo $row['nuevo']?></label>
                         <?php
@@ -55,11 +58,14 @@
                         <label class="contOpciones--textoVertical">Articulo <?php echo $row['nuevo']?></label>
                         <?php
                     }  ?>
+                    
+                    <!-- IMAGEN -->
                     <a href="<?php echo RUTA_URL . '/Clasificados_C/productoAmpliado/' . $ID_Producto?>" rel="noopener noreferrer" target="_blank"><img class="contOpciones__img" alt="Fotografia del producto" src="<?php echo RUTA_URL?>/public/images/clasificados/<?php echo $ID_Suscriptor;?>/productos/<?php echo $ImagenProducto;?>"/></a>
                 </div>
                                                     
                 <div class="cont_producto"> 
-                    <div style="height: 75px;">
+                    <div class="cont_catalogos--producto">
+
                         <!-- PRODUCTO -->
                         <label class="input_8 input_8D hyphen" id="<?php echo 'EtiquetaProducto_' . $ContadorLabel;?>"><?php echo $Producto;?></label>
 
@@ -68,21 +74,23 @@
                     </div>     
                         
                     <!-- PRECIO -->
-                    <div class="cont_Precios">
-                        <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >Bs. <?php echo $PrecioBolivar;?></label>
+                    <div class="cont_Precios--clasificados">
+                        <div style="width: 55%">  
+                    
+                            <!-- PRECIO EN Bs -->
+                            <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >Bs. <?php echo $PrecioBolivar;?></label>
 
-                        <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >$ <?php echo $PrecioDolar;?></label>
-                    </div>
-
-                    <!-- Este input es el que se envia al archivo JS por medio de la función agregarProducto(), en el valor se colocan el caracter _ para usarlo como separardor en JS-->
-                    <input class="Default_ocultar" type="radio" name="opcion" id="<?php echo 'ContadorLabel_' . $ContadorLabel;?>" value="<?php echo $ID_Opcion . ',' . '_' . $Producto . ',' . '_' . $Opcion . ',' . '_' . $PrecioBolivar;?>" onclick="agregarProducto(this.form , '<?php echo 'Etiqueta_' . $ContadorLabel;?>','<?php echo 'Cont_Leyenda_' . $ContadorLabel;?>','<?php echo 'Cantidad_' . $ContadorLabel;?>','<?php echo 'Producto_' . $ContadorLabel;?>','<?php echo 'Opcion_' . $ContadorLabel;?>','<?php echo 'Precio_' . $ContadorLabel;?>','<?php echo 'Total_' . $ContadorLabel;?>','<?php echo 'Leyenda_' . $ContadorLabel;?>','<?php echo 'Cont_Producto_' . $ContadorLabel;?>','<?php echo 'Item_'. $ContadorLabel;?>','<?php echo $Existencia;?>','<?php echo 'ID_BotonMas_'. $ContadorLabel;?>','<?php echo 'ID_BloquearMas_'. $ContadorLabel;?>')"/>
-                </div> 
+                            <!-- PRECIO EN $-->
+                            <label class="input_8" id="<?php echo 'EtiquetaPrecio_' . $ContadorLabel;?>" >$ <?php echo $PrecioDolar;?></label>
+                        </div>
+                    </div> 
+                </div>
                 
                 <!-- VENDEDOR -->
                 <div class="contOpciones--vendedor">   
                     <?php
                     foreach($Datos['Suscriptor'] as $Key)  :
-                        if($ID_Suscriptor == $Key['ID_Suscriptor']){           ?>          
+                        if($ID_Suscriptor == $Key['ID_Suscriptor']){  ?>          
                             <div class="cont_vendedor--span">                        
                                 <div class="cont_vendedor--span-2">              
                                     <span class="span--vendedor--ubicacion"></span>
@@ -120,11 +128,11 @@
     
 </section>
 
-</body>
 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_Clasificados.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/A_Clasificados.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/FullScreem.js?v=<?php echo rand();?>"></script> 
 
+</body>
 </html>

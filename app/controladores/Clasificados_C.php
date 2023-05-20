@@ -64,12 +64,12 @@
                 'Producto' => $Producto,
                 'Imagenes' => $Imagenes,
                 'ImagenesSec' => $ImagenesSec,
-                'nombreSuscriptor' => $Vendedor['nombreSuscriptor'],
-                'apellidoSuscriptor' => $Vendedor['apellidoSuscriptor'],
-                'municipioSuscriptor' => $Vendedor['municipioSuscriptor'],
-                'parroquiaSuscriptor' => $Vendedor['parroquiaSuscriptor'],
-                'telefonoSuscriptor' => $Vendedor['telefonoSuscriptor'], 
-                'pseudonimoSuscripto' => $Vendedor['pseudonimoSuscripto'], 
+                'nombreSuscriptor' => $Vendedor[0]['nombreSuscriptor'],
+                'apellidoSuscriptor' => $Vendedor[0]['apellidoSuscriptor'],
+                'municipioSuscriptor' => $Vendedor[0]['municipioSuscriptor'],
+                'parroquiaSuscriptor' => $Vendedor[0]['parroquiaSuscriptor'],
+                'telefonoSuscriptor' => $Vendedor[0]['telefonoSuscriptor'], 
+                'pseudonimoSuscripto' => $Vendedor[0]['pseudonimoSuscripto'], 
                 'formasPago' => $FormasPago,
                 'Bandera' => 'Desde_Clasificados'
             ];      

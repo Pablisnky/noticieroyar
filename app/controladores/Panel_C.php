@@ -441,10 +441,10 @@
 				$this->Panel_M->InsertarImagenPrincipalEfemeride($ID_Efemeride, $Nombre_imagenEfemeride, $Tipo_imagenEfemeride, $Tamanio_imagenEfemeride);
 
 				//Usar en remoto
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/efemerides/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/efemerides/';
 				
 				// usar en local
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/efemerides/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/efemerides/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenEfemeride']['tmp_name'], $Directorio . $Nombre_imagenEfemeride);
@@ -657,10 +657,10 @@
 					$this->Panel_M->InsertarVideoNoticia($ID_Noticia, $Nombre_video, $Tamanio_video, $Tipo_video);
 					
 					//Usar en remoto
-					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
+					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
 					
 					// usar en local
-					// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
+					$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
 					
 					//Se mueve el archivo desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 					move_uploaded_file($_FILES['video']['tmp_name'], $Directorio . $Nombre_video);
@@ -728,10 +728,10 @@
 				$this->Panel_M->InsertarObituario($difunto, $Nombre_imagenObituario, $Tipo_imagenObituario, $Tamanio_imagenObituario);
 				
 				//Usar en remoto
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/obituario/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/obituario/';
 				
 				// usar en local
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/obituario/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/obituario/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenObituario']['tmp_name'], $Directorio.$Nombre_imagenObituario);
@@ -807,20 +807,20 @@
 				$ID_Suscriptor = $this->Panel_M->InsertarArtista($NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil);				
 
 				// remoto      Se crea el directorio donde iran las obras del artista
-                $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista;
+                // $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista;
 
 				// local     Se crea el directorio donde iran las obras del artista
-                // $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista;
+                $CarpetaArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista;
 
                 if(!file_exists($CarpetaArtista)){
                     mkdir($CarpetaArtista, 0777, true);
                 }
 				
 				// remoto
-                $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista.  '/perfil';
+                // $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista.  '/perfil';
 
 				// local        Se crea el directorio donde iran las fotos de perfil del artista
-                // $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil';
+                $CarpetaPerfilArtista = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil';
 
 				if(!file_exists($CarpetaPerfilArtista)){
                     mkdir($CarpetaPerfilArtista, 0777, true);
@@ -853,10 +853,10 @@
 				$this->Panel_M->InsertarVideoYaracuyEnVideo($Nombre_video, $Tamanio_video, $Tipo_video, $Descripcion_video);
 				
 				//Usar en remoto
-				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/video/YaracuyEnVideo/';
+				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/video/YaracuyEnVideo/';
 				
 				// usar en local
-				// $Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/YaracuyEnVideo/';
+				$Directorio = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/YaracuyEnVideo/';
 				
 				//Se mueve el archivo desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['video']['tmp_name'], $Directorio . $Nombre_video);
@@ -1171,10 +1171,10 @@
 					// exit;
 					
 					//Usar en remoto
-					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/';
+					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/';
 
 					//usar en local
-					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/';
+					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/';
 
 					//Subimos el fichero al servidor
 					move_uploaded_file($Ruta_Temporal_imagenSecundaria, $directorio_3.$_FILES['imagenesSecundarias']['name'][$i]);
@@ -1191,10 +1191,10 @@
 				$ID_Anuncio = $_POST['id_anuncio'];
 				
 				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
 				
 				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
 
 				// echo "ACTUALIZAR". '<br>';
 				// echo $ID_Noticia . '<br>';
@@ -1243,10 +1243,10 @@
 				}
 
 				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/video/';
 				
 				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/video/';
 								
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['video']['tmp_name'], $Directorio_1.$Nombre_video);
@@ -1259,10 +1259,10 @@
 				$ID_Coleccion = $_POST['id_coleccion'];
 				
 				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
 				
 				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
 				
 				// echo "ACTUALIZAR". '<br>';
 				// echo 'ID_Noticia ' . $ID_Noticia . '<br>';
@@ -1321,10 +1321,10 @@
 				$Nombre_imagenAgenda = mt_rand() . '_' . $Nombre_imagenAgenda;
 
 				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/agenda/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/agenda/';
 				
 				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/agenda/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/agenda/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenAgenda']['tmp_name'], $Directorio_1.$Nombre_imagenAgenda);
@@ -1361,10 +1361,10 @@
 				// exit;
 
 				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/';
 				
 				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenAnuncio']['tmp_name'], $Directorio_1.$Nombre_imagen);
@@ -1418,10 +1418,10 @@
 				$Nombre_imagenPrincipal_Efemeride = mt_rand() . '_' . $Nombre_imagenPrincipal_Efemeride;
 				
 				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/efemerides/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/efemerides/';
 				
 				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/efemerides/';
+				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/efemerides/';
 				
 				//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 				move_uploaded_file($_FILES['imagenPrincipal_Efemeride']['tmp_name'], $Directorio_1.$Nombre_imagenPrincipal_Efemeride);
@@ -1466,10 +1466,10 @@
 			$this->Panel_M->ActualizarArtista($ID_Suscriptor, $NombreArtista, $ApellidoArtista, $CategoriaArtista, $MunicipioArtista, $Nombre_imagenPerfil, $Tamanio_imagenPerfil, $Tipo_imagenPerfil);
 			
 			//Usar en remoto
-			$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
+			// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/perfil/';
 			
 			// usar en local
-			// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
+			$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
 			
 			//Se mueve la imagen desde el directorio temporal a la ruta indicada anteriormente utilizando la función move_uploaded_files
 			move_uploaded_file($_FILES['imagenPerfil']['tmp_name'], $Directorio_1.$Nombre_imagenPerfil);
@@ -1490,10 +1490,10 @@
 					// exit;
 					
 					//Usar en remoto
-					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/';
+					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/galeria/' . $ID_Suscriptor . '_' . $NombreArtista . '_' . $ApellidoArtista . '/';
 
 					//usar en local
-					// $directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
+					$directorio_3 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/galeria/Andreina_Zavarce/';
 
 					//Subimos el fichero al servidor
 					move_uploaded_file($Ruta_Temporal_imageneObra, $directorio_3.$_FILES['imagenesObras']['name'][$i]);
@@ -1522,10 +1522,10 @@
 
 			// Se elimina del directorio del servidor
 			// en remoto
-			unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/' . $NombreImagen); 
+			// unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/noticias/' . $NombreImagen); 
 
 			// en local
-			// unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/' .$NombreImagen); 
+			unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/noticias/' .$NombreImagen); 
 
 			header("Location:" . RUTA_URL . "/Panel_C/Not_Generales");
 			die();
@@ -1545,10 +1545,10 @@
 
 			// Se elimina del directorio del servidor
 			// en remoto
-			unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/efemerides/' . $NombreImagen); 
+			// unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/efemerides/' . $NombreImagen); 
 			
 			// en local
-			// unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/efemerides/' .$NombreImagen); 
+			unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/efemerides/' .$NombreImagen); 
 
 			header("Location:" . RUTA_URL . "/Panel_C/efemerides");
 			die();
@@ -1567,10 +1567,10 @@
 
 			// Se elimina del directorio del servidor
 			// en remoto
-			unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/agenda/' . $NombreImagen); 
+			// unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/agenda/' . $NombreImagen); 
 			
 			// en local
-			// unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/agenda/' .$NombreImagen); 
+			unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/agenda/' .$NombreImagen); 
 
 			header("Location:" . RUTA_URL . "/Panel_C/agenda");
 			die();
@@ -1590,10 +1590,10 @@
 
 			// Se elimina del directorio del servidor
 			// en remoto
-			unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/' . $NombreImagen);
+			// unlink($_SERVER['DOCUMENT_ROOT'] . '/public/images/publicidad/' . $NombreImagen);
 
 			// en local
-			// unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/' .$NombreImagen); 
+			unlink($_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/publicidad/' .$NombreImagen); 
 					
 			header("Location:" . RUTA_URL . "/Panel_C/publicidad");
 			die();

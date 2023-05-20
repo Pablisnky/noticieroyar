@@ -57,11 +57,11 @@
             }         
             else{
                 $Datos = [
-                    'datosNoticia' => $this->NoticiasPortadas, //ID_Noticia, titulo, subtitulo,    noticiaPrincipal, portada, nombre_imagenNoticia, fecha, fuente
+                    'datosNoticia' => $this->NoticiasPortadas,
                     'ID_NoticiaInicial' =>  $this->NoticiasPortadas[0]['ID_Noticia'],
-                    'anuncios' => $this->Anuncios, //ID_Anuncio, ID_Noticia
-                    'imagenes' => $this->Imagenes,  //ID_Noticia, COUNT(ID_Noticia)
-                    'videos' => $this->Video, //ID_Noticia, cantidadVideocomentarioColeccion
+                    'anuncios' => $this->Anuncios,
+                    'imagenes' => $this->Imagenes,
+                    'videos' => $this->Video,
                     'cantidadComentario' => $this->CantidadComentario,
                     'noticiasSinComentarios' => $this->NoticiasSinComentarios,
                     'noticiasSinVideo' => $this->NoticiasSinVideo,

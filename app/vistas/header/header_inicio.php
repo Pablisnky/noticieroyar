@@ -33,7 +33,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/EstilosGiroTarjeta.css?v=<?php echo rand();?>"/>
 				
 		<!-- MANIFEST PWA -->
-		<link rel="manifest" href="<?php echo RUTA_URL;?>/public/manifest.json"/>
+		<!-- <link rel="manifest" href="<?php //echo RUTA_URL;?>/public/manifest.json"/> -->
 		
 		<!-- CDN FUENTES DE GOOGLE-->
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo|Moon+Dance'>
@@ -50,9 +50,9 @@
 			<div>
 				<nav class="header__menuResponsive" id="MenuResponsive">
 					<!-- ICONO EXPANDIR -->
-					<div class="expandir-iconos"> 
-						<img class="Default_pointer" style="width: 1.5em; margin-left: 20%" id="IconoExpandir" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_less_white_24dp.png'?>" onclick="hola()"/>
-					</div>
+					<!-- <div class="expandir-iconos"> 
+						<img class="Default_pointer" style="width: 1.5em; margin-left: 20%" id="IconoExpandir" src="<?php //echo RUTA_URL . '/public/iconos/chevron/outline_expand_less_white_24dp.png'?>" onclick="hola()"/>
+					</div> -->
 
 					<div class="header--scroll-snap">
 						<div class="header--nav">
@@ -86,9 +86,9 @@
 					</div>
 
 					<!-- ICONO EXPANDIR -->
-					<div class="expandir-iconos"> 
-						<img class="Default_pointer" style="width: 1.5em; margin-left: 20%" id="IconoExpandir" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_white_24dp.png'?>" onclick="hola()"/>
-					</div>
+					<!-- <div class="expandir-iconos"> 
+						<img class="Default_pointer" style="width: 1.5em; margin-left: 20%" id="IconoExpandir" src="<?php //echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_white_24dp.png'?>" onclick="hola()"/>
+					</div> -->
 				</nav>
 			</div>
 

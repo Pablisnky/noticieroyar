@@ -5,6 +5,7 @@ yury@gmail.com           yyyy
 qq@qq.qq                 qqqq
 kk@kk.kk                 kkkk
 patricia@gmail.com       patricia
+jean@gmail.com           jjjj
 *******************************************************************************
 En local y en remoto
     Cambiar en Configurar.php; 

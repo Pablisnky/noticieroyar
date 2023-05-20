@@ -7,7 +7,7 @@
 <div class="login_cont" id="Contenedor_42">  
     <form action="<?php echo RUTA_URL; ?>/Suscriptor_C/actualizaNombreComercial" method="POST" name="form_Configurar" enctype="multipart/form-data" autocomplete="off"> <!--  onsubmit="return validarPerfil()" -->
         <?php
-        foreach($Datos as $Key) :   
+        foreach($Datos['suscriptor'] as $Key) :   
             ?>
             <!-- SUSCRIPTOR -->
             <fieldset class="fieldset_1">

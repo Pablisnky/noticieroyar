@@ -166,11 +166,12 @@
                 $ID_Suscriptor = $Suscriptor[0]['ID_Suscriptor'];
                 $CorreoBD = $Suscriptor[0]['correoSuscriptor'];
                 $Nombre = $Suscriptor[0]['nombreSuscriptor'];
-                $Apellido = $Suscriptor[0]['apellidoSuscriptor'];
+                $Apellido = $Suscriptor[0]['apellidoSuscriptor'];  
+                $Pseudonimo = $Suscriptor[0]['pseudonimoSuscripto']; 
 
                 $_SESSION["nombreSuscriptor"] = $Nombre;
                 $_SESSION["apellidoSuscriptor"] = $Apellido;
-
+                $_SESSION["PseudonimoSuscriptor"] = $Pseudonimo;
                 //Se CONSULTA la contraseña enviada, que sea igual a la contraseña de la BD
                 $Hash = $this->ConsultaLogin_M->consultarContrasena($ID_Suscriptor);
                 

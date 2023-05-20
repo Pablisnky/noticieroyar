@@ -5,9 +5,12 @@
 
 <section class="sectionModal--carrito" id="SectionModal--carrito">
     
-    <!-- ICONO REGRESAR -->
     <div class="cont_carrito--regresar">
+        <!-- ICONO REGRESAR -->
         <img class="icono--regresar Default_pointer" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/flecha/outline_arrow_back_white_24dp.png'?>" onclick="ocultarPedido()"/>
+
+        <!-- ICONO VACIAR CARRITO DE COMPRAS -->
+        <img class="icono--regresar Default_pointer" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/carritoCompras/outline_remove_shopping_cart_white_24dp.png'?>" onclick="vaciarCarrito()"/>
     </div>
 
     <!-- ORDEN DE COMPRA -->
@@ -25,7 +28,7 @@
                                 <th class="th_1 th_4">CANT.</th>
                                 <th class="th_2 th_4">PRODUCTO</th>
                                 <th class="th_3 th_4">PRECIO UNITARIO</th>
-                                <th class="th_1 th_4">TOTAL</th>
+                                <th class="th_3 th_4">TOTAL</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,11 +50,11 @@
                 <div class="contGeneral">  
                     <div class="contInputRadio--carrito">     
                         <input type="radio" name="entrega" id="Domicilio_No" value="Domicilio_No"  form="DatosUsuario"/>
-                        <label class="contInputRadio__label" for="Domicilio_No">Entrega acordado con vendedor: 0,00 Bs.</label>
+                        <label class="contPedido--radio" for="Domicilio_No">Entrega acordado con vendedor: 0 Bs</label>
                     </div>                    
                     <div class="contInputRadio--carrito">
                         <input type="radio" name="entrega" id="Domicilio_Si" value="Domicilio_Si" form="DatosUsuario" checked/>
-                        <label class="contInputRadio__label" for="Domicilio_Si">Entrega a domicilio: <?php echo number_format($Datos['Delivery'], 2, ",", ".");?> Bs.</label>
+                        <label class="contPedido--radio" for="Domicilio_Si">Entrega a domicilio: <?php echo number_format($Datos['Delivery'], 2, ",", ".");?> Bs.</label>
                         <input class="Default_ocultar" type="text" id="PrecioEnvio" value="<?php echo $Datos['Delivery'];?>"/>
                     </div>     
                     
@@ -73,12 +76,12 @@
             </article>
 
             <!-- CONFIRMACION DE USUARIO -->
-            <article id="ConfirmarOrden">
+            <article id="ConfirmarOrden" >
                 <header id="Label--confirmar"> 
                     <h1 class="h1_1" >Confirmar orden</h1>
                 </header>
                 
-                <div class="contBoton" id="Contenedor_26">
+                <div class="contBoton" style="width: 100%;" id="Contenedor_26">
                     <label class="boton boton--alto boton--carrito"  >Usuario no registrado</label>
                     <!--id="No_Registrado" onclick="mostrar_formulario('MuestraEnvioFactura')" -->
                     <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>

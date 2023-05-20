@@ -11,6 +11,7 @@
         <!-- MEMBRETE FIJO -->
         <div class="cont_yaracuyVideo--membrete">
             <label class="header__titulo">NoticieroYaracuy</label>
+            <br class="Default_quitarEscritorio">
             <small class="cont_yaracuyVideo--small">YaracuyEnVideo</small>
         </div>	
     </header>

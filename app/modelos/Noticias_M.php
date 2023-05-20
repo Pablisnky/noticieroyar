@@ -162,40 +162,6 @@
                 return false;
             }
         }
-        
-        //SELECT de colecciones asociados a las noticias
-        public function consultarColeccionNoticiaGenerales(){
-            $stmt = $this->dbh->query(
-                "SELECT ID_Noticia, colecciones.ID_Coleccion, serie, nombreColeccion, descripcionColeccion, comentarioColeccion
-                FROM colecciones
-                INNER JOIN noticias_colecciones  ON colecciones.ID_Coleccion=noticias_colecciones.ID_Coleccion
-                GROUP BY ID_Noticia"
-            );
-
-            if($stmt->execute()){
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }
-            else{
-                return false;
-            }
-        }
-        
-        //SELECT de imagenes de colecciones asociados a las noticias
-        public function consultarImagenesColeccionNoticiaGenerales(){
-            $stmt = $this->dbh->query(
-                "SELECT ID_Noticia, colecciones.ID_Coleccion, nombre_imColeccion, ImagenPrincipalColec, ID_ImagenColeccion
-                FROM colecciones
-                INNER JOIN imagnescolecciones ON colecciones.ID_Coleccion=imagnescolecciones.ID_Coleccion
-                INNER JOIN noticias_colecciones  ON colecciones.ID_Coleccion=noticias_colecciones.ID_Coleccion"
-            );
-
-            if($stmt->execute()){
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }
-            else{
-                return false;
-            }
-        }
 
         public function consultarNoticiaDetalle($ID_Noticia){
             $stmt = $this->dbh->prepare(
