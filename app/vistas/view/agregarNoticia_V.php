@@ -9,7 +9,6 @@
 
 <div class="cont_panel--actualizar">
     <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" id="Agregar" onsubmit="return validarAgregarNoticia()">
-        <a id="marcador_01" class="ancla"></a>
         <fieldset class="fieldset_1" id="Portada"> 
             <legend class="legend_1">Agregar Noticia</legend>
             <div class="cont_panel--actualizar--contenido">

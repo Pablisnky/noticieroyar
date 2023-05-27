@@ -141,11 +141,9 @@ textarea{
 	/* line-height: 40px; */
 }
 .ancla{
-	display: block;
-	content: "marcador";
-	margin-top: -3%;
-	height: 50px;
-	/* visibility: hidden; */
+    display: block;
+    padding-top: 5%;
+    margin-top: -5%;
 }
 .boton{
 	background-color: var(--OficialOscuro);
@@ -185,8 +183,8 @@ textarea{
 .borde_1{
 	border-color: var(--BordeClaro);
 	border-width: 1px;
-	border-radius: 15px;
-	border-style: solid;	
+	border-style: solid;
+	border-radius: 15px;	
 } 
 .borde_2{
 	border-radius: 5px;
@@ -1113,38 +1111,51 @@ textarea{
  .cont_noticia{
 	margin-top: 5%;
  }
- .cont_noticia--seccion{
-	display: flex;
-	flex-wrap: nowrap; 
-	justify-content: flex-start;
-	align-content: flex-start;/*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
-	/* height: 100%; */
-	margin-bottom: 2%;
-	overflow-x: scroll;
-	/* overflow-y: hidden; */
-	/* las siguientes lineas edita la barra scroll */
-    /* scrollbar-color: rgba(14, 13, 13, 0.5); */
-	scrollbar-width: thin;
- }
  .cont_noticia--tituloSeccion{
 	background-color: rgb(245, 238, 238);
 	border-color: rgba(0, 0, 0, 0.4);
 	border-width: 1px;
 	border-style: solid;
-	font-size: 1.5em;
-	text-align: left;
-	padding-left: 8px;
 	width: 20%;
-	margin-left: 5%;
+	margin-left: 3%;
 	border-radius: 5px;
 	margin-bottom: 0.5%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+ }
+ .cont_noticia--tituloSeccion--h1{
+	font-size: 1.5vw;
+	text-align: left;
+ }
+ .cont_noticia--filtros{
+	display: flex; 
+	justify-content: space-around;
+	margin-right: -25px;
+	width: 30%
+ }
+ .cont_noticia--seccion{
+	display: flex;
+	flex: auto;
+	flex-wrap: nowrap; 
+	justify-content: space-between;
+	align-content: flex-start;/*Alinea segun el eje vertical, con el valor flex-start rompe la distribución proporcional vertical y coloca los div hijos desde el top, la distribucion vertical proporcional ocurre cuando el contenedor general tiene altura de 100%*/
+	margin-bottom: 2%;
+	overflow-x: scroll;
+	/* las siguientes lineas edita la barra scroll */
+    scrollbar-color: rgba(14, 13, 13, 0.5);
+	scrollbar-width: thin;
+	
  }
  .cont_noticia--sencilla{
-	min-width: 25%
+	min-width: 24%;
+	max-width: 24%;
+	margin-right: 20px;
+	margin-left: 1%;
  }
  .cont_noticia-imagen{
-	height: 30vh; 
-	width: 90%;
+	height: 40vh; 
+	width: 100%;
 	margin: auto;
 	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
  }
@@ -1154,6 +1165,9 @@ textarea{
 	margin-bottom: 5px;
 	/* padding: 0.5% 2% 4% 3%; */
 	font-size: 0.8em;
+ }
+ .contenedor_tarjeta{
+	 min-width: 25%;
  }
  .cont_noticia--hr_1{
 	margin: 1%;
@@ -1260,6 +1274,9 @@ textarea{
 	margin-bottom: 10px;
 	text-align: justify;
  }
+ .cont_panel--seccion{
+	width: 50%;
+ }
  .cont_panel--seccion--li{	
 	list-style: initial;
 	margin-left: 15px;
@@ -1274,7 +1291,6 @@ textarea{
  }
  .cont_panel--ul{
 	 padding-left: 10%;
-	 /* list-style: none; */
  }
  .cont_panel--li{
 	color: black;
@@ -2052,6 +2068,18 @@ textarea{
 .Default--final{
 	margin-bottom: 5%;
 }
+.Default_login{
+	background-color: rgba(0, 0, 255, 0.3);
+	border-radius: 50%;
+	padding: 6%;
+	width: 1.8em;
+}
+.Default_logout{
+	background-color: rgba(255, 0, 0, 0.3);
+	border-radius: 50%;
+	padding: 1%;
+	width: 1.8em;
+}
 .fieldset_1{
 	width: 95%;
 	margin: auto;
@@ -2093,12 +2121,9 @@ textarea{
 }
 .header__li--Enlaces{
 	color: white;
-	/* text-align: center; */
 	font-size: 1.3em !important;
 	line-height: 40px;
 	height: 55px;
-	/*padding-top: 5%; */
-	/* width: 100%; */
 	/*flex-grow: 1;distribuye proporcionalmente los elementos internos en el eje horizontal, es necesario que el elemento padre tenga la propiedad display con el valor flex*/
 }
 .header--menu{	
@@ -2106,10 +2131,9 @@ textarea{
 	cursor: pointer;
 }
 .header__titulo{
-	font-size: 3em;
+	font-size: 3.8vw;
 	font-family: Gruppo;
 	display: block;
-	margin-left: 10%;
 }
 .header--scroll-snap{
 	scroll-snap-type: proximity; 
@@ -2510,8 +2534,8 @@ ul .menuContenedor_3{
 	width: 20%;
 	position: fixed !important;
 	z-index: 2 !important;
-	padding-left: 1%;
-	padding-top: 3%;
+	/* padding-left: 5%; */
+	/* padding-top: 1%; */
 }
 .hr--panel{
 	margin: 2%;
@@ -2520,6 +2544,22 @@ ul .menuContenedor_3{
 .cont_panel--main{
 	margin-left: 20%;
 	margin-top: 5%;
+}
+.cont_panel--paginacion{
+	width: 60%;
+	display: flex;
+	margin-left: 10%;
+}
+.cont_panel--paginacion li{
+	padding-left:10px;
+	padding-right:10px; 
+	padding-bottom: 5px;
+}
+.cont_panel--encabezado{
+	padding-left: 2%; 
+	display: flex; 
+	align-items: end;
+	width: 40%;
 }
 .cont_noticiasGenerales--paginacion{
 	display: flex;
@@ -2690,7 +2730,8 @@ ul .menuContenedor_3{
 }
 .cont_header_membrete{
 	width: 40%;
-	margin-right: 11%;
+	margin-right: 10%;
+	text-align: center;
 }
 .cont_noticia {
 	margin-top: 0%;
@@ -2788,6 +2829,10 @@ ul .menuContenedor_3{
 	height: 30px;
 	width: 90%;
 }
+.cont_panel--select{
+	height: 30px;
+	width: 90%;
+}
 .login_cont{
 	width: 40%;
 	margin: auto;
@@ -2800,7 +2845,7 @@ ul .menuContenedor_3{
 	width: 30%;
 }
 .login_cont--recuperarClave{
-	width: 50%;
+	width: 80%;
 	margin: 2% auto;
 	text-align: center;
 }
@@ -3256,18 +3301,18 @@ ul .menuContenedor_3{
 	  width: 90%;
 	  text-align: center;
 	  font-family: Gruppo;
-  }
+}
   .hr_3a{
 	  margin: 3% 0% 20% 0%;
-  } 
+} 
   .cont_detalle_Producto--p{
 	  line-height: 30px;
-  }  
+}  
   .cont_detalle_Producto--p:hover{
 	background-color: var(--OficialClaro);
 	border-radius: 15px;
 	padding: 0% 5%;
-  }
+}
 .cont_catalogos--secciones{
 	background-color: var(--OficialClaro);
 	transition: all .4s;
@@ -3284,7 +3329,7 @@ ul .menuContenedor_3{
 	opacity: 1;
 	top: 70px;
 	z-index: 1;
-  }
+}
   .cont_detalle_Producto---catalogo{
 	margin-left: -5%;
 	padding-left: 0%;
@@ -3355,7 +3400,6 @@ ul .menuContenedor_3{
 	background-color: rgba(0, 0, 0, 0.9);
 	color: white;
 	position: fixed;
-	/* top: 1%; */
 	left: 25%;
 	z-index: 1;
 	display:flex;
@@ -3370,7 +3414,7 @@ ul .menuContenedor_3{
 	margin-left: 10%;
 	margin-top: 3%;
 	width: 80%; 
-	height: fit-content;/*coloca la imagen al borde superior del total de su altura*/
+	height:100vh;/*coloca la imagen al borde superior del total de su altura*/
 }
 .con_portada--label{
 	font-size: 1vw;
@@ -3381,12 +3425,15 @@ ul .menuContenedor_3{
 	text-align: center;
 	width: 50%;
 	margin: auto;
-	margin-top: 5%;
+	margin-top: 7%;
 }
 .cont_yaracuyVideo--video{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 100vh;
+	width: 40vw;
+	margin: auto;
 }
 .cont_yaracuyVideo--chevron{
 	background-color: rgba(255, 255, 255, 0.5);
@@ -3634,6 +3681,9 @@ ul .menuContenedor_3{
 	width: 25px;
 	height: 50vh;/*la misma altura de la imagen de portada*/
 }
+.cont_noticia--verticlal{
+	height: 40vh;/*la misma altura de la imagen de portada*/
+}
 .cont_portada--municipio--p{
 	font-size: 1.5vw;
 	color: white;
@@ -3643,11 +3693,17 @@ ul .menuContenedor_3{
 	writing-mode: vertical-rl; /*coloca el texto verticalmente*/
 	transform: rotate(180deg); /*gira el texto para que se lea de abajo hacia arriba*/
 }
+.cont_noticia--verticlal--p{
+	font-size: 1.2vw;
+}
 .cont_portada--abreviatura{
 	writing-mode: vertical-rl; 
 	transform: rotate(180deg); 
 	color: white; 
 	font-size: 1vw
+}
+.cont_noticia--abreviatura--verticlal{
+	font-size: 0.8vw
 }
 .contenedor_19{
 	width: 100%;
@@ -3674,19 +3730,6 @@ ul .menuContenedor_3{
 	width: 100%; 
 	text-align: center; 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 .input_15{
 	background-color: var(--OficialClaro);
 	font-size: 0.8em;
@@ -3709,6 +3752,115 @@ ul .menuContenedor_3{
 	cursor: pointer;
 	padding: 0%;
 }
+.cont_noticias--mun{
+	position: relative;
+}
+.cont_noticias--municipios{
+	background-color: var(--OficialClaro);
+	transition: all .4s;
+	width: 23%;	
+	height: 100%;
+	position: absolute;
+	top: 60px;
+	left: -50%;
+	opacity: 0;
+	padding: 2%;
+	padding-left: 3%;
+	overflow-y: auto;
+}  
+.mostrar_1{
+	opacity: 1;
+	left: 0%;
+	z-index: 1;
+	position: fixed;
+}
+.cont_noticias--label{
+	text-align: left;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+}
+.cont_noticias--label:hover{
+	cursor: pointer;
+	background-color: rgba(51, 51, 51, 0.2);
+	border-radius: 15px;
+	padding: 0px 15px;
+	height: 30px;
+}
+.cont_header--loginFecha{
+	display: flex;
+	align-items: center;
+}
+.cont_noticia-sinRegistro{
+	height: 40vh; 
+	min-width: 24%;
+	max-width: 24%;
+	margin-left: 1%;
+	padding: 2%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.cont_noticias--menuSeccion{
+	top: 7%;
+	font-size: 1.5vw;
+	width: 100%;
+	padding-top: 4%;
+	height: 8vh;
+	text-align: left;
+}
+.h_2{
+	text-align: center;
+	font-size: 1.4vw;
+	margin-bottom: 7%;
+	margin-top: 4%;
+	height: 40px;
+	line-height: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+ /* ************************************************************************************* */
+  /* ***************** MOSTRAR SCROLL A 100VH EN PPAGINA DE INICIO *********************** */
+  /* ************************************************************************************* */
+.body--inicio{
+	overflow: hidden;
+}
+ .section {
+	color: black;
+	position: relative;
+	scroll-snap-align: center;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	height: 100vh;
+  }    
+main{
+	scroll-snap-type: y mandatory;
+	height: 100vh;
+	overflow-y: scroll;
+}  
+.section > div {
+	opacity: 1; 
+	transform: translate3d(0, 0rem, 0);
+	 transition: 300ms var(--delay),
+	 	transform 1000ms cubic-bezier(0.13, 0.07, 0.26, 0.99) var(--delay); /*0.13, 0.07, 0.26, 0.99*/
+}
+  .is-visible .section_content{
+	opacity: 1;
+  }
+  .is-visible .section__img {
+	opacity: 1;
+  }
 
 
 
@@ -3767,10 +3919,11 @@ ul .menuContenedor_3{
 	filter: brightness(120%)
 }
 
-/****************************************************/
+/****************************************************/ 
  /* Estilos de barra scroll para motor de renderizado Webkit(Safari) y blink (Chromium, Chrome, Opera, Brave, Vivaldi, Maxthon y Microsoft Edge) -- El motor de renderizado Gecko no utiliza pseudoclases, basta con CSS nativo */
  .cont_noticia--seccion::-webkit-scrollbar {
-    height: 7px;
+    height: 7px;	
+    /* display: none;  */
 }
 .cont_noticia--seccion::-webkit-scrollbar-track {
     background-color: #ddd5d5;

@@ -9,7 +9,6 @@
 
 <div class="cont_panel--actualizar">   
     <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiActualizada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarActualizarNoticia()">
-        <a id="marcador_01" class="ancla"></a>
         <fieldset class="fieldset_1" id="Portada"> 
             <legend class="legend_1">Actualizar Noticia</legend>
             <div class="cont_panel--actualizar--contenido">
@@ -132,9 +131,29 @@
                     <label class="cont_panel--label">Fecha</label>                            
                     <input class="cont_panel--titulo" type="text" name="fecha" id="datepicker" value="<?php echo $Datos['noticiaActualizar']['fechaPublicacion'];?>">
                     
+                     <!-- MUNICIPIO -->                
+                     <label class="cont_panel--label">Municipio</label>
+                    <select class="login_cont--select borde--input" name="municipio" id="Municipio">
+                        <option hidden><?php echo $Datos['noticiaActualizar']['municipio'];?></option> <!--se da el valor hidden para que no lo muestre al desplegar el select -->
+                        <option value="Aristides Bastidas">Aristides Bastidas</option>
+                        <option value="Simón Bolivar">Bolivar</option>
+                        <option value="Manuel Bruzual">Bruzual</option>
+                        <option value="Cocorote">Cocorote</option>
+                        <option value="Independencia">Independencia</option>
+                        <option value="Jose Antonio Paez">Paez</option>
+                        <option value="La Trinidad">La Trinidad</option>
+                        <option value="Manuel Monge">Manuel Monge</option>
+                        <option value="Nirgua">Nirgua</option>
+                        <option value="José Vicente Peña"> Peña</option>
+                        <option value="San Felipe">San Felipe</option>
+                        <option value="Antonio Jose de Sucre"> Sucre</option>
+                        <option value="Urachiche">Urachiche</option>
+                        <option value="Jose Joaquín Veroes">Veroes</option>
+                    </select>  
+
                     <!-- FUENTE -->
                     <label class="cont_panel--label">Fuente</label>
-                    <select class="cont_panel--titulo" name="fuente" id="Fuente" onchange="especificarFuente()">
+                    <select class="login_cont--select borde--input" name="fuente" id="Fuente" onchange="especificarFuente()">
                         <option><?php echo $Datos['noticiaActualizar']['fuente'];?></option>
                         <?php
                         foreach($Datos['fuentes'] as $Key)   :   ?>
@@ -149,7 +168,6 @@
         </fieldset>                
 
         <!-- IMAGENES SECUNDARIAS -->
-        <a id="marcador_02" class="ancla"></a>
         <fieldset class="fieldset_1">   
             <!-- AGREGAR MAS IMAGENES SECUNDARIAS -->
             <label class="actualizar_cont--label Default_pointer" for="imgSec"><img class=" actualizar_cont--span" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></label>

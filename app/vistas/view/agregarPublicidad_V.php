@@ -11,7 +11,6 @@
 <!--PANEL NOTICIAS PRINCIPALES --> 
 <div class="cont_panel--actualizar">
     <form action="<?php echo RUTA_URL; ?>/Panel_C/recibePublicidadAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
-        <a id="marcador_01" class="ancla"></a>
         <fieldset class="fieldset_1" id="Portada"> 
             <legend class="legend_1">Agregar Publicidad</legend>
                 <div class="cont_panel--actualizar--contenido">

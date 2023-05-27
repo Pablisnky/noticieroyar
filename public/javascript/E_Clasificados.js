@@ -1261,12 +1261,6 @@ if(document.getElementById("Label_1")){
     }
    
 //************************************************************************************************
-    //Quita el color de fallo en un input y lo deja en su color original
-    function blanquearInput(id){        
-        document.getElementById(id).style.backgroundColor = "white"
-    }
-
-//************************************************************************************************
 //Muestra el contenedor del input transferencia
     function verInputTransferencia(){
         document.getElementById("InputTransferencia").style.display = "block"

@@ -318,25 +318,17 @@
 		margin-top: 1%;
 	}
 	.cont_noticia--seccion{
-		margin-bottom: 10%;
-		height: 43vh; 
+		margin-bottom: 15%;
+		height: 47vh; 
 		overflow-y: hidden;
 	}
 	.cont_noticia--sencilla{
-	   min-width: 60%;
+	   min-width: 70%;
 	   margin: 2%;
 	}
-	.cont_noticia--tituloSeccion{
-	   font-size: 1.5em;
-	   width: 70%;
-	   text-align: left;
-	   padding-left: 2%;
-	   margin-left:3%;
-	}
 	.cont_noticia-imagen{
-		height: 24vh; 
+		height: 30vh; 
 		width: 100%;
-		/* object-fit: cover;  */
 	}
 	.cont_noticia--titular{
 		height: 40vw;
@@ -1086,9 +1078,6 @@
 	right: 4%;
 	font-size: 2.2em !important;
 }
-.cont_noticias{
-	margin-top: 20%;
-}
 .tapa-logo--mapa{
 	position: absolute; 
 	bottom: inherit; 
@@ -1140,7 +1129,7 @@
 	width: 100%;
 }
 .cont_noticias{
-	margin-top: 20%;
+	margin-top: 25%;
 }
 .cont_panel--actualizar{
 	width: 100%;
@@ -1874,9 +1863,50 @@
 	margin-top: -7%;
 	margin-right: -13%;
 }
-
-
-
+.cont_noticia--verticlal{
+	height: 30vh;/*la misma altura de la imagen de portada*/
+}
+.cont_noticia--verticlal--p{
+	font-size: 4.5vw;
+}
+.cont_noticias--municipios{
+	width: 100%;		
+	height: 100%;
+	margin-left: 0%;
+	padding-left: 5%;
+	top: 45px;
+}  
+.cont_noticia--tituloSeccion{
+   width: 85%;
+   margin-left: 3%;
+}
+.cont_noticia--tituloSeccion--h1{
+   font-size: 5.5vw;
+}
+.cont_noticia-sinRegistro{
+	height: 40vh; 
+	min-width: 90%;
+	max-width: 90%;
+	margin: auto;
+}
+.cont_noticias--menuSeccion{
+   top: 7%;
+   font-size: 1.5em;
+   width: 100%;
+   padding-top: 4%;
+   height: 8vh;
+   text-align: center;
+}
+.ancla{
+    padding-top: 15%;
+    margin-top: -23%;
+}
+.h_2{
+	color: white;
+	font-size: 5.5vw;
+	width: 95%;
+	margin: 5% auto;
+}
 
 
 
@@ -1888,6 +1918,9 @@
 /* ************************************************************************************* */
 /* ***************** MOSTRAR SCROLL A 100VH EN PPAGINA DE INICIO *********************** */
 /* ************************************************************************************* */
+.body--inicio{
+	overflow: initial;
+}
 .section {
 	color: black;
 	position: relative;

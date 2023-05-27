@@ -127,3 +127,5 @@ function validarRegistro(){
     //Si se superan todas las validaciones la función devuelve verdadero
     return true
 }
+
+//************************************************************************************************

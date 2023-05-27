@@ -23,20 +23,20 @@
                         <label class="login_cont--label">Municipio</label>
                         <select class="login_cont--select borde--input" name="municipio" id="Municipio"  onchange="SeleccionarParroquia(this.form)">
                             <option></option>
-                            <option vlaue="Aristides Bastidas">Aristides Bastidas</option>
-                            <option vlaue="Bolivar">Bolivar</option>
-                            <option vlaue="Bruzual">Bruzual</option>
-                            <option vlaue="Cocorote">Cocorote</option>
-                            <option vlaue="Independencia">Independencia</option>
-                            <option vlaue="Jose Antonio Paez">Jose Antonio Paez</option>
-                            <option vlaue="La Trinidad">La Trinidad</option>
-                            <option vlaue="Manuel Monge">Manuel Monge</option>
-                            <option vlaue="Nirgua">Nirgua</option>
-                            <option vlaue="Peña">Peña</option>
-                            <option vlaue="San Felipe">San Felipe</option>
-                            <option vlaue="Sucre">Sucre</option>
-                            <option vlaue="Urachiche">Urachiche</option>
-                            <option vlaue="Veroes">Veroes</option>
+                            <option value="Aristides Bastidas">Aristides Bastidas</option>
+                            <option value="Simon Bolivar">Bolivar</option>
+                            <option value="Manuel Bruzual">Bruzual</option>
+                            <option value="Cocorote">Cocorote</option>
+                            <option value="Independencia">Independencia</option>
+                            <option value="Jose Antonio Paez">Jose Antonio Paez</option>
+                            <option value="La Trinidad">La Trinidad</option>
+                            <option value="Manuel Monge">Manuel Monge</option>
+                            <option value="Nirgua">Nirgua</option>
+                            <option value="José Vicente Peña">Peña</option>
+                            <option value="San Felipe">San Felipe</option>
+                            <option value="Antonio Jose de Sucre">Sucre</option>
+                            <option value="Urachiche">Urachiche</option>
+                            <option value="Jose Joaquín Veroes">Veroes</option>
                         </select>               
                         
                         <label class="login_cont--label">Parroquia</label>

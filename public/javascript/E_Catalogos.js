@@ -100,7 +100,7 @@ if(document.getElementById("Label_1")){
 }
 
 // *****************************************************************************************************
-//seleccionar si el despacho sera enviado o recogido en tienda por medio de delegación de eventos en div Mostrar_Orden
+// Por medio de delegación de eventos en div Mostrar_Ordenseleccionar si el despacho sera enviado o recogido en tienda
 document.getElementById('Mostrar_Orden').addEventListener('click', function(event){ 
     if((event.target.id == "Domicilio_No") || (event.target.id == "Domicilio_Si")){  
         // console.log("______Desde forma_Entrega______")
@@ -1421,12 +1421,6 @@ document.getElementById('Mostrar_Orden').addEventListener('click', function(even
         }
     }
    
-//************************************************************************************************
-    //Quita el color de fallo en un input y lo deja en su color original
-    function blanquearInput(id){        
-        document.getElementById(id).style.backgroundColor = "white"
-    }
-
 //************************************************************************************************
 //Muestra el contenedor del input transferencia
     function verInputTransferencia(){

@@ -36,7 +36,7 @@
                 <legend class="legend_1">Acceso a suscriptores</legend>
                 <div class="login_cont--form">
                     <label class="login_cont--label">e-mail</label>
-                    <input class="login_cont--input borde--input" type="text" name="correo_Arr" id="Correo" autocomplete="off" onkeydown="blanquearInput('Correo')"/>  
+                    <input class="login_cont--input borde--input" type="text" name="correo_Arr" id="Correo" autocomplete="off"/>  
 
                     <label class="login_cont--label">Contraseña</label>
                     <input class="login_cont--input borde--input" type="password" name="clave_Arr" id="Clave"  autocomplete="off"/>             
@@ -65,7 +65,10 @@
             <label class="Default_link Default_pointer" id="Label_7">Recuperala</label>
             <hr class="hr_3">
             <p>¿Quieres suscribirte?</p>
-            <a href="<?php echo RUTA_URL . '/Login_C/suscripcion/' . $Datos['id_noticia'];?>">Suscripción</a>
+            <a href="<?php echo RUTA_URL . '/Login_C/suscripcion/' . $Datos['id_noticia'];?>">Suscribete</a>
+            <hr class="hr_3">            
+            <p class="Inicio_8" style="line-height: 160%;">¿Eres periodista acreditado CNP en Venezuela?</p>
+            <a href="<?php echo RUTA_URL . '/Login_C/suscripcion/SinID_Noticia';?>">Crea contenido</a>
         </div>
     </div>
 

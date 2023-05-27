@@ -40,6 +40,21 @@
             }
         }     
         
+        public function consultarPeriodista($Correo){
+            $stmt = $this->dbh->prepare(
+                "SELECT * 
+                FROM periodistas 
+                WHERE correoPeriodista = :CORREO");
+            $stmt->bindValue(':CORREO', $Correo, PDO::PARAM_STR);
+            
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }  
+
         public function consultarContrasena($ID_Suscriptor){
             $stmt = $this->dbh->prepare(
                 "SELECT * 
@@ -54,7 +69,23 @@
             else{
                 return 'Existe un fallo en la consulta consultarContrasena()'; 
             }
-        } 
+        }  
+
+        public function consultarContrasenaPeriodista($ID_Periodista){
+            $stmt = $this->dbh->prepare(
+                "SELECT * 
+                FROM periodistapasword  
+                WHERE ID_Periodista = :ID_PERIODISTA" );
+
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
+            
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return 'Existe un fallo en la consulta consultarContrasena()'; 
+            }
+        }
         
         public function consultarCodigoAleatorio($Correo, $CodigoUsuario){
             $stmt = $this->dbh->prepare(
@@ -211,6 +242,50 @@
             }
             else{
                 return false;
+            }
+        }
+
+        // iNSERTA datos del periodista
+        public function InsertarPeriodista($RecibeDatos){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO periodistas(nombrePeriodista, apellidoPeriodista, correoPeriodista, telefonoPeriodista, CNP) 
+                VALUES (:NOMBRE, :APELLIDO, :CORREO, :TELEFONO, :CNP)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':NOMBRE', $RecibeDatos['nombre'], PDO::PARAM_STR);
+            $stmt->bindParam(':APELLIDO', $RecibeDatos['apellido'], PDO::PARAM_STR);
+            $stmt->bindParam(':CORREO', $RecibeDatos['correo'], PDO::PARAM_STR);
+            $stmt->bindParam(':TELEFONO', $RecibeDatos['telefono'], PDO::PARAM_STR);
+            $stmt->bindParam(':CNP', $RecibeDatos['cnp'], PDO::PARAM_STR);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                //se recupera el ID del registro insertado
+                return $this->dbh->lastInsertId();
+            }
+            else{
+                return 'Existe un fallo en la consulta InsertarSuscripcion()';
+            }
+        }
+        
+        // INSERTA clave de periodista
+        public function InsertarClavePeriodista($ID_Periodista, $ClaveCifrada){
+            $stmt = $this->dbh->prepare(
+                "INSERT INTO periodistapasword(claveCifrada, ID_Periodista) 
+                VALUES (:CLAVE, :ID_PERIODISTA)"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':CLAVE', $ClaveCifrada, PDO::PARAM_STR);
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
+
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            if($stmt->execute()){
+                return TRUE;
+            }
+            else{
+                return 'Existe un fallo en la consulta InsertarSuscripcion()';
             }
         }
     }           

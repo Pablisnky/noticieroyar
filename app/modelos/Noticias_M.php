@@ -37,7 +37,7 @@
         // 
         public function consultarNoticiasGenerales($ID_Seccion){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, secciones.ID_Seccion, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, municipio, secciones.ID_Seccion, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
                  INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
@@ -361,7 +361,95 @@
             }
         }
         
+        public function consultarNoticiasMunicipio($Seccion, $Municipio){
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, municipio, secciones.ID_Seccion, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
+                 FROM noticias 
+                 INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
+                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                 INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
+                 WHERE municipio = :MUNICIPIO AND seccion = :SECCION AND ImagenPrincipal = :STATUS_FOTO
+                 ORDER BY fecha
+                 DESC
+                 LIMIT 15"
+            );
 
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':MUNICIPIO', $Municipio, PDO::PARAM_STR);
+            $stmt->bindParam(':SECCION', $Seccion, PDO::PARAM_STR);
+            $stmt->bindValue(':STATUS_FOTO', 1, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+        
+        public function consultarCantidadNoticiasSeccionMunicipio($Seccion, $Municipio){
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias_secciones.ID_Seccion, COUNT(noticias.ID_Noticia) AS cantidad 
+                 FROM noticias 
+                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia  
+                 WHERE noticias_secciones.ID_Seccion = :SECCION AND municipio = :MUNICIPIO
+                 GROUP BY noticias_secciones.ID_Seccion"
+            );
+            
+            $stmt->bindParam(':MUNICIPIO', $Municipio, PDO::PARAM_STR);
+            $stmt->bindParam(':SECCION', $Seccion, PDO::PARAM_STR);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        public function consultarNoticiasSeccion($Seccion){
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, municipio, secciones.ID_Seccion, seccion, portada, nombre_imagenNoticia, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
+                 FROM noticias 
+                 INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
+                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                 INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
+                 WHERE seccion = :SECCION AND ImagenPrincipal = :STATUS_FOTO
+                 ORDER BY fecha
+                 DESC
+                 LIMIT 15"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':SECCION', $Seccion, PDO::PARAM_STR);
+            $stmt->bindValue(':STATUS_FOTO', 1, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        public function consultarCantidadNoticiasSeccionAjax($Seccion){
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias_secciones.ID_Seccion, COUNT(noticias.ID_Noticia) AS cantidad 
+                 FROM noticias 
+                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia  
+                 WHERE noticias_secciones.ID_Seccion = :SECCION
+                 GROUP BY noticias_secciones.ID_Seccion"
+            );
+            
+            $stmt->bindParam(':SECCION', $Seccion, PDO::PARAM_STR);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
 // ********************************************************************************************************
 // INSERTAR
 // ********************************************************************************************************

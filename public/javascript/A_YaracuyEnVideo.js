@@ -34,10 +34,11 @@ function conexionAJAX(){
     function Llamar_YaracuyVideo(ID_Video, Recorrido){
         // console.log("______Desde Llamar_YaracuyVideo()______", ID_Video + "/" + Recorrido)
 
-        // local
-        var url = "http://localhost/proyectos/noticieroyaracuy/YaracuyEnVideo_C/recorridoVideos/" + ID_Video  + "," + Recorrido
         // remoto
-        // var url = "https://www.noticieroyaracuy.com/YaracuyEnVideo_C/recorridoVideos/" + ID_Video  + "," + Recorrido
+        var url = "https://www.noticieroyaracuy.com/YaracuyEnVideo_C/recorridoVideos/" + ID_Video  + "," + Recorrido
+        
+        // local
+        // var url = "http://localhost/proyectos/noticieroyaracuy/YaracuyEnVideo_C/recorridoVideos/" + ID_Video  + "," + Recorrido
         http_request.open('GET', url, true)  
         peticion.onreadystatechange = respuesta_detalleObra
         peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")

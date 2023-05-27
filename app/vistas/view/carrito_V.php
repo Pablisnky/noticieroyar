@@ -112,40 +112,40 @@
                         <div class="contFlex" style="position: relative;">
                             <!-- NOMBRE -->
                             <div class="contenedor_29">
-                                <input class="input_13 borde_1" type="text" name="nombreUsuario" id="NombreUsuario" autocomplete="off" placeholder="Nombre" onkeydown="blanquearInput('NombreUsuario')"/>
+                                <input class="input_13 borde_1" type="text" name="nombreUsuario" id="NombreUsuario" autocomplete="off" placeholder="Nombre"/>
                             </div>
 
                             <!-- APELLIDO -->
                             <div class="contenedor_29">
-                                <input class="input_13 borde_1" type="text" name="apellidoUsuario" id="ApellidoUsuario" autocomplete="off" placeholder="Apellido" onkeydown="blanquearInput('ApellidoUsuario')"/>
+                                <input class="input_13 borde_1" type="text" name="apellidoUsuario" id="ApellidoUsuario" autocomplete="off" placeholder="Apellido"/>
                             </div>
 
                             <!-- CEDULA -->
                             <div class="contenedor_29">
                                 <input class="input_13 borde_1" type="text" name="cedulaUsuario" id=
-                            "CedulaUsuario" autocomplete="off" placeholder="Cedula / RIF (solo números)"  onkeydown="blanquearInput('CedulaUsuario')" onkeyup="formatoMiles(this.value, 'CedulaUsuario')"/>
+                            "CedulaUsuario" autocomplete="off" placeholder="Cedula / RIF (solo números)"  onkeyup="formatoMiles(this.value, 'CedulaUsuario')"/>
                             </div>
 
                             <!-- TELEFONO -->
                             <div class="contenedor_29">
-                                <input class="input_13 borde_1" type="text" name="telefonoUsuario" id="TelefonoUsuario" autocomplete="off" placeholder="Telefono (solo números)" onkeydown="blanquearInput('TelefonoUsuario')"/>
+                                <input class="input_13 borde_1" type="text" name="telefonoUsuario" id="TelefonoUsuario" autocomplete="off" placeholder="Telefono (solo números)"/>
                             </div>
 
                             <!-- CORREO -->
                             <div class="contenedor_29">
-                                <input class="input_13 borde_1" type="correo" name="correoUsuario" id="CorreoUsuario" autocomplete="off" placeholder="correo" onkeydown="blanquearInput('CorreoUsuario')"/>
+                                <input class="input_13 borde_1" type="correo" name="correoUsuario" id="CorreoUsuario" autocomplete="off" placeholder="correo"/>
                             </div>
 
                             <!-- DIRECCION -->
                             <div class="contenedor_55 contenedor_154">
                                 <div class="contenedor_155">
-                                    <select class="select_2 borde_1" name="estado" id="Estado" onchange="blanquearInput('Estado')">
+                                    <select class="select_2 borde_1" name="estado" id="Estado">
                                         <option disabled selected>Seleccione un estado</option>
                                         <option selected="true">Yaracuy</option>
                                     </select>
                                 </div>
                                 <div class="contenedor_155">
-                                    <select class="select_2 borde_1" name="ciudad" id="Ciudad" onclick="blanquearInput('Ciudad')">
+                                    <select class="select_2 borde_1" name="ciudad" id="Ciudad">
                                         <option id="Option_1" disabled selected>Seleccione una ciudad</option>
                                         <option>Cocorote</option>
                                         <option>Independencia</option>
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                             <div class="contenedor_72">
-                                <textarea class="textarea_1 borde_1" name="direccionUsuario" id="DireccionUsuario" autocomplete="off" placeholder="Dirección" onkeydown="blanquearInput('DireccionUsuario')"></textarea>
+                                <textarea class="textarea_1 borde_1" name="direccionUsuario" id="DireccionUsuario" autocomplete="off" placeholder="Dirección"></textarea>
                             </div>
                             
                             <!-- SUSCRIBIRSE -->
@@ -307,7 +307,7 @@
                                 
                                 <!-- INPUT TRANSFERENCIA -->
                                 <div class="contOculto contGeneral" id="InputTransferencia">
-                                    <input class="input_13 input--textCenter borde_1" type="text" name="codigoTransferencia" id="RegistroPago_Transferencia" placeholder="Código transferencia" onkeydown="blanquearInput('RegistroPago_Transferencia')"/>
+                                    <input class="input_13 input--textCenter borde_1" type="text" name="codigoTransferencia" id="RegistroPago_Transferencia" placeholder="Código transferencia"/>
                                 </div>                                                    
                                 <!-- CAPTURE TRANSFERENCIA -->
                                 <div class="contOculto contGeneral" id="CaptureTransferencia">

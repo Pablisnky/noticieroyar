@@ -36,6 +36,10 @@
                                 }
                             endforeach; ?>
                         </ul>
+                        
+                        <!-- MUNICIPIO -->
+                        <label class="cont_panel--label">Municipio</label>
+                        <label class="cont_panel--titulo"><?php echo $Not_Prin['municipio'];?></label>
                                                 
                         <!-- ANUNCIO -->
                         <label class="cont_panel--label">Anuncio publicitario</label>
@@ -45,6 +49,7 @@
                                     <label class="cont_panel--fecha"><?php echo $Row_3['razonSocial'];?></label>
                                         <?php
                                 }
+                                
                             endforeach; ?>
 
                         <!-- FECHA -->
@@ -61,13 +66,13 @@
                                 }
                             endforeach; ?>
                         
+                        <!-- COMPARTIR -->
                         <div>
+                            <label class="cont_panel--label">Compartir</label>
                             <div class="detalle_cont--redesSociales--Panel">
                                 <!-- COMPARTIR FACEBOOK -->       
                                 <div class="detalle_cont--red">      
                                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/Noticias_C/detalleNoticia/<?php echo $Not_Prin['ID_Noticia'];?>" target="_blank" rel="noopener noreferrer"><img style="height: 1.8em;" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/></a>
-                                    <span>P</span>
-                                    <span>L</span>
                                 </div> 
                                 
                                 <!-- COMPARTIR TWITTER -->

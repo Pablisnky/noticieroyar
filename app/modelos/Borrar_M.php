@@ -123,4 +123,15 @@
             endforeach;
             echo 'EXITO';
         }
+
+        public function ActualizarPeriodista(){
+            $stmt = $this->dbh->prepare(
+                "UPDATE noticias
+                 SET ID_Periodista = 1"
+            );
+                        
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            $stmt->execute();
+
+        }
     }

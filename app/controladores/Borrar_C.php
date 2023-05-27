@@ -12,7 +12,7 @@
         
 		// Se usa solo para cargar el metodo que se desea probar
 		public function index(){			
-			header('location:' . RUTA_URL . '/Borrar_C/insertarArtistas');
+			header('location:' . RUTA_URL . '/Borrar_C/actualizar_Periodista');
 		}
 
 		// Metodo para filtrar y sabear datos introducidos por los usuarios en formularios
@@ -225,6 +225,12 @@
 			echo '<pre>';
 			print_r($Artistas);
 			echo '</pre>';
+		}
+		
+		// inserta por actualizacion el ID_Periodista en la tabla noticias
+		public function actualizar_Periodista(){
+			$this->Borrar_M->ActualizarPeriodista();
+			
 		}
 	}
 ?>

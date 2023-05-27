@@ -161,8 +161,18 @@
             // echo "<pre>";
             // print_r($Suscriptor);
             // echo "</pre>";
+            // exit;
             
-            if($Suscriptor != Array()){// Existe como suscriptor 
+            //Se CONSULTA si el correo existe como periodita
+            $Periodita = $this->ConsultaLogin_M->consultarPeriodista($Correo);
+
+            // echo "<pre>";
+            // print_r($Periodita);
+            // echo "</pre>";
+            // exit;
+
+            // EXISTE COMO SUSCRIPTOR
+            if($Suscriptor != Array()){
                 $ID_Suscriptor = $Suscriptor[0]['ID_Suscriptor'];
                 $CorreoBD = $Suscriptor[0]['correoSuscriptor'];
                 $Nombre = $Suscriptor[0]['nombreSuscriptor'];
@@ -224,6 +234,59 @@
                         $this->vista("header/header_suscriptor");
                         $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
                     }
+                }
+                else{ //en caso de clave o usuario incorrecto                    
+                    $Datos = [                 
+                        'id_noticia' => $ID_Noticia,           
+                        'bandera' => $Bandera
+                    ];
+
+                    // echo '<pre>';
+                    // print_r($Datos);
+                    // echo '</pre>';
+                    // exit;
+
+                    $this->vista("header/header_noticia");
+                    $this->vista("modal/modal_falloLogin_V", $Datos);
+                }    
+            }            
+                // EXISTE COMO PERIODISTA
+            else if($Periodita != Array()){
+                $ID_Periodista = $Periodita[0]['ID_Periodista'];
+                $Nombre = $Periodita[0]['nombrePeriodista'];
+                $Apellido = $Periodita[0]['apellidoPeriodista'];
+                $CorreoPeriodista_BD = $Periodita[0]['correoPeriodista'];  
+                $Telefono = $Periodita[0]['telefonoPeriodista']; 
+
+                $_SESSION["nombreSuscriptor"] = $Nombre;
+                $_SESSION["apellidoSuscriptor"] = $Apellido;
+                // $_SESSION["PseudonimoSuscriptor"] = $Pseudonimo;
+                //Se CONSULTA la contraseña enviada, que sea igual a la contraseña de la BD
+                $Hash = $this->ConsultaLogin_M->consultarContrasenaPeriodista($ID_Periodista);
+                
+                // echo '<pre>';
+                // print_r($Hash);
+                // echo '</pre>';
+                // exit;
+
+                // LOGEADO Y REDIRECIONAMIENTO
+                //se descifra la contraseña con un algoritmo de desencriptado.
+                if($Correo == $CorreoPeriodista_BD AND $Clave == password_verify($Clave, $Hash[0]['claveCifrada'])){
+                    
+                    //Se crea la sesion exigida en las páginas de una cuenta de suscriptores           
+                    $_SESSION["ID_Periodista"] = $ID_Periodista;
+                    
+                    // if($Bandera == 'SinLogin'){// si va a hacer un comentario y esta logeado
+                    //     header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/'.$ID_Noticia.',sinAnuncio,#ContedorComentario'); 
+                    // }
+                    // else if($Bandera == 'responder'){// si va a responder un comentario y esta logeado
+                    //     header('Location:'. RUTA_URL . '/Noticias_C/detalleNoticia/'.$ID_Noticia.',sinAnuncio,#'.$ID_Comentario); 
+                    // }
+                    // else if($Bandera == 'denuncia'){// si va a realizar una denuncia
+                    //     header('Location:'. RUTA_URL . '/Contraloria_C/denuncias'); 
+                    // }
+                    
+                        header('Location:'. RUTA_URL . '/Panel_C/portadas');
                 }
                 else{ //en caso de clave o usuario incorrecto                    
                     $Datos = [                 
@@ -412,18 +475,24 @@
         
         //Invocado desde login_V.php
         public function suscripcion($ID_Noticia){
+            if($ID_Noticia != 'SinID_Noticia'){
             
-            $Datos = [
-                'id_noticia' => $ID_Noticia
-            ];
+                $Datos = [
+                    'id_noticia' => $ID_Noticia
+                ];
 
-            // echo "<pre>";
-            // print_r($Datos);
-            // echo "</pre>";
-            // exit;
+                // echo "<pre>";
+                // print_r($Datos);
+                // echo "</pre>";
+                // exit;
 
-            $this->vista("header/header_noticia");
-            $this->vista("view/registro_V", $Datos );
+                $this->vista("header/header_noticia");
+                $this->vista("view/registro_V", $Datos );
+            }
+            else{
+                $this->vista("header/header_noticia");
+                $this->vista("view/registroPeriodista_V");
+            }
         }
 
         //Recibe los datos de un usurio que a llenado el formulario de suscripcion
@@ -479,6 +548,70 @@
             $email_to = $CorreoAdmin['correoAdmin']; 
             $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
             $email_message = $RecibeDatos['nombre'] . ' ' . $RecibeDatos['apellido'] . ' se ha registrado en la plataforma';
+
+            mail($email_to, $email_subject, $email_message, $headers); 
+
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+
+            $this->vista("header/header_noticia");
+            $this->vista("modal/modal_bienvenida_V");
+        }
+        
+        //Recibe los datos de un periodista que a llenado el formulario de afiliacion
+        public function recibeRegistroPeriodista(){         
+            //Se reciben todos los campos del formulario de afiliacion de periodista, se verifica que son enviados por POST y que no estan vacios
+            if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["nombre"]) && !empty($_POST["correo"]) && !empty($_POST["clave"]) && !empty($_POST["confirmarClave"])){               
+                // $RecibeDatos = [
+                //     //Recibe datos de la persona responsable
+                //     'nombre' => filter_input(INPUT_POST, "nombre", FILTER_SANITIZE_STRING),
+                //     'correo' => filter_input(INPUT_POST, "correo", FILTER_SANITIZE_STRING),
+                //     'clave' => filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING),
+                //     'confirmarClave' => filter_input(INPUT_POST, "confirmarClave", FILTER_SANITIZE_STRING)
+                // ];
+                //Recibe datos de la persona responsable
+                $RecibeDatos = [
+                    'nombre' => ucwords($_POST['nombre']),    
+                    'apellido' => ucwords($_POST['apellido']),                      
+                    'correo' => mb_strtolower($_POST['correo']),                       
+                    'telefono' => mb_strtolower($_POST['telefono']),                
+                    'cnp' => mb_strtolower($_POST['cnp']),
+                    'clave' => $_POST['clave'],
+                    'repiteClave' => $_POST['confirmarClave']
+                ];
+                
+                // echo "<pre>";
+                // print_r($RecibeDatos);
+                // echo "</pre>";
+                // exit;
+            }
+            else{      
+                echo "Debe Llenar todos los campos vacios". "<br>";
+                echo "<a href='javascript:history.back()'>Regresar</a>";
+                exit();
+            }
+            
+            // Se inserta el periodista nuevo y se recupera su ID_Periodista
+            $ID_Periodista = $this->ConsultaLogin_M->InsertarPeriodista($RecibeDatos);
+
+            //se cifra la contraseña del periodista con un algoritmo de encriptación
+            $options = ['memory_cost' => 1<<10, 'time_cost' => 4, 'threads' => 2];
+            $ClaveCifrada = password_hash($RecibeDatos["clave"], PASSWORD_DEFAULT, $options);
+                            
+            $this->ConsultaLogin_M->InsertarClavePeriodista($ID_Periodista, $ClaveCifrada);
+            
+            //Se consulta el correo a donde llegara la notificación de nueva periodista registrado
+            $CorreoAdmin = $this->ConsultaLogin_M->ConsultaCorreoAdministrador();       
+            // echo $CorreoAdmin['correoAdmin'];
+            // exit();
+
+            //Se envia al correo  la notificación de nuevo cliente registrado
+            $email_subject = 'Suscripción de nuevo usuario'; 
+            $email_to = $CorreoAdmin['correoAdmin']; 
+            $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
+            $email_message = $RecibeDatos['nombre'] . ' ' . $RecibeDatos['apellido'] . ' se ha registrado en la plataforma como periodista';
 
             mail($email_to, $email_subject, $email_message, $headers); 
 

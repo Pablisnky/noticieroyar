@@ -208,7 +208,7 @@
 	margin: 1% auto;
 }
 .contenedor_tarjeta{
-	min-width: 70%;
+	min-width: 100%;
 }
 .titular--texto{
 	font-size: 1.1em;
@@ -219,20 +219,15 @@
 	margin-top: 15%;
 }
 .cont_noticia--seccion{
-	margin-bottom: 5%;
-    height: 52vh; 
+	margin-bottom: 10%;
+    height: 56vh; 
 	overflow-y: hidden;
 }
-.cont_noticia--tituloSeccion{
-   font-size: 1.3em;
-   width: 70%;
-   padding-left: 2%;
-   margin-left: 3%;
-}
 .cont_noticia--sencilla{
-	min-width: 60%;
-	max-width: 60%;
+	min-width: 70%;
+	max-width: 70%;
    	margin-left: 2%;
+	margin-right: 5px;
 }
 .cont_noticia--titular{
 	height: 45vw;
@@ -240,7 +235,7 @@
 	overflow-y: hidden;
 }
 .cont_noticia-imagen{
-	height: 25vh; 
+	height: 35vh; 
 	width: 100%;
 	/* object-fit: cover;  */
 }
@@ -953,7 +948,7 @@
 	margin: auto;
 }
 .cont_noticias{
-	margin-top: 20%;
+	margin-top: 17%;
 }
 .cont_panel--actualizar{
 	width: 100%;
@@ -1392,6 +1387,7 @@
 .cont_yaracuyVideo--video{
 	justify-content: center;
 	align-items: center;
+	height: fit-content;
 }
 .con_portada--video{
 	margin: auto;
@@ -1785,12 +1781,76 @@
 .contPedido{
 	padding-bottom: 10%;
 }
+.cont_noticia-sinRegistro{
+	height: 40vh; 
+	min-width: 90%;
+	max-width: 90%;
+	margin: auto;
+}
+.cont_noticia--verticlal{
+	height: 35vh;/*la misma altura de la imagen de portada*/
+}
+.cont_noticia--verticlal--p{
+	font-size: 4.5vw;
+}
+.cont_noticia--abreviatura--verticlal{
+	font-size: 3.5vw
+}
+.cont_noticias--municipios{
+	width: 100%;		
+	height: 100%;
+	margin-left: 0%;
+	padding-left: 5%;
+	top: 50px;
+}  
+.cont_noticia--tituloSeccion{
+	width: 85%;
+	margin-left: 3%;
+	margin-bottom: 2%;
+}
+.cont_noticia--tituloSeccion--h1{
+   	font-size: 5vw;
+}
+.cont_noticias--menuSeccion{
+   top: 7%;
+   font-size: 1.5em;
+   width: 100%;
+   padding-top: 4%;
+   height: 8vh;
+   text-align: center;
+}
+.ancla{
+    padding-top: 20%;
+    margin-top: -20%;
+}
+
+.cont_login{
+	padding-top: 0%;
+}
+.h_2{
+	color: white;
+	font-size: 6.5vw;
+	width: 95%;
+	margin: 5% auto;
+}
+
+
+
+
+
+
+
+
+
 
 
 
   /* ************************************************************************************* */
   /* ***************** MOSTRAR SCROLL A 100VH EN PPAGINA DE INICIO *********************** */
   /* ************************************************************************************* */
+  .body--inicio{
+	overflow: initial;
+}
   .section {
 	color: black;
 	position: relative;
@@ -1798,24 +1858,21 @@
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	height: 100vh;
   }    
 main{
 	scroll-snap-type: y mandatory;
 	height: 100vh;
 	overflow-y: scroll;
 }  
-.section {
-	height: 100vh;
-}
 .section > div {
 	opacity: 1; 
 	transform: translate3d(0, 0rem, 0);
 	 transition: 300ms var(--delay),
 	 	transform 1000ms cubic-bezier(0.13, 0.07, 0.26, 0.99) var(--delay); /*0.13, 0.07, 0.26, 0.99*/
 }
-  .is-visible .section_content {
+  .is-visible .section_content{
 	opacity: 1;
-	/* transform: translate3d(0, 1rem, 0); */
   }
   .is-visible .section__img {
 	opacity: 1;

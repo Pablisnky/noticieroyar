@@ -2,6 +2,17 @@ window.addEventListener('DOMContentLoaded', function(){autofocus('Correo')}, fal
 document.getElementById("Label_7").addEventListener('click', ReestablecerContrasena, false)
 
 //************************************************************************************************
+//Por medio de delegación de eventos se detecta cada input donde se debe aplicar la funcion blanquearInput()
+document.getElementsByTagName("body")[0].addEventListener('keydown', function(e){
+    // console.log("______Desde función anonima que detecta INPUTS______")   
+    if(e.target.tagName == "INPUT"){
+        var ID_Input = e.target.id
+        
+        document.getElementById(ID_Input).addEventListener('keyup', function(){blanquearInput(ID_Input)}, false)
+    } 
+}, false)
+
+//************************************************************************************************
     //Recupera contraseña olvidada
     function autofocus(id){
         document.getElementById(id).focus();  

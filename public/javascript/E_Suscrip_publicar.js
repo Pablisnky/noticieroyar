@@ -132,12 +132,6 @@ document.getElementById("ContenidoDes").addEventListener('keydown', function(){a
     //         } 
     // } 
   
-//************************************************************************************************
-    //Quita el color de fallo en un input y lo deja en su color original
-    function blanquearInput(id){        
-        document.getElementById(id).style.backgroundColor = "white"
-    }
-
 //************************************************************************************************ 
     //Elimina imagenes previsualizadas
     function EliminarImagenSecundaria(Etiqueta, SeleccionImagenes){

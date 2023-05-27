@@ -32,7 +32,7 @@ function conexionAJAX(){
 // *************************************************************************************************
     //Esta funcion no retorna nada al documento donde se llama, solo ejecuta la accion de eliminar la noticia del servidor
     function Llamar_EliminarNoticia(ID_Noticia, Nombre_Imagen){
-        console.log("______Desde Llamar_EliminarNoticia()______", ID_Noticia + '-' + Nombre_Imagen)
+        // console.log("______Desde Llamar_EliminarNoticia()______", ID_Noticia + '-' + Nombre_Imagen)
         
         var url = "../Panel_C/eliminar_noticia/" + ID_Noticia + '-' + Nombre_Imagen
         http_request.open('GET', url, true)  
@@ -55,3 +55,25 @@ function conexionAJAX(){
     }
 
 // *************************************************************************************************
+    function llamar_noticiaSeccion(Seccion){
+        // console.log("______Desde llamar_noticiaSeccion()______", Seccion )
+        
+        var url = "../../Panel_C/filtrarNoticiaMuncipio/" + Seccion 
+        http_request.open('GET', url, true)  
+        peticion.onreadystatechange = respuesta_noticiaSeccion
+        peticion.setRequestHeader("content-type","application/x-www-form-urlencoded")
+        peticion.send("null")
+    }                                                                        
+    function respuesta_noticiaSeccion(){
+        if(peticion.readyState == 4){
+            if(peticion.status == 200){ 
+                document.getElementById('Mostrar_NoticiasFiltradas').innerHTML = peticion.responseText
+            } 
+            else{
+                alert('Problemas con la petición.')
+            }
+        }
+        else{ //en caso contrario, mostramos un gif simulando una precarga
+            // document.getElementById('Mostrar_Maquinas').innerHTML='Cargando registros';
+        }
+    }

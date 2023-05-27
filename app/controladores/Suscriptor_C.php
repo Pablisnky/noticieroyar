@@ -61,32 +61,37 @@
         
         //carga el dashboard de suscriptores
         public function accesoSuscriptor($ID_Suscriptor){
-            //Se consultan datos del suscriptor
-            $Suscriptor = $this->ConsultaSuscriptor_M->consultarSuscriptor($ID_Suscriptor);
-            
-            //Se CONSULTA al controlador Panel_Clasificado_C la cantidad de nuncios clasificados que tiene el suscriptor.
-            $Comerciante = $this->Instancia_Panel_C->clasificadoSuscriptor($ID_Suscriptor);
+            if(!empty($_SESSION['ID_Suscriptor'])){
+                //Se consultan datos del suscriptor
+                $Suscriptor = $this->ConsultaSuscriptor_M->consultarSuscriptor($ID_Suscriptor);
+                
+                //Se CONSULTA al controlador Panel_Clasificado_C la cantidad de nuncios clasificados que tiene el suscriptor.
+                $Comerciante = $this->Instancia_Panel_C->clasificadoSuscriptor($ID_Suscriptor);
 
-            //CONSULTA cuantas obras tiene publicada un suscriptor
-            $Obras = $this->ConsultaSuscriptor_M->consultarObras($ID_Suscriptor);
+                //CONSULTA cuantas obras tiene publicada un suscriptor
+                $Obras = $this->ConsultaSuscriptor_M->consultarObras($ID_Suscriptor);
 
-            $Datos = [
-                'ID_Suscriptor' => $Suscriptor[0]['ID_Suscriptor'],
-                'nombre' => $Suscriptor[0]['nombreSuscriptor'],
-                'apellido' => $Suscriptor[0]['apellidoSuscriptor'],
-                'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
-                'telefono' => $Suscriptor[0]['telefonoSuscriptor'],
-                'clasificados' => $Comerciante,
-                'obras' => $Obras
-            ];
+                $Datos = [
+                    'ID_Suscriptor' => $Suscriptor[0]['ID_Suscriptor'],
+                    'nombre' => $Suscriptor[0]['nombreSuscriptor'],
+                    'apellido' => $Suscriptor[0]['apellidoSuscriptor'],
+                    'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
+                    'telefono' => $Suscriptor[0]['telefonoSuscriptor'],
+                    'clasificados' => $Comerciante,
+                    'obras' => $Obras
+                ];
 
-            // echo "<pre>";
-            // print_r($Datos);
-            // echo "</pre>";
-            // exit;
+                // echo "<pre>";
+                // print_r($Datos);
+                // echo "</pre>";
+                // exit;
 
-            $this->vista("header/header_suscriptor");
-            $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
+                $this->vista("header/header_suscriptor");
+                $this->vista("suscriptores/suscrip_Inicio_V", $Datos);
+            }
+            else{
+                header('location:' . RUTA_URL . '/CerrarSesion_C');
+            }
         }
 
         public function suscriptores(){          

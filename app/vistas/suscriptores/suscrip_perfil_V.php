@@ -25,7 +25,7 @@
 
                 <label class="login_cont--label">Municipio</label>
                 <select class="login_cont--select borde--input" name="municipio" id="Municipio" onchange="SeleccionarParroquia(this.form)">
-                    <option hidden><?php echo $Key['municipioSuscriptor'];?></option>
+                    <option hidden><?php echo $Key['municipioSuscriptor'];?></option> <!--se da el valor hidden para que no lo muestre al desplegar el select -->
                     <option value="Aristides Bastidas">Aristides Bastidas</option>
                     <option value="Bolivar">Bolivar</option>
                     <option value="Bruzual">Bruzual</option>
@@ -90,7 +90,7 @@
                 <!-- CATEGORIA -->        
                 <label class="login_cont--label">Categoria</label>
                 <select class="login_cont--select borde--input" name="categoria" id="Categoria">
-                    <option hidden><?php echo $Key['categoria'];?></option>
+                    <option hidden><?php echo $Key['categoria'];?></option> <!--se da el valor hidden para que no lo muestre al desplegar el select -->
                     <option value="ComidaRapida">Comida Rapida</option>
                     <option value="MaterialMedicoQuirurgico">Material médico quirúrgico</option>
                     <option value="Minimarket">Minimarket</option>

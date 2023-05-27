@@ -9,14 +9,14 @@
 		<!-- ETIQUETAS OPEN-GRAPH para ayudar a la red social de turno a identificar mejor qué hay en un recurso de nuestra web que alguien está compartiendo -->
 		<meta property="og:title" content="www.noticieroyaracuy.com"/>
 		<meta property="og:description" content="Noticias locales de Yaracuy"/>
+		<meta property="og:image:width" content="1200"/>
+		<meta property="og:image:height" content="630"/>
 		<meta property="og:type" content="website"/>
 		<meta property="og:site_name" content="NoticieroYaracuy"/>
 		<meta property="fb:app_id" content="928977633900253"/>
 		<meta property="og:image:alt" content="Imagen descriptiva de la noticia"/>
 		<meta property="og:url" content="<?php echo RUTA_URL?>/Noticias_C/detalleNoticia/<?php echo $Datos['noticiasGenerales'][0]['ID_Noticia'];?>"/>
 		<meta property="og:image:secure_url" itemprop="image" content="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Datos['imagenesNoticia'][0]['nombre_imagenNoticia'];?>"/>
-		<meta property="og:image:width" content="1200"/>
-		<meta property="og:image:height" content="630"/>
 		<meta property="og:locale:alternate" content="es_ES"/>
 
 		<!--ETIQUETAS META TWITTER --> 
@@ -34,7 +34,7 @@
     <body>			
 		<header class="header" id="Header">
 			<!-- ICONO HAMBURGUESA"-->				
-			<img class="header--menu header--menu--panel" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>	
+			<img class="header--menu Default_quitarEscritorio" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>	
 			
 			<!-- MEMBRETE FIJO -->
 			<label class="header__titulo">Noticiero Yaracuy</label>	

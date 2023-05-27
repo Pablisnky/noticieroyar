@@ -5,8 +5,8 @@
     <?php
     $Iterador = 1;
     foreach($Datos['datosNoticia'] as $Key) :  ?>
-    
-        <section class="cont_portada--noticia section" id="Cont_Noticia_<?php echo $Iterador?>">
+        
+        <section class="cont_portada--noticia section " id="Cont_Noticia_<?php echo $Iterador?>">
             <div class="cont_noticia borde_1 borde_3 section__content" data-content id="este_<?php echo $Iterador?>">
             
                 <!-- IMAGEN -->
@@ -16,13 +16,22 @@
                             <img class="imagen--portada efectoBrillo section__img" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Key['nombre_imagenNoticia'];?>"/>
                         </div>
                         <?php
-                        if($Key['municipio'] != ''){    ?>
-                        <div  class="cont_portada--municipio">
-                            <p class="cont_portada--municipio--p"><?php echo $Key['municipio'];?> </p>
-                            <p class="cont_portada--abreviatura">Mcpio</p>
-                        </div>
+                        if($Key['municipio'] != 'Ambito estadal'){    ?>
+                            <!-- TEXTO VERTICAL -->
+                            <div  class="cont_portada--municipio">
+                                <p class="cont_portada--municipio--p"><?php echo $Key['municipio'];?> </p>
+                                <p class="cont_portada--abreviatura">Mcpio</p>
+                            </div>
                             <?php
-                        } ?>
+                        } 
+                        else{   ?>
+                            <!-- TEXTO VERTICAL -->
+                            <div  class="cont_portada--municipio">
+                                <p class="cont_portada--municipio--p"><?php echo $Key['municipio'];?> </p>
+                            </div>
+                            <?php
+                        }
+                            ?>
                     </div> 
                 </a>
                                 
@@ -46,7 +55,7 @@
                         if($Key['ID_Noticia'] == $Row_3['ID_Noticia']){    ?>
                             <div style="display: flex; align-items:center; ">
                                 <small style="margin-right: 5px"><?php echo $Row_3['cantidad'];?></small> 
-                                <img style="width: 1.4em" src="<?php echo RUTA_URL . '/public/iconos/imagenes/outline_photo_camera_black_24dp.png'?>"/>
+                                <img style="width: 1.4em;" src="<?php echo RUTA_URL . '/public/iconos/imagenes/outline_photo_camera_black_24dp.png'?>"/>
                             </div>
                                 <?php                           
                         }

@@ -38,7 +38,7 @@
 		<!-- CDN FUENTES DE GOOGLE-->
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo|Moon+Dance'>
     </head>
-	<body class="body_1">				
+	<body class="body_1 body--inicio">				
 		<header class="header" id="Header">
 			
 			<!-- ICONO HAMBURGUESA"-->		
@@ -49,10 +49,6 @@
 			<!-- BARRA DE NAVEGACION -->
 			<div>
 				<nav class="header__menuResponsive" id="MenuResponsive">
-					<!-- ICONO EXPANDIR -->
-					<!-- <div class="expandir-iconos"> 
-						<img class="Default_pointer" style="width: 1.5em; margin-left: 20%" id="IconoExpandir" src="<?php //echo RUTA_URL . '/public/iconos/chevron/outline_expand_less_white_24dp.png'?>" onclick="hola()"/>
-					</div> -->
 
 					<div class="header--scroll-snap">
 						<div class="header--nav">
@@ -84,11 +80,6 @@
 							</ul>
 						</div>
 					</div>
-
-					<!-- ICONO EXPANDIR -->
-					<!-- <div class="expandir-iconos"> 
-						<img class="Default_pointer" style="width: 1.5em; margin-left: 20%" id="IconoExpandir" src="<?php //echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_white_24dp.png'?>" onclick="hola()"/>
-					</div> -->
 				</nav>
 			</div>
 
@@ -113,24 +104,57 @@
 				<label class="header__titulo">Noticiero Yaracuy</label>
 			</div>
 
-			<!-- NUESTRO ADN -->
-			<div class="Default_ocultar">
-				<label class="boton boton--corto"><a class="Default_font--white boton_a" href="<?php echo RUTA_URL . '/Menu_C/nuestroADN';?>">Nuestro ADN</a></label> 
-			</div>
+			<!-- SIGUENOS REDES SOCIALES -->
+            <!-- <div class="" style="display:flex; background-color:red; width: 10%"> -->
+                <!-- FACEBOOK -->
+                <!-- <div class="">
+                    <img class="" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/>
+                </div>         -->
+                
+                <!-- TWITTER -->
+                <!-- <div class="">
+					<img class="" alt="twitter" src="<?php echo RUTA_URL?>/public/images/twitter.png"/>
+                </div>      -->
+                
+                <!-- E-MAIL -->
+                <!-- <div class="">
+					<img style="" alt="correo" src="<?php echo RUTA_URL . '/public/iconos/correo/outline_email_black_24dp.png'?>"/>
+                </div>     -->
+                
+                <!-- INSTAGRAM -->
+                <!-- <div class=" ">
+					<img class="" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/>
+                </div>     -->
+                <!-- <div>
+                    <p style="text-align: center; font-size: 0.7em">visita nuestras redes sociales</p>
+                </div> -->
+            <!-- </div> -->
 
 			<!-- FECHA Y CARITA -->
-			<div>
-				<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
-
-				<?php
-				if(!empty($_SESSION['ID_Suscriptor'])){	?>
-					<a href="<?php echo RUTA_URL . '/Suscriptor_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>"><img src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
+			<div class="cont_header--loginFecha">
+				<div style="margin-right: 15px;">
+					<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
+				</div>
+				<div>
 					<?php
-				}	?>
+					if(!empty($_SESSION['ID_Suscriptor'])){	?>
+						<a class="Default_quitarMovil" href="<?php echo RUTA_URL . '/Suscriptor_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>"><img class="Default_login" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
+						<?php
+					}	
+					else{	?>
+						<a class="Default_quitarMovil" href="<?php echo RUTA_URL . '/Login_C/index/SinID_Noticia,SinBandera';?>" rel="noopener noreferrer"><img class="Default_logout" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>
+						<?php
+					}	?>
+				</div>
 			</div>
 			    
 			<!-- BOTON VIDEO PROMOCIONAL -->
 			<a class="con_portada--titulo Default_pointer" href="<?php echo RUTA_URL . '/YaracuyEnVideo_C';?>" rel="noopener noreferrer"><img style="width: 2em;" src="<?php echo RUTA_URL . '/public/iconos/video/outline_videocam_white_24dp.png'?>"/>Yaracuy<br> en video</a>
+			
+			<!-- NUESTRO ADN -->
+			<div class="Default_ocultar">
+				<label class="boton boton--corto"><a class="Default_font--white boton_a" href="<?php echo RUTA_URL . '/Menu_C/nuestroADN';?>">Nuestro ADN</a></label> 
+			</div>
 		</header>
 
 		<!-- MEMBRETE DESPLAZANTE -->

@@ -11,7 +11,7 @@
             ocultarErrores();
         }
                 
-        // muestra las noticias generales
+        // muestra todas las noticias generales
         public function NoticiasGenerales(){  
             //Se CONSULTA las seccion
             $Secciones = $this->ConsultaNoticia_M->consultarSecciones();
@@ -52,7 +52,7 @@
             $Anuncios = $this->ConsultaNoticia_M->consultarAnuncioNoticiaGenerales();
             
             $Datos = [
-                'secciones' => $Secciones, //ID_Seccion, seccion
+                'secciones' => $Secciones, 
                 'noticiasSeccion' => $NoticiasSeccion,
                 'cantidadSeccion' => $CantidadSeccion,
                 'imagenes' => $Imagenes,
@@ -67,7 +67,7 @@
             // exit();
 
             $this->vista("header/header_noticia"); 
-            $this->vista("view/noticias_V", $Datos );   
+            $this->vista("view/noticias_V", $Datos);   
         }
 
         // muestra la noticia completamente
@@ -287,5 +287,90 @@
 
             $this->vista("header/header_SinMembrete"); 
             $this->vista("view/archivo_V", $Datos); 
+        }
+
+        public function filtrarMunicipio($DatosAgrupados){
+            //$DatosAgrupados contiene una cadena con la seccion de noticias y el municipio, separados por coma, se convierte en array para separar los elementos
+
+            $DatosAgrupados = explode(",", $DatosAgrupados);
+            
+            $Seccion = $DatosAgrupados[0];
+            $Municipio = $DatosAgrupados[1];
+
+            // echo $Seccion . '<br>';
+            // echo $Municipio . '<br>';
+            // exit;
+            
+            // Muestra las noticias por municipios y seccion
+            $NoticiasMunicipios = $this->ConsultaNoticia_M->consultarNoticiasMunicipio($Seccion, $Municipio);
+
+			//CONSULTA la cantidad de imagenes asociadas a cada noticia publiciada
+            $Imagenes = $this->ConsultaNoticia_M->consultarImagenesNoticiaGenerales();
+            
+			//CONSULTA el video asociado a cada noticia publiciada
+            $Videos = $this->ConsultaNoticia_M->consultarVideoNoticiaGenerales();
+
+			//CONSULTA la cantidad de comentarios en cada noticia del dia
+            $CantidadComentario = $this->ConsultaNoticia_M->consultarCantidadComentarioNoticiaGenerales();
+
+			//CONSULTA si existe algun anuncio asociado a cada noticia publicada
+            $Anuncios = $this->ConsultaNoticia_M->consultarAnuncioNoticiaGenerales();
+            
+            // Muestra la cantidad de noticias 
+            $CantidadNoticiasSeccionMunicipio = $this->ConsultaNoticia_M->consultarCantidadNoticiasSeccionMunicipio($Seccion, $Municipio);
+
+            $Datos = [
+                'noticiasSeccion' => $NoticiasMunicipios,
+                'cantidadSeccion' => $CantidadNoticiasSeccionMunicipio,
+                'imagenes' => $Imagenes,
+                'videos' => $Videos,
+                'anuncios' => $Anuncios,
+                'cantidadCmentarios' => $CantidadComentario,
+                'municipio' =>  $Municipio,
+                'seccion' => $Seccion
+            ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+
+            $this->vista("view/ajax/A_NoticiasMunicipio_V", $Datos ); 
+        }
+
+        public function quitarFIltroMunicipio($Seccion){
+            // Muestra las noticias por seccion
+            $NoticiasSeccion = $this->ConsultaNoticia_M->consultarNoticiasSeccion($Seccion);
+            
+			//CONSULTA la cantidad de imagenes asociadas a cada noticia publiciada
+            $Imagenes = $this->ConsultaNoticia_M->consultarImagenesNoticiaGenerales();
+            
+			//CONSULTA el video asociado a cada noticia publiciada
+            $Videos = $this->ConsultaNoticia_M->consultarVideoNoticiaGenerales();
+
+			//CONSULTA la cantidad de comentarios en cada noticia del dia
+            $CantidadComentario = $this->ConsultaNoticia_M->consultarCantidadComentarioNoticiaGenerales();
+
+			//CONSULTA si existe algun anuncio asociado a cada noticia publicada
+            $Anuncios = $this->ConsultaNoticia_M->consultarAnuncioNoticiaGenerales();
+            
+            // Muestra la cantidad de noticias en la seccion consultada
+            $CantidadNoticiasSeccionMunicipio = $this->ConsultaNoticia_M->consultarCantidadNoticiasSeccionAjax($Seccion);
+            
+            $Datos = [
+                'noticiasSeccion' => $NoticiasSeccion,
+                'cantidadSeccion' => $CantidadNoticiasSeccionMunicipio,
+                'imagenes' => $Imagenes,
+                'videos' => $Videos,
+                'anuncios' => $Anuncios,
+                'cantidadCmentarios' => $CantidadComentario 
+            ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
+
+            $this->vista("view/ajax/A_NoticiasMunicipio_V", $Datos ); 
         }
     }

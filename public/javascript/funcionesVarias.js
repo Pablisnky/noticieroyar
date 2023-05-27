@@ -11,6 +11,11 @@
     // }, false)
 
 //************************************************************************************************
+// window.addEventListener('scroll', function() {
+//     document.getElementById('showScroll').innerHTML = window.pageYOffset + 'px';
+//   });
+  
+//************************************************************************************************
     //Muestra el menu principal al hacer click en menu hamburguesa
     function mostrarMenu(){  
         // console.log("______Desde mostrarMenu()______")
@@ -42,7 +47,7 @@
         window.addEventListener("click", function(e){
             //obtiendo informacion del DOM del elemento donde se hizo click 
             var click = e.target
-            console.log(click)
+            // console.log(click)
             if(e.target.id != 'Abrir'){
                 AltoVitrina = document.body.scrollHeight
                 if(div.style.marginTop == "0%"){
@@ -135,6 +140,12 @@
     function CerrarModalAnuncios(id){
         document.getElementById(id).style.display = "none"
     } 
+    
+//************************************************************************************************
+    //Quita el color de fallo en un input y lo deja en su color original
+    function blanquearInput(id){        
+        document.getElementById(id).style.backgroundColor = "white"
+    }
     
 //************************************************************************************************ 
 // //ajusta la altura de un texarea con respecto al contenido que trae de la BD

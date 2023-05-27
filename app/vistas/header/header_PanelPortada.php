@@ -34,7 +34,7 @@
     <body>			
 		<header class="header" id="Header">
 			<!-- ICONO HAMBURGUESA"-->				
-			<img class="header--menu header--menu--panel" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>		
+			<img class="header--menu Default_quitarEscritorio" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>		
 			
 			<!-- MEMBRETE FIJO -->
 			<label class="header__titulo">Noticiero Yaracuy</label>

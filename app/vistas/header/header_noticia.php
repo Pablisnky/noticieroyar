@@ -35,11 +35,6 @@
 			<!-- BARRA DE NAVEGACION -->
 			<div>
 				<nav class="header__menuResponsive" id="MenuResponsive" >
-					<!-- ICONO EXPANDIR -->
-					<!-- <div class="expandir-iconos"> 
-						<img class="Default_pointer" style="width: 1.5em; margin-left: 20%" id="IconoExpandir" src="<?php //echo RUTA_URL . '/public/iconos/chevron/outline_expand_less_white_24dp.png'?>" onclick="hola()"/>
-					</div> -->
-
 					<div class="header--scroll-snap">
 						<div class="header--nav">
 							<ul id="MenuContenedor">
@@ -75,11 +70,6 @@
 							</ul>
 						</div>
 					</div>
-
-					<!-- ICONO EXPANDIR -->
-					<!-- <div class="expandir-iconos"> 
-						<img class="Default_pointer" style="width: 1.5em; margin-left: 20%" id="IconoExpandir" src="<?php //echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_white_24dp.png'?>" onclick="hola()"/>
-					</div> -->
 				</nav>
 			</div>
 
@@ -103,14 +93,21 @@
 			<label class="header__titulo">Noticiero Yaracuy</label>
 			
 			<!-- FECHA Y CARITA -->
-			<div>			
-				<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
-				
-				<?php
-				if(!empty($_SESSION['ID_Suscriptor'])){	?>
-					<a href="<?php echo RUTA_URL . '/Suscriptor_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>"><img class="loginCarita" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
+			<div class="cont_header--loginFecha">
+				<div style="margin-right: 15px;">
+					<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
+				</div>
+				<div>
 					<?php
-				}	?>
+					if(!empty($_SESSION['ID_Suscriptor'])){	?>
+						<a class="Default_quitarMovil" href="<?php echo RUTA_URL . '/Suscriptor_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>"><img class="Default_login" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
+						<?php
+					}	
+					else{	?>
+						<a class="Default_quitarMovil" href="<?php echo RUTA_URL . '/Login_C/index/SinID_Noticia,SinBandera';?>" rel="noopener noreferrer"><img class="Default_logout" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>
+						<?php
+					}?>
+				</div>
 			</div>
 		</header>
 		

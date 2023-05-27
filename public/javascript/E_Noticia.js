@@ -1,41 +1,104 @@
-
-    //Voltea la tarjeta para mostrar el reverso
-    document.getElementById('Cont_Noticia').addEventListener('click', function(e){ 
-        if(e.target.classList[0] == 'VerMas_JS'){  
-            let Tarjeta = e.target
-            console.log("Tarjeta click ", Tarjeta)
-            
-            //Se obtiene el elemento padre donde se realizó click
-            let current_1 = Tarjeta.parentElement
-            let current_2 = current_1.parentElement
-            console.log("Div Padre  ", current_2)
-
-            
-            // console.log("ID_Padre tarjeta click ", current_2.id)
-            document.getElementById(current_2.id).style.transform = "rotateY(180deg)" //Gira la tarjeta
-            document.getElementById(current_2.id).style.transformStyle = "preserve-3d" //Voltae para poder leer el lado de atras cuando se pase al frente
-            document.getElementById(current_2.id).style.transition = ".5s ease" 
-            document.getElementById(current_2.id).style.perspective = "600px"
-        }
-    }, false)
-        
-//************************************************************************************************
-    //Voltea la tarjeta para mostrar nuevamente el frente
-    document.getElementById('Cont_Noticia').addEventListener('click', function(e){ 
-        if(e.target.classList[0] == 'Cerrar_JS'){  
-            let Tarjeta = e.target
-            console.log("Tarjeta click ", Tarjeta)
-            
-            //Se obtiene el elemento padre donde se realizó click
-            let current_1 = Tarjeta.parentElement
-            let current_2 = current_1.parentElement
-            console.log("Div Padre ", current_2)
-
-            document.getElementById(current_2.id).style.transform = "rotateY(0deg)" //Gira la tarjeta
-            document.getElementById(current_2.id).style.transformStyle = "preserve-3d" //Voltae para poder leer el lado de atras cuando se pase al frente
-            document.getElementById(current_2.id).style.transition = ".5s ease"
-            document.getElementById(current_2.id).style.perspective = "600px"
-        }
-    }, false)
+// document.getElementById("Municipios").addEventListener('click',MostrarMunicipios, false)
 
 //************************************************************************************************
+//Cuando se carga el archivo le da valor false a "statu", solo la primera vez luego el valor cambia al llamar la funcion
+var statu = false 
+function MostrarMunicipios(seccion){       
+    // console.log("______Desde MostrarMunicipios()______", statu + ',' + seccion)
+    
+    if(statu == true){
+        document.getElementById("Con_Municipios").classList.remove("mostrar_1");        
+        statu = false
+    }
+    else{
+        document.getElementById("Con_Municipios").classList.add("mostrar_1");
+        statu = true
+    }
+
+    localStorage.setItem('LS_Seccion',seccion)
+    document.getElementById('NombreSeccion').innerText = "Sección " + localStorage.getItem('LS_Seccion')
+}
+
+//************************************************************************************************
+//Cuando se carga el archivo le da valor false a "statu", solo la primera vez luego el valor cambia al llamar la funcion
+var statu_2 = false 
+function MostrarSecciones(){       
+    console.log("______Desde MostrarSecciones()______", statu_2)
+    
+    if(statu_2 == true){
+        document.getElementById("Con_Secciones").classList.remove("mostrar_1");        
+        statu_2 = false
+    }
+    else{
+        document.getElementById("Con_Secciones").classList.add("mostrar_1");
+        statu_2 = true
+    }
+}
+
+//************************************************************************************************
+//
+function Mostrar_Seccion(){       
+    // console.log("______Desde MostrarSeccion()______")
+
+    document.getElementById("Con_Secciones").classList.remove("mostrar_1");        
+    statu_2 = false
+}
+
+//************************************************************************************************
+//
+function regresaSeccion(seccion){       
+    console.log("______Desde regresaSeccion()______", seccion)
+
+    document.getElementById(seccion).scroll({
+        left: 0,
+        behavior: 'smooth'
+      });    
+}
+// window.addEventListener("click", function(e){   
+//     var click = e.target
+//     console.log("Se hizo click en: ", click)
+// }, false)
+
+// var scrollLeft, scrollTop;
+// ELement = localStorage.getItem('LS_Click')
+// console.log(Element)
+
+// document.getElementById(ELement).addEventListener("scroll",function(e){
+//     if (scrollLeft !== document.getElementById(ELement).scrollLeft) {
+//         console.log("horizontally scrolled")
+
+//         scrollLeft = document.getElementById(ELement).scrollLeft;
+//     }
+
+//     if (scrollTop !== document.getElementById(ELement).scrollTop) {
+//         console.log("vertically scrolled")
+
+//         scrollTop = document.getElementById(ELement).scrollTop;
+//     }
+
+
+    //Se consulta la distancia en px desde el top de la pantalla hasta el borde superior de cada sección
+    // let ProfundidadScroll = document.getElementsByClassName('seccion_JS')
+    // console.log(ProfundidadScroll)
+    // console.log(ProfundidadScroll.length)
+    // //Se recorren las opciones del producto     e.target !== this
+    // for(let i = 0; i < ProfundidadScroll.length; i++){
+    //     console.log(ProfundidadScroll[i])
+    // }
+    
+    // Click = e.target
+    // console.log('Click', Click)
+    // let A = ProfundidadImagen_2.getBoundingClientRect().top
+    // console.log("A= ", A)
+    
+    // localStorage.setItem('LS_Seccion',seccion)
+// });  
+    
+
+// Por medio de delegación de eventos en div 
+// document.querySelectorAll('seccion_JS').addEventListener('click', function(event){ 
+//     console.log("______Desde DE--contenedor municipios______")
+
+    
+
+// }, false); 
