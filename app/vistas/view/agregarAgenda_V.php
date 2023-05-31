@@ -1,13 +1,16 @@
-<!-- CDN libreria JQuery, necesaria para la previsualización de la imagen--> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- CALENDARIO -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
-<div style="margin-left: 20%; ">
-    <fieldset class="fieldset_1" id="Portada"> 
-        <legend class="legend_1">Agregar Agenda</legend>
-            <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeAgendaAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
+<div class="cont_panel--main">
+    <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeAgendaAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarRegistroAgenda()">
+        <fieldset class="fieldset_1" id="Portada"> 
+            <legend class="legend_1">Agregar Agenda</legend>
                 <div style="display: flex; margin-bottom: 30px">
                     <div class="cont_panel__did-1">       
                         <!-- IMAGN -->
@@ -22,14 +25,16 @@
                         <input class="cont_panel--select" type="text" name="caducidad" id="datepicker">
                     </div>     
                 </div>
-                <div class=""> 
-                    <input class="boton" type="submit" value="Agregar agenda"/>  
+
+                <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
+                <div> 
+                    <input class="boton" type="submit" id="Boton_Agregar" value="Agregar agenda"/>  
                 </div>
-            </form>
-    </fieldset>
+        </fieldset>
+    </form>
 </div>
 
-
+<script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarAgenda.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcion_Calendario.js?v=<?php echo rand();?>"></script>
 
 <script>       
@@ -50,12 +55,6 @@
         readImage(this, id_Label);
     });
 </script>
-
-<!-- CALENDARIO -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <!-- FOOTER -->
 <?php //require(RUTA_APP . '/vistas/footer/footer.php');?>

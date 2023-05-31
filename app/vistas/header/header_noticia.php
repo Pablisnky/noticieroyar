@@ -92,6 +92,32 @@
 			<!-- MEMBRETE FIJO -->
 			<label class="header__titulo">Noticiero Yaracuy</label>
 			
+			<!-- SIGUENOS REDES SOCIALES -->
+            <!-- <div class="" style="display:flex; background-color:red; width: 10%"> -->
+                <!-- FACEBOOK -->
+                <!-- <div class="">
+                    <img class="" alt="facebook" src="<?php echo RUTA_URL?>/public/images/facebook.png"/>
+                </div>         -->
+                
+                <!-- TWITTER -->
+                <!-- <div class="">
+					<img class="" alt="twitter" src="<?php echo RUTA_URL?>/public/images/twitter.png"/>
+                </div>      -->
+                
+                <!-- E-MAIL -->
+                <!-- <div class="">
+					<img style="" alt="correo" src="<?php echo RUTA_URL . '/public/iconos/correo/outline_email_black_24dp.png'?>"/>
+                </div>     -->
+                
+                <!-- INSTAGRAM -->
+                <!-- <div class=" ">
+					<img class="" alt="Whatsapp" src="<?php echo RUTA_URL?>/public/images/Whatsapp.png"/>
+                </div>     -->
+                <!-- <div>
+                    <p style="text-align: center; font-size: 0.7em">visita nuestras redes sociales</p>
+                </div> -->
+            <!-- </div> -->
+			
 			<!-- FECHA Y CARITA -->
 			<div class="cont_header--loginFecha">
 				<div style="margin-right: 15px;">
@@ -123,6 +149,7 @@
 			<div style="position: absolute; bottom: 0pt">
 				<label class="tapa-logo--font">Noticiero Yaracuy</label>
 				
+				<!-- MAPA -->
 				<figure class="tapa-logo--mapa Default_pointer">
 					<img id="Abrir" src="<?php echo RUTA_URL . '/public/images/Mapa-Venezuela-yaracuy.png'?>"/>
 				</figure>
@@ -171,6 +198,7 @@
 			<p>Bienvenido a NoticieroYaracuy.com</p>
 			<p>La tienda online requiere para su funcionamiento el uso de JavaScript, si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.</p>
 		</noscript>
+		
 <!-- ******************************************************************************************* -->
 			<!-- No se cierrra la etiqueta <body> porque se cierra en el footer -->
 										<!-- HEADER -->

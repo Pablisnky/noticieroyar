@@ -57,6 +57,7 @@
 			}
 			else{
 				header('location:' . RUTA_URL . '/Inicio_C');
+				die();
 			}
 		}
 
@@ -79,7 +80,7 @@
             // echo 'Desde la Nro ' . $Desde . '<br>';
 
             // Muestra la cantidad de noticias generales y poder saber cuántas páginas se van a mostrar
-            $CantidadNoticiasGenerales = $this->Panel_M->consultarCantidadNoticiasGenerales();
+            $CantidadNoticiasGenerales = $this->Panel_M->consultarCantidadNoticiasGenerales($_SESSION["ID_Periodista"]);
 
             //Para obtener las páginas se divide el conteo entre los productos por página, y se redondea hacia arriba
             $paginas = ceil($CantidadNoticiasGenerales[0]['cantidad'] / $NoticiasPorPagina);
@@ -100,14 +101,14 @@
 			$Visitas = $this->Panel_M->consultaVisitasNoticia();
 
 			$Datos = [
-				'noticiasGenerales' => $NoticiasGenerales, //ID_Noticia, titulo, subtitulo, fechaPublicacion      
-				'imagenesNoticia' => $imagenesNoticiasGenerales, //ID_Noticia, nombre_imagenNoticia
-				'seccionessNoticiasGenerales' => $SeccionessNoticiasGenerales, //ID_Noticia, seccion
-				'publicidad' => $Publicidad, //ID_Noticia, razonSocial 
+				'noticiasGenerales' => $NoticiasGenerales,
+				'imagenesNoticia' => $imagenesNoticiasGenerales,
+				'seccionessNoticiasGenerales' => $SeccionessNoticiasGenerales,
+				'publicidad' => $Publicidad, 
 				'visitas' => $Visitas, //ID_Noticia, COUNT(ID_Noticia) AS 'visitas'
                 'pagina' => $pagina,
                 'paginas' => $paginas,
-                'cantidadNoticiasGenerales' => $CantidadNoticiasGenerales //ID_Noticia, COUNT(noticias.ID_Noticia) AS cantidad 
+                'cantidadNoticiasGenerales' => $CantidadNoticiasGenerales 
 			];
 
 			// echo '<pre>';
@@ -139,15 +140,15 @@
 			$this->vista('view/panel_efemeride_V', $Datos);
 		}
 		
-		//Muestra eventos en agenda
+		//Muestra panel eventos en agenda
 		public function agenda(){ 
-			//CONSULTA las efemerides
-			$Agenda = $this->Panel_M->consultarAgenda();
+			
+			$Agenda = $this->Panel_M->consultarAgenda($_SESSION['ID_Periodista']);
 
 			$Datos = [
-				'agenda' => $Agenda //ID_Agenda, nombre_imagenAgenda, caducidad
+				'agenda' => $Agenda,
 			];
-
+			
 			// echo '<pre>';
 			// print_r($Datos);
 			// echo '</pre>';
@@ -177,10 +178,13 @@
 			$this->vista('view/panel_yaracuyEnVdeo_V', $Datos);
 		}
 
-		//Muestra todos los anuncios de publicidad, incluyendo los caducados
+		//Muestra en la vista panel todos los anuncios de publicidad, incluyendo los caducados
 		public function publicidad(){ 
+			// echo $_SESSION['ID_Periodista'];
+			// exit;
+			
 			//CONSULTA los anuncios de publicidad
-			$Anuncio = $this->Panel_M->consultarAnuncioTodos();
+			$Anuncio = $this->Panel_M->consultarAnuncioTodos($_SESSION['ID_Periodista']);
 
 			$Datos = [
 				'anuncio' => $Anuncio
@@ -192,19 +196,20 @@
 			// exit;
 		
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
+			$this->vista('header/header_Periodista');
 			$this->vista('view/panel_publicidad_V', $Datos);
 		}
 				
-		//Muestra los anuncios de publicidad disponibles en una ventana modal para seleccionar el deseado
+		//Muestra los anuncios de publicidad disponibles por periodista en una ventana modal
 		public function Anuncios(){ 
 			//CONSULTA los anuncios de publicidad
-			$Anuncio = $this->Panel_M->consultarAnuncio();
+			$Anuncio = $this->Panel_M->consultarAnuncio($_SESSION['ID_Periodista']);
 
 			$Datos = [
-				'anuncios' => $Anuncio//nombre_imagenPublicidad
+				'anuncios' => $Anuncio
 			];
-
+			
+			// echo $_SESSION['ID_Periodista'];
 			// echo '<pre>';
 			// print_r($Datos);
 			// echo '</pre>';
@@ -257,7 +262,7 @@
 			$Artistas = $this->Panel_M->consultaArtistasPanel();
 
 			$Datos = [
-				'artistas' => $Artistas //ID_Suscriptor, nombreArtista, apellidoArtista, catgeoriaArtista, municipioArtista, imagenArtista
+				'artistas' => $Artistas
 			];
 
 			// echo '<pre>';
@@ -306,7 +311,58 @@
             $this->vista("header/header_SoloEstilos"); 
             $this->vista("modal/modal_seccionesDisponibles", $Datos);
 		}
+
+		// Muestra el panel de perfil del periodista
+		public function perfilPeriodista($ID_Periodista){
+			
+			$Periodista = $this->Panel_M->consultaPeriodista($ID_Periodista);
+
+			$Datos = [
+				'periodista' => $Periodista 
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit;
 		
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('header/header_Periodista');
+			$this->vista('view/panel_Periodista_V', $Datos);
+
+		}
+		
+		public function buscadorTitulares($Buscar){
+			
+            //CONSULTA en la BD lostitulares con la palabra a buscar
+            $TitularessBuscados = $this->Panel_M->consultarBusquedaTitular($_SESSION['ID_Periodista'], $Buscar);
+			
+			//CONSULTA las imagenes de noticias generales
+			$imagenesNoticiasGenerales = $this->Panel_M->consultarImagenesNoticiasGenerales();
+
+			//CONSULTA las secciones de noticias de generales
+			$SeccionessNoticiasGenerales = $this->Panel_M->consultarSeccionessNoticiasGenerales();
+						
+			//CONSULTA si hay asociado anuncios publicitario en las noticias de generales
+			$Publicidad = $this->Panel_M->consultarAnunciosNoticiasGenerales();
+
+            $Datos = [
+                'noticiasTitular' => $TitularessBuscados, 
+				'imagenesNoticia' => $imagenesNoticiasGenerales, 
+				'seccionessNoticiasGenerales' => $SeccionessNoticiasGenerales,              
+            ];
+            
+            // echo '<pre>';
+            // print_r($Datos);
+            // echo '</pre>';
+            // exit;
+
+            $this->vista("view/ajax/A_ResultadoBuscadorTitular_V", $Datos);
+		}
+		// *************************************************************************************************
+		// *************************************************************************************************
+		// *************************************************************************************************
+
 		// muestra formulario para agregar una efemeride
 		public function agregar_efemeride(){
 
@@ -319,7 +375,7 @@
 		public function agregar_agenda(){
 
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
+			$this->vista('header/header_Periodista');
 			$this->vista('view/agregarAgenda_V');
 		}
 		
@@ -343,7 +399,7 @@
 		public function agregar_publicidad(){
 
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
+			$this->vista('header/header_Periodista');
 			$this->vista('view/agregarPublicidad_V');
 		}
 
@@ -390,13 +446,14 @@
 		// muestra formulario para agregar una noticia
 		public function agregar_noticia(){
 			//CONSULTA las secciones que tienen el periodico
-			$Secciones = $this->Panel_M->consultarSecciones();
+			$FuenteDefault = $this->Panel_M->consultarFuenteDefault($_SESSION['ID_Periodista']);
 			
 			// CONSULTA las fuentes del periodico
-			$Fuentes = $this->Panel_M->consultarFuentes();
+			$Fuentes = $this->Panel_M->consultarFuentes($_SESSION['ID_Periodista']);
 			
 			$Datos = [
-				'fuentes' => $Fuentes //ID_Fuente, fuente
+				'fuenteDefault' => $FuenteDefault,
+				'fuentes' => $Fuentes
 			];
 
 			// echo '<pre>';
@@ -405,7 +462,7 @@
 			// exit();
 
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
+			$this->vista('header/header_Periodista');
 			$this->vista('view/agregarNoticia_V', $Datos);
 		}
 		
@@ -490,9 +547,9 @@
 								
 				//Se INSERTA la noticia y se retorna el ID de la inserción
 				$ID_Noticia = $this->Panel_M->InsertarNoticia($_SESSION["ID_Periodista"], $Titulo, $Sub_Titulo, $Contenido, $Municipio, $Fecha, $Fuente);
-
+				
 				//Se verifica si la fuente de la noticia ya existe en la BD, sino existe se inserta
-				$VerificaFuente = $this->Panel_M->consultarFuentes();
+				$VerificaFuente = $this->Panel_M->consultarFuentes($_SESSION["ID_Periodista"]);
 
 				// echo '<pre>';
 				// print_r($VerificaFuente);
@@ -515,7 +572,7 @@
 
 				if($AgregaFuente == Array()){//Si $AgregaFuente esta vacio, la fuente no existe y se inserta en BD
 					//Se INSERTA la nueva fuente 
-					$this->Panel_M->InsertarFuente($Fuente);
+					$this->Panel_M->InsertarFuente($_SESSION['ID_Periodista'], $Fuente);
 				}
 
 				// Se inserta los ID en la tabla de dependencias transitivas "noticias_secciones" 
@@ -704,7 +761,7 @@
 				$Nombre_imagenAgenda = mt_rand() . '_' . $Nombre_imagenAgenda;
 				
 				//Se INSERTA el evento
-				$this->Panel_M->InsertarAgenda($FechaCaducidad, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda);
+				$this->Panel_M->InsertarAgenda($_SESSION['ID_Periodista'], $FechaCaducidad, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda);
 
 				// INSSERTA IMAGEN DE AGENDA EN SERVIDOR
 				// se comprime y se inserta el archivo en el directorio de servidor 
@@ -770,7 +827,7 @@
 				$this->Comprimir->index($Bandera, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal,$Tamanio_imagenPrincipal, $Temporal_imagenPrincipal);
 								
 				//Se INSERTA la publicidad
-				$this->Panel_M->InsertarAnuncio($RazonSocial, $FechaCaducidad, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
+				$this->Panel_M->InsertarAnuncio($_SESSION['ID_Periodista'],$RazonSocial, $FechaCaducidad, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal);
 			}				
 
 			header("Location:" . RUTA_URL . "/Panel_C/publicidad");
@@ -872,6 +929,10 @@
 			die();
 		}
 		
+		// *************************************************************************************************
+		// *************************************************************************************************
+		// *************************************************************************************************
+
 		// recibe formulario que actualiza una noticia
 		public function recibeNotiActualizada(){
 			$ID_Noticia = $_POST['ID_Noticia'];
@@ -897,7 +958,7 @@
 			$this->Panel_M->ActualizarNoticia($ID_Noticia, $Titulo, $Sub_Titulo, $Contenido, $Municipio, $Fecha, $Fuente);
 			
 			//Se verifica si la fuente de la noticia ya existe en la BD, sino existe se inserta
-			$VerificaFuente = $this->Panel_M->consultarFuentes();
+			$VerificaFuente = $this->Panel_M->consultarFuentes($_SESSION['ID_Periodista']);
 
 			// echo '<pre>';
 			// print_r($VerificaFuente);
@@ -1156,6 +1217,30 @@
 			header("Location:" . RUTA_URL . "/Panel_C/portadas");
 			die();
 		}
+		
+		// recibe formulario que actualiza el perfil de un periodista
+		public function recibePeriodistaActualizar(){
+			$Recibe_Periodista = [
+				'id_periodista' => $_POST['id_periodista'],
+				'nombre_Periodista' => $_POST['nombrePeriodista'],
+				'apelido_Periodista' => $_POST['apellidoPeriodista'],
+				'correo_Periodista' => $_POST['correoPeriodista'],
+				'telefono_Periodista' => $_POST['telefonoPeriodista'],
+				'cnp' => $_POST['CNP'],
+				'fuente_Default' => $_POST['fuenteDefault']
+			];
+
+			// echo '<pre>';
+			// print_r($Recibe_Periodista);
+			// echo '</pre>';
+			// exit;
+				
+			//Se ACTUALIZA el evento de agenda seleccionado
+			$this->Panel_M->ActualizarPeriodista($Recibe_Periodista);
+
+			$this->perfilPeriodista($_SESSION['ID_Periodista']);
+				
+		}
 
 		// recibe formulario que actualiza un evento de agenda
 		public function recibeAgendaActualizada(){
@@ -1372,6 +1457,10 @@
 			header("Location:" . RUTA_URL . "/Panel_C/galeria");
 			die();
 		}
+		
+		// *************************************************************************************************
+		// *************************************************************************************************
+		// *************************************************************************************************
 
 		// Muestra formulario con la noticia a actualizar
 		public function actualizar_noticia($ID_Noticia){
@@ -1382,7 +1471,7 @@
 			$ImagenesNoticiaActualizar = $this->Panel_M->consultarImagenesNoticiaActualizar($ID_Noticia);
 
 			// CONSULTA las fuentes del periodico
-			$Fuentes = $this->Panel_M->consultarFuentes();
+			$Fuentes = $this->Panel_M->consultarFuentes($_SESSION['ID_Periodista']);
 			
 			// CONSULTA el anuncio publicitario de la noticia
 			$Anuncio = $this->Panel_M->consultarAnuncioEspecifico($ID_Noticia);
@@ -1515,7 +1604,6 @@
 			$this->vista('view/actualizarAnuncio_V', $Datos);
 		}
 		
-
 		// *********************************************************************************************
 		// **************************************** DELETE *********************************************
 		// *********************************************************************************************
@@ -1648,7 +1736,7 @@
 			// die();
 		}
 
-		public function filtrarNoticiaMuncipio($Seccion, $pagina  = 1){
+		public function filtrarNoticiaSeccion($Seccion, $pagina  = 1){
 			# Cuántos productos mostrar por página 
 			$NoticiasPorPagina = 30;
 
@@ -1666,13 +1754,71 @@
 			// echo 'Desde la Nro ' . $Desde . '<br>';
 	
 			// Muestra la cantidad de noticias generales y poder saber cuántas páginas se van a mostrar
-			$CantidadNoticiasGenerales = $this->Panel_M->consultarCantidadNoticiasGenerales();
+			$CantidadNoticiasGenerales = $this->Panel_M->consultarCantidadNoticiasGenerales($_SESSION['ID_Periodista']);
 
 			//Para obtener las páginas se divide el conteo entre los productos por página, y se redondea hacia arriba
 			$paginas = ceil($CantidadNoticiasGenerales[0]['cantidad'] / $NoticiasPorPagina);
 
 			//CONSULTA las noticias generales
 			$NoticiasGenerales = $this->Panel_M->filtrarNoticiasGeneralesPaginacion($Seccion, $Limit, $Desde);
+
+			//CONSULTA las imagenes de noticias generales
+			$imagenesNoticiasGenerales = $this->Panel_M->consultarImagenesNoticiasGenerales();
+
+			//CONSULTA las secciones de noticias de generales
+			$SeccionessNoticiasGenerales = $this->Panel_M->consultarSeccionessNoticiasGenerales();
+						
+			//CONSULTA si hay asociado anuncios publicitario en las noticias de generales
+			$Publicidad = $this->Panel_M->consultarAnunciosNoticiasGenerales();
+			
+			//suma la cantidad de visitas a una noticia
+			$Visitas = $this->Panel_M->consultaVisitasNoticia();
+	
+			$Datos = [
+				'noticiasGenerales' => $NoticiasGenerales, 
+				'imagenesNoticia' => $imagenesNoticiasGenerales, 
+				'seccionessNoticiasGenerales' => $SeccionessNoticiasGenerales, 
+				'publicidad' => $Publicidad, 
+				'visitas' => $Visitas,
+				'pagina' => $pagina,
+				'paginas' => $paginas,
+				'cantidadNoticiasGenerales' => $CantidadNoticiasGenerales
+			];
+
+			// echo '<pre>';
+			// print_r($Datos);
+			// echo '</pre>';
+			// exit;
+		
+			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
+			$this->vista('view/ajax/A_PanelNoticiasGeneralesSeccion_V', $Datos);
+		}
+
+		public function filtrarNoticiaMunicipio($Municipio, $pagina  = 1){
+			# Cuántos productos mostrar por página 
+			$NoticiasPorPagina = 30;
+
+			// Por defecto se muestra la página 1; pero si está presente en la URL, tomamos esa
+			if(isset($_GET["pagina"])) {
+				$pagina = $_GET["pagina"];
+			}
+	
+			# El límite es el número de productos por página
+			$Limit = $NoticiasPorPagina;
+			// echo 'Noticias a mostrar ' . $Limit . '<br>';
+
+			# El offset es saltar X productos que viene dado por multiplicar la página - 1 * los productos por página
+			$Desde = ($pagina - 1) * $NoticiasPorPagina;
+			// echo 'Desde la Nro ' . $Desde . '<br>';
+	
+			// Muestra la cantidad de noticias generales y poder saber cuántas páginas se van a mostrar
+			$CantidadNoticiasGenerales = $this->Panel_M->consultarCantidadNoticiasGenerales($_SESSION['ID_Periodista']);
+
+			//Para obtener las páginas se divide el conteo entre los productos por página, y se redondea hacia arriba
+			$paginas = ceil($CantidadNoticiasGenerales[0]['cantidad'] / $NoticiasPorPagina);
+
+			//CONSULTA las noticias generales
+			$NoticiasGenerales = $this->Panel_M->filtrarNoticiasGeneralesPaginacionMunicipio($Municipio, $Limit, $Desde);
 
 			//CONSULTA las imagenes de noticias generales
 			$imagenesNoticiasGenerales = $this->Panel_M->consultarImagenesNoticiasGenerales();

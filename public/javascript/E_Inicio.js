@@ -54,39 +54,41 @@
     };
 
 //************************************************************************************************
-// Realiza el scroll a pantalla completa
+// Realiza el scroll a pantalla completa utilizando la API "IntersectionObserver"
 const sections = [...document.querySelectorAll("section")];
 
 let options = {
-  rootMargin: "0px",
-  threshold: 0.1,
+    rootMargin: "0px",
+    threshold: 0.8,
 };
 
 const callback = (entries, observer) => {
-  entries.forEach((entry) => {
-    const { target } = entry;
+    entries.forEach((entry) => {
+        const { target } = entry;
 
-    if (entry.intersectionRatio >= 0.1) {
-        target.classList.add("is-visible");
-    } 
-    else{
-      target.classList.remove("is-visible");
-    }
-  });
+        if (entry.intersectionRatio >= 0.1) {
+            target.classList.add("is-visible");
+        } 
+        else{
+            target.classList.remove("is-visible");
+        }
+    });
 };
 
+//1.- Se instancia un objetao de la clase "IntersectionObserver"
 const observer = new IntersectionObserver(callback, options);
 
 sections.forEach((section, index) => {
-  const sectionChildren = [...section.querySelector("[data-content]").children];
+    const sectionChildren = [...section.querySelector("[data-content]").children];
 
-  sectionChildren.forEach((el, index) => {
-    // el.style.setProperty("--delay", `${index * 250}ms`);
-  });
+    sectionChildren.forEach((el, index) => {
+        el.style.setProperty("--delay", `${index * 250}ms`);
+    });
 
-  observer.observe(section);
+    observer.observe(section);
 });
 
+//************************************************************************************************
 
 
 

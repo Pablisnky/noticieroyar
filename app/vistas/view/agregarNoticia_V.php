@@ -7,7 +7,7 @@
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
-<div class="cont_panel--actualizar">
+<div class="cont_panel--main">
     <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeNotiAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" name="agregarNoticia" id="Agregar" onsubmit="return validarAgregarNoticia()">
         <fieldset class="fieldset_1" id="Portada"> 
             <legend class="legend_1">Agregar Noticia</legend>
@@ -26,7 +26,7 @@
                     </div>
 
                     <!-- IMAGEN ANUNCIO PUBLICITARIO -->
-                    <div style="margin-top: 30px">
+                    <div style="margin-top: 40px">
                         <label class="cont_panel--label">Anuncio publicitario</label>
                         <label class="Default_pointer" id="Anuncio">
                             <figure> 
@@ -37,7 +37,7 @@
                     </div>
 
                     <!-- VIDEO -->
-                    <div style="margin-top: 30px; margin-bottom: 30px;">  
+                    <div style="margin-top: 40px; margin-bottom: 40px;">  
                         <label class="cont_panel--label">Video</label>    
                         <label class="cont_panel--label Default_pointer" for="imgVideo">
                             <figure id="FigureVideo">
@@ -75,11 +75,11 @@
                     
                     <!-- SECCION -->
                     <label class="cont_panel--label">Sección</label>
-                    <input class="cont_panel--titulo" type="text" name="seccion" id="SeccionPublicar"/>
+                    <input class="login_cont--input borde--input" type="text" name="seccion" id="SeccionPublicar"/>
                     
                     <!-- FECHA -->
                     <label class="cont_panel--label">Fecha</label>
-                    <input class="cont_panel--titulo" type="text" name="fecha" id="datepicker">
+                    <input class="login_cont--input borde--input" type="text" name="fecha" id="datepicker">
 
                      <!-- MUNICIPIO -->                
                     <label class="cont_panel--label">Municipio</label>
@@ -104,7 +104,8 @@
                     <!-- FUENTE -->
                     <label class="cont_panel--label">Fuente</label>
                     <select class="login_cont--select borde--input" name="fuente" id="Fuente" onchange="especificarFuente()">
-                        <option>Lisbella Paez CNP 13.162</option>
+                        <option hidden><?php echo $Datos['fuenteDefault']?></option>
+                        
                         <?php
                         foreach($Datos['fuentes'] as $Key)   :   ?>
                             <option value="<?php echo $Key['fuente']?>"><?php echo $Key['fuente']?></option>
@@ -137,7 +138,6 @@
 
 <!--div alimentado desde modal_anunciosDisponibles_V.php que muestra las anuncios publicitarios -->    
 <div id="Contenedor_91"></div>
-
 
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php echo rand();?>"></script> 

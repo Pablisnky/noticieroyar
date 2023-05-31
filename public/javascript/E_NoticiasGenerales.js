@@ -3,7 +3,9 @@
     //     var click = e.target
     //     console.log("Se hizo click en: ", click)
     // }, false)
-    
+
+document.getElementById("Refrescar").addEventListener('click', refrecarPagina, false)
+
 //************************************************************************************************
     //Confirma si se desea eliminar una noticia
     function EliminarNoticia(ID_Noticia, Nombre_Imagen){
@@ -30,3 +32,10 @@
             return
         }
     }
+
+//************************************************************************************************
+    function refrecarPagina(){
+        location.reload()
+    }
+
+//************************************************************************************************

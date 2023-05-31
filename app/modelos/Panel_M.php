@@ -81,6 +81,29 @@
         }
                 
         // SELECT de noticias generales
+        public function filtrarNoticiasGeneralesPaginacionMunicipio($Municipio, $Limit, $Desde){
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, municipio, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion
+                FROM noticias
+                WHERE fecha < CURDATE() AND Municipio = :MUNICIPIO 
+                GROUP BY titulo
+                ORDER BY fecha
+                DESC
+                LIMIT $Desde, $Limit"
+                 //se muestran $limit registros desde el registro Nro $desde
+            );
+
+            $stmt->bindParam(':MUNICIPIO', $Municipio, PDO::PARAM_STR);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+                
+        // SELECT de noticias generales
         public function filtrarNoticiasGeneralesPaginacion($Seccion, $Limit, $Desde){
             $stmt = $this->dbh->prepare(
                 "SELECT noticias.ID_Noticia, titulo, subtitulo, municipio, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion
@@ -105,12 +128,14 @@
             }
         }
         
-        public function consultarCantidadNoticiasGenerales(){
+        public function consultarCantidadNoticiasGenerales($ID_Periodista){
             $stmt = $this->dbh->prepare(
                 "SELECT ID_Noticia, COUNT(noticias.ID_Noticia) AS cantidad 
                  FROM noticias 
-                 WHERE fecha < CURDATE()"
+                 WHERE fecha < CURDATE() AND ID_Periodista = :ID_PERIODISTA"
             );
+
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_STR);
 
             if($stmt->execute()){
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -178,18 +203,6 @@
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
-        // SELECT agenda
-        public function consultarAgenda(){
-            $stmt = $this->dbh->query(
-                "SELECT ID_Agenda, nombre_imagenAgenda, DATE_FORMAT(caducidad, '%d-%m-%Y') AS fechaPublicacion 
-                FROM agenda
-                WHERE disponibilidad = 'activado'
-                ORDER BY ID_Agenda
-                DESC"
-            );
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
                
         // SELECT de los videos cargados para mostrar en YaracuyEnVideo
         public function consultaYaracuyEnVdeo(){
@@ -201,29 +214,78 @@
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        // SELECT de todos los anuncios publicitarios incluyendo caducados
-        public function consultarAnuncioTodos(){
-            $stmt = $this->dbh->query(
-                "SELECT ID_Anuncio, nombre_imagenPublicidad, razonSocial, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicioPublicacion, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulminaPublicacion
-                FROM anuncios
-                ORDER BY fechaCulmina
-                DESC"
+        
+        // SELECT perfil de periodista especifico
+        public function consultaPeriodista($ID_Periodista){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Periodista, nombrePeriodista, apellidoPeriodista, correoPeriodista, telefonoPeriodista, CNP
+                FROM periodistas
+                WHERE ID_Periodista = :ID_PERIODISTA"
             );
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
+    
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
         }
 
         // SELECT de anuncios publicitarios disponibles para publicar
-        public function consultarAnuncio(){
-            $stmt = $this->dbh->query(
+        public function consultarAnuncio($ID_Periodista){
+            $stmt = $this->dbh->prepare(
                 "SELECT ID_Anuncio, nombre_imagenPublicidad, razonSocial, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicioPublicacion, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulminaPublicacion
                 FROM anuncios
-                WHERE fechaCulmina >= CURDATE()
+                WHERE ID_Periodista = :ID_PERIODISTA AND fechaCulmina >= CURDATE() 
                 ORDER BY fechaCulmina
                 DESC"
             );
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
+            
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
         }
                 
+        
+        // SELECT de los eventos en agenda porperiodista
+        public function consultarAgenda($ID_Periodista){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Agenda, nombre_imagenAgenda, DATE_FORMAT(caducidad, '%d-%m-%Y') AS fechaPublicacion 
+                FROM agenda
+                WHERE disponibilidad = 'activado' AND ID_Periodista = :ID_PERIODISTA
+                ORDER BY ID_Agenda
+                DESC"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }
+
+        // SELECT de todos los anuncios publicitarios incluyendo caducados
+        public function consultarAnuncioTodos($ID_Periodista){
+            $stmt = $this->dbh->prepare(
+                "SELECT ID_Anuncio, nombre_imagenPublicidad, razonSocial, DATE_FORMAT(fechaInicio, '%d-%m-%Y') AS fechaInicioPublicacion, DATE_FORMAT(fechaCulmina, '%d-%m-%Y') AS fechaCulminaPublicacion
+                FROM anuncios
+                WHERE ID_Periodista = :ID_PERIODISTA
+                ORDER BY ID_Anuncio
+                DESC"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }
+
         // SELECT de anuncio publicitario existente en una noticia
         public function consultarAnuncioEspecifico($ID_Noticia){
             $stmt = $this->dbh->prepare(
@@ -546,14 +608,43 @@
             }
         }
         
-        //SELECT de las fuentes de redaccion disponibles
-        public function consultarFuentes(){
-            $stmt = $this->dbh->query(
+        //SELECT de las fuentes de redaccion disponibles por periodista especifico
+        public function consultarFuentes($ID_Periodista){
+            $stmt = $this->dbh->prepare(
                 "SELECT ID_Fuente, fuente
                 FROM fuentes
+                WHERE ID_Periodista = :ID_PERIODISTA
                 ORDER BY fuente"
             );
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
+
+        //SELECT de las fuentes de redaccion disponibles por periodista especifico
+        public function consultarFuenteDefault($ID_Periodista){
+            $stmt = $this->dbh->prepare(
+                "SELECT fuenteDefault
+                FROM periodistas
+                WHERE ID_Periodista = :ID_PERIODISTA"
+            );
+
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_COLUMN);
+            }
+            else{
+                return false;
+            }
         }
 
         public function consultaVisitasNoticia(){
@@ -659,6 +750,29 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC); 
         }
         
+        //SELECT de tiendas o de productos ofrecidos en tiendas
+        public function consultarBusquedaTitular($ID_Periodista, $Buscar){                                
+            $stmt = $this->dbh->prepare(
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, municipio, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion
+                FROM noticias                 
+                INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia                
+                INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
+                WHERE titulo LIKE '%$Buscar%' AND ID_Periodista = :ID_PERIODISTA
+                GROUP BY titulo
+                ORDER BY fecha
+                DESC"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            else{
+                return false;
+            }
+        }
 
 // // ********************************************************************************************************
 // // INSERT 
@@ -949,13 +1063,14 @@
         }
 
         //INSERT de evento en agenda
-        public function InsertarAgenda($FechaCaducidad, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda){
+        public function InsertarAgenda($ID_Periodista, $FechaCaducidad, $Nombre_imagenAgenda, $Tipo_imagenAgenda, $Tamanio_imagenAgenda){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO agenda(nombre_imagenAgenda, typo_imagenAgenda, tamanio_imagenAgenda, disponibilidad, caducidad) 
-                VALUES (:NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN, :DISPONIBILIDAD, STR_TO_DATE( '$FechaCaducidad', '%d-%m-%Y'))"
+                "INSERT INTO agenda(ID_Periodista, nombre_imagenAgenda, typo_imagenAgenda, tamanio_imagenAgenda, disponibilidad, caducidad) 
+                VALUES (:ID_PERIODISTA, :NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN, :DISPONIBILIDAD, STR_TO_DATE( '$FechaCaducidad', '%d-%m-%Y'))"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_STR);
             $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenAgenda, PDO::PARAM_STR);
             $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenAgenda, PDO::PARAM_STR);
             $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenAgenda, PDO::PARAM_STR);
@@ -993,17 +1108,18 @@
         }
         
         //INSERT de anuncio publicitario
-        public function InsertarAnuncio($RazonSocial, $FechaCaducidad, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
+        public function InsertarAnuncio($ID_Periodista, $RazonSocial, $FechaCaducidad, $Nombre_imagenPrincipal, $Tipo_imagenPrincipal, $Tamanio_imagenPrincipal){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO anuncios(razonSocial, fechaCulmina, nombre_imagenPublicidad, tipo_imagenPublicidad, tamanio_imagenPublicidad) 
-                VALUES (:RAZON_SOCIAL, STR_TO_DATE('$FechaCaducidad', '%d-%m-%Y'), :NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN)"
+                "INSERT INTO anuncios(ID_Periodista, razonSocial, fechaCulmina, nombre_imagenPublicidad, tipo_imagenPublicidad, tamanio_imagenPublicidad) 
+                VALUES (:ID_PERIODISTA, :RAZON_SOCIAL, STR_TO_DATE('$FechaCaducidad', '%d-%m-%Y'), :NOMBRE_IMAGEN, :TIPO_IMAGEN, :TAMANIO_IMAGEN)"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_INT);
             $stmt->bindParam(':RAZON_SOCIAL', $RazonSocial, PDO::PARAM_STR);
             $stmt->bindParam(':NOMBRE_IMAGEN', $Nombre_imagenPrincipal, PDO::PARAM_STR);
-            $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenAgenda, PDO::PARAM_STR);
-            $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenAgenda, PDO::PARAM_STR);
+            $stmt->bindParam(':TIPO_IMAGEN', $Tipo_imagenPrincipal, PDO::PARAM_STR);
+            $stmt->bindParam(':TAMANIO_IMAGEN', $Tamanio_imagenPrincipal, PDO::PARAM_STR);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -1014,14 +1130,15 @@
             }
         }
 
-        public function InsertarFuente($Coinsidencias){
+        public function InsertarFuente($ID_Periodista, $Coinsidencias){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO fuentes(fuente) 
-                VALUES (:FUENTE)"
+                "INSERT INTO fuentes(fuente, ID_Periodista) 
+                VALUES (:FUENTE, :ID_PERIODISTA)"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
             $stmt->bindParam(':FUENTE', $Coinsidencias, PDO::PARAM_STR);
+            $stmt->bindParam(':ID_PERIODISTA', $ID_Periodista, PDO::PARAM_STR);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){
@@ -1161,6 +1278,27 @@
             //Se vinculan los valores de las sentencias preparadas
             $stmt->bindValue(':ID_NOTICIA', $ID_Noticia, PDO::PARAM_INT);
             $stmt->bindParam(':ID_SECCION', $ID_Seccion, PDO::PARAM_INT);
+            
+            //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
+            $stmt->execute();
+        }
+
+        // UPDATE de datos de periodista
+        public function ActualizarPeriodista($Recibe_Periodista){
+            $stmt = $this->dbh->prepare(
+                "UPDATE periodistas
+                 SET nombrePeriodista = :NOMBRE_PERIOD, apellidoPeriodista = :APELLIDO_PERIOD, correoPeriodista = :CORREO_PERIOD, telefonoPeriodista = :TELEFONO_PERIOD, CNP = :CNP, fuenteDefault = :FUENTE_PERIOD
+                 WHERE ID_Periodista = :ID_PERIODISTA"
+            );
+            
+            //Se vinculan los valores de las sentencias preparadas
+            $stmt->bindValue(':ID_PERIODISTA', $Recibe_Periodista['id_periodista'], PDO::PARAM_INT);
+            $stmt->bindValue(':NOMBRE_PERIOD', $Recibe_Periodista['nombre_Periodista'], PDO::PARAM_STR);
+            $stmt->bindValue(':APELLIDO_PERIOD', $Recibe_Periodista['apelido_Periodista'], PDO::PARAM_STR);
+            $stmt->bindValue(':CORREO_PERIOD', $Recibe_Periodista['correo_Periodista'], PDO::PARAM_STR);
+            $stmt->bindValue(':TELEFONO_PERIOD', $Recibe_Periodista['telefono_Periodista'], PDO::PARAM_STR);
+            $stmt->bindValue(':CNP', $Recibe_Periodista['cnp'], PDO::PARAM_STR);
+            $stmt->bindValue(':FUENTE_PERIOD', $Recibe_Periodista['fuente_Default'], PDO::PARAM_STR);
             
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             $stmt->execute();

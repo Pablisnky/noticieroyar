@@ -141,20 +141,20 @@
 						<a class="Default_quitarMovil" href="<?php echo RUTA_URL . '/Suscriptor_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>"><img class="Default_login" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
 						<?php
 					}	
-					else{	?>
+					else if(empty($_SESSION['ID_Suscriptor']) AND empty($_SESSION['ID_Periodista'])){	?>
 						<a class="Default_quitarMovil" href="<?php echo RUTA_URL . '/Login_C/index/SinID_Noticia,SinBandera';?>" rel="noopener noreferrer"><img class="Default_logout" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>
 						<?php
-					}	?>
+					}				
+					else if(!empty($_SESSION['ID_Periodista'])){	?>
+					<a class="Default_quitarMovil" href="<?php echo RUTA_URL . '/Panel_C/portadas'?>"><img class="Default_login" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
+						<?php
+					}	
+						?>
 				</div>
 			</div>
 			    
 			<!-- BOTON VIDEO PROMOCIONAL -->
 			<a class="con_portada--titulo Default_pointer" href="<?php echo RUTA_URL . '/YaracuyEnVideo_C';?>" rel="noopener noreferrer"><img style="width: 2em;" src="<?php echo RUTA_URL . '/public/iconos/video/outline_videocam_white_24dp.png'?>"/>Yaracuy<br> en video</a>
-			
-			<!-- NUESTRO ADN -->
-			<div class="Default_ocultar">
-				<label class="boton boton--corto"><a class="Default_font--white boton_a" href="<?php echo RUTA_URL . '/Menu_C/nuestroADN';?>">Nuestro ADN</a></label> 
-			</div>
 		</header>
 
 		<!-- MEMBRETE DESPLAZANTE -->
@@ -169,6 +169,7 @@
 			<div class="tapa-logo--2">
 				<label class="tapa-logo--font">Noticiero Yaracuy</label>
 				
+				<!-- MAPA -->
 				<figure class="tapa-logo--mapa Default_pointer">
 					<img id="Abrir" src="<?php echo RUTA_URL . '/public/images/Mapa-Venezuela-yaracuy.png'?>"/>
 				</figure>
@@ -179,9 +180,6 @@
 		<div class="Default_ocultar" id="Miimagen">	
 			<!-- ICONO CERRAR -->
 			<a href="<?php echo RUTA_URL ;?>/Inicio_C"><img class="cont_modal--cerrar Default_pointer" style="width: 1em;" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/></a>
-
-			<!-- AUDIO -->
-			<!-- <audio autoplay src="<?php //echo RUTA_URL . '/public/audio/TeofiloDominguez-Esterlina.mp3';?>" loop></audio> -->
 			
 			<div class="fullscreem--inicio--texto">
 				<h1 class="fullscreem--inicio--h1">Poema Yaracuy</h3>

@@ -386,7 +386,7 @@
 	display: none;
 }
 .header{
-	display: block;
+	/* display: block; */
 	height: 50px;
 }
 .header--menu{
@@ -985,8 +985,6 @@
 }
 .contenedor_89{
 	margin-top: 3%;
-	/* display: grid; */
-	/* width: 80%;*/
 	padding-left: 3%;
 	grid-template-columns: 100%;
 	column-gap: 1%;/*espacio entre columnas*/
@@ -1325,8 +1323,8 @@
 	padding: 0% 1%;
 }
 .cont_panel--imagen{
-	width: 100%;
-   	height: 35vh;
+	width: 60%;
+   	height: 20vh;
 }
 .cont_panel--actualizar--media{
 	width: 95%;
@@ -1686,18 +1684,6 @@
 .cont_Artista--leyenda_2{
 	font-size: 4vw;
 }
-.cont_adn--div{
-	margin-top: 0%;
-	padding-bottom: 5%;
-	width: 100%;
-}
-.cont_adn{
-	display: block;
-	width: 98%;
-	margin: auto;
-	margin-top: 0%;
-	padding-top: 0%;
-}
 .header--scroll-snap{
 	scroll-snap-type: proximity; 
 	overflow-y: scroll; 
@@ -1722,6 +1708,18 @@
 	line-height: 40px;
 	height: 55px;
 }
+.cont_adn{
+	display: block;
+	width: 98%;
+	margin: auto;
+	margin-top: 0%;
+	padding-top: 0%;
+}
+.cont_adn--div{
+	margin-top: 0%;
+	padding-bottom: 5%;
+	width: 100%;
+}
 .cont_adn_imagen--perfil{
 	height: 35vh;
 }
@@ -1742,9 +1740,8 @@
 .cont_adn--texto{
 	background-color: white;
 	position: absolute;
-	top: -220%;
+	top: -274%;
 	opacity: 0;
-
 }
 .cont_adn--titulo-ADN{
 	display: flex; 
@@ -1832,6 +1829,34 @@
 	font-size: 6.5vw;
 	width: 95%;
 	margin: 5% auto;
+}
+.cont_portada--seccion{
+	width: 35%;
+	min-height: 23px;
+	line-height: 23px;
+	margin-left: 57%;
+	margin-right: 10px;
+	padding-right: 8px;
+}
+.header__titulo--Panelperiodista{
+	width: 90%;
+	font-size: 9vw;
+	text-align: right;
+}
+.cont_panel--NoNoticia {
+	width: 90%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	padding: 1% 5%;
+}
+.mostrarMision{
+	margin-top: 570%;
+	opacity: 1;
+	transition:all .5s ease-in-out;
+}
+.rotar{        
+	transform: rotate(180deg)!important;
+	transition: all 0.4s;
 }
 
 

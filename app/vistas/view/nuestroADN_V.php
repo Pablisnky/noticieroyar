@@ -1,18 +1,3 @@
-<!--<p> CARGA SDK FONTAWESONE PARA ICONOS DE REDES SOCIALES se uso esta libreria porque los iconos no tienen fondo-->
-<script src="https://kit.fontawesome.com/2d6db4c67d.js" crossorigin="anonymous"></script>
-<style>
-    .mostrarMision{
-        margin-top: 470%;
-        opacity: 1;
-	    transition:all .5s ease-in-out;
-    }
-    .rotar{        
-        transform: rotate(180deg)!important;
-	    transition: all 0.4s;
-    }
-</style>
-
-
 <div class="cont_adn">
     <div class="cont_adn--div">
         <div class="cont_adn--titulo-ADN"> 
@@ -20,12 +5,12 @@
                 <h1 class="cont_adn--titulo">Nuestro ADN</h1>
             </div>
             <div>
-                <img class="Default_quitarEscritorio Default_" style="margin-left: 20px; width: 2em;" id="IconoExpandir" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_black_24dp.png'?>" onclick="mostrarMision()"/>
+                <img class="Default_quitarEscritorio" style="margin-left: 20px; width: 2em;" id="IconoExpandir" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_black_24dp.png'?>" onclick="mostrarMision()"/>
             </div>
         </div>
         <div class="cont_adn--perfiles"">
             <?php 
-            foreach($Datos['equipo'] as $Row) :   ?>
+            foreach($Datos['founder'] as $Row) :   ?>
                 <div class="cont_adn--div--item">
                     <figure>
                         <img class="cont_adn_imagen--perfil" alt="Fotografia Perfil" src="<?php echo RUTA_URL?>/public/images/equipo/<?php echo $Row['imagenPerfilAdmin']?>"/>  
@@ -56,8 +41,8 @@
 </div>
 
 
-<script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
-<script src="<?php echo RUTA_URL.'/public/javascript/E_nuestroADN.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL . '/public/javascript/E_nuestroADN.js?v='. rand();?>"></script>
 
 </body>
 </html>

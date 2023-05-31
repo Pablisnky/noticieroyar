@@ -3,6 +3,7 @@
     
     <div class="cont_panel--main">     
         <div class="cont_panel--encabezado">
+            <!-- BUSCADOR SECCION -->
             <div class="cont_panel--seccion">
                 <label class="login_cont--label">Sección</label>
                 <select class="cont_panel--select borde--input" onchange="llamar_noticiaSeccion(this.value)">
@@ -23,9 +24,10 @@
                     <option>Turismo</option>
                 </select>
             </div> 
-            <!-- <div style="width: 50%;">
+            <!-- BUSCADOR MUNICIPIO -->
+            <div class="cont_panel--seccion">
                 <label class="login_cont--label">Municipio</label>
-                <select class="cont_panel--select borde--input" name="municipio" id="Municipio"  onchange="Llamar_noticiaMunicipio(this.form)">
+                <select class="cont_panel--select borde--input" onchange="Llamar_noticiaMunicipio(this.value)">
                     <option></option>
                     <option value="Aristides Bastidas">Aristides Bastidas</option>
                     <option value="Simon Bolivar">Bolivar</option>
@@ -42,34 +44,47 @@
                     <option value="Urachiche">Urachiche</option>
                     <option value="Jose Joaquín Veroes">Veroes</option>
                 </select>  
-            </div> -->
-            <!-- PAGINACION -->
-            <div>
-                <ul class="cont_panel--paginacion ">
-                    <!-- BOTON RETROCEDER -->
-                    <!-- Si la página actual es mayor a uno, se muestra el botón para ir una página atrás -->
-                    <?php if ($Datos['pagina'] > 1) { ?>
-                        <li style="">
-                            <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] - 1;?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_back_ios_new_black_24dp.png'?>"/></a>
-                        </li>
-                    <?php } ?>
-
-                    <!-- Mostramos enlaces para ir a todas las páginas. -->
-                    <?php for ($i = 1; $i <= $Datos['paginas']; $i++) { ?>
-                        <li class="<?php if ($i == $Datos['pagina']) echo "active";?>, cont_archivo--paginacion-numeros">
-                            <a class="Default_pointer" href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $i;?>"><?php echo $i;?></a>
-                        </li>
-                    <?php } ?>
-
-                    <!-- BOTON AVANZAR -->
-                    <!-- Si la página actual es menor al total de páginas, se muestra un botón para ir una página adelante -->
-                    <?php if ($Datos['pagina'] < $Datos['paginas']) { ?>
-                        <li>
-                            <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] + 1 ?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_black_24dp.png'?>"/></a>
-                        </li>
-                    <?php } ?>
-                </ul> 
             </div>
+            <!-- BUSCADOR TITULAR -->
+            <div style="flex-grow: 1;">                
+                <label class="login_cont--label">Titular</label>
+                <input class="login_cont--input borde--input" type="text" name="buscadorTitular" id="BuscadorTitular" />
+            </div>
+            <!-- REFRESCAR -->
+            <div style="margin-bottom:3px">
+                <img class="Default_pointer" style="width: 2vw" src="<?php echo RUTA_URL . '/public/iconos/refrescar/outline_refresh_black_24dp.png'?>" id="Refrescar"/>
+            </div>
+            <!-- PAGINACION -->
+            <?php
+            if($Datos['cantidadNoticiasGenerales'][0]['cantidad'] > 25){ ?>
+                <div style="width: 100%;">
+                    <ul class="cont_panel--paginacion ">
+                        <!-- BOTON RETROCEDER -->
+                        <!-- Si la página actual es mayor a uno, se muestra el botón para ir una página atrás -->
+                        <?php if ($Datos['pagina'] > 1) { ?>
+                            <li>
+                                <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] - 1;?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_back_ios_new_black_24dp.png'?>"/></a>
+                            </li>
+                        <?php } ?>
+
+                        <!-- Mostramos enlaces para ir a todas las páginas. -->
+                        <?php for ($i = 1; $i <= $Datos['paginas']; $i++) { ?>
+                            <li class="<?php if ($i == $Datos['pagina']) echo "active";?>, cont_archivo--paginacion-numeros">
+                                <a class="Default_pointer" href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $i;?>"><?php echo $i;?></a>
+                            </li>
+                        <?php } ?>
+
+                        <!-- BOTON AVANZAR -->
+                        <!-- Si la página actual es menor al total de páginas, se muestra un botón para ir una página adelante -->
+                        <?php if ($Datos['pagina'] < $Datos['paginas']) { ?>
+                            <li>
+                                <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] + 1 ?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_black_24dp.png'?>"/></a>
+                            </li>
+                        <?php } ?>
+                    </ul> 
+                </div>
+                    <?php
+            }   ?>
         </div>
 
         <fieldset class="fieldset_1">
@@ -161,13 +176,15 @@
             </div>
         </fieldset>
 
-        
-       
-    </div>
+    <!--Carga mediante Ajax las noticias con el titular escrito en la busqueda solicitada desde buscador_V.php -->
+    <div class="contenedor_58" id="Muestra_Titular"></div>
 
-<script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
-<script src="<?php echo RUTA_URL.'/public/javascript/E_NoticiasGenerales.js?v=' . rand();?>"></script>
-<script src="<?php echo RUTA_URL.'/public/javascript/A_NoticiasGenerales.js?v=' . rand();?>"></script>
+<script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL . '/public/javascript/E_NoticiasGenerales.js?v=' . rand();?>"></script>
+<script src="<?php echo RUTA_URL . '/public/javascript/A_NoticiasGenerales.js?v=' . rand();?>"></script>
+
+</body>
+</html>
 
 <!-- FOOTER -->
 <?php //require(RUTA_APP . '/vistas/footer/footer.php');?>

@@ -67,7 +67,7 @@
                 <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
                 <div class="contBoton">  
                     <input class="Default_ocultar" type="text" name="id_noticia" value="<?php echo $Datos['id_noticia']?>"/>  
-                    <input class="boton" type="submit" value="Suscribirse"/>
+                    <input class="boton" id="Boton_registrar" type="submit" value="Suscribirse"/>
                 </div>  
             </form>
         </div>

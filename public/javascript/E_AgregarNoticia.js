@@ -20,8 +20,6 @@ document.getElementById("Contenido").addEventListener('keydown', function(){vali
 document.getElementById("Contenido").addEventListener('keyup', function(){contarCaracteres("ContadorContenido", "Contenido", 7000)}, false)
 document.getElementById("Contenido").addEventListener('keyup', function(){valida_LongitudDes(7000, "Contenido")}, false)
 
-
-
 //llama a la funcion cuando detecta cambio en el textarea, Ej: al pegar un texto
 document.getElementById("Titulo").addEventListener("input", (event) => contarCaracteres("ContadorTitulo", "Titulo", 90));
 document.getElementById("Resumen").addEventListener("input", (event) => contarCaracteres("ContadorResumen", "Resumen", 120));
@@ -46,9 +44,9 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
             document.getElementById(ID_Contador).value = max-longitud; 
         } 
         else{ //Si se escribe mas de lo permitido no permite continuar
-            // document.getElementById(ID_Contador).value = cadena.subtring(0, max);
-            alert("Limite de caracteres alcanzado")
-            // document.getElementById(ID_Contenido).addEventListener('blur', function(){blaquearInput("Titulo")}, false)
+            document.getElementById(ID_Contador).value = cadena.subtring(0, max);
+           
+            document.getElementById(ID_Contenido).addEventListener('blur', function(){blaquearInput("Titulo")}, false)
         } 
     } 
 
@@ -113,8 +111,7 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
             document.getElementById("MostrarSeccion").style.display = "none"
 
             //Coloca el curso en el ancla
-            window.location.hash = "#SeccionPublicar"; 
-    
+            window.location.hash = "#SeccionPublicar";     
         } 
 
 //************************************************************************************************  
@@ -146,16 +143,38 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
         //Se reciben los elementos del formulario mediante su atributo name
         ID_Anuncio = form.anuncio
 
+        // En el caso que la seccion tenga un solo producto, se añade un input radio, sino se añade el Opcion.legth sera undefined y no entrará en el ciclo for
+        if(ID_Anuncio.length == undefined){
+
+        //Se añade una opcion al input tipo radio para que existan al menos dos opciones, cuando es uno el valor de Opcion.length es undefined lo que impide que se ejecute el ciclo for más adelante, esto sucede cuando solo existe un producto en una seccción
+            //Se crea un input tipo radio que pertenezca a los de name = "opcion"
+            var NuevoElemento = document.createElement("input")
+
+            //Se dan valores a la propiedades del nuevo elemento 
+            NuevoElemento.name = "anuncio"
+            NuevoElemento.setAttribute("type", "radio");
+
+            //Se especifica el elemento donde se va a insertar el nuevo elemento
+            var ElementoPadre = document.getElementById("Contenedor_Radio")
+
+            //Se inserta en el DOM el input creado
+            inputNuevo = ElementoPadre.appendChild(NuevoElemento) 
+
+            //Se renombra la variable Opcion
+            ID_Anuncio = form.anuncio
+        }
+
         // //Se recorre todos los elementos para encontrar el que esta seleccionado
-        for(var i = 0; i<ID_Anuncio.length; i++){ 
+        for(let i = 0; i < ID_Anuncio.length; i++){ 
             if(ID_Anuncio[i].checked){
                 //Se toma el valor del seleccionado
                 Seleccionado = ID_Anuncio[i].value
+                console.log(ID_Anuncio[i].value)
                 // TotalCategoria.push(Seleccionado );
             }            
         } 
         
-        // console.log("ID_Anuncio", Seleccionado)
+        console.log("ID_Anuncio", Seleccionado)
 
         //Se transfiere el valor del radio boton seleccionado al input del formulario
         document.getElementById("ID_Anuncio").value = Seleccionado
@@ -199,10 +218,11 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
             document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
             document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
             document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+            document.getElementById("Boton_Agregar").style.cursor = "pointer"
             return false;
         }
-        else if(Titulo =="" || Titulo.indexOf(" ") == 0 || Titulo.length > 80){
-            alert ("El TITULO excede el máximo de caracteres");
+        else if(Titulo =="" || Titulo.indexOf(" ") == 0 || Titulo.length > 90){
+            alert ("El titulo excede el máximo de caracteres");
             document.getElementById("Titulo").value = "";
             document.getElementById("Titulo").focus();
             // document.getElementById("Titulo").style.backgroundColor = "var(--Fallos)"
@@ -211,6 +231,7 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
             document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialOscuro)"
             document.getElementById("Boton_Agregar").style.color = "var(--OficialClaro)"
             document.getElementById("Boton_Agregar").classList.remove('borde_1')
+            document.getElementById("Boton_Agregar").style.cursor = "pointer"
             return false;
         }
         else if(Resumen =="" || Resumen.indexOf(" ") == 0 || Titulo.length > 120){
@@ -223,6 +244,7 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
             document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialOscuro)"
             document.getElementById("Boton_Agregar").style.color = "var(--OficialClaro)"
             document.getElementById("Boton_Agregar").classList.remove('borde_1')
+            document.getElementById("Boton_Agregar").style.cursor = "pointer"
             return false;
         }
         else if(Seccion =="" || Seccion.indexOf(" ") == 0){
@@ -235,6 +257,7 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
             document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialOscuro)"
             document.getElementById("Boton_Agregar").style.color = "var(--OficialClaro)"
             document.getElementById("Boton_Agregar").classList.remove('borde_1')
+            document.getElementById("Boton_Agregar").style.cursor = "pointer"
             return false;
         }
         else if(Fecha =="" || Fecha.indexOf(" ") == 0){
@@ -247,6 +270,7 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
             document.getElementById("Boton_Agregar").style.backgroundColor = "var(--OficialOscuro)"
             document.getElementById("Boton_Agregar").style.color = "var(--OficialClaro)"
             document.getElementById("Boton_Agregar").classList.remove('borde_1')
+            document.getElementById("Boton_Agregar").style.cursor = "pointer"
             return false;
         }
         //Si se superan todas las validaciones la función devuelve verdadero

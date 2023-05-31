@@ -17,7 +17,7 @@
                         </div>
                         <?php
                         if($Key['municipio'] != 'Ambito estadal'){    ?>
-                            <!-- TEXTO VERTICAL -->
+                            <!-- TEXTO MUNICIPIO VERTICAL -->
                             <div  class="cont_portada--municipio">
                                 <p class="cont_portada--municipio--p"><?php echo $Key['municipio'];?> </p>
                                 <p class="cont_portada--abreviatura">Mcpio</p>
@@ -122,7 +122,11 @@
                     
                     <!-- FECHA -->
                     <br>
+
                     <small class="cont_portada_informacion--span"><?php echo $Key['fechaPublicacion'];?></small>
+                    
+                    <!-- TEXTO SECCION HORIZONTAL -->
+                    <p class="cont_portada--seccion borde_3"><?php echo $Key['seccion'];?> </p>
                 </div> 
             </div> 
 

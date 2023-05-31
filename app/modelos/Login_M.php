@@ -125,7 +125,7 @@
                 "SELECT ID_Suscriptor 
                 FROM suscriptores  
                 WHERE correoSuscriptor = :CORREO");
-            $stmt->bindValue(':CORREO', $Correo, PDO::PARAM_STR);
+            $stmt->bindParam(':CORREO', $Correo, PDO::PARAM_STR);
             
             if($stmt->execute()){
                 return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -133,6 +133,23 @@
             else{
                 return false;
             }
+        }
+
+        // SELECT de correo de periodista
+        public function consultarPeriodistaRecordado($Cookie_id_periodista){
+            $stmt = $this->dbh->prepare(
+                "SELECT correoPeriodista 
+                FROM periodistas  
+                WHERE id_Periodista = :ID_PERIODISTA");
+            $stmt->bindParam(':ID_PERIODISTA', $Cookie_id_periodista, PDO::PARAM_INT);
+            
+            if($stmt->execute()){
+                return $stmt->fetch(PDO::FETCH_COLUMN);
+            }
+            else{
+                return false;
+            }
+
         }
 
 // ********************************************************************************************************
@@ -246,10 +263,10 @@
         }
 
         // iNSERTA datos del periodista
-        public function InsertarPeriodista($RecibeDatos){
+        public function InsertarPeriodista($RecibeDatos, $FuenteDefecto){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO periodistas(nombrePeriodista, apellidoPeriodista, correoPeriodista, telefonoPeriodista, CNP) 
-                VALUES (:NOMBRE, :APELLIDO, :CORREO, :TELEFONO, :CNP)"
+                "INSERT INTO periodistas(nombrePeriodista, apellidoPeriodista, correoPeriodista, telefonoPeriodista, CNP, fuenteDefault) 
+                VALUES (:NOMBRE, :APELLIDO, :CORREO, :TELEFONO, :CNP, :FUENTE)"
             );
 
             //Se vinculan los valores de las sentencias preparadas, stmt es una abreviatura de statement
@@ -258,6 +275,7 @@
             $stmt->bindParam(':CORREO', $RecibeDatos['correo'], PDO::PARAM_STR);
             $stmt->bindParam(':TELEFONO', $RecibeDatos['telefono'], PDO::PARAM_STR);
             $stmt->bindParam(':CNP', $RecibeDatos['cnp'], PDO::PARAM_STR);
+            $stmt->bindParam(':FUENTE', $FuenteDefecto, PDO::PARAM_STR);
 
             //Se ejecuta la inserción de los datos en la tabla(ejecuta una sentencia preparada )
             if($stmt->execute()){

@@ -42,8 +42,8 @@
                     <input class="login_cont--input borde--input" type="password" name="clave_Arr" id="Clave"  autocomplete="off"/>             
 
                     <div class="contenedor_45">
-                        <input class="Default_ocultar" type="checkbox" id="Recordar" name="recordar" value="1"/>
-                        <label class="Default_ocultar" class="label_20" for="Recordar">Recordar datos en este equipo.</label>
+                        <input class="" type="checkbox" id="Recordar" name="recordar" value="1"/>
+                        <label class="" class="label_20" for="Recordar">Recordar datos en este equipo.</label>
                     </div> 
                     
                     <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
@@ -55,7 +55,7 @@
                             <input class="Default_ocultar" type="text" name="id_comentario" value="<?php echo $Datos['id_comentario']?>"/>
                             <?php
                         }   ?>
-                        <input class="boton" type="submit" value="Entrar"/>
+                        <input class="boton" id="Boton_Login" type="submit" value="Entrar"/>
                     </div>
                 </div>
             </fieldset>  

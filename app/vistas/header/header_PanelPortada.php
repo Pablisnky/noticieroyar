@@ -37,7 +37,21 @@
 			<img class="header--menu Default_quitarEscritorio" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>		
 			
 			<!-- MEMBRETE FIJO -->
-			<label class="header__titulo">Noticiero Yaracuy</label>
+			<label class="header__titulo--Panelperiodista">Noticiero Yaracuy</label>
+			
+			<!-- FECHA Y CARITA -->
+			<div class="cont_header--loginFecha Default_quitarMovil">
+				<!-- <div style="margin-right: 15px;">
+					<label class="header__fecha Default_pointer" onclick="cerrarSecion()"></label>
+				</div> -->
+				<div>
+					<?php
+					if(!empty($_SESSION['ID_Periodista'])){	?>
+						<label class="Default_pointer"><img class="Default_login" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>" onclick="cerrarSecion()"/></label>							
+						<?php
+					}	?>
+				</div>
+			</div>
 		</header>
 		
    <!-- No se cierrra la etiqueta <body> porque se cierra es el footer -->

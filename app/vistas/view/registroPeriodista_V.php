@@ -1,7 +1,7 @@
 <section id="Section_5">
     <div syle="height: 100%;">
         <div style="min-height: 100%;" class="login_cont">
-            <form action="../../Login_C/recibeRegistroPeriodista" method="POST" id="FormularioCom" name="formRegistroCom" autocomplete="off" onsubmit="return validarRegistro()">
+            <form action="../../Login_C/recibeRegistroPeriodista" method="POST" id="FormularioCom" name="formRegistroCom" autocomplete="off" onsubmit="return validarRegistroPeriodista()">
                 <fieldset class="fieldset_1">
                     <legend class="legend_1">Registro Periodista</legend> 
                     
@@ -16,9 +16,10 @@
 
                         <!-- CORREO AFILIADO -->
                         <label class="login_cont--label">Correo electronico</label>
-                        <input class="login_cont--input borde--input" type="text" name="correo" id="Correo" onblur="llamar_verificaCorreo(id, 'AfiCom')" onfocus="removerContenidoDiv()"/>
+                        <input class="login_cont--input borde--input" type="text" name="correo" id="Correo"/>
                         <div class="contenedor_43" id="Mostrar_verificaCorreo"></div>
-                                                       
+                        <!-- onblur="llamar_verificaCorreo(id, 'AfiCom')" onfocus="removerContenidoDiv()" -->
+
                         <label class="login_cont--label">Telefono</label>
                         <input class="login_cont--input borde--input" type="text" name="telefono" id="Telefono"/> 
 
@@ -45,7 +46,7 @@
                 
                 <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
                 <div class="contBoton">  
-                    <input class="boton" type="submit" value="Suscribirse"/>
+                    <input class="boton" id="Boton_Enviar" type="submit" value="Suscribirse"/>
                 </div>  
             </form>
         </div>

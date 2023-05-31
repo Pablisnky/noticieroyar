@@ -1,4 +1,3 @@
-
 <!-- CDN CALENDARIO -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
@@ -7,46 +6,44 @@
 
 <!-- MENU LATERAL -->
 <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
-
-<!--PANEL NOTICIAS PRINCIPALES --> 
-<div class="cont_panel--actualizar">
-    <form action="<?php echo RUTA_URL; ?>/Panel_C/recibePublicidadAgregada" method="POST" enctype="multipart/form-data" autocomplete="off">
+ 
+<div class="cont_panel--main">
+    <form action="<?php echo RUTA_URL; ?>/Panel_C/recibePublicidadAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarRegistroPublicidad()">
         <fieldset class="fieldset_1" id="Portada"> 
             <legend class="legend_1">Agregar Publicidad</legend>
-                <div class="cont_panel--actualizar--contenido">
-                    <label class="cont_panel--label">Imagen principal</label>
+            <div class="cont_panel--actualizar--contenido">
 
-                    <!-- IMAGEN PRINCIPALANUNCIO PUBLICITARIO -->
-                    <div style=" width: 30%">    
-                        <label class="Default_pointer" for="imgInp">    
-                            <figure>
-                                <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
-                            </figure>
-                        </label>
-                        <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
-                    </div>
+                <!-- IMAGEN -->
+                <div style=" width: 30%">    
+                    <label class="Default_pointer" for="imgInp">    
+                        <figure>
+                            <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>
+                        </figure>
+                    </label>
+                    <input class="Default_ocultar" type="file" name="imagenPrincipal" id="imgInp"/>
+                </div>
 
-                    <div style="width: 100%; padding-left: 1%">
-                        <!-- RAZON SOCIAL -->
-                        <label class="cont_panel--label">Razón social</label>
-                        <input class="cont_panel--titulo" type="text" name="razon" id="Razon"/> 
+                <div style="width: 100%; padding-left: 1%">
+                    <!-- RAZON SOCIAL -->
+                    <label class="cont_panel--label">Razón social</label>
+                    <input class="cont_panel--titulo" type="text" name="razon" id="Razon"/> 
 
-                        <!-- FECHA CADUCACION -->
-                        <label class="cont_panel--label">Fecha caducación</label>
-                        <input class="cont_panel--select" type="text" name="fecha" id="datepicker">
-                    </div>  
-                
-                <div> 
-                    <input class="boton" type="submit" id="Boton_Agregar" value="Agregar anuncio"/>  
-                </div>                    
-                </div>   
+                    <!-- FECHA CADUCACION -->
+                    <label class="cont_panel--label">Fecha caducación</label>
+                    <input class="cont_panel--select" type="text" name="fecha" id="datepicker">
+                </div>  
+            </div>  
+
+            <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
+            <div> 
+                <input class="boton" type="submit" id="Boton_Agregar" value="Agregar anuncio"/>  
+            </div>    
     </fieldset>        
     </form>
 </div>
 
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
-<!-- <script src="<?php //echo RUTA_URL;?>/public/javascript/E_AgregarNoticia.js?v=<?php //echo rand();?>"></script>  -->
-<!-- <script src="<?php //echo RUTA_URL . '/public/javascript/A_AgregarNoticia.js?v=' . rand();?>"></script>  -->
+<script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarPublicidad.js?v=<?php echo rand();?>"></script> 
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcion_Calendario.js?v=<?php echo rand();?>"></script>
 
 <script>       

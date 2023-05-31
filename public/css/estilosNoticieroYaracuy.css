@@ -12,7 +12,6 @@ h1, h2, h3, h4, h5, p, legend{
 }
 select{
 	background-color: white;
-	
 }
 img{
 	display: block;
@@ -133,12 +132,9 @@ textarea{
 }
 .aside{ 
 	text-align: center;
-	/* height: 100%; */
-	/* width: 40px; */
 	writing-mode: vertical-rl; /*coloca el texto verticalmente*/
 	transform: rotate(180deg); /*gira el texto para que se lea de abajo hacia arriba*/
 	font-size: 1.5em;
-	/* line-height: 40px; */
 }
 .ancla{
     display: block;
@@ -188,6 +184,11 @@ textarea{
 } 
 .borde_2{
 	border-radius: 5px;
+}
+.borde_3{
+	border-color: var(--BordeClaro);
+	border-width: 1px;
+	border-style: solid;
 }
 .borde--input{
 	border-color: var(--BordeClaro);
@@ -385,8 +386,7 @@ textarea{
 	/* las proximas 3 líneas, le indicando al contenido que si se sale por un lateral que no se muestre, que no se cambie de línea el contenido “inline” y que, en caso de salirse el texto por un lateral, que le incluya los puntos suspensivos automáticamente por donde proceda. */
 	font-weight: bold;
 	display: -webkit-box;
-	/*
-	white-space: nowrap;  */
+	/*white-space: nowrap;  */
 	/*Las proximas lineas permiten colocar tres puntos al final luego de dos lineas de parrafo */
 	overflow: hidden;
 	-webkit-line-clamp: 2 !important;
@@ -396,7 +396,6 @@ textarea{
 .contenedor_96{
 	display: flex;
 	width: 100%;
-	/* margin: 1% auto; */
 	justify-content: space-around;
 }
 .a_9:hover{
@@ -779,10 +778,8 @@ textarea{
  .contenedor_89{
 	 margin-top: 3%;
 	 display: grid;
-	 /* width: 80%;
-	 margin: auto; */
 	 grid-template-columns: 22% 22% 22% 22%;
-	 column-gap: 1%;/*espacio entre columnas*/
+	 column-gap: 1%; /*espacio entre columnas*/
  }
  .cont_carrito{
 	 background-color: black;
@@ -1061,7 +1058,7 @@ textarea{
  .cont_modal--agregar{
 	background-color: rgb(180, 248, 180);
 	position: fixed;
-	top: 2%;
+	top: 10%;
 	right: 1.5%;
 	border-radius: 50%;
 	width: 3em;	
@@ -1275,7 +1272,7 @@ textarea{
 	text-align: justify;
  }
  .cont_panel--seccion{
-	width: 50%;
+	width: 25%;
  }
  .cont_panel--seccion--li{	
 	list-style: initial;
@@ -1531,6 +1528,7 @@ textarea{
 	justify-content: space-around;
 }
 .cont_portada_informacion--span{
+	float:left;
 	padding-left: 15px;
 	font-weight: bold; 
 	font-size: 0.9em;
@@ -2135,6 +2133,12 @@ textarea{
 	font-family: Gruppo;
 	display: block;
 }
+.header__titulo--Panelperiodista{
+	width: 70%;
+	font-size: 3.8vw;
+	font-family: Gruppo;
+	display: block;
+}
 .header--scroll-snap{
 	scroll-snap-type: proximity; 
 	overflow-y: hidden; 
@@ -2534,8 +2538,6 @@ ul .menuContenedor_3{
 	width: 20%;
 	position: fixed !important;
 	z-index: 2 !important;
-	/* padding-left: 5%; */
-	/* padding-top: 1%; */
 }
 .hr--panel{
 	margin: 2%;
@@ -2559,7 +2561,7 @@ ul .menuContenedor_3{
 	padding-left: 2%; 
 	display: flex; 
 	align-items: end;
-	width: 40%;
+	width: 98%;
 }
 .cont_noticiasGenerales--paginacion{
 	display: flex;
@@ -2740,14 +2742,14 @@ ul .menuContenedor_3{
 	width: 30%;
 	margin-bottom: 2%;
 }
-.section {
+/* .section {
     color: initial;
     position: initial;
     scroll-snap-align: initial;
     display: initial;
     flex-direction: initial;
     min-height: initial;
-}
+} */
 .select_2{
 	font-size: 1.1em;
 	height: 33px !important;
@@ -2814,11 +2816,6 @@ ul .menuContenedor_3{
 	top: 0%;
 	left: 0%;
 }
-.login_cont--input{
-	line-height: 30px;
-	padding-left: 10px !important;
-	width: 90%;
-}
 .cont_suscriptor--item{
 	width: 45%;
 	min-height: 15vw;
@@ -2827,6 +2824,11 @@ ul .menuContenedor_3{
 }
 .login_cont--select{
 	height: 30px;
+	width: 90%;
+}
+.login_cont--input{
+	line-height: 30px;
+	padding-left: 10px !important;
 	width: 90%;
 }
 .cont_panel--select{
@@ -2887,7 +2889,7 @@ ul .menuContenedor_3{
 }
 .cont_panel--actualizar{
 	margin-left: 20%; 
-	padding-top: 20px;
+	padding-top: 4%;
 }
 .cont_panel--actualizar--contenido{
 	display: flex;
@@ -2941,6 +2943,7 @@ ul .menuContenedor_3{
 .login_cont--label{
 	display: block;
 	margin-top: 5%;
+	font-weight: bold;
 }
 .cont_suscrip_productos--membrete{
 	display: flex; 
@@ -3590,8 +3593,6 @@ ul .menuContenedor_3{
 	justify-content: space-between;
 	width: 90%;
 	margin: auto;
-	/* margin-top: 0%; */
-	/* padding-top: 5%; */
 	height: 100vh;
 }
 .cont_adn--div{
@@ -3679,7 +3680,18 @@ ul .menuContenedor_3{
 	padding: 2%!important;
 	border-top-right-radius: 15px;
 	width: 25px;
-	height: 50vh;/*la misma altura de la imagen de portada*/
+	height: 50vh; /*la misma altura de la imagen de portada*/
+}
+.cont_portada--seccion{
+	font-size: 0.9vw;
+	background-color: var(--OficialClaro);
+	color: black;
+	text-align: right;
+	float: right;
+	padding: 2px 20px;
+	border-bottom-right-radius: 15px;
+	border-top-left-radius: 17px;
+	z-index: 1;
 }
 .cont_noticia--verticlal{
 	height: 40vh;/*la misma altura de la imagen de portada*/
@@ -3812,12 +3824,36 @@ ul .menuContenedor_3{
 	text-align: left;
 }
 .h_2{
+	color: black;
+	font-weight: bold;
 	text-align: center;
 	font-size: 1.4vw;
 	margin-bottom: 7%;
 	margin-top: 4%;
 	height: 40px;
 	line-height: 40px;
+	display: block;
+}
+.h_2:hover{
+	background-color: var(--OficialClaro);
+	cursor: pointer;
+}
+.cont_panel--NoNoticia {
+	width: 90%;
+	margin: auto;
+	text-align: center;
+}
+.contenedor_45{
+	width: max-content;
+	margin: 1% auto;
+	text-align: center;
+	padding: 1% 0%;
+	cursor: pointer;
+}
+.contenedor_45:hover{
+	background-color: var(--OficialClaro);
+	padding: 1% 5%;
+	border-radius: 15px;
 }
 
 
@@ -3838,7 +3874,7 @@ ul .menuContenedor_3{
  .section {
 	color: black;
 	position: relative;
-	scroll-snap-align: center;
+	scroll-snap-align: center; /*no permite que el elemento se vea a medias, siempre se vera su altura completa*/
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -3853,7 +3889,7 @@ main{
 	opacity: 1; 
 	transform: translate3d(0, 0rem, 0);
 	 transition: 300ms var(--delay),
-	 	transform 1000ms cubic-bezier(0.13, 0.07, 0.26, 0.99) var(--delay); /*0.13, 0.07, 0.26, 0.99*/
+	 	transform 1000ms cubic-bezier(0.13, 0.07, 0.26, 0.99) var(--delay);
 }
   .is-visible .section_content{
 	opacity: 1;

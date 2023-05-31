@@ -2,7 +2,7 @@
 <section class="sectionModal section_10" id="MostrarSeccion">
     <div class="contenedor_24"> 
       	<div class="contenedor_102">
-			<h1 class="h1--secciones">Seleccione una seccióneeee</h1>   
+			<h1 class="h1--secciones">Seleccione una sección</h1>   
         
         	<!-- ICONO CERRAR -->
         	<img class=" cont_modal--cerrar  Default_pointer" style="width: 1em;" id="Cerrar--modal" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"onclick="CerrarModal()"/>
@@ -17,7 +17,7 @@
 						<div class="contInputRadio">
 							<input type="checkbox" name="seccion" id="<?php echo 'ContadorSeccion_' . $ContadorSeccion;?>" value="<?php echo $row['seccion']?>" onclick="transferirSeccion(this.form, 'SeccionPublicar')"/>
 
-							<label class="contInputRadio__label" for="<?php echo 'ContadorSeccion_' . $ContadorSeccion;?>"><?php echo $row['seccion'] ?></label>
+							<label class="contPedido--radio" for="<?php echo 'ContadorSeccion_' . $ContadorSeccion;?>"><?php echo $row['seccion'] ?></label>
 						</div>
 						<?php
 					$ContadorSeccion++;
@@ -25,6 +25,8 @@
 				?>  
 			</div> 
 		</form> 
-      <label class="boton" onclick="ConfirmarTrasferir()">Confirmar</label>    
+		<div style="margin-top: 5%">
+      		<label class="boton" style="margin: auto;" onclick="ConfirmarTrasferir()">Confirmar</label>    
+		</div>
     </div>
 </section>    

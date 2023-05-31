@@ -1,9 +1,11 @@
 <?php
     class Menu_C extends Controlador{
+        public $ConsultaMenu_M;
         public $PrecioDolar;
 
         public function __construct(){
-            // $this->ConsultaMenu_M = $this->modelo("Menu_M");
+            $this->ConsultaMenu_M = $this->modelo("Menu_M");
+
             //Solicita el precio del dolar SEGUN TASA bcv a la clase Divisas_C 
             require(RUTA_APP . '/controladores/Divisas_C.php');
             $InstanciaDivisas_C = new Divisas_C();
@@ -61,42 +63,20 @@
         }
         
         public function nuestroADN(){
-            $this->vista("header/header_noticia");
-            $this->vista("view/nuestroADN_V");
-        }
-                
-        public function recibeContactenos(){         
-            // Se reciben todos los campos del formulario, desde  
-            // if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["nombreUsuario"]) && !empty($_POST["telefonoUsuario"]) && !empty($_POST["correoUsuario"]) && !empty($_POST["asunto"])){
-            //     //si son enviados por POST y sino estan vacios, entra aqui
-            //     $RecibeDatos = [
-            //         // DATOS DEL USUARIO
-            //         'Nombre' => filter_input(INPUT_POST, "nombreUsuario", FILTER_SANITIZE_STRING),
-            //         'Telefono' => filter_input(INPUT_POST, "telefonoUsuario", FILTER_SANITIZE_NUMBER_INT),
-            //         'Correo' => $_POST['correoUsuario'],
-            //         'Asunto' => filter_input(INPUT_POST, "asunto", FILTER_SANITIZE_STRING)
-            //     ];
-            // }
-
-            // echo "<pre>";
-            // print_r($RecibeDatos);
-            // echo "</pre>";
-            // exit();
+            //Se CONSULTA los miembros del equipo
+            $Founder = $this->ConsultaMenu_M->ConsultaEquipoADN();
             
-            // // ****************************************
+            $Datos = [
+                'founder' => $Founder
+            ];
+            
+            // echo "<pre>";
+            // print_r($Datos);
+            // echo "</pre>";          
+            // exit();
 
-            //Se envia al correo pcabeza7@gmail.com el mensaje que el usaurio a dejado
-            // $email_subject = 'Mensaje desde contactenos'; 
-            // $email_to = 'pcabeza7@gmail.com';  
-            // $headers = 'From: PedidoRemoto'.'<'.$RecibeDatos['Correo'].'>';
-            // $email_message = $RecibeDatos['Asunto'];
-
-            // mail($email_to, $email_subject, $email_message, $headers); 
-
-            // ****************************************
-
-            // $this->vista("header/header");
-            // $this->vista("view/quienesSomos_V");
+            $this->vista("header/header_noticia");
+            $this->vista("view/nuestroADN_V", $Datos);
         }
         
         public function descargaApp(){
@@ -106,6 +86,7 @@
 
         public function categorias(){ 
             header('Location: ../Categoria_C');
+            die();
         }
     }
 ?>

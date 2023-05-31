@@ -6,7 +6,7 @@
         <!-- ICONO AGREGAR -->
         <a href="<?php echo RUTA_URL?>/Panel_C/agregar_agenda" rel="noopener noreferrer"><img class="cont_modal--agregar Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a>       
         
-        <legend class="legend_1">Agenda</legend>
+        <legend class="legend_1">Agenda de eventos</legend>
         <?php
         foreach($Datos['agenda'] as $Row) : ?>
             <div style="display: flex; margin-bottom: 5%;">                

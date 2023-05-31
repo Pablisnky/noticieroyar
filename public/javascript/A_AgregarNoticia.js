@@ -48,8 +48,9 @@ function Llamar_seccionesDisponible(){
 function respuesta_seccion(){
     if(peticion.readyState == 4){
         if(peticion.status == 200){    
-            //Coloca el cursor en el top de la pagina
-            window.scroll(0, 0)
+            
+            //Coloca el curso en el ancla
+            window.location.hash = "#SeccionPublicar"; 
             
             document.getElementById("Contenedor_80").innerHTML = peticion.responseText
         } 

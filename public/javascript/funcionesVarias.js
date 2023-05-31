@@ -148,6 +148,25 @@
     }
     
 //************************************************************************************************ 
+
+    function cerrarSecion(){
+        let ConfirmaCerrarSession = confirm("Desea cerrar sesión");
+        
+        //Se confirma si se desea cerrar sesión
+        if(ConfirmaCerrarSession == true){                     
+            
+            // remoto   
+            // window.location.href = "https://www.noticieroyaracuy.com/CerrarSesion_C";
+                
+            // local
+            window.location.href = "http://localhost/proyectos/noticieroyaracuy/CerrarSesion_C"
+        } 
+        else{
+            return
+        }
+    }
+    
+//************************************************************************************************ 
 // //ajusta la altura de un texarea con respecto al contenido que trae de la BD
 // function resize_02(){
 //     console.log("______Desde resize_02()______") 

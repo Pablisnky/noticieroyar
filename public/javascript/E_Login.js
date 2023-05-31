@@ -28,11 +28,12 @@ document.getElementsByTagName("body")[0].addEventListener('keydown', function(e)
 //************************************************************************************************
     //Valida el formulario de login
     function validarLogin(){
-        document.getElementsByClassName("boton")[0].value = "Iniciando sesión ..."
-        document.getElementsByClassName("boton")[0].disabled = "disabled"
-        document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialClaro)"
-        document.getElementsByClassName("boton")[0].style.color = "var(--OficialOscuro)"
-        document.getElementsByClassName("boton")[0].classList.add('borde_1')
+        document.getElementById("Boton_Login").value = "Iniciando sesión ..."
+        document.getElementById("Boton_Login").disabled = "disabled"
+        document.getElementById("Boton_Login").style.backgroundColor = "var(--OficialClaro)"
+        document.getElementById("Boton_Login").style.color = "var(--OficialOscuro)"
+        document.getElementById("Boton_Login").classList.add('borde_1')
+        document.getElementById("Boton_Login").style.cursor = "wait"
         
         let usuario = document.getElementById('Correo').value
         let clave = document.getElementById('Clave').value  
@@ -45,11 +46,12 @@ document.getElementsByTagName("body")[0].addEventListener('keydown', function(e)
             document.getElementById("Correo").value = "";
             document.getElementById("Correo").focus();
             document.getElementById("Correo").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Entrar"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+            document.getElementById("Boton_Login").value = "Entrar"
+            document.getElementById("Boton_Login").disabled = false
+            document.getElementById("Boton_Login").style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementById("Boton_Login").style.color = "var(--OficialClaro)"
+            document.getElementById("Boton_Login").classList.remove('borde_1')
+            document.getElementById("Boton_Login").style.cursor = "pointer"
             return false;
         }
         else if(clave =="" || clave.indexOf(" ") == 0 || clave.length > 20){
@@ -57,11 +59,12 @@ document.getElementsByTagName("body")[0].addEventListener('keydown', function(e)
             document.getElementById("Clave").value = "";
             document.getElementById("Clave").focus();
             document.getElementById("Clave").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("boton")[0].value = "Entrar"
-            document.getElementsByClassName("boton")[0].disabled = false
-            document.getElementsByClassName("boton")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("boton")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("boton")[0].classList.remove('borde_1')
+            document.getElementById("Boton_Login").value = "Entrar"
+            document.getElementById("Boton_Login").disabled = false
+            document.getElementById("Boton_Login").style.backgroundColor = "var(--OficialOscuro)"
+            document.getElementById("Boton_Login").style.color = "var(--OficialClaro)"
+            document.getElementById("Boton_Login").classList.remove('borde_1')
+            document.getElementById("Boton_Login").style.cursor = "pointer"
             return false;
         }
         //Si se superan todas las validaciones la función devuelve verdadero

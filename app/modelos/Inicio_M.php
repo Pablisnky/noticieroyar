@@ -12,9 +12,11 @@
         //SELECT de las noticias del dia en curso
         public function consultarNoticiasPortada(){
             $stmt = $this->dbh->prepare(
-                "SELECT noticias.ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, municipio, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente
+                "SELECT noticias.ID_Noticia, titulo, subtitulo, portada, nombre_imagenNoticia, municipio, DATE_FORMAT(fecha, '%d-%m-%Y') AS fechaPublicacion, fuente, seccion
                  FROM noticias 
                  INNER JOIN imagenes ON noticias.ID_Noticia=imagenes.ID_Noticia
+                 INNER JOIN noticias_secciones ON noticias.ID_Noticia=noticias_secciones.ID_Noticia
+                 INNER JOIN secciones ON noticias_secciones.ID_Seccion=secciones.ID_Seccion
                  WHERE fecha BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() AND ImagenPrincipal = 1
                  ORDER BY fecha
                  DESC"

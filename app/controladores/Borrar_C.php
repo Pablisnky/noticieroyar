@@ -12,7 +12,8 @@
         
 		// Se usa solo para cargar el metodo que se desea probar
 		public function index(){			
-			header('location:' . RUTA_URL . '/Borrar_C/actualizar_Periodista');
+			header('location:' . RUTA_URL . '/Borrar_C/Actualizarnoticia');
+			die();
 		}
 
 		// Metodo para filtrar y sabear datos introducidos por los usuarios en formularios
@@ -228,8 +229,8 @@
 		}
 		
 		// inserta por actualizacion el ID_Periodista en la tabla noticias
-		public function actualizar_Periodista(){
-			$this->Borrar_M->ActualizarPeriodista();
+		public function Actualizarnoticia(){
+			$this->Borrar_M->Actualizarnoticia();
 			
 		}
 	}

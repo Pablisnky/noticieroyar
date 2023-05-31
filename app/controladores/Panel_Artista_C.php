@@ -262,6 +262,7 @@
             }
             else{                 
                 header('location:' . RUTA_URL . '/CerrarSesion_C');
+                die();
             } 
         }
 
@@ -450,6 +451,7 @@
             }
             else{                 
                 header('location:' . RUTA_URL . '/CerrarSesion');
+                die();
             } 
         }
         

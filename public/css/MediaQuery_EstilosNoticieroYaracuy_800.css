@@ -866,7 +866,7 @@
 	column-gap: 0%;
 }
 .fieldset_1{
-	font-size: 1em;
+	font-size: 5vw;
 }
 .contenedor_119__img{
 	height: 170px;
@@ -1172,6 +1172,10 @@
 .modal_falloLogin{
 	width: 90%;
 }
+.contenedor_24{
+	margin-top: 17%;
+	width: 95%;
+}
 .contenedor_24--widt{
 	width: 98%!important;
 	margin-top: 20%;
@@ -1353,7 +1357,7 @@
 	justify-content: space-around;
 	align-items: center;
 	width: 100%;
-	height: 6vh;
+	height: 5vh;
 	bottom: 0pt; 
 }
 .cont_catalogosCateg_tienda{	
@@ -1780,13 +1784,19 @@
 	display: block;
 	width: 98%;
 	margin: auto;
-	margin-top: 0%;
+	margin-top: 20%;
 	padding-top: 0%;
 }
 .cont_adn--div{
 	width: 100%;
 	margin-top: 0%;
 	padding-bottom: 5%;
+}
+.cont_adn--texto{
+	background-color: white;
+	position: absolute;
+	top: -280%;
+	opacity: 0;
 }
 .header--scroll-snap{
 	scroll-snap-type: proximity; 
@@ -1907,6 +1917,42 @@
 	width: 95%;
 	margin: 5% auto;
 }
+.header__titulo--Panelperiodista{
+	width: 90%;
+	font-size: 10vw;
+	text-align: right;
+}
+.cont_panel--contador{
+	top: -3px;
+	right: -80%;
+	width: 15%;
+}
+.contenedor_89{
+	margin-top: 3%;
+	padding-left: 3%;
+	grid-template-columns: 100%;
+	column-gap: 1%; 
+}
+.actualizar_cont--imagen{
+	margin: auto;
+	width: 98%;
+	height: 30vh;
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.mostrarMision{
+	margin-top: 650%;
+	opacity: 1;
+	transition: all .5s ease-in-out;
+}
+.rotar{        
+	transform: rotate(180deg)!important;
+	transition: all 0.4s;
+}
+.cont_portada--seccion{
+	font-size: 4vw;
+	padding: 3px 20px;
+}
+
 
 
 
