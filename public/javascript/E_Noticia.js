@@ -22,12 +22,13 @@ function MostrarMunicipios(seccion){
 //************************************************************************************************
 //Cuando se carga el archivo le da valor false a "statu", solo la primera vez luego el valor cambia al llamar la funcion
 var statu_2 = false 
-function MostrarSecciones(){       
-    console.log("______Desde MostrarSecciones()______", statu_2)
+function MostrarSecciones(seccion_2){       
+    // console.log("______Desde MostrarSecciones()______", statu_2 + ',' + seccion_2)
     
     if(statu_2 == true){
         document.getElementById("Con_Secciones").classList.remove("mostrar_1");        
         statu_2 = false
+        
     }
     else{
         document.getElementById("Con_Secciones").classList.add("mostrar_1");
@@ -37,17 +38,32 @@ function MostrarSecciones(){
 
 //************************************************************************************************
 //
-function Mostrar_Seccion(){       
-    // console.log("______Desde MostrarSeccion()______")
+function Mostrar_Seccion(S){       
+    console.log("______Desde MostrarSeccion()______", S)
 
     document.getElementById("Con_Secciones").classList.remove("mostrar_1");        
     statu_2 = false
+    
+        //Coloca el curso en el ancla
+        document.getElementById(S).style.backgroundColor = "blue"
+        // document.getElementById(S).location.href = '#'+tag
+        // document.
 }
+function jumpto(anchor){
+    window.location.href = "#"+anchor;
+}
+
+//  document.getElementById("Con_Secciones").addEventListener("click", function(e){
+      
+//     var click = e.target.id
+//         console.log("Se hizo click en: ", click)
+    
+//     });  
 
 //************************************************************************************************
 //
 function regresaSeccion(seccion){       
-    console.log("______Desde regresaSeccion()______", seccion)
+    // console.log("______Desde regresaSeccion()______", seccion)
 
     document.getElementById(seccion).scroll({
         left: 0,

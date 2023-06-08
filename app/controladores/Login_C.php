@@ -12,122 +12,128 @@
             ocultarErrores();
         }
 
-        //Recibe dos parametros (ID_Noticia y un string bandera de donde viene) en una cadena separados por coma
+        //Muestra el formulario de login, si no existe una sesión abierta
         public function index($DatosAgrupados){
-            // $DatosAgrupados se convierte en array para separar los elementos
-            $DatosAgrupados = explode(',', $DatosAgrupados);
-            $ID_Noticia = $DatosAgrupados[0];
-            $Bandera = $DatosAgrupados[1];
+            if(!empty($_SESSION['ID_Periodista'])){ 
+                header('Location:'. RUTA_URL . '/Panel_C/portadas');
+                die(); 
+            }
+            else{
+                // $DatosAgrupados se convierte en array para separar los elementos, Recibe dos parametros (ID_Noticia y un string bandera de donde viene) 
+                $DatosAgrupados = explode(',', $DatosAgrupados);
+                $ID_Noticia = $DatosAgrupados[0];
+                $Bandera = $DatosAgrupados[1];
 
-            $ID_Comentario = !empty($DatosAgrupados[2]) ? $DatosAgrupados[2]: 'SinID_Comentario';
+                $ID_Comentario = !empty($DatosAgrupados[2]) ? $DatosAgrupados[2]: 'SinID_Comentario';
 
-            // echo "ID_Noticia =" .  $ID_Noticia ."<br>";
-            // echo "Bandera =" .  $Bandera ."<br>";
-            // echo "ID_Comentario =" .  $ID_Comentario ."<br>";
-            // exit;
+                // echo "ID_Noticia =" .  $ID_Noticia ."<br>";
+                // echo "Bandera =" .  $Bandera ."<br>";
+                // echo "ID_Comentario =" .  $ID_Comentario ."<br>";
+                // exit;
 
-            // unset($_COOKIE ["id_periodista"]);
-            // unset($_COOKIE ["clave"]);
-            //Se verifica si el usuario esta memorizado en las cookie de su computadora y las compara con la BD, para recuperar sus datos y autorellenar el formulario de inicio de sesion, las cookies de registro de usuario se crearon en validarSesion.php
-            
-            // echo "Cookie periodista =" . $_COOKIE["id_periodista"] ."<br>";
-            // echo "Cookie clave =" .  $_COOKIE["clave"] ."<br>";
-            // exit;
-
-            if(isset($_COOKIE["id_periodista"]) AND isset($_COOKIE["clave"])){//Si la variable $_COOKIE esta establecida o creada
-
-                $Cookie_id_periodista = $_COOKIE["id_periodista"];
-                $Cookie_clave = $_COOKIE["clave"];
-
-                //Se CONSULTA el correo guardado como Cookie con el id_periodista como argumento, se consulta en todos los tipos de usuario que existe
-                $CorreoPeriodista = $this->ConsultaLogin_M->consultarPeriodistaRecordado($Cookie_id_periodista);
-
-                // if(!empty($CorreoRecord_Com)){
-                //     $Correo = $CorreoPeriodista[0]['correo_AfiCom'];
-                // }
-
-                $Datos=[
-                    'correoRecord' => $CorreoPeriodista,
-                    'claveRecord' => $Cookie_clave,
-                    // 'bandera' => $Bandera
-                ];
+                // unset($_COOKIE ["id_periodista"]);
+                // unset($_COOKIE ["clave"]);
+                //Se verifica si el usuario esta memorizado en las cookie de su computadora y las compara con la BD, para recuperar sus datos y autorellenar el formulario de inicio de sesion, las cookies de registro de usuario se crearon en validarSesion.php
                 
-                // echo "<pre>";
-                // print_r($Datos);
-                // echo "</pre>";
-                // exit();
+                // echo "Cookie periodista =" . $_COOKIE["id_periodista"] ."<br>";
+                // echo "Cookie clave =" .  $_COOKIE["clave"] ."<br>";
+                // exit;
 
-                //Se entra al formulario de sesion que esta rellenado con los datos del usuario
-                $this->vista("header/header_noticia");
-                $this->vista("view/login_Vrecord", $Datos);
-            }
-            else if($Bandera == 'SinLogin' || $Bandera == 'panelSuscriptor'){//Entra cuando viene de una noticia y desea hacer comentario o cambio de contraseña
+                if(isset($_COOKIE["id_periodista"]) AND isset($_COOKIE["clave"])){//Si la variable $_COOKIE esta establecida o creada
 
-                $Datos=[
-                    'id_noticia' => $ID_Noticia,
-                    'id_comentario' => $ID_Comentario,
-                    'bandera' => $Bandera
-                ];
+                    $Cookie_id_periodista = $_COOKIE["id_periodista"];
+                    $Cookie_clave = $_COOKIE["clave"];
 
-                // echo "<pre>";
-                // print_r($Datos);
-                // echo "</pre>";
-                // exit();
+                    //Se CONSULTA el correo guardado como Cookie con el id_periodista como argumento, se consulta en todos los tipos de usuario que existe
+                    $CorreoPeriodista = $this->ConsultaLogin_M->consultarPeriodistaRecordado($Cookie_id_periodista);
 
-                //carga la vista login_V en formulario login
-                $this->vista("header/header_noticia");
-                $this->vista("view/login_V", $Datos);
-            }
-            else if($Bandera == 'responder'){//Entra cuando viene de una noticia y desea responder un comentario existente
+                    // if(!empty($CorreoRecord_Com)){
+                    //     $Correo = $CorreoPeriodista[0]['correo_AfiCom'];
+                    // }
 
-                $Datos=[
-                    'id_noticia' => $ID_Noticia,
-                    'id_comentario' => $ID_Comentario,
-                    'bandera' => $Bandera
-                ];
+                    $Datos=[
+                        'correoRecord' => $CorreoPeriodista,
+                        'claveRecord' => $Cookie_clave,
+                        // 'bandera' => $Bandera
+                    ];
+                    
+                    // echo "<pre>";
+                    // print_r($Datos);
+                    // echo "</pre>";
+                    // exit();
 
-                // echo "<pre>";
-                // print_r($Datos);
-                // echo "</pre>";
-                // exit();
+                    //Se entra al formulario de sesion que esta rellenado con los datos del usuario
+                    $this->vista("header/header_noticia");
+                    $this->vista("view/login_Vrecord", $Datos);
+                }
+                else if($Bandera == 'SinLogin' || $Bandera == 'panelSuscriptor'){//Entra cuando viene de una noticia y desea hacer comentario o cambio de contraseña
 
-                //carga la vista login_V en formulario login
-                $this->vista("header/header_noticia");
-                $this->vista("view/login_V", $Datos);
-            }
-            else if($Bandera == 'denuncia'){//Bamdera creada en Contraloria_C/VerificaLogin Entra cuando se desea realizar una denuncia
+                    $Datos=[
+                        'id_noticia' => $ID_Noticia,
+                        'id_comentario' => $ID_Comentario,
+                        'bandera' => $Bandera
+                    ];
 
-                $Datos=[
-                    'id_noticia' => 'SinID_Denuncia',
-                    'id_comentario' => 'SinID_Comentario',
-                    'bandera' => $Bandera
-                ];
+                    // echo "<pre>";
+                    // print_r($Datos);
+                    // echo "</pre>";
+                    // exit();
 
-                // echo "<pre>";
-                // print_r($Datos);
-                // echo "</pre>";
-                // exit();
+                    //carga la vista login_V en formulario login
+                    $this->vista("header/header_noticia");
+                    $this->vista("view/login_V", $Datos);
+                }
+                else if($Bandera == 'responder'){//Entra cuando viene de una noticia y desea responder un comentario existente
 
-                //carga la vista login_V en formulario login
-                $this->vista("header/header_noticia");
-                $this->vista("view/login_V", $Datos);
-            }
-            else{//cuando viene de iniciar sesion en menu hamburguesa
-                //carga la vista login_V en formulario login
+                    $Datos=[
+                        'id_noticia' => $ID_Noticia,
+                        'id_comentario' => $ID_Comentario,
+                        'bandera' => $Bandera
+                    ];
 
-                $Datos=[
-                    'id_noticia' => 'SinID_Denuncia',
-                    'id_comentario' => 'SinID_Comentario',
-                    'bandera' => 'SinBandera'
-                ];
+                    // echo "<pre>";
+                    // print_r($Datos);
+                    // echo "</pre>";
+                    // exit();
 
-                // echo "<pre>";
-                // print_r($Datos);
-                // echo "</pre>";
-                // exit();
+                    //carga la vista login_V en formulario login
+                    $this->vista("header/header_noticia");
+                    $this->vista("view/login_V", $Datos);
+                }
+                else if($Bandera == 'denuncia'){//Bamdera creada en Contraloria_C/VerificaLogin Entra cuando se desea realizar una denuncia
 
-                $this->vista("header/header_noticia");
-                $this->vista("view/login_V", $Datos);
+                    $Datos=[
+                        'id_noticia' => 'SinID_Denuncia',
+                        'id_comentario' => 'SinID_Comentario',
+                        'bandera' => $Bandera
+                    ];
+
+                    // echo "<pre>";
+                    // print_r($Datos);
+                    // echo "</pre>";
+                    // exit();
+
+                    //carga la vista login_V en formulario login
+                    $this->vista("header/header_noticia");
+                    $this->vista("view/login_V", $Datos);
+                }
+                else{//cuando viene de iniciar sesion en menu hamburguesa
+                    //carga la vista login_V en formulario login
+
+                    $Datos=[
+                        'id_noticia' => 'SinID_Denuncia',
+                        'id_comentario' => 'SinID_Comentario',
+                        'bandera' => 'SinBandera'
+                    ];
+
+                    // echo "<pre>";
+                    // print_r($Datos);
+                    // echo "</pre>";
+                    // exit();
+
+                    $this->vista("header/header_noticia");
+                    $this->vista("view/login_V", $Datos);
+                }
             }
         }
 
@@ -138,9 +144,9 @@
             $No_Recordar = isset($_POST["no_recordar"]);
             $Clave = $_POST["clave_Arr"];
             $Correo = $_POST["correo_Arr"];
-            $Bandera = !empty($_POST["bandera"]) ? $_POST["bandera"]: 'NoAplica';
-            $ID_Noticia = !empty($_POST["id_noticia"]) ? $_POST["id_noticia"]: 'NoAplica';
-            $ID_Comentario = !empty($_POST["id_comentario"]) ? $_POST["id_comentario"]: 'NoAplica';
+            $Bandera = !empty($_POST["bandera"]) ? $_POST["bandera"]: 'SinBandera';
+            $ID_Noticia = !empty($_POST["id_noticia"]) ? $_POST["id_noticia"]: 'SinID_Noticia';
+            $ID_Comentario = !empty($_POST["id_comentario"]) ? $_POST["id_comentario"]: 'SinID_COmentario';
 
             // echo 'Recordar: ' . $Recordar . '<br>';
             // echo 'No_Recordar: ' . $No_Recordar . '<br>';
@@ -178,6 +184,7 @@
                 $_SESSION["nombreSuscriptor"] = $Nombre;
                 $_SESSION["apellidoSuscriptor"] = $Apellido;
                 $_SESSION["PseudonimoSuscriptor"] = $Pseudonimo;
+                
                 //Se CONSULTA la contraseña enviada, que sea igual a la contraseña de la BD
                 $Hash = $this->ConsultaLogin_M->consultarContrasena($ID_Suscriptor);
 
@@ -353,36 +360,16 @@
             $this->ConsultaLogin_M->insertarCodigoAleatorio($Correo, $Aleatorio);
 
             //Se envia correo al usuario informandole el código que debe insertar para verificar
-            $email_to = $Correo;
             $email_subject = 'Recuperación de contraseña';
-            $email_message = 'Código de recuperación de contraseña: ' . $Aleatorio;
+            $email_to = $Correo;
             $headers = 'From: NoticieroYaracuy<administrador@noticieroyaracuy.com>';
-            // $headers .= '\r\n X-Mailer: PHP/' . phpversion();
+            $email_message = 'Código de recuperación de contraseña: ' . $Aleatorio;
+
                 //  echo $email_to . '<br>';
                 //  echo $email_subject . '<br>';
                 //  echo $email_message . '<br>';
                 //  echo $headers . '<br>';
             mail($email_to, $email_subject, $email_message, $headers);
-
-            // try{
-            //     if(mail($email_to, $email_subject, $email_message, $headers)){
-            //       throw new Exception("Configuration file not found.");
-            //       echo 'Correo enviado' . '<br>';
-            //     }
-
-            // }
-            // catch (Exception $e) {
-            //     echo $e->getMessage();
-            //     echo "Error en el envío" . '<br>';
-            //     die();
-            // }
-
-            // if (mail($email_to, $email_subject, $email_message, $headers)){
-            //      echo 'Correo enviado' . '<br>';
-            // }
-            // else{
-            //     echo "Error en el envío" . '<br>';
-            // }
 
             $Datos = [
                 'correo' => $Correo,

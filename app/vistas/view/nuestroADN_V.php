@@ -12,9 +12,13 @@
             <?php 
             foreach($Datos['founder'] as $Row) :   ?>
                 <div class="cont_adn--div--item">
+
+                    <!-- IMAGEN DE PERFIL -->
                     <figure>
                         <img class="cont_adn_imagen--perfil" alt="Fotografia Perfil" src="<?php echo RUTA_URL?>/public/images/equipo/<?php echo $Row['imagenPerfilAdmin']?>"/>  
                     </figure>         
+
+                    <!-- DESCRIPCION -->
                     <div class="cont_adn-informacion">
                         <p class="cont_Artista--leyenda_1"><?php echo $Row['nombreAdmin'] . ' ' . $Row['apellidoAdmin']?></p>
                         <label class="cont_adn--cargo"><?php echo $Row['cargoAdmin']?></label>
@@ -36,13 +40,14 @@
         <br><br>
         Para ello, nos hemos enfocado en abordar noticias locales, o noticias fuera de nuestro territorio si un yaracuyano forma parte de su contexto, siguiendo una linea editorial de informar textualmente hechos y eventos que estan sucediendo, estan por suceder, o van a suceder en nuestro estado, sin emitir juicios u opiniones al respecto, y una línea social haciendo enfasis en la integración regional, por medio de una serie de servicios disponibles en nuestro portal web que hemos desarrollados para que los usuarios interactuan con la dinamica citadina comercial, politica y cultural.
         <br><br>
-        Se han desarrollado tres secciónes actualmente en servicio; una para interactuar con la compra, venta y despacho de productos comercializados en las ciudades de nuestro estado, otra para interactuar con la contraloria social y reportar fallos y deficiencias en los servicios publicos o situaciones no convencionales, otra sección cultural para la adquisición de obras de artistas plasticos del estado por medio de subastas o compra directa, y una cuarta sección que se encuentra en desarrollo que pretende prestar el servcio de gestión de turnos de esperas sin estar presente in situs.</p>
+        Hemos desarrollado tres secciónes con el fin de que nuestros usaurios participen activamente en la dinamica citadina de nuestro estado, una para interactuar con la compra, venta y despacho de productos comercializados en las ciudades de nuestro estado, otra para interactuar con la contraloria social y reportar fallos y deficiencias en los servicios publicos o situaciones no convencionales, otra sección cultural para la adquisición de obras de artistas plasticos del estado por medio de subastas o compra directa, y una cuarta sección que se encuentra en desarrollo que pretende prestar el servcio de gestión de turnos de esperas sin estar presente in situs.</p>
     </div>   
 </div>
 
 
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_nuestroADN.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL;?>/public/javascript/FullScreem.js?v=<?php echo rand();?>"></script> 
 
 </body>
 </html>

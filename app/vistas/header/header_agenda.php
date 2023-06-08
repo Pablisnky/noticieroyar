@@ -84,7 +84,7 @@
 			<label class="header__titulo">Noticiero Yaracuy</label>
 
 			<!-- FECHA -->
-			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
+			<!-- <label class="header__fecha">San Felipe, <?php //echo date('d');?> de <?php //echo date('M');?></label> -->
 			
 			<!-- LOGIN -->
 			<?php
@@ -96,8 +96,11 @@
 		
 		<!-- MEMBRETE DESPLAZANTE -->
 		<div class="tapa-logo" id="Tapa_Logo">
+			
+			<!-- MEMBRETE DESPLAZANTE -->
 			<label class="tapa-logo--font">Noticiero Yaracuy</label>
 			
+			<!-- MAPA -->
 			<figure class="tapa-logo--mapa Default_pointer">
 				<img id="Abrir" src="<?php echo RUTA_URL . '/public/images/Mapa-Venezuela-yaracuy.png'?>"/>
 			</figure>

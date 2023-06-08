@@ -228,6 +228,9 @@
         endforeach;   ?>                    
     </div>
     </form>
+
+<!-- En este div se carga el archivo carrito_V.php -->
+<div id="Mostrar_Orden"></div>
 </section>
 
 <!-- BOTON CARRITO DE COMPRAS -->
@@ -241,7 +244,6 @@
     </div>
 </div>
 
-<div id="Mostrar_Orden"></div>
 
 <!-- CINTILLO  -->
 <p class="contenedor_34--p" id="Contenedor_34--p">Cambio oficial BCV: 1 $ = <?php echo number_format($Datos['dolarHoy'], 2, ",", ".");?> Bs.</p>

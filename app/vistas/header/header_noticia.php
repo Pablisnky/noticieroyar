@@ -22,7 +22,8 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL?>/public/css/MediaQuery_EstilosNoticieroYaracuy_800.css?v=<?php echo rand();?>"/>
 				
 		<!-- CDN FUENTES DE GOOGLE-->
-        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo'>
+        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=RLato|Raleway:400|Montserrat|Gruppo|Moon+Dance'>
+		
     </head>
     <body>			
 		<header class="header" id="Header">
@@ -43,7 +44,8 @@
 								<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/YaracuyEnVideo_C';?>" rel="noopener noreferrer">Yaracuy en videos</a></li>
 								<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Efemeride_C';?>" rel="noopener noreferrer">Efemérides</a></li>
 								<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Agenda_C';?>" rel="noopener noreferrer">Agenda de eventos</a></li>
-								<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Clasificados_C';?>" rel="noopener noreferrer">Clasificados</a></li> <!-- Directorio comercial -->
+								<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Clasificados_C';?>" rel="noopener noreferrer">Clasificados</a></li>
+								<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Publicidad_C';?>" rel="noopener noreferrer">Directorio comercial</a></li>
 								<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Obituario_C';?>" rel="noopener noreferrer">Obituario</a></li>
 								<li><a class="header__li--Enlaces" href="<?php echo RUTA_URL . '/Menu_C/afiliacion';?>" rel="noopener noreferrer">Tarifas</a></li>
 								<li><a class="header__li--Enlaces" href="https://yaracultura.blogspot.com/" target="_blank" rel="noopener noreferrer">Blog Yaracultura</a></li>
@@ -123,16 +125,23 @@
 				<div style="margin-right: 15px;">
 					<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>
 				</div>
+				
+				<!--CARITA -->
 				<div>
 					<?php
 					if(!empty($_SESSION['ID_Suscriptor'])){	?>
 						<a class="Default_quitarMovil" href="<?php echo RUTA_URL . '/Suscriptor_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>"><img class="Default_login" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
 						<?php
 					}	
-					else{	?>
+					else if(empty($_SESSION['ID_Suscriptor']) AND empty($_SESSION['ID_Periodista'])){	?>
 						<a class="Default_quitarMovil" href="<?php echo RUTA_URL . '/Login_C/index/SinID_Noticia,SinBandera';?>" rel="noopener noreferrer"><img class="Default_logout" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>
 						<?php
-					}?>
+					}				
+					else if(!empty($_SESSION['ID_Periodista'])){	?>
+					<a class="Default_quitarMovil" href="<?php echo RUTA_URL . '/Panel_C/portadas'?>"><img class="Default_login" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>"/></a>				
+						<?php
+					}	
+						?>
 				</div>
 			</div>
 		</header>
@@ -140,19 +149,66 @@
 		<!-- MEMBRETE DESPLAZANTE -->
 		<div class="tapa-logo" id="Tapa_Logo">
 			<!-- NUESTRO ADN-->			            
-			<a class="tapa-logo--ADN--font" href="<?php echo RUTA_URL . '/Menu_C/nuestroADN';?>">
+			<a class="tapa-logo--ADN--font Default_quitarMovil" href="<?php echo RUTA_URL . '/Menu_C/nuestroADN';?>">
 				<div class="tapa-logo--ADN">
 					<img style="width: 2em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_groups_white_24dp.png'?>" rel="noopener noreferrer"/>Nuestro ADN
 				</div>
 			</a>
 			
 			<div style="position: absolute; bottom: 0pt">
+
+				<!-- MEMBRETE DESPLAZANTE -->
 				<label class="tapa-logo--font">Noticiero Yaracuy</label>
 				
 				<!-- MAPA -->
 				<figure class="tapa-logo--mapa Default_pointer">
 					<img id="Abrir" src="<?php echo RUTA_URL . '/public/images/Mapa-Venezuela-yaracuy.png'?>"/>
 				</figure>
+			</div>
+
+			<!--CARITA FUERA DE HEADER-->
+			<div class="carita">
+				<!-- CARITA -->
+				<?php
+				if(!empty($_SESSION['ID_Suscriptor'])){	?>     
+					<a class="tapa-logo--ADN--font Default_quitarMovil" href="<?php echo RUTA_URL . '/Suscriptor_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>;?>">
+						<div class="tapa-logo--ADN">
+							<img style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_account_circle_white_24dp.png'?>" rel="noopener noreferrer"/>Sesión 
+						</div>
+					</a>
+					
+					<a class="carita--texto Default_quitarEscritorio" href="<?php echo RUTA_URL . '/Suscriptor_C/accesoSuscriptor/' . $_SESSION['ID_Suscriptor'];?>">Sesión <img class="Default_login--movil"  style=" margin-right: 10px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_account_circle_white_24dp.png'?>"/>Sesión</a>				
+					<?php
+				}	
+				else if(empty($_SESSION['ID_Suscriptor']) AND empty($_SESSION['ID_Periodista'])){	?>     
+					<a class="tapa-logo--ADN--font Default_quitarMovil" href="<?php echo RUTA_URL . '/Login_C/index/SinID_Noticia,SinBandera';?>">
+						<div class="tapa-logo--ADN">
+							<img style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_no_accounts_white_24dp.png'?>" rel="noopener noreferrer"/>Sesión 
+						</div>
+					</a>
+					
+					<a class="carita--texto Default_quitarEscritorio" href="<?php echo RUTA_URL . '/Login_C/index/SinID_Noticia,SinBandera';?>" rel="noopener noreferrer"><img class="Default_logout--movil" style=" margin-right: 10px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_no_accounts_white_24dp.png'?>"/> Sesión</a>
+					<?php
+				}				
+				else if(!empty($_SESSION['ID_Periodista'])){	?>
+									
+					<a class="tapa-logo--ADN--font Default_quitarMovil" href="<?php echo RUTA_URL . '/Panel_C/portadas';?>">
+						<div class="tapa-logo--ADN">
+							<img style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_account_circle_white_24dp.png'?>" rel="noopener noreferrer"/>Sesión 
+						</div>
+					</a>
+
+					<a class="carita--texto Default_quitarEscritorio" href="<?php echo RUTA_URL . '/Panel_C/portadas'?>"><img class="Default_login--movil" style=" margin-right: 10px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_account_circle_white_24dp.png'?>"/> Sesión</a>				
+					<?php
+				}	
+					?>
+
+				<!-- NUESTRO ADN-->			            
+				<a class="Default_quitarEscritorio" style=" color: white; " href="<?php echo RUTA_URL . '/Menu_C/nuestroADN';?>">
+					<div class="tapa-logo--ADN" style="margin-left: -10px; margin-top: 12px">
+						<img style="width: 2em; margin-lef:0px; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_groups_white_24dp.png'?>" rel="noopener noreferrer"/>Nuestro ADN
+					</div>
+				</a>
 			</div>
 		</div>
 		

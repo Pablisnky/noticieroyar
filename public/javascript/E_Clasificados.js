@@ -2,48 +2,48 @@ document.getElementById("Refrescar").addEventListener('click', refrecarPagina, f
 
 //Declarar el array que contiene los ID_Opcion que se añaden al carrito
 //Verificar para que sirve, creo que solo es util en la función decremento
-PedidoCarrito = []
+// PedidoCarrito = []
 
 //Declarar el array que contiene los detalles de cada producto pedido y la ubicación de cada uno dentro de una sección, cada detalle se inserta al array como un objeto JSON, es usado en opciones_V.php, es usado para alimentar "Tu Orden" en carrito_V.php y las leyendas en cada sección y en cada producto
-AlContenedor = []
+// AlContenedor = []
 
 //Guarda cada precio de los productos pedidos 
 // DisplayCarrito = []  
 
 //Guarda la suma del monto total del pedido que se muestra en el display del carrito de compras
-TotalDisplayCarrito = []  
+// TotalDisplayCarrito = []  
 
 //Guarda los contenedores que muestran productos que han sido cargados al carrito
-ProductoEnCarrito = []
+// ProductoEnCarrito = []
 
 //Mediante el constructor de objetos se crea un objeto con todos los productos del pedido, información solicitada al entrar al carrito, este objeto edita al array AlContenedor[]
-function PedidoCar(Producto, Cantidad, Total){
-    this.Producto = Producto
-    this.Cantidad = Cantidad
-    this.Total = Total
-}
+// function PedidoCar(Producto, Cantidad, Total){
+//     this.Producto = Producto
+//     this.Cantidad = Cantidad
+//     this.Total = Total
+// }
 
 //Mediante el constructor de objetos se crea un objeto con todos los productos del pedido, información solicitada al entrar al carrito, este objeto alimenta al array AlContenedor[]
-function ContenedorCar(Cont_Leyenda, ID_Input_Leyenda, ID_Boton_Agregar, ID_InputCantidad, ID_InputProducto, ID_InputOpcion, ID_InputPrecio, ID_InputTotal, ID_InputDisplayCant, Cantidad, ID_Opcion, Producto, Opcion, Precio,Total, Existencia, ID_BotonMas, ID_BotonBloqueo){
-    this.Cont_Leyenda = Cont_Leyenda  
-    this.ID_Input_Leyenda = ID_Input_Leyenda
-    this.ID_Boton_Agregar = ID_Boton_Agregar
-    this.ID_InputCantidad = ID_InputCantidad
-    this.ID_InputProducto = ID_InputProducto
-    this.ID_InputOpcion = ID_InputOpcion
-    this.ID_InputPrecio = ID_InputPrecio
-    this.ID_InputTotal = ID_InputTotal
-    this.ID_InputDisplayCant = ID_InputDisplayCant
-    this.Cantidad = Cantidad
-    this.ID_Opcion = ID_Opcion
-    this.Producto = Producto
-    this.Opcion = Opcion
-    this.Precio = Precio
-    this.Total = Total
-    this.Existencia = Existencia
-    this.ID_BotonMas = ID_BotonMas
-    this.ID_BotonBloqueo = ID_BotonBloqueo
-}
+// function ContenedorCar(Cont_Leyenda, ID_Input_Leyenda, ID_Boton_Agregar, ID_InputCantidad, ID_InputProducto, ID_InputOpcion, ID_InputPrecio, ID_InputTotal, ID_InputDisplayCant, Cantidad, ID_Opcion, Producto, Opcion, Precio,Total, Existencia, ID_BotonMas, ID_BotonBloqueo){
+//     this.Cont_Leyenda = Cont_Leyenda  
+//     this.ID_Input_Leyenda = ID_Input_Leyenda
+//     this.ID_Boton_Agregar = ID_Boton_Agregar
+//     this.ID_InputCantidad = ID_InputCantidad
+//     this.ID_InputProducto = ID_InputProducto
+//     this.ID_InputOpcion = ID_InputOpcion
+//     this.ID_InputPrecio = ID_InputPrecio
+//     this.ID_InputTotal = ID_InputTotal
+//     this.ID_InputDisplayCant = ID_InputDisplayCant
+//     this.Cantidad = Cantidad
+//     this.ID_Opcion = ID_Opcion
+//     this.Producto = Producto
+//     this.Opcion = Opcion
+//     this.Precio = Precio
+//     this.Total = Total
+//     this.Existencia = Existencia
+//     this.ID_BotonMas = ID_BotonMas
+//     this.ID_BotonBloqueo = ID_BotonBloqueo
+// }
 
 // ************************************************************************************************** 
 //obtiendo informacion del DOM para identificar el elemento donde se hizo click 
@@ -54,19 +54,19 @@ function ContenedorCar(Cont_Leyenda, ID_Input_Leyenda, ID_Boton_Agregar, ID_Inpu
 // ************************************************************************************************** 
 
 //Cuando carga la página clasificados_V.php se registran listener para el evento clic en toda la ventana, es decir, cada vez que se hace click en esa página se esta llamanado a la función Pre_incremento  y Pre_decremento 
-document.addEventListener("click", Pre_decremento)
-document.addEventListener("click", Pre_incremento)
+// document.addEventListener("click", Pre_decremento)
+// document.addEventListener("click", Pre_incremento)
 
 //Escucha desde modal_fueraHorario_V.php 
-if(document.getElementById("Label_1")){
-    document.getElementById("Label_1").addEventListener('click', function(){CerrarModal_X('Section_1')}, false)
-}
+// if(document.getElementById("Label_1")){
+//     document.getElementById("Label_1").addEventListener('click', function(){CerrarModal_X('Section_1')}, false)
+// }
 
 // *****************************************************************************************************
 //seleccionar si el despacho sera enviado o recogido en tienda por medio de delegación de eventos en div Mostrar_Orden ubicado en vitrina_V.php
 // document.getElementById('Mostrar_Orden').addEventListener('click', function(event){ 
 //     if((event.target.id == "Domicilio_No") || (event.target.id == "Domicilio_Si")){  
-//         // console.log("______Desde forma_Entrega______")
+//         console.log("______Desde forma_Entrega______")
 //         // console.log(TotalDisplayCarrito)
 //         let porNombre = document.getElementsByName("entrega")
 //         //Se recorren todos los valores del radio button para encontrar el seleccionado
@@ -127,226 +127,226 @@ if(document.getElementById("Label_1")){
 
 //************************************************************************************************
     //invocada desde carrito_V.php 
-    function MuestraEnvioFactura(){
-        // console.log("______Desde MuestraEnvioFactura()______") 
-        //Coloca el cursor en el top de la pagina
+    // function MuestraEnvioFactura(){
+    //     // console.log("______Desde MuestraEnvioFactura()______") 
+    //     //Coloca el cursor en el top de la pagina
 
-        //Se consulta el alto del DIV id=Contenedor_24
-        AltoContenedor_24 = document.getElementById("Contenedor_24").scrollHeight
-        // console.log("Alto contenedor_24", AltoContenedor_24)
+    //     //Se consulta el alto del DIV id=Contenedor_24
+    //     AltoContenedor_24 = document.getElementById("Contenedor_24").scrollHeight
+    //     // console.log("Alto contenedor_24", AltoContenedor_24)
         
-        // Desplazamiento = Number("-" + AltoContenedor_24)
-        // console.log("Alto contenedor_24", Desplazamiento)
-        // window.scroll(0, Desplazamiento) /*posiciona el elemento sin efecto smooth */
-        window.scrollBy({
-            top: 390,
-            left: 0,
-            behavior: 'smooth'
-          });
+    //     // Desplazamiento = Number("-" + AltoContenedor_24)
+    //     // console.log("Alto contenedor_24", Desplazamiento)
+    //     // window.scroll(0, Desplazamiento) /*posiciona el elemento sin efecto smooth */
+    //     window.scrollBy({
+    //         top: 390,
+    //         left: 0,
+    //         behavior: 'smooth'
+    //       });
 
-        // document.getElementById("Contenedor_24").style.marginTop = "-" + AltoContenedor_24 + "px"
-        document.getElementById("MuestraEnvioFactura").style.display = "block"
-        document.getElementById("Contenedor_26").style.display = "none"
-    }
+    //     // document.getElementById("Contenedor_24").style.marginTop = "-" + AltoContenedor_24 + "px"
+    //     document.getElementById("MuestraEnvioFactura").style.display = "block"
+    //     document.getElementById("Contenedor_26").style.display = "none"
+    // }
     
 //************************************************************************************************
     //invocada desde clasificados_V.php añade un producto al carrito   
-    function agregarProducto(form, ID_Etiqueta, ID_Cont_Leyenda, ID_InputCantidad, ID_InputProducto, ID_InputOpcion, ID_InputPrecio, ID_InputTotal, ID_InputLeyenda, ID_Cont_Producto, ID_InputDisplayCan, existencia, ID_BotonMas, ID_BloqueoMas){
-        // console.log("______Desde agregarProducto()______") 
+    // function agregarProducto(form, ID_Etiqueta, ID_Cont_Leyenda, ID_InputCantidad, ID_InputProducto, ID_InputOpcion, ID_InputPrecio, ID_InputTotal, ID_InputLeyenda, ID_Cont_Producto, ID_InputDisplayCan, existencia, ID_BotonMas, ID_BloqueoMas){
+    //     // console.log("______Desde agregarProducto()______") 
         
-        //Se recibe el control del formulario con el nombre "opcion"
-        Opcion = form.opcion        
+    //     //Se recibe el control del formulario con el nombre "opcion"
+    //     Opcion = form.opcion        
 
-        // En el caso que la seccion tenga un solo producto, se añade un input radio, sino se añade el Opcion.legth sera undefined y no entrará en el ciclo for
-        if(Opcion.length == undefined){
+    //     // En el caso que la seccion tenga un solo producto, se añade un input radio, sino se añade el Opcion.legth sera undefined y no entrará en el ciclo for
+    //     if(Opcion.length == undefined){
 
-        //Se añade una opcion al input tipo radio para que existan al menos dos opciones, cuando es uno el valor de Opcion.length es undefined lo que impide que se ejecute el ciclo for más adelante, esto sucede cuando solo existe un producto en una seccción
-            //Se crea un input tipo radio que pertenezca a los de name = "opcion"
-            var NuevoElemento = document.createElement("input")
+    //     //Se añade una opcion al input tipo radio para que existan al menos dos opciones, cuando es uno el valor de Opcion.length es undefined lo que impide que se ejecute el ciclo for más adelante, esto sucede cuando solo existe un producto en una seccción
+    //         //Se crea un input tipo radio que pertenezca a los de name = "opcion"
+    //         var NuevoElemento = document.createElement("input")
 
-            //Se dan valores a la propiedades del nuevo elemento 
-            NuevoElemento.name = "opcion"
-            NuevoElemento.setAttribute("type", "radio");
+    //         //Se dan valores a la propiedades del nuevo elemento 
+    //         NuevoElemento.name = "opcion"
+    //         NuevoElemento.setAttribute("type", "radio");
 
-            //Se especifica el elemento donde se va a insertar el nuevo elemento
-            var ElementoPadre = document.getElementById("Formulario")
+    //         //Se especifica el elemento donde se va a insertar el nuevo elemento
+    //         var ElementoPadre = document.getElementById("Formulario")
 
-            //Se inserta en el DOM el input creado
-            inputNuevo = ElementoPadre.appendChild(NuevoElemento) 
+    //         //Se inserta en el DOM el input creado
+    //         inputNuevo = ElementoPadre.appendChild(NuevoElemento) 
 
-            //Se renombra la variable Opcion
-            Opcion = form.opcion
-        }
-        // console.log("Opcion", Opcion)
+    //         //Se renombra la variable Opcion
+    //         Opcion = form.opcion
+    //     }
+    //     // console.log("Opcion", Opcion)
 
-        //Se recibe el ID de la etiqueta donde se hizo click
-        LabelClick = ID_Etiqueta
-        localStorage.setItem('BotonAgregar', LabelClick) 
-        LS_ID_BotonAgregar = localStorage.getItem('BotonAgregar')
+    //     //Se recibe el ID de la etiqueta donde se hizo click
+    //     LabelClick = ID_Etiqueta
+    //     localStorage.setItem('BotonAgregar', LabelClick) 
+    //     LS_ID_BotonAgregar = localStorage.getItem('BotonAgregar')
 
-        //Se recibe el ID del contenedor de la leyenda del producto y los botones de más y menos donde se hizo click
-        Cont_Leyenda_Click = ID_Cont_Leyenda
-        localStorage.setItem('ID_cont_LeyendaDinamico',Cont_Leyenda_Click) 
-        LS_ID_Cont_Leyenda = localStorage.getItem('ID_cont_LeyendaDinamico')
+    //     //Se recibe el ID del contenedor de la leyenda del producto y los botones de más y menos donde se hizo click
+    //     Cont_Leyenda_Click = ID_Cont_Leyenda
+    //     localStorage.setItem('ID_cont_LeyendaDinamico',Cont_Leyenda_Click) 
+    //     LS_ID_Cont_Leyenda = localStorage.getItem('ID_cont_LeyendaDinamico')
         
-        //Se recibe el ID del input que va a mostrar la cantidad (en este momento es 1) del producto donde se hizo click
-        Input_CantidadClick = ID_InputCantidad
-        localStorage.setItem('ID_InputCantidad', Input_CantidadClick)
-        LS_ID_InputCantidad = localStorage.getItem('ID_InputCantidad')
-        console.log("🚀 ~ file: E_Clasificados.js:189 ~ agregarProducto ~ LS_ID_InputCantidad:", LS_ID_InputCantidad)
+    //     //Se recibe el ID del input que va a mostrar la cantidad (en este momento es 1) del producto donde se hizo click
+    //     Input_CantidadClick = ID_InputCantidad
+    //     localStorage.setItem('ID_InputCantidad', Input_CantidadClick)
+    //     LS_ID_InputCantidad = localStorage.getItem('ID_InputCantidad')
+    //     console.log("🚀 ~ file: E_Clasificados.js:189 ~ agregarProducto ~ LS_ID_InputCantidad:", LS_ID_InputCantidad)
 
-        //Se recibe el ID del input que va a mostrar el producto donde se hizo click
-        Input_ProductoClick = ID_InputProducto
-        localStorage.setItem('ID_InputProducto', Input_ProductoClick)
-        LS_ID_InputProducto = localStorage.getItem('ID_InputProducto')    
+    //     //Se recibe el ID del input que va a mostrar el producto donde se hizo click
+    //     Input_ProductoClick = ID_InputProducto
+    //     localStorage.setItem('ID_InputProducto', Input_ProductoClick)
+    //     LS_ID_InputProducto = localStorage.getItem('ID_InputProducto')    
 
-        //Se recibe el ID del input que va a mostrar la opcion del producto donde se hizo click
-        Input_OpcionClick = ID_InputOpcion
-        localStorage.setItem('ID_InputOpcion', Input_OpcionClick)
-        LS_ID_InputOpcion = localStorage.getItem('ID_InputOpcion') 
+    //     //Se recibe el ID del input que va a mostrar la opcion del producto donde se hizo click
+    //     Input_OpcionClick = ID_InputOpcion
+    //     localStorage.setItem('ID_InputOpcion', Input_OpcionClick)
+    //     LS_ID_InputOpcion = localStorage.getItem('ID_InputOpcion') 
         
-        //Se recibe el ID del input que va a mostrar el precio del producto donde se hizo click
-        Input_PrecioClick = ID_InputPrecio
-        localStorage.setItem('ID_InputPrecio', Input_PrecioClick)
-        LS_ID_InputPrecio = localStorage.getItem('ID_InputPrecio')
+    //     //Se recibe el ID del input que va a mostrar el precio del producto donde se hizo click
+    //     Input_PrecioClick = ID_InputPrecio
+    //     localStorage.setItem('ID_InputPrecio', Input_PrecioClick)
+    //     LS_ID_InputPrecio = localStorage.getItem('ID_InputPrecio')
 
-        //Se recibe el ID del input que va a mostrar el total del producto donde se hizo click
-        Input_TotalClick = ID_InputTotal
-        localStorage.setItem('ID_InputTotal',Input_TotalClick)
-        LS_ID_InputTotal = localStorage.getItem('ID_InputTotal')
+    //     //Se recibe el ID del input que va a mostrar el total del producto donde se hizo click
+    //     Input_TotalClick = ID_InputTotal
+    //     localStorage.setItem('ID_InputTotal',Input_TotalClick)
+    //     LS_ID_InputTotal = localStorage.getItem('ID_InputTotal')
 
-        //Se recibe el ID del input que va a mostrar la leyenda del producto donde se hizo click
-        Input_LeyendaClick = ID_InputLeyenda
-        localStorage.setItem('ID_InputLeyenda',Input_LeyendaClick)
-        LS_ID_InputLeyenda = localStorage.getItem('ID_InputLeyenda')
+    //     //Se recibe el ID del input que va a mostrar la leyenda del producto donde se hizo click
+    //     Input_LeyendaClick = ID_InputLeyenda
+    //     localStorage.setItem('ID_InputLeyenda',Input_LeyendaClick)
+    //     LS_ID_InputLeyenda = localStorage.getItem('ID_InputLeyenda')
 
-        //Se recibe el ID del contenedor que muestra el producto donde se hizo click
-        ID_ContenedorProducto = ID_Cont_Producto
-        localStorage.setItem('ID_ContenedorProductoDina',ID_ContenedorProducto)
+    //     //Se recibe el ID del contenedor que muestra el producto donde se hizo click
+    //     ID_ContenedorProducto = ID_Cont_Producto
+    //     localStorage.setItem('ID_ContenedorProductoDina',ID_ContenedorProducto)
         
-        //Se recibe el ID del input que va a mostrar la leyenda del producto donde se hizo click
-        Input_DisplayCantClick = ID_InputDisplayCan
-        localStorage.setItem('ID_InputDisplay',Input_DisplayCantClick)
-        LS_ID_InputDisplayCant = localStorage.getItem('ID_InputDisplay')
+    //     //Se recibe el ID del input que va a mostrar la leyenda del producto donde se hizo click
+    //     Input_DisplayCantClick = ID_InputDisplayCan
+    //     localStorage.setItem('ID_InputDisplay',Input_DisplayCantClick)
+    //     LS_ID_InputDisplayCant = localStorage.getItem('ID_InputDisplay')
 
-        //Se recorren las opciones del producto 
-        for(let i = 0; i < Opcion.length; i++){
-            if(Opcion[i].checked){
-                Opcion = Opcion[i].value 
+    //     //Se recorren las opciones del producto 
+    //     for(let i = 0; i < Opcion.length; i++){
+    //         if(Opcion[i].checked){
+    //             Opcion = Opcion[i].value 
                             
-                //La Opcion seleccionada contiene el ID_Opcion(asignado en BD), el producto, la opcion y el precio separados por un _ (guion bajo) es necesario separar estos valores, para convertirlos en un array
-                let Separado = Opcion.split("_")  
+    //             //La Opcion seleccionada contiene el ID_Opcion(asignado en BD), el producto, la opcion y el precio separados por un _ (guion bajo) es necesario separar estos valores, para convertirlos en un array
+    //             let Separado = Opcion.split("_")  
 
-                //Se eliminan las comas al final de cada elemento del array
-                Separado[0] = Separado[0].slice(0,-1)//ID_Opcion
-                Separado[1] = Separado[1].slice(0,-1)//Producto
-                Separado[2] = Separado[2].slice(0,-1)//Opcion
-                Separado[3] = Separado[3].slice(0,-1)//Procio
+    //             //Se eliminan las comas al final de cada elemento del array
+    //             Separado[0] = Separado[0].slice(0,-1)//ID_Opcion
+    //             Separado[1] = Separado[1].slice(0,-1)//Producto
+    //             Separado[2] = Separado[2].slice(0,-1)//Opcion
+    //             Separado[3] = Separado[3].slice(0,-1)//Procio
 
-                //Se oculta el boton "Agregar" del elemento donde se hizo click
-                document.getElementById(LabelClick).style.display = "none"
+    //             //Se oculta el boton "Agregar" del elemento donde se hizo click
+    //             document.getElementById(LabelClick).style.display = "none"
    
-                //Se muestra el contenedor donde irá la leyenda donde se hizo click
-                document.getElementById(Cont_Leyenda_Click).style.display = "block"
+    //             //Se muestra el contenedor donde irá la leyenda donde se hizo click
+    //             document.getElementById(Cont_Leyenda_Click).style.display = "block"
 
-                //Se muestra la cantidad de producto deseada por el usuario donde se hizo click
-                Cantidad_uno = document.getElementById(Input_CantidadClick).value = 1
+    //             //Se muestra la cantidad de producto deseada por el usuario donde se hizo click
+    //             Cantidad_uno = document.getElementById(Input_CantidadClick).value = 1
                 
-                //Se muestra el producto donde se hizo click
-                document.getElementById(Input_ProductoClick).value = Separado[1]             
+    //             //Se muestra el producto donde se hizo click
+    //             document.getElementById(Input_ProductoClick).value = Separado[1]             
                                 
-                //Se muestra la opcion de producto donde se hizo click
-                document.getElementById(Input_OpcionClick).value = Separado[2]
+    //             //Se muestra la opcion de producto donde se hizo click
+    //             document.getElementById(Input_OpcionClick).value = Separado[2]
 
-                //Se muestra el precio del producto donde se hizo click, que será el mismo precio del total porque es un solo producto
-                Precio = document.getElementById(Input_PrecioClick).value = Separado[3]
+    //             //Se muestra el precio del producto donde se hizo click, que será el mismo precio del total porque es un solo producto
+    //             Precio = document.getElementById(Input_PrecioClick).value = Separado[3]
                    
-                //Si un producto se eliminó en una entrada anterior es necesario activar nuevamente el input donde ira la leyenda y los botones de más y menos
-                document.getElementById(Input_LeyendaClick).style.display = "block"          
+    //             //Si un producto se eliminó en una entrada anterior es necesario activar nuevamente el input donde ira la leyenda y los botones de más y menos
+    //             document.getElementById(Input_LeyendaClick).style.display = "block"          
 
-                //Se muestra la leyenda del producto donde se hizo click
-                InputLeyenda = document.getElementById(Input_LeyendaClick)
-                InputLeyenda.value = 1 + ' ' + Separado[1] + ' = ' + Separado[3] + ' Bs.'
+    //             //Se muestra la leyenda del producto donde se hizo click
+    //             InputLeyenda = document.getElementById(Input_LeyendaClick)
+    //             InputLeyenda.value = 1 + ' ' + Separado[1] + ' = ' + Separado[3] + ' Bs.'
                                         
-                Inp_Leyenda = document.getElementById(LS_ID_InputLeyenda)
+    //             Inp_Leyenda = document.getElementById(LS_ID_InputLeyenda)
 
-                var ID_BotonMas = document.getElementById(ID_BotonMas).id
-                var ID_BotonBloqueo = document.getElementById(ID_BloqueoMas).id
+    //             var ID_BotonMas = document.getElementById(ID_BotonMas).id
+    //             var ID_BotonBloqueo = document.getElementById(ID_BloqueoMas).id
 
-                //Guarda en el objeto "AlContenedor", la leyenda del producto, cada detalle en si es un array, por lo que AlContenedor es un array de objetos
-                Contenedores = new ContenedorCar(LS_ID_Cont_Leyenda, LS_ID_InputLeyenda, LS_ID_BotonAgregar, LS_ID_InputCantidad, LS_ID_InputProducto, LS_ID_InputOpcion, LS_ID_InputPrecio, LS_ID_InputTotal, LS_ID_InputDisplayCant, Cantidad_uno, Separado[0], Separado[1], Separado[2], Separado[3], Separado[3], existencia, ID_BotonMas, ID_BotonBloqueo)
+    //             //Guarda en el objeto "AlContenedor", la leyenda del producto, cada detalle en si es un array, por lo que AlContenedor es un array de objetos
+    //             Contenedores = new ContenedorCar(LS_ID_Cont_Leyenda, LS_ID_InputLeyenda, LS_ID_BotonAgregar, LS_ID_InputCantidad, LS_ID_InputProducto, LS_ID_InputOpcion, LS_ID_InputPrecio, LS_ID_InputTotal, LS_ID_InputDisplayCant, Cantidad_uno, Separado[0], Separado[1], Separado[2], Separado[3], Separado[3], existencia, ID_BotonMas, ID_BotonBloqueo)
                              
-                  //Si la existencia en BD es igual a 1 se oculta el boton de mas y menos para que no se añadan más productos al carrito
-                if(existencia == Cantidad_uno){
-                    document.getElementById(ID_BotonMas).style.display = "none" 
-                    document.getElementById(ID_BloqueoMas).style.display = "inline" 
-                }
-                else{
-                    document.getElementById(ID_BotonMas).style.display = "inline" 
-                    document.getElementById(ID_BloqueoMas).style.display = "none" 
-                }
-            } 
-        }
+    //               //Si la existencia en BD es igual a 1 se oculta el boton de mas y menos para que no se añadan más productos al carrito
+    //             if(existencia == Cantidad_uno){
+    //                 document.getElementById(ID_BotonMas).style.display = "none" 
+    //                 document.getElementById(ID_BloqueoMas).style.display = "inline" 
+    //             }
+    //             else{
+    //                 document.getElementById(ID_BotonMas).style.display = "inline" 
+    //                 document.getElementById(ID_BloqueoMas).style.display = "none" 
+    //             }
+    //         } 
+    //     }
 
-        AlContenedor.push(Contenedores)
+    //     AlContenedor.push(Contenedores)
         
-        //Se muestra el div que contiene el icono del carrito
-        DisplayDestello()
-    }
+    //     //Se muestra el div que contiene el icono del carrito
+    //     DisplayDestello()
+    // }
 
 //************************************************************************************************
     //Parapadeo display carrito, invocada desde Pre_incremento - Pre_decremento - transferirOpcion - AgregaOpcion
-    function DisplayDestello(){    
-        // console.log("______Desde DisplayDestello()______")
+    // function DisplayDestello(){    
+    //     // console.log("______Desde DisplayDestello()______")
                 
-        //Este array contendra solo los precios individuales de los productos para luego sumarlos
-        DisplayMonto = [];
+    //     //Este array contendra solo los precios individuales de los productos para luego sumarlos
+    //     DisplayMonto = [];
 
-        for(var i = 0; i < AlContenedor.length; i++){
-            //Se toman los precios de cada producto
-            PrecioDisplay = AlContenedor[i].Precio
-            // console.log("PrecioDisplay", PrecioDisplay)
-            // console.log(typeof PrecioDisplay)
+    //     for(var i = 0; i < AlContenedor.length; i++){
+    //         //Se toman los precios de cada producto
+    //         PrecioDisplay = AlContenedor[i].Precio
+    //         // console.log("PrecioDisplay", PrecioDisplay)
+    //         // console.log(typeof PrecioDisplay)
 
-            //Se cambia el formato del precio, la coma decimal se reemplazo por un punto
-            PrecioDisplay = PrecioDisplay.replace(/,/g, '.')
-            // console.log("PrecioDisplay", PrecioDisplay)
+    //         //Se cambia el formato del precio, la coma decimal se reemplazo por un punto
+    //         PrecioDisplay = PrecioDisplay.replace(/,/g, '.')
+    //         // console.log("PrecioDisplay", PrecioDisplay)
 
-            PrecioDisplay = parseFloat(PrecioDisplay)
-            // console.log(typeof PrecioDisplay)
-            // console.log("PrecioDisplay", PrecioDisplay)
+    //         PrecioDisplay = parseFloat(PrecioDisplay)
+    //         // console.log(typeof PrecioDisplay)
+    //         // console.log("PrecioDisplay", PrecioDisplay)
             
-            //Se verifica la cantidad total de cada producto
-            let Total = AlContenedor[i].Cantidad * PrecioDisplay 
+    //         //Se verifica la cantidad total de cada producto
+    //         let Total = AlContenedor[i].Cantidad * PrecioDisplay 
 
-            DisplayMonto.push(Total)
-            // console.log("DisplayMonto", DisplayMonto)
+    //         DisplayMonto.push(Total)
+    //         // console.log("DisplayMonto", DisplayMonto)
 
-            //Se suma el precio de todos los producto cargado a carrito
-            TotalDisplayCarrito = DisplayMonto.reduce((a, b) => a + b, 0);
+    //         //Se suma el precio de todos los producto cargado a carrito
+    //         TotalDisplayCarrito = DisplayMonto.reduce((a, b) => a + b, 0);
 
-            //Se permiten solo dos decimales
-            TotalDisplayCarrito = TotalDisplayCarrito.toFixed(2)
-        }        
+    //         //Se permiten solo dos decimales
+    //         TotalDisplayCarrito = TotalDisplayCarrito.toFixed(2)
+    //     }        
 
-        if(AlContenedor.length == 0){
-            //Se oculta el div que contiene el icono del carrito
-            document.getElementById("Contenedor_61").style.visibility = "hidden"
-        }
-        else if(TotalDisplayCarrito != 0){
-            //Se muestra el div que contiene el icono del carrito
-            document.getElementById("Contenedor_61").style.visibility = "visible"
+    //     if(AlContenedor.length == 0){
+    //         //Se oculta el div que contiene el icono del carrito
+    //         document.getElementById("Contenedor_61").style.visibility = "hidden"
+    //     }
+    //     else if(TotalDisplayCarrito != 0){
+    //         //Se muestra el div que contiene el icono del carrito
+    //         document.getElementById("Contenedor_61").style.visibility = "visible"
 
-            //Muestra el monto del pedido en el display carrito(se encuentra)
-            document.getElementById("Input_5").value = SeparadorMiles(TotalDisplayCarrito) + " Bs."
+    //         //Muestra el monto del pedido en el display carrito(se encuentra)
+    //         document.getElementById("Input_5").value = SeparadorMiles(TotalDisplayCarrito) + " Bs."
 
-            document.getElementById("Mostrar_Carrito").classList.add('Blink')
+    //         document.getElementById("Mostrar_Carrito").classList.add('Blink')
 
-            setTimeout(function(){
-                document.getElementById("Mostrar_Carrito").classList.remove('Blink')
-            }, 3000);
-        }
-    }
+    //         setTimeout(function(){
+    //             document.getElementById("Mostrar_Carrito").classList.remove('Blink')
+    //         }, 3000);
+    //     }
+    // }
 
 //************************************************************************************************
     //invocada desde opciones_V.php al regresar a vitrina_V.php, agrega las leyendas en cada seccion  con los productos que estas tienen cargado en carrito
@@ -431,36 +431,36 @@ if(document.getElementById("Label_1")){
     // }
 
 //************************************************************************************************
-    function Eliminar_Leyenda(e){
-        var ID_ProductoEliminar = e.target.previousSibling.id 
+    // function Eliminar_Leyenda(e){
+    //     var ID_ProductoEliminar = e.target.previousSibling.id 
         
-        for(var i = 0; i < AlContenedor.length; i++){
-            //Se toma el nombre del producto
-            if((AlContenedor[i].ID_Opcion) == ID_ProductoEliminar){
-                // console.log(Producto = AlContenedor[i].ID_Opcion)
-                Producto = AlContenedor[i].Producto
-            }
-        }
+    //     for(var i = 0; i < AlContenedor.length; i++){
+    //         //Se toma el nombre del producto
+    //         if((AlContenedor[i].ID_Opcion) == ID_ProductoEliminar){
+    //             // console.log(Producto = AlContenedor[i].ID_Opcion)
+    //             Producto = AlContenedor[i].Producto
+    //         }
+    //     }
 
-        let ConfirmaEliminar = confirm('\t\t\t' + Producto.toUpperCase() + '\t\t' + "\n \t\t\teliminar de carrito de compras \t\t")
+    //     let ConfirmaEliminar = confirm('\t\t\t' + Producto.toUpperCase() + '\t\t' + "\n \t\t\teliminar de carrito de compras \t\t")
 
-        if(ConfirmaEliminar == true){                
-            //Se busca en el array AlContenedor, el producto que corresponde a la leyenda que se va a liminar
-            var filtrado = AlContenedor.filter(function(item_2){
-                // console.log("ID_ProductoEliminar =", ID_ProductoEliminar);
-                return item_2.ID_Opcion != ID_ProductoEliminar; 
-            });
+    //     if(ConfirmaEliminar == true){                
+    //         //Se busca en el array AlContenedor, el producto que corresponde a la leyenda que se va a liminar
+    //         var filtrado = AlContenedor.filter(function(item_2){
+    //             // console.log("ID_ProductoEliminar =", ID_ProductoEliminar);
+    //             return item_2.ID_Opcion != ID_ProductoEliminar; 
+    //         });
 
-            //Array AlContenedor con el producto eliminado
-            AlContenedor = filtrado
+    //         //Array AlContenedor con el producto eliminado
+    //         AlContenedor = filtrado
             
-            e.target.parentElement.removeChild(e.target.previousSibling);
-            e.target.parentElement.removeChild(e.target);
+    //         e.target.parentElement.removeChild(e.target.previousSibling);
+    //         e.target.parentElement.removeChild(e.target);
 
-            //Se muestra el div que contiene el icono del carrito
-            DisplayDestello();
-        }
-    }
+    //         //Se muestra el div que contiene el icono del carrito
+    //         DisplayDestello();
+    //     }
+    // }
 
 //************************************************************************************************
     //Especifica los productos que ya estan cargados al carrito de compra y muestra su leyenda en la vista opciones_V.php
@@ -511,57 +511,57 @@ if(document.getElementById("Label_1")){
 
 //************************************************************************************************
     //muestra "La orden de compra"
-    function PedidoEnCarrito(ValorDolar){
-        // console.log("______Desde PedidoEnCarrito()______", ValorDolar)
+    // function PedidoEnCarrito(ValorDolar){
+    //     // console.log("______Desde PedidoEnCarrito()______", ValorDolar)
         
-        //Se muestra el monto total de la compra en "La Orden". (sin carga por despacho)
-        document.getElementById("MontoTienda").value = SeparadorMiles(TotalDisplayCarrito)
-        //Se obtiene el monto del envio, esta tarado al precio de un dolar
-        envio = document.getElementById("PrecioEnvio").value
+    //     //Se muestra el monto total de la compra en "La Orden". (sin carga por despacho)
+    //     document.getElementById("MontoTienda").value = SeparadorMiles(TotalDisplayCarrito)
+    //     //Se obtiene el monto del envio, esta tarado al precio de un dolar
+    //     envio = document.getElementById("PrecioEnvio").value
 
-        //Se calcula el monto total de la compra incluyendo comision y envio
-        MontoTotal = Number(TotalDisplayCarrito) + Number(envio)
-        MontoTotal = Number.parseFloat(MontoTotal).toFixed(2);
+    //     //Se calcula el monto total de la compra incluyendo comision y envio
+    //     MontoTotal = Number(TotalDisplayCarrito) + Number(envio)
+    //     MontoTotal = Number.parseFloat(MontoTotal).toFixed(2);
         
-        //Se calcula el monto en Dolares
-        MontoTotalDolares = MontoTotal / Number(ValorDolar)
+    //     //Se calcula el monto en Dolares
+    //     MontoTotalDolares = MontoTotal / Number(ValorDolar)
 
-        // Se toman dos decimales del monto en dolares
-        MontoTotalDolares = Number.parseFloat(MontoTotalDolares).toFixed(2);
+    //     // Se toman dos decimales del monto en dolares
+    //     MontoTotalDolares = Number.parseFloat(MontoTotalDolares).toFixed(2);
 
-        //Se muestra el monto de total de la compra incluyendo comision y envio
-        document.getElementById("MontoTotal").value = SeparadorMiles(MontoTotal)
+    //     //Se muestra el monto de total de la compra incluyendo comision y envio
+    //     document.getElementById("MontoTotal").value = SeparadorMiles(MontoTotal)
         
-        //Se muestra el monto de total de la compra incluyendo comision y envio en Dolares
-        document.getElementById("MontoTotalDolares").value = SeparadorMiles(MontoTotalDolares)
+    //     //Se muestra el monto de total de la compra incluyendo comision y envio en Dolares
+    //     document.getElementById("MontoTotalDolares").value = SeparadorMiles(MontoTotalDolares)
         
-        //Se envia a Carrito_V.php todo el pedido que se encuentra en el array de objeto JSON AlContenedor[]
-        //1.- Se convierte el JSON en un string
-        var sendJSON = JSON.stringify(AlContenedor)
+    //     //Se envia a Carrito_V.php todo el pedido que se encuentra en el array de objeto JSON AlContenedor[]
+    //     //1.- Se convierte el JSON en un string
+    //     var sendJSON = JSON.stringify(AlContenedor)
 
-        //2.- Se envia al input que lo almacena en la vista carrito_V.php
-        document.getElementById('Pedido').value = sendJSON
+    //     //2.- Se envia al input que lo almacena en la vista carrito_V.php
+    //     document.getElementById('Pedido').value = sendJSON
 
-        //Se muestra todo el pedido (cantidad - producto - precio unitario - precio por productos)
-        for(i = 0; i < AlContenedor.length; i++){
-            document.getElementById("Tabla").innerHTML += 
-            '<tbody><tr><td class="td_1">' +  AlContenedor[i].Cantidad + 
-            '</td><td class="td_2 hyphen">' +  AlContenedor[i].Producto + 
-            '</td><td class="td_3">' + AlContenedor[i].Precio + " Bs." +
-            '</td><td class="td_3">' + AlContenedor[i].Total + " Bs." + '</td></tr></tbody>'
-        }
-    }
+    //     //Se muestra todo el pedido (cantidad - producto - precio unitario - precio por productos)
+    //     for(i = 0; i < AlContenedor.length; i++){
+    //         document.getElementById("Tabla").innerHTML += 
+    //         '<tbody><tr><td class="td_1">' +  AlContenedor[i].Cantidad + 
+    //         '</td><td class="td_2 hyphen">' +  AlContenedor[i].Producto + 
+    //         '</td><td class="td_3">' + AlContenedor[i].Precio + " Bs." +
+    //         '</td><td class="td_3">' + AlContenedor[i].Total + " Bs." + '</td></tr></tbody>'
+    //     }
+    // }
     
 //************************************************************************************************
     //Identifica los elementos de la sección donde se hizo click.
-    function verOpciones(Cont_Seccion, Seccion){ 
-        //Captura el valor del id dinanmico de la seccion donde se hizo click
-        localStorage.setItem('ContSeccion', Cont_Seccion)         
-        LS_ID_Cont_Seccion = localStorage.getItem('ContSeccion')
+    // function verOpciones(Cont_Seccion, Seccion){ 
+    //     //Captura el valor del id dinanmico de la seccion donde se hizo click
+    //     localStorage.setItem('ContSeccion', Cont_Seccion)         
+    //     LS_ID_Cont_Seccion = localStorage.getItem('ContSeccion')
 
-        //Captura la seccion donde se hizo click
-        localStorage.setItem('SeccionCLick', Seccion)  
-    }
+    //     //Captura la seccion donde se hizo click
+    //     localStorage.setItem('SeccionCLick', Seccion)  
+    // }
 
 //************************************************************************************************
     //Cambia el formato de total en el carrito de compras para mostrar en display
@@ -589,321 +589,321 @@ if(document.getElementById("Label_1")){
 
 // **********************************************************************************************
     //invocada desde clasificados_V  
-    function Pre_incremento(){  
-        // console.log("______Desde Pre_incremento()______")
+    // function Pre_incremento(){  
+    //     // console.log("______Desde Pre_incremento()______")
        
-        //Detectar el boton donde se hace click
-        let mas = document.getElementsByClassName("mas")//Se obtienen los botones [+]
-        let len = mas.length//Se cuenta cuanto botones mas existen
-        let boton
-        for(let i = 0; i < len; i++){
-            boton = mas[i] //Encontrar el botón [+].
-            boton.onclick = incrementar //Asignar la función incrementar(), al evento click.
-        }
-        function incrementar(e){
-            // console.log("______Desde Incrementar()______")
+    //     //Detectar el boton donde se hace click
+    //     let mas = document.getElementsByClassName("mas")//Se obtienen los botones [+]
+    //     let len = mas.length//Se cuenta cuanto botones mas existen
+    //     let boton
+    //     for(let i = 0; i < len; i++){
+    //         boton = mas[i] //Encontrar el botón [+].
+    //         boton.onclick = incrementar //Asignar la función incrementar(), al evento click.
+    //     }
+    //     function incrementar(e){
+    //         // console.log("______Desde Incrementar()______")
 
-            //Se obtiene el elemento padre donde se encuentra el boton mas al que se hizo click
-            let current = e.target.parentElement
-            console.log("🚀 ~ file: E_Clasificados.js:601 ~ incrementar ~ current:", current)
+    //         //Se obtiene el elemento padre donde se encuentra el boton mas al que se hizo click
+    //         let current = e.target.parentElement
+    //         console.log("🚀 ~ file: E_Clasificados.js:601 ~ incrementar ~ current:", current)
             
-            //Se obtiene el valor de la cantidad de existencia del producto
-            let BloquearMasJS = current.getElementsByClassName("BloquearMasJS")[0]
+    //         //Se obtiene el valor de la cantidad de existencia del producto
+    //         let BloquearMasJS = current.getElementsByClassName("BloquearMasJS")[0]
             
-            //Se obtiene el boton "más" respectivo al producto seleccionado
-            let ID_LabelMas = current.getElementsByClassName("MasJS")[0].id
+    //         //Se obtiene el boton "más" respectivo al producto seleccionado
+    //         let ID_LabelMas = current.getElementsByClassName("MasJS")[0].id
 
-            //Se obtiene el boton "más" respectivo al producto seleccionado
-            let ID_LabelBloqueo = current.getElementsByClassName("icono_7")[0].id
+    //         //Se obtiene el boton "más" respectivo al producto seleccionado
+    //         let ID_LabelBloqueo = current.getElementsByClassName("icono_7")[0].id
 
-            //Se busca el input del display que se quiere incrementar            
-            let inputSeleccionado = current.getElementsByClassName("input_2")[0]
+    //         //Se busca el input del display que se quiere incrementar            
+    //         let inputSeleccionado = current.getElementsByClassName("input_2")[0]
 
-            //Se accede a la propiedad valor del input display 
-            let valor = inputSeleccionado.value
+    //         //Se accede a la propiedad valor del input display 
+    //         let valor = inputSeleccionado.value
 
-            //Se obtiene el contenedor hermano a "current" para acceder a sus input
-            let inputSeleccionadoLeyen = current.previousElementSibling  
-            if(valor < 10){
-                A = valor++
-                A++
+    //         //Se obtiene el contenedor hermano a "current" para acceder a sus input
+    //         let inputSeleccionadoLeyen = current.previousElementSibling  
+    //         if(valor < 10){
+    //             A = valor++
+    //             A++
 
-                //Muestra la cantidad en el input display
-                inputSeleccionado.value = A
+    //             //Muestra la cantidad en el input display
+    //             inputSeleccionado.value = A
                 
-                //ID_Producto desde BD 
-                let Producto = inputSeleccionadoLeyen.getElementsByClassName("input_1a")[0].value
+    //             //ID_Producto desde BD 
+    //             let Producto = inputSeleccionadoLeyen.getElementsByClassName("input_1a")[0].value
                 
-                //input cantidad Aqui se mostrará la cantidad
-                var Cantidades = inputSeleccionadoLeyen.getElementsByClassName("input_1e")[0].value = A
+    //             //input cantidad Aqui se mostrará la cantidad
+    //             var Cantidades = inputSeleccionadoLeyen.getElementsByClassName("input_1e")[0].value = A
 
-                //Input precio Aqui se muestra el precio
-                let Precio = inputSeleccionadoLeyen.getElementsByClassName("input_1d")[0].value
+    //             //Input precio Aqui se muestra el precio
+    //             let Precio = inputSeleccionadoLeyen.getElementsByClassName("input_1d")[0].value
                                 
-                //Se cambia el formato del precio, se reemplaza la coma por punto para poder hacer la multiplicacion, luego se convierte a numero 
-                Precio = Precio.replace(/,/g, '.')
-                Precio = Number(Precio)
+    //             //Se cambia el formato del precio, se reemplaza la coma por punto para poder hacer la multiplicacion, luego se convierte a numero 
+    //             Precio = Precio.replace(/,/g, '.')
+    //             Precio = Number(Precio)
 
-                //Se calcula el total y se restringe a dos decimales
-                let Total = (Cantidades * Precio).toFixed(2)
+    //             //Se calcula el total y se restringe a dos decimales
+    //             let Total = (Cantidades * Precio).toFixed(2)
 
-                //"Total" Se cambia a string y luego se cambia el formato, el punto decimal se convierte en coma
-                Total = String(Total)
-                Total = Total.replace(/\./g, ',')
+    //             //"Total" Se cambia a string y luego se cambia el formato, el punto decimal se convierte en coma
+    //             Total = String(Total)
+    //             Total = Total.replace(/\./g, ',')
 
-                //Input total Aqui se mostrará el total (al parecer no hace falta)
-                inputSeleccionadoLeyen.getElementsByClassName("input_1f")[0].value = Total
+    //             //Input total Aqui se mostrará el total (al parecer no hace falta)
+    //             inputSeleccionadoLeyen.getElementsByClassName("input_1f")[0].value = Total
                 
-                //Muestra la leyenda en cada producto seleccionado por el usuario
-                inputSeleccionadoLeyen.getElementsByClassName("input_2a")[0].value = Cantidades + " " + Producto + " = " + SeparadorMiles(Total) + " Bs."
+    //             //Muestra la leyenda en cada producto seleccionado por el usuario
+    //             inputSeleccionadoLeyen.getElementsByClassName("input_2a")[0].value = Cantidades + " " + Producto + " = " + SeparadorMiles(Total) + " Bs."
               
-                //Se crea una nuevo array del objeto PedidoCar 
-                PedidoGlobal = new PedidoCar(Producto, Cantidades, TotalDisplayCarrito);
+    //             //Se crea una nuevo array del objeto PedidoCar 
+    //             PedidoGlobal = new PedidoCar(Producto, Cantidades, TotalDisplayCarrito);
 
-                //Se verifica que el producto existe en el array AlContenedor y que contiene el pedidio, se edita la cantidad y el monto total acumulado por ese producto, esta informacion es la que va al resumen de la orden y a cada leyenda
-                function ProductoEditado(Producto){
-                    // console.log("------ Entra en ProductoEditado() --------", Producto)
-                    var existe = false;
-                    for(i = 0; i < AlContenedor.length; i++){
-                        if(AlContenedor[i].Producto == Producto ){ 
-                            existe = true;
-                            AlContenedor[i].Cantidad = Cantidades
+    //             //Se verifica que el producto existe en el array AlContenedor y que contiene el pedidio, se edita la cantidad y el monto total acumulado por ese producto, esta informacion es la que va al resumen de la orden y a cada leyenda
+    //             function ProductoEditado(Producto){
+    //                 // console.log("------ Entra en ProductoEditado() --------", Producto)
+    //                 var existe = false;
+    //                 for(i = 0; i < AlContenedor.length; i++){
+    //                     if(AlContenedor[i].Producto == Producto ){ 
+    //                         existe = true;
+    //                         AlContenedor[i].Cantidad = Cantidades
                             
-                            // console.log("AlContenedor = ", AlContenedor[i].Cantidad)  
-                            AlContenedor[i].Total = SeparadorMiles(Total)  
-                        }
-                    }
+    //                         // console.log("AlContenedor = ", AlContenedor[i].Cantidad)  
+    //                         AlContenedor[i].Total = SeparadorMiles(Total)  
+    //                     }
+    //                 }
                     
-                    var existe = false;
-                    for(i = 0; i < AlContenedor.length; i++){
-                        if(AlContenedor[i].Producto == Producto ){
-                            existe = true;
-                            AlContenedor[i].Cantidad = Cantidades
-                            AlContenedor[i].Total = Total
-                        }
-                    }
-                    return existe;
-                }
-                ProductoEditado(PedidoGlobal.Producto)                    
-            }  
+    //                 var existe = false;
+    //                 for(i = 0; i < AlContenedor.length; i++){
+    //                     if(AlContenedor[i].Producto == Producto ){
+    //                         existe = true;
+    //                         AlContenedor[i].Cantidad = Cantidades
+    //                         AlContenedor[i].Total = Total
+    //                     }
+    //                 }
+    //                 return existe;
+    //             }
+    //             ProductoEditado(PedidoGlobal.Producto)                    
+    //         }  
             
-            //Se muestra el div que contiene el icono del carrito
-            DisplayDestello()
+    //         //Se muestra el div que contiene el icono del carrito
+    //         DisplayDestello()
                      
-            //Si la existencia en BD es igual a 1 se oculta el boton de mas y menos para que no se añadan más productos al carrito
-            if(Number(BloquearMasJS.value) == Cantidades){
-                document.getElementById(ID_LabelMas).style.display = "none" 
-                document.getElementById(ID_LabelBloqueo).style.display = "inline" 
-            }
-            else{
-                document.getElementById(ID_LabelMas).style.display = "inline" 
-                document.getElementById(ID_LabelBloqueo).style.display = "none" 
-            }
+    //         //Si la existencia en BD es igual a 1 se oculta el boton de mas y menos para que no se añadan más productos al carrito
+    //         if(Number(BloquearMasJS.value) == Cantidades){
+    //             document.getElementById(ID_LabelMas).style.display = "none" 
+    //             document.getElementById(ID_LabelBloqueo).style.display = "inline" 
+    //         }
+    //         else{
+    //             document.getElementById(ID_LabelMas).style.display = "inline" 
+    //             document.getElementById(ID_LabelBloqueo).style.display = "none" 
+    //         }
 
-            // console.log("AlContenedor desde incremento = ", AlContenedor)
-        }  
-    }   
+    //         // console.log("AlContenedor desde incremento = ", AlContenedor)
+    //     }  
+    // }   
 
 //************************************************************************************************
     //invocada desde vitrina_V
-    function Pre_decremento(){      
-        // console.log("______Desde Pre_decremento()______") 
+    // function Pre_decremento(){      
+    //     // console.log("______Desde Pre_decremento()______") 
 
-        //Detectar el boton de restar
-        var menos = document.getElementsByClassName("menos")//Se obtienen los botones menos [-]
-        var len = menos.length//Se cuentan cuantos botones menos hay  
-        var boton
-        for(let i = 0; i < len; i++){
-            boton = menos[i]; //Se Encontrar el botón [-] seleccionado al hacer click
-            boton.onclick = decrementar // Asignar la función decrementar() en su evento click.
-        }    
-        function decrementar(e){   
-            // console.log("______Desde decrementar()______") 
+    //     //Detectar el boton de restar
+    //     var menos = document.getElementsByClassName("menos")//Se obtienen los botones menos [-]
+    //     var len = menos.length//Se cuentan cuantos botones menos hay  
+    //     var boton
+    //     for(let i = 0; i < len; i++){
+    //         boton = menos[i]; //Se Encontrar el botón [-] seleccionado al hacer click
+    //         boton.onclick = decrementar // Asignar la función decrementar() en su evento click.
+    //     }    
+    //     function decrementar(e){   
+    //         // console.log("______Desde decrementar()______") 
             
-            //Se obtiene el div padre donde se encuentra el boton menos al que se hizo click
-            current = e.target.parentElement
+    //         //Se obtiene el div padre donde se encuentra el boton menos al que se hizo click
+    //         current = e.target.parentElement
 
-            //Se obtiene el valor de la cantidad de existencia del producto
-            let BloquearMasJS = current.getElementsByClassName("BloquearMasJS")[0]
-            // console.log("Existencia = ", Number(BloquearMasJS.value))
+    //         //Se obtiene el valor de la cantidad de existencia del producto
+    //         let BloquearMasJS = current.getElementsByClassName("BloquearMasJS")[0]
+    //         // console.log("Existencia = ", Number(BloquearMasJS.value))
             
-            //Se obtiene el boton "más" respectivo al producto seleccionado
-            let ID_LabelMas = current.getElementsByClassName("MasJS")[0].id
-            // console.log(ID_LabelMas)
+    //         //Se obtiene el boton "más" respectivo al producto seleccionado
+    //         let ID_LabelMas = current.getElementsByClassName("MasJS")[0].id
+    //         // console.log(ID_LabelMas)
 
-            //Se obtiene el boton "más" respectivo al producto seleccionado
-            let ID_LabelBloqueo = current.getElementsByClassName("icono_7")[0].id
-            // console.log(ID_LabelBloqueo)
+    //         //Se obtiene el boton "más" respectivo al producto seleccionado
+    //         let ID_LabelBloqueo = current.getElementsByClassName("icono_7")[0].id
+    //         // console.log(ID_LabelBloqueo)
 
-            //En el div padre se busca el input del display que se quiere incrementar(este es el input que muestra la cantidad entre los botones mas y menos)          
-            let inputSeleccionado = current.getElementsByClassName("input_2")[0]
+    //         //En el div padre se busca el input del display que se quiere incrementar(este es el input que muestra la cantidad entre los botones mas y menos)          
+    //         let inputSeleccionado = current.getElementsByClassName("input_2")[0]
 
-            //Se accede a la propiedad valor al input display 
-            let valor = inputSeleccionado.value
-            valor = Number(valor)
+    //         //Se accede a la propiedad valor al input display 
+    //         let valor = inputSeleccionado.value
+    //         valor = Number(valor)
 
-            //Se obtiene el contenedor hermano a "current" para acceder a sus input (este div contiene la leyenda entre otros input)
-            let Cont_leyenda = current.previousElementSibling  
+    //         //Se obtiene el contenedor hermano a "current" para acceder a sus input (este div contiene la leyenda entre otros input)
+    //         let Cont_leyenda = current.previousElementSibling  
             
-            if((valor > 1) && (valor < 10)){
-                //Muestra la cantidad en el input display
-                A = valor--
-                A--
+    //         if((valor > 1) && (valor < 10)){
+    //             //Muestra la cantidad en el input display
+    //             A = valor--
+    //             A--
 
-                //Muestra la cantidad en el input display
-                inputSeleccionado.value = A
+    //             //Muestra la cantidad en el input display
+    //             inputSeleccionado.value = A
                 
-                //Input producto en el elemento hermano del click correspondiente; Aqui se muestra el producto
-                let Producto = Cont_leyenda.getElementsByClassName("input_1a")[0].value
+    //             //Input producto en el elemento hermano del click correspondiente; Aqui se muestra el producto
+    //             let Producto = Cont_leyenda.getElementsByClassName("input_1a")[0].value
 
-                //Input opcion en el elemento hermano del click correspondiente; Aqui se muestra el producto
-                let Opcion = Cont_leyenda.getElementsByClassName("input_1c")[0].value
+    //             //Input opcion en el elemento hermano del click correspondiente; Aqui se muestra el producto
+    //             let Opcion = Cont_leyenda.getElementsByClassName("input_1c")[0].value
 
-                //input cantidad en el elemento hermano del click correspondiente; Aqui se mostrará la cantidad
-                var Cantidades = Cont_leyenda.getElementsByClassName("input_1e")[0].value = A
-                // console.log("Cantidad en carrito", Cantidades)
+    //             //input cantidad en el elemento hermano del click correspondiente; Aqui se mostrará la cantidad
+    //             var Cantidades = Cont_leyenda.getElementsByClassName("input_1e")[0].value = A
+    //             // console.log("Cantidad en carrito", Cantidades)
 
-                //Input precio en el elemento hermano del click correspondiente; Aqui se muestra el precio
-                let Precio = Cont_leyenda.getElementsByClassName("input_1d")[0].value
+    //             //Input precio en el elemento hermano del click correspondiente; Aqui se muestra el precio
+    //             let Precio = Cont_leyenda.getElementsByClassName("input_1d")[0].value
 
-                //Se cambia el formato del precio
-                Precio = Precio.replace(/,/g, '.')
-                Precio = Number(Precio)
+    //             //Se cambia el formato del precio
+    //             Precio = Precio.replace(/,/g, '.')
+    //             Precio = Number(Precio)
                                 
-                //Se calcula el total
-                let Total = Cantidades * Precio    
+    //             //Se calcula el total
+    //             let Total = Cantidades * Precio    
 
-                //"Total" Se cambia a string y luego se cambia el formato, el punto decimal se convierte en coma
-                Total = String(Total)
-                Total = Total.replace(/\./g, ',')
+    //             //"Total" Se cambia a string y luego se cambia el formato, el punto decimal se convierte en coma
+    //             Total = String(Total)
+    //             Total = Total.replace(/\./g, ',')
                  
-                //Input total en el elemento hermano del click correspondiente; Aqui se mostrará el total
-                Cont_leyenda.getElementsByClassName("input_1f")[0].value = Total
+    //             //Input total en el elemento hermano del click correspondiente; Aqui se mostrará el total
+    //             Cont_leyenda.getElementsByClassName("input_1f")[0].value = Total
                 
-                //Muestra la leyenda del pedido por producto
-                Cont_leyenda.getElementsByClassName("input_2a")[0].value = Cantidades + " " + Producto +  " = " + SeparadorMiles(Total) + " Bs."    
+    //             //Muestra la leyenda del pedido por producto
+    //             Cont_leyenda.getElementsByClassName("input_2a")[0].value = Cantidades + " " + Producto +  " = " + SeparadorMiles(Total) + " Bs."    
 
-                //Se resta del display carrito el producto eliminado
-                TotalDisplayCarrito = TotalDisplayCarrito - Precio
+    //             //Se resta del display carrito el producto eliminado
+    //             TotalDisplayCarrito = TotalDisplayCarrito - Precio
 
-                //Muestra el monto del pedido en el display carrito
-                MontoCarrito = document.getElementById("Input_5").value = SeparadorMiles(TotalDisplayCarrito) + " Bs."  
+    //             //Muestra el monto del pedido en el display carrito
+    //             MontoCarrito = document.getElementById("Input_5").value = SeparadorMiles(TotalDisplayCarrito) + " Bs."  
 
-                //Se crea una nuevo array del objeto PedidoCar 
-                PedidoGlobal = new PedidoCar(Producto, Cantidades, TotalDisplayCarrito);
+    //             //Se crea una nuevo array del objeto PedidoCar 
+    //             PedidoGlobal = new PedidoCar(Producto, Cantidades, TotalDisplayCarrito);
 
-                //Se verifica que el producto existe en el array AlContenedor que contiene los productos pedidos y se edita la cantidad y el monto total acumulado por ese producto, esta informacion es la que va al resumen de la orden y a la información de cada leyenda
-                function ProductoEditado(Producto){
-                    var existe = false;
-                    for(i = 0; i < AlContenedor.length; i++){
-                        if(AlContenedor[i].Producto == Producto ){
-                            existe = true;
-                            AlContenedor[i].Cantidad = Cantidades
-                            AlContenedor[i].Total = SeparadorMiles(Total)
-                        }
-                    }
+    //             //Se verifica que el producto existe en el array AlContenedor que contiene los productos pedidos y se edita la cantidad y el monto total acumulado por ese producto, esta informacion es la que va al resumen de la orden y a la información de cada leyenda
+    //             function ProductoEditado(Producto){
+    //                 var existe = false;
+    //                 for(i = 0; i < AlContenedor.length; i++){
+    //                     if(AlContenedor[i].Producto == Producto ){
+    //                         existe = true;
+    //                         AlContenedor[i].Cantidad = Cantidades
+    //                         AlContenedor[i].Total = SeparadorMiles(Total)
+    //                     }
+    //                 }
                     
-                    var existe = false;
-                    for(i = 0; i < AlContenedor.length; i++){
-                        if(AlContenedor[i].Producto == Producto ){
-                            existe = true;
-                            AlContenedor[i].Cantidad = Cantidades
-                            AlContenedor[i].Total = Total
-                        }
-                    }
-                    return existe;
-                }
-                ProductoEditado(PedidoGlobal.Producto);
-            }        
-            else{//Si no hay mas producto que eliminar                
-                //Input precio en el elemento hermano del click correspondiente; Aqui se muestra el precio
-                Precio = Cont_leyenda.getElementsByClassName("input_1d")[0].value
-                Precio = Precio.replace(/[.]/g,'')
-                Precio = Number(Precio)
+    //                 var existe = false;
+    //                 for(i = 0; i < AlContenedor.length; i++){
+    //                     if(AlContenedor[i].Producto == Producto ){
+    //                         existe = true;
+    //                         AlContenedor[i].Cantidad = Cantidades
+    //                         AlContenedor[i].Total = Total
+    //                     }
+    //                 }
+    //                 return existe;
+    //             }
+    //             ProductoEditado(PedidoGlobal.Producto);
+    //         }        
+    //         else{//Si no hay mas producto que eliminar                
+    //             //Input precio en el elemento hermano del click correspondiente; Aqui se muestra el precio
+    //             Precio = Cont_leyenda.getElementsByClassName("input_1d")[0].value
+    //             Precio = Precio.replace(/[.]/g,'')
+    //             Precio = Number(Precio)
 
-                //Input producto en el elemento hermano del click correspondiente; Aqui se muestra el producto
-                Producto = Cont_leyenda.getElementsByClassName("input_1a")[0].value
+    //             //Input producto en el elemento hermano del click correspondiente; Aqui se muestra el producto
+    //             Producto = Cont_leyenda.getElementsByClassName("input_1a")[0].value
 
-                //Input opcion en el elemento hermano del click correspondiente; Aqui se muestra el producto
-                Opcion = Cont_leyenda.getElementsByClassName("input_1c")[0].value
+    //             //Input opcion en el elemento hermano del click correspondiente; Aqui se muestra el producto
+    //             Opcion = Cont_leyenda.getElementsByClassName("input_1c")[0].value
 
-                //input cantidad en el elemento hermano del click correspondiente; Aqui se mostrará la cantidad
-                Cantidades = Cont_leyenda.getElementsByClassName("input_1e")[0].value = 0
+    //             //input cantidad en el elemento hermano del click correspondiente; Aqui se mostrará la cantidad
+    //             Cantidades = Cont_leyenda.getElementsByClassName("input_1e")[0].value = 0
 
-                //Se crea una nuevo array del objeto PedidoCar 
-                PedidoGlobal = new PedidoCar(Producto, Cantidades, TotalDisplayCarrito);
+    //             //Se crea una nuevo array del objeto PedidoCar 
+    //             PedidoGlobal = new PedidoCar(Producto, Cantidades, TotalDisplayCarrito);
 
-                //Se elimina el producto del array que contiene el pedido, esta informacion es la que va al resumen de la orden
-                function ProductoEditado(Producto){
-                    var existe = false;
-                    for(i = 0; i < AlContenedor.length; i++){
-                        if(AlContenedor[i].Producto == Producto ){
-                            AlContenedor.splice(i, 1);
-                        }
-                    }
+    //             //Se elimina el producto del array que contiene el pedido, esta informacion es la que va al resumen de la orden
+    //             function ProductoEditado(Producto){
+    //                 var existe = false;
+    //                 for(i = 0; i < AlContenedor.length; i++){
+    //                     if(AlContenedor[i].Producto == Producto ){
+    //                         AlContenedor.splice(i, 1);
+    //                     }
+    //                 }
                   
-                    for(i = 0; i < AlContenedor.length; i++){
-                        if(AlContenedor[i].Producto == Producto ){
-                            AlContenedor.splice(i, 1);
-                        }
-                    }
-                    return existe;
-                }
-                ProductoEditado(PedidoGlobal.Producto)//Antes Opcion NOTA = CAMBIAR POR ID DE PRODUCTO, ESTA FUNCION ES LLAMADA TAMBIEN EN PRE_INCREMENTE()
+    //                 for(i = 0; i < AlContenedor.length; i++){
+    //                     if(AlContenedor[i].Producto == Producto ){
+    //                         AlContenedor.splice(i, 1);
+    //                     }
+    //                 }
+    //                 return existe;
+    //             }
+    //             ProductoEditado(PedidoGlobal.Producto)//Antes Opcion NOTA = CAMBIAR POR ID DE PRODUCTO, ESTA FUNCION ES LLAMADA TAMBIEN EN PRE_INCREMENTE()
                
-                //Se resta del display carrito el producto eliminado
-                TotalDisplayCarrito = TotalDisplayCarrito - Precio
-                // console.log(TotalDisplayCarrito)
+    //             //Se resta del display carrito el producto eliminado
+    //             TotalDisplayCarrito = TotalDisplayCarrito - Precio
+    //             // console.log(TotalDisplayCarrito)
 
-                //Muestra el monto del pedido en el display carrito(se encuentra en vitrina.php)
-                MontoCarrito = document.getElementById("Input_5").value = SeparadorMiles(TotalDisplayCarrito) + " Bs." 
+    //             //Muestra el monto del pedido en el display carrito(se encuentra en vitrina.php)
+    //             MontoCarrito = document.getElementById("Input_5").value = SeparadorMiles(TotalDisplayCarrito) + " Bs." 
                                                     
-                //Se oculta el contenedor donde se encuentra el boton menos y la leyenda del producto al que se hizo click
-                current.parentElement.style.display = "none"
+    //             //Se oculta el contenedor donde se encuentra el boton menos y la leyenda del producto al que se hizo click
+    //             current.parentElement.style.display = "none"
 
-                //En los proximos tres pasos, se hace una "escala DOM" para obtener y mostrar la etiqueta "Agregar" del div que contiene el producto analizado
-                //Se obtiene el div padre de los botones mas y menos
-                PadreMasMenos = current.parentElement
-                //Se obtiene el hermano del div PadreMasMenos
-                HermanoMasMenos = PadreMasMenos.previousElementSibling 
+    //             //En los proximos tres pasos, se hace una "escala DOM" para obtener y mostrar la etiqueta "Agregar" del div que contiene el producto analizado
+    //             //Se obtiene el div padre de los botones mas y menos
+    //             PadreMasMenos = current.parentElement
+    //             //Se obtiene el hermano del div PadreMasMenos
+    //             HermanoMasMenos = PadreMasMenos.previousElementSibling 
 
-                //Se muestra la etiqueta agregar del div HermanoMasMenos que se ocultó en 
-                EtiquetaAgregar = HermanoMasMenos.getElementsByClassName("Label_3js")[0].style.display = "block"
-                // console.log(EtiquetaAgregar)
-                // console.log(HermanoMasMenos.getElementsByClassName("Label_3js")[0])
+    //             //Se muestra la etiqueta agregar del div HermanoMasMenos que se ocultó en 
+    //             EtiquetaAgregar = HermanoMasMenos.getElementsByClassName("Label_3js")[0].style.display = "block"
+    //             // console.log(EtiquetaAgregar)
+    //             // console.log(HermanoMasMenos.getElementsByClassName("Label_3js")[0])
 
-                // console.log(AlContenedor)
-                //Se oculta el display carrito cuando el pedido sea de cero Bolivares y se muestra el boton de agregar opcion
-                if(TotalDisplayCarrito == 0 ){ 
-                    //Se oculta la leyenda del producto
-                    // inputSeleccionadoLeyen.getElementsByClassName("input_2a")[0].style.visibility = "hidden"
+    //             // console.log(AlContenedor)
+    //             //Se oculta el display carrito cuando el pedido sea de cero Bolivares y se muestra el boton de agregar opcion
+    //             if(TotalDisplayCarrito == 0 ){ 
+    //                 //Se oculta la leyenda del producto
+    //                 // inputSeleccionadoLeyen.getElementsByClassName("input_2a")[0].style.visibility = "hidden"
                                         
-                    //Se oculta el carrito de compras en el fondo del viewport
-                    document.getElementById("Contenedor_61").style.visibility = "hidden"
-                }
-                else{
-                    //Se busca el nodo padre que contiene el input donde esta el producto a eliminar
-                    // let elementoHijo = current.parentElement
-                    // let elementoPadre = elementoHijo.parentElement
-                    // elementoPadre.removeChild(elementoHijo);                   
-                }
-            }  
+    //                 //Se oculta el carrito de compras en el fondo del viewport
+    //                 document.getElementById("Contenedor_61").style.visibility = "hidden"
+    //             }
+    //             else{
+    //                 //Se busca el nodo padre que contiene el input donde esta el producto a eliminar
+    //                 // let elementoHijo = current.parentElement
+    //                 // let elementoPadre = elementoHijo.parentElement
+    //                 // elementoPadre.removeChild(elementoHijo);                   
+    //             }
+    //         }  
             
-            //Se muestra el div que contiene el icono del carrito
-            DisplayDestello()
+    //         //Se muestra el div que contiene el icono del carrito
+    //         DisplayDestello()
                      
-            //Si la existencia en BD es igual a 1 se oculta el boton de mas y menos para que no se añadan más productos al carrito
-            if(Number(BloquearMasJS.value) >= Cantidades || Number(BloquearMasJS.value) == 0){
-                document.getElementById(ID_LabelMas).style.display = "inline" 
-                document.getElementById(ID_LabelBloqueo).style.display = "none" 
-            }
-            else{
-                document.getElementById(ID_LabelMas).style.display = "none" 
-                document.getElementById(ID_LabelBloqueo).style.display = "inline" 
-            }
-            // console.log("AlContenedor desde decremento = ",AlContenedor)
-        }    
-    }
+    //         //Si la existencia en BD es igual a 1 se oculta el boton de mas y menos para que no se añadan más productos al carrito
+    //         if(Number(BloquearMasJS.value) >= Cantidades || Number(BloquearMasJS.value) == 0){
+    //             document.getElementById(ID_LabelMas).style.display = "inline" 
+    //             document.getElementById(ID_LabelBloqueo).style.display = "none" 
+    //         }
+    //         else{
+    //             document.getElementById(ID_LabelMas).style.display = "none" 
+    //             document.getElementById(ID_LabelBloqueo).style.display = "inline" 
+    //         }
+    //         // console.log("AlContenedor desde decremento = ",AlContenedor)
+    //     }    
+    // }
 
 //************************************************************************************************ 
     //invocada desde carrito_V.php
@@ -949,236 +949,236 @@ if(document.getElementById("Label_1")){
 
 //************************************************************************************************
     //Valida el formulario de despacho de producto
-    function validarDespacho(){
+    // function validarDespacho(){
 
-        document.getElementsByClassName("botonJS")[0].value = "Enviando ..."
-        document.getElementsByClassName("botonJS")[0].disabled = "disabled"
-        document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialClaro)"
-        document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialOscuro)"
-        document.getElementsByClassName("botonJS")[0].classList.add('borde_1')
+    //     document.getElementsByClassName("botonJS")[0].value = "Enviando ..."
+    //     document.getElementsByClassName("botonJS")[0].disabled = "disabled"
+    //     document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialClaro)"
+    //     document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialOscuro)"
+    //     document.getElementsByClassName("botonJS")[0].classList.add('borde_1')
         
-        let Nombre = document.getElementById('NombreUsuario').value
-        let Apellido = document.getElementById('ApellidoUsuario').value 
-        let Cedula = document.getElementById('CedulaUsuario').value 
-        let Telefono = document.getElementById('TelefonoUsuario').value 
-        let Correo = document.getElementById('CorreoUsuario').value 
-        let Direccion = document.getElementById('DireccionUsuario').value  
-        let Estado = document.getElementById('Estado').value 
-        let Ciudad = document.getElementById('Ciudad').value
-        let Pago = document.getElementsByName('formaPago')//transferencia, pagomovil, reserve, paypal, zelle, etc
-        let FormaPago = document.getElementsByName('referenciaPago') 
+    //     let Nombre = document.getElementById('NombreUsuario').value
+    //     let Apellido = document.getElementById('ApellidoUsuario').value 
+    //     let Cedula = document.getElementById('CedulaUsuario').value 
+    //     let Telefono = document.getElementById('TelefonoUsuario').value 
+    //     let Correo = document.getElementById('CorreoUsuario').value 
+    //     let Direccion = document.getElementById('DireccionUsuario').value  
+    //     let Estado = document.getElementById('Estado').value 
+    //     let Ciudad = document.getElementById('Ciudad').value
+    //     let Pago = document.getElementsByName('formaPago')//transferencia, pagomovil, reserve, paypal, zelle, etc
+    //     let FormaPago = document.getElementsByName('referenciaPago') 
 
-        //Recorremos todos los valores del radio button para encontrar el metodo de pago seleccionado
-        for(let i = 0; i < Pago.length; i++){
-            if(Pago[i].checked){
-                var PagoSeleccionado = Pago[i].value
-                // console.log("Pago", PagoSeleccionado)
-            }
-        }       
-        //Recorremos todos los valores del radio button para encontrar el medio de pago seleccionado
-        for(let i = 0; i < FormaPago.length; i++){
-            if(FormaPago[i].checked){
-                var FormaPagoSeleccionada = FormaPago[i].value
-                // console.log("FormaPago", FormaPagoSeleccionada)
-            }
-        }       
-        let RegistroPago_Transferencia = document.getElementById('RegistroPago_Transferencia').value
-        let CaptureTransferencia = document.getElementById('ImagenTransferencia').value  
-        let CapturePagoMovil = document.getElementById('ImagenPagoMovil').value 
-        let CapturePagoReserve = document.getElementById('ImagenPagoReserve').value
-        let CapturePagoPaypal = document.getElementById('ImagenPagoPaypal').value
+    //     //Recorremos todos los valores del radio button para encontrar el metodo de pago seleccionado
+    //     for(let i = 0; i < Pago.length; i++){
+    //         if(Pago[i].checked){
+    //             var PagoSeleccionado = Pago[i].value
+    //             // console.log("Pago", PagoSeleccionado)
+    //         }
+    //     }       
+    //     //Recorremos todos los valores del radio button para encontrar el medio de pago seleccionado
+    //     for(let i = 0; i < FormaPago.length; i++){
+    //         if(FormaPago[i].checked){
+    //             var FormaPagoSeleccionada = FormaPago[i].value
+    //             // console.log("FormaPago", FormaPagoSeleccionada)
+    //         }
+    //     }       
+    //     let RegistroPago_Transferencia = document.getElementById('RegistroPago_Transferencia').value
+    //     let CaptureTransferencia = document.getElementById('ImagenTransferencia').value  
+    //     let CapturePagoMovil = document.getElementById('ImagenPagoMovil').value 
+    //     let CapturePagoReserve = document.getElementById('ImagenPagoReserve').value
+    //     let CapturePagoPaypal = document.getElementById('ImagenPagoPaypal').value
         
-        //Patron de entrada solo acepta letras (Nombre - Apellido)
-        let P_Letras = /^[ñA-Za-zÁÉÍÓÚáéíóú _]*[ñA-Za-zÁÉÍÓÚáéíóú][ñA-Za-zÁÉÍÓÚáéíóú _]*$/
+    //     //Patron de entrada solo acepta letras (Nombre - Apellido)
+    //     let P_Letras = /^[ñA-Za-zÁÉÍÓÚáéíóú _]*[ñA-Za-zÁÉÍÓÚáéíóú][ñA-Za-zÁÉÍÓÚáéíóú _]*$/
 
-        //Patron de entrada para archivos de carga permitidos
-        var Ext_Permitidas = /^[.jpg|.jpeg|.png]*$/
+    //     //Patron de entrada para archivos de carga permitidos
+    //     var Ext_Permitidas = /^[.jpg|.jpeg|.png]*$/
 
-        //Patron de entrada solo acepta numeros, guion y puntos          
-        // let P_Telefono = /^\d{4}\-\d{3}\.\d{2}\.\d{2}$/;
+    //     //Patron de entrada solo acepta numeros, guion y puntos          
+    //     // let P_Telefono = /^\d{4}\-\d{3}\.\d{2}\.\d{2}$/;
 
-        // let P_LetrasNumero = /[A-Za-z0-9]/;
+    //     // let P_LetrasNumero = /[A-Za-z0-9]/;
         
-        //Patron de entrada para correos electronicos
-        let P_Correo = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    //     //Patron de entrada para correos electronicos
+    //     let P_Correo = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
                 
-        if(Nombre == "" || Nombre.indexOf(" ") == 0 || Nombre.length > 40 || P_Letras.test(Nombre) == false){
-            alert ("Nombre invalido");
-            document.getElementById("NombreUsuario").value = "";
-            document.getElementById("NombreUsuario").focus();
-            document.getElementById("NombreUsuario").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("botonJS")[0].value = "Comprar"
-            document.getElementsByClassName("botonJS")[0].disabled = false
-            document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(Apellido =="" || Apellido.indexOf(" ") == 0 || Apellido.length > 20 || P_Letras.test(Apellido) == false){
-            alert ("Apellido invalido");
-            document.getElementById("ApellidoUsuario").value = "";
-            document.getElementById("ApellidoUsuario").focus();
-            document.getElementById("ApellidoUsuario").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("botonJS")[0].value = "Comprar"
-            document.getElementsByClassName("botonJS")[0].disabled = false
-            document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(Cedula =="" || Cedula.indexOf(" ") == 0 || Cedula.length < 9  ||  Cedula.length > 10){
-            alert ("número de cedula invalido");
-            document.getElementById("CedulaUsuario").value = "";
-            document.getElementById("CedulaUsuario").focus();
-            document.getElementById("CedulaUsuario").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("botonJS")[0].value = "Comprar"
-            document.getElementsByClassName("botonJS")[0].disabled = false
-            document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(Telefono =="" || Telefono.indexOf(" ") == 0 || Telefono.length > 20){
-            alert ("Telefono invalido");
-            document.getElementById("TelefonoUsuario").value = "";
-            document.getElementById("TelefonoUsuario").focus();
-            document.getElementById("TelefonoUsuario").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("botonJS")[0].value = "Comprar"
-            document.getElementsByClassName("botonJS")[0].disabled = false
-            document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(Correo  == "" || Correo .indexOf(" ") == 0 || Correo .length > 70 || P_Correo.test(Correo ) == false){
-            alert ("Correo invalido")
-            document.getElementById("CorreoUsuario").value = ""
-            document.getElementById("CorreoUsuario").focus()
-            document.getElementById("CorreoUsuario").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("botonJS")[0].value = "Comprar"
-            document.getElementsByClassName("botonJS")[0].disabled = false
-            document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-            return false;
-        }  
-        else if(Estado == "Seleccione un estado"){
-            alert ("Selecione un Estado");
-            document.getElementById("Estado").value = "";
-            document.getElementById("Estado").focus();
-            document.getElementById("Estado").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("botonJS")[0].value = "Comprar"
-            document.getElementsByClassName("botonJS")[0].disabled = false
-            document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(Ciudad == "Seleccione una ciudad"){
-            alert ("Selecione una Ciudad");
-            document.getElementById("Ciudad").value = "";
-            document.getElementById("Ciudad").focus();
-            document.getElementById("Ciudad").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("botonJS")[0].value = "Comprar"
-            document.getElementsByClassName("botonJS")[0].disabled = false
-            document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(Direccion =="" || Direccion.indexOf(" ") == 0 || Direccion.length > 200){
-            alert ("Direccion invalida");
-            document.getElementById("DireccionUsuario").value = "";
-            document.getElementById("DireccionUsuario").focus();
-            document.getElementById("DireccionUsuario").style.backgroundColor = "var(--Fallos)"
-            document.getElementsByClassName("botonJS")[0].value = "Comprar"
-            document.getElementsByClassName("botonJS")[0].disabled = false
-            document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(PagoSeleccionado == undefined){
-            alert ("Debe indicar un modo de pago");
-            document.getElementsByClassName("botonJS")[0].value = "Comprar"
-            document.getElementsByClassName("botonJS")[0].disabled = false
-            document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-            document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-            document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-            return false;
-        }
-        else if(PagoSeleccionado == "Transferencia"){
-            if(FormaPagoSeleccionada == undefined){
-                alert ("Debe infomar el código o el capture del pago");
-                document.getElementsByClassName("botonJS")[0].value = "Comprar"
-                document.getElementsByClassName("botonJS")[0].disabled = false
-                document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-                document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-                document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-                return false;
-            }
-        }
-        else if(PagoSeleccionado == "Transferencia" && FormaPagoSeleccionada == "codigoTransferencia"){
-            if(RegistroPago_Transferencia == "" ||  RegistroPago_Transferencia.indexOf(" ") == 0 || RegistroPago_Transferencia.length > 20){
-                alert ("Código de transferencia invalido");
-                document.getElementById("RegistroPago_Transferencia").value = "";
-                document.getElementById("RegistroPago_Transferencia").focus();
-                document.getElementById("RegistroPago_Transferencia").style.backgroundColor = "var(--Fallos)"
-                document.getElementsByClassName("botonJS")[0].value = "Comprar"
-                document.getElementsByClassName("botonJS")[0].disabled = false
-                document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-                document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-                document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-                return false;
-            }
-        }
-        else if(PagoSeleccionado == "Transferencia" && FormaPagoSeleccionada == "CaptureTransferencia"){            
-            if(Ext_Permitidas.exec(CaptureTransferencia ) == false || CaptureTransferencia .size > 20000){
-                alert("Introduzca el capture de la transferencia")
-                document.getElementsByClassName("botonJS")[0].value = "Comprar"
-                document.getElementsByClassName("botonJS")[0].disabled = false
-                document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-                document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-                document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-                return false;
-            }
-        }
-        else if(PagoSeleccionado == "PagoMovil"){            
-            if(Ext_Permitidas.exec(CapturePagoMovil) == false || CapturePagoMovil .size > 20000){
-                alert("Introduzca el capture del PagoMovil")
-                document.getElementsByClassName("botonJS")[0].value = "Comprar"
-                document.getElementsByClassName("botonJS")[0].disabled = false
-                document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-                document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-                document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-                return false;
-            }
-        }
-        else if(PagoSeleccionado == "Reserve"){            
-            if(Ext_Permitidas.exec(CapturePagoReserve) == false || CapturePagoReserve .size > 20000){
-                alert("Introduzca el capture del pago en Reserve")
-                document.getElementsByClassName("botonJS")[0].value = "Comprar"
-                document.getElementsByClassName("botonJS")[0].disabled = false
-                document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-                document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-                document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-                return false;
-            }
-        }
-        else if(PagoSeleccionado == "Paypal"){            
-            if(Ext_Permitidas.exec(CapturePagoPaypal) == false || CapturePagoPaypal .size > 20000){
-                alert("Introduzca el capture del pago en Paypal")
-                document.getElementsByClassName("botonJS")[0].value = "Comprar"
-                document.getElementsByClassName("botonJS")[0].disabled = false
-                document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
-                document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
-                document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
-                return false;
-            }
-        }
-        //Si se superan todas las validaciones la función devuelve verdadero
-        return true
-    }
+    //     if(Nombre == "" || Nombre.indexOf(" ") == 0 || Nombre.length > 40 || P_Letras.test(Nombre) == false){
+    //         alert ("Nombre invalido");
+    //         document.getElementById("NombreUsuario").value = "";
+    //         document.getElementById("NombreUsuario").focus();
+    //         document.getElementById("NombreUsuario").style.backgroundColor = "var(--Fallos)"
+    //         document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //         document.getElementsByClassName("botonJS")[0].disabled = false
+    //         document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //         document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //         document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //         return false;
+    //     }
+    //     else if(Apellido =="" || Apellido.indexOf(" ") == 0 || Apellido.length > 20 || P_Letras.test(Apellido) == false){
+    //         alert ("Apellido invalido");
+    //         document.getElementById("ApellidoUsuario").value = "";
+    //         document.getElementById("ApellidoUsuario").focus();
+    //         document.getElementById("ApellidoUsuario").style.backgroundColor = "var(--Fallos)"
+    //         document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //         document.getElementsByClassName("botonJS")[0].disabled = false
+    //         document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //         document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //         document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //         return false;
+    //     }
+    //     else if(Cedula =="" || Cedula.indexOf(" ") == 0 || Cedula.length < 9  ||  Cedula.length > 10){
+    //         alert ("número de cedula invalido");
+    //         document.getElementById("CedulaUsuario").value = "";
+    //         document.getElementById("CedulaUsuario").focus();
+    //         document.getElementById("CedulaUsuario").style.backgroundColor = "var(--Fallos)"
+    //         document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //         document.getElementsByClassName("botonJS")[0].disabled = false
+    //         document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //         document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //         document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //         return false;
+    //     }
+    //     else if(Telefono =="" || Telefono.indexOf(" ") == 0 || Telefono.length > 20){
+    //         alert ("Telefono invalido");
+    //         document.getElementById("TelefonoUsuario").value = "";
+    //         document.getElementById("TelefonoUsuario").focus();
+    //         document.getElementById("TelefonoUsuario").style.backgroundColor = "var(--Fallos)"
+    //         document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //         document.getElementsByClassName("botonJS")[0].disabled = false
+    //         document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //         document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //         document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //         return false;
+    //     }
+    //     else if(Correo  == "" || Correo .indexOf(" ") == 0 || Correo .length > 70 || P_Correo.test(Correo ) == false){
+    //         alert ("Correo invalido")
+    //         document.getElementById("CorreoUsuario").value = ""
+    //         document.getElementById("CorreoUsuario").focus()
+    //         document.getElementById("CorreoUsuario").style.backgroundColor = "var(--Fallos)"
+    //         document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //         document.getElementsByClassName("botonJS")[0].disabled = false
+    //         document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //         document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //         document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //         return false;
+    //     }  
+    //     else if(Estado == "Seleccione un estado"){
+    //         alert ("Selecione un Estado");
+    //         document.getElementById("Estado").value = "";
+    //         document.getElementById("Estado").focus();
+    //         document.getElementById("Estado").style.backgroundColor = "var(--Fallos)"
+    //         document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //         document.getElementsByClassName("botonJS")[0].disabled = false
+    //         document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //         document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //         document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //         return false;
+    //     }
+    //     else if(Ciudad == "Seleccione una ciudad"){
+    //         alert ("Selecione una Ciudad");
+    //         document.getElementById("Ciudad").value = "";
+    //         document.getElementById("Ciudad").focus();
+    //         document.getElementById("Ciudad").style.backgroundColor = "var(--Fallos)"
+    //         document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //         document.getElementsByClassName("botonJS")[0].disabled = false
+    //         document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //         document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //         document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //         return false;
+    //     }
+    //     else if(Direccion =="" || Direccion.indexOf(" ") == 0 || Direccion.length > 200){
+    //         alert ("Direccion invalida");
+    //         document.getElementById("DireccionUsuario").value = "";
+    //         document.getElementById("DireccionUsuario").focus();
+    //         document.getElementById("DireccionUsuario").style.backgroundColor = "var(--Fallos)"
+    //         document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //         document.getElementsByClassName("botonJS")[0].disabled = false
+    //         document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //         document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //         document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //         return false;
+    //     }
+    //     else if(PagoSeleccionado == undefined){
+    //         alert ("Debe indicar un modo de pago");
+    //         document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //         document.getElementsByClassName("botonJS")[0].disabled = false
+    //         document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //         document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //         document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //         return false;
+    //     }
+    //     else if(PagoSeleccionado == "Transferencia"){
+    //         if(FormaPagoSeleccionada == undefined){
+    //             alert ("Debe infomar el código o el capture del pago");
+    //             document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //             document.getElementsByClassName("botonJS")[0].disabled = false
+    //             document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //             document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //             document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //             return false;
+    //         }
+    //     }
+    //     else if(PagoSeleccionado == "Transferencia" && FormaPagoSeleccionada == "codigoTransferencia"){
+    //         if(RegistroPago_Transferencia == "" ||  RegistroPago_Transferencia.indexOf(" ") == 0 || RegistroPago_Transferencia.length > 20){
+    //             alert ("Código de transferencia invalido");
+    //             document.getElementById("RegistroPago_Transferencia").value = "";
+    //             document.getElementById("RegistroPago_Transferencia").focus();
+    //             document.getElementById("RegistroPago_Transferencia").style.backgroundColor = "var(--Fallos)"
+    //             document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //             document.getElementsByClassName("botonJS")[0].disabled = false
+    //             document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //             document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //             document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //             return false;
+    //         }
+    //     }
+    //     else if(PagoSeleccionado == "Transferencia" && FormaPagoSeleccionada == "CaptureTransferencia"){            
+    //         if(Ext_Permitidas.exec(CaptureTransferencia ) == false || CaptureTransferencia .size > 20000){
+    //             alert("Introduzca el capture de la transferencia")
+    //             document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //             document.getElementsByClassName("botonJS")[0].disabled = false
+    //             document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //             document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //             document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //             return false;
+    //         }
+    //     }
+    //     else if(PagoSeleccionado == "PagoMovil"){            
+    //         if(Ext_Permitidas.exec(CapturePagoMovil) == false || CapturePagoMovil .size > 20000){
+    //             alert("Introduzca el capture del PagoMovil")
+    //             document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //             document.getElementsByClassName("botonJS")[0].disabled = false
+    //             document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //             document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //             document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //             return false;
+    //         }
+    //     }
+    //     else if(PagoSeleccionado == "Reserve"){            
+    //         if(Ext_Permitidas.exec(CapturePagoReserve) == false || CapturePagoReserve .size > 20000){
+    //             alert("Introduzca el capture del pago en Reserve")
+    //             document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //             document.getElementsByClassName("botonJS")[0].disabled = false
+    //             document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //             document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //             document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //             return false;
+    //         }
+    //     }
+    //     else if(PagoSeleccionado == "Paypal"){            
+    //         if(Ext_Permitidas.exec(CapturePagoPaypal) == false || CapturePagoPaypal .size > 20000){
+    //             alert("Introduzca el capture del pago en Paypal")
+    //             document.getElementsByClassName("botonJS")[0].value = "Comprar"
+    //             document.getElementsByClassName("botonJS")[0].disabled = false
+    //             document.getElementsByClassName("botonJS")[0].style.backgroundColor = "var(--OficialOscuro)"
+    //             document.getElementsByClassName("botonJS")[0].style.color = "var(--OficialClaro)"
+    //             document.getElementsByClassName("botonJS")[0].classList.remove('borde_1')
+    //             return false;
+    //         }
+    //     }
+    //     //Si se superan todas las validaciones la función devuelve verdadero
+    //     return true
+    // }
 
 //************************************************************************************************
     //Impide que se siga introduciendo caracteres al alcanzar el limite maximo en el telefono
@@ -1237,12 +1237,12 @@ if(document.getElementById("Label_1")){
 
 //************************************************************************************************
     //Muestra el formulario de despacho para usuarios no registrados
-    function mostrar_formulario(){  
-        document.getElementById("No_Registrado").style.display = "none";
-        document.getElementById("Registrado").style.display = "none";
-        document.getElementById("Label--confirmar").style.display = "none";
-        document.getElementById("MuestraEnvioFactura").style.display = "block"
-    }
+    // function mostrar_formulario(){  
+    //     document.getElementById("No_Registrado").style.display = "none";
+    //     document.getElementById("Registrado").style.display = "none";
+    //     document.getElementById("Label--confirmar").style.display = "none";
+    //     document.getElementById("MuestraEnvioFactura").style.display = "block"
+    // }
 
 //************************************************************************************************
     //Coloca los puntos de miles en tiempo real al llenar el campo a cedula
@@ -1460,9 +1460,9 @@ if(document.getElementById("Label_1")){
     }
 
 // ************************************************************************************************
-    function EliminarLeyendaVitrina(){
-        alert("HOA")
-    }
+    // function EliminarLeyendaVitrina(){
+    //     alert("HOA")
+    // }
 
 // ************************************************************************************************
 //Se muestra el monto total de la compra en Reserve, Paypal o Zelle
@@ -1472,125 +1472,102 @@ if(document.getElementById("Label_1")){
       
 //************************************************************************************************
     // invocada desde carrito_V.php
-    function verPagoTransferencia(){
-        // console.log("______Desde verTransferenciaBancaria()______") 
-        document.getElementById("Contenedor_60a").style.display = "block"
-        document.getElementById("Contenedor_60b").style.display = "none"
-        document.getElementById("Contenedor_60c").style.display = "none"
-        document.getElementById("Contenedor_60d").style.display = "none"
-        document.getElementById("Contenedor_60e").style.display = "none"
-        document.getElementById("Contenedor_60f").style.display = "none"
-        document.getElementById("Contenedor_60g").style.display = "none"
-        document.getElementById("Contenedor_60h").style.display = "none"
+    // function verPagoTransferencia(){
+    //     // console.log("______Desde verTransferenciaBancaria()______") 
+    //     document.getElementById("Contenedor_60a").style.display = "block"
+    //     document.getElementById("Contenedor_60b").style.display = "none"
+    //     document.getElementById("Contenedor_60c").style.display = "none"
+    //     document.getElementById("Contenedor_60d").style.display = "none"
+    //     document.getElementById("Contenedor_60e").style.display = "none"
+    //     document.getElementById("Contenedor_60f").style.display = "none"
+    //     document.getElementById("Contenedor_60g").style.display = "none"
         
-        //Se muestra el monto total de la compra en Bolivares
-        document.getElementById("PagarTransferencia").value = SeparadorMiles(MontoTotal) + " Bs."
-    }
+    //     //Se muestra el monto total de la compra en Bolivares
+    //     document.getElementById("PagarTransferencia").value = SeparadorMiles(MontoTotal) + " Bs."
+    // }
 
 //************************************************************************************************
     // invocada desde carrito_V.php
-    function verPagoMovil(){
-        // console.log("______Desde verPagoMovil()______") 
-        document.getElementById("Contenedor_60a").style.display = "none"
-        document.getElementById("Contenedor_60b").style.display = "block"
-        document.getElementById("Contenedor_60c").style.display = "none"
-        document.getElementById("Contenedor_60d").style.display = "none"
-        document.getElementById("Contenedor_60e").style.display = "none"
-        document.getElementById("Contenedor_60f").style.display = "none"
-        document.getElementById("Contenedor_60g").style.display = "none"
-        document.getElementById("Contenedor_60h").style.display = "none"
+    // function verPagoMovil(){
+    //     // console.log("______Desde verPagoMovil()______") 
+    //     document.getElementById("Contenedor_60a").style.display = "none"
+    //     document.getElementById("Contenedor_60b").style.display = "block"
+    //     document.getElementById("Contenedor_60c").style.display = "none"
+    //     document.getElementById("Contenedor_60d").style.display = "none"
+    //     document.getElementById("Contenedor_60e").style.display = "none"
+    //     document.getElementById("Contenedor_60f").style.display = "none"
+    //     document.getElementById("Contenedor_60g").style.display = "none"
 
-        //Se muestra el monto total de la compra en Bolivares
-        document.getElementById("PagarPagoMovil").value = SeparadorMiles(MontoTotal) + " Bs."
-    }
-
-//************************************************************************************************
-    // invocada desde carrito_V.php
-    function verPagoReserve(){
-        document.getElementById("Contenedor_60a").style.display = "none"
-        document.getElementById("Contenedor_60b").style.display = "none"
-        document.getElementById("Contenedor_60c").style.display = "none"
-        document.getElementById("Contenedor_60d").style.display = "none"
-        document.getElementById("Contenedor_60e").style.display = "none"
-        document.getElementById("Contenedor_60f").style.display = "block"
-        document.getElementById("Contenedor_60g").style.display = "none"
-        document.getElementById("Contenedor_60h").style.display = "none"
-
-        //Se muestra el monto total de la compra en Dolares
-        document.getElementById("PagarDolaresReserve").value = SeparadorMiles(MontoTotalDolares) + " USD"
-    }
+    //     //Se muestra el monto total de la compra en Bolivares
+    //     document.getElementById("PagarPagoMovil").value = SeparadorMiles(MontoTotal) + " Bs."
+    // }
 
 //************************************************************************************************
     // invocada desde carrito_V.php
-    function verPagoPaypal(){
-        document.getElementById("Contenedor_60a").style.display = "none"
-        document.getElementById("Contenedor_60b").style.display = "none"
-        document.getElementById("Contenedor_60c").style.display = "none"
-        document.getElementById("Contenedor_60d").style.display = "none"
-        document.getElementById("Contenedor_60e").style.display = "none"
-        document.getElementById("Contenedor_60f").style.display = "none"
-        document.getElementById("Contenedor_60g").style.display = "block"
-        document.getElementById("Contenedor_60h").style.display = "none"
+    // function verPagoReserve(){
+    //     document.getElementById("Contenedor_60a").style.display = "none"
+    //     document.getElementById("Contenedor_60b").style.display = "none"
+    //     document.getElementById("Contenedor_60c").style.display = "none"
+    //     document.getElementById("Contenedor_60d").style.display = "none"
+    //     document.getElementById("Contenedor_60e").style.display = "none"
+    //     document.getElementById("Contenedor_60f").style.display = "block"
+    //     document.getElementById("Contenedor_60g").style.display = "none"
+
+    //     //Se muestra el monto total de la compra en Dolares
+    //     document.getElementById("PagarDolaresReserve").value = SeparadorMiles(MontoTotalDolares) + " USD"
+    // }
+
+//************************************************************************************************
+    // invocada desde carrito_V.php
+    // function verPagoPaypal(){
+    //     document.getElementById("Contenedor_60a").style.display = "none"
+    //     document.getElementById("Contenedor_60b").style.display = "none"
+    //     document.getElementById("Contenedor_60c").style.display = "none"
+    //     document.getElementById("Contenedor_60d").style.display = "none"
+    //     document.getElementById("Contenedor_60e").style.display = "none"
+    //     document.getElementById("Contenedor_60f").style.display = "none"
+    //     document.getElementById("Contenedor_60g").style.display = "block"
         
-        //Se muestra el monto total de la compra en Dolares
-        document.getElementById("PagarDolaresPaypal").value = SeparadorMiles(MontoTotalDolares) + " USD"
-    }
+    //     //Se muestra el monto total de la compra en Dolares
+    //     document.getElementById("PagarDolaresPaypal").value = SeparadorMiles(MontoTotalDolares) + " USD"
+    // }
 
 //************************************************************************************************
     // invocada desde carrito_V.php
-    function verPagoZelle(){
-        document.getElementById("Contenedor_60a").style.display = "none"
-        document.getElementById("Contenedor_60b").style.display = "none"
-        document.getElementById("Contenedor_60c").style.display = "none"
-        document.getElementById("Contenedor_60d").style.display = "none"
-        document.getElementById("Contenedor_60e").style.display = "none"
-        document.getElementById("Contenedor_60f").style.display = "none"
-        document.getElementById("Contenedor_60g").style.display = "none"
-        document.getElementById("Contenedor_60h").style.display = "block"
-        
-        //Se muestra el monto total de la compra en Dolares
-        document.getElementById("PagarDolaresZelle").value = SeparadorMiles(MontoTotalDolares) + " USD"
-    }
+    // function verPagoEfectivoBolivar(){
+    //     // console.log("______Desde verPagoEfectivoBolivar()______") 
+    //     document.getElementById("Contenedor_60a").style.display = "none"
+    //     document.getElementById("Contenedor_60b").style.display = "none"
+    //     document.getElementById("Contenedor_60c").style.display = "block"
+    //     document.getElementById("Contenedor_60d").style.display = "none"
+    //     document.getElementById("Contenedor_60e").style.display = "none"
+    //     document.getElementById("Contenedor_60f").style.display = "none"
+    //     document.getElementById("Contenedor_60g").style.display = "none"
+    // }
 
 //************************************************************************************************
     // invocada desde carrito_V.php
-    function verPagoEfectivoBolivar(){
-        // console.log("______Desde verPagoEfectivoBolivar()______") 
-        document.getElementById("Contenedor_60a").style.display = "none"
-        document.getElementById("Contenedor_60b").style.display = "none"
-        document.getElementById("Contenedor_60c").style.display = "block"
-        document.getElementById("Contenedor_60d").style.display = "none"
-        document.getElementById("Contenedor_60e").style.display = "none"
-        document.getElementById("Contenedor_60f").style.display = "none"
-        document.getElementById("Contenedor_60g").style.display = "none"
-        document.getElementById("Contenedor_60h").style.display = "none"
-    }
+    // function verPagoEfectivoDolar(){
+    //     // console.log("______Desde verPagoEfectivoDolar()______") 
+    //     document.getElementById("Contenedor_60a").style.display = "none"
+    //     document.getElementById("Contenedor_60b").style.display = "none"
+    //     document.getElementById("Contenedor_60c").style.display = "none"
+    //     document.getElementById("Contenedor_60d").style.display = "block"
+    //     document.getElementById("Contenedor_60e").style.display = "none"
+    //     document.getElementById("Contenedor_60f").style.display = "none"
+    //     document.getElementById("Contenedor_60g").style.display = "none"
+    // }
 
 //************************************************************************************************
     // invocada desde carrito_V.php
-    function verPagoEfectivoDolar(){
-        // console.log("______Desde verPagoEfectivoDolar()______") 
-        document.getElementById("Contenedor_60a").style.display = "none"
-        document.getElementById("Contenedor_60b").style.display = "none"
-        document.getElementById("Contenedor_60c").style.display = "none"
-        document.getElementById("Contenedor_60d").style.display = "block"
-        document.getElementById("Contenedor_60e").style.display = "none"
-        document.getElementById("Contenedor_60f").style.display = "none"
-        document.getElementById("Contenedor_60g").style.display = "none"
-        document.getElementById("Contenedor_60h").style.display = "none"
-    }
-
-//************************************************************************************************
-    // invocada desde carrito_V.php
-    function verPagoAcordado(){
-        // console.log("______Desde verPagoAcordado()______") 
-        document.getElementById("Contenedor_60a").style.display = "none"
-        document.getElementById("Contenedor_60b").style.display = "none"
-        document.getElementById("Contenedor_60c").style.display = "none"
-        document.getElementById("Contenedor_60d").style.display = "none"
-        document.getElementById("Contenedor_60e").style.display = "block"
-        document.getElementById("Contenedor_60f").style.display = "none"
-        document.getElementById("Contenedor_60g").style.display = "none"
-        document.getElementById("Contenedor_60h").style.display = "none"
-    }
+    // function verPagoAcordado(){
+    //     // console.log("______Desde verPagoAcordado()______") 
+    //     document.getElementById("Contenedor_60a").style.display = "none"
+    //     document.getElementById("Contenedor_60b").style.display = "none"
+    //     document.getElementById("Contenedor_60c").style.display = "none"
+    //     document.getElementById("Contenedor_60d").style.display = "none"
+    //     document.getElementById("Contenedor_60e").style.display = "block"
+    //     document.getElementById("Contenedor_60f").style.display = "none"
+    //     document.getElementById("Contenedor_60g").style.display = "none"
+    // }
     

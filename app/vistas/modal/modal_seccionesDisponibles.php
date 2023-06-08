@@ -11,9 +11,7 @@
 			<div class="contenedor_89">
 				<?php      
 				$ContadorSeccion = 1;
-				//$Datos['seccion'] trae información desde Panel_C/Secciones
-				foreach($Datos['secciones'] as $row)  :
-						// $ID_Seccion = $row['ID_Seccion']; ?>
+				foreach($Datos['secciones'] as $row)  :?>
 						<div class="contInputRadio">
 							<input type="checkbox" name="seccion" id="<?php echo 'ContadorSeccion_' . $ContadorSeccion;?>" value="<?php echo $row['seccion']?>" onclick="transferirSeccion(this.form, 'SeccionPublicar')"/>
 

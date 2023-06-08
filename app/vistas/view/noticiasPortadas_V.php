@@ -88,7 +88,7 @@
                                 </div>
 
                                 <!-- EDITAR -->
-                                <a style="margin-left: ; color: blue;" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
+                                <a style="margin-left: ; color: blue;" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Prin['ID_Noticia'];?>,<?php echo 'Portada';?>" rel="noopener noreferrer">Editar</a>
                                                             
                                 <!-- ELIMINAR -->
                                 <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Prin['ID_Noticia'];?>','<?php echo $Datos['imagenesNoticias'][0]['nombre_imagenNoticia'];?>')">Eliminar</label>

@@ -14,7 +14,7 @@
 			$Agenda = $this->ConsultaAgenda_M->consultarPublicidad();
 
             $Datos = [
-                'publicidad' => $Agenda, //
+                'publicidad' => $Agenda, 
             ];
             
 			// echo '<pre>';

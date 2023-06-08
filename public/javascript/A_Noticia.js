@@ -72,7 +72,7 @@ function conexionAJAX(){
                 document.getElementById(Busqueda).scroll({
                     left: 0,
                     behavior: 'smooth'
-                  });
+                });
 
                 document.getElementById(Busqueda).innerHTML = peticion.responseText 
             } 

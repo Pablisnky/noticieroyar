@@ -25,10 +25,10 @@
         if(A.style.marginTop != "0%"){
             A.style.marginTop = "0%"
             if(screen.width < 350){
-                C.style.marginLeft = "20%"
+                C.style.marginLeft = "0%"
             }
-            else if(screen.width > 351 && screen.width < 800){
-                C.style.marginLeft = "30%"
+            else if(screen.width > 300 && screen.width < 800){
+                C.style.marginLeft = "0%"
                 
             }
             else{
@@ -156,10 +156,10 @@
         if(ConfirmaCerrarSession == true){                     
             
             // remoto   
-            // window.location.href = "https://www.noticieroyaracuy.com/CerrarSesion_C";
+            window.location.href = "https://www.noticieroyaracuy.com/CerrarSesion_C";
                 
             // local
-            window.location.href = "http://localhost/proyectos/noticieroyaracuy/CerrarSesion_C"
+            // window.location.href = "http://localhost/proyectos/noticieroyaracuy/CerrarSesion_C"
         } 
         else{
             return

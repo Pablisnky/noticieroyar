@@ -34,6 +34,7 @@
 </div>  
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
+<script src="<?php echo RUTA_URL;?>/public/javascript/FullScreem.js?v=<?php echo rand();?>"></script> 
 
 <!-- Script para evaluar si el navegador soporta lazy-load -->
 <script>

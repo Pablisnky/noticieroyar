@@ -1,11 +1,12 @@
-pcabeza7@gmail.com       pppppp
-monica@gmail.com         mmmm
-ll@ll.ll                 llll (relojes)
-yury@gmail.com           yyyy
-qq@qq.qq                 qqqq
-kk@kk.kk                 kkkk
-patricia@gmail.com       patricia
-jean@gmail.com           jjjj
+pcabeza7@gmail.com       pppp-> suscriptor
+pablo@gmail.com          pppp  -> periodista
+monica@gmail.com         mmmm   -> suscriptor
+ll@ll.ll                 llll (relojes)   -> suscriptor
+yury@gmail.com           yyyy    -> suscriptor
+qq@qq.qq                 qqqq     -> suscriptor
+kk@kk.kk                 kkkk    -> suscriptor
+patricia@gmail.com       patricia  -> suscriptor
+jean@gmail.com           jjjj     -> suscriptor
 *******************************************************************************
 En local y en remoto
     Cambiar en Configurar.php; 
@@ -49,4 +50,5 @@ los archivos
     "Panel_Artista_C.php"
     "Suscriptor_C.php"
     "A_YaracuyEnViedo.js"
+    "funcionesVarias.js
 tiene la opcion de subir a servidor remoto y servidor local, esta debe ser cambiada segun la condicion

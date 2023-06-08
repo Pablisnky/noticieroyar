@@ -138,7 +138,7 @@ document.getElementById("Resumen").addEventListener("input", (event) => contarCa
 
 //************************************************************************************************  
     function transferirAnuncio(form){
-        console.log("______Desde transferirAnuncio()______", form )
+        // console.log("______Desde transferirAnuncio()______", form )
     
         //Se reciben los elementos del formulario mediante su atributo name
         ID_Anuncio = form.anuncio

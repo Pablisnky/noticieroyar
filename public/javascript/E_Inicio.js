@@ -3,9 +3,9 @@
 // document.getElementById("CerrarVentana").addEventListener('click', function(){CerrarModal('VentanaModal')}, false)
 //************************************************************************************************
 //Función autoejecuble que muestra la ventana modal automatica inicial
-// var VentanaModal = (function(){ 
-//     setTimeout(function(){mostrarModal();}, 100)
-// })();
+var VentanaModal = (function(){ 
+    setTimeout(function(){mostrarModal();}, 100)
+})();
 
 //************************************************************************************************ 
 //obtiendo informacion del DOM para identificar el elemento donde se hizo click 

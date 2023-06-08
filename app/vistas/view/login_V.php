@@ -63,10 +63,10 @@
         <div class="login_cont--recuperarClave">	
             <p>¿Olvidaste tu contraseña?</p>
             <label class="Default_link Default_pointer" id="Label_7">Recuperala</label>
-            <hr class="hr_3">
+            <br><br>
             <p>¿Quieres suscribirte?</p>
             <a href="<?php echo RUTA_URL . '/Login_C/suscripcion/' . $Datos['id_noticia'];?>">Suscribete</a>
-            <hr class="hr_3">            
+            <br><br>
             <p class="Inicio_8" style="line-height: 160%;">¿Eres periodista acreditado CNP en Venezuela?</p>
             <a href="<?php echo RUTA_URL . '/Login_C/suscripcion/SinID_Noticia';?>">Crea contenido</a>
         </div>
@@ -83,3 +83,6 @@
 		
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_Login.js?v='. rand();?>"></script>
+
+</body>
+</html>

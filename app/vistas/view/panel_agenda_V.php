@@ -9,7 +9,7 @@
         <legend class="legend_1">Agenda de eventos</legend>
         <?php
         foreach($Datos['agenda'] as $Row) : ?>
-            <div style="display: flex; margin-bottom: 5%;">                
+            <div class="cont_panel--publicidad">                
                 <!-- IMAGN  -->
                 <div class="cont_panel__agenda--imagen">       
                     <figure>

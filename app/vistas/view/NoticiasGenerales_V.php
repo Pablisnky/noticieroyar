@@ -2,7 +2,7 @@
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
     
     <div class="cont_panel--main">     
-        <div class="cont_panel--encabezado">
+        <div class="cont_panel--encabezado Default_quitarMovil">
             <!-- BUSCADOR SECCION -->
             <div class="cont_panel--seccion">
                 <label class="login_cont--label">Sección</label>
@@ -55,46 +55,50 @@
                 <img class="Default_pointer" style="width: 2vw" src="<?php echo RUTA_URL . '/public/iconos/refrescar/outline_refresh_black_24dp.png'?>" id="Refrescar"/>
             </div>
             <!-- PAGINACION -->
-            <?php
-            if($Datos['cantidadNoticiasGenerales'][0]['cantidad'] > 25){ ?>
-                <div style="width: 100%;">
-                    <ul class="cont_panel--paginacion ">
-                        <!-- BOTON RETROCEDER -->
-                        <!-- Si la página actual es mayor a uno, se muestra el botón para ir una página atrás -->
-                        <?php if ($Datos['pagina'] > 1) { ?>
-                            <li>
-                                <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] - 1;?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_back_ios_new_black_24dp.png'?>"/></a>
-                            </li>
-                        <?php } ?>
+            <div style=" width:100%">
+                <?php
+                if($Datos['cantidadNoticiasGenerales'][0]['cantidad'] > 25){ ?>
+                    <div style="width: 100%;">
+                        <ul class="cont_panel--paginacion ">
+                            <!-- BOTON RETROCEDER -->
+                            <!-- Si la página actual es mayor a uno, se muestra el botón para ir una página atrás -->
+                            <?php if ($Datos['pagina'] > 1) { ?>
+                                <li>
+                                    <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] - 1;?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_back_ios_new_black_24dp.png'?>"/></a>
+                                </li>
+                            <?php } ?>
 
-                        <!-- Mostramos enlaces para ir a todas las páginas. -->
-                        <?php for ($i = 1; $i <= $Datos['paginas']; $i++) { ?>
-                            <li class="<?php if ($i == $Datos['pagina']) echo "active";?>, cont_archivo--paginacion-numeros">
-                                <a class="Default_pointer" href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $i;?>"><?php echo $i;?></a>
-                            </li>
-                        <?php } ?>
+                            <!-- Mostramos enlaces para ir a todas las páginas. -->
+                            <?php 
+                            for ($i = 1; $i <= $Datos['paginas']; $i++) { ?>
+                                <li class="cont_archivo--paginacion-numeros">
+                                    <a class="<?php if ($i == $Datos['pagina']) echo "active";?>" style="color:black" href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $i;?>"><?php echo $i;?></a>
+                                </li>
+                                <?php 
+                            } ?>
 
-                        <!-- BOTON AVANZAR -->
-                        <!-- Si la página actual es menor al total de páginas, se muestra un botón para ir una página adelante -->
-                        <?php if ($Datos['pagina'] < $Datos['paginas']) { ?>
-                            <li>
-                                <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] + 1 ?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_black_24dp.png'?>"/></a>
-                            </li>
-                        <?php } ?>
-                    </ul> 
-                </div>
-                    <?php
-            }   ?>
+                            <!-- BOTON AVANZAR -->
+                            <!-- Si la página actual es menor al total de páginas, se muestra un botón para ir una página adelante -->
+                            <?php if ($Datos['pagina'] < $Datos['paginas']) { ?>
+                                <li>
+                                    <a href="<?php echo RUTA_URL . '/Panel_C/Not_Generales/' . $Datos['pagina'] + 1 ?>"><img class="Default_pointer" style="margin-right:20px" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_black_24dp.png'?>"/></a>
+                                </li>
+                            <?php } ?>
+                        </ul> 
+                    </div>
+                        <?php
+                }   ?>
+            </div>
         </div>
 
-        <fieldset class="fieldset_1">
-            <legend class="legend_1">Noticias generales</legend>
-            <div id="Mostrar_NoticiasFiltradas">
+        <div class="cont_PanelnoticiasGenerales" id="Mostrar_NoticiasFiltradas">
+            <fieldset class="fieldset_1">
+                <legend class="legend_1">Noticias generales</legend>
                 <?php
                 foreach($Datos['noticiasGenerales'] as $Not_Gen) : ?>
-                    <div style="display: flex; margin-bottom: 30px;" id="<?php echo $Not_Gen['ID_Noticia'];?>">
+                    <div class="cont_panel--flex" id="<?php echo $Not_Gen['ID_Noticia'];?>">
                         <!-- IMAGN NOTICIA -->
-                        <div style="width: 30%; margin-right: 1.5%;">          
+                        <div class="cont_panel--flex-left">          
                             <figure>
                                 <?php
                                 foreach($Datos['imagenesNoticia'] as $Row)   : 
@@ -141,15 +145,16 @@
                             <label class="cont_panel--fecha"><?php echo $Not_Gen['fechaPublicacion'];?></label>
 
                             <!-- VISITAS -->
-                            <label class="cont_panel--label">Visitas</label>
+                            <!-- <label class="cont_panel--label">Visitas</label> -->
                                 <?php
-                                foreach($Datos['visitas'] as $Row_2)   : 
-                                    if($Not_Gen['ID_Noticia'] == $Row_2['ID_Noticia']){     ?>
-                                        <label class="cont_panel--fecha"><?php echo $Row_2['visitas'];?></label>
+                                // foreach($Datos['visitas'] as $Row_2)   : 
+                                    // if($Not_Gen['ID_Noticia'] == $Row_2['ID_Noticia']){     ?>
+                                        <!-- <label class="cont_panel--fecha"><?php //echo $Row_2['visitas'];?></label> -->
                                             <?php
-                                    }
-                                endforeach; ?>
+                                    // }
+                                // endforeach; ?>
 
+                            <!-- COMPARTIR REDES SOCIALES -->
                             <div>
                                 <div class=" detalle_cont--redesSociales--Panel">
                                     <!-- COMPARTIR FACEBOOK -->       
@@ -164,7 +169,7 @@
                                 </div>
                                                             
                                 <!-- EDITAR -->
-                                <a style="margin-left: 10%" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>" rel="noopener noreferrer">Editar</a>
+                                <a style="margin-left: 10%" href="<?php echo RUTA_URL?>/Panel_C/actualizar_noticia/<?php echo $Not_Gen['ID_Noticia'];?>,<?php echo 'Not_Generales';?>" rel="noopener noreferrer">Editar</a>
                                                         
                                 <!-- ELIMINAR -->
                                 <label style="margin-left: 50px; color: blue;" class="Default_pointer" onclick="EliminarNoticia('<?php echo $Not_Gen['ID_Noticia'];?>','<?php echo $Datos['imagenesNoticia'][0]['nombre_imagenNoticia'];?>')">Eliminar</label>
@@ -172,9 +177,9 @@
                         </div>
                     </div>
                     <?php
-                endforeach  ?>             
-            </div>
-        </fieldset>
+                endforeach  ?> 
+            </fieldset>            
+        </div>
 
     <!--Carga mediante Ajax las noticias con el titular escrito en la busqueda solicitada desde buscador_V.php -->
     <div class="contenedor_58" id="Muestra_Titular"></div>

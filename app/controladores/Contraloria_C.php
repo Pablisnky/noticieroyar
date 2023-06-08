@@ -1,14 +1,15 @@
-<?php
-    session_start();
-    
+<?php    
     class Contraloria_C extends Controlador{
         private $ConsultaContraloria_M;
         
-        public function __construct(){           
+        public function __construct(){       
+            session_start();
+                
             $this->ConsultaContraloria_M = $this->modelo("Contraloria_M");
         }
 
         public function index(){            
+
             //Se CONSULTA la cantidad de denuncias realizadas el día de hoy
             $Denuncias = $this->ConsultaContraloria_M->consultarDenunciaDiaria();
 
@@ -52,10 +53,10 @@
             }
         }
 
-        //Metodo cargado desde header_V - inicio_V
+        //MUestra el formulario de denuncias
         public function denuncias(){
-            $this->vista("header/header_noticia");
-            $this->vista("view/agregarDenuncia_V");
+            $this->vista("header/header_suscriptor");
+            $this->vista("suscriptores/suscrip_agregarDenuncia_V");
         }
         
         //Metodo cargado desde agregarDenuncias_V.php

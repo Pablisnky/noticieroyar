@@ -45,6 +45,7 @@
 				<div>
 					<?php
 					if(!empty($_SESSION['ID_Periodista'])){	?>
+						<!-- CARITA -->
 						<label class="Default_pointer"><img class="Default_login" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_face_6_black_24dp.png'?>" onclick="cerrarSecion()"/></label>				
 						<?php
 					}	?>

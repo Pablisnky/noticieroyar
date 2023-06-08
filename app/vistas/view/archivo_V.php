@@ -4,7 +4,7 @@
     <label class="header__titulo cont_archivo--header">Noticiero Yaracuy</label>
     
     <!-- SECCION -->
-    <h1 class="cont_archivo--seccion">archivo <?php echo $Datos['todasNoticiasGenerales'][0]['seccion'];?></h1> 
+    <h1 class="cont_archivo--seccion">Archivo <?php echo $Datos['todasNoticiasGenerales'][0]['seccion'];?></h1> 
    
     <!-- PAGINACION -->
     <ul class="cont_archivo--paginacion">
@@ -18,8 +18,8 @@
 
         <!-- Mostramos enlaces para ir a todas las páginas. -->
         <?php for ($i = 1; $i <= $Datos['paginas']; $i++) { ?>
-            <li class="<?php if ($i == $Datos['pagina']) echo "active";?>, cont_archivo--paginacion-numeros">
-                <a class="" href="<?php echo RUTA_URL . '/Noticias_C/archivo/' . $Datos['cantidadNoticiasSeccion'][0]['ID_Seccion'] . '/';?><?php echo $i;?>"><?php echo $i;?></a>
+            <li class="cont_archivo--paginacion-numeros">
+                <a class="<?php if ($i == $Datos['pagina']) echo 'active';?>" style="color:black" href="<?php echo RUTA_URL . '/Noticias_C/archivo/' . $Datos['cantidadNoticiasSeccion'][0]['ID_Seccion'] . '/';?><?php echo $i;?>"><?php echo $i;?></a>
             </li>
         <?php } ?>
 
@@ -35,23 +35,25 @@
     <!-- ICONO CERRAR -->
     <img class=" cont_modal--cerrar  Default_pointer" style="width: 1em;" id="CerrarVentana" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>
 </div>
+
+<!-- NOTICIAS EN ARCHIVO -->
 <div class="cont_archivo"> 
     <?php
     foreach($Datos['todasNoticiasGenerales'] as $Row) :?>
         <?php
         $Iterador = 1; ?>
-        <div class="cont_archivo--noticia" id="<?php echo $Iterador?>">
+        <div class="cont_archivo--noticia borde_1" id="<?php echo $Iterador?>">
             <!-- IMAGEN -->
             <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Row['ID_Noticia'] . ',ConAnuncio';?>" rel="noopener noreferrer" target="_blank"><img class="cont_noticia-imagen" alt="Fotografia" src="<?php echo RUTA_URL?>/public/images/noticias/<?php echo $Row['nombre_imagenNoticia'];?>"/></a>
 
             <div class="cont_noticia--titular">
 
                 <!-- TITULO -->
-                <p class="cont_noticias--titulo"><?php echo $Row['titulo'];?></p>
-                <hr class="cont_noticia--hr_1">
+                <p class="cont_archivo--titulo"><?php echo $Row['titulo'];?></p>
+                <!-- <hr class="cont_noticia--hr_1"> -->
                 
                 <!-- FUENTE -->
-                <br>
+                <!-- <br> -->
                 <small class="cont_noticias_informacion--span"><?php echo $Row['fuente'];?></small>     
 
                 <!-- FECHA -->

@@ -1,7 +1,7 @@
 <?php
     class Divisas_C extends Controlador{
         public $ConsultaDivisas_M;
-        public $Dolar = 25.90; //se actualiza manualmente el precio del dolar segun tasa del BCV
+        public $Dolar = 26.63; //se actualiza manualmente el precio del dolar segun tasa del BCV
 
         public function __construct(){
             $this->ConsultaDivisas_M = $this->modelo("Divisas_M");
@@ -26,10 +26,6 @@
         public function index(){
             //Se consultan los precios en dolares.
             $Precios = $this->ConsultaDivisas_M->ConsultaPrecios();
-            // echo '<pre>';
-            // print_r($Precios);
-            // echo '</pre>';
-            // exit;
 
             //Se declara un array donde se almacenaran los precios actualizados de cada producto
             $NuevoPrecioBolivar = [];
@@ -43,15 +39,10 @@
                 array_push($NuevoPrecioBolivar, $Intermedio);
             endforeach;
             
-            // echo '<pre>';
-            // print_r($NuevoPrecioBolivar);
-            // echo '</pre>';
-            // exit;
-
             //Se actualizan los precios de los productos existente en BD
             $this->ConsultaDivisas_M->ActualizarPrecio($NuevoPrecioBolivar);
 
-            echo 'Precio de dolar actualizado' . '<br>';            
-            echo "<a href='javascript: history.go(-1)'>Regresar</a>";
+			header("Location:" . RUTA_URL . "/Clasificados_C");
+			die();
         }
     }

@@ -1,3 +1,6 @@
+<!-- MENU LATERAL -->
+<?php require(RUTA_APP . '/vistas/suscriptores/panel_suscrip_V.php');?>
+
 <!-- CDN libreria JQuery, necesaria para la previsualización de la imagen y el calendario--> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -16,25 +19,8 @@
                         </label>
                         <input class="Default_ocultar" type="file" name="imagenDenunciaPrincipal" id="imgInp"/>
                     </div>
-
-                    <!-- VIDEO -->
-                    <div style="margin-top: 30px">     
-                        <!-- <label class="cont_panel--label Default_pointer" for="imgVideo">
-                            <figure id="FigureVideo">
-                                <img class="cont_denuncia--video" alt="Icono video" id="ImagenCamara" src="<?php echo RUTA_URL?>/public/video/denuncias/video.png"/>
-                            </figure> 
-                        </label> -->
-
-                        <!-- <video class="cont_panel--imagen"  id="video-tag" >
-                            <source id = "video-source"/>
-                        </video> -->
-                        <!-- <div style="display:flex; justify-content: space-around">
-                            <button style="padding:0% 3%" class="Default_ocultar" id="Reproducir" onclick="reproducir()">Reproducir</button>
-                            <button style="padding:0% 3%" class="Default_ocultar" id="Pausar" onclick="pausar()">Pausar</button>
-                        </div> -->
-                        <!-- <input class="Default_ocultar" type="file" accept="video/*" name="videoDenuncia" id="imgVideo"/> -->
-                    </div>
-                </div>   
+                </div>  
+                 
                 <div class="cont_denuncia--contenido">
                     <!-- DENUNCIA -->                
                     <label class="login_cont--label cont_denuncia--label">Descripción</label>

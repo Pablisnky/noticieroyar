@@ -11,15 +11,19 @@
     <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeAgendaAgregada" method="POST" enctype="multipart/form-data" autocomplete="off" onsubmit="return validarRegistroAgenda()">
         <fieldset class="fieldset_1" id="Portada"> 
             <legend class="legend_1">Agregar Agenda</legend>
-                <div style="display: flex; margin-bottom: 30px">
-                    <div class="cont_panel__did-1">       
-                        <!-- IMAGN -->
-                        <figure>
-                            <label for="imgInp"class="Default_pointer"><img class="cont_panel--imagen"  alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> </label>
-                        </figure>
+                <div class="cont_panel--actualizar--media">    
+
+                    <!-- IMAGN -->
+                    <div class="cont_panel--agregarublicidad">   
+                        <label for="imgInp"class="Default_pointer">
+                            <figure>
+                                <img class="cont_panel--imagen"  alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/> 
+                            </figure>
+                        </label>
                         <!-- <span class="material-icons-outlined span_18">edit</span> -->
                         <input class="Default_ocultar" type="file" name="imagenAgenda" id="imgInp"/>
-                    </div>        
+                    </div>    
+                        
                     <div>
                         <label>Fecha caducidad</label>
                         <input class="cont_panel--select" type="text" name="caducidad" id="datepicker">
@@ -34,6 +38,7 @@
     </form>
 </div>
 
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/E_AgregarAgenda.js?v=<?php echo rand();?>"></script>
 <script src="<?php echo RUTA_URL;?>/public/javascript/funcion_Calendario.js?v=<?php echo rand();?>"></script>
 

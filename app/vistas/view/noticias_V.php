@@ -3,31 +3,40 @@
 <div class="cont_noticias" id="Cont_Noticia">
     <?php
     foreach($Datos['secciones'] as $Row) : ?>
-
+    
         <!-- NOMBRE SECCION - CHEVRON - FILTROS -->
-        <div class="cont_noticias--mun ancla" id="<?php echo $Row['seccion'];?>">
-            <div class="cont_noticia--tituloSeccion" >
-                <!-- ICONO REGRESAR -->
+        <!-- ancla-->
+        <!-- <a class="ancla" href="#<?php echo $Row['seccion'];?>">.</a> -->
+        <div class="cont_noticias--mun" id="<?php echo $Row['seccion'];?>">
+       
+            <div class="cont_noticia--tituloSeccion">
+                <!-- ICONO REGRESAR --> 
                 <div style="display: flex; align-items: center;">
-                    <img class="Default_ocultar" style="width: 2em" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_chevron_left_black_24dp.png'?>" onclick="regresaSeccion('<?php echo  'Busqueda_' . $Row['seccion'];?>')"/>
-                    <h1 class="cont_noticia--tituloSeccion--h1"><?php echo $Row['seccion'];?></h1>  
-                    <img class="Default_pointer " style="width: 2em;" id="Secciones" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_black_24dp.png'?>" onclick="MostrarSecciones()"/>
+                    <!-- <img class="Default_ocultar" style="width: 2em" src="<?php //echo RUTA_URL . '/public/iconos/chevron/outline_chevron_left_black_24dp.png'?>" onclick="regresaSeccion('<?php //echo  'Busqueda_' . $Row['seccion'];?>')"/> -->
+
+                    <!-- NOMBRE SECCION -->
+                    <h1 class="cont_noticia--tituloSeccion--h1"><?php echo $Row['seccion'];?></h1> 
+
+                    <!-- ICONO EXPNDIR -->
+                    <img class="Default_pointer" style="width: 2em;" alt="icono_expandir" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_expand_more_black_24dp.png'?>"  onclick="MostrarSecciones('<?php echo $Row['seccion'];?>')" />
                 </div>
+                
                 <!-- ICONO CEVRON MUNICIPIOS -->
                 <div class="cont_noticia--filtros">
 
                     <!-- PONER FILTRO -->
-                    <img class="Default_pointer" style="width: 1.5em" src="<?php echo RUTA_URL . '/public/iconos/filtro/outline_filter_alt_black_24dp.png'?>" onclick="MostrarMunicipios('<?php echo $Row['seccion'];?>')"/>
+                    <img class="Default_pointer" style="width: 1.5em;" src="<?php echo RUTA_URL . '/public/iconos/filtro/outline_filter_alt_black_24dp.png'?>" onclick="MostrarMunicipios('<?php echo $Row['seccion'];?>')"/>
 
                     <!-- QUITAR FILTRO -->                     
                     <img class="Default_ocultar Default_pointer" id="<?php echo 'Filtro_'. $Row['seccion'];?>" style="width: 1.5em" src="<?php echo RUTA_URL . '/public/iconos/filtro/outline_filter_alt_off_black_24dp.png'?>" id="<?php echo 'Filtro_'. $Row['seccion'];?>" onclick="Llamar_Quitarfiltro('<?php echo $Row['seccion'];?>')"/>
                 </div>
             </div>
 
+        </div>
             <!-- MUESTRA MENU DE BUSQUEDA POR MUNICIPIOS --> 
             <div class="cont_noticias--municipios borde_1" id="Con_Municipios">
-                <img class="Default_pointer" style="width: 2em; margin-left: 90%;"  onclick="MostrarMunicipios('<?php echo $Row['seccion'];?>')" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
-                <h1 class="cont_noticias--menuSeccion" id="NombreSeccion"></h1>
+                <img class="Default_pointer" style="width: 2em; margin-left: 90%;" onclick="MostrarMunicipios('<?php echo $Row['seccion'];?>')" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
+                <h1 class="cont_noticias--menuSeccion" id="NombreSeccion"></h1><!--contenido asignado desde Js-->
 
                 <label class="cont_noticias--label" onclick="Llamar_filtrarMunicipio('Aristides&nbsp;Bastidas')">Aristides Bastidas</label>
                 <label class="cont_noticias--label" onclick="Llamar_filtrarMunicipio('Simon&nbsp;Bolivar')">Bolivar</label>                     
@@ -50,22 +59,23 @@
                 <img class="Default_pointer" style="width: 2em; margin-left: 90%;" onclick="MostrarSecciones()" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_close_black_24dp.png'?>"/>
                 <h1 class="cont_noticias--menuSeccion">Secciones</h1>
 
-                <a href="#Cultura" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Cultura</a>
-                <a href="#Politica" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Politica</a>
-                <a href="#Sucesos" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Sucesos</a>
-                <a href="#Infraestructura" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Infraestructura</a>
-                <a href="#Salud" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Salud</a>
-                <a href="#Deporte" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Deporte</a>
-                <a href="#Comunidad y social" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Comunidad y sociales </a>
-                <a href="#Educación" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Educación</a>
-                <a href="#Economía" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Economía</a>
-                <a href="#Religión" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Religión</a>
-                <a href="#Ciencia y tecnología" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Ciencia y tecnología</a>
-                <a href="#Servicios públicos" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Servicios públicos </a>
-                <a href="#Turismo" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Turismo</a>
-                <a href="#Comuna" class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Comuna</a>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Cultura')">Cultura</label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Politica')">Politica</label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Sucesos')">Sucesos</label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Infraestructura')">Infraestructura</label>
+<!-- <a onclick="jumpto('Deporte');">One</a> -->
+
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Salud')">Salud</label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Deporte')">Deporte</label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Comunidad y sociales </label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Educación')">Educación</label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Economia')">Economía</label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Religion')">Religión</label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Ciencia y tecnología</label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion()">Servicios públicos </label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Turismo')">Turismo</label>
+<label class="cont_noticias--label Default_font--black" onclick="Mostrar_Seccion('Comuna')">Comuna</label>
             </div> 
-        </div>
 
         <!-- DIV NOTICIA -->
         <section class="cont_noticia--seccion seccion_JS" id="<?php echo 'Busqueda_' . $Row['seccion'];?>"> 
@@ -74,6 +84,7 @@
                 foreach($Key as $Key_2) :
                     if($Row['ID_Seccion'] == $Key_2['ID_Seccion']){ ?>
                         <div class="cont_noticia--sencilla Default_pointer " >
+                            
                             
                             <!-- IMAGEN -->
                             <a href="<?php echo RUTA_URL . '/Noticias_C/detalleNoticia/' . $Key_2['ID_Noticia'];?>" rel="noopener noreferrer" target="_blank">
@@ -103,7 +114,6 @@
 
                             <div class="cont_noticia--titular">
                                 <p class="cont_noticias--titulo"><?php echo $Key_2['titulo'];?></p>
-                                <!-- <hr class="cont_noticia--hr_1"> -->
                                 
                                 <!-- INFORMACION -->
                                 <?php
@@ -188,6 +198,7 @@
 <script src="<?php echo RUTA_URL . '/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/E_Noticia.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL . '/public/javascript/A_Noticia.js?v=' . rand();?>"></script>
+<script src="<?php echo RUTA_URL;?>/public/javascript/FullScreem.js?v=<?php echo rand();?>"></script> 
 
 </body>
 </html>

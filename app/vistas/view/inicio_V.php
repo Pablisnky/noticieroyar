@@ -1,5 +1,5 @@
 <!-- VENTANA MODAL AUTOMATICA INICIAL -->
-<?php //require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
+<?php require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
 
 <main class="cont_portada" id="Contenedor_principal">
     <?php
@@ -152,7 +152,7 @@
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/E_Inicio.js?v=' . rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_Inicio.js?v=' . rand();?>"></script>
-<script src="<?php echo RUTA_URL.'/public/convoca_SW.js';?>"></script>
+<!-- <script src="<?php //echo RUTA_URL.'/public/convoca_SW.js';?>"></script> -->
 <script src="<?php echo RUTA_URL;?>/public/javascript/FullScreem.js?v=<?php echo rand();?>"></script> 
 
 </body>

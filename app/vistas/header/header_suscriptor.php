@@ -30,7 +30,7 @@
     <body>				
 		<header class="header" id="Header">
 			<!-- ICONO HAMBURGUESA"-->				
-			<img class="header--menu header--menu--panel" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>
+			<img class="header--menu header--menu--panel Default_quitarEscritorio" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>
 
 			<!-- MEMBRETE FIJO -->
 			<label class="header__titulo">Noticiero Yaracuy</label>
@@ -38,11 +38,6 @@
 			<!-- FECHA -->
 			<label class="header__fecha">San Felipe, <?php echo date('d');?> de <?php echo date('M');?></label>			
 		</header>
-		
-		<!-- MEMBRETE DESPLAZANTE -->
-		<div class="tapa-logo" id="Tapa_Logo">
-			<label class="tapa-logo--font">Noticiero Yaracuy</label>
-		</div>
 
 <!-- ******************************************************************************************* -->
 			<!-- No se cierrra la etiqueta <body> porque se cierra en el footer -->

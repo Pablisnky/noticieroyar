@@ -10,7 +10,7 @@
             $_SESSION['ID_Suscriptor']?>">Inicio</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Panel_Artista_C/index/<?php echo 
             $_SESSION['ID_Suscriptor']?>" rel="noopener noreferrer">Obras de arte</a></li>
-        <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Denuncias</a></li>
+        <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Contraloria_C/denuncias" rel="noopener noreferrer">Denuncias</a></li>
         <li><a class="cont_panel--li" href="#" rel="noopener noreferrer">Noticias</a></li>
         <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Panel_Clasificados_C/Productos/<?php echo 
             $_SESSION['ID_Suscriptor']?>" rel="noopener noreferrer">Clasificados</a></li>

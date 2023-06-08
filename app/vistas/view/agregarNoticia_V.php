@@ -60,22 +60,22 @@
                 <div style="width: 100%; padding-left: 1%" id="AgregarNoticia">
                     <!-- TITULO -->
                     <label class="cont_panel--label">TItulo</label>
-                    <textarea class="textarea--panel" name="titulo" id="Titulo"></textarea> 
+                    <textarea class="textarea--panel borde_1 borde_2" name="titulo" id="Titulo"></textarea> 
                     <input class="cont_panel--contador" type="text" id="ContadorTitulo" value="90" readonly/>
 
                     <!-- RESUMEN -->
                     <label class="cont_panel--label">Resumen</label>
-                    <textarea class="textarea--panel" name="subtitulo" id="Resumen"></textarea> 
+                    <textarea class="textarea--panel borde_1 borde_2" name="subtitulo" id="Resumen"></textarea> 
                     <input class="cont_panel--contador" type="text" id="ContadorResumen" value="120" readonly/>
 
                     <!-- CONTENIDO -->
                     <label class="cont_panel--label">Contenido</label>
-                    <textarea class="cont_panel--textarea Default--textarea--scrol" name="contenido" id="Contenido" autosize="none"></textarea> 
+                    <textarea class="cont_panel--textarea Default--textarea--scrol borde_1 borde_2" name="contenido" id="Contenido" autosize="none"></textarea> 
                     <input class="cont_panel--contador" type="text" id="ContadorContenido" value="7000" readonly/>
                     
                     <!-- SECCION -->
                     <label class="cont_panel--label">Sección</label>
-                    <input class="login_cont--input borde--input" type="text" name="seccion" id="SeccionPublicar"/>
+                    <input class="login_cont--input borde--input" type="text" name="seccion" id="SeccionPublicar" readonly/>
                     
                     <!-- FECHA -->
                     <label class="cont_panel--label">Fecha</label>

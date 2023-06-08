@@ -14,7 +14,7 @@
             <div class="cont_panel--actualizar--contenido">
 
                 <!-- IMAGEN -->
-                <div style=" width: 30%">    
+                <div class="cont_panel--agregarublicidad">    
                     <label class="Default_pointer" for="imgInp">    
                         <figure>
                             <img class="cont_panel--imagen" name="imagenNoticia" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/imagen.png"/>

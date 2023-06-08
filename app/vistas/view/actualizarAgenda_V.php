@@ -4,19 +4,19 @@
     <!-- MENU LATERAL -->
     <?php require(RUTA_APP . '/vistas/view/PanelAdministrador_V.php');?>
 
-    <div style="margin-left: 20%;">
+    <div class="cont_panel--anuncio---main">
         <fieldset class="fieldset_1" id="Portada"> 
             <legend class="legend_1">Actualizar Agenda</legend>
             <form action="<?php echo RUTA_URL; ?>/Panel_C/recibeAgendaActualizada" method="POST" enctype="multipart/form-data" autocomplete="off">
-                <div style="display: flex; margin-bottom: 30px">
-                    <div class="cont_panel__did-1">      
-                        <!-- IMAGEN-->
-                        <figure>
-                            <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['agendaActualizar']['nombre_imagenAgenda'];?>"/> 
-                        </figure>
-
-                        <label for="imgInp"><span class="span_18 borde_1"><i class="fas fa-pencil-alt icono_4"></i></span></label>
-                        <input class="ocultar" type="file" name="imagenAgenda" id="imgInp"/>
+                <div class="cont_panel--anuncio" >
+                    <div class="cont_panel__did-1">  
+                        <label class="Default_pointer" for="imgInp">    
+                            <!-- IMAGEN-->
+                            <figure>
+                                <img class="cont_panel--imagen" alt="Fotografia Principal" id="blah" src="<?php echo RUTA_URL?>/public/images/<?php echo $Datos['agendaActualizar']['nombre_imagenAgenda'];?>"/> 
+                            </figure>
+                        </label>
+                        <input class="Default_ocultar" type="file" name="imagenAgenda" id="imgInp"/>
                     </div>
                                             
                     <!-- FECHA -->
@@ -33,6 +33,8 @@
             </form>
         </fieldset>
     </div>
+
+<script src="<?php echo RUTA_URL;?>/public/javascript/funcionesVarias.js?v=<?php echo rand();?>"></script>
 
 <script>       
     //Da una vista previa de la foto de la noticia

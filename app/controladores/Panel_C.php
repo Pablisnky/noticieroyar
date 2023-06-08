@@ -835,9 +835,9 @@
 		}
 
 		// recibe formulario que agrega una coleccion 
-		public function recibeColeccionAgregada(){
-			echo "BORRAR";
-		}
+		// public function recibeColeccionAgregada(){
+		// 	echo "BORRAR";
+		// }
 		
 		// recibe formulario que agrega un artista 
 		public function recibeArtistaAgregado(){
@@ -943,6 +943,7 @@
 			$Municipio = $_POST['municipio'];	
 			$Fecha = $_POST['fecha'];		
 			$Fuente = $_POST['fuente'];		
+			$Bandera = $_POST['bandera'];		
 
 			// echo "ID_Noticia: " . $ID_Noticia . '<br>';
 			// echo "Seccion: " . $Seccion . '<br>';
@@ -952,6 +953,7 @@
 			// echo "Municipio : " . $Municipio . '<br>';
 			// echo "Fecha : " . $Fecha . '<br>';
 			// echo "Fuente : " . $Fuente . '<br>';
+			// echo "Bandera : " . $Bandera . '<br>';
 			// exit;
 				
 			//Se ACTUALIZA la noticia de portada seleccionada
@@ -1181,12 +1183,12 @@
 
 			// COLECCION
 			//Si se cambio la coleccion se procede a actualizarlo
-			if($_POST['actualizarCol'] == 'SiActualizarCol'){
+			// if($_POST['actualizarCol'] == 'SiActualizarCol'){
 
-				$ID_Coleccion = $_POST['id_coleccion'];
+				// $ID_Coleccion = $_POST['id_coleccion'];
 				
 				//Usar en remoto
-				$Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
+				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
 				
 				// usar en local
 				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
@@ -1197,25 +1199,31 @@
 				// exit;
 				
 				//Se verifica si ya existe una coleccion para la noticia especificad, sino, se inserta una coleccion y si existe se actualiza
-				$VerificaColeccion = $this->Panel_M->consultar_DT_noticia_coleccion($ID_Noticia);
+				// $VerificaColeccion = $this->Panel_M->consultar_DT_noticia_coleccion($ID_Noticia);
 				
 				// echo '<pre>';
 				// print_r($VerificaColeccion);
 				// echo '</pre>';
 				// exit;
 
-				if($VerificaColeccion == Array()){ //Se inserta la coleccion
+				// if($VerificaColeccion == Array()){ //Se inserta la coleccion
 					//Se INSERTA la relacion de dependencia transitiva entre la coleccion y la noticia
-					$this->Panel_M->insertar_DT_ColeccionSeleccionada($ID_Noticia, $ID_Coleccion);
-				}
-				else{ //Se actualiza el anuncio
+					// $this->Panel_M->insertar_DT_ColeccionSeleccionada($ID_Noticia, $ID_Coleccion);
+				// }
+				// else{ //Se actualiza el anuncio
 					//Se ACTUALIZA la coleccion que corresponde a la noticia en la tabla de depencia transitiva "noticias_colecciones"
-					$this->Panel_M->actualizar_DT_noticia_coleccion($ID_Noticia, $ID_Coleccion);
-				}
-			}
+					// $this->Panel_M->actualizar_DT_noticia_coleccion($ID_Noticia, $ID_Coleccion);
+				// }
+			// }
 
-			header("Location:" . RUTA_URL . "/Panel_C/portadas");
-			die();
+			if($Bandera == 'Portada'){
+				header("Location:" . RUTA_URL . "/Panel_C/portadas");
+				die();
+			}
+			else{
+				header("Location:" . RUTA_URL . "/Panel_C/Not_Generales");
+				die();
+			}
 		}
 		
 		// recibe formulario que actualiza el perfil de un periodista
@@ -1463,7 +1471,18 @@
 		// *************************************************************************************************
 
 		// Muestra formulario con la noticia a actualizar
-		public function actualizar_noticia($ID_Noticia){
+		public function actualizar_noticia($DatosAgrupados){
+            //$DatosAgrupados contiene una cadena con el ID_Noticia y el nombre del archivo imagen, separados por coma, se convierte en array para separar los elementos
+            
+            $DatosAgrupados = explode(",", $DatosAgrupados);
+            
+            $ID_Noticia = $DatosAgrupados[0];
+            $Bandera = $DatosAgrupados[1];
+
+			// echo $ID_Noticia . '<br>';
+			// echo $Bandera . '<br>';
+			// exit;
+
 			//CONSULTA la noticia a actualizar
 			$NoticiaActualizar = $this->Panel_M->consultarNoticiaActualizar($ID_Noticia);
 
@@ -1484,7 +1503,8 @@
 				'imagenesNoticiaActualizar' => $ImagenesNoticiaActualizar,
 				'fuentes' => $Fuentes,
 				'anuncio' => $Anuncio,
-				'video' => $Video
+				'video' => $Video,
+				'bandera' => $Bandera
 			];
 
 			// echo '<pre>';
@@ -1531,7 +1551,7 @@
 			// exit();
 
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
+			$this->vista('header/header_Periodista');
 			$this->vista('view/actualizarAgenda_V', $Datos);
 		}
 		
@@ -1600,7 +1620,7 @@
 			// exit();
 
 			// El metodo vista() se encuentra en el archivo app/clases/Controlador.php
-			$this->vista('header/header_SoloEstilos');
+			$this->vista('header/header_Periodista');
 			$this->vista('view/actualizarAnuncio_V', $Datos);
 		}
 		

@@ -6,17 +6,17 @@
         <!-- ICONO AGREGAR -->
         <a href="<?php echo RUTA_URL?>/Panel_C/agregar_publicidad" rel="noopener noreferrer"><img class="cont_modal--agregar Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/agregar/outline_add_circle_outline_black_24dp.png';?>"/></a> 
         
-        <legend class="legend_1">Anuncios</legend>
+        <legend class="legend_1">Publicidad</legend>
         <?php
         foreach($Datos['anuncio'] as $Row) : ?>
-            <div style="display: flex; margin-bottom: 5%;" id="<?php echo $Row['ID_Anuncio'];?>">                
+            <div class="cont_panel--publicidad" id="<?php echo $Row['ID_Anuncio'];?>">                
                 <!-- IMAGEN ANUNCIO PUBLICITARIO -->
                 <div class="cont_panel__agenda--imagen">       
                     <figure>
                         <img class="cont_panel--imagen" name="imagenPrincipal" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Row['nombre_imagenPublicidad'];?>"/> 
                     </figure>
                 </div>
-                <div>                            
+                <div class="cont_panel__agenda--contenido">                            
                     <!-- CLIENTE -->
                     <label class="cont_panel--label">Cliente:</label>
                     <label><?php echo $Row['razonSocial'];?></label>

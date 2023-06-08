@@ -1,12 +1,13 @@
-<!-- Cargada desde Panel_Artista_C/index -->
-
-        
 <!-- SDN libreria JQuery, necesaria para la previsualización de la imagen del producto--> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <section class="sectionModal sectionModal--sinProducto">
     <div class="contenedor_24 contenedor_24--widt">
         <h1 class="h1_1 h1_1--fontZise bandaAlerta">Tu portafolio debe contar <br>con una fotogarfia de portada.</h1>
+        <!-- ICONO CERRAR -->        
+        
+        <a href='javascript: history.go(-1)'><img class="cont_modal--cerrar Default_pointer" style="width: 1em;" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/></a>
+        
         <br>
 
         <div class="contBoton">

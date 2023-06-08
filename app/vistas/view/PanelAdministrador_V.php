@@ -13,8 +13,7 @@ if($_SESSION["ID_Periodista"] == 1){  ?>
             <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/efemerides">Efemerides</a></li>
             <li><a class="cont_panel--li" href="<?php echo RUTA_URL . '/Panel_C/agenda/' . $_SESSION["ID_Periodista"]?>">Agenda</a></li>
             <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/obituario">Obituario</a></li>
-            <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/publicidad">Anuncios</a></li>
-            <!-- <li><a class="cont_panel--li" href="<?php //echo RUTA_URL?>/Panel_C/coleccion">Colecciones</a></li> -->
+            <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/publicidad">Publicidad</a></li>
             <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/galeria">Galeria de arte</a></li>
             <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Inicio_C">Sitio web</a></li>
             <li><hr style="margin: 2%; width: 60%"></li>
@@ -39,15 +38,10 @@ else{   ?>
             <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/Not_Generales" rel="noopener noreferrer">Noticias generales</a></li>
             <li><a class="cont_panel--li" href="<?php echo RUTA_URL . '/Panel_C/agenda/' . $_SESSION["ID_Periodista"]?>">Agenda de eventos</a></li>
             <li><a class="cont_panel--li" href="<?php echo RUTA_URL?>/Panel_C/publicidad">Publicidad</a></li>
-            <li><a class="cont_panel--li Default_quitarMovil" href="<?php echo RUTA_URL;?>/Inicio_C">Sitio web</a></li>
+            <li><a class="cont_panel--li" href="<?php echo RUTA_URL;?>/Inicio_C">Sitio web</a></li>
             <li><hr style="margin: 2%; width: 60%"></li>
             <li><p class="cont_panel--li Default_pointer" onclick = "cerrarSecion()">Cerrar sesión</p></li>
         </ul>
-        
-        <!-- MEMBRETE DESPLAZANTE -->
-        <!-- <div class="tapa-logo Default_quitarMovil" id="Tapa_Logo">
-            <label class="tapa-logo--font">Noticiero Yaracuy</label>
-        </div> -->
     </div>
     <?php
 }   ?>

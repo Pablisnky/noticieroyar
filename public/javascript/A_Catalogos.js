@@ -101,18 +101,19 @@ function llamar_PedidoEnCarrito(ID_Suscriptor, ValorDolar){
     peticion.send("null");
     
     localStorage.setItem('ValorDolarHoy', ValorDolar)         
-    Local_ValorDolarHoy = localStorage.getItem('ValorDolarHoy')
+    LS_ValorDolarHoy = localStorage.getItem('ValorDolarHoy')
 }                                                           
 function respuesta_PedidoEnCarrito(){
     if(peticion.readyState == 4){
         if(peticion.status == 200){            
             document.getElementById("Mostrar_Orden").style.display="block"
+
             //Coloca el cursor en el top de la pagina
-            window.scroll(0,0)            
+            // window.scroll(0,0)            
 
             document.getElementById('Mostrar_Orden').innerHTML=peticion.responseText
     
-            PedidoEnCarrito(Local_ValorDolarHoy)           
+            PedidoEnCarrito(LS_ValorDolarHoy)           
         } 
         else{
             alert('Hubo problemas con la petición en llamar_PedidoEnCarrito()')

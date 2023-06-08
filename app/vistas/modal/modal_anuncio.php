@@ -23,3 +23,12 @@
 	<p class="cont_modal--p_BuenasNuevs">Ya puedes opinar sobre las noticias e interactuar con otros lectores con la opción "Comentar"</p>
 	<img class="cont_modal--logo" src="<?php echo RUTA_URL?>/public/images/imprenta.jpg"/>
 </div> -->
+
+<!-- MODAL ANUNCIO ERSONAS CON DISCAPACIDAD VISUAL -->
+<div class="cont_modal" id="VentanaModal">		 	
+	<span class="material-icons-outlined cont_modal--cerrar detalle_cont--cerrar_BuenasNuevas Default_pointer" id="CerrarVentana">cancel</span>	
+	<h1 class="cont_modal--h1_titulo">www.noticieroyaracuy.com</h1>
+	<p class="cont_modal--p_BuenasNuevs">
+		Bienvenido a Noticiero Yaracuy, nuestro portal web esta adaptado para que personas con discapacidad visual puedan informarse sobre las noticias que acontecen en nuestro estado. Presiona o haz click y sosten por dos segundos la pantalla de tu telefono o computador para aceder al modo de accesibilidad.
+	</p>
+</div>

@@ -204,6 +204,7 @@
             <input class="Default_ocultar" type="text" name="ID_Noticia" value="<?php echo $Datos['noticiaActualizar']['ID_Noticia'];?>"/> 
             <input class="Default_ocultar" type="text" name="id_fotoPrincipal" value="<?php echo $Datos['noticiaActualizar']['ID_Imagen'];?>" />
             <input class="Default_ocultar" type="text" name="ID_Anuncio" value="<?php echo $Datos['anuncio']['ID_Anuncio'];?>" />
+            <input class="Default_ocultar" type="text" name="bandera" value="<?php echo $Datos['bandera'];?>" />
 
             <input class="boton" type="submit" value="Actualizar noticia"/>  
         </div>

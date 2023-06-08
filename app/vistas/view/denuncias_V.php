@@ -53,7 +53,7 @@
                             <?php
                         }   
                         else{   ?>
-                            <img style="text-align: center; display:block; margin: auto; font-size: 2em;" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>
+                            <img class="denuncias--icono" src="<?php echo RUTA_URL . '/public/iconos/cerrar/outline_cancel_black_24dp.png'?>"/>
                             <?php
                         }   ?>
                     </div>

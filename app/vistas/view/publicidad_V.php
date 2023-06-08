@@ -3,7 +3,7 @@
 	<!-- <label class="cont_poncho--label" id="Abrir">FullScreem</label> -->
 
 	<!-- ALFABETO -->
-<div style="position: fixed; width: 90%; margin-top: 1%; margin-left: 5%;" class="ocultarAlfabeto">
+<div class="cont_directorioCom"class="ocultarAlfabeto">
 	<ul style="background:; display: flex; list-style: none; justify-content: space-between; ">
 		<li><span class="hint--top-right hint--info hint--rounded" data-hint="Alergólogo Anestesiólogo Angiólogo"><a href="#marcadorA">A</a></span></li>
 		<li><span class="hint--top hint--info hint--rounded" data-hint=""><a href="#marcadorB">B</a></span></li>
@@ -34,14 +34,14 @@
 		<li><span class="hint--top hint--info hint--rounded" data-hint=""><a href="#marcadorZ">Z</a></span></li>
 	</ul>
 </div>
-<div class="cont_galeria--maain"> 
+<div class="cont_direccionCom--maain"> 
 	<div>
 		<h1 class="cont_galeria_h1 Default--textoVertical">Directorio comercial</h1>
 	</div>
 	<div class="cont_galeria" id="Cont_galeria_agenda">
 		<?php
 		foreach($Datos['publicidad'] as $Key) :  ?>
-			<div class="cont_Galeria--item">
+			<div class="cont_directorioCom--item">
 				<figure>
 					<img class="cont_Galeria--img lazyload" alt="Fotografia Anuncio" data-src="<?php echo RUTA_URL?>/public/images/publicidad/<?php echo $Key['nombre_imagenPublicidad'];?>" id="<?php echo $Key['ID_Anuncio']?>" loading="lazy" width="320" height="10"/> 
 				</figure>
