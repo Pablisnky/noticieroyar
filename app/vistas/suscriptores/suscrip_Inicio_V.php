@@ -4,10 +4,10 @@
 <div class="cont_suscriptor"> 
 
     <!-- CONTRALORIA SOCIAL -->
-    <a class="cont_suscriptor--item borde_1" href="#" rel="noopener noreferrer">
+    <a class="cont_suscriptor--item borde_1" href="<?php echo RUTA_URL . '/Panel_Denuncias_C/index/' . $Datos['ID_Suscriptor']?>" rel="noopener noreferrer">
         <div class="contenedor_27">
             <h1 class="cont_suscriptor--h1">Problemas reportados</h1>
-            <label class="label_5">0</label>
+            <label class="label_5"><?php echo $Datos['denuncias']['cantidadDenuncias'];?></label>
         </div>       
     </a>
 

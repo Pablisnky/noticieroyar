@@ -1,5 +1,5 @@
 <!-- VENTANA MODAL AUTOMATICA INICIAL -->
-<?php require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
+<?php //require(RUTA_APP . '/vistas/modal/modal_anuncio.php');?>
 
 <main class="cont_portada" id="Contenedor_principal">
     <?php

@@ -189,6 +189,12 @@ textarea{
 	border-width: 1px;
 	border-style: solid;
 }
+.borde_4{
+	border-width: 3px;
+}
+.borde_5{
+	border-radius: 15px;
+}
 .borde--input{
 	border-color: var(--BordeClaro);
 	border-width: 1px;
@@ -533,6 +539,7 @@ textarea{
 .small_3{
 	text-align: right;
 	padding-right: 3%;
+	margin-top: -1.6%;
 	font-size: 1.3vw;
 	display: block;
 	color: black;
@@ -1006,7 +1013,7 @@ textarea{
 	margin: auto;
 	padding-top: 2%;
  }
- .cont_galeria_h1{
+ .cont_agenda_h1{
 	 background-color: rgba(255, 165, 0, 0.7);
 	 position: fixed;
 	 left: 0%;
@@ -1017,15 +1024,15 @@ textarea{
 	 float: left;
  }
  .cont_Galeria--item{
-	background-color: black;
-	 display: inline-block;
-	 margin: 0 5px 40px;
-	 cursor: pointer;
+	display: inline-block;
+	margin: 0 5px 40px;
+	cursor: pointer;
  }
  .cont_Galeria--img{
 	width: 95%;
 	height: 95%;
 	margin: auto;
+	border-radius: 15px;
  }
  .cont_modal{
 	 background-color: rgba(0, 0, 0, 0.9);
@@ -1164,7 +1171,17 @@ textarea{
  }
  .cont_noticias--libreria{
 	min-width: 15%;
-	padding-top: 5%;
+	padding-top: 0%;
+	margin-right: 5%;
+ }
+ .cont_noticias--hemeroteca{
+	background-color: var(--OficialOscuro);
+	color: white;
+	display: block;
+	text-align: center;
+	margin-bottom: 15%;
+	font-size: 1.3vw;
+	padding: 1%;
  }
  .cont_noticia--h2{
 	font-size: 0.8em;
@@ -1206,7 +1223,7 @@ textarea{
  }
  .contenedor--obituario{
 	display: flex;
-	flex-wrap: wrap; /*permite que la fila continue en la parte de abajo*/
+	flex-wrap: wrap; 
 	justify-content: space-around;
 	width: 100%;
  }
@@ -1847,6 +1864,13 @@ textarea{
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
 }
+.imagenDetalle--denuncia{
+	height: 50vh;  
+	width: 100%;
+	margin: auto;
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	border-top-left-radius: 15px;
+}
 .login_cont--form{
 	padding-left: 5%;
 }
@@ -2080,6 +2104,7 @@ textarea{
 	top: 0%;
 	left: 0%;
 	width: 100%;
+	height: 60px;
 	display: flex;
 	flex-wrap: wrap; 
 	justify-content: space-around;
@@ -3136,10 +3161,10 @@ ul .menuContenedor_3{
 	justify-content: space-between;
 	align-items: center;
 	position: fixed;
-	top: 50px;
+	top: 60px;
 	left: 0px;
 	width: 100%;
-	height: 50px!important;	
+	/* height: 50px!important;	 */
 }
 .cont_clasificados--item-1{
 	width: 20%;
@@ -3879,10 +3904,6 @@ ul .menuContenedor_3{
    margin-bottom: 30px;
 }
 .cont_panel--imagen{
-   /* width: 30%; 
-   margin-right: 1.5%; */
-}
-.cont_panel--imagen{
    width: 100%; 
    height: 17vw;
    margin: auto;
@@ -3899,12 +3920,6 @@ ul .menuContenedor_3{
 .contInforPago{
 	display: none;
 }
-
-
-
-
-
-
 .contFlex{
 	width: 35%;
 	margin: auto;
@@ -3947,6 +3962,177 @@ ul .menuContenedor_3{
 }
 
 
+
+
+
+
+
+
+
+.cont_Museo{
+	height: 100vh;
+	
+}
+.cont_Museo--div{
+	background-color: yellow;
+	display: flex;
+	flex-wrap: wrap;
+	padding-top: 80px;
+	height: 100vh;
+	overflow-y: hidden;
+	scroll-snap-align: center;/* no permite que el elemento se vea a medias, siempre se vera su altura completa*/
+}
+.cont_Museo--div--item{
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	max-height: 85vh;
+	/*estas dos ultimas lineas hacen crecer hacia abajo el contenido del contenedor lo mas que pueda aun si su contenido no lo llena completamente, con esto se garantiza que el footer se manntendra abajo*/	
+}
+.cont_Museo--div--item--boton{
+	display: flex;
+	justify-content: center;
+}
+.cont_Museo--div--img{
+	display: flex;
+	flex-wrap: nowrap;
+	width: 50%;
+}
+.cont_Museo--imagen{
+	width: 90%;
+}
+.Museo--imgSala{
+	width: 100%;
+	height: 85vh;
+	margin: auto;
+	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+}
+.cont_Museo--div--imagen{	
+}
+.cont_Museo--img{
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+}
+.cont_Museo--imgSecundaria{
+	width: 5%;
+	position: relative;
+	top: 20%;
+	left: 93%;
+}
+.Museo--imgSecundaria{
+	height: 10vh;
+	width: 10vw;
+	border-radius: 10px;
+	margin-bottom: 15%;
+}
+.header--museo{
+	background-color: initial;
+	justify-content: center;
+}
+.header--menu--museo{
+	background-color: rgba(255, 255, 255, 0.8);
+	box-sizing: content-box; /*el padding crece sin disminuir el tamaño del contenido*/
+	padding: 5%;
+	border-radius: 10px;
+}
+.header--titulo--museo{
+	background-color: rgba(255, 255, 255, 0.8);
+	width: max-content;	
+	padding: 0% 1%;
+	border-radius: 10px;
+}
+.cont_Museo--membrete{
+	position: relative;
+	top: 20vh;
+	left: 3%;
+	width: max-content;
+	background-color: rgba(255, 255, 255, 0.5);
+	box-sizing: content-box; /*el padding crece sin disminuir el tamaño del contenido*/
+	padding: 0% 1%;
+	border-radius: 10px;
+}
+.cont_museo--menuSecundario{
+	background-color: white;
+	margin: auto;
+	position: absolute;
+	top: -700%;
+	right: 6%;
+	transition: all .5s; /*tiempo que tarda en aplicarse desde que se manda a llamar*/
+	margin-top: 2%;
+	opacity: 1;
+	width: 21%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+.cont_galeria_h1{
+	background-color: rgba(255, 165, 0, 0.7);
+	position: fixed;
+	top: 5vh;
+	right: 0%;
+	font-family: "Moon Dance", cursive;
+	font-weight: lighter;;
+	font-size: 3em;
+	text-align: center;
+	height: 95vh;
+	width: 4%;
+	float: left;
+}
+.cont_museo--label{
+	line-height: 30px;
+	display: block;
+	width: 90%;
+}  
+.cont_museo--label:hover{
+  background-color: var(--OficialClaro);
+  border-radius: 15px;
+  padding: 0% 5%;
+}
+.cont_salaExposicion--icono{
+	background-color: black; 
+	display: block; 
+	margin-left: 25%; 
+	margin-top: 100%
+}
+.cont_museo--sala{
+	/* font-family:  'Roboto', sans-serif; */
+	font-size: 4vw;
+	text-align: center;
+	height: 95vh;
+	width: 4%;
+}
+.cont_museo--label_1{
+	font-size: 1.3vw;
+	padding-left: 4%;
+}
+.cont_museo--p{
+	font-size: 1.8vw;
+	padding-left: 7%;
+	margin-bottom: 3%;
+}
+.cont_museo--fecha{
+	/* background-color: red;  */
+	display: flex;
+	justify-content: start; 
+	width: 90%; 
+	margin-left: 2%;
+	margin-bottom: 3%;
+}
+.cont_museo--boton{
+	position: relative;
+	bottom: 10pt;
+}
+.cont_museo--fecha--item{
+	/* background-color: yellow; */
+	width: 32%;
+}
+.cont_museo--textarea{
+	background-color: transparent;
+	margin-left: 2%;
+	width: 90%;
+	border: none;
+	margin-bottom: 3%;
+}
 
 
 

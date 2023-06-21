@@ -289,10 +289,9 @@
 		margin-bottom: initial;
 	}
 	.cont_portada--titular{
-		width: 90%;
+		width: 95%;
 		margin: auto;
 		margin-top: 1%;
-		text-align: center;
 	}
 	.cont_portada--texto{
 		width: 95%;
@@ -341,10 +340,6 @@
 		padding-left: 5px;
 		font-weight: bold; 
 		font-size: 0.9em;
-	}
-	.cont_noticias--libreria{
-	   min-width: 50%;
-	   padding-top: 15%;
 	}
 	.cont_radio{
 		display: flex; 
@@ -698,7 +693,7 @@
 }
 .cont_portada--imagen{
 	display: block;
-	max-height: 25vw;  
+	max-height: 100vw;  
 }
 .cont_podcast--imagen{
 	height: 50vh;  
@@ -922,11 +917,6 @@
 	position: absolute;
 	bottom: 0pt;
 	left: 55%;
-}
-.cont_portada--titular{
-	width: 95%;
-	margin: auto;
-	margin-top: 1%;
 }
 .cont_portada--texto{
 	width: 95%;
@@ -1873,13 +1863,13 @@
 .cont_panel--publicidad{
 	margin-bottom: 15%;
 }
-
-
-
-
-
-
-
+.imagenDetalle--denuncia{
+	height: 50vh;  
+	width: 100%;
+	margin: auto;
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	border-top-left-radius: 15px;
+}
 .cont_PanelNoticias{
 	display: block; 
 	margin-bottom: 25%;
@@ -1907,12 +1897,18 @@
 .carita--texto{
 	color: white;
 }
-
-
-
-
 .cont_adn-informacion{
 	padding-left: 15%;
+}
+.cont_noticias--libreria{
+   min-width: 50%;
+   padding-top: 15%;
+   margin-right: 15%;
+}
+.cont_noticias--hemeroteca{
+   margin-bottom: 15%;
+   font-size: 4.5vw;
+   padding: 1%;
 }
 
 

@@ -178,11 +178,12 @@
                 
             endforeach; ?>      
 
-            <div class="cont_noticias--libreria">        
+            <div class="cont_noticias--libreria">       
                 <?php        
                 foreach($Datos['cantidadSeccion'] as $Key) : 
                     foreach($Key as $Key_2) :
-                        if(($Row['ID_Seccion'] == $Key_2['ID_Seccion']) AND $Key_2['cantidad'] > 15){ ?>                    
+                        if(($Row['ID_Seccion'] == $Key_2['ID_Seccion']) AND $Key_2['cantidad'] > 15){ ?> 
+                            <label class="cont_noticias--hemeroteca">Hemeroteca <br><?php echo $Row['seccion']?></label>      
                             <a style="display: block; text-align: center;" href="<?php echo RUTA_URL . '/Noticias_C/archivo/' . $Row['ID_Seccion'];?>" rel="noopener noreferrer" target="_blank"><img class="Default_pointer" style="width: 2.5em; margin-left:41%;" src="<?php echo RUTA_URL . '/public/iconos/library/outline_library_books_black_24dp.png'?>"/>+ <?php echo $Key_2['cantidad'] - 15?> Noticias</a>
                             <?php
                         }

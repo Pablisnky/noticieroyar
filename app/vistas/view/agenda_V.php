@@ -1,12 +1,12 @@
 <div class="cont_galeria--maain">
 	<div>
-		<h1 class="cont_galeria_h1 Default--textoVertical">Agenda de eventos</h1>
+		<h1 class="cont_agenda_h1 Default--textoVertical">Agenda de eventos</h1>
 	</div>
 	<div class="cont_galeria cont_galeria--agenda" id="PantallaCompleta">
 		<?php
 		foreach($Datos['agenda'] as $Key) :  ?>
-			<div class="cont_Galeria--item" >
-				<figure id="">
+			<div class="cont_Galeria--item">
+				<figure>
 					<img class="cont_Galeria--img lazyload" id="Imagen_<?php echo $Key['ID_Agenda']?>" data-src="<?php echo RUTA_URL?>/public/images/agenda/<?php echo $Key['nombre_imagenAgenda'];?>" loading="lazy" width="320" height="10"/> 
 				</figure>
 			</div>

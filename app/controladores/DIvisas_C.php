@@ -1,7 +1,7 @@
 <?php
     class Divisas_C extends Controlador{
         public $ConsultaDivisas_M;
-        public $Dolar = 26.63; //se actualiza manualmente el precio del dolar segun tasa del BCV
+        public $Dolar = 27.10; //se actualiza manualmente el precio del dolar segun tasa del BCV
 
         public function __construct(){
             $this->ConsultaDivisas_M = $this->modelo("Divisas_M");

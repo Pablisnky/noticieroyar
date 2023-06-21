@@ -1181,41 +1181,6 @@
 				move_uploaded_file($_FILES['video']['tmp_name'], $Directorio_1.$Nombre_video);
 			}
 
-			// COLECCION
-			//Si se cambio la coleccion se procede a actualizarlo
-			// if($_POST['actualizarCol'] == 'SiActualizarCol'){
-
-				// $ID_Coleccion = $_POST['id_coleccion'];
-				
-				//Usar en remoto
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/public/images/colecciones/';
-				
-				// usar en local
-				// $Directorio_1 = $_SERVER['DOCUMENT_ROOT'] . '/proyectos/NoticieroYaracuy/public/images/colecciones/';
-				
-				// echo "ACTUALIZAR". '<br>';
-				// echo 'ID_Noticia ' . $ID_Noticia . '<br>';
-				// echo 'ID_Coleccion ' .  $ID_Coleccion;
-				// exit;
-				
-				//Se verifica si ya existe una coleccion para la noticia especificad, sino, se inserta una coleccion y si existe se actualiza
-				// $VerificaColeccion = $this->Panel_M->consultar_DT_noticia_coleccion($ID_Noticia);
-				
-				// echo '<pre>';
-				// print_r($VerificaColeccion);
-				// echo '</pre>';
-				// exit;
-
-				// if($VerificaColeccion == Array()){ //Se inserta la coleccion
-					//Se INSERTA la relacion de dependencia transitiva entre la coleccion y la noticia
-					// $this->Panel_M->insertar_DT_ColeccionSeleccionada($ID_Noticia, $ID_Coleccion);
-				// }
-				// else{ //Se actualiza el anuncio
-					//Se ACTUALIZA la coleccion que corresponde a la noticia en la tabla de depencia transitiva "noticias_colecciones"
-					// $this->Panel_M->actualizar_DT_noticia_coleccion($ID_Noticia, $ID_Coleccion);
-				// }
-			// }
-
 			if($Bandera == 'Portada'){
 				header("Location:" . RUTA_URL . "/Panel_C/portadas");
 				die();

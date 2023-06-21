@@ -1,10 +1,10 @@
 <style>    
-    #ConoDesplegar:hover #MenuSecundario { 
-        margin-top: 27vh; 
+    #ConoDesplegar:hover #MenuSecundario{ 
+        margin-top: 40vh; 
         opacity: 1;        
     }
     #ConoDesplegar:hover #IconoExpandir{
-	    transform: rotate(180deg); /*gira el texto para que se lea de abajo hacia arriba*/
+	    transform: rotate(180deg);/*gira el texto para que se lea de abajo hacia arriba*/
 	    transition: all 0.4s;
     }
     .cambiar{
@@ -28,7 +28,12 @@
         </div>
    
         <!-- MUESTRA MENU SECUNDARIO --> 
-        <div class="cont_galeria--menuSecundario borde_1" id="MenuSecundario">            
+        <div class="cont_galeria--menuSecundario borde_1" id="MenuSecundario">   
+            <div class="cont_detalle_Producto--suscriptor">
+                <img style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/museo/outline_attractions_black_24dp.png'?>"/>
+                <a class="cont_detalle_Producto--p Default_font--black" href="<?php echo RUTA_URL . '/Museo_C'?>">Museo Carmelo Fernandez</a>
+            </div>
+
             <div class="cont_detalle_Producto--suscriptor">
                 <img style="width: 1.5em; margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/pintor/outline_palette_black_24dp.png'?>"/>
                 <a class="cont_detalle_Producto--p Default_font--black" href="<?php echo RUTA_URL . '/Login_C/index/SinID_Noticia,SinBandera';?>">Exponer obras</a>
@@ -53,10 +58,10 @@
     <div class="cont_Artista--botones">
         <?php
         foreach($Datos['datosArtistas'] as $Row)   :   ?>
-            <div class="cont_artista--informacion">
+            <div class="cont_artista--informacion ">
                 <a href="<?php echo RUTA_URL . '/GaleriaArte_C/artistas/' . $Row['ID_SUscriptor'];?>">
-                    <figure>
-                        <img class="cont_Artista--img borde_1" name="imagenNoticia" alt="Fotografia Artista" src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Row['ID_SUscriptor'];?>_<?php echo $Row['nombreSuscriptor'];?>_<?php echo $Row['apellidoSuscriptor'];?>/perfil/<?php echo $Row['nombre_imagenPortafolio']?>"/>
+                    <figure class="efectoZoom">
+                        <img class="cont_Artista--img borde_1 efectoBrillo efectoZoom--imagen" name="imagenNoticia" alt="Fotografia Artista" src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Row['ID_SUscriptor'];?>_<?php echo $Row['nombreSuscriptor'];?>_<?php echo $Row['apellidoSuscriptor'];?>/perfil/<?php echo $Row['nombre_imagenPortafolio']?>"/>
                     </figure>
                 </a>
                 <div>
@@ -68,6 +73,9 @@
             <?php
         endforeach; ?>
     </div> 
+    <div>
+        <a class="cont_galeria_h1 Default--textoVertical Default_font--black" href="<?php echo RUTA_URL . '/Museo_C'?>">Museo Carmelo Fernandez</a>
+    </div>
 </div>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>

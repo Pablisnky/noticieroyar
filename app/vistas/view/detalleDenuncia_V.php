@@ -11,7 +11,7 @@
     <div class="cont_detalleDenuncia--imagen">
         <!-- IMAGEN PRINCIPAL-->
         <figure id="Contenedor_Imagen">                    
-            <img class="cont_detalle--imagen" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/denuncias/<?php echo $Datos['imagenDenunciaPrincipal']['nombre_imgDenuncia'];?>"/>
+            <img class="imagenDetalle--denuncia" alt="Fotografia Principal" src="<?php echo RUTA_URL?>/public/images/denuncias/<?php echo $Datos['imagenDenunciaPrincipal']['nombre_imgDenuncia'];?>"/>
         </figure>
         
         <!-- IMAGENES SECUNDARIAS EN MINIATURAS -->  

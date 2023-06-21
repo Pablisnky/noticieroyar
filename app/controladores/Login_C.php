@@ -137,7 +137,7 @@
             }
         }
 
-        //Invocado desde login_V, verfica información de ingreso enviada por el usuario e inicia sesion
+        // verfica información de ingreso enviada por el usuario e inicia sesion
         public function ValidarSesion(){
 
             $Recordar = isset($_POST["recordar"]);
@@ -223,13 +223,19 @@
                         require_once(RUTA_APP . "/controladores/Panel_Artista_C.php");
                         $Obras = new Panel_Artista_C();
                         $Cant_Obras = $Obras->cantidadObras($ID_Suscriptor);
+                        
+                        //Se CONSULTA al controlador Panel_Denuncias_C la cantidad de denunucias que ha realizado el suscriptor.
+                        require_once(RUTA_APP . "/controladores/Panel_Denuncias_C.php");
+                        $Denuncias = new Panel_Denuncias_C();
+                        $Cant_Denuncias = $Denuncias->denunciasSuscriptor($ID_Suscriptor);
 
                         $Datos = [
                             'ID_Suscriptor' => $ID_Suscriptor,
                             'nombre' => $Nombre,
                             'apellido' => $Apellido,
                             'clasificados' => $Comerciante,
-                            'obras' => $Cant_Obras
+                            'obras' => $Cant_Obras,
+                            'denuncias' => $Cant_Denuncias
                         ];
 
                         // echo '<pre>';

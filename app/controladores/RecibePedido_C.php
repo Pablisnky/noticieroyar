@@ -13,8 +13,8 @@
         
         //Invocado en carrito_V.php
         public function index(){    
-            if($_SESSION['Carrito'] == 1806){// Anteriormente en Carrito_C se generó la variable $_SESSION["verfica_2"] con un valor de 1906; con esto se evita que no se pueda recarga esta página.
-                unset($_SESSION['Carrito']);//se borra la sesión verifica.        
+           //  if($_SESSION['Carrito'] == 1806){Anteriormente en Carrito_C se generó la variable $_SESSION["verfica_2"] con un valor de 1906; con esto se evita que no se pueda recarga esta página.
+                // unset($_SESSION['Carrito']);//se borra la sesión verifica.        
             
                 // if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['nombreUsuario']) && !empty($_POST['apellidoUsuario']) && !empty($_POST['cedulaUsuario']) && !empty($_POST['telefonoUsuario']) && !empty($_POST['direccionUsuario']) && !empty($_POST['pedido'])){
                     
@@ -44,7 +44,7 @@
                     
                     $RecibeDatosPedido = [
                         // DATOS DEL PEDIDO
-                        'ID_Tienda' => filter_input(INPUT_POST, 'id_tienda', FILTER_SANITIZE_NUMBER_INT),
+                        // 'ID_Tienda' => filter_input(INPUT_POST, 'id_tienda', FILTER_SANITIZE_NUMBER_INT),
                         'FormaPago' => filter_input(INPUT_POST, 'formaPago', FILTER_UNSAFE_RAW),
                         'Despacho' => filter_input(INPUT_POST, 'entrega', FILTER_UNSAFE_RAW),      
                         'MontoEntrega' => filter_input(INPUT_POST, 'despacho', FILTER_UNSAFE_RAW),  
@@ -93,7 +93,7 @@
                     //Se reciben los detalles del pedido
                     if(is_array($Resultado) || is_object($Resultado)){
                         foreach($Resultado as $Key => $Value)   :
-                            $Seccion = $Value['Seccion'];
+                            $Seccion = 'N_P';
                             $Producto = $Value['Producto'];
                             $Cantidad = $Value['Cantidad'];
                             $Opcion = $Value['Opcion'];
@@ -102,7 +102,7 @@
                             $ID_Opcion = $Value['ID_Opcion'];
                             
                             //Se INSERTAN los detalles del pedido en la BD
-                            $this->ConsultaRecibePedido_M->insertarDetallePedido($RecibeDatosPedido['ID_Tienda'], $Ale_NroOrden, $Seccion, $Producto, $Cantidad, $Opcion, $Precio, $Total);
+                            $this->ConsultaRecibePedido_M->insertarDetallePedido($RecibeDatosUsuario['ID_Usuario'], $Ale_NroOrden, $Seccion, $Producto, $Cantidad, $Opcion, $Precio, $Total);
                             
                             // Se ACTUALIZA el inventario de los productos pedidos
                             //Se consulta la cantidad de existencia del producto
@@ -149,7 +149,7 @@
                     $CodigoTransferencia = $RecibeDatosPedido['CodigoTransferencia'];
                 }
                     
-                //Se INSERTAN los datos del usuario en la BD si el usuario acepta
+                //Se INSERTAN los datos del comprador en la BD si el usuario acepta
                 if($RecibeDatosUsuario['Suscribir'] == 'Suscribir'){
                     //Se consulta si el usuario ya existe en la BD
                     $UsuarioPedido = $this->ConsultaRecibePedido_M->consultarUsuario($RecibeDatosUsuario['Cedula']);
@@ -244,25 +244,6 @@
                 //     exit;
                 // }
 
-                //RECIBE CAPTURE ZELLE
-                if($_FILES['imagenPagoZelle']['name'] != '' && $RecibeDatosPedido['FormaPago'] == 'Zelle'){
-                    $archivonombre = $_FILES['imagenPagoZelle']['name'];
-                    $Ruta_Temporal = $_FILES['imagenPagoZelle']['tmp_name'];
-
-                    //Usar en remoto
-                    $directorio = $_SERVER['DOCUMENT_ROOT'] . '/public/images/capture/';
-
-                    //Subimos el fichero al servidor
-                    move_uploaded_file($Ruta_Temporal, $directorio.$archivonombre);
-
-                    //Se INSERTA el capture del pago por medio de un UPDATE debido a que ya existe un registro con el pedido en curso
-                    $this->ConsultaRecibePedido_M->UpdateCapturePago($Ale_NroOrden, $archivonombre);
-                }
-                // else{
-                //     echo 'No se recibio capture de pago en Zelle';
-                //     exit;
-                // }
-
                 // ****************************************
                 //DATOS ENVIADOS POR CORREOS
                 //Se CONSULTA el pedido recien ingresado a la BD
@@ -278,9 +259,9 @@
                 $Ale_CodigoDespacho = mt_rand(0001,9999);
 
                 $DatosCorreo = [
-                    'informacion_pedido' => $Pedido, // ID_Pedidos, seccion, producto, cantidad, opcion, precio, total, numeroorden, fecha, hora, montoDelivery, montoTienda, montoTotal, despacho, formaPago, codigoPago, capture
-                    'informacion_usuario' => $Usuario, //nombre_usu, apellido_usu, cedula_usu, telefono_usu, correo_usu, Estado_usu, Ciudad_usu, direccion_usu
-                    'informacion_tienda' => $Tienda, //ID_Tienda, correo_AfiCom, nombre_Tien
+                    'informacion_pedido' => $Pedido,
+                    'informacion_usuario' => $Usuario,
+                    'informacion_tienda' => $Tienda,
                     'Codigo_despacho' => $Ale_CodigoDespacho
                 ];
 
@@ -304,9 +285,9 @@
 
                 $this->vista('header/header');
                 $this->vista('view/RecibePedido_V', $Datos);
-            }
-            else{
-                header('location:' . RUTA_URL . '/Inicio_C/NoVerificaLink');
-            } 
+            // }
+            // else{
+            //     header('location:' . RUTA_URL . '/Inicio_C/NoVerificaLink');
+            // } 
         }
     }

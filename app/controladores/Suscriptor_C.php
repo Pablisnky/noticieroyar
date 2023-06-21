@@ -3,6 +3,7 @@
         private $ConsultaSuscriptor_M;
         private $Suscriptor;
         private $Instancia_Panel_C;
+        private $Instancia_PanelDenuncia_C;
 
         public function __construct(){
             // En las otras paginas donde se requiera la sesion ID_Suscriptor no se utiliza sseion_star debido a que este archivo es requerido en todas ellas
@@ -65,8 +66,15 @@
                 //Se consultan datos del suscriptor
                 $Suscriptor = $this->ConsultaSuscriptor_M->consultarSuscriptor($ID_Suscriptor);
                 
-                //Se CONSULTA al controlador Panel_Clasificado_C la cantidad de nuncios clasificados que tiene el suscriptor.
+                //Se CONSULTA al controlador Panel_Clasificado_C la cantidad de anuncios clasificados que tiene el suscriptor.
                 $Comerciante = $this->Instancia_Panel_C->clasificadoSuscriptor($ID_Suscriptor);
+
+                //Se comunica con al controlador Panel_Denuncias_C
+                require_once(RUTA_APP . "/controladores/Panel_Denuncias_C.php");
+                $this->Instancia_PanelDenuncia_C = new Panel_Denuncias_C();
+                
+                //Se CONSULTA al controlador Panel_Denuncias_C la cantidad de denuncias que ha realizado el suscriptor.
+                $Denuncias = $this->Instancia_PanelDenuncia_C->denunciasSuscriptor($ID_Suscriptor);
 
                 //CONSULTA cuantas obras tiene publicada un suscriptor
                 $Obras = $this->ConsultaSuscriptor_M->consultarObras($ID_Suscriptor);
@@ -78,6 +86,7 @@
                     'Pseudonimmo' => $Suscriptor[0]['pseudonimoSuscripto'],
                     'telefono' => $Suscriptor[0]['telefonoSuscriptor'],
                     'clasificados' => $Comerciante,
+                    'denuncias' => $Denuncias ,
                     'obras' => $Obras
                 ];
 

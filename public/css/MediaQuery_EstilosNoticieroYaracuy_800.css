@@ -323,10 +323,6 @@
 		font-weight: bold; 
 		font-size: 1em;
 	}
-	.cont_noticias--libreria{
-	   min-width: 50%;
-	   padding-top: 15%;
-	}
 	.cont_portada{
 		display: block;
 		margin-top: 13%;
@@ -338,10 +334,9 @@
 		margin-bottom: initial;
 	}
 	.cont_portada--titular{
-		width: 90%;
+		width: 95%;
 		margin: auto;
 		margin-top: 1%;
-		text-align: center;
 	}
 	.cont_portada--texto{
 		width: 95%;
@@ -647,11 +642,6 @@
 	margin-bottom: 2%;
 	padding-top: 10%;
 }
-.cont_portada--imagen{
-	max-height: 45vh; 
-	/* margin-top: 10%; */
-	/*object-fit: contain; fill, cover, contain, none, scale-down, inherit, initial, unset*/
-}
 .cont_podcast--titulo{
 	font-size: 1.3em;
 	text-align: center;
@@ -752,7 +742,7 @@
 }
 .cont_portada--imagen{
 	display: block;
-	max-height: 25vw;  
+	max-height: 100vw;  
 }
 .cont_podcast--imagen{
 	height: 50vh;  
@@ -794,15 +784,6 @@
 	height: 50vh; 
 	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
 }
-
-
-
-
-
-
-/* *************************************************************************************************** */
-/* *************************************************************************************************** */
-/* *************************************************************************************************** */
 .cont_panel--menu{
 	background-color: rgba(0, 0, 0, 0.9);
 	/* margin-top: -120%; */
@@ -1001,11 +982,6 @@
 	position: absolute;
 	bottom: 0pt;
 	left: 55%;
-}
-.cont_portada--titular{
-	width: 95%;
-	margin: auto;
-	margin-top: 1%;
 }
 .cont_portada--texto{
 	width: 95%;
@@ -1751,7 +1727,6 @@
 .cont_galeria--icono{
 	width: 8vw;
 }
-
 .p_1{
 	font-size: 2.6vh; 
 	padding: 5%;
@@ -1968,7 +1943,6 @@
 	display: block; 
 	margin-bottom: 30px;
 }
-
 .carita{
 	position: relative;
 	top: 35%;
@@ -1978,15 +1952,28 @@
 .carita--texto{
 	color: white;
 }
-
-
-
-
-
-
 .cont_adn-informacion{
 	padding-left: 15%;
 }
+.imagenDetalle--denuncia{
+	height: 50vh;  
+	width: 100%;
+	margin: auto;
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	border-top-left-radius: 15px;
+}
+.cont_noticias--libreria{
+   min-width: 50%;
+   padding-top: 15%;
+   margin-right: 15%;
+}
+.cont_noticias--hemeroteca{
+   margin-bottom: 15%;
+   font-size: 4.5vw;
+   padding: 1%;
+}
+
+
 
 
 

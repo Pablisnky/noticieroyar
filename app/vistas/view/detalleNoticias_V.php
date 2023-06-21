@@ -1,9 +1,9 @@
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     function speak(text, language) {
         var s = new SpeechSynthesisUtterance(text);
         s.lang = language;	speechSynthesis.speak(s);
     }
-</script>
+</script> -->
 
 
 
@@ -40,7 +40,12 @@
             </div> 
         </div>
 
-        <div class="detalle_cont--informacion">        
+        <div class="detalle_cont--informacion">     
+
+            <!-- TITULO --><!-- articulo para leer automaticamente con la API Web Speech API-->
+            <!-- <article> -->
+                <!-- <h1 class="detalle_cont--titulo"><?php //echo $Datos['detalleNoticia'][0]['titulo']?></h1>  -->
+            <!-- </article>    -->
 
             <!-- TITULO -->
             <h1 class="detalle_cont--titulo"><?php echo $Datos['detalleNoticia'][0]['titulo']?></h1> 
@@ -225,6 +230,22 @@
 <script src="<?php echo RUTA_URL.'/public/javascript/E_DetalleNoticia.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/A_DetalleNoticia.js?v='. rand();?>"></script>
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
+
+<!-- <script>
+    var container = document.getElementsByTagName("article")[0];
+    var contentToSpeak = container.innerText
+
+    function speak(text, language) {
+            var s = new SpeechSynthesisUtterance(text);
+            s.lang = language;	speechSynthesis.speak(s);
+    }
+            
+    function speakArticle() {
+        var container = document.getElementsByTagName("article")[0];
+        var contentToSpeak = container.innerText;
+        speak(contentToSpeak, 'es-es');
+    }
+</script> -->
 
 </body>
 </html>

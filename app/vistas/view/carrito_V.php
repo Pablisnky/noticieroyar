@@ -41,8 +41,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    
-                    <input class="Default_ocultar" type="text" id="Pedido" name="pedido"/>
                 </div>
             </article>
 
@@ -50,11 +48,11 @@
                 <div class="contGeneral">  
                     <div class="contInputRadio--carrito">     
                         <input type="radio" name="entrega" id="Domicilio_No" value="Domicilio_No"  form="DatosUsuario" onclick="Despacho()"/>
-                        <label class="contPedido--radio" for="Domicilio_No">Entrega acordado con vendedor: 0 Bs</label>
+                        <label class="contInputRadio__label" for="Domicilio_No">Entrega acordado con vendedor: 0 Bs</label>
                     </div>                    
                     <div class="contInputRadio--carrito">
                         <input type="radio" name="entrega" id="Domicilio_Si" value="Domicilio_Si" form="DatosUsuario" checked onclick="Despacho()"/>
-                        <label class="contPedido--radio" for="Domicilio_Si">Entrega a domicilio: <?php echo number_format($Datos['Delivery'], 2, ",", ".");?> Bs.</label>
+                        <label class="contInputRadio__label" for="Domicilio_Si">Entrega a domicilio: <?php echo number_format($Datos['Delivery'], 2, ",", ".");?> Bs.</label>
                         <input class="Default_ocultar" type="text" id="PrecioEnvio" value="<?php echo $Datos['Delivery'];?>"/>
                     </div>     
                     
@@ -423,12 +421,14 @@
                             </div>
                         </div>
                         
+                        <!-- BOTON DE ENVIO Y DATOS OCULTOS -->
                         <article>
                             <div class="contBoton">
-                                <!-- <input class="Default_ocultar" type="text" name="id_tienda" value="<?php echo $Datos['ID_Tienda']?>"/> -->
+                                <!-- <input class="Default_ocultar" type="text" name="id_tienda" value="<?php //echo $Datos['ID_Tienda']?>"/> -->
 
                                 <!-- Cargado via Ajax cuando el usuario es recordado -->
                                 <input class="Default_ocultar" type="text" id="ID_Usuario" name="ID_Usuario"/>
+                                <input class="Default_ocultar" type="text" id="Pedido" name="pedido"/>
 
                                 <input class="boton boton--alto botonJS" id="InformarPago" type="submit" value="Enviar Pago"/>
                             </div>

@@ -177,10 +177,6 @@
 	font-weight: bold; 
 	font-size: 0.9em;
 }
-.cont_noticias--libreria{
-   min-width: 50%;
-   padding-top: 15%;
-}
 .cont_portada_informacion--fecha{
 	display: inline; 
 }
@@ -238,17 +234,12 @@
 	width: 100%;
 }
 .cont_efemerides--titular{
-	/* width: 90%;
-	margin: auto;
-	text-align: center; */
 	justify-content: space-between;	
 }
 .cont_efemerides--contenido{
 	width: 95%;
 	text-align: justify;
-	/* height: 15%; */
 	margin: auto;
-	/*margin-top: 80vh;*/
 	padding: 3%; 	
 }
 .cont_reportes{
@@ -367,7 +358,6 @@
 	display: none !important;
 }
 .header{
-	/* display: block; */
 	height: 50px;
 }
 .header--menu{
@@ -395,10 +385,16 @@
 	width: 100%;
 	margin: auto;
 	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
-	
 }
 .imagen--portada--cole{
 	height: 40vh;  
+}
+.imagenDetalle--denuncia{
+	height: 50vh;  
+	width: 100%;
+	margin: auto;
+	object-fit: contain; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
+	border-top-left-radius: 15px;
 }
 .legend_1{
 	font-size: 1.1em;
@@ -641,7 +637,6 @@
 	max-width: 95%;
 	margin: auto;
 	margin-bottom: 15%;
-	/* padding-top: 15%; */
 }
 .cont_portada--imagen{
 	display: block;
@@ -1104,6 +1099,7 @@
 .cont_clasificados{
 	justify-content: space-around;
 	height: 35px!important;
+	top: 50px;
 }
 .cont_clasificados--item-1{
 	width: 100%;
@@ -1496,7 +1492,7 @@
 	 min-height: 74vh;
 	 margin: auto;
 	 padding-top: 0%;
-	 /*estas dos ultimas lineas hacen crecer el contenido del contenedor lo mas que pueda aun si su contenido no lo llena completamente, con esto se garantiza que el footer se manntendra abajo*/
+	 /*estas dos ultimas lineas hacen crecer hacia abajo el contenido del contenedor lo mas que pueda aun si su contenido no lo llena completamente, con esto se garantiza que el footer se manntendra abajo*/
 	 flex-grow: 1;
 	 flex-shrink: 1;
  }
@@ -1902,20 +1898,21 @@
 .carita--texto{
 	color: white;	
 }
-
-
-
-
-
-
-
-
-
 .cont_adn-informacion{
 	padding-left: 15%;
 }
 .tapa-logo--ADN--font--movil{
 	color: white;
+}
+.cont_noticias--libreria{
+   min-width: 50%;
+   padding-top: 15%;
+   margin-right: 15%;
+}
+.cont_noticias--hemeroteca{
+   margin-bottom: 15%;
+   font-size: 4.5vw;
+   padding: 1%;
 }
 
 

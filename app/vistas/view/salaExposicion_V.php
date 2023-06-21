@@ -1,5 +1,5 @@
 <!-- CARGA SDK FONTAWESONE PARA ICONOS DE REDES SOCIALES se uso esta libreria porque los iconos no tienen fondo-->
-<script src="https://kit.fontawesome.com/2d6db4c67d.js" crossorigin="anonymous"></script>
+<!-- <script src="https://kit.fontawesome.com/2d6db4c67d.js" crossorigin="anonymous"></script> -->
 
 <div style="display: flex; min-height: 100vh;" id="Obra">	
 	
@@ -7,54 +7,23 @@
 	<div class="cont_artista--vertical">
 
 		<!-- FLECHA REGRESAR -->
-		<a class="cont_artista--icono" href="<?php echo RUTA_URL?>/GaleriaArte_C"><img src="<?php echo RUTA_URL?>/public/iconos/flecha/outline_arrow_back_white_24dp.png"/></a>
+		<a class="cont_salaExposicion--icono" href="<?php echo RUTA_URL?>/Museo_C/#<?php echo $Datos['obrasSala'][0]['ID_Sala'];?>"><img src="<?php echo RUTA_URL?>/public/iconos/flecha/outline_arrow_back_white_24dp.png"/></a>
 
 		<!-- NOMBRE ARTISTA -->
-		<p class="cont_artista--textoVertical Default--textoVertical" id="DescripcionArtista"><?php echo $Datos['datosArtistas']['nombreSuscriptor'] . ' ' . $Datos['datosArtistas']['apellidoSuscriptor'];?></p>
-
-		<!-- UBICACION ARTISTA -->
-		<p class="cont_artista--textoVertical--2 Default--textoVertical"><?php echo $Datos['datosArtistas']['estadoSuscriptor'] . ' - ' . $Datos['datosArtistas']['paisSuscriptor'];?></p>
-		
-		<!-- COMPARTIR REDES SOCIALES -->
-		<div class="cont_artista--redesSociales cont_artista--margin">
-			<!-- FACEBOOK -->
-			<div class="cont_catalogos--iconos">
-				<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo RUTA_URL;?>/GaleriaArte_C/artistas/<?php echo $Datos['datosArtistas']['ID_Suscriptor']?>" target="_blank"><i class="fa-brands fa-facebook-f fa-sm catalogo-RS" style="color: rgba(255, 255, 255, 0.5)"></i></a>
-			</div>        
-			
-			<!-- TWITTER -->
-			<div class="cont_catalogos--iconos">
-				<a href="https://twitter.com/intent/tweet?url=<?php echo RUTA_URL;?>/GaleriaArte_C/artistas/<?php echo $Datos['datosArtistas']['ID_Suscriptor']?>" target="_blank"><i class="fa-brands fa-twitter catalogo-RS" style="color: rgba(255, 255, 255, 0.5)"></i></a>
-			</div>     
-			
-			<!-- E-MAIL -->
-			<div class="cont_catalogos--iconos">
-				<a href="#" target="_blank"><i class="fa-regular fa-envelope catalogo-RS" style="color: rgba(255, 255, 255, 0.5)"></i></a>
-			</div>      
-			
-			<!-- WHATSAPP -->
-			<div class="whatsapp cont_catalogos--iconos">
-				<a href="whatsapp://send?text=Portafolio de obras <?php echo $Datos['datosArtistas']['nombreSuscriptor'] . ' ' . $Datos['datosArtistas']['apellidoSuscriptor']?>&nbsp;<?php echo RUTA_URL?>/GaleriaArte_C/artistas/<?php echo $Datos['datosArtistas']['ID_Suscriptor']?>" data-action="share/whatsapp/share"><i class="fa-brands fa-whatsapp catalogo-RS WHhatsApp-catalogo" style="color: rgba(255, 255, 255, 0.5)"></i></a>
-			</div>    
-			<div>
-				<p style="text-align: center; font-size: 0.7em; color: rgba(255, 255, 255, 0.5)">Compartir</p>
-			</div>
-		</div> 
+		<p class="cont_artista--textoVertical Default--textoVertical" id="DescripcionArtista">aaaaaa</p>
 	</div>
 
 	<!-- OBRAS CON LAZYLOAD -->
 	<div class="cont_obras" id="ContObras">
 		<div class="cont_galeria cont_galeria--obras" id="Cont_obras--mosaico">
 			<?php 
-			foreach($Datos['obraArtista'] as $Row) :
-				if($Row['ID_Suscriptor'] == $Datos['datosArtistas']['ID_Suscriptor']){	?>
-					<div class="cont_Galeria--item efectoZoom">
-						<figure>
-							<img class="cont_Galeria--img lazyload borde_1 imagen_2--JS efectoBrillo efectoZoom--imagen" name="imagenNoticia" alt="Fotografia Obra" data-src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Row['ID_Suscriptor'];?>_<?php echo $Datos['datosArtistas']['nombreSuscriptor'];?>_<?php echo $Datos['datosArtistas']['apellidoSuscriptor'];?>/<?php echo $Row['imagenObra']?>" id="<?php echo $Row['ID_Obra']?>" loading="lazy" width="320" height="10"/>
-						</figure>
-					</div> 
-					<?php 
-				}
+			foreach($Datos['obrasSala'] as $Row) :	?>
+                <div class="cont_Galeria--item efectoZoom">
+                    <figure>
+                        <img class="cont_Galeria--img lazyload borde_1 imagen_2--JS efectoBrillo efectoZoom--imagen" name="imagenNoticia" alt="Fotografia Obra" data-src="<?php echo RUTA_URL?>/public/images/museo/<?php echo $Row['ID_Sala'];?>/<?php echo $Row['nombreImagenSala']?>" id="" loading="lazy" width="320" height="10"/>
+                    </figure>
+                </div> 
+                <?php 
 			endforeach; ?>
 		</div>
 	</div>
@@ -62,7 +31,7 @@
 
 <!-- DESCRIPCION DEL ARTISTA -->
 <div class="cont_descripcionArtista" id="VerArtista">
-	<div class="cont_descripcionArtista--titulo">
+	<!-- <div class="cont_descripcionArtista--titulo">
 		<img class="cont_artista--icono Default_pointer" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/flecha/outline_arrow_back_white_24dp.png'?>"/>
 
 		<p class="cont_artista--textoVertical Default--textoVertical"id="DescripcionArtista"><?php echo $Datos['datosArtistas']['nombreSuscriptor'] . ' ' . $Datos['datosArtistas']['apellidoSuscriptor'];?></p>
@@ -71,7 +40,7 @@
 		<figure>
 			<img class="cont_descripcionArtista--img" alt="Fotografia Artista" src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Row['ID_Suscriptor'];?>_<?php echo $Datos['datosArtistas']['nombreSuscriptor'];?>_<?php echo $Datos['datosArtistas']['apellidoSuscriptor'];?>/perfil/<?php echo $Datos['datosArtistas']['nombre_imagenPortafolio'];?>" />
 		</figure>
-	</div>
+	</div> -->
 	<div class="cont_descripcionArtista--descripcion">
 		<p style="color:white">Why do we use it?</p>
 		<p style="color:white">VICTORIA PATRICIA PROAÑO TOVAR
@@ -150,7 +119,7 @@ Talento joven, museo Carmelo Fernández san Felipe Edo Yaracuy 1996.</p>
 </div>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
-<script src="<?php echo RUTA_URL;?>/public/javascript/E_Artista.js?v=<?php echo rand();?>"></script>  
+<!-- <script src="<?php //echo RUTA_URL;?>/public/javascript/E_Artista.js?v=<?php //echo rand();?>"></script>   -->
 
 <!-- Script para evaluar si el navegador soporta lazy-load -->
 <script>

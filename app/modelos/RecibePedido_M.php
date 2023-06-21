@@ -71,13 +71,13 @@
         
         function insertarDetallePedido($RecibeDatosPedido, $Ale_NroOrden, $Seccion, $Producto, $Cantidad, $Opcion, $Precio, $Total){
             $stmt = $this->dbh->prepare(
-                "INSERT INTO detallepedido(ID_Tienda, numeroorden, seccion, producto, cantidad, opcion, precio, total)
-                VALUES(:ID_TIENDA, :Ale_NroOrden, :SECCION, :PRODUCTO, :CANTIDAD, :OPCION, :PRECIO, :TOTAL)"
+                "INSERT INTO detallepedido(ID_Usuario, numeroorden, seccion, producto, cantidad, opcion, precio, total)
+                VALUES(:ID_USUARIO, :Ale_NroOrden, :SECCION, :PRODUCTO, :CANTIDAD, :OPCION, :PRECIO, :TOTAL)"
             ); 
 
             //Se vinculan los valores de las sentencias preparadas
             //ztmt es una abreviatura de statement 
-            $stmt->bindParam(':ID_TIENDA', $RecibeDatosPedido);
+            $stmt->bindParam(':ID_USUARIO', $RecibeDatosPedido);
             $stmt->bindParam(':Ale_NroOrden', $Ale_NroOrden);
             $stmt->bindParam(':SECCION', $Seccion);
             $stmt->bindParam(':PRODUCTO', $Producto);
