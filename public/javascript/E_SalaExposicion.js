@@ -38,9 +38,9 @@ document.getElementById("Cont_obras--mosaico").addEventListener('click', functio
     
     if(e.target.classList[3] == "imagen_2--JS"){
         var ID_Obra = e.target.id
-        // console.log("ID_Obra", ID_Obra)
+        console.log("ID_Obra", ID_Obra)
         
-        window.location.replace("../../GaleriaArte_C/detalleObra/" + ID_Obra);
+        window.location.replace("../../Museo_C/detalleObra/" + ID_Obra);
     }
 }, false)
 

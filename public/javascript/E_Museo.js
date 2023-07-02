@@ -43,41 +43,13 @@ window.addEventListener("click", function(e){
 
 // *******************************************************************************************
 //Se cambia el color de fondo de la sala
-    window.addEventListener("scroll",function(){
-        console.log("_____ Desde CambioColor() _____ ")
-
-        document.getElementById("ComandoMenu").classList.remove("header--menu--museo")
-        document.getElementById("MembreteFitjo").classList.remove("header--titulo--museo")
-        document.getElementById("IconoExpandir").classList.remove("header--menu--museo")
-
-        //Se consulta la distancia en px desde el top de la pantalla hasta el borde superior de cada cont_Museo--div"
-        let ProfundidadSala_1 = document.getElementById("Sala_1")
-        let sala_1 = ProfundidadSala_1.getBoundingClientRect().top
-
-        let ProfundidadSala_2 = document.getElementById("Sala_2")
-        let sala_2 = ProfundidadSala_2.getBoundingClientRect().top
-
-        let ProfundidadSala_3 = document.getElementById("Sala_3")
-        let sala_3 = ProfundidadSala_3.getBoundingClientRect().top
-        // console.log("C= ", C)
-
-        let ProfundidadSala_4 = document.getElementById("Sala_4")
-        let sala_4 = ProfundidadSala_4.getBoundingClientRect().top
-        // console.log("D= ", D)
-
-        if(sala_1 == 0){//55 es la altura del header
-            document.getElementById("Sala_1").style.backgroundColor = "rgb(153, 162, 165)"
-            document.getElementById("Sala_1").style.transitionDuration = "1s"
-            document.getElementById("Sala_2").style.backgroundColor = "initial"
-            document.getElementById("Sala_3").style.backgroundColor = "initial"
-            document.getElementById("Sala_4").style.backgroundColor = "initial"
+    function cambiaColor(ID_Sala){
+        if(ID_Sala == 'Sala_1'){
+            document.getElementById("Sala_1").style.backgroundColor = "#A0AEB1"
+            document.getElementById("Header").style.backgroundColor = "transparent"
+            
             document.getElementById("ComandoMenu").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_menu_black_24dp.png'
             document.getElementById("IconoExpandir").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_more_vert_black_24dp.png'
-
-            // let a = document.getElementsByTagName("a")
-            // for(let i = 0; i < a.length; i++){
-            //     a[i].style.color = "white"
-            // }
 
             let Texto = document.getElementsByTagName("p")
             for(let i = 0; i < Texto.length; i++){
@@ -99,12 +71,10 @@ window.addEventListener("click", function(e){
                 small[i].style.color = "black"
             }
         }
-        else if(sala_2 == 0){
+        else if(ID_Sala == 'Sala_2'){
             document.getElementById("Sala_2").style.backgroundColor = "rgb(0, 0, 0)"
-            document.getElementById("Sala_2").style.transitionDuration = "1s"
-            document.getElementById("Sala_1").style.backgroundColor = "initial"
-            document.getElementById("Sala_3").style.backgroundColor = "initial"
-            document.getElementById("Sala_4").style.backgroundColor = "initial"
+            document.getElementById("Header").style.backgroundColor = "transparent"
+
             document.getElementById("ComandoMenu").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_menu_white_24dp.png'
             document.getElementById("IconoExpandir").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_more_vert_white_24dp.png'
 
@@ -128,12 +98,10 @@ window.addEventListener("click", function(e){
                 small[i].style.color = "white"
             }
         }
-        else if(sala_3 == 0){
-            document.getElementById("Sala_3").style.backgroundColor = "rgb(172, 181, 178)"
-            document.getElementById("Sala_3").style.transitionDuration = "1s"
-            document.getElementById("Sala_1").style.backgroundColor = "initial"
-            document.getElementById("Sala_2").style.backgroundColor = "initial"
-            document.getElementById("Sala_4").style.backgroundColor = "initial"
+        else if(ID_Sala == 'Sala_3'){
+            document.getElementById("Sala_3").style.backgroundColor = "rgb(190, 201, 203)"
+            document.getElementById("Header").style.backgroundColor = "transparent"
+
             document.getElementById("ComandoMenu").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_menu_black_24dp.png'
             document.getElementById("IconoExpandir").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_more_vert_black_24dp.png'
 
@@ -157,12 +125,10 @@ window.addEventListener("click", function(e){
                 small[i].style.color = "black"
             }
         }
-        else if(sala_4 == 0){
-            document.getElementById("Sala_4").style.backgroundColor = "rgb(177, 177, 169)"
-            document.getElementById("Sala_4").style.transitionDuration = "1s"
-            document.getElementById("Sala_1").style.backgroundColor = "initial"
-            document.getElementById("Sala_2").style.backgroundColor = "initial"
-            document.getElementById("Sala_3").style.backgroundColor = "initial"
+        else if(ID_Sala == 'Sala_4'){
+            document.getElementById("Sala_4").style.backgroundColor = "rgb(219, 205, 196)"
+            document.getElementById("Header").style.backgroundColor = "transparent"
+
             document.getElementById("ComandoMenu").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_menu_black_24dp.png'
             document.getElementById("IconoExpandir").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_more_vert_black_24dp.png'
 
@@ -186,10 +152,10 @@ window.addEventListener("click", function(e){
                 small[i].style.color = "black"
             }
         }
-    })
+    }
 
 // *******************************************************************************************
-//Se cambia el color de fondo de la sala
+//hace scroll a la pantalla de las salas
     function pantalla(ID_Sala, Movimiento){
         console.log("_____ Desde pantalla() _____ ", ID_Sala, Movimiento)
 
@@ -199,20 +165,147 @@ window.addEventListener("click", function(e){
         // console.log(text)
 
         if(Movimiento == 'Arriba'){
+            
             // Se construye el ID_Sala solicitado
             text = parseInt(text) - 1
             // console.log(text)
 
-            let VerSala = 'Sala_' + text
-            console.log(VerSala)
+            var VerSala = 'Sala_' + text
+            // console.log(VerSala)
             
+
+            if(VerSala == 'Sala_0'){
+                // remoto
+                // location.replace('https://www.noticieroyaracuy.com/Museo_C');
+                
+                // local
+                location.replace('http://localhost/proyectos/noticieroyaracuy/Museo_C');
+            }
+            else{
+                //Coloca el curso en el ancla
+                window.location.hash = '#'+VerSala; 
+            }
         }
         else if(Movimiento == 'Abajo'){
             // Se construye el ID_Sala solicitado
             text = parseInt(text) + 1
             // console.log(text)
             
-            let VerSala = 'Sala_' + text
+            var VerSala = 'Sala_' + text
             console.log(VerSala)
+
+            //Coloca el curso en el ancla
+            window.location.hash = '#'+VerSala; 
+        }
+
+        // Se cambian colores de fondo, texto e icono
+        if(VerSala == 'Sala_1'){
+            document.getElementById("Sala_1").style.backgroundColor = "#A0AEB1"
+            document.getElementById("Header").style.backgroundColor = "transparent"
+            
+        
+            document.getElementById("ComandoMenu").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_menu_black_24dp.png'
+            document.getElementById("IconoExpandir").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_more_vert_black_24dp.png'
+
+            let Texto = document.getElementsByTagName("p")
+            for(let i = 0; i < Texto.length; i++){
+                Texto[i].style.color = "black"
+            }
+
+            let label = document.getElementsByTagName("label")
+            for(let i = 0; i < label.length; i++){
+                label[i].style.color = "black"
+            }
+
+            let textarea = document.getElementsByTagName("textarea")
+            for(let i = 0; i < textarea.length; i++){
+                textarea[i].style.color = "black"
+            }
+
+            let small = document.getElementsByTagName("small")
+            for(let i = 0; i < small.length; i++){
+                small[i].style.color = "black"
+            }
+        }
+        else if(VerSala == 'Sala_2'){
+            document.getElementById("Sala_2").style.backgroundColor = "rgb(0, 0, 0)"
+            document.getElementById("Header").style.backgroundColor = "transparent"
+            
+            document.getElementById("ComandoMenu").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_menu_white_24dp.png'
+            document.getElementById("IconoExpandir").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_more_vert_white_24dp.png'
+
+            let Texto = document.getElementsByTagName("p")
+            for(let i = 0; i < Texto.length; i++){
+                Texto[i].style.color = "white"
+            }
+
+            let label = document.getElementsByTagName("label")
+            for(let i = 0; i < label.length; i++){
+                label[i].style.color = "white"
+            }
+
+            let textarea = document.getElementsByTagName("textarea")
+            for(let i = 0; i < textarea.length; i++){
+                textarea[i].style.color = "white"
+            }
+
+            let small = document.getElementsByTagName("small")
+            for(let i = 0; i < small.length; i++){
+                small[i].style.color = "white"
+            }
+        }
+        else if(VerSala == 'Sala_3'){
+            document.getElementById("Sala_3").style.backgroundColor = "rgb(190, 201, 203)"
+            document.getElementById("Header").style.backgroundColor = "transparent"
+            
+            document.getElementById("ComandoMenu").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_menu_black_24dp.png'
+            document.getElementById("IconoExpandir").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_more_vert_black_24dp.png'
+
+            let Texto = document.getElementsByTagName("p")
+            for(let i = 0; i < Texto.length; i++){
+                Texto[i].style.color = "black"
+            }
+
+            let label = document.getElementsByTagName("label")
+            for(let i = 0; i < label.length; i++){
+                label[i].style.color = "black"
+            }
+
+            let textarea = document.getElementsByTagName("textarea")
+            for(let i = 0; i < textarea.length; i++){
+                textarea[i].style.color = "black"
+            }
+
+            let small = document.getElementsByTagName("small")
+            for(let i = 0; i < small.length; i++){
+                small[i].style.color = "black"
+            }
+        }
+        else if(VerSala == 'Sala_4'){
+            document.getElementById("Sala_4").style.backgroundColor = "rgb(219, 205, 196)"
+            document.getElementById("Header").style.backgroundColor = "transparent"
+            
+            document.getElementById("ComandoMenu").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_menu_black_24dp.png'
+            document.getElementById("IconoExpandir").src = 'http://localhost/proyectos/noticieroyaracuy/public/iconos/menu/outline_more_vert_black_24dp.png'
+
+            let Texto = document.getElementsByTagName("p")
+            for(let i = 0; i < Texto.length; i++){
+                Texto[i].style.color = "black"
+            }
+
+            let label = document.getElementsByTagName("label")
+            for(let i = 0; i < label.length; i++){
+                label[i].style.color = "black"
+            }
+
+            let textarea = document.getElementsByTagName("textarea")
+            for(let i = 0; i < textarea.length; i++){
+                textarea[i].style.color = "black"
+            }
+
+            let small = document.getElementsByTagName("small")
+            for(let i = 0; i < small.length; i++){
+                small[i].style.color = "black"
+            }
         }
     }

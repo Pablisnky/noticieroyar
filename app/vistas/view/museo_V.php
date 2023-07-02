@@ -1,9 +1,31 @@
-    
-    <section style="overflow: hidden;">
-        <div class="cont_Museo">
+
+		<!-- estilos parametrizados -->
+		<?php
+			if($Datos['bandera'] == 'Sala_1'){                
+				$background_content = '#A0AEB1';
+			}
+            else if($Datos['bandera'] == 'Sala_2'){   
+				$background_content = 'rgb(0, 0, 0)';
+            }
+            else if($Datos['bandera'] == 'Sala_3'){   
+				$background_content = 'rgb(190, 201, 203)';
+            }
+            else if($Datos['bandera'] == 'Sala_4'){   
+				$background_content = 'rgb(219, 205, 196)';
+            }
+		?>
+		<style>
+			/* Se parameretriza la clase CSS segun el valor de la bandera */
+			.Param_content{
+				background-color: <?php echo $background_content?>;
+			}
+		</style>
+
+   <section style="scroll-snap-type: y mandatory;">
+        <div class="cont_Museo" id="Sala_0">
 
             <!-- IMAGEN PRINCIPAL -->
-            <figure class="" id="Inicio">
+            <figure id="Inicio">
                 <img class="cont_Museo--img" name="imagenNoticia" alt="Fotografia Artista" src="<?php echo RUTA_URL?>/public/images/museo/imag_01.jpeg"/>
             </figure>
 
@@ -21,20 +43,26 @@
             
             <!-- MEMBRETE -->
             <div class="cont_Museo--membrete">
-                <h1 class="h_1">Museo Carmelo Fernandez</h1>
-                <small class="small_3">San Felipe - Yaracuy</small>
                 <label>Lunes a viernes</label>
                 <br>
                 <label>8:00 am - 4:00 pm</label>
                 <br>
-                <small>2da Avenida entre calles 14 y 15.</small>
+                <!-- <small>Complejo Cultural Andres Bello</small>
+                <br> -->
+                <small>2da Avenida entre calles 13 y 15. &nbsp;&nbsp; San Felipe - Yaracuy</small>
+            </div>
+            
+            <!-- FLECHA ABAJO -->	
+            <div class="cont_Museo--flechaUnica Default_pointer"> 
+                <img style="background-color: black; border-radius: 50%; width: 3vw; display: block; margin: auto; transform: rotate(90deg);" onclick="pantalla('Sala_0','Abajo')" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_white_24dp.png'?>"/>
             </div>
         </div> 
+
 
         <!-- SALAS DE EXPOSICION-->
         <?php
         foreach($Datos['exposiciones'] as $Key) :   ?>
-            <div class="cont_Museo cont_Museo--div" id="<?php echo $Key['ID_Sala']?>">
+            <div class="cont_Museo cont_Museo--div Param_content" style="scroll-snap-align: center;" id="<?php echo $Key['ID_Sala']?>">
                 <div class="cont_Museo--div--item">
                     <div style="flex-grow: 1;flex-shrink: 1;">
                         <figure class="">
@@ -46,7 +74,7 @@
                         <label class="cont_museo--label_1">Colección</label>
                         <p class="cont_museo--p"><?php echo $Key['nombreExposicion']?>.</p>
                         
-                        <label class="cont_museo--label_1">Obras de la colección</label> 
+                        <label class="cont_museo--label_1">Obras en exposición</label> 
                         <?php
                         foreach($Datos['nroObras'] as $Row)   :
                             if($Key['ID_Exposicion'] == $Row['ID_Exposicion']){ ?>
@@ -58,25 +86,33 @@
                         <div class="cont_museo--fecha">
                             <div class="cont_museo--fecha--item">
                                 <label class="cont_museo--label_1">Desde</label>
-                                <p class="cont_museo--p"><?php echo $Key['fechaInicio']?></p> 
+                                <p class="cont_museo--p"><?php echo $Key['fecha_Inicio']?></p> 
                             </div>
                             <div class="cont_museo--fecha--item">
                                 <label class="cont_museo--label_1">hasta</label> 
-                                <p class="cont_museo--p"><?php echo $Key['fechaCulmina']?></p>
+                                <p class="cont_museo--p"><?php echo $Key['fecha_Culmina']?></p>
                             </div>
+
+                            <!-- DIAS -->
                             <div class="cont_museo--fecha--item">
                                 <label class="cont_museo--label_1">Culmina</label> 
                                 <?php
                                 foreach($Datos['diasExposicion'] as $Row_2)   :
-                                    if($Key['ID_Sala'] == $Row_2['ID_Sala']){ ?>
-                                        <p class="cont_museo--p"> <?php echo $Row_2['dias_restantes']?> dias</p>
-                                        <?php
-                                    }  
+                                    if($Key['ID_Sala'] == $Row_2['ID_Sala']){ 
+                                        if($Row_2['dias_restantes'] <= 0){  ?>
+                                            <p class="cont_museo--p cont_museo--p--concluida">Muestra concluida</p>
+                                            <?php
+                                        }
+                                        else{   ?>
+                                            <p class="cont_museo--p"> <?php echo $Row_2['dias_restantes']?> dias</p>
+                                            <?php
+                                        }
+                                    }   
                                 endforeach; ?>
                             </div>
                         </div>
                     
-                        <textarea class="cont_museo--textarea" readonly><?php echo $Key['TextoEspacio']?></textarea>
+                        <p class="cont_museo--textarea" readonly><?php echo $Key['TextoEspacio']?></p>
                     </div>
 
                     <div class="cont_Museo--div--item--boton">
@@ -84,16 +120,16 @@
                             <a class="boton" style="display: block; width: 30%;" href="<?php echo RUTA_URL . '/Museo_C/salaExposicion/' . $Key['ID_Sala'];?>" rel="noopener noreferrer">Obras de la colección</a>
                         </div>
 
-                        <div style="background-color: red; position: relative; bottom: 10%">
+                        <div style="position: relative; bottom: 10%">
 
                              <!-- FLECHAS ARRIBA -->	
-                            <div style="transform: rotate(90deg);"> 
-                                <img onclick="pantalla('<?php echo $Key['ID_Sala']?>', 'Arriba')" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_back_ios_new_black_24dp.png'?>" oncl/>
+                            <div class="cont_Museo--FelchaArriba Default_pointer" style="transform: rotate(90deg);"> 
+                                <img style="width: 2em;" onclick="pantalla('<?php echo $Key['ID_Sala']?>', 'Arriba')" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_back_ios_white_24dp.png'?>"/>
                             </div>
 
                              <!-- FLECHAS ABAJO -->	
-                            <div style="transform: rotate(90deg);"> 
-                                <img onclick="pantalla('<?php echo $Key['ID_Sala']?>', 'Abajo')" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_black_24dp.png'?>"/>
+                            <div class="cont_Museo--FelchaArriba Default_pointer" style="transform: rotate(90deg); margin-bottom: 0%;"> 
+                                <img style="width: 2em;" onclick="pantalla('<?php echo $Key['ID_Sala']?>', 'Abajo')" src="<?php echo RUTA_URL . '/public/iconos/chevron/outline_arrow_forward_ios_white_24dp.png'?>"/>
                             </div>
                         </div>
                     </div>

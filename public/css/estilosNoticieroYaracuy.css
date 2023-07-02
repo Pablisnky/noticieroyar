@@ -542,7 +542,7 @@ textarea{
 	margin-top: -1.6%;
 	font-size: 1.3vw;
 	display: block;
-	color: black;
+	color: white;
 }
 .small_4{
 	font-size: 0.7em;
@@ -914,13 +914,18 @@ textarea{
  }
  
 .carta {
+	/* background-color: red; */
+	display: flex;
 	height: 100vh;
 }
  .cont_ObraDetalle{
-	width: 100%;
-	/* height: 100vh; */
+	/* background-color: yellow; */
+	width: 50%;
+ } 
+ .cont_ObraDetalle--atras{
+	background-color: blue;
+	width: 50%;
  }
- 
  .cont_ObraDetalle--label{
 	display: flex;
 	justify-content: space-between;
@@ -1014,14 +1019,14 @@ textarea{
 	padding-top: 2%;
  }
  .cont_agenda_h1{
-	 background-color: rgba(255, 165, 0, 0.7);
-	 position: fixed;
-	 left: 0%;
-	 font-size: 2.3em;
-	 text-align: center;
-	 height: 100vh;
-	 width: 4%;
-	 float: left;
+	background-color: rgba(255, 165, 0, 0.7);
+	position: fixed;
+	left: 0%;
+	font-size: 2.3em;
+	text-align: center;
+	height: 100vh;
+	width: 4%;
+	float: left;
  }
  .cont_Galeria--item{
 	display: inline-block;
@@ -3476,7 +3481,10 @@ ul .menuContenedor_3{
 	background-color: black; 
 	width: 4%; 
 	height: 100vh; 
-	position: fixed
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 .cont_artista--textoVertical{
 	padding-bottom: 25px; 
@@ -3969,12 +3977,12 @@ ul .menuContenedor_3{
 
 
 
+
+
 .cont_Museo{
-	height: 100vh;
-	
+	height: 100vh;	
 }
 .cont_Museo--div{
-	background-color: yellow;
 	display: flex;
 	flex-wrap: wrap;
 	padding-top: 80px;
@@ -3992,6 +4000,7 @@ ul .menuContenedor_3{
 .cont_Museo--div--item--boton{
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 .cont_Museo--div--img{
 	display: flex;
@@ -4006,8 +4015,6 @@ ul .menuContenedor_3{
 	height: 85vh;
 	margin: auto;
 	object-fit: cover; /*fill, cover, contain, none, scale-down, inherit, initial, unset*/
-}
-.cont_Museo--div--imagen{	
 }
 .cont_Museo--img{
 	position: absolute;
@@ -4027,14 +4034,8 @@ ul .menuContenedor_3{
 	margin-bottom: 15%;
 }
 .header--museo{
-	background-color: initial;
+	background-color: rgba(80, 73, 73, 0.8);
 	justify-content: center;
-}
-.header--menu--museo{
-	background-color: rgba(255, 255, 255, 0.8);
-	box-sizing: content-box; /*el padding crece sin disminuir el tamaño del contenido*/
-	padding: 5%;
-	border-radius: 10px;
 }
 .header--titulo--museo{
 	background-color: rgba(255, 255, 255, 0.8);
@@ -4042,21 +4043,29 @@ ul .menuContenedor_3{
 	padding: 0% 1%;
 	border-radius: 10px;
 }
+.cont_Museo--membrete label{
+	color: white;
+	font-size: 1.4vw;
+}
+.cont_Museo--membrete small{
+	color: white;
+	font-size: 1.4vw;
+}
 .cont_Museo--membrete{
+	background-color: rgba(80, 73, 73, 0.8);
 	position: relative;
-	top: 20vh;
+	top: 25vh;
 	left: 3%;
 	width: max-content;
-	background-color: rgba(255, 255, 255, 0.5);
 	box-sizing: content-box; /*el padding crece sin disminuir el tamaño del contenido*/
-	padding: 0% 1%;
+	padding: 1%;
 	border-radius: 10px;
 }
 .cont_museo--menuSecundario{
 	background-color: white;
 	margin: auto;
 	position: absolute;
-	top: -700%;
+	top: -800%;
 	right: 6%;
 	transition: all .5s; /*tiempo que tarda en aplicarse desde que se manda a llamar*/
 	margin-top: 2%;
@@ -4095,26 +4104,36 @@ ul .menuContenedor_3{
 	margin-top: 100%
 }
 .cont_museo--sala{
-	/* font-family:  'Roboto', sans-serif; */
 	font-size: 4vw;
 	text-align: center;
 	height: 95vh;
 	width: 4%;
 }
+.cont_museo--salaExp{ 
+	color: white !important;
+	font-size: 3vw;
+	height: 25vh;
+	width: 100%;
+	text-align: left;
+	padding-top: 25%;
+}
 .cont_museo--label_1{
 	font-size: 1.3vw;
-	padding-left: 4%;
+	margin-left: 4%;
+	font-weight: bold;
 }
 .cont_museo--p{
 	font-size: 1.8vw;
 	padding-left: 7%;
 	margin-bottom: 3%;
 }
+.cont_museo--p--concluida{
+	font-size: 1.5vw;
+}
 .cont_museo--fecha{
-	/* background-color: red;  */
 	display: flex;
 	justify-content: start; 
-	width: 90%; 
+	width: 100%; 
 	margin-left: 2%;
 	margin-bottom: 3%;
 }
@@ -4123,15 +4142,32 @@ ul .menuContenedor_3{
 	bottom: 10pt;
 }
 .cont_museo--fecha--item{
-	/* background-color: yellow; */
 	width: 32%;
 }
 .cont_museo--textarea{
 	background-color: transparent;
-	margin-left: 2%;
-	width: 90%;
+	text-align: justify;
+	margin: auto;
+	width: 85%;
+	height: 30vh;
 	border: none;
 	margin-bottom: 3%;
+}
+.cont_Museo--FelchaArriba{
+	background-color: rgba(80, 73, 73, 0.8);
+	border-radius: 50%;
+	padding: 5%;
+	width: 2vw;
+	margin-bottom: 5%;
+}
+.cont_Museo--flechaUnica{	
+	/* background-color: rgba(80, 73, 73, 0.8); */
+	width: 50px;
+	height: 50px;
+	margin: auto;
+	position: relative;
+	top: 16vh;
+	border-radius: 100%;
 }
 
 

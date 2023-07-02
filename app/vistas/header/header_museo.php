@@ -4,8 +4,8 @@
         <title>NoticieroYaracuy</title>
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-		<meta name="description" content="Noticias de Yaracuy"/>
-		<meta name="keywords" content="noticias, yaracuy, publicidad"/>
+		<meta name="description" content="Museo Carmelo Fernandez"/>
+		<meta name="keywords" content="Museo Carmelo Fernandez, museo, San Felipe, Yaracuy, cultura"/>
 		<meta name="author" content="Pablo Cabeza"/>
 		<meta name="author" content="Pablo Cabeza"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -35,13 +35,32 @@
 				transition: all 0.4s;
 			} 
 		</style>
+
+		<!-- estilos parametrizados -->
+		<?php
+			// if(!empty($Datos['bandera'])){/*Cuando se llama el header_museo desde el metodo salaExposicion() */
+			// 	$background_header = 'transparent';
+			// }
+			// else if(!empty($Datos['bandera']) == 1){
+			// 	$background_header = 'rgba(80, 73, 73, 0.8)';
+			// }
+			// else{
+			// 	// echo "NO ESTA DECLARADA";
+			// }
+		?>
+		<style>
+			/* Se parameretriza la clase CSS segun el valor de la bandera */
+			/* .Param_header{
+				background-color: <?php //echo $background_header?>;
+			} */
+		</style>
     </head>
-    <body>			
-		<header class="header header--museo" id="Header">
+    <body class="body--inicio">			
+		<header class="header header--museo Param_header" id="Header">
 			
 			<!-- ICONO HAMBURGUESA -->	
 			<div style="margin-right: 20%;"> 
-				<img class="header--menu header--menu--museo" id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_black_24dp.png'?>"/>
+				<img class="header--menu " id="ComandoMenu" onclick="mostrarMenu()" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_menu_white_24dp.png'?>"/>
 			</div>
 			
 			<!-- BARRA DE NAVEGACION -->
@@ -88,7 +107,7 @@
 
 			<!-- MEMBRETE FIJO -->
 			<div>
-				<label class="header__titulo header--titulo--museo" id="MembreteFitjo">Museo Carmelo Fernandez</label>
+				<label class="header__titulo" style="color: white; margin-top: -2%" id="MembreteFitjo">Museo Carmelo Fernandez</label>
             	<small class="small_3">San Felipe - Yaracuy</small>
 			</div>
 
@@ -119,61 +138,61 @@
             <!-- </div> -->
 			
 			<!-- ICONO SUB MENU -->
-			<div class="" style="margin-left: 20%;" onclick="Expandir_SubMenu()">
-				<img class="header--menu--museo Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_more_vert_black_24dp.png'?>" id="IconoExpandir"/>
+			<div style="margin-left: 20%;" onclick="Expandir_SubMenu()">
+				<img class=" Default_pointer" src="<?php echo RUTA_URL . '/public/iconos/menu/outline_more_vert_white_24dp.png'?>" id="IconoExpandir"/>
 			</div>
 
 			<!-- MENU SECUNDARIO --> 
 			<div class="cont_museo--menuSecundario borde_1" id="MenuSecundario">  
-				<!-- <a class="MenuSec_JS" style="color: black; display: block; margin-bottom: 5%; font-family:'Moon Dance', cursive; font-size: 2vw; text-align: center;" href="#Inicio">Museo Carmelo Fernandez</a>  -->
+				<a class="MenuSec_JS" style="color: black; display: block; margin-bottom: 5%; font-family:'Moon Dance', cursive; font-size: 2vw; text-align: center;" href="<?php echo RUTA_URL . '/Museo_C';?>">Museo Carmelo Fernandez</a> 
 
 				<div class="cont_detalle_Producto--suscriptor">
-					<img style=" margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/museo/outline_attractions_black_24dp.png'?>"/>
-					<a class=" Default_font--black cont_museo--label" href="#Sala_1">Sala 1</a>
+					<!-- <img style=" margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/museo/outline_attractions_black_24dp.png'?>"/> -->
+					<a class=" Default_font--black cont_museo--label" href="#Sala_1" onclick="cambiaColor('Sala_1')">Sala 1</a>
 				</div>
 
 				<div class="cont_detalle_Producto--suscriptor">
-					<img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/pintor/outline_palette_black_24dp.png'?>"/>
-					<a class=" Default_font--black cont_museo--label" href="#Sala_2">Sala 2</a>
+					<!-- <img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/pintor/outline_palette_black_24dp.png'?>"/> -->
+					<a class=" Default_font--black cont_museo--label" href="#Sala_2" onclick="cambiaColor('Sala_2')">Sala 2</a>
 				</div>
 						
 				<div class="cont_detalle_Producto--suscriptor">
-					<img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_perm_identity_black_24dp.png'?>"/>
-					<a class=" Default_font--black cont_museo--label" href="#Sala_3">Sala 3</a>
+					<!-- <img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/perfil/outline_perm_identity_black_24dp.png'?>"/> -->
+					<a class=" Default_font--black cont_museo--label" href="#Sala_3" onclick="cambiaColor('Sala_3')">Sala 3</a>
 				</div>
 
 				<div class="cont_detalle_Producto--suscriptor">
-					<img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/listado/outline_fact_check_black_24dp.png'?>"/>
-					<a class=" Default_font--black cont_museo--label" href="#Sala_4">Sala 4</a>
+					<!-- <img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/listado/outline_fact_check_black_24dp.png'?>"/> -->
+					<a class=" Default_font--black cont_museo--label" href="#Sala_4" onclick="cambiaColor('Sala_4')">Sala 4</a>
 				</div>              
 
 				<div class="cont_detalle_Producto--suscriptor">
-					<img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/>
-					<label class="cont_museo--label">Artista emergente</label>
+					<!-- <img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/> -->
+					<a class=" Default_font--black cont_museo--label" href="#">Artista emergente</a>
 				</div>             
 
 				<div class="cont_detalle_Producto--suscriptor">
-					<img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/>
-					<label class="cont_museo--label">Colección institucional</label>
+					<!-- <img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/> -->
+					<a class=" Default_font--black cont_museo--label" href="#">Colección institucional</a>
 				</div>           
 
 				<div class="cont_detalle_Producto--suscriptor">
-					<img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/>
-					<label class="cont_museo--label">Patio central</label>
+					<!-- <img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/> -->
+					<a class=" Default_font--black cont_museo--label" href="#">Patio central</a>
 				</div>            
 
 				<div class="cont_detalle_Producto--suscriptor">
-					<img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/>
-					<label class="cont_museo--label">Exposición en lobby</label>
+					<!-- <img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/> -->
+					<a class=" Default_font--black cont_museo--label" href="#">Exposición espacio exterior</a>
 				</div>            
 
 				<div class="cont_detalle_Producto--suscriptor">
-					<img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/>
-					<label class="cont_museo--label">Calendario de eventos</label>
+					<!-- <img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/> -->
+					<a class=" Default_font--black cont_museo--label" href="#">Calendario de eventos</a>
 				</div>         
-
+				<hr class="hr_3" style="margin-left: 5%;">
 				<div class="cont_detalle_Producto--suscriptor">
-					<img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/>
+					<!-- <img style="margin-right: 5px" src="<?php echo RUTA_URL . '/public/iconos/telefono/outline_phone_iphone_black_24dp.png'?>"/> -->
 					<a class="Default_font--black cont_museo--label" href="<?php echo RUTA_URL . '/GaleriaArte_C';?>">Galeria de arte</a>
 				</div>          
 			</div>

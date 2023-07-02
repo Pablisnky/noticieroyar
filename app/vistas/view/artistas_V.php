@@ -45,7 +45,7 @@
 	<!-- OBRAS CON LAZYLOAD -->
 	<div class="cont_obras" id="ContObras">
 		<div class="cont_galeria cont_galeria--obras" id="Cont_obras--mosaico">
-			<?php 
+			<?php
 			foreach($Datos['obraArtista'] as $Row) :
 				if($Row['ID_Suscriptor'] == $Datos['datosArtistas']['ID_Suscriptor']){	?>
 					<div class="cont_Galeria--item efectoZoom">

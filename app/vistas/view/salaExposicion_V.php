@@ -1,26 +1,29 @@
-<!-- CARGA SDK FONTAWESONE PARA ICONOS DE REDES SOCIALES se uso esta libreria porque los iconos no tienen fondo-->
-<!-- <script src="https://kit.fontawesome.com/2d6db4c67d.js" crossorigin="anonymous"></script> -->
-
 <div style="display: flex; min-height: 100vh;" id="Obra">	
 	
 	<!-- TEXTO VERTICAL -->
 	<div class="cont_artista--vertical">
+		<div style="flex-grow: 1; flex-shrink: 1;">
+		
+			<!-- FLECHA REGRESAR -->
+			<a class="cont_salaExposicion--icono" href="<?php echo RUTA_URL?>/Museo_C/index/<?php echo $Datos['obrasSala'][0]['ID_Sala'];?>#<?php echo $Datos['obrasSala'][0]['ID_Sala'];?>"><img src="<?php echo RUTA_URL?>/public/iconos/flecha/outline_arrow_back_white_24dp.png"/></a>
 
-		<!-- FLECHA REGRESAR -->
-		<a class="cont_salaExposicion--icono" href="<?php echo RUTA_URL?>/Museo_C/#<?php echo $Datos['obrasSala'][0]['ID_Sala'];?>"><img src="<?php echo RUTA_URL?>/public/iconos/flecha/outline_arrow_back_white_24dp.png"/></a>
-
-		<!-- NOMBRE ARTISTA -->
-		<p class="cont_artista--textoVertical Default--textoVertical" id="DescripcionArtista">aaaaaa</p>
+			<!-- NOMBRE ARTISTA --> 
+			<p class="cont_artista--textoVertical Default--textoVertical" id="DescripcionArtista"><?php echo $Datos['obrasSala'][0]['autorExposicion'];?></p>
+		</div>
+		<div>
+			<!-- SALA -->
+			<p class="cont_museo--salaExp Default--textoVertical"><?php echo $Datos['obrasSala'][0]['ID_Sala']?></p>
+		</div>
 	</div>
 
 	<!-- OBRAS CON LAZYLOAD -->
 	<div class="cont_obras" id="ContObras">
 		<div class="cont_galeria cont_galeria--obras" id="Cont_obras--mosaico">
-			<?php 
+			<?php
 			foreach($Datos['obrasSala'] as $Row) :	?>
                 <div class="cont_Galeria--item efectoZoom">
                     <figure>
-                        <img class="cont_Galeria--img lazyload borde_1 imagen_2--JS efectoBrillo efectoZoom--imagen" name="imagenNoticia" alt="Fotografia Obra" data-src="<?php echo RUTA_URL?>/public/images/museo/<?php echo $Row['ID_Sala'];?>/<?php echo $Row['nombreImagenSala']?>" id="" loading="lazy" width="320" height="10"/>
+                        <img class="cont_Galeria--img lazyload borde_1 imagen_2--JS efectoBrillo efectoZoom--imagen" name="imagenNoticia" alt="Fotografia Obra" data-src="<?php echo RUTA_URL?>/public/images/museo/<?php echo $Row['ID_Sala'];?>/<?php echo $Row['nombreImagenSala']?>" id="<?php echo $Row['ID_ImagenSala']?>" loading="lazy" width="320" height="10"/>
                     </figure>
                 </div> 
                 <?php 
@@ -31,7 +34,7 @@
 
 <!-- DESCRIPCION DEL ARTISTA -->
 <div class="cont_descripcionArtista" id="VerArtista">
-	<!-- <div class="cont_descripcionArtista--titulo">
+	<div class="cont_descripcionArtista--titulo">
 		<img class="cont_artista--icono Default_pointer" id="Cerrar" src="<?php echo RUTA_URL . '/public/iconos/flecha/outline_arrow_back_white_24dp.png'?>"/>
 
 		<p class="cont_artista--textoVertical Default--textoVertical"id="DescripcionArtista"><?php echo $Datos['datosArtistas']['nombreSuscriptor'] . ' ' . $Datos['datosArtistas']['apellidoSuscriptor'];?></p>
@@ -40,7 +43,7 @@
 		<figure>
 			<img class="cont_descripcionArtista--img" alt="Fotografia Artista" src="<?php echo RUTA_URL?>/public/images/galeria/<?php echo $Row['ID_Suscriptor'];?>_<?php echo $Datos['datosArtistas']['nombreSuscriptor'];?>_<?php echo $Datos['datosArtistas']['apellidoSuscriptor'];?>/perfil/<?php echo $Datos['datosArtistas']['nombre_imagenPortafolio'];?>" />
 		</figure>
-	</div> -->
+	</div>
 	<div class="cont_descripcionArtista--descripcion">
 		<p style="color:white">Why do we use it?</p>
 		<p style="color:white">VICTORIA PATRICIA PROAÑO TOVAR
@@ -119,7 +122,7 @@ Talento joven, museo Carmelo Fernández san Felipe Edo Yaracuy 1996.</p>
 </div>
 
 <script src="<?php echo RUTA_URL.'/public/javascript/funcionesVarias.js?v='. rand();?>"></script>
-<!-- <script src="<?php //echo RUTA_URL;?>/public/javascript/E_Artista.js?v=<?php //echo rand();?>"></script>   -->
+<script src="<?php echo RUTA_URL;?>/public/javascript/E_SalaExposicion.js?v=<?php echo rand();?>"></script>  
 
 <!-- Script para evaluar si el navegador soporta lazy-load -->
 <script>

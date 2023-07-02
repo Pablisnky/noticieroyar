@@ -2,6 +2,7 @@
 <script src="https://kit.fontawesome.com/2d6db4c67d.js" crossorigin="anonymous"></script>
 
 <style>
+	
 	.cara {
 		position: absolute;
 		backface-visibility: hidden;
@@ -54,6 +55,7 @@
 	<div id="Miimagen">	
 		<div class="carta-box">
 			<div class="carta" id="Carta">
+
 				<!-- LADO FRONTAL DE TARJETA -->
 				<div class="cont_ObraDetalle cara" id="Cont_PinturaDetalle">
 					<?php
@@ -90,6 +92,8 @@
 				<!-- LADO POSTERIOR DE TARJETA -->
 				<div class="cont_ObraDetalle--atras cara detras">
 					<div class="cont_ObraDetalle--atras-1">
+						
+					<p>HOLA</p>
 						<h1 class="cont_ObraDetalle--h1"><?php echo $Datos['detalleObra']['nombreObra'];?></h1>
 						<p class="cont_ObraDetalle--p1"><b>Autor: &nbsp;</b> <?php echo $Datos['detalleObra']['nombreSuscriptor'];?> <?php echo $Datos['detalleObra']['apellidoSuscriptor'];?></p>
 						<p class="cont_ObraDetalle--p1"><b>Año: &nbsp;</b> <?php echo $Datos['detalleObra']['anioObra'];?></p>

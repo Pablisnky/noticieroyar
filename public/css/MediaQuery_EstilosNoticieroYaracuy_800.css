@@ -1972,7 +1972,16 @@
    font-size: 4.5vw;
    padding: 1%;
 }
-
+.cont_agenda_h1{
+	background-color:initial;
+	position: initial;
+	font-size: 7vw;
+	text-align: center;
+	height: initial;
+	width: 100%;
+	clear: left;
+	margin-bottom: 5%;
+ }
 
 
 
